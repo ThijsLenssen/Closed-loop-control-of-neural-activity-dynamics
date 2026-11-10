@@ -1,0 +1,55 @@
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{amsmath,pgfplots,helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\pgfplotsset{compat=1.18}
+\definecolor{tueblue}{HTML}{0092B5}
+\definecolor{tuered}{HTML}{C81919}
+\definecolor{muted}{HTML}{646C74}
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=1pt]
+\path[use as bounding box] (0,0) rectangle (648,275);
+\begin{axis}[
+  at={(40pt,50pt)},anchor=south west,width=242pt,height=190pt,
+  xmin=0,xmax=25,ymin=0,ymax=0.5,
+  xtick={0,5,10,15,20,25},ytick={0,0.25,0.5},
+  axis lines=left,xlabel={Time (ms)},ylabel={$E(t)$},
+  tick label style={font=\fontsize{10}{12}\selectfont},
+  label style={font=\fontsize{12}{14}\selectfont},
+  legend style={at={(0.5,1.04)},anchor=south,draw=none,
+    font=\fontsize{10}{12}\selectfont,legend cell align=left},
+  grid=major,grid style={gray!15},
+]
+\addplot[tueblue,line width=1.1pt] table[x=t_ms,y=E,col sep=comma]{Presentation/assets/wc1972_fig3_history.csv};
+\addlegendentry{History retained: Eq. (9)}
+\addplot[tuered,line width=1.7pt] table[x=t_ms,y=E,col sep=comma]{Presentation/assets/wc1972_fig3_coarse.csv};
+\addlegendentry{Coarse grained: Eq. (10)}
+\end{axis}
+\node[anchor=south west,text=muted,font=\fontsize{10}{12}\selectfont] at (6,0)
+  {Digitized redrawing of Fig. 3; $r=3\,\mathrm{ms}$.};
+\draw[gray!25,line width=0.8pt] (284,12)--(284,265);
+\node[anchor=north west,text=tueblue,font=\bfseries\fontsize{13}{16}\selectfont] at (302,267)
+  {History retained --- Equation (9)};
+\node[anchor=north west,inner sep=0pt] at (298,241) {\begin{minipage}{348pt}
+\fontsize{13.5}{18}\selectfont
+\[
+\begin{aligned}
+\tau\dot E(t)={}&-E(t)+\left[1-\int_{t-r}^{t}E(s)\,ds\right]\\[5pt]
+&\times S_e\!\left(\int_{-\infty}^{t}e^{-\alpha(t-s)}
+       [c_1E(s)+P(s)]\,ds\right).
+\end{aligned}
+\]
+\end{minipage}};
+\node[anchor=north west,text=tuered,font=\bfseries\fontsize{13}{16}\selectfont] at (302,112)
+  {Coarse grained --- Equation (10)};
+\node[anchor=north west,inner sep=0pt] at (298,87) {\begin{minipage}{348pt}
+\fontsize{13.5}{18}\selectfont
+\[
+\begin{aligned}
+\tau\dot{\bar E}(t)
+  ={}&-\bar E(t)+(1-r\bar E(t))\\[4pt]
+  &\times S_e\!\left(k[c_1\bar E(t)+P(t)]\right).
+\end{aligned}
+\]
+\end{minipage}};
+\end{tikzpicture}
+\end{document}

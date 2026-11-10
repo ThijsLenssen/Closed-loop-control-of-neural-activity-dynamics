@@ -1,0 +1,25 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries Adaptive Deep Brain Stimulation for Parkinson's Disease: Navigating the Roadblocks to Clinical Implementation\par}
+
+\textbf{Paper:} Koeglsperger et al. (2026).\quad Gaps and controversy review.\par
+\href{https://doi.org/10.1002/mds.70284}{DOI: \nolinkurl{10.1002/mds.70284}}\par
+{\footnotesize Page references below use PDF page numbers, including front matter.}
+
+\question{To which general question does this paper relate?}
+Choosing feedback measurements, clinically meaningful objectives and feasible adaptive control policies. Summarizes practical limitations of biomarker-based DBS.
+
+\question{How does it answer the general questions?}
+\textbf{Measurements and control.} Reviews LFP beta, gamma, PAC and peripheral measures, alongside single- and dual-threshold stimulation policies. Beta is useful particularly for rigidity/bradykinesia, but is not expressed reliably in every patient and represents other symptoms less well (PDF pp.~2--6).
+
+\textbf{Usable insight.} Thresholds, ramp rates, response latency, artifacts, medication and behavioural state affect controller performance. Stimulation bounds must accommodate clinical benefit and side effects. Reduced stimulation does not automatically imply lower total energy use once sensing and processing are included (PDF pp.~3--9).
+
+\textbf{Objective and model relevance.} Supports symptom-specific clinical outcomes, function and tolerability, with biomarkers as imperfect feedback surrogates. It does not establish indiscriminate beta suppression as the treatment goal. Provides implementation constraints and policy comparisons rather than identified delayed neural equations or an optimal model-based controller. Patient variability motivates uncertainty analysis rather than universal gains.
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item Neumann et al. (2023), \emph{Adaptive deep brain stimulation: from experimental evidence toward practical implementation}: translation overview (ref.~14, PDF p.~10).
+\item Little and Brown (2012), \emph{What brain signals are suitable for feedback control of deep brain stimulation in Parkinson's disease?}: feedback criteria (ref.~45, PDF p.~11).
+\end{itemize}
+
+\end{document}

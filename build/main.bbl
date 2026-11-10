@@ -1,0 +1,44 @@
+\begin{thebibliography}{1}
+
+\bibitem{zaaimi2023closedloop}
+B Zaaimi, et~al., Closed-loop optogenetic control of the dynamics of neural
+  activity in non-human primates.
+\newblock {\em\protect\JournalTitle{Nature Biomedical Engineering}} \textbf{7},
+  559--575 (2023).
+
+\bibitem{nevadoHolgado2010betaOscillations}
+AJ Nevado~Holgado, JR Terry, R Bogacz, Conditions for the generation of beta
+  oscillations in the subthalamic nucleus--globus pallidus network.
+\newblock {\em\protect\JournalTitle{The Journal of Neuroscience}} \textbf{30},
+  12340--12352 (2010).
+
+\bibitem{turner2022zamesfalbmultipliersdontpanic}
+MC Turner, {Zames-Falb} multipliers: Don't panic (arXiv:2106.15913) (2022).
+
+\bibitem{lenssen2026dual}
+T Lenssen, Dual integral quadratic constraints representation for robust
+  control of partial integral equations (2026) Companion manuscript in
+  preparation.
+
+\bibitem{peet2020representationnetworkssystemsdelay}
+M Peet, Representation of networks and systems with delay ddes, ddfs, ode-pdes
+  and pies (2020).
+
+\bibitem{Seiler2015}
+P Seiler, Stability analysis with dissipation inequalities and integral
+  quadratic constraints.
+\newblock {\em\protect\JournalTitle{IEEE Transactions on Automatic Control}}
+  \textbf{60}, 1704--1709 (2015).
+
+\bibitem{Meinsma1995}
+G Meinsma, $j$-spectral factorization and equalizing vectors.
+\newblock {\em\protect\JournalTitle{Systems \& Control Letters}} \textbf{25},
+  243--249 (1995).
+
+\bibitem{Pfifer2015}
+H Pfifer, P Seiler, Robustness analysis of linear parameter varying systems
+  using integral quadratic constraints.
+\newblock {\em\protect\JournalTitle{International Journal of Robust and
+  Nonlinear Control}} \textbf{25}, 2843--2864 (2015).
+
+\end{thebibliography}

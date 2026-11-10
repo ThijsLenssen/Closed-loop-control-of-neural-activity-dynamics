@@ -1,0 +1,162 @@
+Literature Review Notes
+
+Paper notes
+
+Paper: Title, authors, year / DOI
+
+
+To which general question does this paper relate?
+
+How does it answer the general questions?
+
+What papers does it cite that could provide more information?
+
+General questions
+
+What can or is measured by optogenetics or deep brain stimulation?
+
+
+
+What can or is controlled by optogenetics or deep brain stimulation?
+
+
+
+What causes the neurological symptoms?
+
+
+
+What is the control objective?
+
+
+
+Can the system be modeled as follows?
+
+Let x(t) ∈ RNx , w(t) ∈ RNw , and u(t) ∈ RNu denote the state, disturbance, and control. Let
+vi (t) be the input to fi , z(t) ∈ RNz the performance output, and y(t) ∈ RNy the measurement:
+                                                                     Nx
+                                                                     X
+                                                                           bxij xj (t − τ̂ij )
+                                                              
+                        ẋi (t) = ai xi (t) + fi vi (t) +
+                                                                     j=1
+                                       Nw
+                                       X                             Nu
+                                                                     X
+                                   +         bw
+                                              ij wj (t − τ i ) +            buij uj (t − τ̃ij ),
+                                       j=1                           j=1
+                                   Nx
+                                   X                                Nw
+                                                                    X
+                        vi (t) =         cxij xj (t − τ̂ij ) +            cw
+                                                                           ij wj (t − τ i )
+                                   j=1                              j=1
+                                       Nu
+                                       X
+                                   +         cuij uj (t − τ̃ij ),
+                                       j=1
+
+                         z(t) = Cz x(t) + Dzu u(t),
+                                   Nx                               Nw
+                                      y
+                                         cij xj (t − τijy ) +          yw
+                                                                          dij wj (t − τijyw ).
+                                   X                                X
+                        yi (t) =
+                                   j=1                              j=1
+
+
+
+
+                                                          1
+The first two equations use i = 1, . . . , Nx ; the measurement equation uses i = 1, . . . , Ny . Local
+state measurements are obtained by choosing the corresponding cyij nonzero. All delays are
+constant and nonnegative, with the required state and input histories prescribed.
+Nonlinearity assumptions. In equilibrium-deviation coordinates, assume fi is memoryless,
+time-invariant, and satisfies fi (0) = 0. It is monotone nondecreasing and slope-restricted on an
+interval Iisl containing zero:
+
+                        fi (v) − fi (q)
+                   0≤                   ≤ ℓi ,    v, q ∈ Iisl ,   v ̸= q,   0 ≤ ℓi < ∞.
+                             v−q
+On a separate interval Iisec containing zero, assume the sector bound
+
+                              fi (v)
+                         0≤          ≤ αi ,      v ∈ Iisec \ {0},    0 ≤ αi < ∞.
+                                 v
+Oddness is not required.
+
+
+
+
+                                                     2
+How can I optimally parameterize a PIE Zames–Falb multiplier?
+This derived construction has scalar input and output and distributed states. Use polynomial profiles on
+s ∈ [0, 1], a finite number n of state components, and a scalar feedthrough decision variable d, with
+                    d > 0,        aj (s) > 0,       βj (s) ≥ 0       for all s ∈ [0, 1], j = 1, . . . , n.
+Continuity on this compact interval gives a uniform lower bound aj (s) ≥ amin > 0 and finite integrals.
+
+
+PIE realization of M −1
+Let Z = L2 ([0, 1]; Rn ). For x(t, ·) ∈ Z and scalar u(t), y(t), take
+                             ẋj (t, s) = −aj (s)xj (t, s) + βj (s)u(t),        xj (0, s) = 0,
+                                                  Z 1X   n
+                                  y(t) = d u(t) +           aj (s)xj (t, s) ds.
+                                                    0 j=1
+
+Equivalently, T = I and
+                                                                                                            ⊤
+               (Ax)(s) = − diag(a1 (s), . . . , an (s))x(s),       (Bu)(s) = β1 (s)          ···   βn (s)         u,
+                         Z 1X
+                   Cx =         aj (s)xj (s) ds,                           D = d.
+                              0   j
+
+With the profiles aj (s) fixed, A, C are fixed, and B, D are affine in the weight coefficients and d.
+
+
+Transfer functions and normalization
+Writing p for the Laplace variable, define
+                                                     n
+                                                  Z 1X
+                                                                       aj (s)
+                                         G(p) =             βj (s)              ds.
+                                                    0 j=1            p + aj (s)
+
+Then
+                                                                                   1
+                                  M −1 (p) = d + G(p),             M (p) =              ,
+                                                                               d + G(p)
+                                                  G(p)                               d
+                                      H(p) =             ,       H −1 (p) = 1 +          .
+                                                d + G(p)                            G(p)
+
+Use the scaled Zames–Falb normalization M = d−1 (1 − H); d = 1 recovers M = 1 − H. For G ̸≡ 0,
+H −1 exists algebraically and may be improper. Spatially varying profiles can give nonrational transfers;
+M, M −1 , H ∈ H∞ .
+
+
+Nonnegative impulse response and L1 condition
+Set bj (s) = aj (s)βj (s) and let Aa be multiplication by diag(aj (s)) on Z. With b∗ x = ⟨b, x⟩Z , define
+            p
+
+K = Aa + d−1 bb∗ . The inversion identity gives
+                                  1                          1
+                          H(p) = b∗ (pI + K)−1 b,     h(t) = ⟨b, e−Kt b⟩Z ≥ 0.
+                                  d                          d
+The operator K is self-adjoint and bounded below by amin I, so h decays exponentially. Consequently,
+                             Z 1X
+                                                                         S
+                       S :=         βj (s) ds ≥ 0,   ∥h∥L1 = H(0) =          < 1.
+                              0   j
+                                                                       d + S
+
+No upper bound on S, including S < d, is required. This is the temporal L1 norm of a scalar impulse
+response. Background: Scherer (2022), Dissipativity and Integral Quadratic Constraints, Lemma 31
+and (S18), p. 132. Its normalized hard IQC assumes a convex-subgradient nonlinearity and zero filter
+initialization; scaling by 1/d > 0 preserves the inequality.
+
+
+
+
+                                                             3
+

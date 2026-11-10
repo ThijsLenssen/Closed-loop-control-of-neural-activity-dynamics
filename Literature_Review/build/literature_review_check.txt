@@ -1,0 +1,718 @@
+Literature Review Notes
+
+Paper notes
+
+Separate reviews are stored in Paper_Notes/, with an index in its README.md. Each answers the
+three per-paper questions; the synthesis below draws on those reference papers. Plain-English
+definitions are collected in the medical and neuroscience nomenclature.
+
+
+General questions
+
+What can or is measured by optogenetics or deep brain stimulation?
+
+Neural activity is measured, and firing rates can be estimated from those recordings.
+In the optogenetic experiments of Zaaimi et al., multicontact electrodes record both LFPs and
+single-neuron spikes; Fig. 3 reports spike-rate responses during stimulation [10, PDF pp. 2, 5].
+Electrical-stimulation experiments used by Nevado Holgado et al. likewise record STN/GPe
+firing rates, including GPe responses to STN stimulation [15, PDF pp. 3–4]. The DBS review
+by Neumann et al. summarizes measured single-neuron firing responses at several stimulation
+targets [12, PDF pp. 4–6].
+For a population represented by ni recorded neurons, a possible measurement construction is the
+average spike count per unit time:
+                                               n  i
+                                            1 X                   
+                                 rbi (t) =          Niℓ (t − ∆, t] ,
+                                           ni ∆ ℓ=1
+
+where Niℓ counts spikes and ∆ is the observation window. This estimates a population mean
+when the recorded neurons are representative. In deviation coordinates it motivates y = Cy x + ν,
+with Cy selecting or mixing recorded populations and ν representing sampling and measurement
+error; windowing adds observation dynamics.
+LFPs also provide a route to observing rate dynamics. Zaaimi et al. model LFP as a high-pass-
+filtered combination of excitatory and inhibitory population activity [10, PDF pp. 9, 15]. Hall et
+al., cited by that paper, demonstrate real-time estimation of individual cortical firing rates from
+multichannel LFPs using a trained decoder [3]. Optical indicators offer another route to activity
+estimation [1, 2]. Thus both spike-based rate estimates and calibrated indirect observations can
+support a firing-rate state model. The observation map depends on the recording method; an
+unprocessed LFP is not itself a firing rate.
+
+
+Is state feedback sufficient, or is an observer needed?
+
+State feedback is an explicit measurement assumption. It is experimentally plausible
+when the states used by the controller are population rates estimated from representative,
+separately identified recordings of those populations. Sampling error, rate filtering and latency
+must then be included in the implementation model. Recording neural activity alone does not
+establish access to every model state.
+Evidence for estimation. Zaaimi et al. feed back one filtered LFP channel, while their model
+contains both E and I [10, PDF pp. 2, 9, 14–15]. Their experiment demonstrates output feedback,
+rather than separate measurement of both states. Hall et al. demonstrate an LFP-to-firing-rate
+decoder [3]. More directly, Bolus et al. synthesize linear-quadratic state-feedback gains and
+
+                                                   1
+implement optogenetic firing-rate regulation in awake mice using a parameter-adaptive Kalman
+filter for online state estimation [4, Secs. 2.5–2.6]. This is experimental precedent for combining
+state-feedback synthesis with an observer; their identified linear model differs from the nonlinear
+delayed model here.
+Implication for this project (derived). For instantaneous measurements y = Cy x, a law
+u = Kx can be implemented directly if its required feedback is reconstructible from y; for
+example, if K = LCy , then u = Ly. Otherwise an observer/decoder must estimate the required
+state components, provided they can be inferred from the available measurements and dynamics.
+A mixed LFP can contain enough temporal information for estimation, but this requires an
+observability or detectability analysis. With an estimate,
+
+                               u = Kx
+                                    b = Kx + Ke,            b − x.
+                                                          e=x
+
+The estimation error enters the closed loop, so the existing state-feedback certificate alone
+does not certify the observer-based nonlinear delayed system. For PIE feedback using delay
+histories, those histories are also required; measured rates can be buffered to supply them after
+initialization.
+
+
+What can or is controlled by optogenetics or deep brain stimulation?
+
+Stimulation supplies an input to neuronal populations and changes their firing
+dynamics. Optogenetics targets opsin-expressing neurons or projections. Zaaimi et al. explicitly
+represent optical drive S(t) as an input to the excitatory population and measure the resulting
+spiking and LFP activity [10, PDF pp. 2, 5, 15]. The reviewed optogenetic perturbations of
+STN/GPe also produce recorded changes in neuronal firing rates [14, PDF pp. 6–8].
+For electrical stimulation, Nevado Holgado et al. model STN electrode current through an
+additive input and fit its effect to GPe firing-rate responses [15, PDF pp. 3–4, Eq. 5]. DBS
+recruits neurons and axons, thereby influencing the stimulated and connected populations [12].
+These examples support both input locations in the proposed model: cu u changes the drive
+entering a population’s nonlinear activation, whereas bu u represents an additive effective rate
+drive. Targeting determines which channels are actuated; kinetics and pathway recruitment
+determine their gains, signs and dynamics.
+
+
+What causes the neurological symptoms?
+
+For Parkinson’s disease, dopamine loss changes population firing rates, synaptic interactions and
+the temporal organization of basal-ganglia activity. A dynamical firing-rate model can represent
+both changes in mean activity and collective oscillations through time-varying population rates
+[15, 16]. Exaggerated beta synchronization is associated particularly with bradykinesia and
+rigidity; its contribution to symptoms must be distinguished from the mechanism generating it.
+Motor deficits can precede exaggerated beta [14, 9].
+The mechanism is not settled by a single loop: delayed STN–GPe models and models emphasizing
+pallidostriatal interactions provide different accounts of synchronization [15, 16, 17]. For freezing
+of gait, cortical PAC is associated with severity, yet DBS improves freezing even at comparable
+PAC levels. Thus PAC reduction alone does not explain the treatment effect [5].
+
+
+What is the control objective?
+
+At the neural level, the objective can be to regulate population activity towards a desired
+rate or trajectory, or to attenuate unwanted oscillatory/bursting dynamics. Grosenick et al.
+
+                                                 2
+discuss target neural activity patterns, and Zaaimi et al. demonstrate feedback enhancement
+and suppression of oscillatory activity [1, 10]. For regulation about a chosen reference rate, a
+possible design choice is
+                                                      "       #                     "    #                 "      #
+                                                  Wr x                        Wr                      0
+                   x = r − rref ,              z=      ,                 Cz =    ,              Dzu =    .
+                                                  Wu u                        0                       Wu
+
+Here the weights trade rate deviations against stimulation effort; the reference and weights are
+design choices. For clinical use, the chosen activity target should be linked to an outcome such
+as improved movement initiation or reduced freezing [6, 5].
+
+
+Can the system be modeled as follows? If so give the parameterization
+
+Yes: key references explicitly use population firing-rate models with stimulation
+inputs and neural observations. Zaaimi et al. use a two-population Wilson–Cowan model
+for their optogenetic experiments; Nevado Holgado et al. use delayed STN–GPe rate dynamics
+constrained by recordings. Azizpour Lindi et al. also use a rate model alongside a spiking
+network [10, 15, 16]. This supports the proposed model class as a population-level description;
+the populations and coefficients depend on the preparation.
+Let x(t) ∈ RNx , w(t) ∈ RNw , and u(t) ∈ RNu denote the state, disturbance, and control. Let
+vi (t) be the input to fi , z(t) ∈ RNz the performance output, and y(t) ∈ RNy the measurement:
+                                                Nx
+                                                X                             Nw
+                                                                              X                            Nu
+                                                                                                           X
+                                                      bxij xj (t − τ̂ij ) +         bw                           buij uj (t − τ̃ij ),
+                                         
+      ẋi (t) = ai xi (t) + fi vi (t) +                                              ij wj (t − τ ij ) +
+                                                j=1                           j=1                          j=1
+                 Nx
+                 X                             Nw
+                                               X                            Nu
+                                                                            X
+      vi (t) =         cxij xj (t − τ̂ij ) +         cw
+                                                      ij wj (t − τ ij ) +         cuij uj (t − τ̃ij ),
+                 j=1                           j=1                          j=1
+
+       z(t) = Cz x(t) + Dzu u(t),
+                 Nx                            Nw
+                    y
+                       cij xj (t − τijy ) +       yw
+                                                     dij wj (t − τijyw ).
+                 X                             X
+      yi (t) =
+                 j=1                           j=1
+
+The first two equations use i = 1, . . . , Nx ; the measurement equation uses i = 1, . . . , Ny . Local
+state measurements are obtained by choosing the corresponding cyij nonzero. All delays are
+constant and nonnegative, with the required state and input histories prescribed.
+Nonlinearity assumptions. In equilibrium-deviation coordinates, assume fi is memoryless,
+time-invariant, and satisfies fi (0) = 0. It is monotone nondecreasing and slope-restricted on an
+interval Iisl containing zero:
+
+                             fi (v) − fi (q)
+                       0≤                    ≤ ℓi ,               v, q ∈ Iisl ,     v ̸= q,      0 ≤ ℓi < ∞.
+                                  v−q
+On a separate interval Iisec containing zero, assume the sector bound
+
+                                     fi (v)
+                               0≤           ≤ αi ,            v ∈ Iisec \ {0},          0 ≤ αi < ∞.
+                                        v
+Oddness is not required.
+
+
+
+
+                                                                    3
+Optogenetic example: Zaaimi et al.
+
+Their Wilson–Cowan model has excitatory and inhibitory activities E, I, optical input S, tonic
+drives P, Q and fluctuating inputs ηE , ηI [10, PDF p. 15, Eqs. 3–4]:
+                                              −E + σ(aE − bI + S + P )
+                                         Ė =                           + ηE ,
+                                                         τE
+                                              −I + σ(cE − dI + Q)
+                                         I˙ =                     + ηI .
+                                                      τI
+Around an equilibrium, take x = (E − E ∗ , I − I ∗ )⊤ , u = S − S ∗ , ai = −1/τi , and
+                    "      #                    " #
+                    a −b                         1                                                    σ(qi∗ + v) − σ(qi∗ )
+        [cxij ] =        ,                u
+                                         c =       ,       bx = bu = 0,                    fi (v) =                        .
+                    c −d                         0                                                             τi
+
+All intrinsic delays are zero in this example. Additive disturbance channels can represent
+fluctuating inputs; the paper simulates them stochastically. Its logistic has derivative between
+zero and 1/4, giving ℓi = αi = 1/(4τi ) for the centred nonlinearities. The four letters a, b, c, d
+above are that paper’s coupling parameters; the numerical simulation values are referred to its
+Supplementary Table 2.
+The simulated measurement is a high-pass-filtered combination of E and I, passed through
+the experimental feedback algorithm [10, PDF pp. 9, 15]. Thus the paper connects population
+dynamics, an optical input and a neural observation in one closed loop. The filtered measurement
+can be represented by augmenting the model with observation-filter states. The recorded spikes
+additionally allow rate estimates for the sampled neurons; the two model population activities
+are not separately measured as complete populations.
+
+
+Electrical-stimulation example: Nevado Holgado et al.
+
+Nevado Holgado et al. [15, PDF pp. 2–4, Eqs. 2–5 and Tables 1, 3] provide a concrete two-
+population example. Let x = (rS − rS∗ , rG − rG ∗ )⊤ denote STN and GPe firing-rate deviations
+                              ∗
+from an equilibrium, and let qi be its total input. Choose
+
+                           ai = −1/τi ,                                bxij = bw
+                                                                               ij = 0,
+                                     "                 #                          "                   #
+                                       0  −wGS                                         0      TGS
+                         [cxij ] =             ,                      [τ̂ij ] =                   ,
+                                      wSG −wGG                                        TSG     TGG
+                                     Fi (qi∗ + v) − Fi (qi∗ )                  Mi
+                        fi (v) =                              , Fi (q) =   Mi −Bi −4q/Mi
+                                                                                         .
+                                                τi                       1+ B e                i
+
+
+The nominal cortical and striatal drives are (Ctx, Str) = (27, 2) spikes/s. If their deviations are
+included as w, take [cw ij ] = diag(wCS , −wXG ) with zero input delays. The remaining parameters
+are
+                 (τS , τG , TSG , TGS , TGG ) = (6, 14, 6, 6, 4) ms,
+                          (MS , BS , MG , BG ) = (300, 17, 400, 75) spikes/s,
+                                                           (
+                                                               (19, 1.12, 6.60, 2.42, 15.1),              healthy fit,
+             (wSG , wGS , wGG , wCS , wXG ) =
+                                                               (20, 10.7, 12.3, 9.2, 139.4),              diseased fit.
+Use consistent time units. The sigmoid satisfies 0 ≤ Fi′ ≤ 1; therefore the centred fi satisfies
+the stated assumptions globally with ℓi = αi = 1/τi (derived from the reported sigmoid). For
+their electrode-pulse model, u is current and enters additively through bu = (Stim/τS , 0)⊤ , with
+cu = 0 and zero input delay; the healthy-data fit gives Stim = 4.6 × 103 (spikes/s)/mA. This
+supplies an experimentally fitted example of the additive stimulation channel.
+
+                                                                  4
+For spike-derived rate measurements, Cy can select or average the recorded populations, with
+sampling error and observation filtering included as above. If the recorded signal is LFP, its
+calibrated observation model must be supplied separately. Performance weights can be chosen
+using the proposed z above. More detailed preparations may require additional populations,
+opsin states or synaptic filters [1, 16, 17].
+
+
+
+How can I optimally parameterize a PIE Zames–Falb multiplier?
+Scope of the answer. The neural reference papers do not derive an optimal PIE multiplier. The family
+below is a derived candidate whose weights can shape its frequency response. Optimality would be relative
+to a specified robustness/performance objective, polynomial degree and feasible multiplier class.
+This derived construction has scalar input and output and distributed states. Use polynomial profiles on
+s ∈ [0, 1], a finite number n of state components, and a scalar feedthrough decision variable d, with
+                    d > 0,        aj (s) > 0,       βj (s) ≥ 0       for all s ∈ [0, 1], j = 1, . . . , n.
+Continuity on this compact interval gives a uniform lower bound aj (s) ≥ amin > 0 and finite integrals.
+
+
+PIE realization of M −1
+Let Z = L2 ([0, 1]; Rn ). For x(t, ·) ∈ Z and scalar u(t), y(t), take
+                             ẋj (t, s) = −aj (s)xj (t, s) + βj (s)u(t),        xj (0, s) = 0,
+                                                  Z 1X   n
+                                  y(t) = d u(t) +           aj (s)xj (t, s) ds.
+                                                    0 j=1
+
+Equivalently, T = I and
+                                                                                                        ⊤
+               (Ax)(s) = − diag(a1 (s), . . . , an (s))x(s),         (Bu)(s) = β1 (s)        ···   βn (s) u,
+                         Z 1X
+                   Cx =         aj (s)xj (s) ds,                           D = d.
+                              0   j
+
+With the profiles aj (s) fixed, A, C are fixed, and B, D are affine in the weight coefficients and d.
+
+
+Transfer functions and normalization
+Writing p for the Laplace variable, define
+                                                     n
+                                                  Z 1X
+                                                                       aj (s)
+                                         G(p) =             βj (s)              ds.
+                                                    0 j=1            p + aj (s)
+
+Then
+                                                                                   1
+                                  M −1 (p) = d + G(p),             M (p) =              ,
+                                                                               d + G(p)
+                                                  G(p)                               d
+                                      H(p) =             ,       H −1 (p) = 1 +          .
+                                                d + G(p)                            G(p)
+
+Use the scaled Zames–Falb normalization M = d−1 (1 − H); d = 1 recovers M = 1 − H. For G ̸≡ 0,
+H −1 exists algebraically and may be improper. Spatially varying profiles can give nonrational transfers;
+M, M −1 , H ∈ H∞ .
+
+
+Nonnegative impulse response and L1 condition
+Set bj (s) = aj (s)βj (s) and let Aa be multiplication by diag(aj (s)) on Z. With b∗ x = ⟨b, x⟩Z , define
+            p
+
+K = Aa + d−1 bb∗ . The inversion identity gives
+                                  1                          1
+                          H(p) = b∗ (pI + K)−1 b,     h(t) = ⟨b, e−Kt b⟩Z ≥ 0.
+                                  d                          d
+
+                                                             5
+The operator K is self-adjoint and bounded below by amin I, so h decays exponentially. Consequently,
+                             Z 1X
+                                                                       S
+                       S :=         βj (s) ds ≥ 0, ∥h∥L1 = H(0) =          < 1.
+                              0  j
+                                                                     d + S
+
+No upper bound on S, including S < d, is required. This is the temporal L1 norm of a scalar impulse
+response. Background: Scherer (2022), Dissipativity and Integral Quadratic Constraints, Lemma 31
+and (S18), p. 132. Its normalized hard IQC assumes a convex-subgradient nonlinearity and zero filter
+initialization; scaling by 1/d > 0 preserves the inequality.
+
+
+Implication for optimization
+For fixed positive profiles aj (s), expand βj (s) in a finite polynomial basis and impose nonnegativity, for
+example through an SOS certificate on [0, 1]. The weight coefficients and d are then candidate decision
+variables. An SDP requires the complete IQC/storage inequality to be affine in all joint decision variables;
+affinity of B, D alone does not establish this. Jointly varying aj (s) and a Lyapunov operator generally
+introduces products of unknowns. Alternating between fixed-profile and fixed-Lyapunov searches is
+therefore a possible heuristic when those subproblems are convex, with no guarantee of a global optimum.
+
+
+
+
+                                                     6
+Medical and neuroscience nomenclature
+
+Plain-English explanations of the medical and neuroscience terms used in this review, the paper
+notes and the related reading. Entries are grouped by topic. Frequency bands are approximate:
+individual papers may use different boundaries.
+Term / abbreviation          Meaning
+
+Neurons and cellular activity
+Action potential / spike     A brief electrical pulse generated by a neuron and carried along its axon.
+Axon                         The extension of a neuron that carries spikes towards other cells.
+Burst / bursting             A cluster of spikes occurring close together in time.
+Cell body / soma             The main part of a neuron, containing its cell nucleus.
+Dendrite                     A branching extension through which a neuron receives many of its
+                             inputs.
+Depolarization               A change that makes the voltage inside a neuron less negative relative
+                             to its surroundings.
+Excitation / excitatory      An effect that makes a neuron more likely to fire. An excitatory neuron
+                             usually has this effect on its targets.
+Fast-spiking neuron / FSI    A neuron capable of sustained rapid firing. FSI means fast-spiking
+                             interneuron, commonly an inhibitory cell.
+Firing                       A neuron producing action potentials.
+Firing rate                  The number of spikes per unit time, usually expressed as spikes per
+                             second. It is estimated over a time window.
+Hyperpolarization            A change that makes the voltage inside a neuron more negative relative
+                             to its surroundings.
+Inhibition / inhibitory      An effect that makes a neuron less likely to fire; it need not stop firing
+                             completely.
+Interneuron                  A neuron whose connections mainly influence a local circuit. Many
+                             cortical interneurons are inhibitory.
+Membrane potential           The voltage difference between the inside and outside of a cell.
+Neural dynamics              How neural activity changes over time through inputs and interactions
+                             within a circuit.
+Neural circuit / network     Interconnected neurons or populations that influence one another.
+Neural population /          A group of neurons considered together, for example because they share
+ensemble                     a location, cell type or activity pattern.
+Neuron                       A nerve cell that receives, processes and transmits signals.
+Neurophysiology              The study of how neurons and the nervous system function.
+Parvalbumin neuron / PV      A neuron containing the calcium-binding protein parvalbumin. Cortical
+neuron                       PV neurons are commonly fast-spiking inhibitory interneurons.
+Population firing rate       The average firing rate of a group of neurons. A recorded sample can
+                             estimate it if the sample represents the group.
+Pyramidal neuron             A common excitatory cortical neuron named after its roughly
+                             pyramid-shaped cell body; “pyramidal” names the cell type, not an
+                             oscillation.
+Spontaneous / endogenous     Activity generated by the neural system itself, rather than directly
+/ native activity            prescribed by an external stimulus.
+Spike train                  The sequence of times at which a neuron fires.
+Tonic / phasic activity      Tonic activity is relatively sustained; phasic activity consists of brief
+                             changes or responses.
+
+Synapses, signalling and adaptation
+Dopamine                     A chemical messenger that changes how neural circuits operate,
+                             including circuits involved in movement, motivation and learning.
+
+                                                7
+Term / abbreviation           Meaning (continued)
+Dopaminergic                  Producing, releasing, responding to or otherwise involving dopamine.
+Dopamine depletion /          Reduced dopamine availability or signalling in the relevant circuit.
+hypodopaminergic
+D1 / D2 receptors             Two families of proteins through which dopamine affects cells. Their
+                              effects depend on the cell and circuit.
+GABA                          Gamma-aminobutyric acid: the main inhibitory chemical messenger in
+                              the adult brain.
+GABAergic                     Using GABA to transmit signals.
+Glutamate /                   Glutamate is the main excitatory chemical messenger in the brain;
+glutamatergic                 glutamatergic means using glutamate.
+Neurotransmitter              A chemical released by a neuron to communicate with another cell.
+Postsynaptic potential        A change in a receiving neuron’s membrane voltage caused by synaptic
+                              input. It differs from a spike.
+Presynaptic /                 Presynaptic refers to the sending side of a synapse; postsynaptic refers
+postsynaptic                  to the receiving side.
+Receptor                      A protein that responds to a signalling molecule and changes the
+                              receiving cell’s activity.
+Synapse / synaptic            A connection through which one neuron influences another cell; synaptic
+                              means relating to that connection.
+Synaptic depression           A decrease in the effect of a synapse during repeated activity. Here
+                              “depression” does not mean a mood disorder.
+Synaptic plasticity           A change in the strength or effectiveness of a synapse over time.
+
+Brain regions and pathways
+Afferent / efferent           Afferent connections arrive at a specified region; efferent connections
+                              leave it.
+Arkypallidal neuron /         A type of GPe neuron with prominent projections back to the striatum.
+Arky
+Basal ganglia / BG            Interconnected brain structures involved in selecting and regulating
+                              actions, as well as other functions.
+Cortex / cortical             The brain’s outer sheet of neural tissue; cortical means relating to it.
+Cortico-subthalamic           Connecting or involving the cortex and the subthalamic nucleus.
+Contralateral / ipsilateral   On the opposite side / the same side of the body relative to the
+                              structure or intervention being described.
+D1-MSN / D2-MSN               Striatal neurons distinguished by dopamine-receptor expression,
+                              typically associated with the direct and indirect pathways respectively.
+Direct pathway                A basal-ganglia route from the striatum to output nuclei such as
+                              GPi/SNr, without passing through GPe.
+Dorsal / ventral              In the spinal cord, towards the back / the belly side. Dorsoventral
+                              means spanning this direction.
+Fibre / tract / projection    An axon, bundle of axons or connection carrying signals between
+                              neurons or regions.
+GPe                           External globus pallidus: a basal-ganglia region interacting with the
+                              STN, striatum and other regions.
+GPi                           Internal globus pallidus: a major basal-ganglia output region and a DBS
+                              target. It differs from GPe.
+Hippocampus                   A brain structure important for memory and spatial navigation.
+Hyperdirect pathway           A route carrying signals directly from cortex to STN, bypassing the
+                              striatum.
+Indirect pathway              A basal-ganglia route involving striatum, GPe and downstream output
+                              circuits; the classical route also passes through STN.
+Motor cortex / M1             Cortical regions involved in movement; M1 is the primary motor cortex.
+MSN / SPN                     Medium spiny neuron / spiny projection neuron: a principal inhibitory
+                              projection neuron of the striatum.
+
+
+                                                 8
+Term / abbreviation          Meaning (continued)
+Nucleus                      In brain anatomy, a group of neuron cell bodies. This differs from the
+                             nucleus inside an individual cell.
+Pallidal / pallidostriatal   Pallidal means relating to the globus pallidus; pallidostriatal refers to
+                             connections from pallidum to striatum.
+Premotor cortex / SMA        Cortical areas involved in preparing and organizing movements; SMA is
+                             the supplementary motor area.
+Prototypic neuron / Proto    A major GPe cell type that projects to other basal-ganglia regions,
+                             including STN.
+Rostral / caudal             Towards the head / towards the tail end of the body or spinal cord.
+Sensorimotor                 Relating to sensory information and movement control.
+SNc                          Substantia nigra pars compacta: a region containing
+                             dopamine-producing neurons that are particularly affected in
+                             Parkinson’s disease.
+SNr                          Substantia nigra pars reticulata: a major basal-ganglia output region,
+                             distinct from SNc.
+Spinal cord                  Neural tissue connecting the brain with the body and containing
+                             circuits involved in movement and sensation.
+STN                          Subthalamic nucleus: a small, mainly excitatory basal-ganglia structure
+                             and a common DBS target.
+Striatum / striatal          A major input region of the basal ganglia; striatal means relating to it.
+Subcortical                  Located beneath the cerebral cortex.
+Thalamus /                   The thalamus is a group of brain nuclei communicating with cortex and
+thalamocortical              other regions; thalamocortical means connecting thalamus and cortex.
+Vim                          Ventral intermediate nucleus of the thalamus: a stimulation target used
+                             in tremor treatment.
+
+Neural signals and rhythms
+Alpha / theta activity       Named rhythm bands: alpha is roughly 8–12 Hz; theta is roughly 4–8
+                             Hz, extended to 10 Hz in some reviewed work.
+Beta activity                Rhythmic activity at roughly 13–30 Hz; some reviewed papers extend
+                             the band to 35 Hz.
+Coherence                    A frequency-specific measure of how consistently two signals are related.
+                             It does not by itself establish causation.
+Entrainment                  A rhythm becoming aligned with an external rhythm, such as periodic
+                             stimulation.
+Evoked response              Neural activity occurring in response to a stimulus.
+Gamma activity               Rhythmic activity above roughly 30 Hz. Upper limits and the definition
+                             of high gamma vary by study.
+Granger causality            A test of whether one signal’s past improves prediction of another. The
+                             name does not imply proof of a biological cause.
+LFP                          Local field potential: a voltage recorded in neural tissue, reflecting
+                             combined nearby electrical currents, especially synaptic activity.
+Neural oscillation /         A recurring rise and fall in neural activity. It can occur in population
+rhythm                       rates or field potentials.
+PAC                          Phase-amplitude coupling: a statistical relationship between the phase
+                             of a slower rhythm and the amplitude of faster activity.
+Phase / amplitude            Phase is position within an oscillation’s cycle; amplitude describes the
+                             size of its variation.
+Readiness potential          A slow electrical signal associated with preparation for voluntary
+                             movement.
+Spectral / band power        How much signal variation lies within a frequency range. Beta power,
+                             for example, measures variation in the beta band.
+Synchronization /            Coordination in the timing of neural activity. Neurons need not have
+synchrony                    identical average firing rates.
+
+
+
+                                               9
+Term / abbreviation        Meaning (continued)
+Wilson–Cowan /             A population-level description of how neural activity changes through
+firing-rate model          excitation, inhibition and external inputs; Wilson–Cowan models
+                           commonly use coupled excitatory and inhibitory populations.
+
+Recording and imaging methods
+Calcium imaging /          Recording activity-related changes in intracellular calcium using a
+indicator                  fluorescent sensor; calcium signals are slower than individual spikes.
+Connectome /               A map or description of connections between brain regions. Structural
+connectivity               connectivity concerns anatomy; functional connectivity concerns
+                           statistical relationships between activity signals.
+ECoG                       Electrocorticography: recording electrical brain activity using electrodes
+                           on the cortical surface.
+EEG                        Electroencephalography: recording electrical brain activity, usually with
+                           electrodes on the scalp.
+Electrode /                A conducting contact used to record or stimulate electrically; a
+microelectrode             microelectrode is a small contact suited to localized recordings.
+Electrophysiology          Measurement of electrical activity in cells or tissue.
+EMG                        Electromyography: recording electrical activity associated with muscle
+                           activation.
+Extracellular recording    Recording from outside cells; depending on the setup, this can capture
+                           spikes and field potentials.
+Intracranial recording     Recording using electrodes placed inside the skull.
+MEG                        Magnetoencephalography: measuring magnetic fields produced by brain
+                           activity.
+MRI / fMRI                 Magnetic resonance imaging measures tissue properties; functional MRI
+                           uses blood-oxygen-related changes to study brain activity indirectly.
+Multi-unit / single-unit   Multi-unit activity combines spikes from several neurons; single-unit
+activity                   activity consists of spikes assigned to one neuron.
+PET                        Positron emission tomography: imaging the distribution of an injected
+                           radioactive tracer, for example to study molecular systems.
+Polysomnography / PSG      A sleep recording combining signals such as EEG, eye movements,
+                           muscle activity and breathing.
+sEEG                       Stereo-electroencephalography: recording electrical activity with depth
+                           electrodes placed within the brain.
+Spike sorting              Assigning recorded spikes to putative individual neurons using their
+                           waveform and other features.
+Tractography               Estimating the courses of nerve-fibre bundles from diffusion MRI data.
+
+Stimulation and optogenetics
+Adaptive DBS / aDBS        DBS whose settings change automatically in response to measured
+                           signals.
+Antidromic / orthodromic   Antidromic spikes travel towards the cell body along an axon;
+                           orthodromic spikes travel in its usual output direction.
+Archaerhodopsin / Arch /   Light-driven proton pumps used to inhibit neurons; ArchT is an
+ArchT                      engineered variant.
+Channelrhodopsin / ChR2    Light-sensitive ion channels used to excite neurons; ChR2 and Chronos
+/ Chronos                  are examples.
+Closed-loop stimulation    Stimulation chosen using ongoing measurements. Its purpose may be to
+                           increase, suppress or otherwise study activity.
+DBS                        Deep brain stimulation: electrical stimulation delivered through
+                           implanted electrodes to influence brain circuits.
+Halorhodopsin / NpHR /     A light-driven chloride pump used to inhibit neurons; eNpHR denotes
+eNpHR                      enhanced versions.
+HFS                        High-frequency stimulation: a rapid train of stimulation pulses; the
+                           exact frequency depends on the experiment.
+
+
+                                             10
+Term / abbreviation         Meaning (continued)
+Neuromodulation             Changing neural activity using an intervention such as electrical
+                            stimulation, optical stimulation or a chemical agent.
+Open-loop stimulation       Stimulation delivered without adjusting it in response to ongoing
+                            measurements of the controlled activity.
+Opsin                       A light-sensitive protein. In these experiments, introduced opsins allow
+                            light to influence neuronal activity.
+Optogenetics                Using genetically introduced light-sensitive proteins to manipulate
+                            selected cells or their connections with light.
+Optrode                     A device combining optical stimulation with electrode recording.
+Photostimulation            Stimulation using light.
+Projection targeting        Selecting neurons or their axons according to which region they connect
+                            to.
+Pulse width / stimulation   Pulse width is a pulse’s duration; amplitude is its electrical or optical
+amplitude                   strength.
+Stimulation artifact        A recorded signal caused by the stimulation or equipment rather than
+                            the neural activity being studied.
+Viral vector / opsin        A modified virus can deliver genetic instructions; opsin expression
+expression                  means cells produce the instructed light-sensitive protein.
+
+Symptoms, disorders and treatment terms
+Akinesia                    Difficulty initiating movement, or a marked lack of movement.
+Axial symptoms              Problems mainly affecting the trunk, posture, balance or walking.
+Biomarker                   A measurable biological characteristic used to indicate a condition or its
+                            response to an intervention.
+Bradykinesia                Slowness of movement, often with progressively smaller or slower
+                            repeated movements.
+Cognitive                   Relating to processes such as attention, memory, learning and
+                            decision-making.
+Dyskinesia                  Involuntary movements; in Parkinson’s research, often abnormal
+                            movements associated with dopaminergic treatment.
+Dystonia                    Involuntary muscle contractions causing abnormal postures or repetitive
+                            twisting movements.
+Epilepsy / seizure          A seizure is an episode of abnormal brain activity; epilepsy is a disorder
+                            involving an enduring tendency to have seizures.
+Essential tremor            A movement disorder characterized mainly by tremor during posture or
+                            action.
+Freezing of gait / FoG      A brief inability or marked difficulty to step despite the intention to
+                            walk.
+Gait                        The pattern of walking.
+Huntington’s disease        An inherited neurodegenerative disorder affecting movement, cognition
+                            and behaviour.
+Hypokinetic /               Hypokinetic refers to reduced movement; hyperkinetic refers to excessive
+hyperkinetic                or unwanted movement.
+Levodopa / L-DOPA           A substance converted into dopamine in the body and used to treat
+                            Parkinson’s symptoms.
+Motor / non-motor           Motor symptoms affect movement; non-motor symptoms include effects
+symptoms                    on sleep, mood, thinking and other functions.
+Neurodegeneration           Progressive damage to or loss of neurons.
+ON / OFF medication         Study conditions describing treatment benefit or medication exposure;
+                            the paper specifies which meaning is used. These differ from stimulation
+                            ON/OFF.
+Parkinson’s disease / PD    A progressive neurodegenerative disorder involving dopamine-neuron
+                            loss and motor as well as non-motor symptoms.
+
+
+
+
+                                              11
+Term / abbreviation             Meaning (continued)
+Parkinsonism /                  Parkinsonism is a pattern of movement signs resembling Parkinson’s
+parkinsonian                    disease; parkinsonian also describes these features in experimental
+                                models.
+Pathological /                  Pathological concerns disease-related dysfunction; physiological concerns
+physiological                   normal biological function.
+Phenotype                       An observable characteristic, such as a movement pattern or
+                                disease-related behaviour.
+Rigidity                        Increased resistance when a joint is moved by someone else; commonly
+                                experienced as stiffness.
+Tourette syndrome               A condition involving recurrent motor and vocal tics.
+Tremor                          An involuntary rhythmic shaking movement.
+Volitional / voluntary          Movement initiated intentionally.
+movement
+
+Sleep and experimental terminology
+Acute / chronic                 Acute usually refers to a short-term condition or experiment; chronic
+                                refers to a persistent condition or long-term recording/intervention.
+Anaesthetized                   Under anaesthesia; the drugs can affect neural activity and responses to
+                                stimulation.
+Brain slice                     A thin piece of brain tissue kept viable outside the animal for
+                                experiments.
+Biophysical                     Describing biological activity through physical mechanisms such as
+                                membrane currents and ion channels.
+Causal / correlational          Causal evidence supports one process influencing another; correlation
+evidence                        describes variables changing together.
+Histology                       Examining tissue structure, usually with microscopy and stains.
+Epidural                        Located outside the dura mater, the tough outer membrane surrounding
+                                the brain and spinal cord.
+In silico / in vitro / in       In silico: in a computer model. In vitro: outside the living organism. In
+vivo                            vivo: within a living organism.
+NHP                             Non-human primate, such as a monkey used in research.
+NREM sleep / N1–N3              Non-rapid-eye-movement sleep, subdivided into stages N1, N2 and N3.
+REM sleep                       Rapid-eye-movement sleep: a sleep state with characteristic brain
+                                activity, eye movements and usually reduced muscle tone.
+Sleep decoding                  Estimating sleep state from recorded signals using an algorithm.
+Transgenic animal               An animal whose genetic material has been deliberately altered, for
+                                example to express an opsin in selected neurons.
+6-OHDA / MPTP model             Experimental Parkinsonian models using substances that damage
+                                dopamine systems; their effects do not reproduce every feature of
+                                human disease.
+
+Sources. Circuit, recording and optogenetic terminology follows the reviewed papers, particularly
+[1, 2, 12, 14]. Additional plain-language checks: NINDS neurological glossary, NINDS Parkinson’s disease
+overview, and Neuroscience: excitatory and inhibitory postsynaptic potentials.
+
+
+
+
+                                                  12
+References
+ [1] Grosenick et al. (2015). Closed-Loop and Activity-Guided Optogenetic Control. Neuron.
+ [2] Fenno et al. (2011). The Development and Application of Optogenetics. Annual Review of Neuroscience.
+ [3] Hall, Nazarpour and Jackson (2014). Real-time estimation and biofeedback of single-neuron firing
+     rates using local field potentials. Nature Communications. Further source cited by Zaaimi et al.,
+     ref. 13.
+ [4] Bolus, Willats, Rozell and Stanley (2021). State-space optimal feedback control of optogenetically
+     driven neural activity. Journal of Neural Engineering 18, 036006. Additional source on observer-based
+     implementation.
+ [5] Yin et al. (2022). Cortical phase-amplitude coupling is key to the occurrence and treatment of freezing
+     of gait. Brain.
+ [6] K"ohler et al. (2024). Dopamine and deep brain stimulation accelerate the neural dynamics of volitional
+     action in Parkinson’s disease. Brain.
+ [7] Yin et al. (2024). Generalized sleep decoding with basal ganglia signals in multiple movement disorders.
+     npj Digital Medicine.
+ [8] Liu et al. (2018). A Compact Closed-Loop Optogenetics System Based on Artifact-Free Transparent
+     Graphene Electrodes. Frontiers in Neuroscience.
+ [9] Koeglsperger et al. (2026). Adaptive Deep Brain Stimulation for Parkinson’s Disease: Navigating the
+     Roadblocks to Clinical Implementation. Movement Disorders.
+[10] Zaaimi et al. (2023). Closed-loop optogenetic control of the dynamics of neural activity in non-human
+     primates. Nature Biomedical Engineering.
+[11] Kathe et al. (2022). Wireless closed-loop optogenetics across the entire dorsoventral spinal cord in
+     mice. Nature Biotechnology.
+[12] Neumann et al. (2023). Neurophysiological mechanisms of deep brain stimulation across spatiotemporal
+     resolutions. Brain.
+[13] Rajamani et al. (2024). Deep brain stimulation of symptom-specific networks in Parkinson’s disease.
+     Nature Communications.
+[14] De la Crompe et al. (2025). Reevaluating the role of the STN-GPe network in generating beta
+     synchronized oscillatory activity in parkinsonism. Handbook of Parkinson’s Disease Mechanisms,
+     ch. 17.
+[15] Nevado Holgado et al. (2010). Conditions for the Generation of Beta Oscillations in the Subthalamic
+     Nucleus-Globus Pallidus Network. Journal of Neuroscience.
+[16] Azizpour Lindi et al. (2024). Synaptic Changes in Pallidostriatal Circuits Observed in the Parkinsonian
+     Model Triggers Abnormal Beta Synchrony with Accurate Spatio-temporal Properties across the Basal
+     Ganglia. Journal of Neuroscience.
+[17] Ortone et al. (2023). Dopamine depletion leads to pathological synchronization of distinct basal ganglia
+     loops in the beta band. PLOS Computational Biology.
+
+
+
+
+                                                     13
+

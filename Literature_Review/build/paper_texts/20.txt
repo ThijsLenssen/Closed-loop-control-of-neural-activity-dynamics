@@ -1,0 +1,1181 @@
+                                                                                                                                  1–19 • The Journal of Neuroscience, February 28, 2024 • 44(9):e0419232023
+
+
+
+
+Systems/Circuits
+
+
+Synaptic Changes in Pallidostriatal Circuits Observed in the
+Parkinsonian Model Triggers Abnormal Beta Synchrony
+with Accurate Spatio-temporal Properties across the Basal
+Ganglia
+   Shiva Azizpour Lindi,                            Nicolas P. Mallet, and                          Arthur Leblois
+CNRS, Institut des Maladies Neurodégénératives (IMN), UMR 5293, Université de Bordeaux, Bordeaux F-33000, France
+
+Excessive oscillatory activity across basal ganglia (BG) nuclei in the β frequencies (12–30 Hz) is a hallmark of Parkinson’s disease
+(PD). While the link between oscillations and symptoms remains debated, exaggerated β oscillations constitute an important bio-
+marker for therapeutic effectiveness in PD. The neuronal mechanisms of β-oscillation generation however remain unknown. Many
+existing models rely on a central role of the subthalamic nucleus (STN) or cortical inputs to BG. Contrarily, neural recordings and
+optogenetic manipulations in normal and parkinsonian rats recently highlighted the central role of the external pallidum (GPe) in
+abnormal β oscillations, while showing that the integrity of STN or motor cortex is not required. Here, we evaluate the mechanisms
+for the generation of abnormal β oscillations in a BG network model where neuronal and synaptic time constants, connectivity, and
+ﬁring rate distributions are strongly constrained by experimental data. Guided by a mean-ﬁeld approach, we show in a spiking neural
+network that several BG sub-circuits can drive oscillations. Strong recurrent STN-GPe connections or collateral intra-GPe connec-
+tions drive γ oscillations (>40 Hz), whereas strong pallidostriatal loops drive low-β (10–15 Hz) oscillations. We show that pathophys-
+iological strengthening of striatal and pallidal synapses following dopamine depletion leads to the emergence of synchronized
+oscillatory activity in the mid-β range with spike-phase relationships between BG neuronal populations in-line with experiments.
+Furthermore, inhibition of GPe, contrary to STN, abolishes oscillations. Our modeling study uncovers the neural mechanisms under-
+lying PD β oscillations and may thereby guide the future development of therapeutic strategies.
+Key words: basal ganglia; beta oscillation; globus pallidus; pallidostriatal; Parkinson's disease; spiking neural network
+
+
+
+     Signiﬁcance Statement
+     In Parkinson’s disease (PD), neural activity in subcortical nuclei called the basal ganglia (BG) displays abnormal oscillatory
+     synchronization that constitutes an important biomarker for therapeutic effectiveness. The neural mechanisms for the
+     generation of these oscillations remain unknown. Here, in a theoretical neuronal network model strongly constrained by ana-
+     tomical and physiological data, we show that speciﬁc circuit modiﬁcations in BG connectivity during PD lead to the emergence
+     of synchronized oscillatory activity in the network with properties that strongly agree with available experimental evidence.
+     This and future theoretical investigations of the neural mechanisms underlying abnormal neuronal activity in PD are neces-
+     sary to guide the future development of therapeutic strategies to ameliorate symptoms.
+
+
+
+Received March 6, 2023; revised Nov. 27, 2023; accepted Dec. 7, 2023.                                              Introduction
+    Author contributions: S.A.L., N.P.M., and A.L. designed research; S.A.L. performed research; S.A.L. analyzed
+data; S.A.L., N.P.M., and A.L. wrote the paper.
+                                                                                                                   Dysfunctions of the basal ganglia (BG)-cortical network are cen-
+    This work was supported by the French 10.13039/501100001665 Agence Nationale de la Recherche (Grants           trally involved in movement disorders such as Parkinson’s disease
+ANR-20-CE37-0023-02 to A.L. and ANR-21-CE16-0025-01 to N.P.M.) and by the 10.13039/501100002915                    (PD). According to the classical model of BG dysfunction (Albin,
+Fondation pour la Recherche Médicale (Equipe FRM EQU202203014688), as well as the Bordeaux ‘Maison du              1989; DeLong, 1990), degeneration of dopaminergic neurons in
+Cerveau’ (Grant Number 2021-01 to S.A.L.). We thank Dr. Jérôme Baufreton and Dr. Gilad Silberberg for their
+insightful discussions and also their guidance regarding the experimental measurements.
+                                                                                                                   PD induces an imbalance between direct and indirect BG pathways,
+    The authors declare no competing ﬁnancial interests.                                                           over-inhibiting the motor system and thereby causing hypo-kinetic
+    S.A.L.’s current address: Neurosciences Graduate Program, University of California, San Diego, La Jolla,       motor symptoms. Accordingly, inactivation of internal pallidum
+California 92093.                                                                                                  (GPi) or subthalamic nucleus (STN) palliates PD symptoms
+    Correspondence should be addressed to Shiva Azizpour Lindi at sazizpourlindi@ucsd.edu or Arthur Leblois at     (Bergman et al., 1990; Benazzouz et al., 1993), whereas activating
+arthur.leblois@u-bordeaux.fr.
+    https://doi.org/10.1523/JNEUROSCI.0419-23.2023
+                                                                                                                   the indirect pathway generates hypokinesia in rodents (Kravitz et
+Copyright © 2024 the authors                                                                                       al., 2010). This classical model has recently been challenged. First,
+2 • J. Neurosci., February 28, 2024 • 44(9):e0419232023                                                              Azizpour Lindi et al.   • DD Induces β Oscillations
+the external pallidum (GPe) contains at least two cell-types with             activity emerges from inhibitory feedback with time delay. As the output
+diﬀerent functions (Mallet et al., 2012; Hernández et al., 2015;              nuclei of the BG (GPi/SNr) do not send signiﬁcant projections back to
+Fujiyama et al., 2016): the prototypic (forming the indirect path-            other BG nuclei, they do not participate in recurrent feedback circuits.
+way) and the arkypallidal (only projecting to striatum) neurons.              Similarly, D1-expressing medium spiny neurons (D1-MSNs) in the stri-
+                                                                              atum mainly participate in purely feedforward direct pathways and are
+Second, BG nuclei display strong modiﬁcations in ﬁring patterns
+                                                                              unlikely to be included in a signiﬁcant recurrent circuit inside the BG
+in PD, with excessive oscillatory synchrony in the β frequency range          (but see McCarthy et al., 2011). In addition, their activity is strongly
+(12–30 Hz) (Bergman et al., 1994; Bevan et al., 2002; Hutchison et            reduced after dopamine depletion (DD) (Mallet et al., 2006; Parker et
+al., 2004). The link between β oscillations and motor symptoms                al., 2018). For all these reasons, we do not include output nuclei and
+remains a matter of debate; while apparently not causal to motor              D1-MSNs in our model. We include all other major populations of the
+symptoms (Leblois et al., 2007; Degos et al., 2009; Quiroga-                  BG network. In particular, our model reﬂects on the recently discovered
+Varela et al., 2013), they are correlated with akinesia/rigidity levels       cellular dichotomy between the principal GPe cell population, the proto-
+(Kühn et al., 2006; Hammond et al., 2007; Kühn et al., 2009; Sharott          typic neurons (projecting to STN and (GPi/SNRr)), and the arkypallidal
+et al., 2014; Neumann et al., 2016). Nevertheless, the β power in             neurons (only projecting to the striatum; Mallet et al., 2012). Our model
+STN or pallidal local ﬁeld potentials serves as an important biomar-          consists of ﬁve subpopulations, four inhibitory and one excitatory:
+                                                                              fast-spiking interneurons (FSIs) and D2-MSNs in the striatum, prototyp-
+ker for deep brain stimulation in PD patients (Little and Brown,
+                                                                              ical (Proto) and arkypallidal (Arky) neurons in the GPe, and lastly, STN
+2020; Tinkhauser et al., 2020). Unlike mean ﬁring rate changes,               excitatory neurons (Fig. 1). Henceforth, when referring to these neuronal
+the generation mechanisms of pathological oscillations remain                 populations, we simply use Proto, Arky, STN, FSI, and D2.
+unknown and several competing models have been proposed                            We include all major connections that connect the considered neuronal
+(reviewed in Pavlides et al., 2015; Rubin, 2017, but also see                 populations. They contribute to several closed negative feedback loops and
+McCarthy et al., 2011; Corbit et al., 2016; Adam et al., 2022; West           have the Proto subpopulation as their common node. There are four such
+et al., 2022). From a theoretical perspective, any neuronal network           negative feedback loops. The STN-Proto recurrent network is one which
+incorporating negative feedback loops with delays can generate                involves Proto and STN, and comprises two synaptic connections, STN
+oscillations, with time constants and delays in the loop constraining         to Proto (Kita and Kitai, 1991; Magill et al., 2000) and Proto to STN
+the oscillations frequency (Ermentrout et al., 2001). The ﬁrst BG             (Kita et al., 1983; Kita and Kita, 1994; Baufreton et al., 2009) (referred to
+                                                                              as STN loop in the ﬁgures). Second, there is lateral inhibition within the
+pattern-generator system identiﬁed was the reciprocally connected
+                                                                              Proto subpopulation (Sims et al., 2008; Ketzef and Silberberg, 2020)
+STN-GPe circuit (Plenz and Kital, 1999; Bevan et al., 2002; Terman            (referred to as the Proto loop). The two remaining are pallidostriatal loops
+et al., 2002; Nevado-Holgado et al., 2010). However, many recur-              that both include the projection from D2-MSNs to Proto neurons (Kita,
+rent inhibitory feedback loops in the BG-cortical network could               1994; Cooper and Stanford, 2000; Ketzef and Silberberg, 2020; Aristieta et
+generate PD-related β-synchronization (Pavlides et al., 2015;                 al., 2021). The FSI loop has the additional connections of Proto to FSI
+Rubin, 2017) and alternative circuit generators have been proposed            (Bevan, 1998; Mallet et al., 2012; Corbit et al., 2016; Saunders et al., 2016)
+in the cortex (Brittain and Brown, 2014), the striatum (McCarthy et           as well as FSI to D2 (Mallet et al., 2005). Lastly, the Arky loop is the one
+al., 2011), along the hyperdirect pathway (Leblois et al., 2006), and         that connects Proto to Arky (Ketzef and Silberberg, 2020; Aristieta et al.,
+the recently uncovered striato-pallidal circuits (Mallet et al., 2012;        2021), Arky to D2 (Mallet et al., 2012; Fujiyama et al., 2016), and as previ-
+Corbit et al., 2016). While these previous studies were at least par-         ously mentioned, D2 to Proto. We have deliberately ignored connections
+                                                                              that have been shown to be signiﬁcantly weaker (or not well characterized),
+tially constrained by available anatomical and physiological evi-
+                                                                              namely the connection from STN to Arky (weaker than STN to Proto; see
+dence, the heterogeneity of the biophysical parameters of the                 Ketzef and Silberberg, 2020; Aristieta et al., 2021), from Arky to FSI (as this
+underlying model makes the direct comparison of the various gen-              projection is not well characterized and likely weaker than the selective and
+eration mechanisms diﬃcult (although see Pavlides et al., 2015).              potent inhibition from Proto to FSI; Bevan, 1998; Saunders et al., 2016), and
+Recently, neural recordings combined with optogenetic manipula-               the projection from D2 to Arky (weaker than D2 to Proto; see Ketzef and
+tions in normal and parkinsonian rats highlighted the central role            Silberberg, 2020). Indeed, as our aim is to provide a mechanistic under-
+of the GPe in the expression of β oscillations, while showing that            standing of the beta generation circuits, we focused on a simpliﬁed network
+it does not require the integrity of STN or motor cortex (De la               that includes all major BG connections that contribute to creating a closed
+Crompe et al., 2020), ruling out several of the previously suggested          negative feedback loop within the BG that can give rise to oscillations. We
+mechanisms. This study also highlighted that the phase relationship           nevertheless simulate a more complete network with all known connections
+                                                                              present to check that the dynamics described here remain valid in the pres-
+between various BG neural populations is a critical hint to probe
+                                                                              ence of these additional pathways (Extended Data Fig. 8-4). As explained
+which circuit is generating the β oscillations. Here, we evaluate             below, all parameters of the model are extracted or strongly constrained
+the mechanisms for generation of abnormal β oscillations in a                 by experimental data collected in rodents. When available, we use experi-
+BG network model where time constants, synaptic strengths, con-               mental data from rats, otherwise, we use data from mice instead and clearly
+nectivity patterns, and ﬁring rate distributions are strongly con-            indicate it in the corresponding tables.
+strained by available anatomical and physiological (in vivo and in
+vitro) rodent data. Guided by a mean-ﬁeld approach, we show in
+a spiking neural network (SNN) that the frequency of the patholog-            Population size and connectivity
+                                                                              The number of neurons in all populations of the model is scaled down
+ical β-oscillations and their phase-locking properties across BG
+                                                                              compared to the real neuron population size to make the simulation
+nuclei are most likely driven by the interaction between the                  computationally tractable. We consider a constant number of neurons
+slow-oscillating pallidostriatal loop and the fast inhibitory loop            Nsim when simulating all α sub-populations (Nsim = 1,000 in the spiking
+made by recurrent inhibitory collaterals between GPe prototypical             model and Nsim = 100 in the rate model, see below) and follow the
+neurons.                                                                      approach proposed by Golomb and Hansel (2000) to set the number
+                                                                                                                                                   sim
+                                                                              of connections population size accordingly. As such, the number Kba
+                                                                              of synapses received by one neuron in population β from all neurons
+Materials and Methods                                                         in population α is determined by
+Model architecture
+                                                                                                       1   1   1     1
+In this article, we focus on the BG circuits that may generate synchro-                                  −   = sim − sim ,                                          (1)
+nized oscillatory activity. As highlighted in the introduction, oscillatory                           Kba Na Kba    N
+Azizpour Lindi et al.   • DD Induces β Oscillations                                                                                                              J. Neurosci., February 28, 2024 • 44(9):e0419232023 • 3
+
+
+Table 1. Number of presynaptic neurons converging onto a postsynaptic neuron                                    where Δβα is the axonal transmission delay of the projection from pop-
+Parameter                     Value                    Reference                                                ulation α to population β (see ﬁrst column in Table 5). Gβα is the synaptic
+                                                                                                                weight which is considered to be the same for all connections and is the
+KProto−D2                     3,100                    Kawaguchi et al. (1990)                                  minimum value for which stable oscillations appear (see below for the
+KSTN−Proto                      442                    Baufreton et al. (2009)                                  deﬁnition of stable oscillation). We simulate each population with size
+KProto−STN                       63                    Koshimizu et al. (2013)                                  N = 100. We have also performed the simulations with size N = 1,000
+KProto−Proto                    104                    Sadek et al. (2005)                                      to ensure that the dynamics remain unchanged in our smaller network.
+KArky−Proto                     104                    Sadek et al. (2005)                                      Moreover, we have investigated this reduced model analytically in the
+KD2−FSI                          51                    Guzmán et al. (2003) and Gittis et al. (2011)            case of all-to-all connectivity in the network. In this case, the steady states
+KFSI−Proto                       67                    Bevan (1998)                                             of the network in response to constant inputs can be obtained by solving
+KD2−Arky                         10                    Estimate (see Extended Data 1)                           the ﬁxed-point equations for the dynamics (see “Theoretical analysis”).
+Kβα represents the number of presynaptic neurons in population α converging onto one postsynaptic neuron in β   In these states, the activities are determined by a set of linear equations
+for all connections in the spiking neuronal BG network. The references on which the estimates are based are     that can be solved straightforwardly. The conditions for the stability of
+reported in the last column. See Extended Data 1 and Table 1-1 for more details on the derivation of Kβα from   steady states can then be derived. Indeed, a ﬁxed-point solution of the
+experimental observation.
+                                                                                                                dynamical equations is stable if any small perturbation around it eventu-
+                                                                                                                ally decays over a large time. If certain perturbations increase with time,
+                                                                                                                the ﬁxed point is unstable. To investigate the stability of a steady state, we
+where Kβα is the number of connections from population α to a neuron
+                                                                                                                study the equations of the dynamics linearized around that state
+in population β and Nα is the size of population α found in the exper-
+                                                                                                                (Strogatz, 2018) (see derivation in “Theoretical analysis”). In particular,
+imental literature (see Extended Data Table 1-1 (Kincaid et al., 1998,
+                                                                                                                the derivation leads to the estimation of the frequencies of the oscillatory
+Oorschot, 1998, Koós and Tepper, 1999, Tepper et al., 2010)). This scal-
+                                                                                                                instabilities for individual negative feedback loops in the BG network (see
+ing ensures that the dynamical properties of the original circuit are pre-
+                                                                                                                “Theoretical analysis” for more detail).
+served in the scaled version. The values of Kβα derived for each
+population for the spiking neuronal network with Nsim = 1,000 are
+reported in Table 1. Kβα are calculated similarly for Nsim = 100 in the                                         Spiking neural network
+rate model (values not shown here). Note that henceforth we use the                                             The neurons in the SNN are simulated using the leaky integrate and ﬁre
+notation β-α to refer to the synaptic projection from population α to                                           (LIF) model (Lapicque, 2007). In this model, the dynamics of the mem-
+population β.                                                                                                   brane potential of each neuron are given by
+
+                                                                                                                                        dV(t)
+Neuronal model                                                                                                                     tm         = −(V(t) − Vrest ) + Isyn (t) + Iext (t),                                     (4)
+                                                                                                                                         dt
+While most results shown here are computed in a spiking neuronal net-
+work model, we will also consider a simpliﬁed version of the model in                                           where V(t) is the membrane potential of each neuron at time t, Vrest is the
+which neurons are represented by their ﬁring rate (Wilson and Cowan,                                            resting membrane potential (RMP), τm is the membrane time constant,
+1972). This model has the advantage that several aspects of its dynamics                                        Isyn(t) is the total synaptic input, and Iext(t) is the external input of each
+can be investigated analytically. The knowledge of the properties of this                                       individual neuron. Once the membrane potential of the neuron reaches
+reduced model guides us in the investigation of the detailed spiking                                            the action potential threshold (APth), a spike is discharged and V(t) is
+model.                                                                                                          manually reset to the RMP (see “Neuronal model” for more detail on
+                                                                                                                the modiﬁed Vrest value). The values for the RMP, APth, and τm are
+Rate model                                                                                                      drawn from Gaussian distributions with respective parameters extracted
+In order to simulate the ﬁring activity of each neuron, we use a model                                          from the experimental literature and summarized in Tables 2 and 3. We
+similar to Leblois et al. (2006), where the dynamics of the activity of a sin-                                  modify the standard deviation (SD) of some of the distributions to ﬁt the
+gle neuron is characterized by the rate model (Wilson and Cowan, 1972).
+The spontaneous ﬁring rate of a neuron is given by Aai = F(Iia ), where α
+denotes the population and can be any of Proto, STN, Arky, D2, or FSI.                                          Table 2. Electrophysiological properties of the action potentials
+Iia is the total input to neuron i where i = 1, …, Nsim and F is its non-linear                                                                                                                            σRMP, σAPth in the
+input–output transfer function. Here for simplicity, the transfer function                                      Neuron RMP (mV)              RMP range         APth (mV)        Reference                  model (mV)
+is considered to be a piecewise linear function F = [Ii − θ]+, where [x]+ = x
+for x > 0 and 0 otherwise, with the activity threshold θ = 0.1. Each neuron                                     D2-MSN −76.8 ± 4.4 (−100,−55) −50.0 ± 0.6 Slaght et al. (2004) 3, 0.6
+i in population α has a synaptic contribution of mba                                                            STN    −59.0 ± 1.2 (−75,−55) −50.8 ± 1.5 Paz et al. (2005) 0.5, 0.5
+                                                       i to each neuron it is
+connected to in the postsynaptic population β. mba                                                                     −70*         (−90,−60) −55.0 ± 7.6 Abdi et al. (2015) 1, 2
+                                                      i is a low-pass ﬁltered
+                                                                                                                Arky
+version of the instantaneous level of activity Aai (Shriki et al., 2003), and                                   Proto −65*          (−85,−60) −54.8 ± 7.1 Abdi et al. (2015) 1, 1
+its dynamics are governed by                                                                                    FSI    −78.2 ± 6.2 (−85,−60) −52.4 ± 4.6 Schulz et al. (2011) 0.5, 0.5
+                                                                                                                Columns 2 and 4 show APth and RMP values reported in the references as mean ± SD. In the model, RMP ranges
+                                                                                                                are set arbitrarily while respecting the means. Some SDs are modiﬁed to ﬁt the ﬁring rate distribution, and
+                                     dmba
+                                  tba i = −mba
+                                            i + Ai ,
+                                                 a
+                                                                                                        (2)     corresponding values used in the model are reported in the last column. The values indicated by the asterisks are
+                                      dt                                                                        estimated from Figure 7 in Abdi et al. (2015).
+
+where τβα is the synaptic decay time constant of the projection from pop-
+ulation α to population β. The simulation of the dynamics is integrated                                         Table 3. Membrane time constants used in the model
+using a standard ﬁrst-order forward Euler method with a time step
+dt = 0.1 ms to ensure maximum precision. Each neuron receives multiple                                                                                                                                    stm and range in
+synaptic inputs from the neurons in their presynaptic populations deter-                                        Neuron              τm (ms)                  Reference                                    the model (ms)
+mined by the connection matrix Jβα which has binary elements, with one                                          D2-MSN               4.9 ± 1.6               Slaght et al. (2004)                         0.5—(2, 12)
+indicating the presence of a connection, and zero the absence of one.                                           STN                  5.1 ± 2.4               Paz et al. (2005)                            0.6—(2, 10)
+Therefore, we need to sum the inputs from all presynaptic neurons to                                            Arky                19.9 ± 13.0              Cooper and Stanford (2000)                   3—(2, 100)
+get the net synaptic input to each postsynaptic neuron:                                                         Proto               12.9 ± 10.2              Karube et al. (2019)                         1.3—(2.25, 45)
+                                                                                                                FSI                  3.1 ± 1.1               Schulz et al. (2011)                         0.3—(1, 6)
+                                      
+                                       Na
+                                                                                                                Second column indicates the membrane time constants as reported in the references (mean ± SD). SDs are
+                         Iib (t) =                Gba Jijba mba
+                                                             ij (t − D ),
+                                                                      ba
+                                                                                                        (3)     modiﬁed in the model to ﬁt the ﬁring rate distribution and the corresponding values used in the model are
+                                       a    j=1                                                                 reported in the last column. The values are chosen among diﬀerent studies reported in Extended Data Table 3-1.
+4 • J. Neurosci., February 28, 2024 • 44(9):e0419232023                                                                                                Azizpour Lindi et al.   • DD Induces β Oscillations
+ﬁring rate distributions reported in the experimental recordings as                                              the ﬁring rate of the neurons to those reported in the experiments in
+reported in the corresponding tables. There are a few studies that have                                          each state (healthy and dopamine-depleted). This external input pro-
+measured the membrane time constants of the diﬀerent populations as                                              vided to each neuron is drawn from a Gaussian distribution separately
+shown in Extended Data Table 3-1 (Bugaysen et al., 2010, Planert et                                              for each state. In order to estimate the mean of this Gaussian distribution,
+al., 2013, Russo et al., 2013, Akopian et al., 2016). To choose among                                            the mean ﬁring rate is computed for a range of external inputs with vary-
+those, we have prioritized measurements in rats over mice, in vivo                                               ing means while holding the SD constant, in turn yielding an empirical
+over in vitro, temperatures closer to 37 °C, larger number of recorded                                           I–F curve (input-ﬁring rate). Then, based on whether the desired
+cells, more recent studies, as well as measurements in adult animals                                             ﬁring rate is low (<15 spk/s, where the I–F curve is non-linear) or high
+over juveniles. The Gaussian distribution for the RMP and τm are trun-                                           (>15 spk/s, linear section of the curve), either a sigmoid function or a
+cated to avoid problems with the numerical integration.                                                          line is ﬁtted to the simulated data points. Subsequently, the mean input
+     Synaptic inputs are modeled by a double exponential with indepen-                                           required to obtain the ﬁring rate reported in the experiments for each
+dent rise and decay time constants (Fourcaud and Brunel, 2002). The                                              population is extrapolated from its respective ﬁtted curve. The SD of
+sum of synaptic inputs from all presynaptic neurons Isyn(t) to each neu-                                         the external input is then separately tuned to replicate the variability of
+ron is given by                                                                                                  the ﬁring rate reported in the experimental literature (Table 6). This pro-
+                                                                                                                 cedure is separately performed for the healthy and dopamine-depleted
+           dIrba (t)                        
+                                            Nsim                                                                states to estimate their corresponding external inputs. Wherever we
+     tba
+      rj
+              j
+                       = −Irba (t) +             Jijba   d(t − (tispike − Dba
+                                                                           j ))tmj ,
+                                                                                b
+                                                                                                         (5)     were unable to replicate the ﬁring rate distribution solely by manipulat-
+               dt           j
+                                             i=1        spike                                                    ing the SD of the external input, we tried tuning it by changing the SDs of
+                                                                                                                 τm and/or RMP and/or APth. The SDs of these parameters are reported
+                                     ba
+                                   dIsyn  (t)                                                                    in Tables 2 and 3. Concerning the MSNs (D2), the level of activity con-
+                             tba                = −Isyn
+                                                    ba
+                                                         (t) + Irba                                      (6)
+                                        j
+                              dj                                    (t),                                         sidered in our model reﬂects the activated anesthetized state (as in De la
+                                       dt              j         j
+
+                                                                                                                 Crompe et al., 2020) which is similar to the activity in the awake state.
+                                                                                                                 The LIF neuron model cannot account for the bistability of the mem-
+               ba
+where tba
+       rj and tdj are the rise and decay time constants of the synaptic                                          brane potential that has been reported in MSNs in vitro as well as in anes-
+input to neuron j in postsynaptic population β. Dba                                                              thetized animals. Thus, our results are conﬁned to awake or anesthetized
+                                                 j is the synaptic trans-
+                                                                                                                 active states, in which β oscillations are expressed and MSN bistability
+mission delay from populations α to neuron j in population β. Jijba is the                                       has been shown to vanish (Mahon et al., 2001).
+connectivity matrix between populations α and β where each nonzero
+element is equal to the synaptic weight of the corresponding synapse.
+Irba
+  j
+     is the external input to neuron j in postsynaptic population β. As                                               Membrane potential initialization. Spurious synchrony can be pre-
+indicated by the superscripts, all of the aforementioned values are speciﬁc                                      sent in the network due to the initialization of the membrane potentials
+                                                                                                                 of neurons (setting V(t = 0)). Such spurious synchrony would be mir-
+to each projection β–α. For the sake of simplicity, the time constants used
+                                                                                                                 rored in other synaptically connected populations and interfere with
+to describe the incoming projections from presynaptic population alpha
+                                                                                                                 the network oscillations which we are interested to look at. We, there-
+converging to neuron j in population β are all identical. However, the val-                                      fore, run a 2-s long simulation to let the network reach its stable dyna-
+              ba        ba
+ues of tba
+        rj , tdj , and Dj are drawn randomly from a Gaussian distribu-                                           mical state. We then compute the distribution of membrane potential
+tion for each postsynaptic neuron j = 1, …, Nsim, with means and SD of                                           values of all the neurons for the entirety of that simulation and initialize
+the underlying distributions extracted from the experimental literature as                                       all subsequent simulations by randomly drawing from the correspond-
+                                                                                                                 ing membrane potential distributions.
+reported in Table 5. The connection weights Jijba are either zero (with a
+probability (N sim − Kba sim
+                             )/N sim ) or drawn from a log-normal distribu-
+tion with a SD that spans one order of magnitude (Buzsáki and                                                        Numerical integration. We use the second-order Runge–Kutta
+Mizuseki, 2014). The means of the synaptic weight distributions for                                              (RK2) method to numerically integrate the membrane potential at
+the STN-Proto, Proto-STN, and Arky-Proto are set such that the net-                                              each time step. However, the discontinuity of the LIF model at the spike
+work activity resembles those of the β-induction experiments (see                                                times can cause numerical errors. So the time steps over which the equa-
+“Results” and Fig. 7 for more detail). Due to the lack of such experimental                                      tion is integrated should be kept small in order to keep the errors to a
+data for the rest of the projections, we set their weights in a way to mimic                                     minimum. This can slow down the simulation dramatically. As a solu-
+                                                                                                                 tion, we use a linear interpolation method proposed by Hansel et al.
+the physiological healthy states with asynchronous activity across the BG
+                                                                                                                 (1998) when updating the membrane potential at spike times. The inter-
+neuronal populations. The means of the synaptic weight distributions for                                         polated value of the membrane potential at the time step after the spike
+each projection in the healthy state are reported in Table 4.                                                    time, V(t + Δt), is given by
+    As only a subset of the synaptic connections to each population is
+considered here, the external input to each population is tuned to set                                                                                                        
+                                                                                                                                                         Dt     V(t) − Vrest
+                                                                                                                    V(t + Dt) = (V0 (t + Dt) − Vth ) 1 +
+                                                                                                                                                         tm V0 (t + Dt) − V(t)
+
+Table 4. Mean of the synaptic weight distributions                                                                                 + Vrest ,                                                          (7)
+
+Synaptic weight                                                                                 Mean (mV)        where V0(t + Δt) is calculated by the standard RK2 at the spike time and
+GProto−D2                                                                                       −0.279           Vth is the APth. In this RK2 method with linear interpolations, the poten-
+GSTN−Proto                                                                                      −0.096*          tial is reset to the value given by Equation 7 instead of Vrest. When using
+GProto−STN                                                                                       0.061           the RK2 integration with the aforementioned interpolation, a time step of
+GProto−Proto                                                                                    −0.032*          0.25 ms results in a 10% error in coherence as compared to the exact ana-
+GArky−Proto                                                                                     −0.112           lytical solution, whereas 0.063 results in a 1% error (Hansel et al., 1998).
+GD2−FSI                                                                                         −0.737           With this information, we chose to use a time step of 0.1 ms in our sim-
+GFSI−Proto                                                                                      −0.709           ulations. We also performed sample simulations with a 0.01 ms time step.
+GD2−Arky                                                                                        −0.268           Since the oscillations are not stable, there are some deviations between
+Values correspond to the mean of the log-normal distribution for the synaptic weight of each projection β–α in
+                                                                                                                 the average ﬁring rate traces of the full network simulations.
+the healthy state simulated in the spiking network. Values marked by asterisks are doubled in the                Nevertheless, we did not observe any signiﬁcant change in the resulting
+dopamine-depleted state.                                                                                         dynamics (Extended Data Fig. 5-1).
+Azizpour Lindi et al.   • DD Induces β Oscillations                                                                       J. Neurosci., February 28, 2024 • 44(9):e0419232023 • 5
+
+
+   Noise. We model the synaptic noise of each neuron as an Ornstein–                    Theoretical analysis. In this section, we aim to analytically derive the
+Uhlenbeck process to account for the temporal dynamics of the noise ele-            frequencies of the oscillatory instabilities for individual isolated loops of
+ment that decays with time. At each time step, the value of noise is com-           the model network. For the sake of simplicity, we consider an all-to-all
+puted by                                                                            connectivity matrix Jβα = I. In this case, the steady states of the network
+                                                                                    in response to constant inputs can be obtained by solving the ﬁxed point
+                                                        
+                                             −h(t)          2                       of Equation 2. For steady states where all neuronal populations have
+                        h(t + Dt) =                 +              j(t) Dt,   (8)   inputs above the threshold, the activities are determined by a set of linear
+                                             tnoise      tnoise Dt
+                                                                                    equations that can be solved straightforwardly. The conditions for the
+where τnoise = 10 ms and ξ(t) is sampled from a normal distribution                 stability of steady states can then be derived. Indeed, a ﬁxed-point solu-
+j(t)  N (m = 0, s2noise )independently at every time step.                         tion of the dynamical equations is stable if any small perturbation around
+                                                                                    it eventually decays at large time. If certain perturbations increase with
+                                                                                    time, the ﬁxed point is unstable. To investigate the stability of a steady
+Data analysis                                                                       state, we study the equations of the dynamics linearized around that state
+Population ﬁring rate                                                               (Strogatz, 2018). We consider a perturbation term for the output mβα
+The ﬁring rate of all the neurons in each population is averaged in each
+                                                                                    described in Equation 2.
+time bin to yield the average population ﬁring rate as shown in the
+ﬁgures. In the SNN, the average population ﬁring rate is further
+smoothed using a moving average window of 5 ms.                                                              mba = mba
+                                                                                                                    steady + d e ,
+                                                                                                                              ba lt
+                                                                                                                                                                             (9)
+
+Power spectrum                                                                      replacing this in Equation 2 we get
+The power spectrum of the average ﬁring rate activities is derived using
+the Welch method implemented in the scipy.signal library (Welch, 1967)                              tba ldba elt = −(mba
+                                                                                                                      steady + d e ) + A .
+                                                                                                                                ba lt   a
+                                                                                                                                                                           (10)
+using 50%-overlapping, 1-second long windows. The simulations are run
+for 20.3 and 25.3 second in the case of the rate model and the SNN,                 Then, for an activation function with unit gain, we have Aα = Iα.
+respectively. The ﬁrst 300 ms is discarded to prevent the contribution              Therefore, if we consider a network of only two populations α and β
+of the transient dynamics that depend on initialization. In addition,               (Fig. 2B), from Equation 2 we have
+the SNN simulations are repeated three times, each with a diﬀerent net-
+work initialization to yield a mean and standard error of the mean (SEM)                                                                         ab
+                                                                                                        Aa = Gab (mab
+                                                                                                                   steady + d e
+                                                                                                                             ab l(t−D )
+                                                                                                                                        ).                                 (11)
+for each frequency bin when measuring the power spectrum.
+
+Phase histogram                                                                     At steady state, from Equation 2 we can write mba            ab
+                                                                                                                                   steady = Gba msteady .
+The β-ﬁltered (12-30 Hz) mean population ﬁring rate of the Proto neu-                                     a
+                                                                                    Therefore, replacing A in Equation 10 we have
+rons is used as the reference signal to obtain the linear phase histograms.
+The phase of each spike is measured within the cycle created by the two
+                                                                                                   elt (1 + ltba )dba − elt (e−lD Gab )dab = 0,
+                                                                                                                                        ab
+                                                                                                                                                                           (12)
+closest peaks of the reference signal in time, one before and the other
+after. Then, the linear phase histogram of the spikes from each neuron                                       ab
+
+is calculated. Finally, the phase histogram of all neurons is subjected to                            −e−lD Gab                1 + ltba          dab
+                                                                                                                                  ba                     = 0,             (13)
+Rayleigh’s test and only those that pass are taken into account. The value                              1 + ltab              −e−lD Gba          dba
+at which the phase histogram is maximized for each neuron is used to
+                                                                                      P(l) = Det(M) = e−l(D +D ) Gba Gab − (1 + ltba )(1 + ltab )
+                                                                                                                  ba     ab
+create the box plots in the phase histogram plots.
+
+                                                                                            = 0.                                                                           (14)
+Cross-correlation
+The spike cross-correlations (CCs) is calculated using the scipy.signal.-
+correlate function in Python using the “full” mode. Two thousand ran-               The solutions to this equation are in general complex numbers.
+dom pairs of neurons are chosen for each β–α connection without pair                The steady state is stable provided that Re(λ) < 0 for all the solutions.
+replacement. Then, the CC for each pair is individually calculated using            It is unstable if at least one solution with Re(λ) > 0 exists. If,
+the 25-s long spike trains with 0.1 ms bin size time resolution.                    for this solution, Im(λ) < 0, the system undergoes a non-oscillatory
+Subsequently, the results of cross-correlation for all the pairs are reported       instability. If Im(λ) > 0, the instability is a Hopf bifurcation
+as mean ± SEM. The CCs were sampled for every 2.5 ms of lag and plot-               (Strogatz, 2018) at a frequency Im(λ). For such an oscillatory instabil-
+ted across the [ − 0.2, + 0.2] second lag window in order to compress the
+                                                                                    ity λ = iν, we get
+data presented in the plots.
+
+Coherence                                                                              P(in) = (G∗2N cos D+       ∗              ∗       +        +
+                                                                                                          2N n + t2N n − 1) − i(G2N sin D2N n + nt ) = 0
+                                                                                                                      2
+
+                                                                                                                                     −nt+
+The coherence is measured using the scipy.signal.coherence function in                                                  G∗2N = sin D+2N n ,
+Python. One thousand random pairs of neurons are chosen for each                                                               +
+                                                                                                                                         2N
+
+β–α connection without pair replacement. Then, the coherence for                                         t∗2N n2 − t+
+                                                                                                                     2N n cot D2N n − 1 = 0
+each pair is individually calculated using the 25-s long spike trains                                                                                                      (15)
+with 0.1 ms bin size time resolution. The results of coherence for all
+the pairs are reported as mean ± SEM for every frequency bin.                       where
+
+Stable oscillation                                                                                                G∗2N = Gba Gab
+We introduce a metric to help us detect the transition boundary between
+the steady state and the stable oscillatory regime in the rate model. This                                         t∗2N = tba tab
+metric is deﬁned as the ratio of the peak amplitudes of the ﬁring activity                                                                                                 (16)
+in the last cycle relative to the second cycle. Once this metric reaches the                                       t+
+                                                                                                                    2N = t
+                                                                                                                          ba
+                                                                                                                             + tab
+value of 1.01 and is still lower than 1.2, it is considered that the network                                      D+
+                                                                                                                   2N = D
+                                                                                                                          ba
+                                                                                                                             + Dab .
+has transitioned to a stable oscillatory regime.
+6 • J. Neurosci., February 28, 2024 • 44(9):e0419232023                                                                                         Azizpour Lindi et al.   • DD Induces β Oscillations
+In particular, we can derive the resultant frequency for a feedback loop                         Code availability
+with three nodes (Fig. 2C ) (i.e., Proto-FSI/Arky-D2) as follows:                                The simulations of the network model and the data analysis are all per-
+                                                                                                 formed using custom code in Python available in this Github repository.
+     ⎛                                                    ag   ⎞⎛ ba ⎞
+          1 + ltba                 0              −e−lD Gag       d
+     ⎜ −lD ba    ba                                            ⎟⎜ gb ⎟                           Results
+     ⎝ −e  G                  1 + ltgb                    0    ⎠⎝ d ⎠ = 0             (17)
+                                 −lDgb                            dag                            Building on the abundant anatomical and physiological data
+               0            −e           G   gb
+                                                   1 + ltag
+                                                                                                 from rodents in normal and parkinsonian conditions and the
+                                                                                                 well-established abnormal β-band synchronization present in
+                                                                                                 the BG of parkinsonian rats, we study how various negative feed-
+                                                                      +                          back loops inside a model network of rat BG circuits may gener-
+             P(l) = 1 + lt+     2 ∗+    3 ∗     ∗ −l D
+                          3N + l t3N + l t3N − G e     =0                                        ate abnormal β-band oscillations. We follow a two-step approach
+                                                   1−n2 t∗+
+                                      G∗ = cos nD3N
+                                                  +                                   (18)       (see “Materials and Methods” for the details). We ﬁrst rely on a
+                                                          3N
+
+                    t∗3N n3 + (t∗+              +     +                                         simpliﬁed model where neuronal activity is represented by its
+                                 3N n − 1) tan nD3N − t3N n = 0
+                                     2
+                                                                                                 ﬁring rate and a limited number of parameters determine the fre-
+where                                                                                            quency of oscillations in each closed-loop circuit. Guided by the
+                                                                                                 analysis of this reduced model, we then analyze the properties of
+                         G∗3N = Gba Gag Ggb                                                      a spiking neuronal network model with the same architecture
+                          t∗3N = tba tag tgb                                                     where each neuron is represented by its membrane potential.
+                                                                                                 This realistic model allows us to faithfully represent the ﬁring
+                          t+
+                           3N = t
+                                 ba
+                                    + tag + tgb                                       (19)       properties of BG neurons and is a more accurate representation
+                         t∗+
+                          3N = t t
+                                gb ag
+                                      + tag tba + tba tgb                                        of the circuit dynamics underlying normal and pathological BG
+                                                                                                 activity. Recent evidence shows that the GPe is a necessary hub
+                         D+
+                          3N = D
+                                 ba
+                                    + Dag + Dgb .                                                for the generation of the β oscillations in parkinsonian rats (De
+                                                                                                 la Crompe et al., 2020), and our model, therefore, includes all
+We can also calculate the frequency of oscillation for a neuron that                             closed-loop BG circuits that include at least one GPe neuronal
+contacts itself (Fig. 2A) to mimic the Proto lateral inhibition                                  population. The GPe consists of two distinct subpopulations,
+                                                                                                 the prototypical (Proto) and the arkypallidal (Arky) neurons
+                                             aa
+                          P(l) = e−lD Gaa − ltaa − 1 = 0                                         (Mallet et al., 2012). The prototypical neurons send projections
+                                                                                      (20)
+                                taa n + tan nDaa = 0.                                           to the striatum, contacting mainly the FSIs (Bevan, 1998;
+                                                                                                 Mallet et al., 2012; Corbit et al., 2016; Saunders et al., 2016).
+In order to estimate the oscillation frequencies of each of the individ-                         This connection together with projections from FSIs to
+ual loops, we have solved the corresponding characteristic equations                             D2-MSNs and D2-MSNs back to Proto neurons creates a candi-
+using scipy.optimize.fsolve function in Python (Fig. 3A).                                        date feedback loop (Corbit et al., 2016), the FSI loop. Similarly,
+
+
+
+
+Figure 1. The model architecture. The model includes prototypical (red) and arkypallidal (orange) populations of the external globus pallidus (GPe), D2-expressing medium spiny neurons
+(D2-MSNs, blue), and fast-spiking interneurons (FSIs, green) within the striatum, and ﬁnally the STN (black). Arrows/dots indicate excitatory/inhibitory connections, respectively. Black con-
+nections among the colored populations make up four diﬀerent closed negative feedback loops represented on the right: FSI loop (green triangle), Proto loop (red circle), Arky loop (orange
+triangle), and STN loop (black square). Light gray regions and connections are not included in the main model; however, the thin solid gray connections (Arky-D2/STN, FSI-Arky) have been
+included in a supplementary simulation (Extended Data Fig. 8-4).
+Azizpour Lindi et al.   • DD Induces β Oscillations                                                                                           J. Neurosci., February 28, 2024 • 44(9):e0419232023 • 7
+
+
+Arky neurons send projections to the striatum and contact                                           network model that can generate oscillations, as detailed above
+D2-MSNs (Mallet et al., 2012; Fujiyama et al., 2016).                                               (FSI-D2-Proto loop, D2-Proto-Arky loop, STN-Proto loop, and
+Therefore, considering the lateral inhibition from Proto to                                         Proto recurrent loop; see Fig. 1). Each loop can be considered
+Arky creates another pallidostriatal loop, the Arky loop. The                                       as a dynamical system with a steady state (or ﬁxed point) in
+well-established recurrent network between the STN and GPe                                          which all populations have a constant activity level, which is sta-
+(Proto) (Plenz and Kital, 1999; Terman et al., 2002; Nevado-                                        ble if any small perturbation around it eventually decays over
+Holgado et al., 2010; Kumar et al., 2011; Pasillas-Lépine, 2013;                                    time, unstable otherwise. The stability of a steady state can be
+Nevado-Holgado et al., 2014; Pavlides et al., 2015; Shouno et                                       studied by solving the equations of the dynamics linearized
+al., 2017; Koelman and Lowery, 2019; Chen et al., 2020) and                                         around that state (Strogatz, 2018). In the case of negative feed-
+the recurrent lateral inhibition between Proto neurons (Ketzef                                      back loops, the stable ﬁxed-point loses stability via a Hopf bifur-
+and Silberberg, 2020; Aristieta et al., 2021) also constitute nega-                                 cation for suﬃciently large overall gain, deﬁned as the product of
+tive feedback loop circuits. All the loops and connections are rep-                                 the synaptic weights along the connections of the loop (see
+resented in Figure 1.                                                                               “Materials and Methods, Theoretical analysis” for the detailed
+                                                                                                    calculation). In each loop circuit, the Hopf bifurcation gives
+                                                                                                    rise to oscillations in activity (emerging limit cycle) whose fre-
+Wide range of frequencies from BG oscillation-generator                                             quency is a function of the axonal transmissions delays, mem-
+circuits                                                                                            brane time constants, and synaptic time constants of the
+As mentioned in the introduction, a neuronal circuit forming a                                      various synaptic connections of the loop (see “Materials and
+closed negative feedback loop can generate oscillations if the                                      Methods, Theoretical analysis”). We compare the theoretically
+strength of its feedback is suﬃcient (Ermentrout et al., 2001).                                     derived frequency of the oscillatory instability with the actual fre-
+There are four diﬀerent negative feedback loops in our BG                                           quency of oscillations observed in simulations of each loop when
+                                                                                                    it is isolated from the complete network in the rate model (see
+                                                                                                    “Materials and Methods”). Synaptic weights of all connections
+                                                                                                    in the loop circuit are set as to reach suﬃcient feedback to drive
+                                                                                                    stable oscillations and measure the frequency of oscillations in
+                                                                                                    the ﬁring rate time course (see “Materials and Methods” for
+                                                                                                    the deﬁnition of stable oscillation). The synaptic time scales of
+                                                                                                    inhibition are widely debated, especially in the studies supporting
+                                                                                                    the STN-GPe as the generator of β oscillations with values rang-
+                                                                                                    ing from 7 to 20 ms (Plenz and Kital, 1999; Terman et al., 2002;
+                                                                                                    Nevado-Holgado et al., 2010; Kumar et al., 2011; Pasillas-Lépine,
+Figure 2. Theoretically investigated possible oscillation-generator networks. A, A self-            2013; Nevado-Holgado et al., 2014; Pavlides et al., 2015; Shouno
+inhibiting population. B, A reciprocal recurrent circuit comprising an excitatory and an inhib-     et al., 2017; Koelman and Lowery, 2019; Chen et al., 2020).
+itory population. C, Three populations create a loop with inhibitory connections.                   Therefore, we ﬁx the decay time constant for the excitatory
+
+
+
+
+Figure 3. Pallidostriatal loop with the help of lateral Proto-Proto inhibition can generate β-band frequency oscillations in rate model. A, Frequency of stable oscillations as a function of
+inhibitory synaptic decay time constant τinhibition for each individual loop. The shaded area indicates the β band (12–30 Hz). The scatter plot shows results from the rate model simulation whereas
+solid lines are estimates from theory (for more details, see “Theoretical analysis”). The range of values reported in experimental studies for the inhibitory synaptic time scale is shown above the
+plot. B, Phase space of joint FSI and Proto loops. All the synaptic weights in the FSI loop increase along the y-axis though only the values of GProto−D2 are indicated (GProto−D2 = GD2−FSI = GFSI
+−Proto). The color of each point in the phase space represents the frequency of stable oscillations corresponding to the network with those weights. Whereas, the white indicates that the network
+remains in steady state. Lastly, the hatched area indicates where only the Proto population has reached the stable oscillatory regime. C, The normalized power spectrum (left) and mean ﬁring
+activity of each population for the highlighted points in (B) (right). All data points represent a 20-s simulation of 100 neurons in each population with 0.1 ms time step.
+8 • J. Neurosci., February 28, 2024 • 44(9):e0419232023                                                                                                                          Azizpour Lindi et al.    • DD Induces β Oscillations
+projection from STN to Proto to τProto−STN = 6 ms and vary the                                                          Altogether, our results show that the experimentally observed
+decay time constant of inhibitory synapses τinh for all the inhib-                                                      β-band frequency oscillations in the BG circuit could be resultant
+itory projections in the model in the range of 4–24 ms. For all val-                                                    of the interactions between the pallidostriatal loops and a high-
+ues of τinh, we compare the theoretically derived frequency of the                                                      frequency oscillating di-synaptic loop.
+oscillatory instability with the frequency of oscillations observed
+in rate model simulations (Fig. 3A). The four considered loop cir-                                                      Oscillation frequencies in a realistic network model of BG
+cuits induce oscillations in a wide range of frequencies ranging                                                        circuits with experimentally constrained time constants
+from 5 to 80 Hz. Indeed, the oscillation frequencies derived                                                            The results of our rate model of BG circuits highlight the possible
+from simulations are well predicted by our theoretical derivation.                                                      frequencies of oscillations driven by the various negative feed-
+Importantly, across the wide range of inhibitory decay time                                                             back loops of the network across a wide range of synaptic time-
+constants considered here, the STN-GPe network does not                                                                 scales and their possible interaction. However, neural dynamics
+produce β-band oscillations but rather oscillates in the γ range                                                        in the rate model rely on a single time scale, ignoring the diverse
+(35–50 Hz). Similarly, the short feedback provided by recurrent                                                         timescales of neuronal and synaptic integration. The frequency of
+connections between Proto neurons drives γ-band oscillations                                                            oscillations must thus be conﬁrmed in a spiking neuronal net-
+with even higher frequencies (60–70 Hz). On the other hand,                                                             work (SNN) where the membrane potential of the neurons is
+both pallidostriatal loops generate frequencies close to the lower                                                      simulated using the LIF neurons (see “Materials and Methods”
+boundary of the β-band (5–25 Hz; Fig. 3A).                                                                              for details). In this more detailed model, all timescales—the
+                                                                                                                        synaptic rise and decay time constants, neuronal integration
+Interactions between multiple BG circuits including the GPe                                                             time constant, and axonal delays—are extracted from experi-
+but not the STN can lead to the emergence of β-like activity                                                            mental observations (see Tables 3–5 for values and references
+In the full BG network, oscillations may be generated as a result                                                       to the corresponding experimental studies). Moreover, the
+of interactions between two or more loops. Since STN is not nec-                                                        SNN model will allow us to both produce realistic activity pat-
+essary for the induction of experimentally observed β-band oscil-                                                       terns and to directly compare the phase diﬀerences between
+lations in parkinsonian rats (De la Crompe et al., 2020), the                                                           the ﬁring activity in the various neuronal populations during
+pallidostriatal loops (FSI-D2-Proto loop and D2-Proto-Arky                                                              pathological β or artiﬁcially induced oscillatory activity (as in
+loop) may interact with the recurrent Proto loop to drive patho-                                                        De la Crompe et al., 2020). The investigation of the normal
+logical oscillations in PD. Interestingly, the synaptic connections                                                     and pathological dynamics of BG activity in the SNN will be
+between FSI and D2 striatal neurons and the recurrent connec-                                                           guided by the general results obtained by analytical derivation
+tions between Proto neurons are strongly aﬀected by DD                                                                  and simulations in the reduced rate model. An example of the
+(Gittis et al., 2011; Miguelez et al., 2012), and see below for                                                         spiking activity in a single neuron from each population is dem-
+more details. Therefore, we investigate the possible interaction                                                        onstrated in Figure 4A (for presentation purposes, the APth is
+between the FSI-D2-Proto loop and the recurrent Proto loop in                                                           artiﬁcially aligned to 0 mV). After setting all the time constants
+a reduced model comprising these two loops only. We vary the                                                            and delays, we further verify the ﬁring activity patterns of the net-
+synaptic weights of the two loops GProto−Proto and GProto−D2,                                                           work by mimicking the downstream eﬀects of a short-term stim-
+run the simulation, and measure the frequency of stable oscilla-                                                        ulation at the level of the motor cortex. Indeed, the temporal
+tions in the ﬁring activity (Fig. 3B). For low synaptic weights in                                                      pattern of responses in the various neuronal populations of the
+either loop, the network does not leave the steady state.                                                               BG is strongly coupled to the timescale of the synaptic and neu-
+However, with increasing the G, the network is able to transition                                                       ronal integration in the network. The eﬀects of the cortical stim-
+to the oscillatory regime (colored points in the phase space in                                                         ulation in all populations of our network thus oﬀer an integrated
+Fig. 3B). Moreover, increasing the connection weight of the                                                             view of the network’s temporal properties that can be directly
+Proto loop shifts the frequency of the network from the lower                                                           compared to experimentally observed responses (Kita and Kita,
+bound of β to the higher end of this band (Fig. 3C ).                                                                   2011). These eﬀects include a direct excitation in both the STN
+
+
+Table 5. Electrophysiological time constants for each synaptic connection
+Projection                               Δ (ms)                                     Reference                                                      τrise , τdecay (ms)                                       Reference
+Proto-D2                                  6.89 ± 0.35                               Ketzef and Silberberg (2020)                                   0.80 ± 0.06, 6.13 ± 0.38                                  Sims et al. (2008)
+                                         (4.3, 11.3)                                Kita and Kitai (1991)
+STN-Proto                                 1.3 ± 0.3                                 Kita et al. (1983)                                             1.1 ± 0.4, 7.8 ± 4.4                                      Baufreton et al. (2009)
+                                         (0.8, 2.5)
+Proto-STN                                 2.8                                       Kita and Kitai (1991)                                          0.6 ± 0.1, 1.8 ± 2.5                                      Baufreton
+                                         (2.0, 4.4)                                                                                                                                                          (unpublished)
+Proto-Proto                               4.67 ± 0.45                               Ketzef and Silberberg (2020)                                   0.50 ± 0.15, 4.91 ± 1.08                                  Sims et al. (2008)
+                                         (3.05, 7.55)                               (mice)
+Arky-Proto                                4.55 ± 0.54                               Ketzef and Silberberg (2020)                                   0.50 ± 0.15, 4.91 ± 1.08                                  Sims et al. (2008)
+                                         (2.55, 7.05)                               (mice)
+D2-FSI                                    0.93 ± 0.29                               Gittis et al. (2010)                                           1.5 ± 2.9, 11.4 ± 2.1                                     Koos et al. (2004)
+                                         (0.8, 2.0)                                 (mice)
+FSI-Proto                                 4.3 ± 0.7                                 Glajch et al. (2016)                                           1.1 ± 0.4, 7.8 ± 4.4                                      Based on similarity
+                                         (3.2, 7.0)                                 (mice)                                                                                                                   to FSI-Proto
+D2-Arky                                   4.9 ± 0.6                                 Glajch et al. (2016)                                           1, 28                                                     Baufreton
+                                         (3.8, 7.0)                                 (mice)                                                                                                                   (unpublished)
+Axonal transmission delays, Δ, and the synaptic rise and decay time constants, τrise and τdecay, are derived from the experimental literature referenced. Values are reported as mean ± SD. The range of Δ is also constrained by the data
+(same reference except for Proto-D2) as reported in the table.
+Azizpour Lindi et al.   • DD Induces β Oscillations                                                                                         J. Neurosci., February 28, 2024 • 44(9):e0419232023 • 9
+
+
+
+
+Figure 4. The SNN model captures electrophysiological characteristics of the BG network. A, Example membrane potential traces of the LIF neurons in the model. The action potential threshold
+is artiﬁcially aligned to 0 mV for all neurons for presentation purposes. B, The eﬀect of 10 ms cortex stimulation on the population activity of the neurons in the model. Each time course is an
+average of 10 diﬀerent stimulation protocols.
+
+
+
+neurons as well as the D2-MSNs (Fig. 4B). Both of these inputs                                     it diﬃcult (if not impossible) to detect oscillations at the level
+contribute to shaping the GPe activity. Kita and Kita (2011)                                       of individual neuron spike trains. Due to the low ﬁring rate of
+describe the GPe response as, primarily, an early excitation                                       D2 neurons, their contribution to oscillations is even more
+(from STN), then, an inhibition (from D2-MSNs), and lastly, a                                      diﬃcult to tease apart at the level of spike trains, even when
+late excitation (again from STN) followed by a late long-                                          the ﬁring activities of many neurons are displayed simulta-
+inhibition. Since Proto neurons make up the majority of the                                        neously (Fig. 5C). Nevertheless, oscillatory activity can be clearly
+GPe population (Mallet et al., 2012), we attribute this prototyp-                                  revealed by spectral analysis of the population activity. To quan-
+ical response to the Proto population. Our model reproduces                                        tify the resultant frequencies, we run multiple sets of simulations
+similar tri-phasic activity in the Proto population activity. In par-                              (with varying parameter initialization) for each network and then
+ticular, the relative timing of the onsets and peak in activity in the                             average their corresponding power spectrum densities (PSDs;
+various populations of the model agree with the observed pattern.                                  Fig. 5D). The low-frequency component of the average popula-
+There are, however, some slight diﬀerences. First, we do not                                       tion activity in our model may be reminiscent of local ﬁeld poten-
+observe the late and long-lasting inhibition in Proto observed                                     tial recorded experimentally. The frequencies of oscillations
+by Kita and Kita (2011). This slow inhibition was shown to be                                      generated in the SNN further conﬁrm those of the rate model
+driven mainly by GABA-b currents in Proto neurons, which                                           study. In particular, the recurrent connections between Proto
+are not included in our model. Since the time scale of GABA-b                                      neurons and the STN-GPe circuit generate γ-band frequencies
+transmission is too slow (100–1,000 ms decay; Gerstner et al.,                                     (43 Hz for the STN-GPe circuit and 65 Hz for the Proto recurrent
+2014) to contribute signiﬁcantly to the pathological β-band oscil-                                 network). Whereas for realistic time constants, the two pallidos-
+lations, we deliberately ignored this minor part of the inhibitory                                 triatal loops oscillate with frequencies on the lower boundary of
+inputs to Proto. Second, the time scale of the re-stabilization of                                 the β-band (Fig. 5D).
+Proto activity after the last excitation is somewhat faster than
+what is observed experimentally. The slow recovery of Proto neu-                                   The asynchronous healthy state
+rons may be explained by their speciﬁc intrinsic electrophysio-                                    In the previous section, we artiﬁcially segregated the various feed-
+logical properties that may not be captured in the LIF model.                                      back loop circuits from the BG network and increased the
+These diﬀerences are unlikely to play a signiﬁcant role in the gen-                                strength of the synapses to bring each sub-circuit into an oscilla-
+eration or modulation of pathological β oscillations and are thus                                  tory regime. However, for each subnetwork, mild synaptic weight
+beyond the scope of this study.                                                                    does not lead to the emergence of oscillatory activity. For the
+    Once all time constants and delays are set, we look at the fre-                                complete BG network, these mild synaptic connections lead to
+quency of the individual loops in the detailed SNN. We simulate                                    an asynchronous state where all populations display non-
+each individual loop circuit when it is isolated from the network                                  oscillatory ﬂuctuations driven by the ﬂuctuations in their synap-
+(Fig. 5A). In these simulations, the synaptic weights are set in a                                 tic inputs (synaptic noise) and the relative timing of spike occur-
+way to avoid the collective silencing of neurons in the population,                                rence across the neuronal populations (Fig. 6A and B). This
+while being suﬃciently large to bring the circuit into the oscilla-                                non-oscillatory state can be mapped onto the healthy state of
+tory regime (Fig. 5B). The temporal ﬂuctuations in the mean                                        the BG network, with the mean and ﬂuctuations of external
+activity across the neuronal populations reﬂect a clear oscillatory                                inputs adjusted to drive the observed distributions of ﬁring rate
+pattern while the high level of noise in the synaptic input induces                                in the various BG populations of anesthetized rats (Mallet et
+large ﬂuctuations within and between cycles, with waxing-and-                                      al., 2005; Sharott et al., 2012, 2017; De la Crompe et al., 2020;
+waning oscillations in the mean activity. Importantly, the oscilla-                                Xiao et al., 2020). As the ﬂuctuations in the network activity
+tions in mean activity are not reﬂected in regular spike trains                                    are non-oscillatory in this state, the CCs between the spike trains
+ﬁring at the oscillation frequency in single neurons (Fig. 5C ).                                   of pairs of neurons of a given population are ﬂat in all popula-
+Rather, the probability of spiking for most neurons oscillates in                                  tions of the network (Fig. 6C, see also Extended Data Fig. 6-1)
+time but the synaptic noise and network heterogeneities make                                       and there is very low coherence between spike trains in a given
+10 • J. Neurosci., February 28, 2024 • 44(9):e0419232023                                                                                             Azizpour Lindi et al.   • DD Induces β Oscillations
+
+
+
+
+Figure 5. None of the individual feedback loops generate experimentally observed β-band frequency oscillations. A, Schematics of individual feedback loops. B, Simulations of individual
+feedback loops yield their intrinsic frequency. Example average ﬁring rate of N = 1,000 neurons in each population of each given loop in (A). Insets highlight the activity of D2-MSNs where they
+exhibit oscillatory activity despite their low ﬁring rate. C, Individual spikes of N = 25 randomly chosen neurons in (B). D, Normalized PSD of the mean population ﬁring rate in each of the loops in
+(A) for 8, 10-s long simulations (see “Materials and Methods”). The box plots summarize the peak frequencies (represented by circles) measured for the Proto population. The shaded area
+indicates the β-band (12–30 Hz). Simulations are also repeated with 0.01 ms time steps (Extended Data Fig. 6-1).
+
+
+
+population at any frequency (Fig. 6D, see also Extended Data Fig.                                    recordings, the weights along several connections of the circuits
+6-1) as has been experimentally revealed in the BG neuronal pop-                                     in the normal state have been set to reproduce the eﬀect of artiﬁ-
+ulation of animals in healthy condition (Mallet et al., 2008b).                                      cial oscillatory drive by patterned optogenetic stimulation of the
+While most parameters of the model are constrained by experi-                                        STN and Proto neurons in healthy rats reported in De la Crompe
+mental data, the synaptic weights are mostly free parameters of                                      et al. (2020), as explained thereafter.
+the model until this point. In the ﬁrst part of the Results section,
+we have shown that mid-β oscillations can be driven by the inter-                                    Activity modulation and phase differences during
+action between several oscillating circuits in the rate model                                        β-patterning
+(Fig. 3B and C). Multiple loop circuits must thus be at play to                                      When β oscillations are artiﬁcially produced in healthy rats
+produce the experimentally observed β oscillations. Since the fre-                                   through the rhythmic activation of STN neurons with a 20 Hz
+quency of the resultant oscillations can change based on the con-                                    half-sinusoidal optogenetic stimulation (Fig. 7A-left) (De la
+tribution of each loop, it is now important to further constrain                                     Crompe et al., 2020), Proto neurons display a fast excitatory
+the synaptic weights in the model. While we cannot constrain                                         response following the STN activation with a short delay. The
+all the synaptic weights with anatomical or physiological                                            amplitude of the modulations of STN and Proto activity in these
+Azizpour Lindi et al.   • DD Induces β Oscillations                                                                                       J. Neurosci., February 28, 2024 • 44(9):e0419232023 • 11
+
+
+
+
+Figure 6. Healthy state of the tuned network does not exhibit any oscillatory activity. A, Average population ﬁring rate time course of neurons simulated in an anesthetized healthy state.
+N = 1,000 for all populations. Insets show the activity of D2-MSNs. B, Individual spikes of N = 30 randomly chosen neurons in (A). C, Average spike CC of 2,000 randomly chosen pairs of neurons
+from the two populations speciﬁed by the rows and columns. No signiﬁcant CC is observed on average among the pairs of populations. D, The average spike coherence of 1,000 randomly chosen
+pairs of neurons from the two populations speciﬁed by the rows and columns. The network simulation is run for 25 s and the coherence is measured using 1-s windows. The shaded gray area
+indicates the β range (12–30 Hz). No signiﬁcant average spike coherence is observed on average among the pairs of populations. Coherence and CC of D2 and FSI populations are shown in
+Extended Data Figure 6-1.
+
+
+
+experiments reﬂects the strength of the direct excitation from                                    derived from other experimental data (see “Materials and
+STN neurons to Proto. Moreover, during the same protocol,                                         Methods”). In another experiment, the β-patterning of Proto
+Arky neurons are inhibited by the Proto, with a modulation                                        neurons’ activity was induced in healthy rats through the non-
+whose amplitude reﬂects the strength of the inhibition from                                       speciﬁc rhythmic inhibition of GPe neurons with a 20 Hz half-
+Proto to Arky. We set the synaptic weights between STN,                                           sinusoidal optogenetic input that inhibits both the Proto and
+Proto, and Arky neurons to reproduce the respective modulation                                    Arky populations (Fig. 7B-left) (De la Crompe et al., 2020). We
+of their activity during this experiment by delivering a 20 Hz half-                              reproduce this patterned stimulation in the model with a rhyth-
+sinusoidal depolarizing input to the STN neurons (Fig. 7A-right).                                 mic inhibitory input onto Proto adjusted to yield the same level
+Note that the relative phase diﬀerence between the various pop-                                   of minimum activity in Proto neurons as in the experimental data
+ulations during this patterned stimulation is also accurately                                     (Fig. 7B-right). The relative amplitude of Proto and STN modu-
+reproduced due to the appropriate time constants of the model                                     lation in this experiment constrains the STN-Proto synaptic
+12 • J. Neurosci., February 28, 2024 • 44(9):e0419232023                                                                                                      Azizpour Lindi et al.    • DD Induces β Oscillations
+
+
+
+
+Figure 7. β-oscillation induction compared in the model and data. A, β oscillatory activity is artiﬁcially induced by exciting STN neurons at 20 Hz frequency as indicated in the schematic on top.
+Left: Single neuron spike linear phase histogram of Proto (red), STN (black), and Arky (orange) neurons during artiﬁcial β-patterning using non-speciﬁc opto-inhibition of GPe neurons in healthy
+rats using eArchT3 (re-adapted from De la Crompe et al., 2020). Right: Single neuron spike linear phase histogram similar to (left), but for our tuned model including the FSI (green) and D2-MSNs
+(blue) while applying similar excitatory input as the optogenetic manipulation on the left. B, Same as in (A) except for the fact that the β oscillatory activity is artiﬁcially induced by inhibiting
+Proto neurons at 20 Hz frequency as indicated in the schematic on top. In all panels, thinner lines represent randomly chosen individual neuron traces whereas solid line represents the average
+population phase histogram. The shaded area indicates the SEM. Box-and-whisker plots indicate median, ﬁrst and third quartile, min and max values. In the model, only the neurons (out of the
+total of N = 1,000) that passed the Rayleigh test are taken into account; the percentage of which is indicated on the upper right quadrant of each panel.
+
+
+
+Table 6. Population ﬁring rates (Hz) during anesthesia
+Neuron                                 FR (Ctrl)                                   Reference                                                    FR (DD)                               Reference
+D2-MSN                                 0.49 ± 0.14                                 Sharott et al. (2017)                                        2.80 ± 0.47                           Sharott et al. (2017)
+                                                                                   Sharott et al. (2012)
+STN                                     7.0 ± 5.8                                  De la Crompe et al. (2020)                                   24.5 ± 11.8                           De la Crompe et al. (2020)
+Arky                                   14.1 ± 8.3                                  De la Crompe et al. (2020)                                   12.2 ± 6.0                            De la Crompe et al. (2020)
+Proto                                  39.8 ± 13.7                                 De la Crompe et al. (2020)                                   21.6 ± 12.2                           De la Crompe et al. (2020)
+FSI                                    3.67 ± 3.22                                 Mallet et al. (2005)                                         4.93                                  Xiao et al. (2020)
+                                                                                   Sharott et al. (2012)
+Values are reported as mean ± SD. FR: ﬁring rate; Ctrl corresponds to healthy animal and DD to dopamine-depleted state in 6OHDA-lesioned animals.
+
+
+
+
+weight. Altogether, we are thus able to complete the tuning of the                                              also tuned in this experiment however this tuning will be later
+synaptic weights within the STN-GPe circuit and between GPe                                                     explained in the next sections (Kita et al., 2004).
+neuronal populations by replicating the β-patterning experi-
+ments. Note that as in Figure 4B, the stabilization of Proto activ-                                             DD in the model gives rise to β oscillations
+ity following a transient excitatory input from STN neurons is                                                  The depletion of dopamine leads to pathophysiological and ana-
+slower in the experimental data compared to the model. Again,                                                   tomical changes in the BG (Mallet et al., 2019). These changes are
+this is likely due to the intrinsic cellular properties of Proto neu-                                           reﬂected both in changes in ﬁring rate distributions (see Table 6
+rons that are not adequately captured by our LIF model.                                                         for ﬁring rates in the DD state) as well as some structural changes
+Nevertheless, the Proto activity in the model is stabilized by the                                              in the number and strength of synaptic connections in various
+end of each stimulation cycle resulting in evoked responses in                                                  BG pathways that are reported to occur after chronic DD.
+STN neurons fully compatible with the experimental data both                                                    More precisely, (i) the number of connections in the projection
+in terms of phase relationship and amplitude of the response                                                    from FSI to D2 neurons doubles (Gittis et al., 2011), (ii) the
+(Fig. 7B). Note that pallidostriatal and Proto-Proto weights are                                                synaptic weights from Proto to STN neurons are doubled (Fan
+Azizpour Lindi et al.   • DD Induces β Oscillations                                                                                         J. Neurosci., February 28, 2024 • 44(9):e0419232023 • 13
+
+
+
+
+Figure 8. The model replicates the pathological phase locking and β-band oscillatory activity after transition to DD. A, Average population ﬁring rate time course of Proto (red), STN (black),
+Arky (orange), D2 (blue), and FSI (green) simulated in an anesthetized dopamine-depleted state. N = 1,000 for all populations. Insets highlight the activity of D2-MSNs where they exhibit
+oscillatory activity despite their low ﬁring rate. B, Individual spikes of N = 30 randomly selected neurons in (A). C, Normalized power spectrum of population average ﬁring rate in (A). A
+signiﬁcant peak is indicated in the β-band (12–30 Hz, shaded in gray). D, Single neuron spike linear phase histogram of Proto (red), STN (black), and Arky (orange) neurons during spontaneous
+β oscillations aligned to the recorded EcoG in anesthetized parkinsonian rats (re-adapted from De la Crompe et al., 2020). E, Single neuron spike linear phase histogram similar to (D), but for our
+tuned model including the FSI (green) and D2-MSN (blue). Phases are aligned to Proto peaks after β ﬁltering. Thinner lines represent results for randomly chosen individual neurons. The solid line
+represents the average population phase histogram and the shaded area indicates the SEM. Box-and-whisker plots indicate median, ﬁrst and third quartile, min and max values. In the model,
+only the neurons (out of the total of N = 1,000) that passed the Rayleigh test are shown; the percentage of which is indicated on the upper right quadrant of each panel. F, Average spike CC of
+2,000 randomly chosen pairs of neurons from the two populations speciﬁed by the rows and columns. All population pairs exhibit signiﬁcant spike CC with lags corresponding to the β-band
+frequencies. G, The average spike coherence of 1,000 randomly chosen pairs of neurons from the two populations speciﬁed by the rows and columns. The network simulation is run for 25 s and
+the coherence is measured using 1-s windows. The shaded gray area indicates the β range (12–30 Hz). All population pairs exhibit enhanced average spike coherence in the β range. Coherence
+and CC of D2 and FSI populations are shown in Extended Data Figure 8-1. β oscillations result from synaptic changes due to DD in the FSI-D2-Proto loop that pushes it to the oscillatory regime
+(Extended Data Fig. 8-2). The eﬀect of τm of STN neurons on frequency is also shown in Extended Data Figure 8-3. Network with the addition of Arky-D2/STN and FSI-Arky projections also exhibits
+β oscillations (Extended Data Fig. 8-4).
+
+
+
+et al., 2012), and (iii) the synaptic weights of the recurrent inhi-                                (Fig. 8A and B). To characterize the oscillatory activity, we run
+bition between Proto neurons are doubled (Miguelez et al., 2012).                                   multiple 25-s-long simulations of the network initialized in the
+We investigate the eﬀect of DD in the BG by implementing all                                        DD state. We then use each simulation to derive the PSDs of
+these functional and structural modiﬁcations in our BG network                                      the mean population ﬁring rates (for more detail refer to
+model. Following DD, the BG network sees the strength of the                                        “Materials and Methods”) and then average the PSDs over all
+connections along several negative feedback loops strongly                                          repetitions. As shown in Figure 8C, the average PSD exhibits a
+increased (doubled), namely the FSI-D2-Proto loop, the                                              signiﬁcant increase in the β-band oscillatory activity in all popu-
+Proto-Proto loop, and the STN-Proto loop. The increased nega-                                       lations after DD compared to the healthy state. The peak fre-
+tive feedback along these loops is enough to push the network                                       quency of this oscillatory activity is 18 Hz. In addition, a small
+into an oscillatory regime. In this state, all the nuclei exhibit clear                             increase in the γ-band power (50–55 Hz) is observed in the
+oscillatory activity that is observable in both the mean population                                 Proto ﬁring activity. The γ-band oscillatory activity in the
+ﬁring rates as well as individual neurons’ spiking patterns                                         Proto may give rise to the β–γ coupling observed in PD patients
+14 • J. Neurosci., February 28, 2024 • 44(9):e0419232023                                                 Azizpour Lindi et al.   • DD Induces β Oscillations
+and in rats (López-Azcárate et al., 2010; Dejean et al., 2011). We    each of them. This β-entrained correlation is evident in all the
+conﬁrm the relative role of each sub-circuit in the generation of     pairs of populations except for among the D2 neurons, due to
+the observed oscillatory activity by simulating each sub-circuit      their very low ﬁring activity levels (Extended Data Fig. 8-1).
+individually. With the synaptic weights of the DD state, and          The oscillatory synchronization between neurons within and
+while disconnected from the rest of the network, the                  across BG neuronal populations can also be revealed by the
+FSI-D2-Proto loop displays strong oscillatory activity in the         strongly increased coherence in the β-band between spike trains
+low-β frequency, while the Proto loop and the STN-Proto loop          (Fig. 8G, Extended Data Fig. 8-1). GPe Arkypallidal neurons
+are both close to the oscillatory regime with low oscillatory con-    receive projections from D2-MSNs/STN neurons, as well as
+tent in the gamma range (Extended Data Fig. 8-2). Therefore, the      sending projections to FSIs (Fig. 1). However, these connections
+pallidostriatal loop is the main driver of the observed pathologi-    are all much weaker than corresponding projections to and from
+cal oscillations, and its interaction with either Proto-Proto or      Proto (for STN-Arky vs. STN-Proto connections, see Ketzef and
+STN-Proto loop brings the oscillation in the mid-β range.             Silberberg, 2020; Pamukcu et al., 2020; for D2-MSN-Arky vs.
+    While the frequency of the oscillatory activity generated in      D2-MSN-Proto, see Aristieta et al., 2021; for Arky-FSI vs.
+our BG network in the DD state agrees with abnormal β-band            Proto-FSI, see Bevan, 1998; Saunders et al., 2016). Therefore,
+oscillations, the nature of the interactions between the diﬀerent     we simulate a network with the addition of those projections
+populations that give rise to the β oscillations can be revealed      while estimating their number of connections as well as their
+by comparing relative phase distributions of spikes across all        average synaptic strengths at 20% of those measured for Proto.
+populations of the network. Indeed, De la Crompe et al. (2020)        The results of these additional simulations show that the oscilla-
+have reported the individual spike-phase histogram of the             tion frequency and phase relationships of the activities remain
+Proto, STN, and Arky neurons relative to the motor cortex elec-       unchanged (Extended Data Fig. 8-4). It is worth noting that
+trocorticogram (ECoG) signal in parkinsonian rats (re-adapted         increasing the weight of those connections results in abolishing
+in Fig. 8D). Their results provide a great biological reference       the experimentally observed anti-phase locking of Arky and
+for us to validate our model with. To compute the relative spike-     Proto, though their power spectrum would remain unaﬀected
+phase histograms, we use the Proto mean population ﬁring rate         (data not shown here).
+as our reference instead of the ECoG signal, as we do not include         The abolishment of anti-phase coupling can be mentioned,
+the cortex in our model. Using 25-s long simulations, we then         but is not an argument against STN-Arky connections, since it
+calculate the relative phases of all the spikes for each individual   could emerge from various factors not considered in this model,
+neuron separately. In order to be able to compare the phase dis-      for example, thalamic input, diﬀerent arrival times of striatal
+tribution to those of the experimental data, we make use of the       input at arkypallidal versus prototypical cells, or weak
+ﬁndings of Sharott et al. (2017) where they show that in parkin-      Arky-Proto feedback inhibition.
+sonian rats, the D2-MSNs exhibit anti-phase activity relative to
+the recorded ECoG. Therefore, we shift the phase distributions        Proto inhibition, and not STN, abolishes β-band oscillations
+of all neurons so that the average phase distribution of              in the dopamine-depleted state
+D2-MSNs is anti-phase to the β-ﬁltered ECoG signal in                 STN-GPe network has been a long-standing candidate for
+Figure 8D. The ﬁnal results of the phase distributions for all        explaining the origins of the pathological β oscillations in the
+the populations in the DD state are shown in Figure 8E. Our           BG (Plenz and Kital, 1999; Terman et al., 2002; Nevado-
+results show that the phase relationships between the Proto,          Holgado et al., 2010; Kumar et al., 2011; Pasillas-Lépine, 2013;
+STN, and Arky neurons in the model closely resemble those of          Nevado-Holgado et al., 2014; Pavlides et al., 2015; Shouno et
+the experimental data (Fig. 8D and E). In particular, peak STN        al., 2017; Koelman and Lowery, 2019; Chen et al., 2020).
+activity is in phase with Proto inhibition, consistent with a         However, De la Crompe et al. (2020) have recently shown that
+main oscillatory drive coming from the GPe rather than from           with collective opto-inhibition of the STN neurons, the β oscilla-
+STN (see Fig. 7). The phase diﬀerence between Proto and STN           tions are still maintained at the level of both the cortex and GPe.
+argues against a signiﬁcant contribution of the STN-Proto loop        In light of their results, it could be debated that the STN loop is
+to the DD state oscillations observed here. To conﬁrm the mar-        not the generator of the β oscillations after all. In order to test
+ginal (if any) role played by the STN-Proto loop, we also replicate   this hypothesis, we inhibit the STN neurons using a uniform
+the eﬀect of manipulations of GPe and STN activity performed          hyperpolarizing input that is applied to all the neurons in
+experimentally (see below). To our knowledge, the phase rela-         STN (Fig. 9A). This rather large inhibition does not lead to any
+tionship of FSIs in the DD state has not yet been reported exper-     signiﬁcant change in the average ﬁring rate of Proto neurons.
+imentally. As the FSI-D2-Proto sub-circuit plays a central role in    This lack of modulation indicates that the synaptic feedback
+the generation of the observed oscillatory activity, our model        from STN to the Proto population is rather weak. We inhibit
+makes a strong prediction concerning the relative phase distribu-     the network for 25 s and use the average population activity
+tion of the spiking activity of FSI neurons relative to other BG      time courses of each population to measure their respective
+populations that may be tested in future experiments.                 PSDs. Surprisingly, the STN inhibition not only does not dimin-
+    In the DD state, the strong β-band oscillatory activity of the    ish β oscillations in other populations, but it also boosts the oscil-
+network can be revealed by CC analysis of the spiking activity        lation power in the β-band (Fig. 9B). On the other hand,
+of the Proto, STN, and Arky neurons (Fig. 8F ). Indeed, the CC        understandably, the reduction in STN activity due to the inhibi-
+analysis shows a strong oscillatory pattern of correlation between    tion results in a decrease in the power of its β-band oscillations
+neurons in a given population, as well as strong synchrony            (Fig. 9B).
+between the diﬀerent populations. The peak and trough of the              In a similar experiment as above, De la Crompe et al. (2020)
+CCs at zero-lag also indicate the phase or anti-phase entrainment     targeted the whole GPe population using a non-speciﬁc inhibi-
+between the populations, conﬁrming the previously presented           tory opsin. The Opto-inhibition of the GPe neurons abolished
+phase diﬀerence analysis, with Arky and STN neurons oscillating       the β-oscillation in activities of both the motor cortex ECoG
+in phase and Proto neurons displaying an anti-phase relation to       and STN activity. Their results suggest a key central role for
+Azizpour Lindi et al.   • DD Induces β Oscillations                                                                                        J. Neurosci., February 28, 2024 • 44(9):e0419232023 • 15
+
+
+
+
+Figure 9. Proto inhibition, and not STN, abolishes β-band oscillations in dopamine-depleted state. A, Average population ﬁring rates in a network of Proto, STN, Arky, D2, and FSI when in a
+dopamine-depleted state (DD) the STN neurons are inhibited. The yellow shaded color indicates where external inhibitory input is applied to STN. B, PSDs of each of the populations compared
+between baseline in DD (dashed gray) and when inhibition is applied to STN (solid colored). STN inhibition does not uplift β-oscillation. C, Average population ﬁring rates in a network of Proto,
+STN, Arky, D2, and FSI when in a dopamine-depleted state (DD) the Proto neurons are inhibited. The yellow shaded color indicates where external inhibitory input is applied to STN. B, PSDs of
+each of the populations compared between baseline in DD (dashed gray) and when inhibition is applied to Proto (solid colored). Contrary to STN, Proto inhibition abolishes β-oscillation in all
+populations. Gray shaded area indicates the β range (12–30 Hz).
+
+
+
+the GPe in the generation of the β oscillations. Therefore, we                                     oscillations. In fact, they support the hypothesis that the
+hypothesize that since the Proto population is the shared node                                     Proto–central loops are orchestrating the β oscillations in the
+in all our loops, its inhibition should in principle abolish all oscil-                            DD state.
+latory activity in the DD state. We then tested this hypothesis by
+inhibiting all the Proto neurons using a uniform hyperpolarizing
+input. Contrary to STN, Proto inhibition signiﬁcantly aﬀects the                                   Discussion
+STN activity via disinhibition. This is partly due to the increase in                              Building on up-to-date experimental evidence, our model shows
+STN-Proto weight after DD (Fan et al., 2012; Fig. 9C). The power                                   that the neuronal and synaptic properties of dopamine-depleted
+spectrum density analysis shows that the Proto inhibition results                                  pallidostriatal circuits can fully explain the β synchrony observed
+in total suppression of β-oscillation in the activity of all the pop-                              in experimental parkinsonism. The loops linking pallidal (Arky
+ulations as shown in Figure 9D. These ﬁndings rule out the sign-                                   and Proto) and striatal (FSI and D2) neuronal populations gen-
+iﬁcant contribution of the STN loop in the generation of β                                         erate oscillations in the low-β range (<15 Hz). However, the
+16 • J. Neurosci., February 28, 2024 • 44(9):e0419232023                                                Azizpour Lindi et al.   • DD Induces β Oscillations
+interactions between these loops and strong inhibitory reciprocal     Crompe et al., 2020). A circuit involving the STN, such as
+connections within the pallidal Proto neurons can increase the        STN-GPe loop or the hyperdirect loop (Leblois et al., 2006;
+oscillatory frequency in the complete network, driving abnormal       Pavlides et al., 2015), may thus contribute to the low-β observed
+β oscillations with experimentally observed frequencies (∼20 Hz).     in NHP. A recent modeling study suggests that STN-GPe and
+Consistent with data, inhibition of the GPe, but not the STN,         pallidostriatal circuits could interact to drive such abnormal β
+impairs the expression of abnormal β oscillations (De la              oscillations (Ortone et al., 2023). The multiple bands of β activity
+Crompe et al., 2020). Indeed, the two GPe neuronal populations        observed in PD patients may reﬂect a combination of mecha-
+play a crucial role in the generation of pathological oscillatory     nisms only partially reﬂected in the various animal models.
+activity in our model. These neurons participate in the two           Alternatively, diﬀerences in the relative strength of the pallidos-
+pallidostriatal reciprocal and recurrent circuits which induce β      triatal and Proto loops leading to oscillation frequencies (see
+oscillations after DD. The GPe having a central role in the cir-      Fig. 3C ) may account for diﬀerent frequencies between patients.
+cuitry also imposes phase relationships between various BG pop-           While pallidostriatal circuits can generate pathological β oscil-
+ulations that are consistent with those reported in parkinsonian      lations showing characteristics of those observed in parkinsonian
+animals and when β oscillations are artiﬁcially driven through        rats, we cannot exclude other circuits taking part in β generation.
+GPe activity modulation (De la Crompe et al., 2020). On the con-      In particular, the large BG-thalamo-cortical loop circuits (Leblois
+trary, the timescale of activity propagation in the STN-GPe net-      et al., 2006; Pavlides et al., 2015) or the STN-GPe loop may interact
+work is inconsistent with a putative generation of β rhythms and      positively with BG-generated β oscillations (Corbit et al., 2016;
+the observed strength of its reciprocal connections is too low to     West et al., 2022; Ortone et al., 2023). However, experiments in
+be the main drive of oscillatory activity (Extended Data Fig. 8-2).   parkinsonian rats clearly show that the cortex and STN are not
+     The large amount of data collected in parkinsonian rats,         necessary for the expression of β oscillations while in fact GPe is
+including the phase relationships between BG neuronal popula-         (De la Crompe et al., 2020). It leaves a possibility for
+tions during β oscillations and the eﬀects of neuronal manipula-      BG-thalamic loops (Str-GPe-SNr-Thal-Str) to interact with the
+tion on abnormal β, constrains the underlying mechanisms as           presently investigated circuits (Brazhnik et al., 2016). GPe arkypal-
+shown here. We thus chose to build our model according to             lidal neurons project to striatal FSIs, an anatomical connection not
+the data collected from healthy and parkinsonian rats (and,           considered in our main model. It could oppose the negative
+when unavailable, from mice). Future experiments uncovering           feedback in the Arky-MSN-Proto loop. However, this connection
+phase relationships between BG neuronal populations during            is considerably weaker than the projections of Proto onto FSI
+abnormal β oscillations in patients or non-human primates             (Corbit et al., 2016) and is thus unlikely to impede or signiﬁcantly
+(NHPs) could inform us about a possible parallel in the               alter oscillation generation (Extended Data Fig. 8-4). Within the
+β-generation mechanisms between parkinsonian patients,                pallidostriatal circuit, interactions between Proto and Arky may
+NHPs, and rats. Parkinsonian rats display abnormal β-activity         also participate in fast oscillations generated by the GPe alone
+that is highly behavior and state-dependent (Mallet et al.,           (Gast et al., 2021).
+2008a; Avila et al., 2010; Brazhnik et al., 2021) and can spread          Many previous models have been proposed to explain the
+from mid-β (15–25 Hz) under anesthesia (Mallet et al., 2008a;         generation of beta oscillations in the BG, with origins of the oscil-
+De la Crompe et al., 2020) to high-β (25–35 Hz) in awake behav-       lations in the STN-GPe loop (for review, see Pavlides et al., 2015;
+ing parkinsonian rats (Bergman et al., 1990; Avila et al., 2010;      Rubin, 2017). Given the initial observation of spontaneous low
+Brazhnik et al., 2014; Delaville et al., 2015; Brazhnik et al.,       frequency (2 Hz) oscillations involving STN rebound following
+2016). The interaction between multiple oscillation generation        oﬀset of GPe inhibition in STN-GPe organotypic cultures
+circuits, as proposed here, naturally accounts for frequency          (Plenz and Kital, 1999), Terman et al. (2002) proposed a model
+changes as the relative strength of each oscillatory circuit can      network of conductance-based STN and GPe neurons, tuned
+inﬂuence the frequency of global oscillations within the β range      based on in vitro rat data, where a similar mechanism could gen-
+(Fig. 3C).                                                            erate tremor-frequency (3–8 Hz) oscillations. Many following
+     The mechanism for abnormal β oscillations revealed here may      modeling studies proposed that the STN-GPe loop can generate
+also be at play in parkinsonian patients and in other animal mod-     beta-band oscillations (up to 30 Hz; Nevado-Holgado et al., 2010;
+els. However, the properties of abnormal β activity diﬀer between     Kumar et al., 2011; Park et al., 2011; Merrison-Hort et al., 2013;
+animal models and diﬀerent generation mechanisms may be               Pasillas-Lépine, 2013; Pavlides et al., 2015; Shouno et al., 2017;
+involved. First, the frequency of abnormal β-oscillations under       Koelman and Lowery, 2019). Some models rely on long synaptic
+DD varies across species (Stein and Bar-Gad, 2013; Smith and          transmission delays or time constants (Nevado-Holgado et al.,
+Galvan, 2018). Parkinsonian mice mostly show increased ﬁeld           2010; Pasillas-Lépine, 2013; Pavlides et al., 2015; Shouno et al.,
+potential activity in the delta range when active and are not         2017; Koelman and Lowery, 2019) or slow neuronal integration
+reported to exhibit exaggerated β activity (Willard et al., 2019;     time constants (Kumar et al., 2011). We believe that our careful
+Whalen et al., 2020) (but see Baaske et al., 2020). NHP models        estimation of the timescale of synaptic transmission and neuro-
+of PD display excessive β with peak frequencies in a reduced          nal integration in the BG network makes these putative genera-
+low-β range (Nini et al., 1995; Raz et al., 2001; Stein and Bar-      tion mechanisms unlikely. Other models (Park et al., 2011;
+Gad, 2013; Deﬀains and Bergman, 2019). In PD patients, the fre-       Merrison-Hort et al., 2013) rely on multiple interacting ion chan-
+quency of abnormal β activity varies across individuals (Kühn et      nels whose role in beta remains to be conﬁrmed experimentally.
+al., 2009), with local ﬁeld potential recordings typically showing    Given the known properties of the STN-GPe circuit in rodents,
+exaggerated β-range activity with frequencies within the low (10–     we believe that it is unlikely to drive beta oscillations by itself
+15 Hz) and/or high (20–30 Hz) bands (Hutchison et al., 2004),         in parkinsonian rats. Alternatively, previous models have pro-
+possibly reﬂecting diﬀerent generation mechanisms. Second, pre-       posed beta generation mechanisms in the cortex (Brittain and
+vious experiments suggest that STN plays a central role in abnor-     Brown, 2014) and along the hyperdirect pathway (Leblois et al.,
+mal β generation in NHP (Tachibana et al., 2011; Deﬀains and          2006). While experiments performed in rats seem to rule out a
+Bergman, 2019) while it does not in parkinsonian rats (De la          signiﬁcant contribution of the cortex and STN in abnormal
+Azizpour Lindi et al.   • DD Induces β Oscillations                                                      J. Neurosci., February 28, 2024 • 44(9):e0419232023 • 17
+
+
+beta oscillations (De la Crompe et al., 2020), these mechanisms         2014; Neumann et al., 2016), it is crucial to uncover the neural
+are unlikely to play a signiﬁcant role in parkinsonian rats.            mechanisms for the generation of oscillatory activity in each con-
+Finally, network mechanisms in the striatum (McCarthy et al.,           dition and context to improve our understanding of the patho-
+2011; Kondabolu et al., 2016) may also be involved in beta gen-         physiological mechanisms underlying PD and develop new
+eration. The adequation between the timescales in the striatal          therapeutic strategies.
+network and the observed beta may be further analyzed in future
+modeling work to conﬁrm a possible contribution of the
+striatum.                                                               References
+    Our model makes clear predictions concerning the phase of           Abdi A, et al. (2015) Prototypic and arkypallidal neurons in the
+                                                                            dopamine-intact external globus pallidus. J Neurosci 35:6667–6688.
+BG populations during β oscillations that can be tested both in         Adam EM, Brown EN, Kopell N, McCarthy MM (2022) Deep brain stimula-
+rodents and in NHP. On one hand, the phase of FSI ﬁring, yet                tion in the subthalamic nucleus for Parkinson’s disease can restore
+unknown in rodents and a critical player in our model, may moti-            dynamics of striatal networks. Proc Natl Acad Sci U S A 119:e2120808119.
+vate future experiments in parkinsonian rats. On the other hand,        Akopian G, Barry J, Cepeda C, Levine MS (2016) Altered membrane proper-
+the phase relationships between STN neurons and the two GPe                 ties and ﬁring patterns of external globus pallidus neurons in the r6/2
+populations recently revealed in NHPs (Katabi et al., 2022) can             mouse model of Huntington’s disease. J Neurosci Res 94:1400–1410.
+                                                                        Albin RL, Young AB, Penney JB (1989) The functional anatomy of basal gan-
+be quantiﬁed in future studies to test whether similar mecha-
+                                                                            glia disorders. Trends Neurosci 12:366–375.
+nisms are at play in this animal model. Synchronization at 10–          Arakaki T, Mahon S, Charpier S, Leblois A, Hansel D (2016) The role of stria-
+13 Hz emerges in the BG-thalamo-cortical network of genetic                 tal feedforward inhibition in the maintenance of absence seizures.
+absence epilepsy rats from Strasbourg (GAERS) during                        J Neurosci 36:9618–9632.
+spike-and-wave discharges (SWDs) characteristic of absence epi-         Aristieta A (2021) A disynaptic circuit in the globus pallidus controls locomo-
+lepsy seizures (Paz et al., 2005). The phase relationship between           tion inhibition. Curr Biol 31:707–721.
+                                                                        Avila I, Parr-Brownlie LC, Brittain E, Castañeda E, Bergstrom DA, Walters JR
+STN and GPe neurons in SWD is similar to their phase relation-
+                                                                            (2010) Beta frequency synchronization in basal ganglia output during rest
+ship during parkinsonian β oscillations (Paz et al., 2005; De la            and walk in a hemiparkinsonian rat. Exp Neurol 221:307–319.
+Crompe et al., 2020). The pallidostriatal loop, which can produce       Baaske MK, Kramer ER, Meka DP, Engler G, Engel AK, Moll CK (2020)
+low-β rhythm as shown here, may also be involved in such path-              Parkin deﬁciency perturbs striatal circuit dynamics. Neurobiol Dis 137:
+ological oscillatory activity, possibly ampliﬁed or complemented            104737.
+by the larger hyper-direct loop (Arakaki et al., 2016). DD induces      Baufreton J, Kirkham E, Atherton JF, Menard A, Magill PJ, Bolam JP, Bevan
+a number of modiﬁcations in the BG network, some of which are               MD (2009) Sparse but selective and potent synaptic transmission
+                                                                            from the globus pallidus to the subthalamic nucleus. J Neurophysiol
+likely causal to the emergence of abnormal oscillatory activity             102:532–545.
+(Quiroga-Varela et al., 2013).                                          Benazzouz A, Gross C, Féger J, Boraud T, Bioulac B (1993) Reversal of rigidity
+    Our model incorporates functional (e.g., changes in excitability)       and improvement in motor performance by subthalamic high-frequency
+and structural (remodeling of synaptic connectivity) changes                stimulation in MPTP-treated monkeys. Eur J Neurosci 5:382–389.
+reported in the pallidostriatal and pallidosubthalamic circuits.        Bergman H, Wichmann T, DeLong MR (1990) Reversal of experimental par-
+In particular, the number of synapses from FSI to D2 (Gittis et             kinsonism by lesions of the subthalamic nucleus. Science (New York, NY)
+                                                                            249:1436–1438.
+al., 2011) as well as the strengths of the synapses in STN-GPe          Bergman H, Wichmann T, Karmon B, DeLong MR (1994) The primate sub-
+and GPe-GPe connection are increased (Fan et al., 2012;                     thalamic nucleus. II. Neuronal activity in the MPTP model of parkinson-
+Miguelez et al., 2012). Unlike immediate functional changes                 ism. J Neurophysiol 72:507–520.
+induced by the lack of dopamine (e.g., changes in D2 excitability       Bevan MD (1998) Selective innervation of neostriatal interneurons by a sub-
+or the modulation of cortico-striatal synaptic transmission),               class of neuron in the globus pallidus of the rat. J Neurosci 18:9438–9452.
+these structural changes rather appear over days and are regarded       Bevan MD, Magill PJ, Terman D, Bolam JP, Wilson CJ, Bevan MD, Bolam JP
+                                                                            (2002) Move to the rhythm: oscillations in the subthalamic nucleus—
+as homeostatic processes that compensate for immediate activity
+                                                                            external globus pallidus network. Trends Neurosci 25:525–531.
+changes induced by dopamine loss (Gittis et al., 2011; Ketzef et        Brazhnik E, McCoy AJ, Novikov N, Hatch CE, Walters JR (2016) Ventral
+al., 2017; Villalba and Smith, 2018). Correspondingly, the                  medial thalamic nucleus promotes synchronization of increased high
+observed hyperactivity of D2-MSNs after DD and predicted by                 beta oscillatory activity in the basal ganglia-thalamocortical network of
+the classical model of PD (Albin, 1989) are reversed over days fol-         the hemiparkinsonian rat. J Neurosci 36:4196–4208.
+lowing DD (Parker et al., 2018), possibly due to the increased          Brazhnik E, Novikov N, McCoy AJ, Cruz AV, Walters JR (2014) Functional
+                                                                            correlates of exaggerated oscillatory activity in basal ganglia output in
+inhibition from FSI after synaptic remodeling. The emergence
+                                                                            hemiparkinsonian rats. Exp Neurol 261:563–577.
+of pathological oscillatory activity is induced in our model by         Brazhnik E, Novikov N, McCoy AJ, Ilieva NM, Ghraib MW, Walters JR
+the structural changes in the D2-FSI connections and is thus                (2021) Early decreases in cortical mid-gamma peaks coincide with the
+expected to arise with a similar delay following immediate DD.              onset of motor deﬁcits and precede exaggerated beta build-up in rat mod-
+This is consistent with the relatively late emergence of patholog-          els for Parkinson’s disease. Neurobiol Dis 155:105393.
+ical β oscillations in these models (Leblois et al., 2007; Degos et     Brittain JS, Brown P (2014) Oscillations and the basal ganglia: motor control
+al., 2009; Quiroga-Varela et al., 2013).                                    and beyond. NeuroImage 85 Pt 2:637–647.
+                                                                        Brunel N, van Rossum M.C.W (2007) Quantitative investigations of electrical
+    Our modeling study provides a candidate mechanism for the               nerve excitation treated as polarization. Biol Cybern 97:341–349.
+generation of β abnormal activity in PD, compatible with evi-           Bugaysen J, Bronfeld M, Tischler H, Bar-Gad I, Korngreen A (2010)
+dence in parkinsonian rats, and makes clear predictions to be               Electrophysiological characteristics of globus pallidus neurons. PLoS
+tested both in rats and other animal PD models. The variety of              One 5:e12001.
+properties of β oscillations observed in PD patients and animal         Buzsáki G, Mizuseki K (2014) The log-dynamic brain: how skewed distribu-
+models (frequency band and phase relationships) may reﬂect                  tions affect network operations. Nat Rev Neurosci 15:264–278.
+                                                                        Chen Y, Wang J, Kang Y, Ghori MB (2020) Emergence of beta oscillations of a
+very diﬀerent generation mechanisms. As the link between                    resonance model for Parkinson’s disease. Neural Plast 2020:1–15.
+abnormal synchronizations of neuronal activity and abnormal             Cooper AJ, Stanford IM (2000) Electrophysiological and morphological char-
+movement in PD is still controversial (Kühn et al., 2006;                   acteristics of three subtypes of rat globus pallidus neurone in vitro.
+Leblois et al., 2007; Quiroga-Varela et al., 2013; Sharott et al.,          J Physiol 527:291–304.
+18 • J. Neurosci., February 28, 2024 • 44(9):e0419232023                                                                    Azizpour Lindi et al.   • DD Induces β Oscillations
+Corbit VL, Whalen TC, Zitelli KT, Crilly SY, Rubin JE, Gittis AH (2016)            Ketzef M, Silberberg G (2020) Differential synaptic input to external globus
+    Pallidostriatal projections promote β oscillations in a dopamine-depleted          pallidus neuronal subpopulations in vivo. Neuron 109:516–529.
+    biophysical network model. J Neurosci 36:5556–5571.                            Ketzef M, Spigolon G, Johansson Y, Bonito-Oliva A, Fisone G, Silberberg G
+Deffains M, Bergman H (2019) Parkinsonism-related beta oscillations in the             (2017) Dopamine depletion impairs bilateral sensory processing in the
+    primate basal ganglia networks—recent advances and clinical implica-               striatum in a pathway-dependent manner. Neuron 94:855–865.e5.
+    tions. Parkinsonism Relat Disord 59:2–8.                                       Kincaid AE, Zheng T, Wilson CJ (1998) Connectivity and convergence of sin-
+Degos B, Deniau JM, Chavez M, Maurice N (2009) Chronic but not acute                   gle corticostriatal axons. J Neurosci 18:4722–4731.
+    dopaminergic transmission interruption promotes a progressive increase         Kita H (1994) Parvalbumin-immunopositive neurons in rat globus pallidus: a
+    in cortical beta frequency synchronization: relationships to vigilance state       light and electron microscopic study. Brain Res 657:31–41.
+    and akinesia. Cereb Cortex 19:1616–1630.                                       Kita H, Chang HT, Kitai ST (1983) Pallidal inputs to subthalamus: intracel-
+Dejean C, Arbuthnott G, Wickens JR, Boraud T, Hyland BI (2011) Power                   lular analysis. Brain Res 264:255–265.
+    ﬂuctuations in beta and gamma frequencies in rat globus pallidus: associ-      Kita H, Kita ST (1994) The morphology of globus pallidus projection neurons
+    ation with speciﬁc phases of slow oscillations and differential modulation         in the rat: an intracellular staining study. Brain Res 636:308–319.
+    by dopamine d1 and d2 receptors. J Neurosci 31:6098–6107.                      Kita H, Kita T (2011) Cortical stimulation evokes abnormal responses in the
+De la Crompe B, Aristieta A, Leblois A, Elsherbiny S, Boraud T, Mallet NP              dopamine-depleted rat basal ganglia. J Neurosci 31:10311–10322.
+    (2020) The globus pallidus orchestrates abnormal network dynamics in           Kita H, Kitai ST (1991) Intracellular study of rat globus pallidus neurons:
+    a model of parkinsonism. Nat Commun 11:1–14.                                       membrane properties and responses to neostriatal, subthalamic and nigral
+Delaville C, McCoy AJ, Gerber CM, Cruz AV, Walters JR (2015) Subthalamic               stimulation. Brain Res 564:296–305.
+    nucleus activity in the awake hemiparkinsonian rat: relationships with         Kita H, Nambu A, Kaneda K, Tachibana Y, Takada M (2004) Role of ionotro-
+    motor and cognitive networks. J Neurosci 35:6918–6930.                             pic glutamatergic and GABAergic inputs on the ﬁring activity of neurons
+DeLong MR (1990) Primate models of movement disorders of basal ganglia                 in the external pallidum in awake monkeys. J Neurophysiol 92:3069–
+    origin. Trends Neurosci 13:281–285.                                                3084.
+Ermentrout B, Pascal M, Gutkin B (2001) The effects of spike frequency adap-       Koelman LA, Lowery MM (2019) Beta-band resonance and intrinsic oscilla-
+    tation and negative feedback on the synchronization of neural oscillators.         tions in a biophysically detailed model of the subthalamic nucleus-globus
+    Neural Comput 13:1285–1310.                                                        pallidus network. Front Comput Neurosci 13:e77.
+Fan KY, Baufreton J, Surmeier DJ, Chan CS, Bevan MD (2012) Proliferation of        Kondabolu K, Roberts EA, Bucklin M, McCarthy MM, Kopell N, Han X
+    external globus pallidus-subthalamic nucleus synapses following degenera-          (2016) Striatal cholinergic interneurons generate beta and gamma oscilla-
+    tion of midbrain dopamine neurons. J Neurosci 32:13718–13728.                      tions in the corticostriatal circuit and produce motor deﬁcits. Proc Natl
+Fourcaud N, Brunel N (2002) Dynamics of the ﬁring probability of noisy                 Acad Sci U S A 113:3159–3168.
+    integrate-and-ﬁre neurons. Neural Comput 14:54.                                Koós T, Tepper JM (1999) Inhibitory control of neostriatal projection neu-
+Fujiyama F, Nakano T, Matsuda W, Furuta T, Udagawa J, Kaneko T (2016) A                rons by GABAergic interneurons. Nat Neurosci 2:467–472.
+    single-neuron tracing study of arkypallidal and prototypic neurons in          Koos T, Tepper JM, Wilson CJ (2004) Comparison of IPSCs evoked by spiny
+    healthy rats. Brain Struct Funct 221:4733–4740.                                    and fast-spiking neurons in the neostriatum. J Neurosci 24:7916–7922.
+Gast R, Gong R, Schmidt H, Meijer HG, Knösche TR (2021) On the role of             Koshimizu Y, Fujiyama F, Nakamura KC, Furuta T, Kaneko T (2013)
+    arkypallidal and prototypical neurons for phase transitions in the external        Quantitative analysis of axon bouton distribution of subthalamic nucleus
+    pallidum. J Neurosci 41:6673–6683.                                                 neurons in the rat by single neuron visualization with a viral vector.
+Gerstner W, Kistler WM, Naud R, Paninski L (2014) Neuronal Dynamics:                   J Comp Neurol 521:2125–2146.
+    From Single Neurons to Networks and Models of Cognition. Cambridge:            Kravitz AV, Freeze BS, Parker PR, Kay K, Thwin MT, Deisseroth K, Kreitzer
+    Cambridge University Press.                                                        AC (2010) Regulation of parkinsonian motor behaviours by optogenetic
+Gittis AH, Hang GB, LaDow ES, Shoenfeld LR, Atallah BV, Finkbeiner S,                  control of basal ganglia circuitry. Nature 466:622–626.
+    Kreitzer AC (2011) Rapid target-speciﬁc remodeling of fast-spiking inhib-      Kühn AA, Kupsch A, Schneider GH, Brown P (2006) Reduction in subthala-
+    itory circuits after loss of dopamine. Neuron 71:858–868.                          mic 8–35 Hz oscillatory activity correlates with clinical improvement in
+Gittis AH, Nelson AB, Thwin MT, Palop JJ, Kreitzer AC (2010) Distinct roles            Parkinson’s disease. Eur J Neurosci 23:1956–1960.
+    of GABAergic interneurons in the regulation of striatal output pathways.       Kühn AA, Tsui A, Aziz T, Ray N, Brücke C, Kupsch A, Schneider GH, Brown
+    J Neurosci 30:2223–2234.                                                           P (2009) Pathological synchronisation in the subthalamic nucleus of
+Glajch KE, et al. (2016) Npas1+ pallidal neurons target striatal projection neu-       patients with Parkinson’s disease relates to both bradykinesia and rigidity.
+    rons. J Neurosci 36:5472–5488.                                                     Exp Neurol 215:380–387.
+Golomb D, Hansel D (2000) The number of synaptic inputs and the syn-               Kumar A, Cardanobile S, Rotter S, Aertsen A (2011) The role of inhibition in
+    chrony of large, sparse neuronal networks. Neural Comput 12:1095–1139.             generating and controlling Parkinson’s disease oscillations in the basal
+Guzmán JN, Hernández A, Galarraga E, Tapia D, Laville A, Vergara R, Aceves             ganglia. Front Syst Neurosci 5:1–14.
+    J, Bargas J (2003) Dopaminergic modulation of axon collaterals intercon-       Leblois A, Boraud T, Meissner W, Bergman H, Hansel D (2006) Competition
+    necting spiny neurons of the rat striatum. J Neurosci 23:8931–8940.                between feedback loops underlies normal and pathological dynamics in
+Hammond C, Bergman H, Brown P (2007) Pathological synchronization in                   the basal ganglia. J Neurosci 26:3567–3583.
+    Parkinson’s disease: networks, models and treatments. Trends Neurosci          Leblois A, Meissner W, Bioulac B, Gross CE, Hansel D, Boraud T (2007) Late
+    30:357–364.                                                                        emergence of synchronized oscillatory activity in the pallidum during
+Hansel D, Mato G, Meunier C, Neltner L (1998) On numerical simulations of              progressive parkinsonism. Eur J Neurosci 26:1701–1713.
+    integrate-and-ﬁre neural networks. Neural Comput 10:467–483.                   Little S, Brown P (2020) Debugging adaptive deep brain stimulation for
+Hernández VM, et al. (2015) Parvalbumin+ neurons and Npas1+ neurons are                Parkinson’s disease. Mov Disord 35:555–561.
+    distinct neuron classes in the mouse external globus pallidus. J Neurosci      López-Azcárate J, et al. (2010) Coupling between beta and high-frequency
+    35:11830–11847.                                                                    activity in the human subthalamic nucleus may be a pathophysiological
+Hutchison WD, Dostrovsky JO, Walters JR, Courtemanche R, Boraud T,                     mechanism in Parkinson’s disease. J Neurosci 30:6667–6677.
+    Goldberg J, Brown P (2004) Neuronal oscillations in the basal ganglia          Magill PJ, Bolam JP, Bevan MD (2000) Relationship of activity in the subtha-
+    and movement disorders: evidence from whole animal and human                       lamic nucleus–globus pallidus network to cortical electroencephalogram.
+    recordings. J Neurosci 24:9240–9243.                                               J Neurosci 20:820–833.
+Karube F, Takahashi S, Kobayashi K, Fujiyama F (2019) Motor cortex can             Mahon S, Deniau JM, Charpier S (2001) Relationship between EEG potentials
+    directly drive the globus pallidus neurons in a projection neuron type-            and intracellular activity of striatal and cortico-striatal neurons: an in vivo
+    dependent manner in the rat. eLife 8:1–25.                                         study under different anesthetics. Cereb Cortex 11:360–373.
+Katabi S, Adler A, Deffains M, Bergman H (2022) Dichotomous activity and           Mallet N, Ballion B, Le Moine C, Gonon F (2006) Cortical inputs and GABA
+    function of neurons with low- and high-frequency discharge in the exter-           interneurons imbalance projection neurons in the striatum of
+    nal globus pallidus of non-human primates. Cell Rep 42:111898.                     Parkinsonian rats. J Neurosci 26:3875–3884.
+Kawaguchi Y, Wilson CJ, Emson PC (1990) Projection subtypes of rat neos-           Mallet N, Delgado L, Chazalon M, Miguelez C, Baufreton J (2019) Cellular
+    triatal matrix cells revealed by intracellular injection of biocytin.              and synaptic dysfunctions in Parkinson’s disease: stepping out of the
+    J Neurosci 10:3421–3438.                                                           striatum. Cells 8:1005.
+Azizpour Lindi et al.   • DD Induces β Oscillations                                                                 J. Neurosci., February 28, 2024 • 44(9):e0419232023 • 19
+
+Mallet N, Le Moine C, Charpier S, Gonon F (2005) Feedforward inhibition of             MPTP-treated monkeys but not in normal monkeys. J Neurosci 21:
+    projection neurons by fast-spiking GABA interneurons in the rat striatum           RC128.
+    in vivo. J Neurosci 25:3857–3869.                                              Rubin JE (2017) Computational models of basal ganglia dysfunction: the
+Mallet N, Micklem BR, Henny P, Brown MT, Williams C, Bolam JP,                         dynamics is in the details. Curr Opin Neurobiol 46:127–135.
+    Nakamura KC, Magill PJ (2012) Dichotomous organization of the exter-           Russo G, Nieus T, Maggi S, Taverna S (2013) Dynamics of action potential
+    nal globus pallidus. Neuron 74:1075–1086.                                          ﬁring in electrically connected striatal fast-spiking interneurons. Front
+Mallet N, Pogosyan A, Márton LF, Bolam JP, Brown P, Magill PJ (2008)                   Cell Neurosci 7:209.
+    Parkinsonian beta oscillations in the external globus pallidus and their       Sadek AR, Magill PJ, Bolam JP (2005) Local connectivity between neurons of
+    relationship with subthalamic nucleus activity. J Neurosci 28:14245–               the rat globus pallidus. In: The basal ganglia VIII (Bolam JP, Ingham CA,
+    14258.                                                                             Magill PJ, eds), pp 611–619. New York: Springer US.
+Mallet N, Pogosyan A, Sharott A, Csicsvari J, Bolam JP, Brown P, Magill PJ         Saunders A, Huang KW, Sabatini BL (2016) Globus pallidus externus neurons
+    (2008) Disrupted dopamine transmission and the emergence of exagger-               expressing parvalbumin interconnect the subthalamic nucleus and striatal
+    ated beta oscillations in subthalamic nucleus and cerebral cortex.                 interneurons. PLoS One 11:e0149798.
+    J Neurosci 28:4795–4806.                                                       Schulz JM, Pitcher TL, Savanthrapadian S, Wickens JR, Oswald MJ, Reynolds
+McCarthy MM, Moore-Kochlacs C, Gu X, Boyden ES, Han X, Kopell N                        JN (2011) Enhanced high-frequency membrane potential ﬂuctuations
+    (2011) Striatal origin of the pathologic beta oscillations in Parkinson’s          control spike output in striatal fast-spiking interneurones in vivo.
+    disease. Proc Natl Acad Sci U S A 108:11620–11625.                                 J Physiol 589:4365–4381.
+Merrison-Hort R, Yousif N, Njap F, Hofmann UG, Burylko O, Borisyuk R               Sharott A, et al. (2014) Activity parameters of subthalamic nucleus neurons
+    (2013) An interactive channel model of the basal ganglia: bifurcation anal-        selectively predict motor symptom severity in Parkinson’s disease.
+    ysis under healthy and Parkinsonian conditions. J Math Neurosci 3:1–29.            J Neurosci 34:6273–6285.
+Miguelez C, Morin S, Martinez A, Goillandeau M, Bezard E, Bioulac B,               Sharott A, Doig NM, Mallet N, Magill PJ (2012) Relationships between the
+    Baufreton J (2012) Altered pallido-pallidal synaptic transmission leads            ﬁring of identiﬁed striatal interneurons and spontaneous and driven cor-
+    to aberrant ﬁring of globus pallidus neurons in a rat model of                     tical activities in vivo. J Neurosci 32:13221–13236.
+    Parkinson’s disease. J Physiol 590:5861–5875.                                  Sharott A, Vinciati F, Nakamura KC, Magill PJ (2017) A population of indi-
+Neumann WJ, Degen K, Schneider GH, Brücke C, Huebl J, Brown P, Kühn                    rect pathway striatal projection neurons is selectively entrained to parkin-
+    AA (2016) Subthalamic synchronized oscillatory activity correlates with            sonian beta oscillations. J Neurosci 37:9977–9998.
+    motor impairment in patients with Parkinson’s disease. Mov Disord 31:          Shouno O, Tachibana Y, Nambu A, Doya K (2017) Computational model of
+    1748–1751.                                                                         recurrent subthalamo-pallidal circuit for generation of parkinsonian
+Nevado-Holgado AJ, Mallet N, Magill PJ, Bogacz R (2014) Effective connec-              oscillations. Front Neuroanat 11:1–15.
+    tivity of the subthalamic nucleus-globus pallidus network during               Shriki O, Hansel D, Sompolinsky H (2003) Rate models for conductance-
+    Parkinsonian oscillations. J Physiol 592:1429–1455.                                based cortical neuronal networks. Neural Comput 15:1809–1841.
+Nevado-Holgado AJ, Terry JR, Bogacz R (2010) Conditions for the generation         Sims RE, Woodhall GL, Wilson CL, Stanford IM (2008) Functional character-
+    of beta oscillations in the subthalamic nucleus-globus pallidus network.           ization of GABAergic pallidopallidal and striatopallidal synapses in the rat
+    J Neurosci 30:12340–12352.                                                         globus pallidus in vitro. Eur J Neurosci 28:2401–2408.
+Nini A, Feingold A, Slovin H, Bergman H (1995) Neurons in the globus               Slaght SJ, Paz T, Chavez M, Deniau JM, Mahon S, Charpier S (2004) On the
+    pallidus do not show correlated activity in the normal monkey, but phase-          activity of the corticostriatal networks during spike-and-wave discharges
+    locked oscillations appear in the MPTP model of parkinsonism.                      in a genetic model of absence epilepsy. J Neurosci 24:6816–6825.
+    J Neurophysiol 74:1800–1805.                                                   Smith Y, Galvan A (2018) Non-human primate research of basal ganglia and
+Oorschot DE (1998) Erratum: total number of neurons in the neostriatal,                movement disorders: advances and challenges. J Neural Transm 125:275–278.
+    pallidal, subthalamic and substantia nigral nuclei of the rat basal ganglia:   Stein E, Bar-Gad I (2013) Beta oscillations in the cortico-basal ganglia loop
+    a stereological study using the Cavalieri and optical disector methods             during parkinsonism. Exp Neurol 245:52–59.
+    (Journal of Comparative Neurology (1996) 366 (580–599). J Comp                 Strogatz SH (2018) Nonlinear dynamics and chaos: with applications to
+    Neurol 396:556.                                                                    physics, biology, chemistry, and engineering. Boca Raton: CRC Press.
+Ortone A, Vergani AA, Ahmadipour M, Mannella R, Mazzoni A (2023)                   Tachibana Y, Iwamuro H, Kita H, Takada M, Nambu A (2011)
+    Dopamine depletion leads to pathological synchronization of distinct               Subthalamo-pallidal interactions underlying parkinsonian neuronal
+    basal ganglia loops in the beta band. PLoS Comput Biol 19:e1010645.                oscillations in the primate basal ganglia. Eur J Neurosci 34:1470–1484.
+Pamukcu A, et al. (2020) Parvalbumin1 and Npas11 pallidal neurons                  Tepper JM, Tecuapetla F, Koós T, Ibáñez-Sandoval O (2010) Heterogeneity and
+    have distinct circuit topology and function. J Neurosci 40:                        diversity of striatal GABAergic interneurons. Front Neuroanat 4:1–18.
+    7855–7876.                                                                     Terman D, Rubin JE, Yew AC, Wilson CJ (2002) Activity patterns in a model
+Park C, Worth RM, Rubchinsky LL (2011) Neural dynamics in Parkinsonian                 for the subthalamopallidal network of the basal ganglia. J Neurosci 22:1–14.
+    brain: the boundary between synchronized and nonsynchronized dynam-            Tinkhauser G, et al. (2020) The cumulative effect of transient synchrony states
+    ics. Phys Rev E Stat Nonlin Soft Matter Phys 83:042901.                            on motor performance in Parkinson’s disease. J Neurosci 40:1571–1580.
+Parker JG, et al. (2018) Diametric neural ensemble dynamics in Parkinsonian        Villalba RM, Smith Y (2018) Loss and remodeling of striatal dendritic spines
+    and dyskinetic states. Nature 557:177–182.                                         in Parkinson’s disease: from homeostasis to maladaptive plasticity?
+Pasillas-Lépine W (2013) Delay-induced oscillations in Wilson and Cowan’s              J Neural Transm 125:431–447.
+    model: an analysis of the subthalamo-pallidal feedback loop in healthy         Welch P (1967) The use of fast Fourier transform for the estimation of power
+    and Parkinsonian subjects. Biol Cybern 107:289–308.                                spectra: a method based on time averaging over short, modiﬁed periodo-
+Pavlides A, Hogan SJ, Bogacz R (2015) Computational models describing                  grams. IEEE Trans Audio Electroacoust 15:70–73.
+    possible mechanisms for generation of excessive beta oscillations in           West TO, Magill PJ, Sharott A, Litvak V, Farmer SF, Cagnan H (2022)
+    Parkinson’s disease. PLoS Comput Biol 11:1–29.                                     Stimulating at the right time to recover network states in a model of the
+Paz JT, Deniau JM, Charpier S (2005) Rhythmic bursting in the cortico-                 cortico-basal ganglia-thalamic circuit. PLOS Comput Biol 18:e1009887.
+    subthalamo-pallidal network during spontaneous genetically determined          Whalen XTC, Willard AM, Rubin JE, Gittis AH (2020) Delta oscillations are a
+    spike and wave discharges. J Neurosci 25:2092–2101.                                robust biomarker of dopamine depletion severity and motor dysfunction
+Planert H, Berger TK, Silberberg G (2013) Membrane properties of striatal              in awake mice. J Neurophysiol 124:312–359.
+    direct and indirect pathway neurons in mouse and rat slices and their          Willard AM, Isett BR, Whalen TC, Mastro KJ, Ki CS, Mao X, Gittis AH (2019)
+    modulation by dopamine. PLoS One 8:1–14.                                           State transitions in the substantia nigra reticulata predict the onset of
+Plenz D, Kital ST (1999) A basal ganglia pacemaker formed by the subthala-             motor deﬁcits in models of progressive dopamine depletion in mice.
+    mic nucleus and external globus pallidus. Nature 400:677–682.                      eLife 8:e42746.
+Quiroga-Varela A, Walters JR, Brazhnik E, Marin C, Obeso JA (2013) What            Wilson HR, Cowan JD (1972) Excitatory and inhibitory interactions in
+    basal ganglia changes underlie the parkinsonian state? The signiﬁcance of          localized populations of model neurons. Biophys J 12:1–24.
+    neuronal oscillatory activity. Neurobiol Dis 58:242–248.                       Xiao G (2020) Dopamine and striatal neuron ﬁring respond to frequency-
+Raz A, Frechter-Mazar V, Feingold A, Abeles M, Vaadia E, Bergman H (2001)              dependent DBS detected by microelectrode arrays in the rat model of
+    Activity of pallidal and striatal tonically active neurons is correlated in        Parkinson’s disease. Biosensors (Basel) 10:136.
+

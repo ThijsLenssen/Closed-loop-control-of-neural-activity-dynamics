@@ -1,0 +1,959 @@
+                                                                                                                                                                  Trends in
+OPEN ACCESS                                                                                                                     Neurosciences
+Review
+
+Insights and opportunities for deep brain
+stimulation as a brain circuit intervention
+Wolf-Julian Neumann                    , 1,2,3 Andreas Horn, 1,2,3,4,5 and Andrea A. Kühn 1,2,3,6,7,8,*
+
+Deep brain stimulation (DBS) is an effective treatment and has provided unique                                                                Highlights
+insights into the dynamic circuit architecture of brain disorders. This Review illus-                                                         Deep brain stimulation modulates neural
+trates our current understanding of the pathophysiology of movement disorders                                                                 synchrony in distributed brain networks.
+and their underlying brain circuits that are modulated with DBS. It proposes princi-
+                                                                                                                                              Neurophysiology and neuroimaging can
+ples of pathological network synchronization patterns like beta activity (13–35 Hz)                                                           elucidate circuit characteristics.
+in Parkinson’s disease. We describe alterations from microscale including local
+synaptic activity via modulation of mesoscale hypersynchronization to changes in                                                              Instead of anatomical landmarks, optimal
+                                                                                                                                              circuit nodes for intervention can be de-
+whole-brain macroscale connectivity. Finally, an outlook on advances for clinical                                                             ﬁned with MRI-based connectomics
+innovations in next-generation neurotechnology is provided: from preoperative                                                                 and dynamic neurophysiological net-
+connectomic targeting to feedback controlled closed-loop adaptive DBS as individ-                                                             work measures.
+ualized network-speciﬁc brain circuit interventions.
+                                                                                                                                              Opportunities arise for preoperative
+                                                                                                                                              network characterization, intraoperative
+                                                                                                                                              target conﬁrmation, and postoperative
+From human invasive recordings to connectomic circuit modulation                                                                              treatment optimization in spatiotempo-
+                                                                                                                                              ral domains.
+The human brain comprises neuronal ensembles that build intricately connected networks
+which exhibit synchronized activity patterns. Abnormalities in brain network synchronization
+may lead to brain disorders which can partially be normalized by electrical stimulation.
+Dynamic brain rhythms emerge from synaptic currents and neural action potential ﬁring, to                                                 1
+                                                                                                                                           Movement Disorders and
+interregional coupling, to circadian cycles and sleep. Changes in rhythmic oscillatory neural                                             Neuromodulation Unit, Department of
+activity have long been implicated in the precise control of timing of neuronal action potentials                                         Neurology, Charité – Universitätsmedizin
+that can subserve coordinated information transfer in distributed brain networks [1]. Imbalances                                          Berlin, corporate member of Freie
+                                                                                                                                          Universität Berlin and Humboldt-
+of oscillatory activity in brain circuits that lead to abnormal information transfer have been proposed                                   Universität zu Berlin, Berlin, Germany
+to underlie the development of symptoms in movement disorders, such as dystonia (see                                                      2
+                                                                                                                                           Einstein Center for Neurosciences
+Glossary), Tourette’s syndrome and Parkinson’s disease (PD) [2]. Therapeutic interventions,                                               Berlin, Charité – Universitätsmedizin
+                                                                                                                                          Berlin, corporate member of Freie
+such as deep brain stimulation (DBS) can modulate the described pathological oscillatory                                                  Universität Berlin and Humboldt-
+circuit activity patterns and alleviate symptoms [3]. As a consequence, we should consider                                                Universität zu Berlin, Berlin, Germany
+                                                                                                                                          3
+the circuit nature of brain disorders in order to understand the therapeutic effects of DBS. To                                            Bernstein Center for Computational
+                                                                                                                                          Neuroscience, Humboldt Universität zu
+this end, the implantation of DBS electrodes provides the unique opportunity to record deep                                               Berlin, Berlin, Germany
+brain activity. Local field potentials (LFPs) are electric currents produced by simultaneous                                              4
+                                                                                                                                           Center for Brain Circuit Therapeutics,
+voltage changes of thousands of synapses in direct vicinity to the target area. The resulting                                             Department of Neurology, Brigham &
+                                                                                                                                          Women’s Hospital, Harvard Medical
+electrophysiological activity resembles noninvasive electroencephalography (EEG) recordings                                               School, Boston, MA, USA
+but is recorded from deep structures. Thus, LFPs from DBS electrodes can provide direct                                                   5
+                                                                                                                                           MGH Neurosurgery & Center for
+insight into neural population dynamics of affected network nodes targeted by DBS. This has                                               Neurotechnology and Neurorecovery at
+                                                                                                                                          MGH Neurology, Massachusetts
+enabled a systematic phenotyping of oscillatory patterns in patients undergoing DBS surgery,                                              General Hospital, Harvard Medical
+both in the temporal and spectral (time–frequency) domain. Invasive neurophysiology has                                                   School, Boston, MA, USA
+                                                                                                                                          6
+revealed the following principles of the network effects on neural activity underlying invasive                                            NeuroCure Clinical Research Centre,
+                                                                                                                                          Charité – Universitätsmedizin Berlin,
+neuromodulation.                                                                                                                          corporate member of Freie Universität
+                                                                                                                                          Berlin and Humboldt-Universität zu
+Neuromodulation can interfere with neural activity at: (i) the microscale comprising changes in                                           Berlin, Berlin, Germany
+                                                                                                                                          7
+                                                                                                                                           Berlin School of Mind and Brain,
+neural plasticity and patterning of action potentials within the microcircuit [4–7]; (ii) the population                                  Humboldt-Universität zu Berlin, Berlin,
+mesoscale with synchronized membrane ﬂuctuations of neural assemblies in deﬁned nuclei and                                                Germany
+
+
+472   Trends in Neurosciences, June 2023, Vol. 46, No. 6 https://doi.org/10.1016/j.tins.2023.03.009
+      © 2023 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+Trends in Neurosciences
+                                                                                                                                                         OPEN ACCESS
+
+
+                                                                                                                                          8
+cortical regions as local ﬁeld potentials [8–11]; and (iii) the systems macroscale with interregional                                      DZNE, German Center for Degenerative
+                                                                                                                                          Diseases, Berlin, Germany
+synchronization and whole-brain coupling patterns of neural cortico-subcortical circuits [12–14].
+
+This Review aims to integrate the effects of DBS observed in movement disorders into formal
+principles from micro- to macroscale, from invasive neurophysiology to whole-brain connectomics.
+                                                                                                                                          *Correspondence:
+Our review primarily focuses on disease-speciﬁc circuit alterations and their modulation with DBS.                                        andrea.kuehn@charite.de (A.A. Kühn).
+The precise synaptic mechanisms underlying DBS effects remain a topic of debate (Box 1) and are
+covered in more detail in other reviews [7,8,15].
+
+Basal ganglia synchrony and abnormal network synchronization as a disease
+mechanism
+Decades of research into oscillatory biomarkers and pathological synchrony have uncovered
+important principles underlying altered oscillatory activity patterns in movement disorders [16].
+Among the best characterized pathological brain rhythms is basal ganglia beta activity
+(13–35 Hz) in PD. We highlight some principles of pathological circuit synchronization as derived
+from studies on this pathological activity pattern. Exaggerated beta activity recorded from the
+basal ganglia of PD patients is considered a biomarker of the brady-/hypokinetic motor state,
+as it has been consistently related to the severity of motor symptoms such as bradykinesia and
+rigidity [9,17–19]. This relationship appears to go beyond PD, as excessive beta activity could
+also be shown to be related to bradykinesia as a side-effect of medication and DBS in patients
+with dystonia [20,21]. Even beyond pathological states, beta activity is a ubiquitous synchroniza-
+tion phenomenon in the mammalian brain [22], which has been described in electrophysiological
+recordings of healthy human subjects and invasive electrocorticography and LFPs in patients with
+epilepsy [23], dystonia [24,25], Tourette’s syndrome [26], schizophrenia [2], and other diseases
+[27,28]. Thus, beta activity is not speciﬁc to PD or even pathological per se. The excessive beta
+activity in PD likely reﬂects a pathological alteration of a physiological and healthy synchronization
+phenomenon [29], speculated to be involved in dynamic brain state transitions and cognitive in-
+hibition [30]. Rodent and nonhuman primate models of PD develop increased beta rhythmicity of
+local spiking of neurons (microscale) and increased amplitudes of oscillatory voltage ﬂuctuations
+(mesoscale) in the striatum, pallidum, thalamus, and subthalamic nucleus (STN) [29,31,32]. Im-
+portantly, these individual structures are further coupled across nodes of the motor network
+
+ Box 1. Precise synaptic mechanisms of DBS remain elusive
+ DBS was empirically shown in human patients to cause synaptic depression in various target regions [4,5,67,143], but the ther-
+ apeutic mechanism may rely on additional and more complex synaptic effects [7]. Depolarization block, neurotransmitter deple-
+ tion, synaptic depression, ortho- and antidromic activation, collateral collision, and trans-synaptic and plasticity effects may
+ interact and contribute to what has been described as an informational lesion in circuit communication [66]. Empirical evidence
+ on such effects is primarily limited by the inability to characterize cell type and pathway speciﬁc synaptic responses in brain areas
+ distant to the stimulation targets in human patients. To meet this critical gap in human neuroscience, computational modelling
+ can inspire new testable hypotheses that can bridge micro- and macroscale [15]. A prominent example in the ﬁeld of DBS is
+ the modeling of ﬁber activation to try and elucidate its circuit mechanisms. Inspired by animal research, realistic computational
+ models of axon activation have brought the excitation hypothesis to life. It proposes that high-frequency stimulation may directly
+ activate local neurons, and even if it fails to evoke local spiking, it may excite downstream structures through efferent axonal ac-
+ tivation [144]. This mechanism could explain some previous ﬁndings that have cast doubt on the hypothesis that the primary
+ mechanism of DBS is limited to local inhibition [145–147]. The idea that the therapeutic effect of DBS underlies antidromic acti-
+ vation of cortex has been particularly impactful, but it is methodologically challenging to prove this hypothesis with available em-
+ pirical human neuroscience methods. One inﬂuential nonhuman primate study demonstrated the antidromic activation of cortical
+ neurons during subthalamic DBS [148], but the effect was not sustained over time, while clinical improvement lasted. Moreover,
+ antidromic activation was not observed during pallidal DBS that had similar clinical effects. Recent human evidence proposed
+ that DBS can elicit cortical evoked potentials [149,150] that can indicate the degree of alleviation of bradykinesia in PD [78]. How-
+ ever, ECoG and MEG/EEG recordings provide limited means to shed light on the underlying synaptic processes. In the future,
+ pathway speciﬁc activation models that incorporate neural tissue heterogeneity, such as myelination, axonal diameters, axonal
+ arborization and dendritic ﬁeld sizes may provide precise predictions about individualized DBS effects accounting for speciﬁc
+ brain circuits from micro- to macroscale [106,151].
+
+
+
+                                                                                                                              Trends in Neurosciences, June 2023, Vol. 46, No. 6   473
+                                                                                                Trends in Neurosciences
+OPEN ACCESS
+
+
+
+(macroscale), through coherence and phase amplitude coupling [33–35]. When investigating di-             Glossary
+rectionality of information ﬂow using Granger causality analyses, cortex has reproducibly been           Beta activity (13–35 Hz): a rhythmic
+demonstrated to precede and potentially drive beta activity in the basal ganglia [34,36]. This sug-      oscillatory brain activity pattern that can
+gests that beta activity is either generated and transmitted from the cortex or the excitation/          be recorded with EEG, MEG, and
+                                                                                                         invasive neurophysiological recording
+inhibition sequence leading to beta synchronization may reside in the global interregional circuit       techniques, mostly in brain regions
+(macroscale) itself [37]. Notably, combined electrocorticography (ECoG)–LFP recordings,                  associated with motor system. In PD,
+that characterize beta oscillations from cortex and the STN in PD patients have revealed that bra-       exaggerated beta activity recorded in the
+dykinesia/rigidity symptoms are reﬂected more robustly in the subthalamic than in the cortical           basal ganglia is associated with the
+                                                                                                         hypodopaminergic state.
+beta frequency signature [10]. While the basal ganglia exhibit direct increases in oscillatory           Biomarkers: in the ﬁeld of DBS
+power and coherence of beta activity in the PD OFF state, this increase appears to be less               neurophysiology, biomarkers is
+prominent in the cortex [38,39]. Instead, pathologically increased beta synchrony at the cortical        commonly used to describe a brain
+                                                                                                         activity pattern that carries information
+level can be observed in the form of phase amplitude coupling, where high-frequency activity is
+                                                                                                         on speciﬁc symptoms or therapeutic
+excessively locked to the phase of the beta carrier phase [34,40]. An alteration in waveform             effects of a neurological disorder. The
+shape of beta oscillations, with increased sharpness asymmetry has been associated with the              most prominent neurophysiological
+dopaminergic OFF state in PD, which can also inﬂuence phase amplitude coupling measures                  biomarker in DBS research is the
+                                                                                                         exaggerated beta activity pattern in
+[38,41]. Thus, sensorimotor cortex may constitute a necessary node of the beta network,
+                                                                                                         Parkinson’s disease.
+but may not reﬂect the key structure that leads to pathological changes of synchrony in PD               Connectomics: whole-brain
+[37]. The hypodopaminergic state may reﬂect a vulnerability of the basal ganglia to cortical             interrogations of functional and structural
+synchronization, which disrupts ﬂexible information transfer across the cortex–basal ganglia             wiring diagrams of the human brain,
+                                                                                                         mainly derived from functional and
+network. Thus, the principal pathological alteration of exaggerated beta in PD may originate
+                                                                                                         diffusion MRI sequences in healthy
+from global cortico-subcortical network interactions instead of a single neural cell type or nucleus.    participants or patient cohorts.
+Nevertheless, pathological beta synchrony is encoded in bursts of single unit ﬁring at the               Deep brain stimulation (DBS): a
+microscale, evidenced by strong time-frequency and phase-coupling relationships between the              neurosurgical treatment for which
+                                                                                                         electrodes are chronically implanted into
+bursting and LFP signals [6].                                                                            the depth of the brain to deliver high-
+                                                                                                         frequency electrical pulses to disease
+It is important to note that the strength of beta activity is highly dependent on the present            speciﬁc target regions.
+network-state at the timepoint of recording. For instance, body movements like reaching, walking         Dystonia: a rare neurological disorder,
+                                                                                                         associated with sustained or repetitive
+or riding the bike have been shown to desynchronize beta activity along all described nodes of the       involuntary movements and abnormal
+motor network, including cortex, basal ganglia and thalamus [42–47]. Recent studies recording            posturing. DBS of the internal pallidum
+beta activity in chronic settings have described that beta activity can be modulated by everyday         can be a viable treatment option for
+                                                                                                         patients with complex dystonia and
+life events [48,49]. Finally, enhanced beta activity recorded from motor areas does not reﬂect the
+                                                                                                         insufﬁcient effect from botulinum toxin
+entire phenomenological spectrum of PD including nonmotor symptoms but speciﬁcally the                   injection or medication.
+hypokinetic rigid state [50].                                                                            Electrocorticography (ECoG): a
+                                                                                                         neurophysiological recording technique
+                                                                                                         where a recording electrode is placed on
+The aforementioned insights can provide grounds for generalized principles of the tendency of
+                                                                                                         the brain surface, typically below the
+neural circuits for pathological synchronization from the network perspective:                           dura mater. ECoG can provide valuable
+                                                                                                         information on cortico-subcortical
+Pathological synchronization (i) reﬂects exaggerated or aberrant alterations of physiological            interactions and can be used to feed
+                                                                                                         machine learning models for brain signal
+activity; (ii) can be observed at the micro-, meso-, and macroscales; (iii) can be attributed to a im-
+                                                                                                         decoding in adaptive DBS.
+balanced macrocircuit communication instead of local pathology; (iv) is not necessarily disease          Local field potentials (LFPs): Deep
+speciﬁc; and (v) can be modulated by pharmacological and neurotechnological interventions.               brain electrodes can be used to record
+                                                                                                         so-called LFPs directly from the brain
+                                                                                                         tissue in proximity to the target region,
+Beyond beta activity, low frequency oscillations in the theta/alpha band (3–12 Hz) and gamma             similar to EEG in the depth of the brain.
+band activity (60–90 Hz) have been described as a biomarkers in patients with hyperkinetic               Macroscale: distant effects such as
+motor states such as dystonia and Tourette’s syndrome or during levodopa-induced dyskinesia              inter-regional coupling changes, for
+in patients with PD [26,51–54]. Low frequency (3–12 Hz) oscillations follow all the rules formalized     example, when DBS in the STN leads to
+                                                                                                         changes in corticothalamic coupling, as
+in the previous section, as they (i) can be observed during normal movement [43]; (ii) can be iden-      measured with fMRI.
+tiﬁed in local ﬁring patterns [55], but also in oscillatory activity from multiple recording locations   Mesoscale: local interaction of neural
+[26,43,56], which can be coupled through coherence across nodes of the network [26,57];                  ensembles, composed of thousands of
+                                                                                                         neurons within a deﬁned gray-matter
+(iii) cannot be attributed to local pathology; (iv) are present in multiple hyperkinetic disorders
+
+474   Trends in Neurosciences, June 2023, Vol. 46, No. 6
+Trends in Neurosciences
+                                                                                                                             OPEN ACCESS
+
+
+
+and thus not disease speciﬁc [58,59]; and (v) can be modulated through intervention, that is,                   structure, such as a subcortical nucleus
+                                                                                                                or a cortical brain region.
+medication or DBS [57]. Equally noteworthy is the phenomenon of narrowband, ﬁnely -tuned or                     Microscale: we use the term
+entrained gamma synchronization in cortex and STN. Traditionally, subthalamic and cortical                      microscale to depict mechanisms
+gamma oscillations have been observed after levodopa intake and have been associated with                       associated with local synaptic activity of
+dyskinesia [60,61], but recently a more complex picture has emerged. Finely tuned gamma                         single neurons, e.g. within a speciﬁc
+                                                                                                                brain region, such as the subthalamic
+activity was found even in the dopaminergic OFF state [62], while entrainment of gamma band                     nucleus.
+activity through DBS was proposed as an additional DBS mechanism associated with PD                             Parkinson’s disease: – Parkinson’s
+motor sign alleviation [53,63]. Beyond the traditional gamma frequency band, high frequency                     disease is a neurodegenerative neural
+oscillations at ~250 Hz have been another research focus and were reported to be shifted                        systems disorder associated with a loss
+                                                                                                                of dopaminergic innervation to the
+towards higher frequencies to ~350 Hz after levodopa intake in PD [64]. The neurophysiological                  striatum. Substitution of dopaminergic
+foundation of these higher frequency activity patterns is less characterized, but a recent study                agents and subthalamic deep brain
+suggests that cortical gamma band oscillations can synchronize local spiking in the STN during                  stimulation are effective treatments for
+                                                                                                                advanced Parkinson’s disease.
+motor control [65]. Thus, at least some of the formalized principles stated previously can also
+generalize to this frequency band. More studies leveraging the unique intraoperative access to
+single-unit activity [4] or capitalizing on long-term recordings with sensing enabled implants [10]
+are required to understand the circuit interaction and local activity patterns related to these higher
+frequency synchronization phenomena.
+
+Modulating oscillatory circuits with DBS
+DBS offers the unique opportunity to record neuronal network activity and its modulation directly
+in awake patients via implanted electrodes, thus providing insights into the underlying pathophys-
+iology of movement disorders and the mechanisms of neuromodulation. These observations are
+of great clinical interest as they allow the integrative conceptualization of clinical therapeutic effect
+and neural circuit response that is needed to develop personalized adaptive stimulation systems
+[58]. Recent technological advancements allow chronic sensing of neural population activity
+during high-frequency stimulation, directly in the target area [9,10,60]. In Parkinson’s disease
+and dystonia, it was shown that DBS can suppress pathological synchrony, when stimulation
+is clinically effective [19,57].
+
+The effects of high-frequency stimulation can be formalized across scales (Figure 1) and are to be
+interpreted as integrative interdependent processes: (i) microscale: neural cell ﬁring or spiking
+activity is perturbed; (ii) mesoscale: pathological oscillatory synchronization is disrupted; and (iii)
+macroscale: interregional coupling is modulated and rebalanced.
+
+The exact neural effects depend on the inherent characteristics of the target area and the applied
+stimulation mode. To elaborate, we focus on subthalamic DBS for PD as the best-characterized
+neurostimulation technique. Here, electrode leads with stimulation contacts are implanted directly
+into the STN and rectangular electrical pulses of ~60 μs length are applied repetitively at high
+frequencies (~130 Hz) directly to the neural tissue. The precise mechanism of DBS is unknown
+(Box 1) and many complex interactions have been proposed to underlie its therapeutic efﬁcacy,
+such as depolarization block, synaptic depression, ortho- and antidromic activation, collateral
+collision and trans-synaptic effects – which in summary may contribute to an informational lesion
+in circuit communication [7,66]. At the microscale, human single unit recordings during DBS
+show signs of synaptic depression and consequently inhibition of the target neurons resulting
+in periods of outright arrest of neural ﬁring (silent periods) [4], which can predict the clinical efﬁcacy
+of DBS in PD patients [67]. At the mesoscale and in parallel or as a consequence, the patholog-
+ically exaggerated parkinsonian beta rhythm is suppressed with DBS [9,19]. This suppression
+can be recorded through the same DBS lead, through which the stimulation is applied. There is
+a dose–response relationship of stimulation amplitude and beta suppression, with the level of
+beta suppression being correlated with the motor symptom alleviation in PD [9,19]. At the
+
+
+                                                                                                  Trends in Neurosciences, June 2023, Vol. 46, No. 6   475
+                                                                                                                      Trends in Neurosciences
+OPEN ACCESS
+
+
+
+
+                                                                                                                                                  Trends in Neurosciences
+
+Figure 1. Multimodal neuromodulation research can elucidate multiple layers of neural circuit effects in time and space. At the microscale (left panel), DBS
+suppresses excessive synchrony in multiunit cell ﬁring patterns of the cortex – basal ganglia circuit (adapted from [152]). In parallel or consecutively neural population
+synchrony measured as oscillatory local ﬁeld potential activity is suppressed at the mesoscale (middle panel, adapted from [153]). Modulation of neural population
+synchrony is accompanied by modulation and rebalancing of whole-brain network communication at the macroscale (right panel; adapted from [87]). We would like to
+highlight that macroscale changes (e.g., as observable with MRI) may directly result from modulation of microscale effects and their mesoscale consequences.
+Abbreviations: Ctx, cortex; DBS, deep brain stimulation; GPe, globus pallidus externus; GPi, globus pallidus internus; STN, subthalamic nucleus.
+
+
+macroscale, subthalamic DBS modulates beta oscillations in distant brain regions, including
+sensorimotor cortex and supplementary motor areas, when recorded during DBS [14,40,68]. In-
+vasive ECoG recordings further demonstrated increased phase amplitude coupling and altered
+waveform asymmetry in PD that is suppressed with DBS at rest and during gait [35,40,41].
+Beyond local subthalamic or cortical changes, DBS alters large-scale interregional cortico-
+subthalamic communication with decreased beta-band coherence between the supplementary
+motor area and STN [14]. While DBS may have multiple parallel effects, we speculate that its
+synaptic mechanisms can result in a decoupling and reduction of susceptibility of the target
+nucleus for excessive synchronization from afferent input. More speciﬁcally, decoupling of STN
+neurons from striatal, pallidal and cortical drive may lead to reduced recruitment of action poten-
+tial bursts that encode beta activity at the microscale [6], which in turn suppresses the emergence
+of exaggerated beta in the local neural population on the mesoscale and rebalances the global
+network on the macroscale (Figure 1).
+
+It is important to note that the aforementioned network effects are likely dynamic in nature. The
+sheer complexity of the many neurophysiological results has previously commonly required a
+deliberate dimensionality reduction for the sake of easier interpretation by researchers, often
+through averaging in the temporal domain. This should not be misinterpreted or understood as
+evidence that the described phenomena are stationary. Changes in beta power in PD can be
+reﬂected in a prolongation of transient episodes of beta bursts [9,17,24,69,70], which can be
+
+476    Trends in Neurosciences, June 2023, Vol. 46, No. 6
+Trends in Neurosciences
+                                                                                                                        OPEN ACCESS
+
+
+
+shortened with adaptive DBS [71]. Adaptive DBS is a new therapeutic avenue that aims to trans-
+late peripheral sensor [72] or neurophysiological signals into closed-loop control policies in real
+time [59]. Pioneering studies in this area have demonstrated that monitoring beta activity can
+be used to adapt stimulation to concurrent therapeutic demand [48,59,73–75], but in the
+future more complex combinations of biomarkers may be evaluated as feedback signals [76].
+Therefore, the precise temporal dynamics of biomarkers and synchronization phenomena with
+relation to clinical phenomenology and therapeutic response need to be characterized. Adaptive
+DBS can inspire new approaches for network-neuromodulation that are further discussed below.
+
+Connectomic approaches to understand neuromodulation
+From meso- to macroscale by means of MRI
+A main component that is often lacking when studying electrophysiological data is the one of
+space. Spatial resolution of EEG and magnetoencephalography (MEG) is limited, and the precise
+location of invasive recordings (MER/LFP) in the brain – albeit being focal – can be uncertain.
+Some electrophysiological concepts, such as DBS-evoked potentials [77–79] or combined
+MEG/LFP [36,80,81] experiments have been successfully used to study macroscale networks.
+However, a key ingredient to interpret resulting data is to reconstruct precise electrode locations.
+Structural brain imaging data can complement DBS recordings to ﬁll this gap. Combining neuro-
+physiological analysis with MRI can shed light on anatomical locations of electrophysiological
+recordings (Figure 2A). For instance, biomarker activity – such as the elevated beta synchrony
+observed in both the STN and internal pallidum (GPi) in patients with PD – has been localized
+to speciﬁc recording sites within these structures using MRI-based electrode reconstructions
+[43,56,82,83]. When this is done repeatedly and from multiple electrodes across a patient cohort,
+recording values can be mapped to space in a probabilistic fashion [84]. In STN DBS for PD, a
+study using MRI-based mapping conﬁrmed that elevated beta synchrony localized to the dorso-
+lateral somatomotor subzone of the STN [82]; a ﬁnding promptly reproduced and extended by
+others [85]. Given the clinical signiﬁcance of these markers discussed in the preceding text,
+these localizations could be useful to identify optimal stimulation sites that may guide both DBS
+targeting and programming. A further study localized movement velocity dependent gamma
+bursts to a similar region in the STN, hence extending ﬁndings observed at rest to localized elec-
+trophysiological signatures observed during movement [43]. Finally, aforementioned theta activity
+in dystonia has been located to a subregion of the GPi in close proximity to the border with the
+external pallidum (GPe) [56]. In a similar fashion, one can map changes in clinical symptoms or
+behavior induced by DBS onto the anatomy of the brain (Figure 2B). The prime example of this
+concept – termed Sweet spot mapping – is to relate motor improvement estimates (% change
+in Uniﬁed Parkinson’s Disease Rating Scale III) to DBS electrode locations that were coregistered
+into standard space across patient cohorts [86]. This can inform statistical models that then
+estimate the optimal stimulation site. In PD, many groups have convergingly identiﬁed the
+superior edge of the posterolateral STN as the optimal stimulation site [84] – which matches
+the aforementioned site of maximal expression of beta power synchrony [82].
+
+Studying DBS effects on a macroscale by means of MRI
+Moving on to the macroscale (Figure 2D,E), functional MRI (fMRI) and positron emission tomog-
+raphy can be used to study DBS effects by contrasting scans acquired in DBS ON versus OFF
+states [87–89]. Here, a robust network termed the Parkinson’s Disease Related Pattern
+(PDRP) has been described, whose activity correlates with symptom severity [88]. The pattern
+was characterized by relative metabolic increases in the pallidum, thalamus, pontine and cerebel-
+lar regions, and sensorimotor cortex, as well as metabolic decreases in the lateral premotor cor-
+tex and parieto-occipital association regions. Using fMRI, it has been repeatedly observed that
+DBS-induced network changes transform the activity and connectivity pattern within these
+
+
+                                                                                             Trends in Neurosciences, June 2023, Vol. 46, No. 6   477
+                                                                                                                      Trends in Neurosciences
+OPEN ACCESS
+
+
+
+
+                                                                                                                                                   Trends in Neurosciences
+
+Figure 2. Overview of DBS imaging methods. A combination of DBS electrode localizations, computational modeling and MRI-based neuroimaging methods allows
+analysis of DBS network effects on mesoscopic (A–C) and macroscopic (D–F) levels. (A) Electrophysiological mapping is used to map biomarkers recorded from DBS
+electrodes to anatomical space, on a group level. The panel shows that increased beta synchrony is maximally expressed in the dorsolateral motor zone of the STN
+(adapted from [82]). (B) Sweet spot mapping is used to map clinical improvements or side effects to anatomical space, on a group level. Here, optimal clinical effects were
+again associated with modulating the dorsolateral sensorimotor STN (adapted from [86]). Pathway activation modeling is used to study the biophysical effects of DBS on
+surrounding axon cable models (image courtesy of K. Butenko, calculated with OSS-DBS software [154]). (D) Measuring effects of DBS on a whole-brain level by means
+of functional MRI or positron emission tomography is a powerful method to study whole-brain network effects. Top versus bottom panels show examples of maximal
+versus minimal modulation of DBS networks by a well- versus misplaced electrode (adapted from [87]). (E) DBS network mapping is used to calculate optimal DBS
+connectivity proﬁles on a whole-brain level. After mapping electrode reconstructions, functional and structural connectomes can be used estimate their connectivity proﬁles
+(adapted from [93]). (F) DBS ﬁber ﬁltering is used to associate speciﬁc ﬁber tracts with DBS effects. In the present example, modulating hyperdirect projections to the STN
+(orange) was associated with optimal clinical improvement in PD (adapted from [86]). Abbreviations: DBS, deep brain stimulation; STN, subthalamic nucleus.
+
+
+
+circuits of PD patients towards a healthy state [87,90]. However, after nearly two dozen publica-
+tions investigating brain function using fMRI under active DBS in PD, more speciﬁc conclusions
+remain elusive [91]. For instance, distant effects of STN DBS on resting state activity during
+ON/OFF-cycling were often observed in the primary motor cortex, which showed an ipsilateral
+or bilateral increase or decrease [91]. Reasons for the variable results may be differences in acqui-
+sition schemes, with some publications cycling DBS ON versus OFF for seconds and others
+
+478    Trends in Neurosciences, June 2023, Vol. 46, No. 6
+Trends in Neurosciences
+                                                                                                                         OPEN ACCESS
+
+
+
+contrasting effects across blocks of minutes. Also, differences in phenotypes (tremor dominant vs
+akinetic-rigid types) could play a role. While mixed results on changes in activity have been re-
+ported, more conclusively, changes in connectivity have been investigated by means of fMRI. A
+robust ﬁnding seems to be a stimulation related increase in corticothalamic and corticostriatal
+coupling, as well as weakening of STN connectivity, when comparing DBS OFF and ON [92].
+
+Finally, an even less mechanistic and more correlational method, termed DBS network mapping,
+has been used to investigate optimal connectivity proﬁles of DBS (Figure 2E). Instead of analyzing
+changes of activity/connectivity that are induced by DBS, this method correlates baseline con-
+nectivity proﬁles with clinical outcomes. By doing so, optimal networks can be identiﬁed, which,
+when modulated, lead to maximal improvements. To do so, both structural connectivity as mea-
+sured by diffusion-weighted imaging based tractography, as well as functional connectivity as
+measured by resting-state fMRI have been used. An early report applying this approach in PD
+showed that structural connectivity between electrodes and supplementary/premotor areas
+was associated with optimal clinical outcomes [93]. Functional connectivity estimates showed
+largely overlapping results on positive correlations with supplementary/premotor areas, while
+anticorrelations between DBS electrodes and primary motor cortices accounted for optimal
+clinical outcomes, as well [93]. While this study focused on STN-DBS, the same network could
+be identiﬁed in GPi‐DBS for PD [94]. The method has since been applied to estimate models of
+optimal network proﬁles in essential tremor (ET) [95], obsessive compulsive disorder [96], epi-
+lepsy [97], dystonia [98], and Alzheimer’s disease [99]. Furthermore, it was used to estimate con-
+nectivity proﬁles associated with side effects [100,101], such as depressive symptoms in STN
+DBS for PD [101] or ataxia and dysarthria in thalamic ventral intermediate nucleus (VIM) DBS
+for essential tremor [95]. Finally, the method was used to create and implement predictive models
+for behavioral effects mediated by DBS (which go beyond clinical apparent symptoms or side
+effects), such as response inhibition [102], motor learning [103], and stopping ongoing movements
+[100] in STN DBS for PD. Precise characterization of networks associated with speciﬁc symptoms,
+side effects, or behavioral changes may allow to personalize treatment by speciﬁcally stimulating
+the exact networks associated with the symptoms from which the individual patients suffers the
+most [104]. DBS network mapping aims at answering, which set of brain regions DBS electrodes
+should be connected to reach a certain (clinical, behavioral, or unwanted) effect. A related emerging
+approach has been termed discriminative tractography or DBS ﬁber ﬁltering (Figure 2F, bottom)
+[96]. Instead of a voxel-centric view (as in DBS network mapping), this method takes a ﬁber-
+centric view and solves mass–univariate statistical models for several predeﬁned tracts. Different
+evolutions of the method have been introduced since 2019 but essentially, they all aim at identifying
+tracts that are predominantly modulated by DBS electrodes in top responders (and predominantly
+not modulated by DBS electrodes in poor responders). By doing so, speciﬁc ﬁber bundles have
+been identiﬁed that – when modulated – were associated with optimal clinical response. A key
+issue of this concept resides in modeling the activation of tracts properly (before carrying out the
+actual ﬁltering to relate activations with clinical improvements). Several elaborate concepts have
+been introduced, with the aim to model ﬁber activations as realistically as possible [105,106]. By
+doing so, activations of speciﬁc pathways by DBS can be modeled to study the biophysical effects
+of the treatment on (modeled) micro- and mesoscopic structures. This line of research led to
+concepts such as retrograde activation of hyperdirect projections [105] or that modulating ﬁbers
+or passage could mediate treatment effects [7]. The mechanistic role of these ﬁber tracts remains
+under debate (Box 1 and see Outstanding questions). In addition, statistical methods that are
+relatively less sensitive to the actual pathway activation function have been introduced, as well
+[98,99]. Still, a consensus solution of how exactly to carry out ﬁber ﬁltering has not yet been
+reached, and one should be cautious in interpreting the direction (antidromic vs. orthodromic) and
+modulation (activation vs inhibition) of these robust correlations.
+
+
+                                                                                              Trends in Neurosciences, June 2023, Vol. 46, No. 6   479
+                                                                                               Trends in Neurosciences
+OPEN ACCESS
+
+
+
+Future outlook: translational opportunities for network neuromodulation
+We aim to highlight the clinical utility and translational opportunities resulting from research
+outlined in this Review (Figure 3, Key ﬁgure). We follow the inverse order from macro- to microscale,
+as neuroimaging- and connectomics-related methods can provide advances in therapeutic plan-
+ning and implantation even before DBS electrode implantation, while meso- and microscale ﬁnd-
+ings may only be applied after electrode placement. However, we have arranged these
+opportunities in chronological order in Figure 3 to guide the reader in accordance with steps
+aligned to the timepoint of DBS implantation from pre- to postoperative.
+
+Macroscale: image-guided DBS advances: connectomic DBS and computational DBS parameter
+prediction
+The most imminent innovation in image guided DBS is the automated parameter optimization for
+postoperative programming based on the reconstruction of DBS leads with relation to predeﬁned
+sweet spots. A recent study has demonstrated the noninferiority of this approach for STN DBS in
+PD [107], which may signiﬁcantly shorten programming time of DBS parameters in the clinic. The
+extension of this approach to brain networks implicated in brain stimulation therapy at the mac-
+roscale has translational potential for both, improved preoperative targeting and postoperative
+stimulation parameter adaptation [104]. Currently, neurosurgeons delineate DBS targets based
+on stereotactic coordinates in combination with direct anatomical visualization using MRI before
+and during the implantation procedure [84]. This allows neither considering functional territories
+within target areas, nor does it reﬂect the network nature of the disease. Considering whole-
+brain connectomic ﬁngerprints of optimal DBS outcome may be used to adjust preoperative
+DBS targeting and postoperative programming to the individual patient. Speciﬁcally, subregions
+of DBS targets with optimal connectional ﬁngerprints to other brain areas that had been associ-
+ated with optimal outcomes could be leveraged [12]. This could be done in a symptom-speciﬁc
+fashion; for instance, by predominantly targeting tremor-related networks in patients with
+tremor-dominant PD [108]. Beyond general clinical response, early studies have described
+additional network ﬁngerprints of DBS side effects, that could serve as ‘veto’ connections that
+could be avoided through preoperative targeting or postoperative programming [12]. Finally,
+somatotopic network targets could further improve therapeutic speciﬁcity, for instance by
+modulating connections to hand regions of primary motor cortex and cerebellum in patients
+with predominant hand tremor [95,104] or considering pallidal topography/connectivity proﬁles
+with respect to body distribution in patients with dystonia [98]. Thus, for the next generation of
+connectomic DBS, understanding the macroscale DBS effects may allow the deﬁnition of
+symptom-speciﬁc network targets [104,109]. Preoperative target reﬁnement could be based
+on the patient’s individual disease proﬁle; for example, for PD, including presence and severity
+of tremor, bradykinesia, and freezing of gait and nonmotor symptoms, such as apathy and
+depression [104]. In the future, reﬁned imaging sequences may indicate neurodegenerative
+processes underlying speciﬁc symptoms directly. Here, neuromelanin imaging is currently an
+important research ﬁeld for PD and may promise novel insight into DBS targeting in the future
+[110]. After electrode implantation, neuroimaging and whole brain connectomics can further aid
+the identiﬁcation of optimal stimulation parameters in space [111]. DBS electrodes nowadays
+commonly have eight different stimulation contacts, allowing directional adjustment of stimulation
+current. The identiﬁcation of treatment speciﬁc target networks in combination with novel
+advances in pathway activation modeling [105] may signiﬁcantly accelerate the process of DBS
+parameter optimization. Beyond predeﬁned network ﬁngerprints, also the response to DBS
+can be characterized with neuroimaging and it was recently shown in a proof-of-concept
+study, that fMRI network metrics during DBS can help predict optimal contact selection [104].
+In a similar vein, quantiﬁcation of network speciﬁc inter-regional coupling between subcortical
+LFPs from DBS targets and cortex (e.g., using MEG or ECoG) may help identify optimal
+
+480   Trends in Neurosciences, June 2023, Vol. 46, No. 6
+Trends in Neurosciences
+                                                                                                                                               OPEN ACCESS
+
+
+
+Key figure
+Next-generation neuromodulation approaches beneﬁt from neuroscientiﬁc insight across scales
+
+
+
+
+                                                                                                                                                    Trends in Neurosciences
+
+
+Figure 3. Preoperatively, high-resolution MRI can aid connectomic targeting (adapted from [87]). During the electrode implantation, neural cell-ﬁring, LFP oscillations and
+neuroimaging atlas based visualizations can guide the implant trajectory (adapted from [82,86,152]). After electrode implantation, both neurophysiology and neuroimaging
+can be used to optimize stimulation parameters, based on local biomarkers in LFP signatures, whole-brain connectivity proﬁles and pathway activation models.
+Electrophysiological features can be utilized for precise temporal stimulation adjustment with chronic adaptive DBS. Abbreviations: DBS, deep brain stimulation; LFP,
+local ﬁeld potential.
+
+
+
+
+stimulation contacts intra- or postoperatively (e.g., by quantifying coherence in the beta frequency
+range in PD patients). Similarly, DBS-induced evoked potentials may help to identify optimal
+stimulation contacts [78,112,113]. Thus, the deﬁnition of DBS induced network effects at the
+macroscale, can support preoperative neurosurgical targeting and postoperative DBS parameter
+optimization.
+
+Mesoscale: adaptive DBS and resynchronization for network disorders
+The direct clinical utility of local ﬁeld potential recordings from DBS target regions has been
+demonstrated for intraoperative target optimization [114–116], postoperative DBS parameter
+optimization [117], and real-time DBS adaptation [73]. During DBS electrode implantation,
+LFPs can be recorded and pathological synchronization, such as exaggerated beta activity in
+PD, can be monitored. Given the known overlap of beta activity and optimal DBS target in the
+STN, beta activity has direct utility for (i) intraoperative identiﬁcation of optimal implant trajectories
+and (ii) deﬁnition of effective stimulation contacts for postoperative stimulation parameter optimi-
+zation. It remains unclear whether beta activity has a causal role in PD pathophysiology, but the
+correlational relationship of beta suppression and PD symptom alleviation is a robust ﬁnding
+[19]. Therefore, recent advances for individualized neuromodulation therapy have used beta
+
+
+                                                                                                                    Trends in Neurosciences, June 2023, Vol. 46, No. 6   481
+                                                                                                 Trends in Neurosciences
+OPEN ACCESS
+
+
+
+band activity as a biomarker and feedback signal for adaptive stimulation [59,118]. Here, DBS
+parameters are adapted to beta band activity changes. Under laboratory conditions, adaptive
+DBS has proven effective with fewer side effects such as dysarthria [119] and dyskinesia [120],
+and reduced total stimulation energy delivered compared to conventional therapy [121]. Current
+efforts use novel devices that record and stimulate simultaneously allowing to track local STN
+beta activity during activities of daily living and with respect to diurnal and circadian cycles
+[48,122–124]. The clinical utility of these recordings still need to be proven in larger patient
+cohorts, which is currently ongoing in clinical trials [125] (https://clinicaltrials.gov/ct2/show/
+NCT04547712) with new implantable devices capable of chronic sensing of oscillatory activity
+and adaptive DBS. A limiting factor may be the fact that beta is not found in all relevant recordings.
+A recent study on 106 patients conﬁrmed that peaks were present in the vast majority of record-
+ings (>90%) but exceptions exist and have been discussed, although controversies remain [83].
+Variation is not entirely understood yet but may partially be due to high contact impedances in
+speciﬁc electrode models, misplaced electrodes and sensitivity of LFPs to noise, movement,
+and other sources of artifacts [83,126]. Some recordings exhibit a lower alpha (8–12 Hz)
+frequency peak instead of beta (13–35 Hz), which still falls into the range of activity correlated
+with PD motor symptoms [17]. Nevertheless, whether beta or alpha activity that is related to
+motor signs of PD can be captured reliably across patients will have to be validated for each de-
+vice separately. Ultimately, the general principle of LFP-based adaptive DBS is promising and
+may also be transferable to nonmotor symptoms (as shown for impulse control disorder biomark-
+ers in PD) [127] and other movement disorders [128], especially with episodic worsening of symp-
+toms such as Tourette’s syndrome [129]. Beyond oscillatory activity, DBS may be improved
+through the localization of evoked resonant neural activity (ERNA); a DBS-induced single pulse
+response in the local ﬁeld surrounding the stimulation electrode [130–133]. ERNA may have com-
+plementary value for DBS implantation planning, as it is known to be present even during general
+anesthesia and overlaps spatially with sources of highest beta activity and thus target region
+[132]. ERNA could also be useful for postoperative programming, for contact selection and am-
+plitude deﬁnition [134]. For adaptive DBS, ERNA and beta dissociate during sleep, where ERNA
+may remain stable while beta activity changes with sleep stages. This could help reﬁne adaptive
+DBS control algorithms. In the future, local ﬁeld potential and ECoG recordings may be combined
+with machine-learning based brain signal decoding [76]. This may allow the real-time translation
+of brain network activity into patient tailored and symptom-speciﬁc therapeutic adjustments with
+potentially unprecedented spatiotemporal precision [10,42,76].
+
+Beyond adaptive DBS, the speciﬁc pattern of stimulation has been hypothesized to enable con-
+trol of mesoscale synchronization phenomena. Here, coordinated pulses based on mathematical
+models have been proposed to systematically desynchronize the neural population [135]. Com-
+putational evolution may be used to reﬁne temporally speciﬁc stimulation patterns that optimize
+energy delivery, suppression of pathological synchronization, and improvement of symptom allevi-
+ation [136]. Together, neural synchronization measures at the mesoscale, recorded as invasive
+brain signals can elevate the therapeutic potential by advancing DBS targeting and individualized
+parameter optimization at an unprecedented temporal and spatial precision.
+
+Microscale: long-term perspective: cell-type speciﬁc stimulation, optogenetics, and synaptic
+plasticity
+The intraoperative delineation of DBS target borders based on microelectrode recordings has
+been a standard routine since the early descriptions of this therapy [137]. Identifying neural
+single- and multiunit cell ﬁring patterns of distinct subcortical target areas allows the neurophys-
+iological veriﬁcation of correct electrode placement. Additionally, this procedure allows to perform
+test stimulation in the operation room, to objectify immediate stimulation related clinical effects. In
+
+482   Trends in Neurosciences, June 2023, Vol. 46, No. 6
+Trends in Neurosciences
+                                                                                                                                           OPEN ACCESS
+
+
+
+case of unsatisfactory results, the trajectory can be reconsidered, and alternative or additional                             Outstanding questions
+trajectories can be evaluated. More recently, it was also shown that quantiﬁcation of action potential                        Are biomarkers causally linked to
+suppression from single- and multiunit responses to DBS can deﬁne therapeutic thresholds for                                  symptom generation?
+stimulation energy (amplitude and pulse width) required for clinical symptom alleviation [67]. First
+                                                                                                                              What is the interaction between
+technological solutions for single-unit recordings in the real world are now emerging and have                                oscillatory biomarkers and clinical and
+been tested in epilepsy patients. A translation to movement disorders may soon become viable                                  healthy state changes during activities
+[138]. While microelectrode recordings are an established technique for DBS surgery, the number                               of daily living?
+of recorded units and spatial relationship of recording sites is highly constrained. Novel recording                          Can we use machine learning to
+electrodes, including neuropixel probes, pioneered in animal research for the discovery of neural                             account for symptoms and healthy
+dynamics are now tested for use in human patients [139,140]. These electrodes provide ~1000                                   behaviour and indicate the necessity
+contacts along a linear shank. For DBS and neuromodulation applications, such electrodes                                      for treatment adaptation in real time?
+
+could provide further insight into circuit pathophysiology and could accelerate biomarker character-                          What is the functional role of
+ization. However, at this time, the chronic use of these electrodes for therapeutic applications is still                     connectomic networks associated with
+far away, mainly due to the fragile nature of the electrode and lack of regulatory approval for human                         improvement through neuromodulation?
+applications. Beyond an expected increase in the number of neurons that are recordable, the ﬁeld
+                                                                                                                              What are the precise synaptic effects
+of neurotechnology may be able to extend the target speciﬁcity of stimulation approaches. In the                              of DBS?
+future, the identiﬁcation of cell-type-speciﬁc stimulation response characteristics may enable micro-
+scale targeting of neuromodulation in humans. A recent landmark proof of concept study in rodents                             Can we modulate neural plasticity with
+                                                                                                                              invasive brain stimulation?
+has proven the feasibility to reproduce cell-type-speciﬁc optogenetic manipulation effects with spe-
+ciﬁc electrical stimulation patterns [141]. Speciﬁcally, with the help of optogenetic methods, brief
+bursts of electrical stimulation were tailored to excite one set of pallidal neurons, while inhibiting an-
+other, with long-lasting therapeutic beneﬁts in a mouse model of PD. Finally, chemical sensing of
+neurochemicals, for example, to monitor dopamine in PD, may soon become available, as ﬁrst
+nonhuman primate studies have showcased its scientiﬁc value [142].
+
+Concluding remarks
+DBS for movement disorders has helped to establish the characterization of movement disorders as
+network disorders based on identifying neuroscientiﬁc principles of pathological synchronization in
+motor circuits. DBS has allowed us to identify therapeutic mechanisms of neuromodulation. In the fu-
+ture, the underlying principles and mechanisms can be integrated and deﬁned from micro- to macro-
+scale by combining results from preclinical research, invasive neurophysiology, neuroimaging, and
+computational modeling. The insights may have direct translational potential for advancing
+neurotechnological treatments; for example, through reﬁned connectomic targeting, intraoperative
+neurophysiological trajectory validation, biomarker-based automated parameter setting, and chronic
+adaptive closed-loop neuromodulation. Future research will have to further reﬁne the precise interplay
+of candidate mechanisms from synapse to circuit (see Outstanding questions). Nevertheless, we are
+convinced that many of the described aspects so far can already be identiﬁed and extended in other
+brain disorders, towards an individualized precision medicine approach to invasive neuromodulation.
+
+Acknowledgments
+We would like to thank all patients that have made the summarized research possible. All authors received funding from
+Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – Project-ID 424778381 – TRR 295. W,J,N,
+received funding from the European Union (ERC, ReinforceBG, project 101077060). W,J,N, and A,A,K received funding from
+the Bundesministerium für Bildung und Forschung (BMBF, project FKZ01GQ1802). A,H, received funding from Deutsches
+Zentrum für Luft- und Raumfahrt (DynaSti grant within the EU Joint Programme Neurodegenerative Disease Research,
+JPND), the National Institutes of Health (R01 13478451, 1R01NS127892-01 & 2R01 MH113929) as well as the New Venture
+Fund (FFOR Seed Grant). A,A,K, has received grant funding from the Lundbeck foundation.
+
+
+Declaration of interests
+The authors declare the following ﬁnancial interests/personal relationships that may be considered as potential competing
+interests. W.J.N. received speaker’s honoraria unrelated to this manuscript from Medtronic, a manufacturer of deep brain
+
+
+
+                                                                                                                Trends in Neurosciences, June 2023, Vol. 46, No. 6   483
+                                                                                                                                                Trends in Neurosciences
+OPEN ACCESS
+
+
+
+stimulation devices, and is a consultant for InBrain, a company developing invasive neuromodulation therapies. A.H. received
+speaker’s honoraria unrelated to this manuscript from Medtronic, a manufacturer of deep brain stimulation devices. A.A.K. is
+on the advisory board of Boston Scientiﬁc and Medtronic, and has received honoraria unrelated to this manuscript from Boston
+Scientiﬁc, Medtronic, Abbott, Zambon, Stadapharm, Teva and Ipsen, companies manufacturing deep brain stimulation or
+pharmaceutical therapies.
+
+
+References
+  1. Fries, P. (2015) Rhythms for cognition: communication through            24. Lofredi, R. et al. (2019) Pallidal beta bursts in Parkinson’s disease
+     coherence. Neuron 88, 220–235                                                and dystonia. Mov. Disord. Off. J. Mov. Disord. Soc. 34, 420–424
+  2. Uhlhaas, P.J. and Singer, W. (2006) Neural synchrony in brain            25. Wang, D.D. et al. (2016) Subthalamic local ﬁeld potentials in
+     disorders: relevance for cognitive dysfunctions and pathophysiology.         Parkinson’s disease and isolated dystonia: an evaluation of
+     Neuron 52, 155–168                                                           potential biomarkers. Neurobiol. Dis. 89, 213–222
+  3. Krauss, J.K. et al. (2021) Technology of deep brain stimulation:         26. Neumann, W.-J. et al. (2018) Pallidal and thalamic neural
+     current status and future directions. Nat. Rev. Neurol. 17, 75–87            oscillatory patterns in tourette’s syndrome. Ann. Neurol. 84,
+  4. Milosevic, L. et al. (2018) Neuronal inhibition and synaptic                 505–514
+     plasticity of basal ganglia neurons in Parkinson’s disease.              27. Peter, J. et al. (2022) Movement-related beta ERD and ERS
+     Brain J. Neurol. 141, 177–190                                                abnormalities in neuropsychiatric disorders. Front. Neurosci.
+  5. Steiner, L.A. et al. (2022) Persistent synaptic inhibition of the            16, 1045715
+     subthalamic nucleus by high frequency stimulation. Brain                 28. Sendi, M.S.E. et al. (2021) Intraoperative neural signals predict
+     Stimulat. 15, 1223–1232                                                      rapid antidepressant effects of deep brain stimulation. Transl.
+  6. Scherer, M. et al. (2022) Single-neuron bursts encode patho-                 Psychiatry 11, 551
+     logical oscillations in subcortical nuclei of patients with              29. Iskhakova, L. et al. (2021) Modulation of dopamine tone induces
+     Parkinson’s disease and essential tremor. Proc. Natl. Acad.                  frequency shifts in cortico-basal ganglia beta oscillations. Nat.
+     Sci. U. S. A. 119, e2205881119                                               Commun. 12, 7026
+  7. McIntyre, C.C. and Hahn, P.J. (2010) Network perspectives on             30. Engel, A.K. and Fries, P. (2010) Beta-band oscillations–
+     the mechanisms of deep brain stimulation. Neurobiol. Dis. 38,                signalling the status quo? Curr. Opin. Neurobiol. 20, 156–165
+     329–337                                                                  31. Cagnan, H. et al. (2019) Temporal evolution of beta bursts in the
+  8. Neumann, W.-J. (2022) Neurophysiological mechanisms of                       parkinsonian cortical and basal ganglia network. Proc. Natl.
+     DBS from a connectomic perspective. In Connectomic Deep                      Acad. Sci. U. S. A. 116, 16095–16104
+     Brain Stimulation (Horn, A., ed.), pp. 59–87, Academic Press             32. Rauschenberger, L. et al. (2022) A translational perspective on
+  9. Kehnemouyi, Y.M. et al. (2021) Modulation of beta bursts in                  pathophysiological changes of oscillatory activity in dystonia
+     subthalamic sensorimotor circuits predicts improvement in                    and parkinsonism. Exp. Neurol. 355, 114140
+     bradykinesia. Brain J. Neurol. 144, 473–486                              33. van Wijk, B.C.M. et al. (2022) Functional connectivity maps of
+ 10. Gilron, R. et al. (2021) Long-term wireless streaming of neural re-          theta/alpha and beta coherence within the subthalamic nucleus
+     cordings for circuit discovery and adaptive stimulation in individuals       region. NeuroImage 257, 119320
+     with Parkinson’s disease. Nat. Biotechnol. 39, 1078–1085                 34. de Hemptinne, C. et al. (2013) Exaggerated phase-amplitude
+ 11. Wiest, C. et al. (2023) The aperiodic exponent of subthalamic ﬁeld           coupling in the primary motor cortex in Parkinson disease.
+     potentials reﬂects excitation/inhibition balance in Parkinsonism.            Proc. Natl. Acad. Sci. U. S. A. 110, 4780–4785
+     eLife 12, e82467                                                         35. Yin, Z. et al. (2022) Cortical phase-amplitude coupling is key
+ 12. Horn, A. and Fox, M.D. (2020) Opportunities of connectomic                   to the occurrence and treatment of freezing of gait. Brain
+     neuromodulation. NeuroImage 221, 117180                                      J. Neurol. 145, 2407–2421
+ 13. Litvak, V. et al. (2021) EEG and MEG primers for tracking DBS            36. Litvak, V. et al. (2011) Resting oscillatory cortico-subthalamic
+     network effects. NeuroImage 224, 117447                                      connectivity in patients with Parkinson’s disease. Brain J. Neurol.
+ 14. Oswal, A. et al. (2016) Deep brain stimulation modulates synchrony           134, 359–374
+     within spatially and spectrally distinct resting state networks in       37. West, T.O. et al. (2018) Propagation of beta/gamma rhythms in
+     Parkinson’s disease. Brain J. Neurol. 139, 1482–1496                         the cortico-basal ganglia circuits of the parkinsonian rat.
+ 15. McIntyre, C.C. and Foutz, T.J. (2013) Computational modeling                 J. Neurophysiol. 119, 1608–1628
+     of deep brain stimulation. Handb. Clin. Neurol. 116, 55–61               38. Jackson, N. et al. (2019) Characteristics of Waveform Shape in
+ 16. Hammond, C. et al. (2007) Pathological synchronization in                    Parkinson’s Disease Detected with Scalp Electroencephalography.
+     Parkinson’s disease: networks, models and treatments. Trends                 eNeuro 6, ENEURO.0151-19.2019
+     Neurosci. 30, 357–364                                                    39. Wilkins, K.B. et al. (2023) Bradykinesia and its progression are
+ 17. Lofredi, R. et al. (2023) Subthalamic beta bursts correlate with             related to interhemispheric beta coherence. Ann. Neurol.
+     dopamine-dependent motor symptoms in 106 Parkinson’s                         Published online February 5, 2020. https://doi.org/10.1002/
+     patients. NPJ Park. Dis. 9, 2                                                ana.26605
+ 18. Martin, S. et al. (2018) Differential contributions of subthalamic       40. de Hemptinne, C. et al. (2015) Therapeutic deep brain stimula-
+     beta rhythms and 1/f broadband activity to motor symptoms                    tion reduces cortical phase-amplitude coupling in Parkinson’s
+     in Parkinson’s disease. Npj Park. Dis. 4, 1–4                                disease. Nat. Neurosci. 18, 779–786
+ 19. Feldmann, L.K. et al. (2022) Toward therapeutic electrophysiology:       41. Cole, S.R. et al. (2017) Nonsinusoidal beta oscillations reﬂect
+     beta-band suppression as a biomarker in chronic local ﬁeld                   cortical pathophysiology in Parkinson’s disease. J. Neurosci.
+     potential recordings. Npj Park. Dis. 8, 1–9                                  37, 4830–4840
+ 20. Lofredi, R. et al. (2023) Pallidal beta activity is linked to            42. Opri, E. et al. (2020) Chronic embedded cortico-thalamic
+     stimulation-induced slowness in dystonia. Mov. Disord. Off.                  closed-loop deep brain stimulation for the treatment of essential
+     J. Mov. Disord. Soc. Published online February 20, 2023.                     tremor. Sci. Transl. Med. 12, eaay7680
+     https://doi.org/10.1002/mds.29347                                        43. Lofredi, R. et al. (2018) Dopamine-dependent scaling of subtha-
+ 21. Kühn, A.A. et al. (2008) Increased beta activity in dystonia                 lamic gamma bursts with movement velocity in patients with
+     patients after drug-induced dopamine deﬁciency. Exp. Neurol.                 Parkinson’s disease. eLife 7, e31895
+     214, 140–143                                                             44. Merk, T. et al. (2022) Electrocorticography is superior to subtha-
+ 22. Buzsáki, G. et al. (2013) Scaling brain size, keeping timing:                lamic local ﬁeld potentials for movement decoding in Parkinson’s
+     evolutionary preservation of brain rhythms. Neuron 80, 751–764               disease. eLife 11, e75126
+ 23. Kondylis, E.D. et al. (2016) Movement-related dynamics of                45. Storzer, L. et al. (2017) Bicycling suppresses abnormal beta
+     cortical oscillations in Parkinson’s disease and essential tremor.           synchrony in the Parkinsonian basal ganglia. Ann. Neurol. 82,
+     Brain J. Neurol. 139, 2211–2223                                              592–601
+
+
+
+484      Trends in Neurosciences, June 2023, Vol. 46, No. 6
+Trends in Neurosciences
+                                                                                                                                                                   OPEN ACCESS
+
+
+46. Thenaisie, Y. et al. (2022) Principles of gait encoding in the           71. Tinkhauser, G. et al. (2017) The modulatory effect of adaptive
+    subthalamic nucleus of people with Parkinson’s disease. Sci.                 deep brain stimulation on beta bursts in Parkinson’s disease.
+    Transl. Med. 14, eabo1800                                                    Brain J. Neurol. 140, 1053–1067
+47. He, S. et al. (2021) Gait-phase modulates alpha and beta oscil-          72. Cernera, S. et al. (2021) Wearable sensor-driven responsive
+    lations in the pedunculopontine nucleus. J. Neurosci. 41,                    deep brain stimulation for essential tremor. Brain Stimulat. 14,
+    8390–8402                                                                    1434–1443
+48. Arlotti, M. et al. (2018) Eight-hours adaptive deep brain stim-          73. Little, S. et al. (2013) Adaptive deep brain stimulation in
+    ulation in patients with Parkinson disease. Neurology 90,                    advanced Parkinson disease. Ann. Neurol. 74, 449–457
+    e971–e976                                                                74. Swann, N.C. et al. (2018) Adaptive deep brain stimulation for
+49. Feldmann, L.K. et al. (2023) Christmas-related reduction in beta             Parkinson’s disease using motor cortex sensing. J. Neural
+    activity in Parkinson’s disease. Mov. Disord. Off. J. Mov. Disord.           Eng. 15, 046006
+    Soc. Published online January 31, 2023. https://doi.org/                 75. Piña-Fuentes, D. et al. (2017) Adaptive DBS in a Parkinson’s
+    10.1002/mds.29334                                                            patient with chronically implanted DBS: a proof of principle.
+50. Kühn, A.A. et al. (2006) Reduction in subthalamic 8-35 Hz oscil-             Mov. Disord. Off. J. Mov. Disord. Soc. 32, 1253–1254
+    latory activity correlates with clinical improvement in Parkinson’s      76. Merk, T. et al. (2022) Machine learning based brain signal
+    disease. Eur. J. Neurosci. 23, 1956–1960                                     decoding for intelligent adaptive deep brain stimulation. Exp.
+51. Priori, A. et al. (2004) Rhythm-speciﬁc pharmacological modula-              Neurol. 351, 113993
+    tion of subthalamic activity in Parkinson’s disease. Exp. Neurol.        77. Scangos, K. et al. (2020) Corticocortical evoked potentials and
+    189, 369–379                                                                 patient response reveal networks underlying depression. Biol.
+52. Scheller, U. et al. (2019) Pallidal low-frequency activity in dystonia       Psychiatry 87, S157
+    after cessation of long-term deep brain stimulation. Mov. Disord.        78. Bahners, B.H. et al. (2023) Subthalamic stimulation evoked
+    Off. J. Mov. Disord. Soc. 34, 1734–1739                                      cortical responses relate to motor performance in Parkinson’s
+53. Swann, N.C. et al. (2016) Gamma oscillations in the hyperki-                 disease. Brain Stimul. Basic Transl. Clin. Res. Neuromodulation
+    netic state detected with chronic human brain recordings in                  16, 561–563
+    Parkinson’s disease. J. Neurosci. 36, 6445–6458                          79. Gunalan, K. and McIntyre, C.C. (2020) Biophysical reconstruc-
+54. Wiest, C. et al. (2022) Finely-tuned gamma oscillations: spectral            tion of the signal conduction underlying short-latency cortical
+    characteristics and links to dyskinesia. Exp. Neurol. 351,                   evoked potentials generated by subthalamic deep brain
+    113999                                                                       stimulation. Clin. Neurophysiol. 131, 542–547
+55. Alam, M. et al. (2016) Globus pallidus internus neuronal activity:       80. Oswal, A. et al. (2021) Neural signatures of hyperdirect pathway
+    a comparative study of linear and non-linear features in patients            activity in Parkinson’s disease. Nat. Commun. 12, 5185
+    with dystonia or Parkinson’s disease. J. Neural Transm. Vienna           81. Neumann, W.-J. et al. (2015) Cortico-pallidal oscillatory
+    Austria 1996 123, 231–240                                                    connectivity in patients with dystonia. Brain J. Neurol. 138,
+56. Neumann, W.-J. et al. (2017) A localized pallidal physiomarker               1894–1906
+    in cervical dystonia. Ann. Neurol. 82, 912–924                           82. Horn, A. et al. (2017) Toward an electrophysiological “sweet
+57. Barow, E. et al. (2014) Deep brain stimulation suppresses                    spot” for deep brain stimulation in the subthalamic nucleus.
+    pallidal low frequency activity in patients with phasic dystonic             Hum. Brain Mapp. 38, 3377–3390
+    movements. Brain J. Neurol. 137, 3012–3024                               83. Darcy, N. et al. (2022) Spectral and spatial distribution of sub-
+58. Kühn, A.A. and Volkmann, J. (2017) Innovations in deep brain                 thalamic beta peak activity in Parkinson’s disease patients.
+    stimulation methodology. Mov. Disord. 32, 11–19                              Exp. Neurol. 356, 114150
+59. Neumann, W.-J. et al. (2019) Toward electrophysiology-based              84. Horn, A. (2019) The impact of modern-day neuroimaging on the
+    intelligent adaptive deep brain stimulation for movement disorders.          ﬁeld of deep brain stimulation. Curr. Opin. Neurol. 32, 511–520
+    Neurother. J. Am. Soc. Exp. Neurother. 16, 105–118                       85. van Wijk, B.C.M. et al. (2017) Localization of beta and high-
+60. Swann, N.C. et al. (2018) Chronic multisite brain recordings                 frequency oscillations within the subthalamic nucleus region.
+    from a totally implantable bidirectional neural interface: experi-           NeuroImage Clin. 16, 175–183
+    ence in 5 patients with Parkinson’s disease. J. Neurosurg.               86. Treu, S. et al. (2020) Deep brain stimulation: imaging on a group
+    128, 605–616                                                                 level. NeuroImage 219, 117018
+61. Jenkinson, N. et al. (2013) γ oscillations in the human basal            87. Horn, A. et al. (2019) Deep brain stimulation induced normaliza-
+    ganglia. Exp. Neurol. 245, 72–76                                             tion of the human functional connectome in Parkinson’s
+62. Wiest, C. et al. (2021) Subthalamic deep brain stimulation                   disease. Brain J. Neurol. 142, 3129–3143
+    induces ﬁnely-tuned gamma oscillations in the absence of                 88. Asanuma, K. et al. (2006) Network modulation in the treatment
+    levodopa. Neurobiol. Dis. 152, 105287                                        of Parkinson’s disease. Brain 129, 2667–2678
+63. Muthuraman, M. et al. (2020) Cross-frequency coupling be-                89. Jech, R. et al. (2001) Functional magnetic resonance imaging
+    tween gamma oscillations and deep brain stimulation frequency                during deep brain stimulation: A pilot study in four patients
+    in Parkinson’s disease. Brain J. Neurol. 143, 3393–3407                      with Parkinson’s disease. Mov. Disord. 16, 1126–1132
+64. Özkurt, T.E. et al. (2011) High frequency oscillations in the sub-       90. Kahan, J. et al. (2012) Therapeutic subthalamic nucleus deep
+    thalamic nucleus: a neurophysiological marker of the motor                   brain stimulation reverses cortico-thalamic coupling during
+    state in Parkinson’s disease. Exp. Neurol. 229, 324–331                      voluntary movements in Parkinson’s disease. PLoS ONE 7,
+65. Fischer, P. et al. (2020) Movement-related coupling of human                 e50270
+    subthalamic nucleus spikes to cortical gamma. eLife 9, e51956            91. Jech, R. and Mueller, K. (2022) Investigating network effects
+66. Grill, W.M. et al. (2004) Deep brain stimulation creates an infor-           of DBS with fMRI. In Connectomic Deep Brain Stimulation
+    mational lesion of the stimulated nucleus. Neuroreport 15,                   (Horn, A., ed.), pp. 275–301, Academic Press
+    1137–1140                                                                92. Kahan, J. et al. (2014) Resting state functional MRI in
+67. Milosevic, L. et al. (2019) Subthalamic suppression deﬁnes                   Parkinson’s disease: the impact of deep brain stimulation on
+    therapeutic threshold of deep brain stimulation in Parkinson’s               “effective” connectivity. Brain J. Neurol. 137, 1130–1144
+    disease. J. Neurol. Neurosurg. Psychiatry 90, 1105–1108                  93. Horn, A. et al. (2017) Connectivity Predicts deep brain stimula-
+68. Bahners, B.H. et al. (2022) Electrophysiological characterization            tion outcome in Parkinson disease. Ann. Neurol. 82, 67–78
+    of the hyperdirect pathway and its functional relevance for sub-         94. Sobesky, L. et al. (2021) Effective subthalamic and pallidal deep
+    thalamic deep brain stimulation. Exp. Neurol. 352, 114031                    brain stimulation – are we modulating the same network? Brain
+69. Tinkhauser, G. et al. (2017) Beta burst dynamics in Parkinson’s              145, 251–262
+    disease OFF and ON dopaminergic medication. Brain J. Neurol.             95. Al-Fatly, B. et al. (2019) Connectivity proﬁle of thalamic deep
+    140, 2968–2981                                                               brain stimulation to effectively treat essential tremor. Brain
+70. West, T.O. et al. (2023) When do bursts matter in the primary                J. Neurol. 142, 3086–3098
+    motor cortex? Investigating changes in the intermittencies               96. Li, N. et al. (2020) A uniﬁed connectomic target for deep brain
+    of beta rhythms associated with movement states. Prog.                       stimulation in obsessive-compulsive disorder. Nat. Commun.
+    Neurobiol. 221, 102397                                                       11, 3364
+
+
+
+                                                                                                                                        Trends in Neurosciences, June 2023, Vol. 46, No. 6   485
+                                                                                                                                             Trends in Neurosciences
+OPEN ACCESS
+
+
+ 97. Middlebrooks, E.H. et al. (2018) Differences in functional con-            compared to conventional stimulation in the acute setting.
+     nectivity proﬁles as a predictor of response to anterior thalamic          J. Neurol. Neurosurg. Psychiatry 87, 1388–1389
+     nucleus deep brain stimulation for epilepsy: a hypothesis for the    120. Rosa, M. et al. (2017) Adaptive deep brain stimulation controls
+     mechanism of action and a potential biomarker for outcomes.               levodopa-induced side effects in Parkinsonian patients. Mov.
+     Neurosurg. Focus. 45, E7                                                  Disord. Off. J. Mov. Disord. Soc. 32, 628–629
+ 98. Horn, A. et al. (2022) Optimal deep brain stimulation sites and      121. Prenassi, M. et al. (2021) The relationship between electrical en-
+     networks for cervical vs. generalized dystonia. Proc. Natl.               ergy delivered by deep brain stimulation and levodopa-induced
+     Acad. Sci. 119, e2114985119                                               dyskinesias in Parkinson’s disease: a retrospective preliminary
+ 99. Ríos, A.S. et al. (2022) Optimal deep brain stimulation sites and         analysis. Front. Neurol. 12, 643841
+     networks for stimulation of the fornix in Alzheimer’s disease.       122. Rheede, J.J. van et al. (2022) Diurnal modulation of subthalamic
+     Nat. Commun. 13, 7707                                                     beta oscillatory power in Parkinson’s disease patients during
+100. Lofredi, R. et al. (2021) Subthalamic stimulation impairs stop-           deep brain stimulation. NPJ Parkinsons Dis. 8, 88
+     ping of ongoing movements. Brain J. Neurol. 144, 44–52               123. Bocci, T. et al. (2021) Eight-hours conventional versus adaptive
+101. Irmen, F. et al. (2020) Left prefrontal connectivity links subtha-        deep brain stimulation of the subthalamic nucleus in
+     lamic stimulation with depressive symptoms. Ann. Neurol. 87,              Parkinson’s disease. NPJ Parkinsons Dis. 7, 1–6
+     962–975                                                              124. Gilron, R. et al. (2021) Sleep-aware adaptive deep brain stimu-
+102. Neumann, W.-J. et al. (2018) Functional segregation of basal              lation control: chronic use at home with dual independent linear
+     ganglia pathways in Parkinson’s disease. Brain J. Neurol.                 discriminate detectors. Front. Neurosci. 15, 732499
+     141, 2655–2669                                                       125. Adaptive DBS algorithm for personalized therapy in Parkinson’s
+103. de Almeida Marcelino, A.L. et al. (2019) Subthalamic neuro-               disease: ADAPT-PD trial: a prospective single-blind, random-
+     modulation improves short-term motor learning in Parkinson’s              ized crossover, multi-center trial of deep brain stimulation
+     disease. Brain J. Neurol. 142, 2198–2206                                  adaptive algorithms in subjects with Parkinson’s disease. Inter-
+104. Hollunder, B. et al. (2021) Toward personalized medicine in               national Parkinson and Movement Disorder Society Meeting
+     connectomic deep brain stimulation. Prog. Neurobiol. 210,                 Abstracts. Abstract number 911.
+     102211                                                               126. Neumann, W.-J. et al. (2021) The sensitivity of ECG contamina-
+105. Gunalan, K. et al. (2017) Creating and parameterizing patient-            tion to surgical implantation site in brain computer interfaces.
+     speciﬁc deep brain stimulation pathway-activation models                  Brain Stimul. Basic Transl. Clin. Res. Neuromodulation 14,
+     using the hyperdirect pathway as an example. PLoS One 12,                 1301–1306
+     e0176132                                                             127. Rodriguez-Oroz, M.C. et al. (2011) Involvement of the subtha-
+106. Howell, B. et al. (2019) A driving-force predictor for estimating         lamic nucleus in impulse control disorders associated with
+     pathway activation in patient-speciﬁc models of deep brain                Parkinson’s disease. Brain J. Neurol. 134, 36–49
+     stimulation. Neuromodulation J. Int. Neuromodulation Soc.            128. Johnson, V. et al. (2021) Embedded adaptive deep brain stim-
+     22, 403–415                                                               ulation for cervical dystonia controlled by motor cortex theta
+107. Roediger, J. et al. (2023) Automated deep brain stimulation pro-          oscillations. Exp. Neurol. 345, 113825
+     gramming based on electrode location: a randomised, cross-           129. Molina, R. et al. (2018) Report of a patient undergoing chronic
+     over trial using a data-driven algorithm. Lancet Digit. Health 5,         responsive deep brain stimulation for Tourette syndrome:
+     e59–e70                                                                   proof of concept. J. Neurosurg. 129, 308–314
+108. Coenen, V.A. et al. (2016) One-pass deep brain stimulation of        130. Wiest, C. et al. (2023) Evoked resonant neural activity in subtha-
+     dentato-rubro-thalamic tract and subthalamic nucleus for                  lamic local ﬁeld potentials reﬂects basal ganglia network dynamics.
+     tremor-dominant or equivalent type Parkinson’s disease. Acta              Neurobiol. Dis. 178, 106019
+     Neurochir. 158, 773–781                                              131. Sinclair, N.C. et al. (2021) Electrically evoked and spontaneous
+109. Hollunder, B. et al. (2021) Deep brain stimulation: from sweet            neural activity in the subthalamic nucleus under general anes-
+     spots to sweet networks? Biol. Psychiatry Cogn. Neurosci.                 thesia. J. Neurosurg. 137, 449–458
+     Neuroimaging 6, 939–941                                              132. Johnson, K.A. et al. (2023) Globus pallidus internus deep brain
+110. Biondetti, E. et al. (2021) The spatiotemporal changes in dopa-           stimulation evokes resonant neural activity in Parkinson’s dis-
+     mine, neuromelanin and iron characterizing Parkinson’s disease.           ease. Brain Commun. Published online February 9, 2023.
+     Brain J. Neurol. 144, 3114–3125                                           https://doi.org/10.1093/braincomms/fcad025
+111. Roediger, J. et al. (2022) StimFit – a data-driven algorithm for     133. Schmidt, S.L. et al. (2020) Evoked potentials reveal neural cir-
+     automated deep brain stimulation programming. Mov. Disord.                cuits engaged by human deep brain stimulation. Brain Stimulat.
+     37, 574–584                                                               13, 1706–1718
+112. Dale, J. et al. (2022) Evoked potentials generated by deep           134. Xu, S.S. et al. (2022) Can brain signals and anatomy reﬁne con-
+     brain stimulation for Parkinson’s disease. Brain Stimulat. 15,            tact choice for deep brain stimulation in Parkinson’s disease?
+     1040–1047                                                                 J. Neurol. Neurosurg. Psychiatry Published online May 19,
+113. Spooner, R.K. et al. (2023) DBS-evoked cortical responses                 2022. https://doi.org/10.1136/jnnp-2021-327708
+     index optimal contact orientations and motor outcomes in             135. Sanabria, D.E. et al. (2022) Controlling pallidal oscillations in
+     Parkinson’s disease. NPJ Park. Dis. 9, 37                                 real-time in Parkinson’s disease using evoked interference
+114. Thompson, J.A. et al. (2018) Semi-automated application for               deep brain stimulation (eiDBS): Proof of concept in the
+     estimating subthalamic nucleus boundaries and optimal target              human. Brain Stimulat. 15, 1111–1119
+     selection for deep brain stimulation implantation surgery.           136. Brocker, D.T. et al. (2017) Optimized temporal pattern of brain
+     J. Neurosurg. 1, 1–10                                                     stimulation designed by computational evolution. Sci. Transl.
+115. Cagle, J.N. et al. (2021) A novel local ﬁeld potential-based func-        Med. 9, eaah3532
+     tional approach for targeting the centromedian-parafascicular        137. Gross, R.E. et al. (2006) Electrophysiological mapping for the
+     complex for deep brain stimulation. NeuroImage Clin. 30,                  implantation of deep brain stimulators for Parkinson’s disease
+     102644                                                                    and tremor. Mov. Disord. Off. J. Mov. Disord. Soc. 21,
+116. Milosevic, L. et al. (2020) Online mapping with the deep brain            S259–S283
+     stimulation lead: a novel targeting tool in Parkinson’s disease.     138. Topalovic, U et al. (2023 Mar) A wearable platform for closed-
+     Mov. Disord. Off. J. Mov. Disord. Soc. 35, 1574–1586                      loop stimulation and recording of single-neuron and local ﬁeld
+117. Tinkhauser, G. et al. (2018) Directional local ﬁeld potentials: a         potential activity in freely moving humans. Nat. Neurosci. 26
+     tool to optimize deep brain stimulation. Mov. Disord. 33,                 (3), 517–527
+     159–164                                                              139. Paulk, A.C. et al. (2022) Large-scale neural recordings with
+118. Rosin, B. et al. (2011) Closed-loop deep brain stimulation is su-          single neuron resolution using Neuropixels probes in human
+     perior in ameliorating parkinsonism. Neuron 72, 370–384                    cortex. Nat. Neurosci. 25, 252–263
+119. Little, S. et al. (2016) Adaptive deep brain stimulation for         140. Chung, J.E. et al. (2022) High-density single-unit human cortical re-
+     Parkinson’s disease demonstrates reduced speech side effects              cordings using the Neuropixels probe. Neuron 110, 2409–2421.e3
+
+
+
+
+486      Trends in Neurosciences, June 2023, Vol. 46, No. 6
+Trends in Neurosciences
+                                                                                                                                                                    OPEN ACCESS
+
+
+141. Spix, T.A. et al. (2021) Population-speciﬁc neuromodulation           148. Johnson, L.A. et al. (2020) Direct activation of primary motor cor-
+     prolongs therapeutic beneﬁts of deep brain stimulation. Science            tex during subthalamic but not pallidal deep brain stimulation.
+     374, 201–206                                                               J. Neurosci. 40, 2166–2177
+142. Schwerdt, H.N. et al. (2020) Dopamine and beta-band oscilla-          149. Chen, W. et al. (2020) Prefrontal-subthalamic hyperdirect path-
+     tions differentially link to striatal value and motor control. Sci.        way modulates movement inhibition in humans. Neuron 106,
+     Adv. 6, eabb9226                                                           579–588.e3
+143. Milosevic, L. et al. (2018) Physiological mechanisms of thalamic      150. Miocinovic, S. et al. (2018) Cortical potentials evoked by sub-
+     ventral intermediate nucleus stimulation for tremor suppression.           thalamic stimulation demonstrate a short latency hyperdirect
+     Brain J. Neurol. 141, 2142–2155                                            pathway in humans. J. Neurosci. 38, 9129–9141
+144. Grill, W.M. and McIntyre, C.C. (2001) Extracellular excitation of     151. Bingham, C.S. et al. (2023) Evolving characterization of
+     central neurons: implications for the mechanisms of deep                   the human hyperdirect pathway. Brain Struct. Funct. 228,
+     brain stimulation. Thalamus Relat. Syst. 1, 269–277                        353–365
+145. Hashimoto, T. et al. (2003) Stimulation of the subthalamic nucleus    152. Neumann, W.-J. et al. (2022) A practical guide to invasive
+     changes the ﬁring pattern of pallidal neurons. J. Neurosci. 23,            neurophysiology in patients with deep brain stimulation. Clin.
+     1916–1923                                                                  Neurophysiol. 140, 171–180
+146. Galati, S. et al. (2006) Biochemical and electrophysiological         153. Feldmann, L.K. et al. (2021) Subthalamic beta band suppres-
+     changes of substantia nigra pars reticulata driven by subthalamic          sion reﬂects effective neuromodulation in chronic recordings.
+     stimulation in patients with Parkinson’s disease. Eur. J. Neurosci.        Eur. J. Neurol. 28, 2372–2377
+     23, 2923–2928                                                         154. Butenko, K. et al. (2020) OSS-DBS: Open-source simulation
+147. Gradinaru, V. et al. (2009) Optical deconstruction of parkinsonian         platform for deep brain stimulation with a comprehensive auto-
+     neural circuitry. Science 324, 354–359                                     mated modeling. PLoS Comput. Biol. 16, e1008023
+
+
+
+
+                                                                                                                                         Trends in Neurosciences, June 2023, Vol. 46, No. 6   487
+

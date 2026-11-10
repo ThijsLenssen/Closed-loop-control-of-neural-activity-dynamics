@@ -1,0 +1,811 @@
+
+=== 01 | 17 PDF pages | deep brain stimulation | Cortical beta oscillations map to shared brain networks modulated by dopamine.pdf ===
+                                                                                          RESEARCH ARTICLE
+
+
+
+
+                                     Cortical beta oscillations map to shared
+                                     brain networks modulated by dopamine
+                                     Meera Chikermane1*, Liz Weerdmeester1, Nanditha Rajamani1, Richard M Köhler1,
+                                     Timon Merk1, Jojo Vanhoecke1, Andreas Horn1,2,3, Wolf Julian Neumann1,4
+                                     1
+                                      Department of Neurology, Movement Disorders and Neuromodulation Unit, Charité
+                                     – Universitätsmedizin Berlin, Berlin, Germany; 2Department of Neurology, Center
+                                     for Brain Circuit Therapeutics, Brigham and Women’s Hospital, Boston, United
+                                     States; 3Departments of Neurology and Neurosurgery, Massachusetts General
+                                     Hospital, Boston, United States; 4Einstein Center for Neurosciences Berlin, Humboldt
+                                     Universitat, Berlin, Germany
+
+
+
+                                     eLife Assessment
+                                     This study poses an important step forward in understanding the brain-­network embedding of beta
+                                     oscillations. The study advances our circuit-­level understanding of the pathophysiology associated
+                                     with dopaminergic alterations in psychiatric or neurological disorders. The study provides compel-
+                                     ling evidence that beta oscillations across the neocortex and basal ganglia map onto shared func-
+                                     tional and structural networks that show significant positive correlations with dopamine receptors.
+
+
+
+*For correspondence:                 Abstract Brain rhythms can facilitate neural communication for the maintenance of brain func-
+meera.chikermane@charite.de          tion. Beta rhythms (13–35 Hz) have been proposed to serve multiple domains of human ability,
+Competing interest: See page         including motor control, cognition, memory, and emotion, but the overarching organisational princi-
+13                                   ples remain unknown. To uncover the circuit architecture of beta oscillations, we leverage normative
+                                     brain data, analysing over 30 hr of invasive brain signals from 1772 channels from cortical areas in
+Funding: See pa
+
+=== 02 | 15 PDF pages | deep brain stimulation | Cortical phase-amplitude coupling is key to the occurrence and treatment of freezing of gait.pdf ===
+https://doi.org/10.1093/brain/awac121                                                                           BRAIN 2022: 145; 2407–2421 | 2407
+
+
+
+
+Cortical phase-amplitude coupling is key
+to the occurrence and treatment of freezing
+of gait
+Zixiao Yin,1,2,† Guanyu Zhu,1,2,† Yuye Liu,1,2,† Baotian Zhao,1,2 Defeng Liu,1,2
+Yutong Bai,1,2 Quan Zhang,1,2 Lin Shi,1 Tao Feng,3 Anchao Yang,1 Huanguang Liu,1
+Fangang Meng,2,4 Wolf-Julian Neumann,5 Andrea A. Kühn,5,6,7 Yin Jiang2,4
+and Jianguo Zhang1,2,4
+
+†
+ These authors contributed equally to this work.
+See Tan (https://doi.org/10.1093/brain/awac172) for a scientiﬁc commentary on this article.
+
+
+Freezing of gait is a debilitating symptom in advanced Parkinson’s disease and responds heterogeneously to treat-
+ments such as deep brain stimulation. Recent studies indicated that cortical dysfunction is involved in the develop-
+ment of freezing, while evidence depicting the speciﬁc role of the primary motor cortex in the multi-circuit pathology
+of freezing is lacking. Since abnormal beta-gamma phase-amplitude coupling recorded from the primary motor cor-
+tex in patients with Parkinson’s disease indicates parkinsonian state and responses to therapeutic deep brain stimu-
+lation, we hypothesized this metric might reveal unique information on understanding and improving therapy for
+freezing of gait.
+Here, we directly recorded potentials in the primary motor cortex using subdural electrocorticography and synchron-
+ously captured gait freezing using optoelectronic motion-tracking systems in 16 freely-walking patients with
+Parkinson’s disease who received subthalamic nucleus deep brain stimulation surgery. Overall, we recorded 451
+timed up-and-go walking trials and quantiﬁed 7073 s of stable walking and 3384 s of gait freezing in conditions of
+on/off-stimulation and with/without dual-tasking.
+We found that (i) high beta-gamma phase-amplitude coupling in the primary motor cortex was detected in freezing trials
+(i.e. walking trials that contained freezing), but not non-freezing trials, and the high coupling in freezing trials was not
+caused by dual-tasking or the lack of movement; (ii) non-freezing episodes within freezing trials also demonstrated ab-
+normally high couplings, which predicted freezing severity; (iii) deep brain stimulation of subthalamic nucleus reduced
+these abnormal couplings and simultaneously improved freezing; and (iv) in trials that were at similar coupling levels,
+stimulation trials still demonstrated lower freezing severity than no-stimulation trials.
+These ﬁndings suggest that elevated phase-amplitude
+
+=== 03 | 16 PDF pages | deep brain stimulation | Deep brain stimulation of symptom-specific networks in Parkinson's disease.pdf ===
+                                    Article                                                                                                  https://doi.org/10.1038/s41467-024-48731-1
+
+
+                                    Deep brain stimulation of symptom-speciﬁc
+                                    networks in Parkinson’s disease
+
+                                    Received: 14 March 2023                                 Nanditha Rajamani 1 , Helen Friedrich2,3, Konstantin Butenko 2,
+                                                                                            Till Dembek2,4, Florian Lange5, Pavel Navrátil5, Patricia Zvarova1,6,
+                                    Accepted: 13 May 2024
+                                                                                            Barbara Hollunder 1,6,7, Rob M. A. de Bie8, Vincent J. J. Odekerken8,
+                                                                                            Jens Volkmann5, Xin Xu9, Zhipei Ling10, Chen Yao11, Petra Ritter 1,6,7,12,
+                                                                                            Wolf-Julian Neumann1, Georgios P. Skandalakis13,14, Spyridon Komaitis14,15,
+                                       Check for updates                                    Aristotelis Kalyvas14,16, Christos Koutsarnakis14, George Stranjalis14,
+                                                                                            Michael Barbe4, Vanessa Milanese17,18,19, Michael D. Fox 2,20,21,
+                                                                                            Andrea A. Kühn 1,6,7, Erik Middlebrooks22, Ningfei Li 1, Martin Reich 5,
+                  1234567890():,;
+1234567890():,;
+
+
+
+
+                                                                                            Clemens Neudorfer1,2,20,21 & Andreas Horn 1,2,20,21
+
+
+                                                                                            Deep Brain Stimulation can improve tremor, bradykinesia, rigidity, and axial
+                                                                                            symptoms in patients with Parkinson’s disease. Potentially, improving each
+                                                                                            symptom may require stimulation of different white matter tracts. Here, we
+                                                                                            study a large cohort of patients (N = 237 from ﬁve centers) to identify tracts
+                                 
+
+=== 04 | 12 PDF pages | deep brain stimulation | Dopamine and deep brain stimulation  accelerate the neural dynamics of volitional  action in Parkinson’s disease.pdf ===
+https://doi.org/10.1093/brain/awae219                                                                           BRAIN 2024: 147; 3358–3369             | 3358
+
+
+
+
+Dopamine and deep brain stimulation
+accelerate the neural dynamics of volitional
+action in Parkinson’s disease
+  Richard M. Köhler,1 Thomas S. Binns,1,2,3 Timon Merk,1 Guanyu Zhu,4,5
+Zixiao Yin,4,5 Baotian Zhao,4,5 Meera Chikermane,1 Jojo Vanhoecke,1
+Johannes L. Busch,1 Jeroen G. V. Habets,1 Katharina Faust,6 Gerd-Helge Schneider,6
+Alessia Cavallo,1 Stefan Haufe,2,3,7,8,9 Jianguo Zhang,4,5 Andrea A. Kühn,1,2,3,10,11
+John-Dylan Haynes2,3,8,9,10,11,† and Wolf-Julian Neumann1,2,3,†
+
+†
+ These authors contributed equally to this work.
+
+
+The ability to initiate volitional action is fundamental to human behaviour. Loss of dopaminergic neurons in
+Parkinson’s disease is associated with impaired action initiation, also termed akinesia. Both dopamine and subtha­
+lamic deep brain stimulation (DBS) can alleviate akinesia, but the underlying mechanisms are unknown. An import­
+ant question is whether dopamine and DBS facilitate de novo build-up of neural dynamics for motor execution or
+accelerate existing cortical movement initiation signals through shared modulatory circuit effects. Answering these
+questions can provide the foundation for new closed-loop neurotherapies with adaptive DBS, but the objectification
+of neural processing delays prior to performance of volitional action remains a significant challenge.
+To overcome this challenge, we studied readiness potentials and trained brain signal decoders on invasive neuro­
+physiology signals in 25 DBS patients (12 female) with Parkinson’s disease during performance of self-initiated move­
+ments. Combined sensorimotor cortex electrocorticography and subthalamic local field potential recordings were
+performed OFF therapy (n = 22), ON dopaminergic medication (n = 18) and on subthalamic deep brain stimulation
+(n = 8). This allowed us to compare their therapeutic effects on neural latencies between the earliest cortical represen­
+tation of movement intention as decoded by linear discriminant analysis classifiers and onset of muscle activation
+recorded with electromyography.
+In the hypodopaminergic OFF state, we observed long latencies between motor intention and motor execution for
+readiness potentials and machine learning classifications. Both, dopamine and DBS significantly shortened these la­
+tencies, hinting towards a shared therapeutic mechanism for alleviation of akinesia. To investigate this further, we
+analysed directional cortico-subthalamic oscillatory c
+
+=== 05 | 24 PDF pages | deep brain stimulation | Dopamine and neuromodulation accelerate the neural dynamics of volitional action in Parkinson's disease (preprint).pdf ===
+bioRxiv preprint doi: https://doi.org/10.1101/2023.10.30.564700; this version posted November 13, 2023. The copyright holder for this
+   preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in
+                                  perpetuity. It is made available under a CC-BY 4.0 International license.
+
+
+
+
+   Dopamine and neuromodulation accelerate the neural
+   dynamics of volitional action in Parkinson’s disease
+   Authors
+   Richard M. Köhler1, Thomas S. Binns1,2,3, Timon Merk1, Guanyu Zhu4, Zixiao Yin4, Baotian Zhao4,
+   Meera Chikermane1, Jonathan Vanhoecke1, Johannes L. Busch1, Jeroen Habets1, Katharina Faust5,
+   Gerd-Helge Schneider5, Alessia Cavallo1, Stefan Haufe2,3,6,7,8, Jianguo Zhang4, Andrea A. Kühn1,2,3,9,10,
+   John-Dylan Haynes †,2,3,7,8,9,10, Wolf-Julian Neumann*,†,1,2,3
+
+
+   Affiliations
+   1 Movement Disorder and Neuromodulation Unit, Department of Neurology, Charité – Universitätsmedizin Berlin,
+
+
+   corporate member of Freie Universität Berlin and Humboldt-Universität zu Berlin, Berlin, Germany
+   2 Einstein Center for Neurosciences Berlin, Charité – Universitätsmedizin Berlin, corporate member of Freie
+
+
+   Universität Berlin and Humboldt-Universität zu Berlin, Berlin, Germany
+   3 Bernstein Center for Computational Neuroscience, Berlin, Germany.
+
+   4 Department of Neurosurgery, Beijing Tiantan Hospital, Capital Medical University, Beijing, China; Beijing Key
+
+
+   Laboratory of Neurostimulation, Beijing, China
+   5 Department of Neurosurgery, Charité – Universitätsmedizin Berlin, corporate member of Freie Universität Berlin
+
+
+   and Humboldt-Universität zu Berlin, Berlin, Germany
+   6 Technische Universität Berlin, Berlin, Germany
+
+   7 Physikalisch-Technische Bundesanstalt Braunschweig und Berlin, Berlin, Germany
+
+   8 Berlin Center for Advanced Neuroimaging, Bernstein Center for Computational Neuroscience, Berlin, Germany
+
+   9 NeuroCure Clinical Research Centre, Charité – Universitätsmedizin Berlin, corporate member of Freie
+
+
+   Universität Berlin and Humboldt-Universität zu Berlin, Berlin, Germany
+   10 Berlin School of Mind and Brain, Humboldt-Universität zu Berlin, Berlin, Germany
+
+   † Equal contribution
+
+
+   *Correspondence: julian.neumann@charite.de
+
+
+   Abstract
+   The ability to initiate volitional action is fundamental to human behavior. Loss of dopaminergic
+   neurons in Parkinson's disease (PD) is associated with impaired action initiation, also termed
+   akinesia. Dopamine and subthalamic deep brain stimulation (DBS) can alleviate akinesia, b
+
+=== 06 | 13 PDF pages | deep brain stimulation | Generalized sleep decoding with basal ganglia signals in multiple movement disorders.pdf ===
+                                    npj | digital medicine                                                                                                                             Article
+                                    Published in partnership with Seoul National University Bundang Hospital
+
+
+
+
+                                                                                                                                                   https://doi.org/10.1038/s41746-024-01115-7
+
+
+                                    Generalized sleep decoding with basal
+                                    ganglia signals in multiple movement
+                                    disorders
+                                                                                                                                                                                Check for updates
+                                                   1,2                 3                     1                4                       5                 1,2              1
+                                    Zixiao Yin        , Huiling Yu , Tianshuo Yuan , Clay Smyth , Md Fahim Anjum , Guanyu Zhu , Ruoyu Ma ,
+                                    Yichen Xu1, Qi An1, Yifei Gan1, Timon Merk2, Guofan Qin1, Hutao Xie1, Ning Zhang6, Chunxue Wang6,
+                                    Yin Jiang7, Fangang Meng7, Anchao Yang1, Wolf-Julian Neumann2, Philip Starr 8, Simon Little 5 ,
+                                    Luming Li3,9 & Jianguo Zhang 1,7,10
+                  1234567890():,;
+1234567890():,;
+
+
+
+
+                                    Sleep disturbances profoundly affect the quality of life in individuals with neurological disorders.
+                                    Closed-loop deep brain stimulation (DBS) holds promise for alleviating sleep symptoms, however, this
+                                    technique necessitates automated sleep stage decoding from intracranial signals. We leveraged
+                                    overnight data from 121 patients with movement disorders (Parkinson’s disease, Essential Tremor,
+                                    Dystonia, Essential Tremor, Huntington’s disease, and Tourette’s syndrome) in whom synchronized
+                                    polysomnograms and basal ganglia local ﬁeld potentials were recorded, to develop a generalized,
+                                    multi-class, sleep speciﬁc decoder – BGOOSE. This generalized model achieved 85% average
+                                    accuracy across patients and across disease condition
+
+=== 07 | 16 PDF pages | deep brain stimulation | Insights and opportunities for deep brain stimulation as a brain circuit intervention.pdf ===
+                                                                                                                                                                  Trends in
+OPEN ACCESS                                                                                                                     Neurosciences
+Review
+
+Insights and opportunities for deep brain
+stimulation as a brain circuit intervention
+Wolf-Julian Neumann                    , 1,2,3 Andreas Horn, 1,2,3,4,5 and Andrea A. Kühn 1,2,3,6,7,8,*
+
+Deep brain stimulation (DBS) is an effective treatment and has provided unique                                                                Highlights
+insights into the dynamic circuit architecture of brain disorders. This Review illus-                                                         Deep brain stimulation modulates neural
+trates our current understanding of the pathophysiology of movement disorders                                                                 synchrony in distributed brain networks.
+and their underlying brain circuits that are modulated with DBS. It proposes princi-
+                                                                                                                                              Neurophysiology and neuroimaging can
+ples of pathological network synchronization patterns like beta activity (13–35 Hz)                                                           elucidate circuit characteristics.
+in Parkinson’s disease. We describe alterations from microscale including local
+synaptic activity via modulation of mesoscale hypersynchronization to changes in                                                              Instead of anatomical landmarks, optimal
+                                                                                                                                              circuit nodes for intervention can be de-
+whole-brain macroscale connectivity. Finally, an outlook on advances for clinical                                                             ﬁned with MRI-based connectomics
+innovations in next-generation neurotechnology is provided: from preoperative                                                                 and dynamic neurophysiological net-
+connectomic targeting to feedback controlled closed-loop adaptive DBS as individ-                                                             work measures.
+ualized network-speciﬁc brain circuit interventions.
+                                                                                                                      
+
+=== 08 | 14 PDF pages | deep brain stimulation | Neural signatures of hyperdirect pathway activity in Parkinson's disease.pdf ===
+                  ARTICLE
+                  https://doi.org/10.1038/s41467-021-25366-0                 OPEN
+
+                  Neural signatures of hyperdirect pathway activity in
+                  Parkinson’s disease
+                  Ashwini Oswal 1,2,3 ✉, Chunyan Cao4, Chien-Hung Yeh1,2,5, Wolf-Julian Neumann6, James Gratwicke7,
+                  Harith Akram7, Andreas Horn 6, Dianyou Li4, Shikun Zhan4, Chao Zhang4, Qiang Wang6, Ludvic Zrinzo 7,
+                  Tom Foltynie7, Patricia Limousin 7, Rafal Bogacz1,2, Bomin Sun4, Masud Husain 2, Peter Brown 1,2,8 ✉ &
+                  Vladimir Litvak 3,8 ✉
+1234567890():,;
+
+
+
+
+                  Parkinson’s disease (PD) is characterised by the emergence of beta frequency oscillatory
+                  synchronisation across the cortico-basal-ganglia circuit. The relationship between the anat-
+                  omy of this circuit and oscillatory synchronisation within it remains unclear. We address this
+                  by combining recordings from human subthalamic nucleus (STN) and internal globus pallidus
+                  (GPi) with magnetoencephalography, tractography and computational modelling. Coherence
+                  between supplementary motor area and STN within the high (21–30 Hz) but not low (13-
+                  21 Hz) beta frequency range correlated with ‘hyperdirect pathway’ ﬁbre densities between
+                  these structures. Furthermore, supplementary motor area activity drove STN activity selec-
+                  tively at high beta frequencies suggesting that high beta frequencies propagate from the
+                  cortex to the basal ganglia via the hyperdirect pathway. Computational modelling revealed
+                  that exaggerated high beta hyperdirect pathway activity can provoke the generation of
+                  widespread pathological synchrony at lower beta frequencies. These ﬁndings suggest a
+                  spectral signature and a pathophysiological role for the hyperdirect pathway in PD.
+
+
+
+
+                  1 MRC Brain Network Dynamics Unit, University of Oxford, Oxford, UK. 2 Nufﬁeld Department of Clinical Neurosciences, University of Oxford, Oxford, UK.
+                  3 The Wellcome Centre for Human Neuroimaging, University College London, London, UK. 4 Department of Neurosurgery, Afﬁliated Ruijin Hospital, School of
+
+                  Medicine, Shanghai JiaoTong University, Shanghai, China. 5 School of Information and Electronics Engineering, Beijing Institute of Technology, Beijing, China.
+                  6 Department of Neurology, Charité Unive
+
+=== 09 | 13 PDF pages | deep brain stimulation | Neurophysiological mechanisms of deep brain stimulation across spatiotemporal resolutions.pdf ===
+https://doi.org/10.1093/brain/awad239                                                                           BRAIN 2023: 146; 4456–4468             | 4456
+
+
+
+
+Neurophysiological mechanisms of deep
+brain stimulation across spatiotemporal
+resolutions
+    Wolf-Julian Neumann,1,† Leon A. Steiner1,2,† and                                              Luka Milosevic2,3,†
+
+†
+    These authors contributed equally to this work.
+
+
+Deep brain stimulation is a neuromodulatory treatment for managing the symptoms of Parkinson’s disease and other
+neurological and psychiatric disorders. Electrodes are chronically implanted in disease-relevant brain regions and
+pulsatile electrical stimulation delivery is intended to restore neurocircuit function. However, the widespread inter­
+est in the application and expansion of this clinical therapy has preceded an overarching understanding of the neu­
+rocircuit alterations invoked by deep brain stimulation. Over the years, various forms of neurophysiological evidence
+have emerged which demonstrate changes to brain activity across spatiotemporal resolutions; from single neuron, to
+local field potential, to brain-wide cortical network effects. Though fruitful, such studies have often led to debate
+about a singular putative mechanism.
+In this Update we aim to produce an integrative account of complementary instead of mutually exclusive neuro­
+physiological effects to derive a generalizable concept of the mechanisms of deep brain stimulation. In particular,
+we offer a critical review of the most common historical competing theories, an updated discussion on recent litera­
+ture from animal and human neurophysiological studies, and a synthesis of synaptic and network effects of deep
+brain stimulation across scales of observation, including micro-, meso- and macroscale circuit alterations.
+
+
+1 Movement Disorder and Neuromodulation Unit, Department of Neurology, Charité - Universitätsmedizin Berlin,
+  Berlin 10117, Germany
+2 Department of Clinical and Computational Neuroscience, Krembil Brain Institute, University Health Network,
+  Toronto M5T 1M8, Canada
+3 Institute of Biomedical Engineering, Institute of Medical Sciences, and CRANIA Neuromodulation Institute,
+  University of Toronto, Toronto M5S 3G9, Canada
+
+Correspondence to: Luka Milosevic
+399 Bathurst St, 11MP301, Toronto, M5T 2S6, Canada
+E-mail: luka.milosevic@mail.utoronto.ca
+
+Keywords: deep brain stimulation; neuromodulation; mechanisms of action; singe neurons; oscillations
+
+
+
+
+                                                                                   insight into the n
+
+=== 10 | 12 PDF pages | deep brain stimulation | Pathological pallidal beta activity in Parkinson's disease is sustained during sleep and associated with sleep disturbance.pdf ===
+                                    Article                                                                                                       https://doi.org/10.1038/s41467-023-41128-6
+
+
+                                    Pathological pallidal beta activity in
+                                    Parkinson’s disease is sustained during sleep
+                                    and associated with sleep disturbance
+                                    Received: 21 March 2023                               Zixiao Yin 1, Ruoyu Ma 1, Qi An1, Yichen Xu1, Yifei Gan1, Guanyu Zhu1, Yin Jiang2,
+                                                                                          Ning Zhang3, Anchao Yang1, Fangang Meng2, Andrea A. Kühn 4,5,
+                                    Accepted: 23 August 2023
+                                                                                          Hagai Bergman 6,7,8, Wolf-Julian Neumann 4,10 & Jianguo Zhang 1,2,9,10
+
+
+                                        Check for updates                                 Parkinson’s disease (PD) is associated with excessive beta activity in the basal
+                  1234567890():,;
+1234567890():,;
+
+
+
+
+                                                                                          ganglia. Brain sensing implants aim to leverage this biomarker for demand-
+                                                                                          dependent adaptive stimulation. Sleep disturbance is among the most com-
+                                                                                          mon non-motor symptoms in PD, but its relationship with beta activity is
+                                                                                          unknown. To investigate the clinical potential of beta activity as a biomarker
+                                                                                          for sleep quality in PD, we recorded pallidal local ﬁeld potentials during
+                                                                                          polysomnography in PD patients off dopaminergic medication and compared
+                                                                                          the results to dystonia patients. PD patients exhibited sustained and elevated
+                                                                                          beta activity across wakefulness, rapid eye movement (REM), and non-REM
+                                                                                      
+
+=== 11 | 3 PDF pages | deep brain stimulation | Towards adaptive deep brain stimulation for freezing of gait.pdf ===
+https://doi.org/10.1093/brain/awac172                                                                        BRAIN 2022: 145; 2236–2238           | 2236
+
+
+
+
+Towards adaptive deep brain stimulation
+for freezing of gait
+This scientiﬁc commentary refers to ‘Cortical phase-amplitude                    range of the PAC for normal functioning, thus enhancing cortical
+coupling is key to the occurrence and treatment of freezing of                   resistance to abnormal coupling (Fig. 1). These novel ﬁndings raise
+gait’ by Yin et al. (https://doi.org/10.1093/brain/awac121).                     several questions.
+
+Freezing of gait (FoG) is a debilitating symptom affecting over half of
+patients with advanced Parkinson’s disease. Yet, the neurobiologic-
+al basis of FoG is poorly understood, and the available therapies are            What is the neural mechanism underlying elevated
+unsatisfactory. One of the key therapies for Parkinson’s disease,                phase-amplitude coupling and how is it related to
+deep brain stimulation (DBS), is currently undergoing a period of in-            freezing?
+tense innovation. So-called ‘adaptive’ DBS automatically adjusts
+                                                                                 Statistical PAC quantiﬁes how much the phase of a low frequency os-
+the stimulation in response to ﬂuctuating biomarkers such as neur-
+                                                                                 cillation modulates the amplitude of a high frequency oscillation. At
+al synchrony to increase the efﬁcacy of DBS for suppressing brady-
+                                                                                 least two different neural mechanisms can lead to increased PAC: (i)
+kinesia and rigidity while reducing side effects.1
+                                                                                 the interactions between low and high frequency oscillations; and (ii)
+    This success has raised the question of whether DBS can also be
+                                                                                 repeated sharp or non-sinusoidal deﬂections in the waveforms of the
+optimized to treat FoG. Achieving this goal will require identifying
+                                                                                 low frequency oscillation.3,4 Both are forms of elevated synchrony in-
+reliable biomarkers and understanding more completely the neural
+                                                                                 dicative of reduced cortical information processing capabi
+
+=== 12 | 13 PDF pages | optogenetics | A Compact Closed-Loop Optogenetics System Based on Artifact-Free Transparent Graphene Electrodes.pdf ===
+                                                                                                                                               ORIGINAL RESEARCH
+                                                                                                                                              published: 06 March 2018
+                                                                                                                                         doi: 10.3389/fnins.2018.00132
+
+
+
+
+                                            A Compact Closed-Loop
+                                            Optogenetics System Based on
+                                            Artifact-Free Transparent Graphene
+                                            Electrodes
+                                            Xin Liu, Yichen Lu, Ege Iseri, Yuhan Shi and Duygu Kuzum*
+
+                                            Neuroelectronics Group, Department of Electrical and Computer Engineering, University of California, San Diego, La Jolla,
+                                            CA, United States
+
+
+                                            Electrophysiology is a decades-old technique widely used for monitoring activity
+                                            of individual neurons and local field potentials. Optogenetics has revolutionized
+                                            neuroscience studies by offering selective and fast control of targeted neurons and
+                                            neuron populations. The combination of these two techniques is crucial for causal
+                                            investigation of neural circuits and understanding their functional connectivity. However,
+                                            electrical artifacts generated by light stimulation interfere with neural recordings and
+                             Edited by:     hinder the development of compact closed-loop systems for precise control of neural
+                        Jose A. Garrido,
+                                            activity. Here, we demonstrate that transparent graphene micro-electrodes fabricated
+        Institut Català de Nanociència i
+          Nanotecnologia (ICN2), Spain      on a clear polyethylene terephthalate film eliminate the light-induced artifact problem
+                       Reviewed by:         and allow development of a compact battery-powered closed-loop optogenetics
+                    Yasuyuki Ishikawa,      system. We extensively investigate light-induced artifacts for graphene electrodes in
+ 
+
+=== 13 | 34 PDF pages | optogenetics | Closed-Loop and Activity-Guided Optogenetic Control.pdf ===
+                                                                                                                                  Neuron
+
+                                                                                                                    Review
+
+Closed-Loop and Activity-Guided Optogenetic Control
+Logan Grosenick,1,2,3,6 James H. Marshel,1,2,6 and Karl Deisseroth1,2,4,5,*
+1Department of Bioengineering
+2CNC Program
+3Neurosciences Program
+4Department of Psychiatry and Behavioral Sciences
+5Howard Hughes Medical Institute
+
+Stanford University, Stanford, CA 94305 USA
+6Co-first authors
+
+*Correspondence: deissero@stanford.edu
+http://dx.doi.org/10.1016/j.neuron.2015.03.034
+
+
+Advances in optical manipulation and observation of neural activity have set the stage for widespread imple-
+mentation of closed-loop and activity-guided optical control of neural circuit dynamics. Closing the loop op-
+togenetically (i.e., basing optogenetic stimulation on simultaneously observed dynamics in a principled way)
+is a powerful strategy for causal investigation of neural circuitry. In particular, observing and feeding back the
+effects of circuit interventions on physiologically relevant timescales is valuable for directly testing whether
+inferred models of dynamics, connectivity, and causation are accurate in vivo. Here we highlight technical
+and theoretical foundations as well as recent advances and opportunities in this area, and we review in detail
+the known caveats and limitations of optogenetic experimentation in the context of addressing these chal-
+lenges with closed-loop optogenetic control in behaving animals.
+
+
+Introduction                                                            eters), and online system-identification of neural circuits (that
+Closed-loop control theory refers to a large body of work in the        is, choosing optogenetic stimuli online to ‘‘reverse engineer’’
+engineering literature concerned with using an error signal—            neural circuits by causally establishing functional circuit archi-
+that is, the difference between measured output and a desired           tecture), among other possibilities. Moreover, clinical closed-
+target trajectory—to guide changes in control inputs to a system.       loop control of optical stimulation will likely be necessary to build
+Automobile cruise control is a familiar example: the car mea-           and maintain models used to inform next-generation retinal,
+sures its speed and uses error-sensing negative feedback to             cochlear, motor, and neuropsychiatric prosthetics that adap-
+accele
+
+=== 14 | 27 PDF pages | optogenetics | Closed-loop optogenetic control of the dynamics of neural activity in non-human primates.pdf ===
+nature biomedical engineering
+
+Article                                                                                                https://doi.org/10.1038/s41551-022-00945-8
+
+
+Closed-loop optogenetic control of the
+dynamics of neural activity in non-human
+primates
+
+Received: 15 September 2020                         B. Zaaimi1,10,11, M. Turnbull 1,11, A. Hazra1, Y. Wang2, C. Gandara1, F. McLeod 1,
+                                                    E. E. McDermott1, E. Escobedo-Cousin3, A. Shah Idil4, R. G. Bailey 3, S. Tardio3,
+Accepted: 14 August 2022
+                                                    A. Patel3, N. Ponon3, J. Gausden3, D. Walsh 1, F. Hutchings2, M. Kaiser 2,5,6,7,
+Published online: 20 October 2022                   M. O. Cunningham8, G. J. Clowry1, F. E. N. LeBeau1, T. G. Constandinou 9,
+                                                    S. N. Baker 1, N. Donaldson4, P. Degenaar 3, A. O’Neill3, A. J. Trevelyan1 and
+    Check for updates
+                                                    A. Jackson 1
+
+
+                                                    Electrical neurostimulation is effective in the treatment of neurological
+                                                    disorders, but associated recording artefacts generally limit its applications
+                                                    to open-loop stimuli. Real-time and continuous closed-loop control of
+                                                    brain activity can, however, be achieved by pairing concurrent electrical
+                                                    recordings and optogenetics. Here we show that closed-loop optogenetic
+                                                    stimulation with excitatory opsins enables the precise manipulation of
+                                                    neural dynamics in brain slices from transgenic mice and in anaesthetized
+                                                    non-human primates. The approach generates oscillations in quiescent tissue,
+                                                    enhances or suppresses endogenous patterns in active tissue and modulates
+                                                    seizure-like bursts elicited by the convulsant 4-aminopyridine. A nonlinear
+                                                    model of the phase-dependent effects of optical stimulation reproduced
+                                                    the modulation of cycles of local-field potentials associated with seizure
+                                                
+
+=== 15 | 18 PDF pages | optogenetics | Electrophysiology-Based_Closed_Loop_Optogenetic_Brain_Stimulation_Devices_Recent_Developments_.pdf ===
+                IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023                                                                                      91
+
+
+
+
+      Electrophysiology-Based Closed Loop
+  Optogenetic Brain Stimulation Devices: Recent
+       Developments and Future Prospects
+          Lekshmy Sudha Kumari , Student Member, IEEE, and Abbas Z. Kouzani , Member, IEEE
+
+                                                            (Methodological Review)
+
+
+   Abstract—With its potential of single cell specificity, op-                  popularity. DBS is a highly invasive neurosurgical procedure
+togenetics has made the investigation into the brain circuits                   which works in a similar way as artificial cardiac pacemakers.
+more controllable. Closed loop optogenetic brain stimula-                       While a cardiac pacemaker maintains suitable heart rate by
+tion enhances the efficacy of the stimulation by adjusting
+the stimulation parameters based on direct feedback from                        electrically stimulating the heart muscles, a DBS device
+the target area of the brain. It combines the principles of                     delivers electrical stimulation to the target area of the brain
+genetics, physiology, electrical engineering, optics, signal                    using electrodes [2]. The electrodes are invasively implanted
+processing and control theory to create an efficient brain                      into the brain for this purpose. This electrical stimulation helps
+stimulation system. To read the underlying neuronal condi-                      control the neural activity in the target brain region.
+tion from the electrical activity of neurons, a sensor, sensor
+interface circuit, and signal conditioning are needed. Also,                       Along with the developments in DBS techniques, non-
+efficient feature extraction, classification, and control algo-                 invasive and less expensive modes of brain stimulation modali-
+rithms should be in place to interpret and use the sensed                       ties are also being considered [3]. Transcranial magnetic stimu-
+data for closing the feedback loop. Finally, a stimulation                      lation (TMS) is one of those stimulation techniques which is non-
+circuitry is required to effectively control a light source                     invasive, where stimulation is achieved using pulsed magnetic
+to deliver light based stimulation according to the feed-
+back signal. Thus, the backbone to a functioning closed                         field through electromagnetic
+
+=== 16 | 9 PDF pages | optogenetics | optogenetics.pdf ===
+                         Published as: Nat Methods. 2011 January ; 8(1): 26–29.
+HHMI Author Manuscript
+
+
+
+
+                         Optogenetics
+                         Karl Deisseroth
+                         Howard Hughes Medical Institute, Department of Bioengineering and Department of Psychiatry
+                         and Behavioral Sciences, Stanford University, Stanford, California, USA.
+
+                         Abstract
+                              Optogenetics is a technology that allows targeted, fast control of precisely defined events in
+                              biological systems as complex as freely moving mammals. By delivering optical control at the
+                              speed (millisecond-scale) and with the precision (cell type–specific) required for biological
+                              processing, optogenetic approaches have opened new landscapes for the study of biology, both in
+                              health and disease.
+HHMI Author Manuscript
+
+
+
+
+                                           Optogenetics1 is the combination of genetic and optical methods to achieve gain or loss of
+                                           function of well-defined events in specific cells of living tissue. In the broadest sense2,
+                                           optogenetics encompasses a core technology—targetable control tools that respond to light
+                                           and deliver effector function—and enabling technologies for (i) delivering light into tissues
+                                           under investigation, (ii) targeting the control tools to cells of interest and (iii) obtaining
+                                           compatible readouts and performing analysis, such as targeted imaging or electrical
+                                           recording of evoked activity.
+
+                                           Certain elements have been known to exist in earlier forms and in other contexts, though not
+                                           conceptualized or developed as a control technology, as far back3 as 1971, with their
+                                           fundamental transition to the emergence of optogenetics beginning in 2005 (Fig. 1) triggered
+                                           by the demonstration of single-component control tools in neuroscience: microbial opsin
+                                           genes that could safely confer to neurons both light-detection capability and defined high-
+                                           sp
+
+=== 17 | 24 PDF pages | optogenetics | The Development and Application of Optogenetics.pdf ===
+NE34CH17-Deisseroth                                                                                                                                    ARI       21 May 2011       15:22
+Downloaded from www.annualreviews.org. Technische Universiteit Eindhoven (ar-260935) IP: 131.155.239.170 On: Thu, 05 Nov 2026 13:22:23
+
+
+
+
+                                                                                                                                                  ANNUAL
+                                                                                                                                                  REVIEWS   Further                        The Development and
+                                                                                                                                                  Click here for quick links to
+                                                                                                                                                  Annual Reviews content online,
+                                                                                                                                                  including:
+                                                                                                                                                                                           Application of Optogenetics
+                                                                                                                                                 • Other articles in this volume
+                                                                                                                                                 • Top cited articles
+                                                                                                                                                 • Top downloaded articles
+                                                                                                                                                                                           Lief Fenno,1,2 Ofer Yizhar,1 and Karl Deisseroth1,3,4
+                                                                                                                                                 • Our comprehensive search                1
+                                                                                                                                                                                            Department of Bioengineering, 2 Neuroscience Program, 3 Dep
+
+=== 18 | 35 PDF pages | optogenetics | Wireless closed-loop optogenetics across the.pdf ===
+    Articles
+    https://doi.org/10.1038/s41587-021-01019-x
+
+
+
+
+Wireless closed-loop optogenetics across the
+entire dorsoventral spinal cord in mice
+Claudia Kathe 1,2,11, Frédéric Michoud 3,11, Philipp Schönle4,11, Andreas Rowald1,2, Noé Brun4,
+Jimmy Ravier1,2, Ivan Furfaro3, Valentina Paggi 3, Kyungjin Kim3, Sadaf Soloukey 5,6,
+Leonie Asboth1,2, Thomas H. Hutson 1,2, Ileana Jelescu 7, Antoine Philippides8, Noaf Alwahab3,
+Jérôme Gandar1,2, Daniel Huber8, Chris I. De Zeeuw5,9, Quentin Barraud1,2, Qiuting Huang4,
+Stéphanie P. Lacour 3,12 ✉ and Grégoire Courtine 1,2,10,12 ✉
+
+Optoelectronic systems can exert precise control over targeted neurons and pathways throughout the brain in untethered
+animals, but similar technologies for the spinal cord are not well established. In the present study, we describe a system for
+ultrafast, wireless, closed-loop manipulation of targeted neurons and pathways across the entire dorsoventral spinal cord in
+untethered mice. We developed a soft stretchable carrier, integrating microscale light-emitting diodes (micro-LEDs), that con-
+forms to the dura mater of the spinal cord. A coating of silicone–phosphor matrix over the micro-LEDs provides mechanical
+protection and light conversion for compatibility with a large library of opsins. A lightweight, head-mounted, wireless platform
+powers the micro-LEDs and performs low-latency, on-chip processing of sensed physiological signals to control photostimula-
+tion in a closed loop. We use the device to reveal the role of various neuronal subtypes, sensory pathways and supraspinal
+projections in the control of locomotion in healthy and spinal-cord injured mice.
+
+
+
+
+O
+         ptogenetics has opened up unprecedented possibilities                 structures and movement-related mechanical stress. Physiologically,
+         for controlling targeted cells and pathways of the nervous            high irradiance leads to local heating of tissue due to light absorp-
+         system with high spatiotemporal precision1–3. The ability             tion, which may alter neuronal responses20. Moreover, avoidance of
+to dissect and manipulate the mechanisms underlying brain func-                tissue damage while ensuring efficient photostimulation requires
+tions in health and disease has triggered the development of myriad            embedding light-emitting sources within protective substrates that
+systems to deliver photostimulation to peripheral nerves and the               must conform to the topology, compliance and dynamics of spinal
+nerves in the brain4–12.                                      
+
+=== 19 | 14 PDF pages | parkinsons | 1-s2.0-B9780443219924000130-main.pdf ===
+                                                     C H A P T E R
+
+
+
+                                                        17
+Reevaluating the role of the STN-GPe network
+  in generating beta synchronized oscillatory
+           activity in parkinsonism
+Brice De la Crompe1, Marc Deffains2, Arthur Leblois3 and Nicolas Mallet3,*
+   1
+  University Bordeaux, CNRS, INCIA, UMR 5287, Bordeaux, France; 2CNRS, Universit�e d Bordeaux, Institute of
+Neurodegenerative Diseases, Bordeaux, France; 3CNRS, Universit�e de Bordeaux, Institute of Neurodegenerative Diseases,
+                                                 Bordeaux, France
+                            *Corresponding author: E-mail: nicolas.mallet@u-bordeaux.fr
+
+
+   1. From normal to abnormal BG dynamics                     BG (Fig. 17.1B). Rate modifications include hyperactivity
+ following the loss of dopamine in parkinsonism               of the indirect D2-expressing striatal projection neurons
+                                                              (D2-SPNs) and hypoactivity of the direct D1-expressing
+    BG circuits play a crucial role in learning, selecting,   striatal projection neurons (D1-SPNs) [15,16], although
+and optimizing actions that lead to rewarding outcomes.       these changes in activity depend on the motor state—for
+Early models suggested that these functions are medi-         example, during locomotion versus immobility [17,18].
+ated through firing rate changes across BG networks,          Together, these rate modification are thought to lead to
+starting at the level of the striatum and ultimately lead-    an excessive inhibition of motor programs via increased
+ing to motor program disinhibition in the thalamo-            BG GABAergic output to the thalamo-cortical and brain-
+cortical system [1,2]. Such “rate-coding models” have         stem motor regions. However, experimental data sup-
+been highly influential in shaping our understanding          porting this BG output hyperactivity remain
+of the anatomo-functional organization of BG circuits         conflicting [19–23,23a]. In parallel to these rate changes,
+(Fig. 17.1A), and the behavioral consequences of firing       dopamine depletion also disrupts the expression of beta
+rate changes in BG have been demonstrated experimen-          oscillations, shifting them from a highly transient and
+tally. Indeed, selective opto- or pharmacogenetic manip-      dynamic nature to more prolonged and powerful beta
+ulation of striatal direct or indirect neurons in the motor   bursts, as most prominently observed in PD patients
+loop profound
+
+=== 20 | 19 PDF pages | parkinsons | jneuro-44-e0419232023.pdf ===
+                                                                                                                                  1–19 • The Journal of Neuroscience, February 28, 2024 • 44(9):e0419232023
+
+
+
+
+Systems/Circuits
+
+
+Synaptic Changes in Pallidostriatal Circuits Observed in the
+Parkinsonian Model Triggers Abnormal Beta Synchrony
+with Accurate Spatio-temporal Properties across the Basal
+Ganglia
+   Shiva Azizpour Lindi,                            Nicolas P. Mallet, and                          Arthur Leblois
+CNRS, Institut des Maladies Neurodégénératives (IMN), UMR 5293, Université de Bordeaux, Bordeaux F-33000, France
+
+Excessive oscillatory activity across basal ganglia (BG) nuclei in the β frequencies (12–30 Hz) is a hallmark of Parkinson’s disease
+(PD). While the link between oscillations and symptoms remains debated, exaggerated β oscillations constitute an important bio-
+marker for therapeutic effectiveness in PD. The neuronal mechanisms of β-oscillation generation however remain unknown. Many
+existing models rely on a central role of the subthalamic nucleus (STN) or cortical inputs to BG. Contrarily, neural recordings and
+optogenetic manipulations in normal and parkinsonian rats recently highlighted the central role of the external pallidum (GPe) in
+abnormal β oscillations, while showing that the integrity of STN or motor cortex is not required. Here, we evaluate the mechanisms
+for the generation of abnormal β oscillations in a BG network model where neuronal and synaptic time constants, connectivity, and
+ﬁring rate distributions are strongly constrained by experimental data. Guided by a mean-ﬁeld approach, we show in a spiking neural
+network that several BG sub-circuits can drive oscillations. Strong recurrent STN-GPe connections or collateral intra-GPe connec-
+tions drive γ oscillations (>40 Hz), whereas strong pallidostriatal loops drive low-β (10–15 Hz) oscillations. We show that pathophys-
+iological strengthening of striatal and pallidal synapses following dopamine depletion leads to the emergence of synchronized
+oscillatory activity in the mid-β range with spike-phase relationships between BG neuronal populations in-line with experiments.
+Furthermore, inhibition of GPe, contrary to STN, abolishes oscillations. Our modeling study uncovers the neural mechanisms under-
+lying PD β oscillations and may thereby guide the future development of therapeutic strategies.
+Key words: basal ganglia; beta oscillation; globus pallidus; pallidostriatal; Parkinson's disease; spiking neural network
+
+
+
+     Signiﬁcance Statement
+     In Parkinson’s diseas
+
+=== 21 | 31 PDF pages | parkinsons | journal.pcbi.1010645.pdf ===
+PLOS COMPUTATIONAL BIOLOGY
+
+
+                                                    RESEARCH ARTICLE
+
+                                                    Dopamine depletion leads to pathological
+                                                    synchronization of distinct basal ganglia loops
+                                                    in the beta band
+                                                    Andrea Ortone ID1,2,3, Alberto Arturo Vergani2,3, Mahboubeh Ahmadipour ID2,3,
+                                                    Riccardo Mannella1, Alberto Mazzoni ID2,3*
+                                                    1 Dipartimento di Fisica, Università di Pisa, Pisa, Italy, 2 The BioRobotics Institute, Scuola Superiore
+                                                    Sant’Anna, Pontedera, Italy, 3 Department of Excellence in Robotics and AI, Scuola Superiore Sant’Anna,
+                                                    Pisa, Italy
+a1111111111
+a1111111111                                         * alberto.mazzoni@santannapisa.it
+a1111111111
+a1111111111
+a1111111111
+                                                    Abstract
+                                                    Motor symptoms of Parkinson’s Disease (PD) are associated with dopamine deficits and
+                                                    pathological oscillation of basal ganglia (BG) neurons in the β range ([12-30] Hz). However,
+   OPEN ACCESS                                      how dopamine depletion affects the oscillation dynamics of BG nuclei is still unclear. With a
+Citation: Ortone A, Vergani AA, Ahmadipour M,       spiking neurons model, we here capture the features of BG nuclei interactions leading to
+Mannella R, Mazzoni A (2023) Dopamine depletion     oscillations in dopamine-depleted condition. We highlight that both the loop between sub-
+leads to pathological synchronization of distinct   thalamic nucleus (STN) and Globus Pallidus pars externa (GPe) and the loop between stria-
+basal ganglia loops in the beta band. PLoS Comput
+                                                    tal fast spiking and medium spiny neurons and GPe display resonances in the β range, and
+Biol 19(4): e1010645. https://doi.org/10.1371/
+journal.pcbi.1010645                                synchronize to a common β frequency through interaction. Crucially, the synchronization
+                                                    depends on dopamine depletion: the two loops are largely independent for high levels of
+Editor: Jonathan David Touboul, Brandeis
+University, UNITED STATES     
+
+=== 22 | 14 PDF pages | parkinsons | Movement Disorders - 2026 - Koeglsperger - Adaptive Deep Brain Stimulation for Parkinson s Disease  Navigating the.pdf ===
+                                                                GAPS & CONTROVERSY
+
+
+       Adaptive Deep Brain Stimulation for Parkinson’s Disease: Navigating
+                   the Roadblocks to Clinical Implementation
+         Thomas Koeglsperger, MD,1,2* Maximilian Scherer, PhD,2 Andrea A. Kühn, MD,3,4,5,6,7 Alexandre Eusebio, MD,8,9
+                               Alfonso Fasano, MD,10,11,12,13 and Joachim K. Krauss, MD14,15
+
+
+
+
+     A B S T R A C T : Adaptive deep brain stimulation (aDBS)                                                          technical considerations, factors such as patient selec-
+     represents an important evolution in the treatment of                                                             tion, ethical frameworks, and cost-effectiveness remain
+     Parkinson’s disease (PD), building on conventional DBS                                                            important determinants of broader implementation. Con-
+     (cDBS) by adjusting stimulation in response to real-time                                                          tinued progress will depend on the development of
+     physiological signals. By enabling dynamic targeting of                                                           robust and ﬂexible control strategies that incorporate
+     disease-related neural activity, aDBS offers the potential                                                        multimodal biomarkers, including wearable-derived
+     for more precise modulation of motor symptoms. Addi-                                                              motor metrics and patient-reported outcomes, to support
+     tional     anticipated    advantages     include     reduced                                                      personalized therapy. With an expanding evidence base
+     stimulation-related side effects and improved energy efﬁ-                                                         and recent regulatory approvals, aDBS is increasingly
+     ciency, supporting long-term device performance.                                                                  transitioning from an experimental concept to a viable
+     Although clinical uptake is still at an early stage, growing                                                      clinical tool. Future efforts should prioritize the translation
+     experience has highlighted both opportunities and areas                                                           of research paradigms into scalable clinical workﬂows
+     requiring further reﬁnement. Key challenges include inter-            
+
+=== 23 | 13 PDF pages | parkinsons | Oscilattions in the Subthalamic Nucleus.pdf ===
+12340 • The Journal of Neuroscience, September 15, 2010 • 30(37):12340 –12352
+
+
+
+
+Neurobiology of Disease
+
+
+Conditions for the Generation of Beta Oscillations in the
+Subthalamic Nucleus–Globus Pallidus Network
+Alejo J. Nevado Holgado,1 John R. Terry,2 and Rafal Bogacz1
+1Department of Computer Science, University of Bristol, Bristol BS8 1UB, United Kingdom, and 2Department of Engineering Mathematics, University of
+Bristol, Bristol BS8 1TR, United Kingdom
+
+
+
+The advance of Parkinson’s disease is associated with the existence of abnormal oscillations within the basal ganglia with frequencies in the beta
+band (13–30 Hz). While the origin of these oscillations remains unknown, there is some evidence suggesting that oscillations observed in the
+basalgangliaariseduetointeractionsoftwonuclei:thesubthalamicnucleus(STN)andtheglobuspallidusparsexterna(GPe).Toinvestigatethis
+hypothesis, we develop a computational model of the STN–GPe network based upon anatomical and electrophysiological studies. Significantly,
+our study shows that for certain parameter regimes, the model intrinsically oscillates in the beta range. Through an analytical study of the model,
+we identify a simple set of necessary conditions on model parameters that guarantees the existence of beta oscillations. These conditions for
+generation of oscillations are described by a set of simple inequalities and can be summarized as follows: (1) The excitatory connections from
+STN to GPe and the inhibitory connections from GPe to STN need to be sufficiently strong. (2) The time required by neurons to react to their
+inputs needs to be short relative to synaptic transmission delays. (3) The excitatory input from the cortex to STN needs to be high relative to the
+inhibition from striatum to GPe. We confirmed the validity of these conditions via numerical simulation. These conditions describe changes in
+parameters that are consistent with those expected as a result of the development of Parkinson’s disease, and predict manipulations that could
+inhibit the pathological oscillations.
+
+
+
+Introduction                                                                                                          (Bogacz and Gurney, 2007). In the diseased state, prominent coher-
+Parkinson’s disease is attributed to the death of dopaminergic                                                        ent oscillations in firing rate are observed in both nuclei (Bevan et al.,
+neurons of the substantia nigra pars compacta (Jankovic, 2008), a                                                     2002; Boraud et al., 2005; Mallet et al.

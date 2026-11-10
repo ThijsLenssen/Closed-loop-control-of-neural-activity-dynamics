@@ -1,0 +1,71 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries Photon Shot Noise Limits on Optical Detection of Neuronal Spikes and Estimation of Spike Timing\par}
+
+\textbf{Paper:} Wilt, Fitzgerald and Schnitzer (2013),
+\emph{Biophysical Journal} 104:51--62.\quad Theory, simulations and
+comparison with published optical recordings.\par
+\href{https://doi.org/10.1016/j.bpj.2012.07.058}{DOI: \nolinkurl{10.1016/j.bpj.2012.07.058}}\par
+{\footnotesize Page references below use PDF page numbers.}
+
+\question{To which general question does this paper relate?}
+How accurately can optical recordings reveal neuronal spikes, and what
+does this imply for estimating population firing-rate states? It concerns
+measurement, not stimulation or synthesis of a neural controller.
+
+\question{How does it answer the general questions?}
+\textbf{Measured signal.} Calcium/voltage indicators produce fluorescence
+from which spikes are inferred. Photon counts are Poisson-distributed:
+their variance equals their mean. The single-spike model is
+$F(t)=F_0+A e^{-t/\tau}\mathbf1_{t\ge0}$, where $F_0$ includes baseline
+and unwanted background, $A$ is the fluorescence increment and $\tau$
+its decay time (PDF pp.~1--2).
+
+\textbf{Usable insight.} For small relative transients, sufficient photon
+counts and sampling rate $\nu$ with $\nu\tau>1$, spike discriminability is
+\[
+ d'\approx\frac{\Delta F}{F}\sqrt{\frac{F_0\tau}{2}}
+       =A\sqrt{\frac{\tau}{2F_0}}.
+\]
+Larger relative responses and less unwanted background improve detection.
+Longer transients collect more photons but impair timing and separation
+of nearby spikes. Faster sampling alone does not ensure better estimates.
+Likelihood-based detection quantifies missed-spike/false-alarm tradeoffs
+(PDF pp.~3--7, 9--11).
+
+\textbf{Timing and feedback.} Detection and timing are distinct tasks.
+For $d'=5$, $\tau=0.15$~s and $\nu=20$~Hz, the calculated timing-error
+standard-deviation lower bound is 20.7~ms. This bound applies to unbiased
+estimators and need not be attained; it is not an online processing-delay
+guarantee (PDF pp.~6--7, 10).
+
+\textbf{Model relevance (derived).} A possible population-rate observation
+approximation, with $r$ the firing-rate state and $c$ an indicator state, is
+\[
+ \dot c=-c/\tau+q r,\qquad
+ Y_k\sim\operatorname{Poisson}\!\left(
+   \int_{t_k}^{t_{k+1}}[F_0+\alpha c(t)]\,dt\right).
+\]
+This motivates an observer that includes indicator dynamics and counting
+noise; it does not establish observability. Averaging reconstructed spikes
+from representative neurons can estimate a population rate. The paper
+does not validate this population model or direct full-state feedback.
+
+\textbf{Limits.} The main analysis concerns isolated/sparse spikes,
+linear unsaturated responses, known waveforms and already separated cells.
+Motion, optical mixing, saturation and overlapping spikes can worsen
+performance. The bounds are ideal limits; technology comparisons describe
+2013 devices, rather than current optical capability (PDF pp.~2, 7, 9--11).
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item Yaksi and Friedrich (2006), \emph{Reconstruction of firing rate changes
+across neuronal populations by temporally deconvolved Ca$^{2+}$ imaging}
+(ref.~24): directly relevant to population-rate reconstruction.
+\item Vogelstein et al. (2010), \emph{Fast nonnegative deconvolution for
+spike train inference from population calcium imaging} (ref.~18).
+\item Grewe et al. (2010), \emph{High-speed in vivo calcium imaging reveals
+neuronal network activity with near-millisecond precision} (ref.~15).
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,25 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries A Compact Closed-Loop Optogenetics System Based on Artifact-Free Transparent Graphene Electrodes\par}
+
+\textbf{Paper:} Liu et al. (2018).\quad Electrode and feedback-hardware validation.\par
+\href{https://doi.org/10.3389/fnins.2018.00132}{DOI: \nolinkurl{10.3389/fnins.2018.00132}}\par
+{\footnotesize Page references below use PDF page numbers, including front matter.}
+
+\question{To which general question does this paper relate?}
+Practical measurement during optogenetic stimulation and implementation latency. Relevant to the sensor/actuator interface, rather than the origin of neurological symptoms.
+
+\question{How does it answer the general questions?}
+\textbf{Measured and controlled.} Transparent graphene electrodes reduced light-induced recording artifacts compared with gold electrodes under the tested conditions. A portable acquisition/microcontroller/LED system triggered light using a threshold detector (PDF pp.~2--10).
+
+\textbf{Validation boundary.} Closed-loop tests used artificial electrical signals applied in saline, not demonstrated feedback regulation of an animal's neural activity. The reported approximately $40\,\mu\mathrm{s}$ processing response is a hardware-test result, not the total physiological sensor-to-neuron delay (PDF pp.~10--11).
+
+\textbf{Model relevance.} Supports separating electrical sensing, signal processing and optical actuation. Residual artifacts and total loop delay should be characterized in the actual preparation. The equivalent circuit explains electrode artifacts; it is not a fitted neural-network model. Seizure-control applications discussed in the paper are proposed uses or prior work, so this paper does not establish beta suppression or another disease-specific control objective.
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item Paz et al. (2013), \emph{Closed-loop optogenetic control of thalamus as a tool for interrupting seizures after cortical injury}: biological feedback validation (references, PDF p.~13).
+\item Siegle and Wilson (2014), \emph{Enhancement of encoding and retrieval functions through theta phase-specific manipulation of hippocampus}: phase-dependent intervention (PDF p.~13).
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,978 @@
+                                                                GAPS & CONTROVERSY
+
+
+       Adaptive Deep Brain Stimulation for Parkinson’s Disease: Navigating
+                   the Roadblocks to Clinical Implementation
+         Thomas Koeglsperger, MD,1,2* Maximilian Scherer, PhD,2 Andrea A. Kühn, MD,3,4,5,6,7 Alexandre Eusebio, MD,8,9
+                               Alfonso Fasano, MD,10,11,12,13 and Joachim K. Krauss, MD14,15
+
+
+
+
+     A B S T R A C T : Adaptive deep brain stimulation (aDBS)                                                          technical considerations, factors such as patient selec-
+     represents an important evolution in the treatment of                                                             tion, ethical frameworks, and cost-effectiveness remain
+     Parkinson’s disease (PD), building on conventional DBS                                                            important determinants of broader implementation. Con-
+     (cDBS) by adjusting stimulation in response to real-time                                                          tinued progress will depend on the development of
+     physiological signals. By enabling dynamic targeting of                                                           robust and ﬂexible control strategies that incorporate
+     disease-related neural activity, aDBS offers the potential                                                        multimodal biomarkers, including wearable-derived
+     for more precise modulation of motor symptoms. Addi-                                                              motor metrics and patient-reported outcomes, to support
+     tional     anticipated    advantages     include     reduced                                                      personalized therapy. With an expanding evidence base
+     stimulation-related side effects and improved energy efﬁ-                                                         and recent regulatory approvals, aDBS is increasingly
+     ciency, supporting long-term device performance.                                                                  transitioning from an experimental concept to a viable
+     Although clinical uptake is still at an early stage, growing                                                      clinical tool. Future efforts should prioritize the translation
+     experience has highlighted both opportunities and areas                                                           of research paradigms into scalable clinical workﬂows
+     requiring further reﬁnement. Key challenges include inter-                                                        that effectively balance automation with individualized
+     individual variability in biomarker expression, diversity in                                                      patient care. © 2026 The Author(s). Movement Disorders
+     programming approaches, and ongoing debate regarding                                                              published by Wiley Periodicals LLC on behalf of Interna-
+     optimal thresholds and response latencies. The clinical                                                           tional Parkinson and Movement Disorder Society.
+     signiﬁcance of short-term local ﬁeld potential (LFP)
+     recordings continues to be actively investigated, particu-                                                        Key Words: adaptive DBS; biomarker; control algo-
+     larly in the context of signal artifacts, physiological vari-                                                     rithm; deep brain stimulation (DBS); Parkinson’s disease
+     ability, and current hardware limitations. Beyond
+
+
+
+
+  Deep brain stimulation (DBS) of the subthalamic                                                                      established therapy for advanced Parkinson’s disease
+nucleus (STN) or globus pallidus internus (GPi) is an                                                                  (PD), providing sustained motor improvement, reduced
+
+- German
+1
+  - - - - - - -Center            - - - - - - - - - - - - - - - -Diseases
+               - - - - - -for- - Neurodegenerative                              - - - - - - Munich,
+                                                                - - - - - - - -(DZNE),                                        - - - - - - - - - -in- -any
+                                                                                            - - - - - - - - - - - - - - - - -reproduction                    - - - - - - - -provided
+                                                                                                                                                                             - - - - - - -the
+                                                                                                                                                       - - - medium,                            - - - - - - work
+                                                                                                                                                                                           - - -original                 -----------
+                                                                                                                                                                                                            - - - - -is- properly
+Germany; 2Department of Neurology, LMU University Hospital, LMU                                                        cited.
+Munich, Munich, Germany; 3Berlin Institute of Health at Charité – Uni-
+versitätsmedizin Berlin, Berlin, Germany; 4Bernstein Center for Compu-                                                 *Correspondence to: Dr. Thomas Koeglsperger, Department of Neurol-
+tational Neuroscience, Humboldt Universität zu Berlin, Berlin, Germany;                                                ogy, LMU University Hospital, Marchioninistr. 15, 81377 Munich,
+5
+  Exzellenzcluster NeuroCure, Charité - Universitätsmedizin Berlin, Ber-                                               Germany; E-mail: thomas.koeglsperger@med.uni-muenchen.de
+lin, Germany; 6Berlin School of Mind and Brain, Humboldt - Universität                                                 Thomas Koeglsperger and Maximilian Scherer contributed equally.
+zu Berlin, Berlin, Germany; 7German Center for Neurodegenerative Dis-
+eases (DZNE), Berlin, Germany; 8APHM, Department of Neurology and                                                      Financial Disclosures and Conﬂicts of Interest: The authors declare
+Movement Disorders, Timone University Hospital, Marseille, France;                                                     that there is no conﬂict of interest. Author disclosures are available in
+9
+  Aix- Marseille University, Institut de Neurosciences de la Timone,UMR                                                the Supporting Information.
+7289 CNRS-AMU, Marseille, France; 10Edmond J Safra Program in
+Parkinson’s disease and Morton and Gloria Shulman Movement Disor-                                                      Funding agencies: T.K. has been supported by the MCSP. A.A.K. was
+ders Centre, Toronto Western Hospital, UHN and Division of Neurology,                                                  funded by the Deutsche Forschungsgemeinschaft (DFG, German
+University of Toronto, Toronto, Ontario, Canada; 11Krembil Brain Insti-                                                Research Foundation)-Project-ID 424778381-TRR 295.
+tute, Toronto, Ontario, Canada; 12Department of Biomedical Sciences,                                                   Received: 14 January 2026; Revised: 13 February 2026; Accepted: 23
+Humanitas University, Milan, Italy; 13IRCCS Humanitas Research Hospi-                                                  February 2026
+tal, Milan, Italy; 14Department of Neurosurgery, Hannover Medical
+School, Hannover, Germany; 15Center for Systems Neuroscience, Han-                                                     Published online 1 April 2026 in Wiley Online Library
+nover, Germany                                                                                                         (wileyonlinelibrary.com). DOI: 10.1002/mds.70284
+This is an open access article under the terms of the Creative
+Commons Attribution License, which permits use, distribution and
+
+
+
+1370              Movement Disorders, Vol. 41, No. 6, 2026
+                                                                                                                                                             15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                           G A P S      A N D     C O N T R O V E R S I E S           I N     A D A P T I V E        D B S
+
+
+medication burden, and improved quality of life.1-3                             indicate beneﬁt in selected patients.20,21 While research is
+Clinical outcomes depend strongly on postoperative                              also extending to other movement and psychiatric
+programming, a complex and iterative process to bal-                            disorders,22-28 we focus here on key gaps and controversies
+ance efﬁcacy and side effects.4-7 Conventional DBS                              in aDBS for PD, the most common DBS indication.
+(cDBS) delivers continuous stimulation independent of
+clinical or electrophysiological state and, although
+effective, may be associated with stimulation-induced                                                What We Know
+side effects8-12 and incomplete motor control.13 Adap-                                                Control Strategies
+tive DBS (aDBS) introduces closed-loop control using
+                                                                                   Current aDBS systems translate electrophysiological
+real-time physiological feedback to optimize stimulation                        biomarkers into real-time stimulation via a controller–
+delivery (Fig. 1; Table 1).                                                     driver architecture. Controllers are typically single-
+   Current aDBS paradigms primarily use LFPs, especially                        threshold (ST), or dual-threshold (DT) (Fig. 2).18,29,30
+β-band oscillations (13–30 Hz), as biomarkers of motor                          ST controllers activate stimulation when a biomarker
+state, although alternative signals and control strategies are                  crosses a preset threshold,31-34 whereas DT controllers
+under investigation.14 By adjusting stimulation in real time,                   use upper and lower thresholds to buffer ﬂuctuations.35
+aDBS aims to deliver more targeted neuromodulation. The                         Drivers implement either binary or (pseudo-)continuous
+Medtronic Percept PC (Medtronic, Minneapollis, MN,                              stimulation. ST approaches rapidly suppress pathologi-
+USA), introduced in 2020, was the ﬁrst clinically approved                      cal β bursts (13–30 Hz),36-40 whereas DT approaches
+DBS system enabling chronic sensing outside epilepsy,15                         track broader oscillatory dynamics, including β sup-
+and additional platforms from AlphaDBS (Newronica,                              pression or γ activity (60–90 Hz) associated with effec-
+Milan, Italy), PINS Medical (Pins Medical Co., Beijing,                         tive motor performance.41-43
+China), and Picostim (Amber Therapeutics, Didcot, GB)
+continue to expand aDBS capabilities and biomarker vali-
+dation.16-18 Although early studies suggest improved                                                       Biomarkers
+energy efﬁciency and fewer side effects, clear superiority                        Most PD devices analyze neural oscillations via
+over cDBS has not been established,19 although recent data                      onboard Fourier transforms focusing on single β peaks
+
+
+
+
+FIG. 1. Schematic illustrating the integration of multiple feedback signals into adaptive deep brain stimulation (aDBS) control routine. [Color ﬁgure can
+be viewed at wileyonlinelibrary.com]
+
+
+
+
+                                                                                                          Movement Disorders, Vol. 41, No. 6, 2026    1371
+                                                                                                                                                                                        15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+K O E G L S P E R G E R                E T      A L
+
+
+TABLE 1 . Comparison of cDBS and aDBS
+ Feature                                        cDBS                                          aDBS                                             Key implication
+
+ Stimulation pattern                 Continuous, open-loop                   Feedback-controlled, closed-loop                    aDBS tailors therapy to patient state
+ Biomarker use                       None                                    β, γ, PAC, wearable signals                         aDBS requires reliable biomarkers
+ Adjustability                       Manual programming                      Automated adaptation                                Reduces need for clinician intervention
+ Energy use                          Higher overall                          Lower stimulation but added                         Battery savings uncertain, may depend
+                                                                               sensing power                                       on system
+ Clinical evidence                   Large, long-term                        Emerging, limited cohorts                           aDBS still in translational phase
+ Best candidate proﬁle               Broad PD population                     Patients with stable biomarker                      Patient selection remains critical
+                                                                               expression
+ Note: Key distinguishing features of stimulation patterns, biomarker utilization, adaptability, energy demands, level of clinical evidence, and patient selection considerations are
+ summarized. The table highlights how aDBS introduces feedback-based modulation, but requires reliable physiological biomarkers and individualized control strategies.
+ Abbreviations: cDBS, conventional DBS; aDBS, adaptive DBS; PAC, phase-amplitude coupling; PD, Parkinson’s disease.
+
+
+
+(Table 2). In PD, oscillatory activity across frequency                                        motor-related modulation, and can entrain to DBS fre-
+bands relates to distinct motor (tremor, bradykinesia,                                         quency, making it a practical target for chronic aDBS
+and freezing) and non-motor symptoms.15,44-53 β-band                                           despite being less studied than β oscillations.51,67
+oscillations in the STN and GPi are a hallmark of                                              DBS-induced neural entrainment provides an additional
+bradykinesia and (to a lesser extent) rigidity, and are                                        candidate biomarker, with STN γ synchronizing to
+exaggerated off medication, and align spatially with                                           stimulation harmonics under dopaminergic therapy and
+optimal dorsolateral STN stimulation sites.54-58 Sup-                                          correlating with improved motor function.68-72 Other
+pression of elevated β activity coincides with symptom                                         advanced biomarkers include phase-amplitude coupling
+relief and correlates with disease severity, establishing β                                    (PAC) between β and HFOs, capturing interactions
+power as a real-time aDBS biomarker.59-63 Subthalamic                                          across frequency bands.73-75 Although conceptually
+high-frequency oscillations (HFOs) (200–500 Hz) are                                           promising, current hardware does not support on-
+pro-kinetic biomarkers reduced in untreated PD and                                             board PAC analysis. Beyond electrophysiology, non-
+shifted to approximately 350 Hz with dopaminergic                                              electrophysiological biomarkers such as wearable
+therapy,64-66 but are difﬁcult to capture with current                                         motion sensors (already incorporated into Medtronic’s
+aDBS hardware because of sampling limitations. In                                              Percept device),76-81 radiowave-based systems com-
+contrast, ﬁnely tuned gamma (FTG) (60–70 Hz) lies                                              bined with artiﬁcial intelligence (AI) analysis or motor
+within the detectable range of implanted systems, shows                                        function82,83 and facial expressions, or voice84,85 can
+
+
+
+
+FIG. 2. Schematic overview over feedback signals, sources, controller types, and drivers. [Color ﬁgure can be viewed at wileyonlinelibrary.com]
+
+
+
+1372         Movement Disorders, Vol. 41, No. 6, 2026
+                                             TABLE 2 Electrophysiological and peripheral biomarkers investigated for aDBS control in Parkinson’s disease
+                                                                                                                                        Clinical                                                                                                                           Current aDBS
+                                              Biomarker                                    Frequency/type                             association                                Strengths                                     Limitations                                readiness/notes                              Validation status
+
+                                              β LFP power                            13–30 Hz                                     Rigidity,                           Well-validated, real-                          Absent in a proportion                          Primary biomarker for                           Validated in multiple
+                                                                                                                                    bradykinesia                       time sensing; widely                            of patients; weak for                           aDBS                                            cohorts (chronic
+                                                                                                                                                                       used                                            tremor                                                                                          human data)
+                                              β burst duration                       13–30 Hz (time-domain)                       Symptom                             Captures dynamics                              Variable across patients                        Increasing adoption;                            Single-center/limited
+                                                                                                                                    ﬂuctuations                         better than power                                                                              useful for feedback                              cohort (acute +
+                                                                                                                                                                                                                                                                       control                                          early chronic)
+                                              TF                                     4–6 Hz (resting tremor)                     Tremor onset /                      Directly reﬂects                               Latency of appearance                           Can be combined with                            Single-center/limited
+                                                                                                                                    intensity                           peripheral tremor;                             must be considered;                             β for tremor-                                    cohort
+                                                                                                                                                                        may complement β                               variable                                        dominant PD
+                                              FTG                                    60–90 Hz                                     Medication                          Reﬂects dopaminergic                           Less studied; lower                             Promising, emerging                             Single-center
+                                                                                                                                   state/                              state; movement-                                SNR                                             for levodopa-                                    feasibility (chronic
+                                                                                                                                   dyskinesias                         related                                                                                         dependent                                        human)
+                                                                                                                                                                                                                                                                       modulation
+                                                                                                                                                                                                                                                                                                                                                                     G A P S
+
+
+
+
+                                              Stimulation-entrained γ                1/2 DBS frequency                           Predicts motor                      Works even when β is                           Requires more                                   Strong emerging                                 Single-center
+                                                                                                                                    ﬂuctuations                        suppressed by DBS                              computation                                       candidate; real-time                            feasibility
+                                                                                                                                                                                                                                                                        implementation                                  (chronic human)
+                                                                                                                                                                                                                                                                        feasible
+                                                                                                                                                                                                                                                                                                                                                                     A N D
+
+
+
+
+                                              PAC (β–HFO coupling)                   Cross-frequency                              Symptom                             Provides mechanistic                           Not supported in                                Research phase; not                             Experimental/ofﬂine
+                                                                                                                                    severity;                           understanding                                 current implants                                yet clinically                                   only
+                                                                                                                                    mechanistic                                                                                                                       implemented
+                                                                                                                                    insight
+                                              HFO                                    200–500 Hz                                   Movement                            Fast changes allow                             Less studied; requires                          Potential for faster                            Intraoperative/
+                                                                                       (slow HFO 200–300,                          onset,                               rapid triggering;                              high sampling rates                             aDBS triggering,                                 short-term only
+                                                                                       fast HFO 300–500)                           dopaminergic                         prokinetic                                                                                     especially combined
+                                                                                                                                   state                                                                                                                               with TF and β
+                                              Wearable kinematic sensors             n/a                                          Tremor, gait,                       High resolution;                               Requires integration                            High potential for                              Validated in multiple
+                                                                                                                                                                                                                                                                                                                                                                     C O N T R O V E R S I E S
+
+
+
+
+                                                                                                                                    OFF-time,                           multi-symptom                                 with implant system                              multimodal aDBS,                                cohorts
+                                                                                                                                    freezing of                         monitoring                                                                                     especially gait and                             (non-invasive)
+                                                                                                                                                                                                                                                                                                                                                                     I N
+
+
+
+
+                                                                                                                                    gait                                                                                                                               FOG
+                                              Patient reported feedback              n/a                                          Symptom                             Captures subjective                            Subjective, low                                 Can be integrated via                           Validated as outcome
+                                                                                                                                    perception,                         experience;                                    temporal resolution,                            apps or controllers to                          measure;
+                                                                                                                                    OFF periods,                        complements                                    compliance-                                     modulate aDBS in                                exploratory as
+                                                                                                                                    side effects                        objective signals                              dependent                                       real-time                                       control signal
+
+
+
+
+  Movement Disorders, Vol. 41, No. 6, 2026
+                                                                                                                                                                                                                                                                                                                                                                     A D A P T I V E
+
+
+
+
+                                              Note: Summary of principal candidate biomarkers, including associated frequency ranges, motor symptom correlates, strengths, limitations, and estimated readiness for clinical deployment. Note that validation refers to reproducibility of
+                                              the biomarker–symptom relationship rather than clinical endorsement or demonstrated superiority in adaptive DBS trials.
+                                              Abbreviations: aDBS, adaptive deep brain stimulation; FOG, freezing of gait; FTG, ﬁnely tuned gamma; HFO, high-frequency oscillations; LFP, local ﬁeld potential; PAC, phase-amplitude coupling; PD, Parkinson’s disease; TF, tremor
+                                              frequency.
+                                                                                                                                                                                                                                                                                                                                                                     D B S
+
+
+
+
+    1373
+15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                                                                                            15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+K O E G L S P E R G E R            E T      A L
+
+
+provide high-resolution motor state detection, poten-          pharmacodynamics, allowing independent hemispheric
+tially enabling real-time aDBS control.                        modulation,96 but with slower responsiveness.35
+                                                                  The revised primary endpoint—a maximum decrease
+            Signal Artifacts and Handling                      of ON-time without troublesome dyskinesias of at most
+                                                               1 standard deviation compared to cDBS—was achieved
+   Electrophysiological biomarkers show marked inter-
+                                                               in 91% of DT-aDBS and 79% of ST-aDBS participants.
+individual and intra-individual variability inﬂuenced by
+                                                               On average, aDBS, especially DT mode, increased ON-
+movement, medication, and sleep.86,87 Reliable use
+                                                               time without troublesome dyskinesias by approximately
+requires managing artifacts from physiological sources,
+                                                               1.4  3 hours relative to cDBS on the group level. On
+stimulation, and external interference, which can alias
+                                                               an individual level, ST mode yielded better outcomes in
+into clinically relevant bands and trigger aDBS.88-91
+                                                               13 patients and worse outcomes in 16, whereas DT
+Artifact occurrence depends on system-level interac-
+                                                               mode was better in 22 and worse in 13. Seventeen of
+tions, complicating prediction. Although manual review
+                                                               27 participants preferred DT mode. Nonetheless,
+can address multiple artifact types, current embedded
+                                                               patients were nearly as likely to select an aDBS mode
+aDBS safeguards are limited to basic amplitude limits,
+                                                               with inferior as with superior ON-time performance.
+smoothing, and refractory periods,32,86,88,92 which sta-
+                                                               Although clinically meaningful for some patients, the
+bilize signals, but insufﬁciently mitigate movement-
+                                                               approximately 1-hour increase in daily ON time with
+related or external artifacts. For clinicians, the practical
+                                                               aDBS lies near the lower bound of reported minimal
+implication is that physiological artefacts—most
+                                                               clinically important differences (MCID) for diary-based
+notably     electrocardiography-related      signals    and
+                                                               outcomes.97 Notably, aDBS reﬁnes an existing DBS sys-
+movement-induced artefacts—can contaminate β-band
+                                                               tem rather than representing DBS initiation. Although
+recordings and may spuriously trigger or suppress
+                                                               data on ON-time gains from cDBS reprogramming are
+adaptive stimulation algorithms if not adequately
+                                                               limited, clinical experience and observational reports
+accounted for.
+                                                               suggest these improvements are typically incremental
+                                                               and of similar magnitude. By contrast, initiation of
+                     Clinical Application                      device-aided therapies, including DBS implantation, is
+   Because commercially available aDBS has only                associated with substantially larger beneﬁts, often
+recently become accessible, long-term outcome data             approximately 3 to 5 hours/day.98-100
+remain limited, and most evidence derives from short-             Improvements in the Movement Disorder Society-
+term or intraoperative studies. Several investigations         Uniﬁed Parkinson’s Disease Rating Scale, part III (MDS-
+reported superior motor control with aDBS compared             UPDRS III) scores modestly favored DT-aDBS, consis-
+with cDBS,18,31,32 whereas others found comparable             tent with prior observations of modest but reproducible
+efﬁcacy.30,33,78 A meta-analysis of 19 small studies (all      effect sizes.97 Total electrical energy delivered (TEED)
+n < 15) suggested that aDBS may improve motor symp-            was reduced by 13% with ST-aDBS and 11% with DT-
+toms by approximately 33.9% while reducing stimula-            aDBS, with further reductions when patients self-selected
+tion energy by approximately 55% relative to cDBS,19           their preferred adaptive settings. Safety outcomes were
+indicating potential efﬁciency beneﬁts, although gener-        favorable as most stimulation-related adverse effects
+alizability remains limited. A ﬁrst real-world applica-        resolved during calibration, and no serious device-related
+tion of the commercially available aDBS system showed          adverse events were seen during extended follow-up. Of
+a signiﬁcant improvement in subjective well-being and          the 45 participants who entered the long-term phase,
+motor function with DT-aDBS as compared to cDBS in             44 continued aDBS, with 63% reporting improved
+a small cohort using EMA (European Medicines                   motor symptoms, 45% fewer side effects, and 66%
+Agency) questionnaires.20,93 The ﬁrst large-scale, home-       reduced symptom ﬂuctuations, while quality of life
+based evaluation of aDBS implemented with a commer-            scores remained unchanged.
+cial device is the ADAPT-PD trial.21,94-96 Sixty-eight            Only a few studies have explored LFP-based bio-
+participants with established STN or GPi cDBS under-           markers beyond β activity for aDBS.67 Oehrn et al69
+went baseline assessment, aDBS calibration, n = 57 met         demonstrated the feasibility and clinical beneﬁt of
+recruitment criteria, randomized single-blind crossover        γ-guided aDBS using stimulation-entrained γ oscilla-
+testing of ST and DT modes (n = 30), and optional              tions (60–90 Hz), which tracked dopaminergic state
+approximately 10-month follow-up (n = 40). Mecha-              and motor ﬂuctuations more accurately than STN β
+nistically, ADAPT-PD offered ST-controlled rapid,              activity. In a blinded crossover study, personalized
+threshold-based suppression of brief β bursts (>500 ms)        γ-guided aDBS adjusted stimulation according to the
+common in low-medication states38 with bilateral DBS           dopaminergic state, signiﬁcantly reducing time with
+adjustments and DT-aDBS with a pseudo-continuous               bothersome motor symptoms without worsening
+control strategy with slower update intervals (2.5–            others, supporting its potential to improve residual
+5 minutes) tracking β ﬂuctuations tied to levodopa             motor ﬂuctuations in PD.
+
+
+1374      Movement Disorders, Vol. 41, No. 6, 2026
+                                                                                                                                             15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                  G A P S    A N D    C O N T R O V E R S I E S       I N     A D A P T I V E        D B S
+
+
+          Gaps and Controversies                                        Patient-reported outcome measures (PROMs) further
+                                                                     complicate biomarker use as objective signals some-
+                        Biomarker                                    times diverge from subjective feedback120 Approxi-
+   β LFPs, the most common biomarker, show variable                  mately 45% of patients in the ADAPT-PD trial
+prevalence.14,101 The ADAPT-PD trial observed bilater-               preferred aDBS despite worse ON-time without trou-
+ally elevated α/β activity (8–30 Hz) in 65.2% of                     blesome dyskinesias compared with cDBS.21 This high-
+patients,96,102 whereas other studies reported detection             lights a potential mismatch between motor outcomes
+rates of 78% to 95% off medication.102-104 In contrast,              and subjective experience. Patient preference may reﬂect
+a study on intraoperative recordings found bilateral β               beneﬁts not captured by standard metrics, such as per-
+activity in only 47.25% of 91 patients,105 likely                    ceived stability, reduced unpredictability of ﬂuctuations,
+reﬂecting differences in β-band deﬁnitions, inclusion of             fewer side effects at speciﬁc times of day, or an
+α frequencies, and recording timing relative to post-                increased sense of conﬁdence or control. These observa-
+surgical stun effects, which may have reduced—but not                tions support the integration of PROMs as complemen-
+entirely suppressed—β expression levels.56,106-111                   tary signals in the evaluation—and potentially control—
+   Chronic sensing studies show that β amplitude is gen-             of adaptive DBS. This is in line with the signiﬁcant
+erally stable over months to years after postoperative               improvement in general well-being using EMA question-
+stabilization,112-114 but intra- and inter-day variability           naires in a recent aDBS study.8 Notably, recent studies
+and drift with medication necessitate periodic threshold             indicate patients can reliably guide DBS programming via
+review.20,96 Early postoperative suppression of β power              visual analogue scales.121-124
+can confound contact selection and calibration,
+supporting deferral of electrophysiology-guided program-                               Artifact Handling
+ming or aDBS activation until approximately 4 weeks                     Artifact handling remains a major challenge, as mini-
+post-surgery or longer if β has not stabilized.109,110               mally processed power spectra can be distorted by move-
+   Across-patient analyses indicate that β-band activity             ment, tremor, and dyskinesias, leading to inappropriate
+explains approximately 17% to 20% of the variance in                 adaptive control. More advanced artifact-mitigation strat-
+motor symptom severity.44,115 Although this highlights               egies must balance reliability gains against added hard-
+substantial interindividual variability,116 such group-              ware, and computational costs, particularly for AI-based
+level associations do not directly reﬂect the within-                approaches. The value of supplementary inputs (eg, ele-
+patient, moment-to-moment β dynamics that adaptive                   ctrocorticography or wearable sensors) for distinguishing
+DBS leverages for real-time control.                                 true motor symptoms from artifacts and improving gener-
+   β-band activity shows limited and inconsistent rela-              alizability across patients and states remains uncer-
+tionships with non-motor domains such as mood, cog-                  tain.125-127 Despite these limitations, early movement-
+nition, sleep, or autonomic function, and the feasibility            responsive aDBS systems—largely detecting voluntary
+of adaptive control for these symptoms remains uncer-                movement rather than pathological symptoms—represent
+tain. Recent reviews highlight substantial conceptual                an important milestone.128
+and technical challenges, underscoring that aDBS for
+non-motor symptoms is still exploratory.117                                            Control Strategies
+   Non-β biomarkers, including γ-based control signals,
+remain underexplored.68 At-home recordings show that                    Control strategies remain an open challenge, includ-
+entrained γ may provide a robust basis for adaptive                  ing optimal controller–driver pairing and selection of
+control,69 supporting future longitudinal trials. The relative       thresholds and polling rates for chronic aDBS. Fixed β
+contribution of factors not directly affecting aDBS—such as          thresholds (eg, 25% around baseline) may inade-
+interindividual variability in β expression and respon-              quately capture symptom dynamics. Despite mechanis-
+siveness to stimulation—as well as confounders remains               tic differences, ST and DT approaches show similar
+poorly understood. β does not index tremor and                       clinical outcomes and patient preference, suggesting
+population-level correlations with γ are modest (0.11–0.24).         comparable efﬁcacy. ST may suit rapid events (eg,
+DT-controlled systems, aiming to maintain β within target            freezing of gait), whereas DT may better address slower
+ranges, face uncertainty regarding optimal control targets.          ﬂuctuations and dyskinesias and is often favored in
+FTG and higher-frequency biomarkers (>125 Hz) are lim-               practice because of fewer programming constraints and
+ited by current device sampling, restricting evaluation mostly       closer resemblance to cDBS under narrow amplitude
+to intraoperative settings. Symptom-speciﬁc frequency rela-          windows.
+tionships are inconsistent across patients, as bradykinesia
+associates with low-β, tremor with tremor-frequency, and                              Clinical Application
+dyskinesias with θ/γ, yet behavioral states such as sleep and          The ADAPT-PD trial suggested that β-based aDBS is
+gait modulate these signals in complex ways.87,90,118,119            both feasible and safe for chronic use in PD.21,94-96
+
+
+
+                                                                                          Movement Disorders, Vol. 41, No. 6, 2026    1375
+                                                                                                                            15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+K O E G L S P E R G E R           E T      A L
+
+
+Despite these encouraging results, several factors           not experience worse outcomes in recent trials.20,21 This
+remain to be further deﬁned. Of the originally enrolled      may indicate that β-based control is most effective in
+68 participants, 33.8% were excluded from analysis           patients with robust β signals or that treatment success is
+because of intolerance to aDBS or insufﬁcient LFP sig-       driven less by the speciﬁc control algorithm and more by
+nal quality, indicating that real-world applicability may    a shared underlying factor.
+be restricted to a subset of patients with stable β activ-      Robust biomarkers for freezing of gait remain elusive,
+ity. Moreover, only 44% (n = 30) of participants toler-      and real-time detection is technically challenging given
+ated both evaluated control mechanisms, underscoring         its episodic and multifactorial nature.130-132 A small
+the complexity of individualized calibration. Although       pilot study showed that aDBS guided by STN β burst
+63% (n = 43) of participants chose to remain on aDBS         duration was safe and well tolerated, with gait
+for extended follow-up, those reverting to cDBS were         improvements comparable to cDBS and additional ben-
+excluded from further participation, potentially biasing     eﬁts for tremor and bradykinesia. However, these pre-
+tolerability and satisfaction outcomes. ADAPT-PD rev-        liminary ﬁndings require validation in larger controlled
+ealed substantial interindividual variability in response    studies to identify patients most likely to beneﬁt.
+to aDBS, with superiority over cDBS observed in
+approximately 45% to 65% of patients depending on
+control strategy and differential responses between ST                     Practical Considerations
+and DT modes. This heterogeneity highlights the cur-            Energy efﬁciency in β-based aDBS remains uncertain.
+rent lack of reliable predictors for patient or algorithm    Although aDBS is often assumed to reduce battery usage
+selection. Importantly, longer-term follow-up indicates      relative to cDBS, data from the ADAPT-PD trial show only
+that most patients continue to use aDBS beyond the           a modest 11% to 13% reduction in energy consumption,94
+trial period, suggesting sustained perceived beneﬁt          consistent with prior methodological work.19 Neural sens-
+despite variable short-term outcomes.                        ing itself increases power demand—by up to approxi-
+   The ADAPT-PD study provides valuable long-term            mately 15% even with modest sampling rates133—and
+evidence supporting the feasibility of personalized          future aDBS implementations may require faster polling or
+aDBS, but also exhibits methodological limitations, as       more complex feature analyses, further increasing energy
+comparisons between aDBS and cDBS were confounded            use. Earlier reports of approximately 40% energy savings
+by open-label assessments, introducing potential expec-      likely reﬂected short-term, small-sample laboratory studies,
+tation and attention biases in diary- and clinician-rated    whereas ADAPT-PD provides more ecologically valid,
+outcomes. Tolerability and safety inferences relied          30-day real-world data. Although battery depletion is less
+largely on unblinded patient preference, clinician           critical for patients with rechargeable Impantable Pulse
+impressions, and selective continuation of participants      Generators (IPGs),134 energy efﬁciency remains clinically
+who tolerated aDBS during setup, raising survivorship        relevant given its impact on device longevity and replace-
+and generalizability concerns. The claim of therapeutic      ment surgery risk, the primary source of DBS-related
+equivalence rests on post hoc endpoint adjustments and       infections.133
+descriptive rather than conﬁrmatory analyses, while             Unlike cDBS, aDBS requires an additional calibration
+reductions in TEED were nominal and not multiplicity-        phase after postoperative stabilization to conﬁrm stable β
+controlled across modes. Furthermore, safety evalua-         activity across medication states and simple motor tasks
+tion lacked exposure-adjusted incidence rates and a          (Fig. 3A). Programming involves reviewing sensing data,
+contemporaneous cDBS comparator, limiting interpre-          selecting sensing and stimulation contacts, and individual-
+tation of “favorable” safety claims.                         izing control thresholds, often deﬁned as a therapeutic β
+   Selecting appropriate candidates for aDBS remains a       window in DT paradigms (Fig. 3B,C) or a single control
+major unresolved challenge. The ﬁeld currently lacks         point in ST approaches.21,94-96,135 Because β dynamics
+consensus on the threshold of β activity required for        vary with medication, disease progression, and chronic
+reliable application, leaving the deﬁnition of “β-nega-      stimulation, thresholds require periodic reassessment
+tive” patients uncertain. Although β oscillations com-       based on chronic sensing and clinical response. Compared
+odulate rigidity and bradykinesia, their relationship        with cDBS, aDBS shifts programming from repeated man-
+with tremor is weaker, suggesting that β-based algo-         ual adjustments toward ongoing supervision of signal
+rithms may not equally address all motor features of         validity and control alignment, and patients should be
+PD.115,129 This highlights a critical gap that symptom-      counselled that beneﬁts may require iterative optimiza-
+speciﬁc biomarkers may be necessary to tailor aDBS           tion. A step-by-step algorithmic approach to aDBS pro-
+more effectively. Tremor, for instance, may involve          gramming and threshold adjustment has been proposed
+distinct pathophysiological mechanisms, including            to support clinical implementation.20
+lower-frequency oscillations (θ or α bands) or irregular        It remains unclear whether aDBS confers long-term or
+bursting patterns, which are not captured by β-based con-    neuroplastic effects beyond those of cDBS, which primar-
+trol mechanisms.119 Conversely, patients with tremor did     ily produces acute, stimulation-dependent beneﬁts.13
+
+
+1376     Movement Disorders, Vol. 41, No. 6, 2026
+                                                                                                                                                               15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                            G A P S      A N D     C O N T R O V E R S I E S            I N     A D A P T I V E        D B S
+
+
+
+
+FIG. 3. (A) Schematic illustrating a practical workﬂow for adaptive deep brain stimulation (aDBS) setup. #A brainstem survey should be performed in
+both medication (Med)-on and Med-off conditions. ##The therapeutic window is determined clinically by identifying the threshold for clinical efﬁcacy
+(lower threshold) and the threshold for side effects (upper threshold). (B) Representative screenshots illustrating control strategies for single-threshold
+(ST) and dual-threshold (DT) adaptive deep brain stimulation (aDBS). (C) Schematic depicting local ﬁeld potential (LFP) power ﬂuctuations and
+corresponding threshold settings for ST and DT aDBS. In the ST strategy, the threshold is typically set at baseline plus 50% of the signal range. In the
+DT strategy, the upper threshold is set at the peak minus 20%, and the lower threshold at baseline plus 20% (signal range: 100%). [Color ﬁgure can be
+viewed at wileyonlinelibrary.com]
+
+
+
+
+                                                                                                            Movement Disorders, Vol. 41, No. 6, 2026    1377
+                                                                                                                           15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+K O E G L S P E R G E R           E T      A L
+
+
+Although cumulative effects suggesting neuroplasticity      potentially enabling more granular aDBS con-
+have been reported with anterior thalamic DBS for           trol.20,121-124 Emerging AI-based digital proxies (eg,
+epilepsy,136 comparable long-term modulatory effects of     sleep, voice, and facial metrics) from widely used smart
+aDBS have yet to be demonstrated.                           devices may offer additional, continuous inputs. Devel-
+                                                            oping secure digital ecosystems to integrate these multi-
+         Economical and Ethical Aspects                     modal data sources with electrophysiology is a crucial
+                                                            step toward individualized aDBS frameworks, and it
+   Although closed-loop DBS requires more initial setup
+                                                            offers a compelling use case for conceptualizing brain–
+than open-loop systems, aDBS may ultimately reduce
+                                                            AI interfaces.
+programming time, provided biomarkers are stable and
+                                                               Integrating electrophysiological and imaging data
+algorithms appropriately selected.137 However, large-
+                                                            may enhance aDBS efﬁcacy.7,120,142 A theoretical
+scale trials comparing the time- and cost-effectiveness
+                                                            framework termed adaptive circuit-targeting is envis-
+of aDBS versus cDBS are lacking. Beyond economics,
+                                                            aged to decode symptom severity from neural signals in
+aDBS raises ethical concerns, such as potentially higher
+                                                            real time and to dynamically integrate the activation of
+device costs and unequal clinical resources may exacer-
+                                                            brain circuits most relevant to symptom control.143
+bate healthcare disparities; expanding capabilities
+                                                               Enhancing artifact rejection improves signal ﬁdelity,
+prompt questions about elective device replacement
+                                                            but increases energy use and hardware complexity.
+despite uncertain beneﬁt; continuous neural monitoring
+                                                            Empirical studies should deﬁne the real-world preva-
+introduces privacy and data ownership challenges; and
+                                                            lence and impact of artifacts to justify these trade-offs.
+automated stimulation decisions may affect patient
+                                                            Implementing hybrid, low-power denoising techniques
+autonomy, informed consent, mood, cognition, and
+                                                            (adaptive thresholding, on-chip ﬁltering, machine
+perceptions of identity. Uncertainty around patient
+                                                            learning-based suppression) could balance performance
+selection and predictors of beneﬁt complicates fully
+                                                            and efﬁciency. Standardized testing and benchmarking
+informed consent, particularly as adaptive algorithms
+                                                            datasets are recommended to ensure reproducibility
+assume greater control over stimulation, underscoring
+                                                            and cross-platform comparability.33,88
+the need for transparency, fallback options, and contin-
+                                                               In clinical practice, selection for adaptive DBS should
+ued patient involvement. Formal cost-effectiveness ana-
+                                                            prioritize the reliability and stability of the neural con-
+lyses of adaptive DBS are currently lacking. At present,
+                                                            trol signal over motor phenotype. β-based systems are
+there is no evidence for uniformly higher device costs
+                                                            most readily implemented in bradykinesia- and rigidity-
+compared with cDBS, and economic implications
+                                                            dominant PD, where β activity most consistently reﬂects
+related to programming time, clinical workload, and
+                                                            motor state and treatment response,32,37,144 although
+potential reductions in energy consumption remain
+                                                            tremor-dominant patients may beneﬁt when a robust
+insufﬁciently quantiﬁed. Consequently, the real-world
+                                                            biomarker is present.20 Patients should not be excluded
+economic impact of aDBS cannot yet be reliably
+                                                            based on phenotype alone, instead, clinicians should
+assessed and will need to be addressed in prospective
+                                                            conﬁrm a sufﬁciently stable β signal using sensing capa-
+health-economic studies alongside clinical outcome
+                                                            bilities. As β activity may be transiently suppressed after
+trials.
+                                                            implantation, aDBS should be initiated no earlier than
+                                                            1 month postoperatively.109 Ongoing evaluation of bio-
+                       Conclusions                          marker stability and adaptive algorithm parameters is
+                                                            essential, and in the absence of a reliable control signal,
+   Single biomarkers are unlikely to be universally sufﬁ-   cDBS should remain the default.
+cient for aDBS, underscoring the need to integrate mul-        Given limited resources, near-term aDBS research
+tiple signals.15,41,138 Machine-learning models trained     should prioritize identifying predictors of individual bene-
+ofﬂine may further enhance individualized biomarker         ﬁt, standardizing biomarker reliability, and developing
+combinations while remaining computationally efﬁcient       pragmatic calibration and programming workﬂows. Sub-
+in clinical use.139 Non-rhythmic (aperiodic) signal fea-    sequent efforts may focus on biomarker validation, state
+tures may also carry clinically relevant information        estimation and prediction,145 automated tuning, adaptive
+largely neglected by current aDBS.140,141 Combining         feedback, and connectome-informed targeting, supported
+electrophysiological and peripheral measures (eg, elec-     by registries and comparative trials. Longer-term goals
+tromyography, motion sensors, heart rate variability)       include multimodal biomarkers, AI-driven adaptive con-
+should be a research priority to increase responsiveness    trol, and potential disease-modifying effects. Because elec-
+and personalization without adding excessive system         trophysiological correlates overlap across symptom
+complexity (Fig. 1).                                        domains, aDBS is expected to move beyond a single
+   PROMs, such as visual analogue scales, can comple-       β-based control signal. Although β modulation effectively
+ment and further personalize neural biomarkers by pro-      targets rigidity and bradykinesia, symptom-speciﬁc or
+viding subjective feedback on efﬁcacy and side effects,     multimodal approaches may better capture quality-of-
+
+
+1378     Movement Disorders, Vol. 41, No. 6, 2026
+                                                                                                                                                              15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                            G A P S      A N D    C O N T R O V E R S I E S            I N     A D A P T I V E        D B S
+
+
+life–relevant outcomes, as reﬂected by variable PD                                5.   Hell F, Palleis C, Mehrkens JH, Koeglsperger T, Bötzel K. Deep
+                                                                                       brain stimulation programming 2.0: future perspectives for target
+Questionnaire-39 improvements.                                                         identiﬁcation and adaptive closed loop stimulation. Front Neurol
+   Clinicians must ensure informed consent given                                       2019;10:314. https://doi.org/10.3389/fneur.2019.00314
+current technological limitations and uncertainties in                            6.   Krauss JK, Lipsman N, Aziz T, et al. Technology of deep brain
+long-term outcomes.20,96 Moreover, routine use of                                      stimulation: current status and future directions. Nat Rev Neurol
+                                                                                       2021;17(2):75–87. https://doi.org/10.1038/s41582-020-00426-z
+sensing-enabled devices will build practical expertise
+                                                                                  7.   Gülke E, Paz LJ, Scholtes H, Gerloff C, Kühn AA, Pötter-
+and accelerate safe, cost-effective adoption. Transpar-                                Nerger M. Multiple input algorithm-guided deep brain stimulation-
+ent, interpretable AI algorithms and strong data gover-                                programming for Parkinson’s disease patients. NPJ Parkinsons Dis
+                                                                                       2022;8(1):144. https://doi.org/10.1038/s41531-022-00396-7
+nance frameworks are essential to maintain autonomy,
+privacy, and fairness. Ongoing health-economic ana-                               8.   Aldridge D, Theodoros D, Angwin A, Vogel AP. Speech outcomes
+                                                                                       in Parkinson’s disease after subthalamic nucleus deep brain stimula-
+lyses need to assess cost-effectiveness and equitable                                  tion: a systematic review. Parkinsonism Relat Disord 2016;33:3–
+access across healthcare systems.                                                      11. https://doi.org/10.1016/j.parkreldis.2016.09.022
+                                                                                  9.   Baizabal-Carvallo JF, Jankovic J. Movement disorders induced by
+                                                                                       deep brain stimulation. Parkinsonism Relat Disord 2016;25:1–9.
+Author Roles: (1) Research Project: A. Conception, B. Organization,                    https://doi.org/10.1016/j.parkreldis.2016.01.014
+C. Execution; (2) Statistical Analysis: A. Design, B. Execution, C. Review
+and Critique; (3) Manuscript: A. Writing of the First Draft, B. Review and       10.   Guidetti M, Bocci T, Álamo MDPD, et al. Will adaptive deep brain
+Critique.                                                                              stimulation for Parkinson’s disease become a real option soon? A
+T.K.: 1A, 1B, 1C, 3A, 3B.                                                              Delphi consensus study. NPJ Parkinsons Dis 2025;11(1):110.
+M.S.: 1A, 1B, 1C, 3A, 3B.                                                              https://doi.org/10.1038/s41531-025-00974-5
+A.E.: 1A, 3B.
+A.F.: 1A, 3B.                                                                    11.   Ray NJ, Jenkinson N, Brittain J, et al. The role of the subthalamic
+A.A.K.: 1A, 3B.                                                                        nucleus in response inhibition: evidence from deep brain stimula-
+J.K.K.: 1A, 3B.                                                                        tion for Parkinson’s disease. Neuropsychologia 2009;47(13):2828–
+                                                                                       2834. https://doi.org/10.1016/j.neuropsychologia.2009.06.011
+
+Financial Disclosures for the previous 12 months: T.K. has been                  12.   Xie T, Padmanaban M, Bloom L, MacCracken E, Bertacchi B,
+supported by the Munich Clinician Scientist Program (MCSP). T.K. has                   Dachman A, Warnke P. Effect of low versus high frequency stimu-
+received research funding from Abbott and Medtronic, and honoraria for                 lation on freezing of gait and other axial symptoms in Parkinson
+speaking engagements from Abbott and AbbVie. J.K.K. is a consultant to                 patients with bilateral STN DBS: a mini-review. Transl Neu-
+Boston Scientiﬁc and Medtronic and received fees from Aleva and Inomed.                rodegener 2017;6:13. https://doi.org/10.1186/s40035-017-0083-7
+A.F. has stock ownership in Inbrain Pharma and has received payments as          13.   Mahlknecht P, Foltynie T, Limousin P, Poewe W. How does deep
+consultant and/or speaker from AbbVie, Abbott, Acadia, AskBio, Boston
+                                                                                       brain stimulation change the course of Parkinson’s disease? Mov
+Scientiﬁc, Ceregate, Dompé Farmaceutici, Inbrain Neuroelectronics, Ipsen,
+Medtronic, Integrative Research Laboratories Sweden, Iota, Syneos                      Disord 2022;37(8):1581–1592. https://doi.org/10.1002/mds.29052
+Health, Merz, Sunovion, Paladin Labs, UCB, and Sunovion. He has                  14.   Neumann W, Gilron R, Little S, Tinkhauser G. Adaptive deep
+received research support from AbbVie, Boston Scientiﬁc, Medtronic,                    brain stimulation: from experimental evidence toward practical
+Praxis, ES and receives royalties from Springer. A.A.K. has received pay-              implementation. Mov Disord 2023;38(6):937–948. https://doi.org/
+ments as consultant and/or speaker from Boston Scientiﬁc, Inbrain                      10.1002/mds.29415
+Neuroelectronics, Ipsen, and Medtronic. A.A.K. is supported by the
+Deutsche Forschungsgemeinschaft (DFG, German Research Foundation),               15.   Feldmann LK, Lofredi R, Neumann WJ, et al. Toward therapeutic
+Project ID 424778381-TRR 295. A.E. has received funding from the                       electrophysiology: beta-band suppression as a biomarker in chronic
+French Ministry of Education and Research and honoraria for speaking                   local ﬁeld potential recordings. NPJ Parkinsons Dis 2022;8(1):44.
+engagements from Medtronic, Boston Scientiﬁc, and AbbVie. Author dis-                  https://doi.org/10.1038/s41531-022-00301-2
+closures are available in the Supporting Information.
+                                                                                 16.   Zamora M, Toth R, Morgante F, et al. DyNeuMo Mk-1: design
+                                                                                       and pilot validation of an investigational motion-adaptive
+Acknowledgment: Open Access funding enabled and organized by                           neurostimulator with integrated chronotherapy. Exp Neurol 2022;
+Projekt DEAL.                                                                          351:113977. https://doi.org/10.1016/j.expneurol.2022.113977
+                                                                                 17.   Chen Y, Gong C, Tian Y, et al. Neuromodulation effects of deep
+                                                                                       brain stimulation on beta rhythm: a longitudinal local ﬁeld poten-
+                Data Availability Statement                                            tial study. Brain Stimul 2020;13(6):1784–1792. https://doi.org/10.
+  Data sharing not applicable to this article as no                                    1016/j.brs.2020.09.027
+
+datasets were generated or analysed during the current                           18.   Bocci T, Prenassi M, Arlotti M, et al. Eight-hours conventional ver-
+                                                                                       sus adaptive deep brain stimulation of the subthalamic nucleus in
+study.                                                                                 Parkinson’s disease. NPJ Parkinsons Dis 2021;7(1):88. https://doi.
+                                                                                       org/10.1038/s41531-021-00229-z
+
+                         References                                              19.   An Q, Yin Z, Ma R, et al. Adaptive deep brain stimulation for
+                                                                                       Parkinson’s disease: looking back at the past decade on motor out-
+  1.   Deuschl G, Schade-Brittinger C, Krack P, et al. A randomized trial              comes. J Neurol 2023;270(3):1371–1387. https://doi.org/10.1007/
+       of deep-brain stimulation for Parkinson’s disease. N Engl J Med                 s00415-022-11495-z
+       2006;355(9):896–908. https://doi.org/10.1056/nejmoa060281                 20.   Busch JL, Kaplan J, Behnke JK, Witzig VS, Drescher L,
+  2.   Reese R, Koeglsperger T, Schrader C, et al. Invasive therapies for              Habets JGV, Kühn AA. Chronic adaptive deep brain stimulation
+       Parkinson’s disease: an adapted excerpt from the guidelines of the              for Parkinson’s disease: clinical outcomes and programming strate-
+       German Society of Neurology. J Neurol 2025;272(3):219. https://                 gies. NPJ Parkinsons Dis 2025;11(1):264. https://doi.org/10.1038/
+       doi.org/10.1007/s00415-025-12915-6                                              s41531-025-01124-7
+  3.   Lozano AM, Lipsman N, Bergman H, et al. Deep brain stimula-               21.   Bronte-Stewart HM, Beudel M, Ostrem JL, et al. Long-term per-
+       tion: current challenges and future directions. Nat Rev Neurol                  sonalized adaptive deep brain stimulation in Parkinson disease.
+       2019;15(3):148–160. https://doi.org/10.1038/s41582-018-0128-2                   JAMA Neurol 2025;82(11):1171–1180. https://doi.org/10.1001/
+                                                                                       jamaneurol.2025.2781
+  4.   Koeglsperger T, Palleis C, Hell F, Mehrkens JH, Bötzel K. Deep
+       brain stimulation programming for movement disorders: current             22.   He S, Baig F, Mostoﬁ A, et al. Closed-loop deep brain stimulation
+       concepts and evidence-based strategies. Front Neurol 2019;10:410.               for essential tremor based on thalamic local ﬁeld potentials. Mov
+       https://doi.org/10.3389/fneur.2019.00410                                        Disord 2021;36(4):863–873. https://doi.org/10.1002/mds.28513
+
+
+
+
+                                                                                                           Movement Disorders, Vol. 41, No. 6, 2026    1379
+                                                                                                                                                               15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+K O E G L S P E R G E R              E T      A L
+
+
+23.    Neumann W, Huebl J, Brücke C, Ruiz MH, Kupsch A,                        41.   Swann NC, de Hemptinne C, Miocinovic S, et al. Gamma oscilla-
+       Schneider G-H, Kühn AA. Enhanced low-frequency oscillatory                    tions in the hyperkinetic state detected with chronic human brain
+       activity of the subthalamic nucleus in a patient with dystonia. Mov           recordings in Parkinson’s disease. J Neurosci 2016;36(24):6445–
+       Disord 2012;27(8):1063–1066. https://doi.org/10.1002/mds.25078                6458. https://doi.org/10.1523/jneurosci.1128-16.2016
+24.    Silberstein P, Kühn AA, Kupsch A, et al. Patterning of globus           42.   Muthuraman M, Bange M, Koirala N, et al. Cross-frequency cou-
+       pallidus local ﬁeld potentials differs between Parkinson’s disease            pling between gamma oscillations and deep brain stimulation fre-
+       and dystonia. Brain 2003;126(12):2597–2608. https://doi.org/10.               quency in Parkinson’s disease. Brain 2020;143(11):3393–3407.
+       1093/brain/awg267                                                             https://doi.org/10.1093/brain/awaa297
+25.    Piña-Fuentes D, Beudel M, Little S, et al. Toward adaptive deep         43.   Swann NC, de Hemptinne C, Thompson MC, et al. Adaptive deep
+       brain stimulation for dystonia. Neurosurg Focus 2018;45(2):E3.                brain stimulation for Parkinson’s disease using motor cortex sens-
+       https://doi.org/10.3171/2018.5.focus18155                                     ing. J Neural Eng 2018;15(4):046006. https://doi.org/10.1088/
+                                                                                     1741-2552/aabc9b
+26.    Johnson V, Wilt R, Gilron R, et al. Embedded adaptive deep brain
+       stimulation for cervical dystonia controlled by motor cortex theta      44.   Neumann W, Degen K, Schneider G, et al. Subthalamic synchro-
+       oscillations. Exp Neurol 2021;345:113825. https://doi.org/10.                 nized oscillatory activity correlates with motor impairment in
+       1016/j.expneurol.2021.113825                                                  patients with Parkinson’s disease. Mov Disord 2016;31(11):1748–
+                                                                                     1751. https://doi.org/10.1002/mds.26759
+27.    Okun MS, Cagle J, Gomez J, Bowers D, Wong J, Foote KD,
+       Gunduz A. Responsive deep brain stimulation for the treatment of        45.   Little S, Brown P. What brain signals are suitable for feedback con-
+       Tourette syndrome. Sci Rep 2024;14(1):6467. https://doi.org/10.               trol of deep brain stimulation in Parkinson’s disease? Ann N Y
+       1038/s41598-024-57071-5                                                       Acad Sci 2012;1265(1):9–24. https://doi.org/10.1111/j.1749-6632.
+                                                                                     2012.06650.x
+28.    Provenza NR, Reddy S, Allam AK, et al. Disruption of neural peri-
+       odicity predicts clinical response after deep brain stimulation for     46.   Khawaldeh S, Tinkhauser G, Torrecillos F, et al. Balance between
+       obsessive-compulsive disorder. Nat Med 2024;30(10):3004–3014.                 competing spectral states in subthalamic nucleus is linked to motor
+       https://doi.org/10.1038/s41591-024-03125-0                                    impairment in Parkinson’s disease. Brain 2021;145(1):237–250.
+                                                                                     https://doi.org/10.1093/brain/awab264
+29.    Arlotti M, Marceglia S, Foffani G, et al. Eight-hours adaptive deep
+       brain stimulation in patients with Parkinson disease. Neurology 2018;   47.   Chen CC, Yeh CH, Chan HL, et al. Subthalamic nucleus oscilla-
+       90(11):e971–e976. https://doi.org/10.1212/wnl.0000000000005121                tions correlate with vulnerability to freezing of gait in patients with
+                                                                                     Parkinson’s disease. Neurobiol Dis 2019;132. https://doi.org/10.
+30.    Rosa M, Arlotti M, Marceglia S, et al. Adaptive deep brain stimu-             1016/j.nbd.2019.104605
+       lation controls levodopa-induced side effects in parkinsonian
+       patients. Mov Disord 2017;32(4):628–629. https://doi.org/10.            48.   Shah SA, Tinkhauser G, Chen CC, Little S, Brown P. Parkinsonian
+       1002/mds.26953                                                                tremor detection from subthalamic nucleus local ﬁeld potentials for
+                                                                                     closed-loop deep brain stimulation. Annu Int Conf IEEE Eng Med
+31.    Little S, Beudel M, Zrinzo L, et al. Bilateral adaptive deep brain            Biol Soc 2018;2320–2324. https://doi.org/10.1109/embc.2018.
+       stimulation is effective in Parkinson’s disease. J Neurol Neurosurg           8512741
+       Psychiatry    2016;87(7):717–721.       https://doi.org/10.1136/jnnp-
+                                                                               49.   Tinkhauser G, Torrecillos F, Pogosyan A, et al. The cumulative
+       2015-310972
+                                                                                     effect of transient synchrony states on motor performance in
+32.    Little S, Pogosyan A, Neal S, et al. Adaptive deep brain stimulation          Parkinson’s disease. J Neurosci 2020;40(7):1571–1580. https://doi.
+       in advanced Parkinson disease. Ann Neurol 2013;74(3):449–457.                 org/10.1523/jneurosci.1975-19.2019
+       https://doi.org/10.1002/ana.23951
+                                                                               50.   Pozzi NG, Canessa A, Palmisano C, et al. Freezing of gait in
+33.    Piña-Fuentes D, van Dijk JMC, van Zijl JC, et al. Acute effects of            Parkinson’s disease reﬂects a sudden derangement of locomotor
+       adaptive deep brain stimulation in Parkinson’s disease. Brain                 network dynamics. Brain 2019;142(7):2037–2050. https://doi.org/
+       Stimul 2020;13(6):1507–1516. https://doi.org/10.1016/j.brs.2020.              10.1093/brain/awz141
+       07.016                                                                  51.   Wiest C, Tinkhauser G, Pogosyan A, et al. Subthalamic deep brain
+34.    Moraud EM, Tinkhauser G, Agrawal M, Brown P, Bogacz R.                        stimulation induces ﬁnely-tuned gamma oscillations in the absence
+       Predicting beta bursts from local ﬁeld potentials to improve closed-          of levodopa. Neurobiol Dis 2021;152:105287. https://doi.org/10.
+       loop DBS paradigms in Parkinson’s patients. Annu Int Conf IEEE                1016/j.nbd.2021.105287
+       Eng Med Biol Soc 2018;3766–3796. https://doi.org/10.1109/embc.          52.   Ricciardi L, Fischer P, Mostoﬁ A, et al. Neurophysiological corre-
+       2018.8513348                                                                  lates of trait impulsivity in Parkinson’s disease. Mov Disord 2021;
+35.    Velisar A, Syrkin-Nikolau J, Blumenfeld Z, Trager MH, Afzal MF,               36(9):2126–2135. https://doi.org/10.1002/mds.28625
+       Prabhakar V, Bronte-Stewart H. Dual threshold neural closed loop        53.   de Hemptinne C, Chen W, Racine CA, et al. Prefrontal
+       deep brain stimulation in Parkinson disease patients. Brain Stimul            Physiomarkers of anxiety and depression in Parkinson’s disease.
+       2019;12(4):868–876. https://doi.org/10.1016/j.brs.2019.02.020                 Front Neurosci 2021;15:748165. https://doi.org/10.3389/fnins.
+36.    Brown P, Oliviero A, Mazzone P, Insola A, Tonali P, Lazzaro DV.               2021.748165
+       Dopamine dependency of oscillations between subthalamic nucleus         54.   Brown P. Abnormal oscillatory synchronisation in the motor sys-
+       and pallidum in Parkinson’s disease. J Neurosci 2001;21(3):1033–              tem leads to impaired movement. Curr Opin Neurobiol 2007;
+       1038. https://doi.org/10.1523/jneurosci.21-03-01033.2001                      17(6):656–664. https://doi.org/10.1016/j.conb.2007.12.001
+37.    Kühn AA, Kupsch A, Schneider GH, Brown P. Reduction in sub-             55.   Kühn AA, Trottenberg T, Kivi A, Kupsch A, Schneider GH,
+       thalamic 8-35 Hz oscillatory activity correlates with clinical                Brown P. The relationship between local ﬁeld potential and neuro-
+       improvement in Parkinson’s disease. Eur J Neurosci 2006;23(7):                nal discharge in the subthalamic nucleus of patients with
+       1956–1960. https://doi.org/10.1111/j.1460-9568.2006.04717.x                   Parkinson’s disease. Exp Neurol 2005;194(1):212–220. https://doi.
+38.    Tinkhauser G, Pogosyan A, Tan H, Herz DM, Kühn AA, Brown P.                   org/10.1016/j.expneurol.2005.02.010
+       Beta burst dynamics in Parkinson’s disease OFF and ON dopami-           56.   Neumann WJ, Staub-Bartelt F, Horn A, Schanda J, Schneider GH,
+       nergic medication. Brain 2017;140(11):2968–2981. https://doi.org/             Brown P, Kühn AA. Long term correlation of subthalamic beta
+       10.1093/brain/awx252                                                          band activity with motor impairment in patients with Parkinson’s
+39.    Whitmer D, de Solages C, Hill B, Yu H, Henderson JM, Bronte-                  disease. Clin Neurophysiol 2017;128(11):2286–2291. https://doi.
+       Stewart H. High frequency deep brain stimulation attenuates sub-              org/10.1016/j.clinph.2017.08.028
+       thalamic and cortical rhythms in Parkinson’s disease. Front Hum         57.   Hammond C, Bergman H, Brown P. Pathological synchronization
+       Neurosci 2012;6:155. https://doi.org/10.3389/fnhum.2012.00155                 in Parkinson’s disease: networks, models and treatments. Trends
+                                                                                     Neurosci 2007;30(7):357–364. https://doi.org/10.1016/j.tins.2007.
+40.    Giannicola G, Rosa M, Servello D, et al. Subthalamic local ﬁeld
+                                                                                     05.004
+       potentials after seven-year deep brain stimulation in Parkinson’s
+       disease. Exp Neurol 2012;237(2):312–317. https://doi.org/10.            58.   Horn A, Neumann WJ, Degen K, Schneider GH, Kühn AA.
+       1016/j.expneurol.2012.06.012                                                  Toward an electrophysiological “sweet spot” for deep brain
+
+
+
+1380        Movement Disorders, Vol. 41, No. 6, 2026
+                                                                                                                                                                  15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                             G A P S       A N D    C O N T R O V E R S I E S             I N     A D A P T I V E        D B S
+
+
+      stimulation in the subthalamic nucleus. Hum Brain Mapp 2017;                 75.   Ozturk M, Abosch A, Francis D, Wu J, Jimenez-Shahed J, Ince NF.
+      35(3):3377–3390. https://doi.org/10.1002/hbm.23594                                 Distinct subthalamic coupling in the ON state describes motor per-
+                                                                                         formance in Parkinson’s disease. Mov Disord 2020;35(1):91–100.
+59.   Deffains M, Iskhakova L, Katabi S, Israel Z, Bergman H. Longer β
+                                                                                         https://doi.org/10.1002/mds.27800
+      oscillatory episodes reliably identify pathological subthalamic activ-
+      ity in parkinsonism. Mov Disord 2018;33(10):1609–1618. https://              76.   Packer E, Debelle H, Bailey HGB, et al. Systematic review of wear-
+      doi.org/10.1002/mds.27418                                                          ables assessing medication effect on motor function and symptoms
+                                                                                         in Parkinson’s disease. NPJ Parkinsons Dis 2025;11(1):135. https://
+60.   Beudel M, Oswal A, Jha A, et al. Oscillatory Beta power correlates
+                                                                                         doi.org/10.1038/s41531-025-00943-y
+      with akinesia-rigidity in the parkinsonian subthalamic nucleus.
+      Mov Disord 2017;32(1):174–175. https://doi.org/10.1002/mds.                  77.   Bougea A. Application of wearable sensors in Parkinson’s disease:
+      26860                                                                              state of the art. J Sens Actuator Netw 2025;14(2):23. https://doi.
+                                                                                         org/10.3390/jsan14020023
+61.   Eusebio A, Thevathasan W, Gaynor LD, et al. Deep brain stimula-
+      tion can suppress pathological synchronisation in parkinsonian               78.   Sasaki F, Oyama G, Sekimoto S, et al. Closed-loop programming
+      patients. J Neurol Neurosurg Psychiatry 2010;82(5):569–573.                        using external responses for deep brain stimulation in Parkinson’s
+      https://doi.org/10.1136/jnnp.2010.217489                                           disease. Parkinsonism Relat Disord 2021;84:47–51. https://doi.org/
+62.   Kühn AA, Kempf F, Brücke C, et al. High-frequency stimulation of                   10.1016/j.parkreldis.2021.01.023
+      the subthalamic nucleus suppresses oscillatory beta activity in              79.   Pﬁster FMJ, Um TT, Pichler DC, et al. High-resolution motor state
+      patients with Parkinson’s disease in parallel with improvement                     detection in Parkinson’s disease using convolutional neural net-
+      in motor performance. J Neurosci 2008;28(24):6165–6173. https://                   works. Sci Rep 2020;10(1):5860. https://doi.org/10.1038/s41598-
+      doi.org/10.1523/jneurosci.0282-08.2008                                             020-61789-3
+63.   Hoang KB, Cassar IR, Grill WM, Turner DA. Biomarkers and                     80.   Sarikhani P, Ferleger B, Mitchell K, Ostrem J, Herron J,
+      stimulation algorithms for adaptive brain stimulation. Front Neu-                  Mahmoudi B, Miocinovic S. Automated deep brain stimulation
+      rosci 2017;11:564. https://doi.org/10.3389/fnins.2017.00564                        programming with safety constraints for tremor suppression in
+64.   Lofredi R, Neumann WJ, Bock A, et al. Dopamine-dependent scal-                     patients with Parkinson’s disease and essential tremor. J Neural
+      ing of subthalamic gamma bursts with movement velocity in                          Eng     2022;19(4):046042.     https://doi.org/10.1088/1741-2552/
+      patients with Parkinson’s disease. elife 2018;7:e31895. https://doi.               ac86a2
+      org/10.7554/elife.31895                                                      81.   Cagnan H, Pedrosa D, Little S, et al. Stimulating at the right time:
+65.   Özkurt TE, Butz M, Homburger M, Elben S, Vesper J, Wojtecki L,                     phase-speciﬁc deep brain stimulation. Brain 2017;140(1):132–145.
+      Schnitzler A. High frequency oscillations in the subthalamic                       https://doi.org/10.1093/brain/aww286
+      nucleus: a neurophysiological marker of the motor state in                   82.   Yang Y, Yuan Y, Zhang G, et al. Artiﬁcial intelligence-enabled
+      Parkinson’s disease. Exp Neurol 2011;229(2):324–331. https://doi.                  detection and assessment of Parkinson’s disease using nocturnal
+      org/10.1016/j.expneurol.2011.02.015                                                breathing signals. Nat Med 2022;28(10):2207–2215. https://doi.
+66.   Litvak V, Eusebio A, Jha A, et al. Movement-related changes in                     org/10.1038/s41591-022-01932-x
+      local and long-range synchronization in Parkinson’s disease rev-             83.   Liu Y, Zhang G, Tarolli CG, et al. Monitoring gait at home with
+      ealed by simultaneous magnetoencephalography and intracranial                      radio waves in Parkinson’s disease: a marker of severity, progres-
+      recordings. J Neurosci 2012;32(31):10541–10553. https://doi.org/                   sion, and medication response. Sci Transl Med 2022;14(663):
+      10.1523/jneurosci.0767-12.2012                                                     eadc9669. https://doi.org/10.1126/scitranslmed.adc9669
+67.   Colombo A, Bernasconi E, Alva L, et al. Finely tuned γ tracks med-           84.   Islam MS, Rahman W, Abdelkader A, et al. Using AI to measure
+      ication cycles in Parkinson’s disease: An ambulatory brain-sense                   Parkinson’s disease severity at home. NPJ Digit Med 2023;6(1):
+      study. Mov Disord 2025;40(5):881–895. https://doi.org/10.1002/                     156. https://doi.org/10.1038/s41746-023-00905-9
+      mds.30160
+                                                                                   85.   Šubert M, Novotný M, Tykalov   a T, et al. Spoken language alter-
+68.   Mathiopoulou V, Habets J, Feldmann LK, et al. Gamma entrain-                       ations can predict Phenoconversion in isolated rapid eye movement
+      ment induced by deep brain stimulation as a biomarker for motor                    sleep behavior disorder: a multicenter study. Ann Neurol 2024;
+      improvement with neuromodulation. Nat Commun 2025;16(1):                           95(3):530–543. https://doi.org/10.1002/ana.26835
+      2956. https://doi.org/10.1038/s41467-025-58132-7
+                                                                                   86.   Tinkhauser G, Moraud EM. Controlling clinical states governed by
+69.   Oehrn CR, Cernera S, Hammer LH, et al. Chronic adaptive deep                       different temporal dynamics with closed-loop deep brain stimula-
+      brain stimulation versus conventional stimulation in Parkinson’s                   tion: a principled framework. Front Neurosci 2021;15:734186.
+      disease: a blinded randomized feasibility trial. Nat Med 2024;                     https://doi.org/10.3389/fnins.2021.734186
+      30(11):1–12. https://doi.org/10.1038/s41591-024-03196-z
+                                                                                   87.   Gilron R, Little S, Wilt R, Perrone R, Anso J, Starr PA. Sleep-aware
+70.   Coffey EBJ, Arseneau-Bruneau I, Zhang X, Baillet S, Zatorre RJ.                    adaptive deep brain stimulation control: chronic use at home with
+      Oscillatory entrainment of the frequency-following response in                     dual independent linear discriminate detectors. Front Neurosci
+      auditory cortical and subcortical structures. J Neurosci 2021;                     2021;15:732499. https://doi.org/10.3389/fnins.2021.732499
+      41(18):4073–4087.      https://doi.org/10.1523/jneurosci.2313-20.
+      2021                                                                         88.   Hammer LH, Kochanski RB, Starr PA, Little S. Artifact characteri-
+                                                                                         zation and a multipurpose template-based ofﬂine removal solution
+71.   Zoefel B, Archer-Boyd A, Davis MH. Phase entrainment of brain                      for a sensing-enabled deep brain stimulation device. Stereotact
+      oscillations causally modulates neural responses to intelligible                   Funct Neurosurg 2022;100(3):168–183. https://doi.org/10.1159/
+      speech. Curr Biol 2018;28(3):401–408.e5. https://doi.org/10.1016/                  000521431
+      j.cub.2017.11.071
+                                                                                   89.   Neumann WJ, Sorkhabi MM, Benjaber M, et al. The sensitivity of
+72.   Sermon JJ, Olaru M, Ans   o J, et al. Sub-harmonic entrainment of
+                                                                                         ECG contamination to surgical implantation site in brain computer
+      cortical gamma oscillations to deep brain stimulation in
+                                                                                         interfaces. Brain Stimul 2021;14(5):1301–1306. https://doi.org/10.
+      Parkinson’s disease: model based predictions and validation
+                                                                                         1016/j.brs.2021.08.016
+      in three human subjects. Brain Stimul 2023;16(5):1412–1424.
+      https://doi.org/10.1016/j.brs.2023.08.026                                    90.   van Rheede JJ, Feldmann LK, Busch JL, et al. Diurnal modulation
+                                                                                         of subthalamic beta oscillatory power in Parkinson’s disease
+73.   Lopez-Azcarate J, Tainta M, Rodríguez-Oroz MC, et al. Coupling
+                                                                                         patients during deep brain stimulation. NPJ Parkinsons Dis 2022;
+      between Beta and High-frequency activity in the human sub-
+                                                                                         8(1):88. https://doi.org/10.1038/s41531-022-00350-7
+      thalamic nucleus may Be a pathophysiological mechanism in
+      Parkinson’s disease. J Neurosci 2010;30(19):6667–6677. https://              91.   Anso J, Benjaber M, Parks B, et al. Concurrent stimulation and
+      doi.org/10.1523/jneurosci.5459-09.2010                                             sensing in bi-directional brain interfaces: a multi-site translational
+                                                                                         experience. J Neural Eng 2022;19(2). https://doi.org/10.1088/
+74.   van Wijk BCM, Beudel M, Jha A, et al. Subthalamic nucleus
+                                                                                         1741-2552/ac59a3
+      phase–amplitude coupling correlates with motor impairment in
+      Parkinson’s disease. Clin Neurophysiol 2016;127(4):2010–2019.                92.   Tinkhauser G, Pogosyan A, Little S, Beudel M, Herz DM, Tan H,
+      https://doi.org/10.1016/j.clinph.2016.01.015                                       Brown P. The modulatory effect of adaptive deep brain stimulation
+
+
+
+
+                                                                                                              Movement Disorders, Vol. 41, No. 6, 2026    1381
+                                                                                                                                                             15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+K O E G L S P E R G E R              E T      A L
+
+
+       on beta bursts in Parkinson’s disease. Brain 2017;140(4):1053–                 Brain Stimul 2025;18(5):1579–1586. https://doi.org/10.1016/j.brs.
+       1067. https://doi.org/10.1093/brain/awx010                                     2025.08.002
+ 93.   Emura T, Tani N, Hosomi K, et al. Adaptive deep brain stimula-          110.   de Neeling MGJ, Geraats S, Swinnen BEKS, et al. Temporal
+       tion beneﬁts: younger patients with persistent wearing-off symp-               dynamics of Beta power related to the stun effect in Parkinson’s
+       toms. Mov Disord Clin Pract 2025;13:452–463. https://doi.org/10.               disease patients after deep brain stimulation surgery. Mov Disord
+       1002/mdc3.70311                                                                2025, 41(1):222–227. https://doi.org/10.1002/mds.70042
+ 94.   Bronte-Stewart H, Martijn B, Ostrem J, et al. Chronic adaptive DBS      111.   Anderson RW, Wilkins KB, Parker JE, et al. Lack of progression of
+       provides similar “on” time with trend of improvement compared to               beta dynamics after long-term subthalamic neurostimulation. Ann
+       continuous DBS in Parkinson’s disease and 98% of participants chose            Clin Transl Neurol 2021;8(11):2110–2120. https://doi.org/10.
+       to remain on aDBS (S2.008). Neurology 2024;102(7_supplement_1).                1002/acn3.51463
+       https://doi.org/10.1212/wnl.0000000000204762
+                                                                               112.   Behnke JK, Peach RL, Habets JGV, et al. Long-term stability of
+ 95.   Bronte-Stewart H, Beudel M, Ostrem JL, et al. Adaptive DBS algo-               spatial distribution and peak dynamics of subthalamic Beta power
+       rithm for personalized therapy in Parkinson’s disease: ADAPT-PD                in Parkinson’s disease patients. Mov Disord 2025;40(6):1070–
+       clinical trial methodology and early data (P1-11.002). Neurology               1084. https://doi.org/10.1002/mds.30169
+       2023;100(17_supplement_2). https://doi.org/10.1212/wnl.000000           113.   Fasano A, Mure H, Oyama G, et al. Subthalamic nucleus local ﬁeld
+       0000203099                                                                     potential stability in patients with Parkinson’s disease. Neurobiol
+ 96.   Stanslaski S, Summers RL, Tonder L, et al. Sensing data and meth-              Dis 2024;199:106589. https://doi.org/10.1016/j.nbd.2024.106589
+       odology from the adaptive DBS algorithm for personalized therapy        114.   Cummins DD, Kochanski RB, Gilron R, Swann NC, Little S,
+       in Parkinson’s disease (ADAPT-PD) clinical trial. NPJ Parkinsons               Hammer LH, Starr PA. Chronic sensing of subthalamic local ﬁeld
+       Dis 2024;10(1):174. https://doi.org/10.1038/s41531-024-00772-5                 potentials: comparison of ﬁrst and second generation implantable
+ 97.   Horvath K, Aschermann Z, Ács P, et al. Minimal clinically impor-             bidirectional systems within a single subject. Front Neurosci 2021;
+       tant difference on the motor examination part of MDS-UPDRS.                    15:725797. https://doi.org/10.3389/fnins.2021.725797
+       Parkinsonism Relat Disord 2015;21(12):1421–1426. https://doi.           115.   van Wijk BCM, de Bie RMA, Beudel M. A systematic review of
+       org/10.1016/j.parkreldis.2015.10.006                                           local ﬁeld potential physiomarkers in Parkinson’s disease: from
+ 98.   Starr PA, Shivacharan RS, Goldberg E, et al. Five-year outcomes                clinical correlations to adaptive deep brain stimulation algorithms.
+       from deep brain stimulation of the subthalamic nucleus for                     J Neurol 2023;270(2):1162–1177. https://doi.org/10.1007/s00415-
+       Parkinson disease. JAMA Neurol 2025;82(11):1181–1190. https://                 022-11388-1
+       doi.org/10.1001/jamaneurol.2025.3373                                    116.   Gerster M, Waterstraat G, Binns TS, et al. Beyond beta rhythms:
+ 99.   Fabbri M, Barbosa R, Rascol O. Off-time treatment options for                  subthalamic aperiodic broadband power scales with Parkinson’s
+       Parkinson’s disease. Neurol Ther 2023;12(2):391–424. https://doi.              disease severity–a cross-sectional multicentre study. EBioMedicine
+       org/10.1007/s40120-022-00435-8                                                 2025;122:105988. https://doi.org/10.1016/j.ebiom.2025.105988
+
+100.   Soileau MJ, Aldred J, Budur K, et al. Safety and efﬁcacy of contin-     117.   Swinnen BEKS, Hoy CW, Little SJ. Towards adaptive deep brain
+       uous subcutaneous foslevodopa-foscarbidopa in patients with                    stimulation for non-motor symptoms in Parkinson’s disease? Mov
+       advanced Parkinson’s disease: a randomised, double-blind, active-              Disord 2025;40(9):1759–1777. https://doi.org/10.1002/mds.30212
+       controlled, phase 3 trial. Lancet Neurol 2022;21(12):1099–1109.         118.   Mizrahi-Kliger AD, Kaplan A, Israel Z, Deffains M, Bergman H.
+       https://doi.org/10.1016/s1474-4422(22)00400-8                                  Basal ganglia beta oscillations during sleep underlie parkinsonian
+101.   Herrington TM, Beudel M, Ostrem JL, et al. Lessons learned from                insomnia. Proc Natl Acad Sci 2020;117(29):17359–17368. https://
+       the ADAPT-PD clinical trial: programming adaptive deep brain                   doi.org/10.1073/pnas.2001560117
+       stimulation in the clinic. Parkinsonism Relat Disord 2025;134:          119.   Yin Z, Zhu G, Zhao B, et al. Local ﬁeld potentials in Parkinson’s
+       107785. https://doi.org/10.1016/j.parkreldis.2025.107785                       disease: a frequency-based review. Neurobiol Dis 2021;155:
+102.   Darcy N, Lofredi R, Al-Fatly B, et al. Spectral and spatial distribu-          105372. https://doi.org/10.1016/j.nbd.2021.105372
+       tion of subthalamic beta peak activity in Parkinson’s disease           120.   Roediger J, Dembek TA, Achtzehn J, et al. Automated deep brain
+       patients. Exp Neurol 2022;356:114150. https://doi.org/10.1016/j.               stimulation programming based on electrode location: a random-
+       expneurol.2022.114150                                                          ised, crossover trial using a data-driven algorithm. Lancet Digit
+103.   Plate A, Hell F, Mehrkens JH, Koeglsperger T, Bovet A,                         Health 2023;5(2):e59–e70. https://doi.org/10.1016/s2589-7500(22)
+       Stanslaski S, Bötzel K. Peaks in the beta band of the human sub-               00214-x
+       thalamic nucleus: a case for low beta and high beta activity.           121.   Dong J, Peschke S, Kirchner A, et al. Subjective patient rating as a
+       J Neurosurg 2022;136(3):672–680. https://doi.org/10.3171/2021.                 novel feedback signal for DBS programming in Parkinson’s disease.
+       3.jns204113                                                                    Brain Stimul 2025;18(3):770 779. https://doi.org/10.1016/j.brs.
+104.   Shreve LA, Velisar A, Malekmohammadi M, et al. Subthalamic oscil-              2025.03.008
+       lations and phase amplitude coupling are greater in the more affected   122.   Palleis C, Gehmeyr M, Mehrkens JH, Bötzel K, Koeglsperger T.
+       hemisphere in Parkinson’s disease. Clin Neurophysiol 2017;128(1):              Establishment of a visual analog scale for DBS programming
+       128–137. https://doi.org/10.1016/j.clinph.2016.10.095                          (VISUAL-STIM trial). Front Neurol 2020;11:561323. https://doi.
+105.   Scherer M, Wiedemann N, Boetzel K, et al. Inconsistent Sub-                    org/10.3389/fneur.2020.561323
+       thalamic Beta Expression in the Local Field Potential amid In- and      123.   Peschke S, Dong J, Kirschner A, et al. Patient Reported Feedback
+       Anti-Phasic Neuronal Bursts; 2025. https://doi.org/10.64898/2025.              Suggests an Alternative Sweet Spot for DBS Programming in Essen-
+       12.16.694607.                                                                  tial Tremor; 2025. https://doi.org/10.21203/rs.3.rs-8050162/v1.
+106.   Rosa M, Marceglia S, Servello D, et al. Time dependent sub-             124.   Off J, Scherer M, Peschke S, et al. Psychometric reliability of
+       thalamic local ﬁeld potential changes after DBS surgery in                     patient-reported visual analogue scales in STN-DBS programming
+       Parkinson’s disease. Exp Neurol 2010;222(2):184–190. https://doi.              for Parkinson’s disease; 2025. https://doi.org/10.21203/rs.3.rs-
+       org/10.1016/j.expneurol.2009.12.013                                            8047862/v1.
+107.   Brinda AK, Doyle AM, Blumenfeld M, et al. Longitudinal analysis         125.   Lofredi R, Kühn AA. Chapter 17 brain oscillatory dysfunctions in
+       of local ﬁeld potentials recorded from directional deep brain stimu-           dystonia. Handb Clin Neurol. Amsterdam, Netherelands, Elsevier,
+       lation lead implants in the subthalamic nucleus. J Neural Eng                  2022;184:249–257. https://doi.org/10.1016/b978-0-12-819410-2.0
+       2021;18(4):046050. https://doi.org/10.1088/1741-2552/abfc1c                    0026-6.
+108.   Peng C, Wang Z, Sun Y, et al. Subthalamic nucleus dynamics track        126.   Cernera S, Alcantara JD, Opri E, et al. Wearable sensor-driven
+       microlesion effect in Parkinson’s disease. Front Cell Dev Biol 2024;           responsive deep brain stimulation for essential tremor. Brain Stimul
+       12:1370287. https://doi.org/10.3389/fcell.2024.1370287                         2021;14(6):1434–1443. https://doi.org/10.1016/j.brs.2021.09.002
+109.   Feldmann LK, Soriano DC, Habets J, et al. Electrophysiological          127.   Merk T, Peterson V, Lipski WJ, et al. Electrocorticography is supe-
+       changes in the acute phase after deep brain stimulation surgery.               rior to subthalamic local ﬁeld potentials for movement decoding in
+
+
+
+1382        Movement Disorders, Vol. 41, No. 6, 2026
+                                                                                                                                                                 15318257, 2026, 6, Downloaded from https://movementdisorders.onlinelibrary.wiley.com/doi/10.1002/mds.70284 by Technical University Eindhoven, Wiley Online Library on [05/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                              G A P S      A N D     C O N T R O V E R S I E S            I N     A D A P T I V E        D B S
+
+
+       Parkinson’s disease. elife 2022;11:e75126. https://doi.org/10.7554/                Neurology 2015;84(10):1017–1025. https://doi.org/10.1212/wnl.
+       elife.75126                                                                        0000000000001334
+128.   Dixon TC, Strandquist G, Zeng A, et al. Movement-responsive                 137.   Binder T, Lange F, Pozzi N, et al. Feasibility of local ﬁeld
+       deep brain stimulation for Parkinson’s disease using a remotely                    potential-guided programming for deep brain stimulation in
+       optimized neural decoder. Nat Biomed Eng 2025;10:1–15. https://                    Parkinson’s disease: a comparison with clinical and neuro-imaging
+       doi.org/10.1038/s41551-025-01438-0                                                 guided approaches in a randomized, controlled pilot trial. Brain
+                                                                                          Stimul 2023;16(5):1243–1251. https://doi.org/10.1016/j.brs.2023.
+129.   Neumann W, Kühn AA. Subthalamic beta power—uniﬁed                                  08.017
+       Parkinson’s disease rating scale III correlations require akinetic
+       symptoms. Mov Disord 2017;32(1):175–176. https://doi.org/10.                138.   Shimamoto SA, Ryapolova-Webb ES, Ostrem JL, Galiﬁanakis NB,
+       1002/mds.26858                                                                     Miller KJ, Starr PA. Subthalamic nucleus neurons are synchronized
+                                                                                          to primary motor cortex local ﬁeld potentials in Parkinson’s dis-
+130.   Klocke P, Loefﬂer MA, Lewis SJG, Gharabaghi A, Weiss D. Could                      ease. J Neurosci 2013;33(17):7220–7233. https://doi.org/10.1523/
+       adaptive deep brain stimulation treat freezing of gait in Parkinson’s              jneurosci.4676-12.2013
+       disease? J Neurol 2025;272(4):267. https://doi.org/10.1007/
+       s00415-025-13000-8                                                          139.   Falciglia S, Cafﬁ L, Baiata C, Palmisano C, Isaias IU, Mazzoni A.
+                                                                                          Transformer-based long-term predictor of subthalamic beta activity
+131.   Azgomi HF, Louie KH, Bath JE, et al. Modeling and optimizing                       in Parkinson’s disease. NPJ Parkinsons Dis 2025;11(1):210. https://
+       deep brain stimulation to enhance gait in Parkinson’s disease: per-                doi.org/10.1038/s41531-025-01011-1
+       sonalized treatment with neurophysiological insights. NPJ
+       Parkinsons Dis 2025;11(1):173. https://doi.org/10.1038/s41531-              140.   Cole SR, van der Meij R, Peterson EJ, de Hemptinne C, Starr PA,
+       025-00990-5                                                                        Voytek B. Nonsinusoidal Beta oscillations reﬂect cortical patho-
+                                                                                          physiology in Parkinson’s disease. J Neurosci 2017;37(18):4830–
+132.   Fasano A, Aquino CC, Krauss JK, Honey CR, Bloem BR. Axial                          4840. https://doi.org/10.1523/jneurosci.2208-16.2017
+       disability and deep brain stimulation in patients with Parkinson
+                                                                                   141.   Gerster M, Waterstraat G, Binns TS, et al. Beyond beta rhythms:
+       disease. Nat Rev Neurol 2015;11(2):98–110. https://doi.org/10.
+                                                                                          aperiodic broadband power reﬂects Parkinson’s disease severity–a
+       1038/nrneurol.2014.252
+                                                                                          multicenter study. bioRxiv 2025;2025.03.11.642600. https://doi.
+133.   Pepper J, Zrinzo L, Mirza B, Foltynie T, Limousin P, Hariz M. The                  org/10.1101/2025.03.11.642600
+       risk of hardware infection in deep brain stimulation surgery is             142.   Torres V, Giudice KD, Rold an P, et al. Image-guided programming
+       greater at impulse generator replacement than at the primary pro-                  deep brain stimulation improves clinical outcomes in patients with
+       cedure. Stereotact Funct Neurosurg 2013;91(1):56–65. https://doi.                  Parkinson’s disease. NPJ Parkinsons Dis 2024;10(1):29. https://doi.
+       org/10.1159/000343202                                                              org/10.1038/s41531-024-00639-9
+134.   Hitti FL, Vaughan KA, Ramayya AG, McShane BJ, Baltuch GH.                   143.   Horn A, Neumann WJ. From adaptive deep brain stimulation to
+       Reduced long-term cost and increased patient satisfaction with                     adaptive circuit targeting. Nat Rev Neurol 2025;21(10):556–566.
+       rechargeable implantable pulse generators for deep brain stimula-                  https://doi.org/10.1038/s41582-025-01131-5
+       tion. J Neurosurg 2019;131(3):799–806. https://doi.org/10.3171/
+       2018.4.jns172995                                                            144.   Lofredi R, Okudzhava L, Irmen F, et al. Subthalamic beta bursts
+                                                                                          correlate with dopamine-dependent motor symptoms in
+135.   Wilkins KB, Petrucci MN, Lambert EF, et al. Beta burst-driven                      106 Parkinson’s patients. NPJ Parkinsons Dis 2023;9(1):2. https://
+       adaptive deep brain stimulation for gait impairment and freezing                   doi.org/10.1038/s41531-022-00443-3
+       of gait in Parkinson’s disease. Brain Commun 2025;7(4):fcaf266.
+                                                                                   145.   Abdi-Sargezeh B, Shirani S, Sharma A, et al. Prediction of patho-
+       https://doi.org/10.1093/braincomms/fcaf266
+                                                                                          logical subthalamic nucleus Beta burst occurrence in Parkinson’s
+136.   Salanova V, Witt T, Worth R, et al. Long-term efﬁcacy and safety                   disease. Mov Disord 2025;40(12):2615–2627. https://doi.org/10.
+       of thalamic stimulation for drug-resistant partial epilepsy.                       1002/mds.70076
+
+
+
+
+                                                                                                              Movement Disorders, Vol. 41, No. 6, 2026    1383
+

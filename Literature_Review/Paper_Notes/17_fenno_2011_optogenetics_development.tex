@@ -1,0 +1,25 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries The Development and Application of Optogenetics\par}
+
+\textbf{Paper:} Fenno, Yizhar and Deisseroth (2011).\quad Review.\par
+\href{https://doi.org/10.1146/annurev-neuro-061010-113817}{DOI: \nolinkurl{10.1146/annurev-neuro-061010-113817}}\par
+{\footnotesize Page references below use PDF page numbers, including front matter.}
+
+\question{To which general question does this paper relate?}
+What optical stimulation can control, how targeting is achieved, and which actuator dynamics constrain a neural control model.
+
+\question{How does it answer the general questions?}
+\textbf{Actuation.} Reviews excitatory channelrhodopsins, inhibitory pumps and light-sensitive signalling tools. Genetic and projection targeting allow selective manipulation; opsin kinetics and spectral sensitivity vary substantially across tools (PDF pp.~2--11).
+
+\textbf{Usable insight.} Light input is filtered by expression, delivery and opsin physiology before affecting spikes or circuit activity. High-frequency stimulation fidelity, adaptation and recovery therefore need validation for the selected construct. Electrical or optical measurements are needed to verify the effect; the actuator is not itself a sensor (PDF pp.~7--16).
+
+\textbf{Model relevance.} Helps choose actuator location, sign and bandwidth and motivates adding opsin states when a static gain is inadequate. It does not establish the notebook's monotone memoryless nonlinearity assumptions, numerical delayed coupling coefficients or an LFP observation map. Discussed behavioural interventions are application-specific; this review does not identify beta suppression as a general therapeutic objective.
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item Boyden et al. (2005), \emph{Millisecond-timescale, genetically targeted optical control of neural activity}: optical excitation (references, PDF p.~19).
+\item Gradinaru et al. (2009), \emph{Optical deconstruction of parkinsonian neural circuitry}: pathway-level intervention (PDF p.~20).
+\end{itemize}
+
+\end{document}

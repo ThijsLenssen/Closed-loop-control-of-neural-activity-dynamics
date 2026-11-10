@@ -1,0 +1,32 @@
+{
+  "checked_at_utc": "2026-11-06T15:01:48.116411+00:00",
+  "requested_page": "https://direct.mit.edu/books/book/3723/Neural-Control-EngineeringThe-Emerging",
+  "publisher_page": "https://mitpress.mit.edu/9780262015370/neural-control-engineering/",
+  "complete_book": false,
+  "coverage": "Public publisher sample and errata only; full chapters not downloaded.",
+  "sources": [
+    {
+      "file": "individual_pdfs/01 - Introduction - publisher sample.pdf",
+      "url": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/8436/9780262015370_sch_0001.pdf",
+      "resolved_url": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/8436/9780262015370_sch_0001.pdf",
+      "pages": 24,
+      "merged_first_page": 1,
+      "sha256": "def72d0b66b0ace5b59b23c971ee80109b6145b4e5a3d6c009cbbb27d70b1e78",
+      "bytes": 926476
+    },
+    {
+      "file": "individual_pdfs/99 - Errata.pdf",
+      "url": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/8436/Neural_Control_Engineering_Errata_110911.pdf",
+      "resolved_url": "https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/8436/Neural_Control_Engineering_Errata_110911.pdf",
+      "pages": 9,
+      "merged_first_page": 25,
+      "sha256": "ba69d10b92bd715621e542a021c50a33e94b70e48dd9c6f2d57ad0a5d73ea397",
+      "bytes": 598435
+    }
+  ],
+  "requested_page_status": 403,
+  "requested_page_error": "HTTP Error 403: Forbidden",
+  "merged_file": "Neural Control Engineering - available sample and errata.pdf",
+  "merged_pages": 33,
+  "merged_sha256": "68572385313822882add4fe670105352a0cf8dd6b7d27343ab517736b29a70f6"
+}

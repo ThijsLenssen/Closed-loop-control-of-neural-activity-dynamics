@@ -1,0 +1,1184 @@
+                                    Article                                                                                                  https://doi.org/10.1038/s41467-024-48731-1
+
+
+                                    Deep brain stimulation of symptom-speciﬁc
+                                    networks in Parkinson’s disease
+
+                                    Received: 14 March 2023                                 Nanditha Rajamani 1 , Helen Friedrich2,3, Konstantin Butenko 2,
+                                                                                            Till Dembek2,4, Florian Lange5, Pavel Navrátil5, Patricia Zvarova1,6,
+                                    Accepted: 13 May 2024
+                                                                                            Barbara Hollunder 1,6,7, Rob M. A. de Bie8, Vincent J. J. Odekerken8,
+                                                                                            Jens Volkmann5, Xin Xu9, Zhipei Ling10, Chen Yao11, Petra Ritter 1,6,7,12,
+                                                                                            Wolf-Julian Neumann1, Georgios P. Skandalakis13,14, Spyridon Komaitis14,15,
+                                       Check for updates                                    Aristotelis Kalyvas14,16, Christos Koutsarnakis14, George Stranjalis14,
+                                                                                            Michael Barbe4, Vanessa Milanese17,18,19, Michael D. Fox 2,20,21,
+                                                                                            Andrea A. Kühn 1,6,7, Erik Middlebrooks22, Ningfei Li 1, Martin Reich 5,
+                  1234567890():,;
+1234567890():,;
+
+
+
+
+                                                                                            Clemens Neudorfer1,2,20,21 & Andreas Horn 1,2,20,21
+
+
+                                                                                            Deep Brain Stimulation can improve tremor, bradykinesia, rigidity, and axial
+                                                                                            symptoms in patients with Parkinson’s disease. Potentially, improving each
+                                                                                            symptom may require stimulation of different white matter tracts. Here, we
+                                                                                            study a large cohort of patients (N = 237 from ﬁve centers) to identify tracts
+                                                                                            associated with improvements in each of the four symptom domains. Tremor
+                                                                                            improvements were associated with stimulation of tracts connected to pri-
+                                                                                            mary motor cortex and cerebellum. In contrast, axial symptoms are associated
+                                                                                            with stimulation of tracts connected to the supplementary motor cortex and
+                                                                                            brainstem. Bradykinesia and rigidity improvements are associated with the
+                                                                                            stimulation of tracts connected to the supplementary motor and premotor
+                                                                                            cortices, respectively. We introduce an algorithm that uses these symptom-
+                                                                                            response tracts to suggest optimal stimulation parameters for DBS based
+                                                                                            on individual patient’s symptom proﬁles. Application of the algorithm illus-
+                                                                                            trates that our symptom-tract library may bear potential in personalizing
+                                                                                            stimulation treatment based on the symptoms that are most burdensome in
+                                                                                            an individual patient.
+
+
+                                    Deep Brain Stimulation (DBS) of the subthalamic nucleus (STN) is an            While stimulation is adjusted postoperatively during DBS program-
+                                    established treatment for Parkinson’s disease (PD). The efﬁcacy of DBS         ming in a symptom-speciﬁc manner8, this titration often follows a trial-
+                                    on symptoms such as tremor and bradykinesia has been established in            and-error method since the optimal stimulation site for treating dif-
+                                    randomized clinical trials1, but its effects on gait and other axial           ferent symptoms is largely unknown. Furthermore, segmented elec-
+                                    symptoms have been variable, even including detrimental effects of             trodes with up to sixteen contacts per lead are implanted, making the
+                                    electrical stimulation under certain circumstances2–5. Hence, while            programming process increasingly complex.
+                                    many patients strongly beneﬁt from DBS, not all do6. One reason could               The notion that different symptoms of PD map to different brain
+                                    be that we generally target the same brain region to treat different           regions or networks is not new9,10. For instance, in seminal work by the
+                                    symptoms of the disease. For instance, in STN-DBS, we surgically tar-          Freiburg school of stereotaxy based on 560 ablation cases between
+                                    get a coordinate within the posterolateral part of the nucleus deﬁned          1950 and 1958, Hassler et al. concluded that optimal control of tremor
+                                    by direct imaging and/or surgical landmarks such as the Bejjani line7.         involved lesioning a loop between cerebellum (and Mollaret triangle),
+
+
+                                    A full list of afﬁliations appears at the end of the paper.   e-mail: nrajamani@bwh.harvard.edu
+
+
+                                    Nature Communications | (2024)15:4662                                                                                                                1
+Article                                                                                                                                                                                                                   https://doi.org/10.1038/s41467-024-48731-1
+
+
+the posterior nucleus ventrooralis and primary motor cortex9. In
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                              An overview of demographic information across all sub-cohorts used in the study. The discovery cohort represents the original cohort of patients used to develop the symptom library. We used validation cohorts I and II to replicate the ﬁndings from the discovery
+                                                                                                                                                                                                                           41.82 ± 38.17
+                                                                                                                                                                                                        MRI (N = 45)
+
+
+
+
+                                                                                                                                                                                                                                                                                                CT (N = 33)
+                                                                                                                                                                                                                                                                                                MRI (N = 8)
+contrast, optimal control of bradykinesia and rigidity involved
+
+
+
+
+                                                                                                                                                                                                        CT (N = 6)
+                                                                                                                                                     imaging
+                                                                                                                                                     Postop
+lesioning connections from pallidum to the anterior nucleus ven-
+trooralis and a subregion of the supplementary motor area (deﬁned by
+
+
+
+
+                                                                                                                                                                             CT
+
+
+
+
+                                                                                                                                                                                                                                                                                                                CT
+                                                                                                                                                                                                                                                   CT
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                 CT
+the Vogt/Hassler/Brodmann school as area 6aα). Much later, Akram
+et al. among others conﬁrmed and extended these ﬁndings using DBS
+
+
+
+
+                                                                                                                                                     LEDD reduc-
+and modern neuroimaging methods11,12. Aside from DBS and lesion
+
+
+
+
+                                                                                                                                                                                                        52.8 ± 41.6
+
+                                                                                                                                                                                                                           46.9 ± 15.7
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                 57 ± 24.43
+                                                                                                                                                                             61.4 ± 25.1
+data but using task-based functional MRI, Helmich et al. associated
+
+
+
+
+                                                                                                                                                     tion (%)
+
+
+
+
+                                                                                                                                                                                                                                                   50.94 ±
+
+                                                                                                                                                                                                                                                                                                32 ± 23
+
+                                                                                                                                                                                                                                                                                                                48 ± 11
+Parkinsonian rest and, likely, action tremor with the cerebellothala-
+mocortical circuit, as well13–15.
+      In the light of these ﬁndings, DBS for PD could potentially be
+
+
+
+
+                                                                                                                                                     UPDRS-III Improvement
+optimized by focusing on each individual symptom rather than
+
+
+
+
+                                                                                                                                                     (Med OFF DBS ON) [%]
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                 [Cleartune: 73.1 ± 11.8]
+global metrics that combine multiple symptoms (e.g., the Uniﬁed
+Parkinson’s Disease Rating Scale, UPDRS). From this, two points
+follow: First, there is a need for an accurate symptom-response cir-
+
+
+
+
+                                                                                                                                                                                                                                                   46.37 ± 22.23
+
+                                                                                                                                                                                                                                                                                                52.65 ± 15.13
+
+                                                                                                                                                                                                                                                                                                                27.99 ± 34.6
+
+
+
+                                                                                                                                                                                                                                                                                                                                                 65.4 ± 12.05
+                                                                                                                                                                                                        45.3 ± 23.0
+                                                                                                                                                                             49.3 ± 24.8
+cuit model in stereotactic standard space. Once established, patient-
+
+
+
+
+                                                                                                                                                                                                                           68.8 ± 26.1
+speciﬁc electrode placement could be related to such a model to
+determine optimal stimulation settings for each patient based on
+their speciﬁc symptoms. Second, it may become possible to deliver
+treatment to several segregated circuits with a single DBS electrode
+by simultaneous stimulation of different contacts. Such complex
+
+
+
+
+                                                                                                                                                     response [%]
+
+
+
+
+                                                                                                                                                                                                                                                   62.39 ± 17.44
+
+                                                                                                                                                                                                                                                                                                52.65 ± 15.31
+                                                                                                                                                                                                                           47.03 ± 15.5
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                 62.8 ± 15.87
+parameter choices could beneﬁt from automated algorithms to
+
+
+
+
+                                                                                                                                                     Levodopa
+
+                                                                                                                                                                             61.8 ± 18.4
+
+                                                                                                                                                                                                        53.5 ± 17.2
+
+
+
+
+                                                                                                                                                                                                                                                                                                                22.7 ± 14.5
+suggest stimulation settings that maximally improve prevalent
+symptoms in each patient.
+      Using a method called “DBS ﬁber-ﬁltering,”16 it has become
+possible to pinpoint connections that associate with symptom
+
+
+                                                                                                                                                     UPDRS- III Baseline
+improvements following DBS on a group level. Since at ﬁrst
+
+                                                                                                                                                     (Med OFF) [Points]
+approximation, DBS is thought to act as an “informational lesion,”17
+
+
+
+
+                                                                                                                                                                                                                                                                                                53.26 ± 18.05
+                                                                                                                                                                             49.84 ± 12.35
+the circuits that associate with symptom improvements might be
+
+
+
+                                                                                                                                                                                                        38.6 ± 12.9
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                 49.8 ± 22.1
+                                                                                                                                                                                                                                                                                                                44.2 ± 17.5
+                                                                                                                                                                                                                                                   42.46 ± 16
+exactly the ones that become dysfunctional as a consequence of the
+
+
+
+
+                                                                                                                                                                                                                           12.7 ± 6.1
+disorder18. Indeed, multiple reports have used DBS ﬁberﬁltering to
+characterize the circuits that become dysfunctional in PD19–23 and
+other disorders16,24,25. Recently, the theoretical entirety of dysfunc-
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                              cohort. The prospective cohort included ﬁve patients, who were enrolled to test the applicability of Cleartune in a clinical setting.
+tional tracts has been termed the “human dysfunctome”, i.e. a library                                                                                                                                                      50.53 ± 9.80
+
+
+                                                                                                                                                                                                                                                   59.22 ± 3.99 10.84 ± 4.18
+
+
+
+
+                                                                                                                                                                                                                                                                                                                9.72 ± 3.03
+                                                                                                                                                                                                                                                                                                8.85 ± 3.77
+of circuits that may become dysfunctional in the human brain, and
+                                                                                                                                                                                                        10.4 ± 3.9
+                                                                                                                                                                             12.6 ± 4.5
+                                                                                                                                                                 Duration
+                                                                                                                                                     Age [years] Disease
+
+
+
+
+which lead to disorders, if they do18,26. In STN-DBS for PD, the general
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                 14 ± 4
+connection that emerged was a speciﬁc (hyperdirect) cortical pro-
+                                                                            Table 1 | Demographic information of sub-cohorts analyzed in the study
+
+
+
+
+jection from premotor cortices to the STN19–21, as well as indirect                                                                                                                                                                                                                             65.38 ± 7.18
+
+                                                                                                                                                                                                                                                                                                                61.54 ± 9.15
+                                                                                                                                                                                                        60.0 ± 7.90
+                                                                                                                                                                             60.4 ± 8.20
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                 60.6 ± 4.98
+pathway connections from pallidum to the motor STN26. However, a
+symptom-response breakdown of this connection has not yet been
+established. If such a model were available, it could potentially be
+used to personalize treatments, by stimulating the required parts of
+                                                                                                                                                                                                                                                                                                                (10/4; 186 stimula-
+
+
+the circuit for a given patient, which would correspond to the most
+                                                                                                                                                                                                                           Amsterdam (34/8)
+                                                                                                                                                                             Würzburg (44/12)
+                                                                                                                                                     DBS center [N/
+
+
+
+
+burdensome symptoms. This concept has been termed “network
+                                                                                                                                                                                                       Berlin (51/18)74
+
+
+
+
+                                                                                                                                                                                                                                                                                                                tion settings)
+
+
+
+
+blending”27.
+                                                                                                                                                                                                                                                   Validation & Replication of multi Würzburg
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                 Würzburg
+                                                                                                                                                                                                                                                                                                                Cologne
+
+
+
+
+      Here, we pursue exactly this goal: First, we create a circuit model
+                                                                                                                                                     female]
+
+
+
+
+                                                                                                                                                                                                                                                                                                (41/20)
+                                                                                                                                                                                                                                                                                     (52/19)
+                                                                                                                                                                                                                                                                                                Beijing
+
+
+
+
+in stereotactic standard space for four cardinal motor symptom
+                                                                                                                                                                                                                                                                                                                                                 (5/1)
+
+
+
+
+categories (tremor, bradykinesia, rigidity, and axial symptoms). Sec-
+ond, we introduce an algorithm which builds upon the circuit model
+                                                                                                                                                                                                                                                                                                                Monopolar Review Data: Valida-
+
+
+
+
+and can suggest optimal stimulation parameters as a function of the
+                                                                                                                                                                                                                                                                                                                tion of Symptom Speciﬁcity
+
+                                                                                                                                                                                                                                                                                                                                                 Prospective Application of
+
+
+
+
+baseline symptom severity proﬁle in each patient.
+                                                                                                                                                                             Establishment of multi-
+
+
+
+
+Results
+                                                                                                                                                                             symptom model
+
+
+
+
+                                                                                                                                                                                                                                                   symptom model
+
+
+
+
+Clinical results
+Our model was derived and cross-validated on a discovery dataset that
+                                                                                                                                                                                                                                                                                                                                                 Cleartune
+                                                                                                                                                                                                                                                                                                                of model
+
+
+
+
+consisted of cohorts from three independent centers (Table 1 & Fig. 1,
+left panel: Würzburg (N = 43), Amsterdam (N = 35) and Berlin (N = 51)).
+                                                                                                                                                     Aim
+
+
+
+
+All patients underwent bilateral STN-DBS using 4 contact omnidirec-
+tional electrodes (Medtronic 3389) with stimulation applied to both
+                                                                                                                                                                                                                                                                                                                                                 bility cohort (N = 5)
+
+
+
+
+hemispheres. Electrodes were localized and active contacts resided in
+                                                                                                                                                                                                                                                                                                                                                 Prospective feasi-
+                                                                                                                                                                                                                                                   Validation cohort
+
+
+
+
+                                                                                                                                                                                                                                                                                                                Validation cohort
+                                                                                                                                                                             Cohort (N = 129)
+
+
+
+
+the subthalamic region across all 129 patients. Figure S1 (supplemen-
+tary discussion; section S1) shows native space imaging of example
+                                                                                                                                                                             Discovery
+
+
+
+
+                                                                                                                                                                                                                                                                                                                II (N = 10)
+                                                                                                                                                                                                                                                   I (N = 93)
+
+
+
+
+patients together with reconstructed electrodes. Clinical scores across
+all patients had an average UPDRS-III baseline score of 44.59 ± 14.30
+                                                                                                                                                                                                                                              CT
+
+
+
+
+(SD) and mean improvement of 51.71 ± 24.26%. Our results were then
+
+
+Nature Communications | (2024)15:4662                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 2
+Article                                                                                                                https://doi.org/10.1038/s41467-024-48731-1
+
+
+
+
+Fig. 1 | Electrode placement. Active contacts visualized on a coronal slice of the cortex separately for each of the three subcohorts of the discovery cohort (total N = 129,
+left) and the three validation cohorts (N = 93, 10, and 5, respectively, right). Please note that orientations here refer to Superior (S), Posterior (P), and Lateral (L).
+
+
+validated using several independent cohorts (Table 1 & Fig. 1,                          speciﬁc to gait improvement (or would instead be associated with all
+right panel).                                                                           axial symptoms). To do so, we separated gait-speciﬁc symptoms from
+                                                                                        all other axial symptoms. While gait-speciﬁc symptom improvements
+Symptom-Response Multi-Tract Model (Discovery Cohort)                                   alone isolated the same brainstem connection, repeating the analysis
+An extended version of the DBS Tractography atlas28 was used to                         with all axial symptoms except the gait-items did not include this
+deﬁne anatomical connections from and to, as well as passing, the STN                   connection (Fig. 3C, D).
+(see methods and supplementary methods; Section S3). Using the DBS                           As previously mentioned, all tracts shown in Fig. 2 were sig-
+ﬁber ﬁltering method29 across the N = 129 discovery cohort, we inves-                   niﬁcant after correction for multiple comparisons. We still sought to
+tigated which stimulated streamlines (included in the pathway atlas)                    test the robustness of this model further within the discovery cohort
+correlated with improvements in bradykinesia, rigidity, tremor, and                     before validating it using additional data. To do so, ﬁrst, we sub-
+axial symptoms. After FDR correction, this statistically signiﬁcant set of              jected symptom-response tracts to a permutation analysis. Here, the
+ﬁbers revealed a distinct rostrocaudal gradient of symptom improve-                     bradykinesia and rigidity tracts signiﬁcantly explained more var-
+ments at the subthalamic level (Fig. 2).                                                iance in outcomes than re-calculated tract models after permuting
+      Connections between primary motor cortex and the most pos-                        improvement values across patients 1,000 times (p < 0.05). Second,
+terior region of the motor STN associated with tremor improvements.                     we subjected tract models to cross-validations. Here, all but the
+When lowering the threshold (i.e. when including streamlines with                       tremor tract model explained statistically signiﬁcant amounts of
+correlation coefﬁcients that did not reach signiﬁcance after correc-                    variance when subjected to 10-fold cross-validations (bradykinesia:
+tions for multiple comparisons), tremor tracts additionally included                    R = 0.20, p = 0.02; rigidity R = 0.20, p = 0.02; axial symptoms R = 0.22,
+the decussating cerebellothalamic pathway. Both of these connections                    p = 0.01, also see Fig. 2). Second, we tested how robust our results
+have been widely implicated with tremor across a large body of the                      were regarding spatial inaccuracies of each stimulation site. To test
+literature9,12,30–32. Connections between pre-Supplementary Motor Area                  this, we iteratively recalculated the symptom-response tract model
+(SMA) and the anterior part of the subthalamic premotor region                          1,000 times, each time after spatially jittering each electrical ﬁeld
+associated with rigidity improvements. In between, streamlines that                     based on a 3D Gaussian distribution with 2 mm full width half max-
+associated with improvements of bradykinesia and axial symptoms                         imum. Critically, this introduced random noise to the electrode
+overlapped on the anteroposterior axis. While bradykinesia tracts                       placements on a group level (not all electrodes were moved in the
+entered from the medial surface of the STN, axial tracts terminated at                  same direction). The resulting models were highly similar to one
+its lateral aspect (see insets in Fig. 2A) – both originating from SMA and              another (and to the unjittered version) with an average mean spatial
+laterally adjacent cortical regions. Prior ﬁndings hinted at shared                     correlation of R > 0.8. Details and example visualizations of jittered
+neural substrates for bradykinesia and rigidity (in contrast to tremor)33,              models are shown in Fig. S28. Third, we aimed at ruling out that our
+which does not directly match the degree of separation our results                      results would be speciﬁc to the processing pipeline used for bio-
+show. To explore this further, we regressed out rigidity improvements                   physical modeling (FieldTrip / SimBio pipeline37 as adapted for Lead-
+from bradykinesia improvements and vice-versa and repeated the                          DBS). Thus, we employed the pathway activation modeling concept
+analysis, which led to the same segregated results (Fig. S27). Axial                    using a more elaborate pipeline that was independently created
+tracts further included a connection to the brainstem conﬁned to the                    by a different team, called OSS-DBS38. The resulting model shared
+region surrounding the pedunculopontine nucleus (PPN). The PPN is a                     a highly similar topography with the one created by our default
+promising stimulation target to treat gait problems – which are part of                 pipeline and performing a 10-fold cross-validation yielded statisti-
+the axial symptom group – although with variable success34–36. Given                    cally    signiﬁcant     correlation     coefﬁcients      (Rmultitract = 0.38,
+this clinical relevance, we tested whether these connections could be                   p = 0.0002; Rsingletract = 0.34, p = 0.0004; Fig. S29).
+
+
+Nature Communications | (2024)15:4662                                                                                                                                      3
+Article                                                                                                               https://doi.org/10.1038/s41467-024-48731-1
+
+
+
+
+Fig. 2 | Symptom-network library. Views (A)–(C) from medial. A symptom-                 tracts visualized separately at the STN level with the other tracts grayed out for
+response tracts shown in sagittal view from medial and magniﬁed at the level of the     spatial comparison. Insets represent circular and 10-fold cross-validation results
+STN (orange, insets, one rotated by 180 degrees, i.e., shown from lateral view).        for each symptom tract. C Segregation of symptoms within indirect pathway
+Symptom-response tracts follow a rostrocaudal gradient with tremor most occi-           streamlines between STN and pallidum, following a similar rostrocaudal gradient.
+pital, followed by bradykinesia, axial symptoms, and rigidity. All shown tracts         D Cortical origins of hyperdirect projections. Streamlines associated with tremor
+signiﬁcantly correlated with symptom improvements after correcting for multiple         improvements originated in primary motor cortex, whereas the ones associated
+comparisons (α < 0.05) using a two-tailed correlation analysis test. Note that tracts   with improvements in hypokinetic symptoms originated from premotor regions in
+are in proximity to one another, making it possible to modulate all of them with a      a more interspersed fashion. I = Inferior, A = Anterior, L = Lateral, P = Posterior.
+single well-placed electrode (matching clinical experience). B Symptom-response
+
+
+
+     To further explore whether the entire model (and not each indi-                    folds, correlations based on the multi-tract model were signiﬁcantly
+vidual symptom tract) would be able to estimate variance in global                      higher than the ones based on the single tract model (T = 93.7, p = 2 e-
+motor improvements, we applied the network blending concept (see                        16, Fig. S31). To rule out that the selection of individual patients in our
+methods). Estimated global improvements signiﬁcantly correlated                         10-fold design did not bias the results, we repeated 10-fold cross-
+with relative-UPDRS-III improvements (R = 0.33, p = 0.00016, mean                       validations iteratively (for N = 1000 times) using random shufﬂing and
+absolute error: 17.87% ± 13.7%. Fig. 4A). To control for subcohorts                     observed that 5-fold and 7-fold cross validations led to similar results
+within the discovery cohort, we reran the original model and applied a                  (details given in supplementary methods; section S4, Fig. S31).
+mixed-effects model that controlled for dataset as a random effect.
+Results were similar and remained statistically signiﬁcant (R = 0.30,                   Symptom-Response Multi-Tract model (validation cohorts)
+p = 0.0015). Repeating these analyses with a ﬁve-tract model (informed                  To test generalizability of our model, next, we recalculated the same
+by tremor, bradykinesia, rigidity, gait, and other axial symptoms                       multi-tract model on an independent set of 93 patients from the Uni-
+except gait) led to similar results (Fig. S30).                                         versities of Würzburg and Beijing (Validation cohort I). Qualitatively, the
+     To compare the symptom-segregated model with a simpler model                       result resembled the original model. Namely, connections between M1
+that was directly trained on UPDRS-III improvements, we repeated the                    and the STN as well as cerebellar tracts associated with tremor
+analysis after calculating a single tract that directly coded for global                improvements. Axial symptom improvements correlated with stream-
+%-UPRDS-III improvements. This single tract model mimicked our                          lines adjacently anteriorly followed by the ones that associated with
+previous work, which aimed at determining the optimal structural                        rigidity improvements (SMA and prefrontal regions). Using network
+connectivity proﬁle for global motor improvement19,20. In direct com-                   blending, we were able to estimate variance in UPDRS-III improvements
+parison to the four-symptom model, the global symptom model per-                        in this validation cohort purely based on the original model calculated
+formed worse (R = 0.28, p = 0.0015, mean absolute error: 18.11% ±                       from the discovery cohort. These estimates signiﬁcantly correlated with
+13.9%. Fig. 4B). When testing across multiple iterations with shufﬂed                   empirical improvements in the test dataset (R = 0.37, p = 0.0006, Fig. 5C).
+
+
+Nature Communications | (2024)15:4662                                                                                                                                     4
+Article                                                                                                              https://doi.org/10.1038/s41467-024-48731-1
+
+
+
+
+Fig. 3 | Anatomical considerations of circuits associated with improvements of         axial symptoms included a brainstem connection to the pedunculopontine nucleus
+tremor and axial symptoms. As opposed to the other ﬁgures, tracts in this ﬁgure        region. C Segregating axial symptoms into gait vs. all other (axial) items revealed
+are not thresholded at signiﬁcance after FDR correction but include a broader set of   that this connection was driven by gait (and not by other axial symptoms).
+tracts to appreciate the broader distribution of symptoms across streamlines           D Comparison to the projection site with a matching slice from a histological atlas
+(lower threshold). A Tremor tracts included projections from the cerebellar nuclei     published by Coulombe and colleagues at z = +5.08 mm (panel adapted under the
+to thalamus as well as the cortical projections from primary motor cortex to STN,      Creative Commons Attribution (CC-BY) license from Coulombe et al., 2021 Fron-
+matching current pathophysiological models of tremor32. B Tracts associated with       tiers in Neuroanatomy75). A = Anterior, L = Lateral, P = Posterior.
+
+
+
+
+      Given the moderate strength of the correlation coefﬁcients                       symptom tracts in novel patients. Termed Cleartune, this algorithm
+between the estimated improvement and empirical clinical improve-                      tests stimulation ﬁelds based on the entire parameter space of sti-
+ments, we investigated whether a linear model considering other                        mulation parameters and suggests the one that receives the highest
+demographic factors could explain additional variance. To do so, we ﬁt                 estimated improvement. Supplementary Movie 1 visualizes the pro-
+a linear model that additionally included UPDRS-III baseline, patient age              cess of how the algorithm tests parameters to maximize outcomes in
+at surgery, sex, and levodopa equivalent dose (LEDD) reduction as                      the four symptom domains for a speciﬁc directional electrode. To test
+covariates. This model explained 25.5% of the variance in clinical                     the utility of the algorithm, it was ﬁrst applied to all patients within the
+improvements (R2 = 0.26, p < 10−6). The estimated improvements of the                  retrospective cohort. This led to an alternate set of stimulation
+multi-tract model remained a signiﬁcant regressor (t = 3.2, p = 0.0017).               volumes which could be compared to the ones applied in clinical
+UPDRS-III baseline scores (t = 3.3, p = 0.001) and sex also explained                  practice using spatial correlations. Here, higher spatial correlations
+statistically signiﬁcant amounts of variance (t = 3.0, p = 0.03), while the            meant greater similarity between the clinically applied E-ﬁelds and the
+other variables did not (LEDD reduction: p = 0.43, age: p = 0.39). Of                  ones suggested by the algorithm. Higher similarities correlated with
+note, none of these variables may be inﬂuenced due to medical practice,                better UPDRS-III improvements (R = 0.22, p = 0.001). The same was
+with the sole exception of the electrode placement and stimulation                     true when repeating the analysis on the validation cohort I, which the
+settings, which renders the multi-tract model estimates (which are                     model had not seen (R = 0.23, p = 0.03). Intuitively, this ﬁnding may be
+based on these factors) the critical anchor point with an opportunity to               understood as follows: In cases in which parameters suggested by
+potentially improve patient care (also see Fig. S35).                                  Cleartune agreed with the clinical ones, improvement was higher than
+                                                                                       in the ones for which the two settings disagreed.
+Cleartune – an algorithm to suggest stimulation parameters                                  In a second step, we aimed at testing symptom-speciﬁcity of
+In the next step, we created an algorithm capable of suggesting opti-                  suggestions derived by Cleartune. To do so, we leveraged a unique
+mal stimulation settings by maximizing stimulation of a speciﬁc set of                 dataset of 10 patients (20 electrodes; Validation cohort II), for which
+
+
+Nature Communications | (2024)15:4662                                                                                                                                   5
+Article                                                                                                              https://doi.org/10.1038/s41467-024-48731-1
+
+
+
+
+Fig. 4 | Network Blending. A Two example patients’ stimulation volumes are            actual improvements when analyzed via a two-tailed correlation analysis (R = 0.33
+shown alongside the optimal streamlines associated with symptom-response              p = 0.00016, mean absolute error: 17.87%, RMSE: 0.22, R2 = 0.08). B Stimulation
+tracts. These two patient examples illustrate both extremes of the model estima-      volume of the same two patients shown alongside the optimal streamlines asso-
+tion: one, where the absolute error value of model estimate is low and the other,     ciated with global UPDRS-III improvements. These ﬁber scores (0.54, 0.20) were
+where the absolute error is higher. To derive group level statistics, we employ the   transformed to estimated values of global UPDRS-III improvements based on the
+multi tract model across the four symptoms, and this process led to four scores,      training data within the 10-fold cross-validation process. These estimated
+each coding for one symptom. These were linearly weighted by the symptoms             improvements signiﬁcantly correlated with empirical improvements, when ana-
+prevalent in each patient (since, for instance, a patient with severe tremor would    lyzed through a two-tailed correlation analysis (R = 0.28, p = 0.01, mean absolute
+proﬁt more from modulating the tremor streamlines) and averaged, leading to a         error: 18.11%, RMSE = 0.22, R2 = 0.05). The shaded area in the correlation plot sig-
+weighted-average score that was converted to UPDRS-III improvements based on          niﬁes the 95% conﬁdence interval on the slope of the line. L = Lateral, A = Anterior,
+the training data. These estimated improvements signiﬁcantly correlated with          I = Inferior. Source data available as source data ﬁle.
+
+
+
+multiple settings had been tested in a prospective double-blinded                     correct vs. respective other symptom (p < 0.05 for both analyses;
+clinical trial (N = 186)39. These patients had been implanted with                    Fig. 6B, C).
+directional electrodes (Boston Scientiﬁc Vercise Cartesia) and for the
+directional levels with best clinical response, each segment had been                 Prospective application of Cleartune
+tested in increasing 1 mA steps until a side effect occurred or until                 Finally, we prospectively applied DBS stimulation parameters sug-
+reaching 5 mA. In addition, the omnidirectional setting (switching on                 gested by Cleartune in a small set of ﬁve patients (study design shown
+all three segments) was tested in the same way. As above, we calculated               in ﬁg. S33). UPDRS-III scores were taken by raters that were blinded to
+estimates for each setting using the original model (informed by the                  which protocol was active and then compared between standard of
+N = 129 discovery cohort). In 17 of the 20 electrodes, rank estimates                 care stimulation settings and the ones suggested by Cleartune. Fig-
+positively correlated with clinical improvements (all correlation plots               ure S34 shows electrode localizations and the two stimulation proto-
+with over six data points are shown in Fig. S32). Naturally, a one-sample             cols (Cleartune vs. Standard of Care; SoC) together with their tract
+t-test across these R-values was statistically signiﬁcant (T = 4.155,                 overlaps from the multi-tract model. Detailed results are given in the
+p = 0.00053; Fig. 6).                                                                 Supplementary Information (Supplementary Methods; Section S5). In
+      For each stimulation setting, bradykinesia and rigidity improve-                brief, from a baseline of 49.8 ± 22.1 UPDRS-III points, under Cleartune
+ments were available separately. Only three of the ten cases had sub-                 settings, scores improved by 34.4 ± 13.1 points (73 ± 11.8%). Under
+stantial tremor at baseline, so tremor could not be analyzed. To test for             standard of care settings, scores improved by 31.8 ± 15.1 points
+symptom-speciﬁcity, we repeated the analysis two more times, each                     (65.4 ± 12.1%). In four of the ﬁve patients, Cleartune settings led to a
+time maximally weighting either bradykinesia or rigidity when running                 higher improvement than SoC settings. In the ﬁfth patient, improve-
+Cleartune optimization. The model weighted for the correct symptom                    ments were comparable (36 vs. 38 points improvement). While three of
+led to signiﬁcantly higher correlations between estimates and                         the ﬁve patients preferred Cleartune over SoC settings, in two patients,
+empirical improvements across settings in each electrode for the                      Cleartune settings led to side-effects (dyskinesia in patient 05 and
+
+
+Nature Communications | (2024)15:4662                                                                                                                                    6
+Article                                                                                                              https://doi.org/10.1038/s41467-024-48731-1
+
+
+
+
+Fig. 5 | Retrospective validation on long-term clinical outcome data. A The ﬁber      R2 = 0.07, RMSE = 0.22, MAE = 17.16), based on the original symptom response
+distribution of the original model as shown in previous ﬁgures, B ﬁber distribution   model, using two-tailed correlation analysis. The shaded area of the correlation plot
+when recalculating the same model on the independent test dataset (N = 93).           signiﬁes 95% conﬁdence interval on the slope of the line. L = Lateral, A = Anterior,
+C Estimation of UPDRS-III improvements in the test set (R = 0.37, p = 0.0006,         I = Inferior. Source data available as source data ﬁle.
+
+
+
+dizziness in patient 04). This emphasizes that the current model was                  to the original report, this present reﬁnement of the “Parkinsonian
+purely driven by improvements (and not by side-effects), which is a                   loop” breaks down individual symptoms along the general cir-
+clear limitation for clinical applicability. Tracts of avoidance that code            cuit which was identiﬁed by a global clinical motor score (UPDRS-III) in
+for side-effects should be added to the model in future studies.                      the study by Hollunder et al. While interspersed on a subthalamic level,
+Alternatively (and additionally), clinicians may reduce the stimulation               each of the symptom-speciﬁc tracts predominantly originated from
+amplitude suggested by Cleartune in case of side-effects (while keep-                 different cortical regions. Further, tremor connections included cere-
+ing the remaining parameter choices unchanged). This would still                      bellar projections while axial symptoms included connections to the
+reduce the parameter space and could hence help clinicians to con-                    PPN region in the brainstem.
+verge on a beneﬁcial solution faster. While generally promising, given                     It is important to clarify at this point that our results do not sug-
+the low N, these results should not be overinterpreted. Rather, this trial            gest that one symptom domain can be modulated independently or
+was carried out to test feasibility of applying Cleartune in a clinical               exclusively by a speciﬁc set of streamlines. There were considerable
+setting and to gather ﬁrst experience in preparation for a proper                     overlaps between connections, especially on the cortical level and
+prospective trial. As such, the trial was not powered to compare                      along the indirect (pallidosubthalamic) projections. On the other hand,
+Cleartune vs. SoC settings (non-inferiority or superiority).                          projection zones of hyperdirect (cortical) input to the STN seemed
+                                                                                      segregated. At ﬁrst glance, this could appear to be contradictory to
+Discussion                                                                            clinical experience: Indeed, the same DBS setting typically modulates
+Three conclusions may be drawn from this study. Most critically, our                  many symptoms at once, seemingly with similar intensity. However,
+results include the ﬁrst model of symptom-response tracts in stereo-                  this experience does not conﬂict with our results: the identiﬁed tracts
+tactic space created in a data-driven fashion on a detailed and inclusive             reside very close to one another, spanning across a region of milli-
+pathway atlas based on a large multi-center DBS cohort (N = 129).                     meters within the sensorimotor functional zone of the STN level. As
+Second, we showed that this symptom-network library was robust                        Fig. 7A shows, a single well-placed electrode may produce a stimula-
+when subjected to cross-validations and outperformed a single tract                   tion volume that modulates all identiﬁed tracts (and hence symptoms),
+model calculated on global UPDRS-III improvements. We replicated a                    simultaneously. However, Fig. 7B shows potential use of the tract
+qualitatively similar model based on an independent additional multi-                 model with a modern 16-contact segmented electrode (such as the
+center cohort (N = 93). Third, based on the generated model, we                       Boston Scientiﬁc model Cartesia X). Using Multiple Independent Cur-
+introduced an algorithm capable of suggesting personalized and                        rent Control technology, distinct stimulation volumes may be gener-
+symptom-speciﬁc DBS stimulation parameters, which could similarly                     ated along the same electrode, each with different amplitudes and
+be validated in out-of-sample datasets and was prospectively tested in                frequencies40. In the hypothetical example shown in Fig. 7, one could
+ﬁve patients. Using monopolar review data acquired in patients with                   steer a ﬁrst volume at high frequency (180 Hz) to the tremor stream-
+segmented electrodes, we were able to demonstrate symptom-                            lines and a second at low frequency (25 Hz) to the axial & gait
+speciﬁcity of the algorithm. Namely, a model tuned to estimate bra-                   streamlines to treat the two symptoms as optimally, as possible.
+dykinesia outcome performed better in estimating bradykinesia                              Hence, we argue that our results could potentially become clini-
+compared to rigidity outcomes, and vice versa.                                        cally relevant: First, segmented electrodes allow for increasingly
+     Our results support the notion that different networks may cor-                  reﬁned steering of the stimulation ﬁeld. This leads to an explosion of
+relate with improvements of cardinal symptom categories in Parkin-                    the parameter space where imaging-guided algorithms will become
+son’s Disease. Our results may segregate the basal ganglia thalamo-                   indispensable41,42. With imaging methods and electrode localizations
+cortical motor loop by symptoms arranged along a rostro-caudal                        becoming ever more precise, we are poised to use symptom-response
+gradient within the sensorimotor-premotor functional zone of the                      multi-tract models such as the present one to ﬁne-tune stimulation
+STN. In doing so, they extend a recently published model of the                       settings depending on the symptom proﬁle of each patient. Second,
+“human dysfunctome”18,26, which aims at describing circuits that                      while a single stimulation site of a well-placed electrode may cover the
+may become dysfunctional within based on brain disorders, and hence                   majority of symptom-tracts we identiﬁed, it may still matter where the
+become responsive to functional suppression by DBS. In comparison                     focus of the electric ﬁeld resides.
+
+
+Nature Communications | (2024)15:4662                                                                                                                                    7
+Article                                                                                          https://doi.org/10.1038/s41467-024-48731-1
+
+
+
+
+     To develop this further, we introduced an algorithm, Cleartune,   tremor connections from primary motor cortex and cerebellum
+capable of suggesting symptom-speciﬁc DBS parameters based             (Supplementary Movie 1).
+on the multi-tract model. Cleartune allows to set weights of symp-          Finally, the current approach of personalization (originally pro-
+toms that are both prevalent and burdensome for an individual          posed in a perspective article27) is worth discussing. Namely, it is nat-
+patient. For instance, one could run the algorithm with a              ural to associate the concept of “connectome based personalization of
+symptom proﬁle of a typical tremor-dominant patient with high          DBS” with the idea of scanning patients and analyzing patient-speciﬁc
+weighting of tremor and lower weighting of bradykinetic-rigid          tract anatomy using diffusion-MRI based tractography43–45. While this
+symptoms, which would favor settings that maximally target the         approach is certainly promising and our present concept does not
+
+
+Nature Communications | (2024)15:4662                                                                                                         8
+Article                                                                                                                   https://doi.org/10.1038/s41467-024-48731-1
+
+Fig. 6 | Retrospective validation on monopolar review dataset. A The left panel             in the 20 electrodes were almost all positive when the model was used to estimate
+illustrates a raincloud plot where each data point represents a Spearman’s corre-           improvements in the correct symptom, but signiﬁcantly dropped when used to
+lation coefﬁcient between estimated and empirical UPDRS-III improvements for                estimate improvements in the respective other symptom. In each panel, two
+settings in one of the 20 electrodes. A one sided t-test is signiﬁcant, illustrating that   representative examples of correct vs. incorrect symptom pairings are given. In
+Spearman’s rho is positive across most electrodes (T = 4.15, p = 5.3e-04, Average           both (B) and (C), the T value is derived from a paired t-test between the Spearman’s
+R = 0.41 ± 0.44). All correlation plots are shown in Fig. S32. The right panel gives        rho for estimated improvements in the correct symptom (for instance, when the
+four representative examples. A red eclipse is used to represent the stimulation            model, trained on bradykinesia improvement estimated empirical bradykinesia
+contact that renders the highest improvement for a given electrode, while the               improvement, T = 3.2987, p = 0.0045) vs estimated improvements in the incorrect
+contact chosen by the model is marked with a blue eclipse, corresponding stimu-             symptom (for instance, when the model trained on bradykinesia improvements
+lation ﬁelds are shown for the example electrodes. B, C To assess symptom-                  estimated rigidity improvement, T = 2.5484, p = 0.02). The shaded area of the
+speciﬁcity of the model, the analysis was repeated, this time maximally weighting           correlation plots signiﬁes the 95% conﬁdence interval on the slope of the line.
+either bradykinesia or rigidity symptoms, respectively. Correlations across settings        Source data available as source data ﬁle.
+
+
+
+
+Fig. 7 | Hypothetical future use of symptom-tract model. A DBS Today. A well-               With some devices, it is possible to steer multiple stimulation volumes toward
+placed, standard omnidirectional Medtronic 3389 electrode is shown with a single            individual tracts. In our example, one stimulation could target tremor streamlines
+stimulation volume that equally covers all symptom-speciﬁc tracts. B DBS in the             (potentially with a high frequency of ~180 Hz). A second volume would focus on the
+future. A hypothetical future concept with a modern electrode (Boston Scientiﬁc             axial/gait streamlines connecting to the PPN region (potentially with a low fre-
+Cartesia X electrode with 15 directional and one omnidirectional contact) is shown.         quency of ~25 Hz). L = Lateral, A = Anterior, I = Inferior.
+
+
+
+oppose (rather complements46) it, here, we propose an alternative                           Methods; Section S3. However, even in normative data, these struc-
+approach to personalize therapy. Namely, we propose to ﬁrst use                             tures may not be identiﬁable with submillimeter precision. Practical
+normative connectivity data to identify and deﬁne symptom-speciﬁc                           reasons preclude us from generating large cohorts with individua-
+tracts on a group level. Second, we spatially register patient data with                    lized dMRI data given the cost and logistics involved. Typical reports
+the resulting multi-tract model to analyze how a single patient’s elec-                     of patient studies that have been based on individualized dMRI data
+trode maps to it. Third, the actual personalization of the approach                         range in the order of N < 3012,29,51,52, while studies that use normative
+takes place on the level of symptoms, using a concept we termed                             tractograms were often able to pool across larger numbers of
+network blending, in the past27,46. The concept is to blend – or weight –                   patients16,19,24,26 (for a review see Ref. 53). Studies that carried out
+the identiﬁed symptom networks to derive an optimal stimulation                             direct head-to-head comparisons found similar results when using
+target for the symptom proﬁle prevalent in an individual patient. To                        patient-speciﬁc vs. normative data29,52. Finally, patients suffer from a
+speculate further, in the future, brain sensing combined with machine                       movement disorder that leads to higher movement artifacts than in
+learning might provide immediate feedback to the DBS system that                            healthy controls and most patients are unable to lie still in the scanner
+could automatically inform Cleartune to switch network targets based                        for longer periods of time that would allow for research scan
+on the individual need of the patient at the time a symptom – such as                       protocols51. Here, we created an atlas that was directly compared to
+tremor under stress – emerges47. One day, this could open new hor-                          anatomical data from Klingler dissections and textbook results (see
+izons to an integration of adaptive DBS technology and symptom                              Supplementary Methods; Section S3). While we believe this to be the
+associated connectomics, towards an individualized precision medi-                          only viable way to compare tractography results to “ground-truth”
+cine approach to DBS in real-time.                                                          data, the comparison is indirect in nature and is based on visual
+                                                                                            inspection by anatomists and neurosurgeons. Furthermore, the
+Limitations                                                                                 identiﬁed tracts represent group averages, and it is currently impos-
+Several limitations apply to this study. First, our main model applies                      sible to match them to the exact tracts present in the individual
+normative tractograms instead of patient-speciﬁc tractography data                          patient. Despite this, the use of normative connectomes is inherently
+to isolate symptom-speciﬁc networks. The reasons to focus on nor-                           limited and does not include patient-speciﬁc variability of white-
+mative datasets are manifold: It is challenging, if not impossible, to                      matter tracts. Relatedly, the use of normative tractograms includes
+reconstruct thin bundles such as the ansa lenticularis, the comb ﬁbers                      the necessity to register patient and atlas data, which is inherently
+or the striatopallidofugal bundle based on clinical imaging data since                      prone to inaccuracies. In other words, a patient scan can never be
+these are thin structures that traverse through gray matter and                             perfectly aligned with an atlas, despite all efforts. This leads to inac-
+orthogonally to the internal capsule48–50 (also see Supplementary                           curacies of the model and, as a function of that, to its predictive
+
+
+Nature Communications | (2024)15:4662                                                                                                                                         9
+Article                                                                                              https://doi.org/10.1038/s41467-024-48731-1
+
+
+power, i.e., it biases our results toward non-signiﬁcance. Relatedly,       improvements are moderate. Crucially, our model was capable of
+DBS electrode reconstructions should be seen as models that inher-          estimating ranks of improvements within a given cohort, rather than
+ently include an amount of uncertainty. To this end, we tested              absolute improvement values in individual patients. We point the
+robustness of the model to uncertainty in lead localizations by             reader to our modelling considerations section S6 (supplementary
+repeating analyses after adding a spatial jitter to the stimulation         methods) for additional thoughts on this matter. In brief, many fac-
+volumes. Also, we applied a modern pipeline speciﬁcally built for the       tors beyond electrode placement inﬂuence clinical outcomes fol-
+process, which includes multispectral normalizations21 using a pro-         lowing DBS. Critically, however, stimulation location is a key variable
+tocol that reaches the accuracy of expert raters54 and that were fur-       that can be inﬂuenced by doctors, while other factors (such as age,
+ther manually reﬁned, when necessary, using the WarpDrive tool              disease-subtype, etc) cannot. This isolates the variable of stimulation
+included in Lead-DBS55. Further, brain shift corrections56 and a            placement as a key one to improve patient care. Hence, despite the
+phantom-validated automated electrode localization algorithm were           model not being able to predict improvements accurately, we argue
+applied57. Using this setup, it has recently been shown feasible to         that identifying optimal targets for given symptoms, as done here, is
+obtain accurate and largely observer-independent reconstructions of         still key to move forward.
+DBS electrodes in both native and standard space58. Next, our model               In conclusion, we created a model capable of explaining sig-
+only considers improvement scores and currently ignores side-               niﬁcant variance in symptom-speciﬁc effects following subthalamic
+effects. As the prospective application shows, this is a clear limita-      DBS in PD. This model extends and reﬁnes our prior deﬁnition of the
+tion of the algorithm that limits its utility in clinical practice. While   “human dysfunctome”26. Moreover, we introduce an algorithm capable
+side-effect data were not available for this retrospective multi-center     of leveraging this model to suggest symptom-speciﬁc stimulation
+cohort, this limitation warrants additional steps to improve the model      parameters for DBS programming, which may ultimately improve
+(i.e. to include tracts of avoidance that are associated with capsular      clinical outcomes and patient satisfaction.
+effects, speech problems or cognitive/affective disturbances23). Next,
+the bioelectrical model employed here is simple compared to other           Methods
+methods59,60 and has not been directly validated using electro-             Ethics declaration
+physiological data. Namely, while the forward solution provided by          The study was carried out in accordance with the Declaration of Hel-
+the SimBio/FieldTrip pipeline37 as employed here, solves the static         sinki and was approved by the institutional review board of
+formulation of Laplace’s equation to estimate the electric ﬁeld in an       Charité–Universitätsmedizin (retrospective analyses) and the institu-
+established fashion (as widely used in the EEG literature), our process     tional review board of University Würzburg (prospective analyses). All
+ends there and we calculate statistics based on electric ﬁeld magni-        patients consented to the study and the sharing of their data for
+tude. Using the electric ﬁeld magnitude, rather than a binary metric,       this study.
+such as the stimulation volume allows to partially account for the
+uncertainty in axonal parameters61. Our reasoning behind choosing           Anatomical tract atlas
+this simpler and more probabilistic approach, which does not assume         To carry out DBS ﬁber ﬁltering based on electric ﬁelds estimated and
+sharp borders of the stimulation ﬁeld, has been described at length         symptom improvements across the cohort of patients, we ﬁrst estab-
+elsewhere62. However, it is key to mention that more elaborate bio-         lished a streamline atlas using various sources of information. This
+physical modelling pipelines have combined volume conductor                 work is based on two published streamline atlases28,50 that were
+models with axonal cable models (placed orthogonally to the lead22 or       extended to include a more exhaustive set of tracts in and around the
+along pathways60) to probe in more deterministic fashion whether            subthalamic region. The process involved diffusion MRI based trac-
+axons would ﬁre action potentials in response to the DBS pulse. Even        tography on a group average template, using manually deﬁned regions
+such models ignore the fact that GABAergic vs. Glutamatergic axons          of interest, inclusion of published resources, comparisons of results
+respond differently to DBS (the former ﬁre along while the latter           with the anatomical literature, cadaveric dissection studies, histology
+deplete readily63). In addition, concepts that model axons require          and ex-vivo imaging. Supplementary methods: section S3 details
+many assumptions about the ﬁber type (mixed, myelinated and                 methods and results that led to the resulting “DBS tractography atlas
+unmyelinated axons), axon diameters, degree of myelination, degree          version 2.”
+of arborization of both dendritic and axonal terminals, number of
+nodes of Ranvier to include into the model, conductivity of axonal,         Patient cohort and imaging
+interstitial vs. myelin components, degree of microstructural aniso-        232 patients who underwent STN-DBS for Parkinson’s Disease (PD)
+tropy, heterogeneity and dispersivity of tissue conductivity, capaci-       were retrospectively included in this study, and 5 additional patients
+tive properties, and others. Despite these assumptions, more                were enrolled prospectively. From the retrospective arm, 129
+elaborate models are often deemed more “biophysically plausible”            patients formed a discovery cohort (51 of whom were treated in Berlin,
+than the simpler approach applied here. To this end, we replicated          43 in Würzburg and 35 in Amsterdam; patient characteristics and
+our main results using a more elaborate pipeline that has been              demographic data are provided in Table 1). Two retrospective valida-
+developed by a different team38, which calculated pathway activation        tion cohorts consisted of 93 (52 from Würzburg, 41 from Beijing), and
+models, that, when subjected to ﬁber ﬁltering, produced comparable          10 patients, respectively. All patients in the discovery cohort were
+results. Next, it is possible to stimulate a patient with many different    bilaterally implanted with two quadripolar DBS electrodes (model
+parameter settings (or different contacts) and get good/similar clin-       3389; Medtronic, Minneapolis, MN). Both the validation cohorts, I and
+ical results. This matter makes demonstration of clinical utility of both   II were implanted with Vercise Cartesia electrodes; Boston Scientiﬁc,
+out-of-sample estimates of improvements and the Cleartune algo-             Marlborough, MA). For the prospective arm, we applied DBS settings
+rithm difﬁcult. This task is even more complicated in the present           suggested by Cleartune to ﬁve patients with PD who were implatented
+monopolar review cohort (N = 20), where only the three segments of a        with Boston Scientiﬁc Vercise Cartesia electrodes at the University
+given contact level were compared (which are even closer to one             Hospital Würzburg.
+another than different contact levels would be). While present results           Percentage improvements measured by the motor part of the
+seem promising and Cleartune was able to suggest the clinically             Uniﬁed Parkinson’s Disease Rating Scale (UPDRS-III) were calculated
+chosen contact despite the aforementioned difﬁculty, this general           based on the difference between preoperative and postoperative
+limitation still applies to any form of image-guided programming.           scores divided by preoperative scores as a measure of global treatment
+Finally, correlations between model estimates and empirical                 outcome. We similarly calculated improvements of UPDRS-III items
+
+
+Nature Communications | (2024)15:4662                                                                                                           10
+Article                                                                                                            https://doi.org/10.1038/s41467-024-48731-1
+
+
+
+
+Fig. 8 | Methods for calculating and cross-validating the multi-tract model /        repeated across all ﬁber tracts in the pathway atlas to create the symptom network
+symptom network library. A An example ﬁber tract from the pathway atlas is           library. Tracts can be ﬁltered and visualized based on the correlation coefﬁcients
+shown (red dashed line). For each E-ﬁeld that it passes, the peak magnitude is       (and signiﬁcance values) they obtained. C The single tract model (coding for global
+recorded and correlated with symptom improvements. For instance, the example         motor improvements) is cross-validated by estimating motor improvements in left-
+tract was strongly activated by E-ﬁelds that led to improvements in bradykinesia     out patients based on their activation of the tract. D A more elaborate symptom-
+(blue scatter plot), leading to general UPDRS-III improvement (gray scatter plot).   speciﬁc tract model repeats this procedure four times (for each symptom tract) and
+The tract is tagged by ﬁve Spearman rank correlation coefﬁcients, one for each       weight estimates by baseline scores of each symptom.
+symptom domain, and one for global motor improvement. B This process is
+
+
+
+that represented four major motor symptoms in PD: bradykinesia                       values (Supplementary Table S5). Patients with tremor scores
+(items 23,24,25,26 which measure ﬁnger tapping, hand movement,                       below two points at baseline, and those patients who improved to
+rapid alternating and leg agility [& MDS items Toe tapping where                     100% relative improvement, were excluded from tremor analyses.
+available]), rigidity (items 22 which measure rigidity of the neck, arm &            Multispectral preoperative MRI scans were acquired during clinical
+leg), tremor (items 20 and 21 of the UPDRS [& MDS tremor items: MDS                  routine to deﬁne patient-speciﬁc anatomical targets. Post-operatively,
+postural tremor, MDS kinetic tremor, MDS tremor rest lip/jaw and                     patients either underwent CT (N = 184) or MRI scanning (N = 53) to
+constancy of rest tremor where available]), and axial symptoms (items                localize electrodes.
+18, 19, 27, 28, 29, 30 which measure speech, facial, posture, postural
+stability, and gait [& MDS items Freezing Of Gait where available]). Gait            DBS electrode localization and estimation of
+scores (items 29 and 30) were further singled-out in a sub-analysis, as              stimulation volume
+was a combination of all axial symptoms without these gait items. In                 DBS electrodes were localized using Lead-DBS software21,62 following
+our analysis, tremor sub-scores at the baseline had a high standard                  the revised protocol of version 322. In brief, this included linear co-
+deviation (4.58 ± 5.24 points), when compared to the other subscore                  registration of post- and preoperative images using Advanced
+
+
+Nature Communications | (2024)15:4662                                                                                                                                11
+Article                                                                                                 https://doi.org/10.1038/s41467-024-48731-1
+
+
+Normalization Tools (ANTs)63. Co-registered images were then nor-            improvement for each symptom was averaged in weighted fashion,
+malized into the ICBM 2009b Nonlinear Asymmetric (“MNI”) tem-                where each weight was the normalized baseline score for the respec-
+plate space using the ANTs SyN approach with the Effective: Low              tive symptom. To exclude the possibility of strong correlations just
+Variance + subcortical reﬁnement protocol as implemented in Lead-            due to the speciﬁc fold assignments, we iterated the process of 10-fold
+DBS21. The results of each pre-processing step were visually inspec-         cross validation 1000 times, and each iteration resulted in a random
+ted and reﬁned if necessary. Normalization errors in particular were         assignment of patients into the folds. Different fold designs, i.e., k = 7
+revised using the WarpDrive module available in Lead-DBS55. Fol-             and 5, were probed, as well.
+lowing pre-processing, DBS electrodes were localized using the
+phantom-validated PaCER approach57 for postoperative CT or the               Multi-tract implementation of OSS-DBS
+TRAC/CORE algorithm or manual localization algorithm for post-               OSS-DBS is an open-source toolbox for deep brain stimulation mod-
+operative MRI data62.                                                        eling based on a highly detailed volume conductor coupled with axon-
+     To estimate the stimulation volume, we calculated electric ﬁeld         cable models38, allowing to compute pathway activations as described
+magnitudes around the electrode (E-Fields). This was done based on a         in Ref. 66. In this study, we used ICBM 2009b Nonlinear Asymmetric
+four-compartment mesh distinguishing gray and white matter, elec-            space (“MNI”) for the brain segmentation to be consistent with the
+trode contacts, and insulated parts. Gray matter regions were deﬁned         methodology employed in the main analysis. This brain segmentation
+by the DISTAL atlas64. An adapted version of the FieldTrip-SimBio            was used to describe the electric conductivity distribution in the vici-
+pipeline37 was then used to solve the static formulation of Laplace’s        nity of the electrode. For speciﬁc frequency and tissue dependent
+equation on a discretized domain represented by the tetrahedral four-        values see66. Furthermore, normative diffusion data67 were used to
+compartment mesh. Since two ﬁelds (from the two electrodes                   incorporate brain tissue anisotropy, which is largely present along
+implanted in a given patient) code for one improvement score, fol-           white matter pathways. The electric ﬁeld problem was then solved for
+lowing the same approach as in our prior studies20,25, electric ﬁelds        the given stimulation protocols following the Fourier Finite Element
+were mirrored to the respective other side and both used to account          Method68 using the quasistatic formulation of Laplace’s equation. The
+for the same improvement value when running mass-univariate cor-             resulting distribution of the electric potential in time and space (along
+relations during ﬁber ﬁltering (below).                                      ﬁbers of DBS Tractography Atlas, V2) described the extracellular
+                                                                             membrane potential that was used to solve the cable equation for the
+Multi-tract implementation of DBS ﬁber ﬁltering                              widely employed mammalian axon model described in Ref. 69. Lengths
+We build upon the DBS ﬁber ﬁltering concept introduced in29 and              of the axon models were adjusted to the lengths of the corresponding
+extended in16 to isolate tracts associated with changes across mul-          ﬁbers, and the diameters were set to 3.0 µm, which is a compromise
+tiple motor symptom domains (Fig. 8). In the ﬁrst step, we used this         among the values reported in Ref. 70–72. If the model responded with
+method to build a symptom-response multi-tract model (or “symp-              an action potential, it was considered “activated”. After computing
+tom network library”) that associates streamlines with improve-              such states for all ﬁbers across all stimulation protocols, we conducted
+ments of clinical subscores (tremor, bradykinesia, rigidity and axial        a two-sample T-test considering ﬁbers activated in at least 5% of sti-
+symptoms). Stimulation of these four tract sets correlated with              mulations. The two sample T-test compared clinical improvements for
+improvements in respective symptoms. To be included into the                 the cases where the ﬁber was “activated” against improvements where
+library, each tract had to pass through low number of E-ﬁelds (>0.5%)        it was not, analogous to the method employed in Ref. 16, but based on
+at a rather high peak intensity of >1.5 V/mm. This constraint was set        the biophysical axon model instead of the stimulation volume.
+up since we wanted to exclude tracts that were not strongly modu-
+lated by any stimulation ﬁeld at all (which in theory could still obtain     An algorithm to suggest DBS programming parameters based
+high correlation values if sub-threshold intensities correlated with         on the multi-tract model
+clinical improvements). Changing the arbitrarily chosen values               We introduce an algorithm capable of suggesting DBS stimulation
+(>0.5% E-ﬁelds and >1.5 V/mm) e.g., to >2 and >4 V/mm did not                parameters based on the multi-tract model (Fig. 9). This algorithm,
+qualitatively alter results. For each tract, Spearman’s rank correla-        termed Cleartune, attempts to solve the optimization problem to
+tions were then calculated for each symptom group separately,                create a simulation volume such that the baseline weighted activa-
+by correlating the respective sub-score with the peak amplitude              tion of the symptom pathways led to maximum estimated
+of each patient’s E-ﬁeld a given streamline passed through.                  relative UPDRS – III improvement. Given that solving the under-
+This mass-univariate approach leads to a high number of rank cor-            lying simulation model is a computationally intensive process, we
+relation coefﬁcients, which were thresholded at a p value < 0.05 after       employed a surrogate optimizer (surrogateopt, MATLAB v2022b) to
+correction for multiple comparisons using the false-discovery                solve the optimization problem. The optimizer was built to accept
+rate (FDR).                                                                  the current (mA) at each contact of the electrode as input. At present,
+                                                                             the optimizer is only able to operate with cathodic stimulations, thus,
+Estimating clinical improvements based on the multi-tract model              all assigned currents were negative. The maximum allowed ampli-
+Top 1,500 positive ﬁbers, and top 500 negative ﬁbers, each respec-           tude at each activated contact was set to −4 mA and the total current
+tively associated with improvement and worsening of clinical symp-           across all contacts at each iteration was set to −5 mA. These con-
+toms were used to estimate clinical improvements (in a k-fold cross-         straints were speciﬁed as linear inequalities, along with the starting
+validation design) by overlaying E-ﬁelds of left-out patients with           point (−3 mA, 3rd contact switched on) to initialize the algorithm. We
+respective symptom tracts. Here, the k (number of folds) was set to 10       deﬁned a lower bound for each contact as 0.1 times of the current
+since this is a standard choice in the machine learning ﬁeld65. In each      amplitude. Currents below this threshold were set to zero to avoid
+iteration, ﬁt between the set of tracts (calculated across k-1 sets of       unnecessarily complex settings. Further details about the optimizer
+patients) and E-ﬁelds (from the left out set) were quantiﬁed by spatially    are given in Supplementary Methods; Section S7. To evaluate each
+correlating the R-values of the tract landscape with the E-Field mag-        setting, the same outcome estimation concept as described above
+nitudes. For each E-ﬁeld, this led to a correlation coefﬁcient for each of   was applied. Hence, for each simulation setting generated by the
+the symptoms. Together, these ﬁber scores coded for a patient-               optimizer, symptom improvements were estimated, which drove the
+speciﬁc blend of symptom improvements. Fiber scores were further             objective function to ﬁnd optimal settings. To avoid solutions where
+mapped to the percentage improvements in each symptom using a                stimulation amplitudes are excessively high or low (and, as a con-
+linear model applied to the respective training cohort. The estimated        sequence, insufﬁcient symptom improvement or the occurrence of
+
+
+Nature Communications | (2024)15:4662                                                                                                               12
+Article                                                                                                              https://doi.org/10.1038/s41467-024-48731-1
+
+
+
+
+Fig. 9 | Methodological overview of the Cleartune algorithm. In this example, a         using a surrogate optimizer, and their impact on each symptom network is calcu-
+novel (hypothetical) patient is treated based on Cleartune, who appears to be           lated. These impacts are weighted by the symptom proﬁle, leading to an estimated
+tremor-dominant. Cleartune performs network blending (Fig. 2) taking into con-          improvement score for each solution. Finally, the solution leading to the best
+sideration the patient’s symptom proﬁle, which directly leads to strong weights for     estimate is selected and reported to the clinician, who may consider programming
+tremor and rigidity tracts. After localization of DBS electrodes for the new patient,   the solution into the DBS pulse generator.
+E-ﬁelds for various permutations and combinations of the contacts are simulated
+
+
+
+side-effects), we added the following penalty function to the objec-                    correlation test (Spearman’s rho). Sensitivity tests revealed that for a
+tive function, as speciﬁed in the following equation.                                   sample size of 129 patients, our analysis had a power greater than 87% to
+                                                                                        detect effect sizes of 0.27–0.5, which are reported as optimal for neu-
+                           Fval = Sf f + ððA  Ao Þ2  λÞ                         ð1Þ   rological disorders in previous publications19 when underlying an
+                                                                                        α of 0.05.
+                                                                                             Our study design is largely based on previous publications16,19,
+     Where, Fval is the evaluated objective function, Sff is the ﬁber                   and is described in detail in the method section. The primary
+score value for a given solution, A is the total amplitude across all                   objective here was to develop a symptom-response model for STN-
+contacts in the present evaluation, and Ao is the standard amplitude of                 DBS in PD patients, and to establish whether this model could sig-
+3 mA at which penalty value = 0. λ is a penalty factor set to 0.02.                     niﬁcantly estimate the improvement of patients which we could best
+Therefore, the equation applied the greatest penalty to current values                  evaluate by using two-tailed correlation tests. We used the non-
+that deviated furthest from −3 mA.                                                      parametric ordinal method (Spearman’s rho) as a metric for our
+                                                                                        correlation analysis, since we were primarily interested in whether
+Statistics & reproducibility                                                            our model would be able to predict ranks of improvements and that
+The sample size for the present analysis was contingent on data avail-                  it was capable to account for signiﬁcant amounts of variance in
+ability. In view of these natural restrictions on available sample sizes, we            clinical improvements of unseen patients. In other words, the aim
+carried out sensitivity analysis for the discovery cohort using the G*                  was not an accurate prediction of clinical outcomes, but a compar-
+power software73. We restricted sensitivity analysis to the discovery                   ison of stimulation sites and parameters among each other. No data
+cohort (N = 129) because the primary ﬁndings of our study build upon                    were excluded from analysis. Given that most of our analysis were
+the results from this cohort, and the rest of the data (N = 113) were used              carried out on retrospective data, no randomization steps were
+for validation. All analyses were carried out using a two tailed                        included in most parts with the exception of the feasibility trial with
+
+
+Nature Communications | (2024)15:4662                                                                                                                                13
+Article                                                                                                    https://doi.org/10.1038/s41467-024-48731-1
+
+
+Cleartune, where patients were randomized and blinded to the                   10. McGregor, M. M. & Nelson, A. B. Circuit mechanisms of Parkinson’s
+application of Cleartune or Standard of Care (SoC).                                disease. Neuron 101, 1042–1056 (2019).
+     To ensure that our model was well validated and to improve the            11. Strotzer, Q. D. et al. Deep brain stimulation: Connectivity proﬁle for
+chances of reproducibility, we performed two out-of-sample valida-                 bradykinesia alleviation. Ann. Neurol. 85, 852–864 (2019).
+tions. One, with a data structure similar to the original model (valida-       12. Akram, H. et al. Subthalamic deep brain stimulation sweet spots
+tion cohort I) and another, with a repeated measures dataset                       and hyperdirect cortical connectivity in Parkinson’s disease. Neu-
+(validation cohort II). The code base used for all experiments as well             roImage 158, 332–345 (2017).
+the connectome atlases used are made openly available within Lead              13. Ni, Z., Pinto, A. D., Lang, A. E. & Chen, R. Involvement of the cere-
+DBS software22.                                                                    bellothalamocortical pathway in Parkinson disease. Ann. Neurol.
+                                                                                   68, 816–824 (2010).
+Reporting summary                                                              14. Helmich, R. C., Toni, I., Deuschl, G. & Bloem, B. R. The Pathophy-
+Further information on research design is available in the Nature                  siology of Essential Tremor and Parkinson’s Tremor. Curr. Neurol.
+Portfolio Reporting Summary linked to this article.                                Neurosci. Rep. 13, 378 (2013).
+                                                                               15. Sturman, M. M., Vaillancourt, D. E., Metman, L. V., Bakay, R. A. E. &
+Data availability                                                                  Corcos, D. M. Effects of subthalamic nucleus stimulation and
+Cohort-wise demographic and means clinical outcomes are made                       medication on resting and postural tremor in Parkinson’s disease.
+available in Table 1. Patient imaging data cannot be openly shared due             Brain 127, 2131–2143 (2004).
+to data sharing and privacy regulations. However, they can be made             16. Li, N. et al. A uniﬁed connectomic target for deep brain stimulation
+available upon request to the corresponding primary investigators                  in obsessive-compulsive disorder. Nat. Commun. 11, 3364 (2020).
+who acquired the data. The corresponding author and the principal              17. Grill, W. M., Snyder, A. N. & Miocinovic, S. Deep brain stimulation
+investigator (NR and AH) commit to returning data requests within a                creates an informational lesion of the stimulated nucleus. Neu-
+time frame of 30 days. The DBS Tractography Atlas, version 2.1, which              roReport 15, 1137–1140 (2004).
+was developed for the present study can be openly downloaded                   18. Hollunder, B. & Horn, A. Mapping the dysfunctome provides an
+(https://github.com/netstim/DBS-Tractography-Atlas.git). The tem-                  avenue for targeted brain circuit therapy. Nat. Neurosci. https://doi.
+plate for the development of the DBS Tractography atlas is open via                org/10.1038/s41593-024-01572-z (2024).
+DSI-Studio (HCP-1,065; https://brain.labsolver.org/hcp_template.html;          19. Horn, A. et al. Connectivity Predicts Deep Brain Stimulation Out-
+ﬁber orientation maps at 1-mm resolution). DISTAL atlas, v 1.164 which             come in Parkinson Disease. Ann. Neurol. 82, 67–78 (2017).
+was used for visualization of the basal ganglia nuclei is openly available     20. Treu, S. et al. Deep brain stimulation: Imaging on a group level.
+in the Lead DBS knowledge base and comes pre-installed in Lead DBS                 NeuroImage 219, 117018 (2020).
+software. Source data are provided with this paper.                            21. Horn, A. et al. Lead-DBS v2: Towards a comprehensive pipeline
+                                                                                   for deep brain stimulation imaging. NeuroImage 184, 293–316
+Code availability                                                                  (2019).
+All code used to analyze the dataset is openly available within Lead-          22. Neudorfer, C. et al. Lead-DBS v3.0: Mapping deep brain stimulation
+DBS ﬁber ﬁltering software (https://github.com/leaddbs/leaddbs).                   effects to local anatomy and global networks. NeuroImage 268,
+                                                                                   119862 (2023).
+References                                                                     23. Irmen, F. et al. Left prefrontal impact links subthalamic stimulation
+1.   Deuschl, G. et al. A randomized trial of deep-brain stimulation for           with depressive symptoms. Ann. Neurol. https://doi.org/10.1002/
+     Parkinson’s disease. N. Engl. J. Med. 355, 896–908 (2006).                    ana.25734 (2020).
+2.   Fasano, A., Aquino, C. C., Krauss, J. K., Honey, C. R. & Bloem, B. R.     24. Al-Fatly, B. et al. Connectivity proﬁle of thalamic deep brain sti-
+     Axial disability and deep brain stimulation in patients with Parkinson        mulation to effectively treat essential tremor. Brain J. Neurol. 18,
+     disease. Nat. Rev. Neurol. 11, 98–110 (2015).                                 130 (2019).
+3.   Schrader, C. et al. GPi-DBS may induce a hypokinetic gait disorder        25. Horn, A. et al. Optimal deep brain stimulation sites and networks
+     with freezing of gait in patients with dystonia. Neurology 77,                for cervical vs. generalized dystonia. Proc. Natl Acad. Sci. 119,
+     483–488 (2011).                                                               e2114985119 (2022).
+4.   Barbe, M. T. et al. Deep brain stimulation for freezing of gait in        26. Hollunder, B. et al. Mapping dysfunctional circuits in the frontal
+     Parkinson’s disease with early motor complications. Mov. Disord.              cortex using deep brain stimulation. Nat. Neurosci. 27, 573–586
+     35, 82–90 (2020).                                                             (2024).
+5.   Yin, Z. et al. Persistent adverse effects following different targets     27. Hollunder, B. et al. Toward personalized medicine in connectomic
+     and periods after bilateral deep brain stimulation in patients with           deep brain stimulation. Prog. Neurobiol. 210, 102211 (2022).
+     Parkinson’s disease. J. Neurol. Sci. 393, 116–127 (2018).                 28. Middlebrooks, E. H. et al. Neuroimaging advances in deep brain
+6.   Aviles-Olmos, I. et al. Long-term outcome of subthalamic nucleus              stimulation: review of indications, anatomy, and brain con-
+     deep brain stimulation for Parkinson’s disease using an MRI-guided            nectomics. Am. J. Neuroradiol. 41, 1558–1568 (2020).
+     and MRI-veriﬁed approach. J. Neurol. Neurosurg. Psychiatry 85,            29. Baldermann, J. C. et al. Connectivity proﬁle predictive of effective
+     1419–1425 (2014).                                                             deep brain stimulation in obsessive-compulsive disorder. Biol.
+7.   Bejjani, B.-P. et al. Bilateral subthalamic stimulation for Parkinson’s       Psychiatry 85, 735–743 (2019).
+     disease by using three-dimensional stereotactic magnetic reso-            30. Coenen, V. A. et al. The dentato-rubro-thalamic tract as the
+     nance imaging and electrophysiological guidance. J. Neurosurg.                potential common deep brain stimulation target for tremor of var-
+     92, 615–625 (2000).                                                           ious origin: an observational case series. Acta Neurochir. (Wien.) 18,
+8.   Picillo, M., Lozano, A. M., Kou, N., Puppi Munhoz, R. & Fasano, A.            130–14 (2020).
+     Programming deep brain stimulation for Parkinson’s disease:               31. Helmich, R. C., Janssen, M. J. R., Oyen, W. J. G., Bloem, B. R. & Toni, I.
+     the toronto western hospital algorithms. Brain Stimul. 9, 425–437             Pallidal dysfunction drives a cerebellothalamic circuit into Parkin-
+     (2016).                                                                       son tremor. Ann. Neurol. 69, 269–281 (2011).
+9.   Hassler, R., Riechert, T., Mundinger, F., Umbach, W. & Ganglberger,       32. Helmich, R. C., Hallett, M., Deuschl, G., Toni, I. & Bloem, B. R. Cer-
+     J. A. Physiological observations in stereotaxic operations in extra-          ebral causes and consequences of parkinsonian resting tremor: a
+     pyramidal motor disturbances. Brain 83, 337–350 (1960).                       tale of two circuits?. Brain J. Neurol. 135, 3206–3226 (2012).
+
+
+Nature Communications | (2024)15:4662                                                                                                                     14
+Article                                                                                                    https://doi.org/10.1038/s41467-024-48731-1
+
+
+33. Kühn, A. A. et al. Pathological synchronisation in the subthalamic          53. Horn, A. & Fox, M. D. Opportunities of Connectomic Neuromodula-
+    nucleus of patients with Parkinson’s disease relates to both brady-             tion. NeuroImage 117180 (2020) https://doi.org/10.1016/j.neuroimage.
+    kinesia and rigidity. Exp. Neurol. 215, 380–387 (2009).                         2020.117180.
+34. Mazzone, P., Sposato, S., Insola, A. & Scarnati, E. The clinical effects    54. Ewert, S. et al. Optimization and comparative evaluation of non-
+    of deep brain stimulation of the pedunculopontine tegmental                     linear deformation algorithms for atlas-based segmentation of DBS
+    nucleus in movement disorders may not be related to the anato-                  target nuclei. NeuroImage 184, 586–598 (2019).
+    mical target, leads location, and setup of electrical stimulation.          55. Oxenford, S. et al. WarpDrive: Improving spatial normalization using
+    Neurosurgery 73, 894 (2013).                                                    manual reﬁnements. Med. Image Anal. 91, 103041 (2024).
+35. Zrinzo, L. et al. Stereotactic localization of the human pedunculo-         56. Schönecker, T., Kupsch, A., Kühn, A. A., Schneider, G.-H. & Hoff-
+    pontine nucleus: atlas-based coordinates and validation of a mag-               mann, K.-T. Automated optimization of subcortical cerebral MR
+    netic resonance imaging protocol for direct localization. Brain 131,            imaging−atlas coregistration for improved postoperative electrode
+    1588–1598 (2008).                                                               localization in deep brain stimulation. Am. J. Neuroradiol. 30,
+36. Golestanirad, L., Elahi, B., Graham, S. J., Das, S. & Wald, L. L. Efﬁcacy       1914–1921 (2009).
+    and Safety of Pedunculopontine Nuclei (PPN) Deep Brain Stimula-             57. Husch, A., V. Petersen, M., Gemmar, P., Goncalves, J. & Hertel, F.
+    tion in the Treatment of Gait Disorders: A Meta-Analysis of Clinical            PaCER - A fully automated method for electrode trajectory and
+    Studies. Can. J. Neurol. Sci. J. Can. Sci. Neurol. 43, 120–126 (2016).          contact reconstruction in deep brain stimulation. NeuroImage Clin.
+37. Vorwerk, J., Oostenveld, R., Piastra, M. C., Magyari, L. & Wolters, C.          17, 80–89 (2018).
+    H. The FieldTrip-SimBio pipeline for EEG forward solutions. Biomed.         58. Lofredi, R. et al. Interrater reliability of deep brain stimulation
+    Eng. OnLine 17, 37 (2018).                                                      electrode localizations. NeuroImage 262, 119552 (2022).
+38. Butenko, K., Bahls, C., Schröder, M., Köhling, R. & van Rienen, U.          59. Gunalan, K. et al. Creating and parameterizing patient-speciﬁc deep
+    OSS-DBS: Open-source simulation platform for deep brain stimu-                  brain stimulation pathway-activation models using the hyperdirect
+    lation with a comprehensive automated modeling. PLoS Comput.                    pathway as an example. PLOS ONE 12, e0176132 (2017).
+    Biol. 16, e1008023 (2020).                                                  60. Howell, B. & McIntyre, C. C. Analyzing the tradeoff between electrical
+39. Dembek, T. A. et al. Directional DBS increases side‐effect thresholds—          complexity and accuracy in patient-speciﬁc computational models of
+    A prospective, double‐blind trial. Mov. Disord. 32, 1380–1388 (2017).           deep brain stimulation. J. Neural Eng. 13, 036023 (2016).
+40. Timmermann, L. et al. Multiple-source current steering in sub-              61. Åström, M. et al. Method for patient-speciﬁc ﬁnite element mod-
+    thalamic nucleus deep brain stimulation for Parkinson&apos;s dis-               eling and simulation of deep brain stimulation. Med. Biol. Eng.
+    ease (the VANTAGE study): a non-randomised, prospective,                        Comput. 47, 21–28 (2009).
+    multicentre, open-label study. Lancet Neurol. 14, 693–701 (2015).           62. Horn, A. & Kühn, A. A. Lead-DBS: A toolbox for deep brain stimu-
+41. Roediger, J. et al. Automated deep brain stimulation programming                lation electrode localizations and visualizations. NeuroImage 107,
+    based on electrode location: a randomised, crossover trial using a              127–135 (2015).
+    data-driven algorithm. Lancet Digit. Health 5, e59–e70 (2023).              63. Avants, B. B., Epstein, C. L., Grossman, M. & Gee, J. C. Symmetric
+42. Roediger, J. et al. StimFit—a data-driven algorithm for automated               diffeomorphic image registration with cross-correlation: Evaluating
+    deep brain stimulation programming. Mov. Disord. 37, 574–584                    automated labeling of elderly and neurodegenerative brain. Med.
+    (2022).                                                                         Image Anal. 12, 26–41 (2008).
+43. Makris, N. et al. Variability and anatomical speciﬁcity of the              64. Ewert, S. et al. Toward deﬁning deep brain stimulation targets in
+    orbitofrontothalamic ﬁbers of passage in the ventral capsule/                   MNI space: A subcortical atlas based on multimodal MRI, histology
+    ventral striatum (VC/VS): precision care for patient-speciﬁc tracto-            and structural connectivity. NeuroImage 170, 271–282 (2018).
+    graphy-guided targeting of deep brain stimulation (DBS) in obses-           65. Poldrack, R. A., Huckins, G. & Varoquaux, G. Establishment of Best
+    sive compulsive disorder (OCD). Brain Imaging Behav. 10, 1054–1067              Practices for Evidence for Prediction: A Review. JAMA Psychiatry 77,
+    (2016).                                                                         534–540 (2020).
+44. Lujan, J. L. et al. Tractography-Activation Models Applied to Sub-          66. Butenko, K. et al. Linking proﬁles of pathway activation with clinical
+    callosal Cingulate Deep Brain Stimulation. Brain Stimul. 6, 737–739             motor improvements – A retrospective computational study. Neu-
+    (2013).                                                                         roImage Clin. 36, 103185 (2022).
+45. Coenen, V. A. et al. Machine learning—aided personalized DTI                67. Zhang, S. & Arfanakis, K. Evaluation of standardized and study-speciﬁc
+    tractographic planning for deep brain stimulation of the super-                 diffusion tensor imaging templates of the adult human brain: Tem-
+    olateral medial forebrain bundle using HAMLET. Acta Neurochir.                  plate characteristics, spatial normalization accuracy, and detection of
+    (Wien.) 161, 1559–1569 (2019).                                                  small inter-group FA differences. NeuroImage 172, 40–50 (2018).
+46. Hollunder, B., Ganos, C. & Horn, A. Deep Brain Stimulation: From            68. Butson, C. R. & McIntyre, C. C. Tissue and electrode capacitance
+    Sweet Spots to Sweet Networks? Biol. Psychiatry Cogn. Neurosci.                 reduce neural activation volumes during deep brain stimulation.
+    Neuroimaging 6, 939–941 (2021).                                                 Clin. Neurophysiol. 116, 2490–2500 (2005).
+47. Merk, T. et al. Machine learning based brain signal decoding for            69. McIntyre, C. C., Richardson, A. G. & Grill, W. M. Modeling the
+    intelligent adaptive deep brain stimulation. Exp. Neurol. 351,                  excitability of mammalian nerve ﬁbers: inﬂuence of afterpotentials
+    113993 (2022).                                                                  on the recovery cycle. J. Neurophysiol. 87, 995–1006 (2002).
+48. Horn, A. et al. Teaching NeuroImages: In vivo visualization of Edin-        70. Fox, C. A., Rafols, J. A. & Cowan, W. M. Computer measurements of
+    ger comb and Wilson pencils. Neurology 92, e1663–e1664 (2019).                  axis cylinder diameters of radial ﬁbers and “comb” bundle ﬁbers. J.
+49. Alho, E. J. L. et al. The Ansa Subthalamica: A Neglected Fiber Tract.           Comp. Neurol. 159, 201–223 (1975).
+    Mov. Disord. 35, 75–80 (2020).                                              71. Mathai, A., Wichmann, T. & Smith, Y. More than meets the Eye—
+50. Petersen, M. V. et al. Holographic Reconstruction of Axonal Path-               Myelinated axons crowd the subthalamic nucleus. Mov. Disord. 28,
+    ways in the Human Brain. Neuron 104, 1056–1064.e3 (2019).                       1811–1815 (2013).
+51. Horn, A. et al. Deep brain stimulation induced normalization of the         72. Verhaart, W. J. C. Fiber analysis of the basal ganglia. J. Comp.
+    human functional connectome in Parkinson’s disease. Brain J.                    Neurol. 93, 425–440 (1950).
+    Neurol. 18, 130–15 (2019).                                                  73. Faul, F., Erdfelder, E., Lang, A.-G. & Buchner, A. G*Power 3: A ﬂex-
+52. Wang, Q. et al. Normative vs. patient-speciﬁc brain connectivity in             ible statistical power analysis program for the social, behavioral,
+    deep brain stimulation. NeuroImage 224, 117307 (2020).                          and biomedical sciences. Behav. Res. Methods 39, 175–191 (2007).
+
+
+Nature Communications | (2024)15:4662                                                                                                                   15
+Article                                                                                                     https://doi.org/10.1038/s41467-024-48731-1
+
+
+74. Schmitz-Hübsch, T. The caudal zona incerta does not prove suitable            (application #LU103178). A.H. reports lecture fees from Boston Scientiﬁc
+    as a target for deep brain stimulation in Parkinson’s disease. J.             and is a consultant for FxNeuromodulation and Abbott unrelated to
+    Neurol. 267, 591–606 (2014).                                                  present work. W.J.N. received honoraria unrelated to present work from
+75. Coulombe, V. et al. A Topographic Atlas of the Human Brainstem in             Medtronic that is a manufacturer of deep brain stimulation devices. E.M.
+    the Ponto-Mesencephalic Junction Plane. Front. Neuroanat. 15,                 declares the following funding sources and employment: Boston Sci-
+    627656 (2021).                                                                entiﬁc Corp: Advisory Board Member, Research Support, Varian Medical
+                                                                                  Systems: Clinical Trial Funding, Advisory Board Member, Speaker’s
+Acknowledgements                                                                  Bureau; Vigil Neuroscience, Inc: Clinical Trial Funding. A.A.K. reports
+We would like to thank the patients and their families for their participa-       personal fees from Medtronic and Boston Scientiﬁc. The remaining
+tion, which directly led to this study being possible. WJN is funded by the       authors declare no competing interest.
+European Union (ERC, ReinforceBG, project 101077060), Deutsche For-
+schungsgemeinschaft (DFG, German Research Foundation) – Project-ID                Additional information
+424778381 – TRR 295 and the Bundesministerium für Bildung und For-                Supplementary information The online version contains
+schung (BMBF, project FKZ01GQ1802). AH was supported by the German                supplementary material available at
+Research Foundation (Deutsche Forschungsgemeinschaft, 424778381 –                 https://doi.org/10.1038/s41467-024-48731-1.
+TRR 295), Deutsches Zentrum für Luft- und Raumfahrt (DynaSti grant
+within the EU Joint Programme Neurodegenerative Disease Research,                 Correspondence and requests for materials should be addressed to
+JPND), the National Institutes of Health (R01 13478451, 1R01NS127892-01,          Nanditha Rajamani.
+2R01 MH113929 & UM1NS132358) as well as the New Venture Fund (FFOR
+Seed Grant). We acknowledge support of funding by the Open Access                 Peer review information Nature Communications thanks Patrice Peran
+Publication Fund of Charité – Universitätsmedizin Berlin.                         and the other, anonymous, reviewers for their contribution to the peer
+                                                                                  review of this work. A peer review ﬁle is available.
+Author contributions
+N.R. & A.H. – Designed and implemented software necessary for analysis,           Reprints and permissions information is available at
+performed data analysis, and wrote the manuscript. A.H. conceptualized            http://www.nature.com/reprints
+and supervised the study; H.F. – validated the anatomical tract atlas,
+wrote, reviewed, and edited the manuscript; T.D. & K.B. – designed and            Publisher’s note Springer Nature remains neutral with regard to jur-
+implemented the software necessary for validation, reviewed and edited            isdictional claims in published maps and institutional afﬁliations.
+the manuscript; M.R., P.N. & F.L. – provided data for and performed the
+feasibility trial, and edited the manuscript; P.Z. – Assisted in data analysis;   Open Access This article is licensed under a Creative Commons
+C.N. and B.H. – edited the manuscript and provided feedback on ana-               Attribution 4.0 International License, which permits use, sharing,
+lysis; X.X., Z.L., C.Y. – provided data for validation of the study; G.P.S.,      adaptation, distribution and reproduction in any medium or format, as
+S.K., A.K., C.K., G.S., V.M. E.M. – provided data for validation of the tract     long as you give appropriate credit to the original author(s) and the
+atlas; M.B., A.A.K., R.M.d.B., J.V., V.J.O. – provided data for validation and    source, provide a link to the Creative Commons licence, and indicate if
+reviewed the manuscript; P.R., J.N., N.L. – provided supervision and              changes were made. The images or other third party material in this
+reviewed the manuscript; M.D.F. – reviewed and edited the manuscript.             article are included in the article’s Creative Commons licence, unless
+                                                                                  indicated otherwise in a credit line to the material. If material is not
+Funding                                                                           included in the article’s Creative Commons licence and your intended
+Open Access funding enabled and organized by Projekt DEAL.                        use is not permitted by statutory regulation or exceeds the permitted
+                                                                                  use, you will need to obtain permission directly from the copyright
+Competing interests                                                               holder. To view a copy of this licence, visit http://creativecommons.org/
+N.R., B.H. and A.H. serve as inventors on patent application by Charité –         licenses/by/4.0/.
+University Medicine Berlin that covers multitract ﬁberﬁltering and the
+cleartune algorithm introduced in this work. The application has been             © The Author(s) 2024, corrected publication 2024
+submitted on July 21, 2023, with the patent ofﬁce of Luxembourg
+
+
+
+1
+ Movement Disorder and Neuromodulation Unit, Department of Neurology, Charité-Universitätsmedizin Berlin, corporate member of Freie Universität Berlin
+and Humboldt-Universität zu Berlin, Berlin, Germany. 2Center for Brain Circuit Therapeutics Department of Neurology Brigham & Women’s Hospital, Harvard
+Medical School, Boston, MA, USA. 3University of Würzburg, Faculty of Medicine, Josef-Schneider-Str. 2, 97080 Würzburg, Germany. 4Department of
+Neurology, University of Cologne, Cologne, Germany. 5Department of Neurology, University Clinic of Würzburg, Josef-Schneider-Str. 11, 97080
+Würzburg, Germany. 6Einstein Center Digital Future, Berlin 10117, Germany. 7Brain Simulation Section, Department of Neurology, Charité University Medicine
+Berlin and Berlin Institute of Health, Berlin 10117, Germany. 8Department of Neurology, Amsterdam University Medical Center, Amsterdam, The Netherlands.
+9
+ Department of Neurosurgery, Chinese PLA General Hospital, Beijing 100853, China. 10Department of Neurosurgery, Hainan Hospital of Chinese PLA General
+Hospital, Sanya, Hainan 572000, China. 11Department of Neurosurgery, The National Key Clinic Specialty, Shenzhen Key Laboratory of Neurosurgery, the First
+Afﬁliated Hospital of Shenzhen University, Shenzhen Second People’s Hospital, Shenzhen 518035, China. 12Bernstein center for Computational Neuroscience
+Berlin, Berlin 10117, Germany. 13Section of Neurosurgery, Dartmouth Hitchcock Medical Center, Lebanon, NH 03756, USA. 14Department of Neurosurgery,
+National and Kapodistrian University of Athens Medical School, Evangelismos General Hospital, Athens, Greece. 15Centre for Spinal Studies and Surgery,
+Queen’s Medical Centre, Nottingham University Hospitals NHS Trust, Nottingham, UK. 16Division of Neurosurgery, Toronto Western Hospital, University Health
+Network, Toronto, ON, Canada. 17Neurosurgical Division, Hospital Beneﬁcência Portuguesa de São Paulo, São Paulo, Brazil. 18Department of Neurosurgery,
+Mayo Clinic, Florida, USA. 19Movement Disorders and Neuromodulation Unit, DOMMO Clinic, São Paulo, Brazil. 20Harvard Medical School, Boston, MA 02114,
+USA. 21Brain Modulation Lab, Department of Neurosurgery, Massachusetts General Hospital, Boston, MA 02114, USA. 22Department of Radiology, Mayo Clinic
+Florida, Jacksonville, FL, USA.      e-mail: nrajamani@bwh.harvard.edu
+
+
+
+
+Nature Communications | (2024)15:4662                                                                                                                    16
+

@@ -1,0 +1,936 @@
+                  ARTICLE
+                  https://doi.org/10.1038/s41467-021-25366-0                 OPEN
+
+                  Neural signatures of hyperdirect pathway activity in
+                  Parkinson’s disease
+                  Ashwini Oswal 1,2,3 ✉, Chunyan Cao4, Chien-Hung Yeh1,2,5, Wolf-Julian Neumann6, James Gratwicke7,
+                  Harith Akram7, Andreas Horn 6, Dianyou Li4, Shikun Zhan4, Chao Zhang4, Qiang Wang6, Ludvic Zrinzo 7,
+                  Tom Foltynie7, Patricia Limousin 7, Rafal Bogacz1,2, Bomin Sun4, Masud Husain 2, Peter Brown 1,2,8 ✉ &
+                  Vladimir Litvak 3,8 ✉
+1234567890():,;
+
+
+
+
+                  Parkinson’s disease (PD) is characterised by the emergence of beta frequency oscillatory
+                  synchronisation across the cortico-basal-ganglia circuit. The relationship between the anat-
+                  omy of this circuit and oscillatory synchronisation within it remains unclear. We address this
+                  by combining recordings from human subthalamic nucleus (STN) and internal globus pallidus
+                  (GPi) with magnetoencephalography, tractography and computational modelling. Coherence
+                  between supplementary motor area and STN within the high (21–30 Hz) but not low (13-
+                  21 Hz) beta frequency range correlated with ‘hyperdirect pathway’ ﬁbre densities between
+                  these structures. Furthermore, supplementary motor area activity drove STN activity selec-
+                  tively at high beta frequencies suggesting that high beta frequencies propagate from the
+                  cortex to the basal ganglia via the hyperdirect pathway. Computational modelling revealed
+                  that exaggerated high beta hyperdirect pathway activity can provoke the generation of
+                  widespread pathological synchrony at lower beta frequencies. These ﬁndings suggest a
+                  spectral signature and a pathophysiological role for the hyperdirect pathway in PD.
+
+
+
+
+                  1 MRC Brain Network Dynamics Unit, University of Oxford, Oxford, UK. 2 Nufﬁeld Department of Clinical Neurosciences, University of Oxford, Oxford, UK.
+                  3 The Wellcome Centre for Human Neuroimaging, University College London, London, UK. 4 Department of Neurosurgery, Afﬁliated Ruijin Hospital, School of
+
+                  Medicine, Shanghai JiaoTong University, Shanghai, China. 5 School of Information and Electronics Engineering, Beijing Institute of Technology, Beijing, China.
+                  6 Department of Neurology, Charité University, Berlin, Germany. 7 Department of Clinical and Movement Neurosciences, University College London,
+
+                  London, UK. 8These authors contributed equally: Peter Brown, Vladimir Litvak. ✉email: ashwini.oswal@ndcn.ox.ac.uk; peter.brown@ndcn.ox.ac.uk;
+                  v.litvak@ucl.ac.uk
+
+                  NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications                                    1
+ARTICLE                                                                  NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0
+
+
+
+
+P
+       arkinson’s disease is a common disorder of movement,                   at higher beta frequencies (21–30 Hz) and is segregated such that
+       which is characterized by nigrostriatal dopamine depletion             mesial motor/premotor areas drive STN activity across this fre-
+       and the emergence of stereotyped patterns of oscillatory               quency range2,4. This leads to the hypothesis that cortical cou-
+synchronization within cortico-basal-ganglia circuits. Excessive              pling with the STN at high beta frequencies may reﬂect
+synchronization across beta-band frequencies (13–30 Hz) is a                  hyperdirect pathway activity4. If high beta frequencies are
+hallmark of the Parkinsonian dopamine-depleted state. By                      reﬂective of the hyperdirect pathway, synchrony within this fre-
+simultaneously recording cortical activity with EEG or magne-                 quency range might be expected to be greater within the STN and
+toencephalography (MEG) and intracranial local ﬁeld potentials                its cortical network than within other basal ganglia structures
+(LFP) in patients undergoing surgery for the insertion of Deep                such as the GPi. However, due to the connectivity between STN
+Brain Stimulation (DBS) electrodes it is possible to explore pat-             and GPi, any differences between these two sites are likely to be
+terns of long-range synchronization that emerge within cortico-               relative rather than absolute. Thus, we note that high beta activity
+basal-ganglia circuits1–3. Using this approach, it has been pre-              has been detected in both the STN and the GPi3,29. In addition to
+viously shown that the STN couples with motor/premotor activity               the relative differences in power, we would predict an overlap
+at beta frequencies, with the cortex, predominantly driving STN               between cortico-STN anatomical connectivity of the hyperdirect
+activity2,4.                                                                  pathway and the proﬁle of cortico-STN functional connectivity at
+   In contemporary models of the basal-ganglia-thalamocortical                high beta frequencies.
+loop, cortical activity is thought to be transmitted to subcortical              To test these hypotheses, we performed simultaneous MEG
+regions by three streams—the hyperdirect, direct and indirect                 and intracranial LFP recordings in Parkinsonian patients
+pathways—which act in conjunction to shape the dynamics of                    undergoing surgery for the insertion of DBS electrodes in either
+action initiation and selection. The direct and indirect pathways             the STN or the internal segment of the globus pallidus (GPi). A
+provide cortical inputs to basal ganglia via the striatum5–8. The             total of 32 patients were recruited from two separate surgical
+hyperdirect pathway is a monosynaptic axonal connection,                      centers—one in London and one in Shanghai—and synchrony
+thought to be at least partly formed from axon collaterals of                 proﬁles of the STN and GPi networks were compared. Cortico-
+corticobulbar and corticospinal ﬁbers, which runs from the                    STN anatomical connectivity derived from individual patient
+frontal cortex to the STN and is proposed to provide rapid                    electrode localizations and both individual and open-source
+inhibition for action suppression9–11. The physiological proper-              tractography connectomes was integrated with individual patient
+ties of the hyperdirect pathway have been studied in humans and               MEG and LFP derived cortico-STN functional connectivity in
+animals using a combination of techniques including tracer                    order to establish the relationship between hyperdirect pathway
+studies12, evaluation of evoked responses to DBS11,13,14, and non-            ﬁber density and cortico-STN coupling at high beta frequencies.
+invasive tractography10,15,16.                                                   Our ﬁndings indicate that cortical connectivity with the STN at
+   An improved understanding of the relationship between                      high beta frequencies reﬂects activity within the hyperdirect
+cortico-basal-ganglia anatomical projections and the generation               pathway. Our empirical ﬁndings are recapitulated by a biophy-
+of beta-band oscillatory synchrony is essential to fulﬁlling a cri-           sical model which additionally reveals that an exaggerated
+tical gap in our understanding of network dysfunction in PD and               hyperdirect pathway in PD may lead to the generation of sub-
+could inform the development of more spatially and temporally                 cortical synchrony at lower beta frequencies (13–21 Hz) which
+patterned DBS therapies17. In this regard, previous studies have              are considered to be more directly pathological.
+speculated on the potential importance of an exaggerated
+hyperdirect pathway4,18–21, but details regarding pathophysiolo-
+gical mechanisms are lacking.                                                 Results
+   Synchrony at low beta frequencies (13–21 Hz) is detectable in              Differences in local synchrony between the STN and GPi and
+the parkinsonian STN and is considered to be pathological as it is            medication effects on the STN at beta frequencies. Figure 1
+suppressed by both DBS and L-dopa therapy22–24 with some                      shows trajectories and contact locations for electrodes targeting
+studies also demonstrating a correlation between the extent of                the STN (dark blue for UCL and turquoise for Shanghai) and GPi
+treatment-related        beta     suppression      and      clinical          (white for UCL and yellow for Shanghai) in Montreal Neurolo-
+improvement4,25–28. Previous work also demonstrates that syn-                 gical Institute (MNI) space (corresponding to STN UCL and
+chronous activity between the cortex and the STN predominates                 Shanghai patients 1–6 and GPi UCL and Shanghai patients 1–6;
+                                                                              see Supplementary Table 1). Contact localization for individual
+                                                  A                           patients is shown in Supplementary Figs. 1 and 2. Contacts tra-
+                                                                              versing either the STN or the GPi are colored in blue and only
+                                                                              data from adjacent contact pairs where at least one contact tra-
+                                                                              versed either the STN or GPi was used for subsequent analysis.
+          R                      L                P                           For example, in the case that only the most inferior contacts 0
+                                                  A                           and 1 traversed the STN bipolar contact pairs 01 and 12 were
+                                                                              used for subsequent analysis.
+                                                                                 Figure 2A depicts the mean spectral power for all STN and GPi
+                                                                              bipolar contacts separately for the UCL and Shanghai cohorts,
+          R                      L                P                           whilst Fig. 2B reveals the mean spectral power of only the
+                                                                              oscillatory component (after removing the aperiodic 1/f compo-
+Fig. 1 Localization of electrodes in MNI space. The upper two images          nent) for the same STN and GPi contacts. In both structures,
+show electrodes targeting the GPi (green); electrodes from the Shanghai       there is a peak centered at or below 10 Hz. Subjects also displayed
+cohort are colored in yellow, whilst electrodes from the UCL cohort are       oscillatory peaks within the low (13-21 Hz) and high beta
+colored in white. The bottom two images show electrodes targeting the         (21–30 Hz) frequency ranges. For both the Shanghai and UCL
+STN (orange); electrodes from the UCL cohort are colored in dark blue         cohorts, we observed that power within the high beta frequency
+whilst electrodes from the Shanghai cohort are colored in turquoise.          range was signiﬁcantly greater within the STN than within the
+Coronal (left) and axial (right) views are displayed and superimposed on a    GPi (gray lines in Fig. 2B; UCL: peak t = 12.30, FWE p < 1 × 10−3;
+T1-weighted structural MRI. A—Anterior, P—Posterior, R—Right, L—Left.         Shanghai: peak t = 4.32, FWE p = 2 × 10−3). In addition, for the
+
+2                 NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0                                                                         ARTICLE
+
+                                       a                                            b
+
+
+
+
+                            UCL
+                            SHANGHAI
+
+
+
+
+Fig. 2 Local synchrony distinguishes the STN and GPi. Mean log spectral power for all STN (blue line—ON medication STN recording; green line—OFF
+medication STN recording only performed at UCL) and GPi (red line) contacts are plotted separately for the UCL (upper image) and Shanghai (lower
+image) cohorts in Panel A. Panel B displays the mean log power of the oscillatory component after subtraction of the aperiodic 1/f component. The shaded
+regions indicate standard errors of the mean. Spectral proﬁles of individual STN and GPi contacts are also shown in both panels by the feint blue, green, and
+red lines. In both structures, there are oscillatory peaks below 10 Hz. Subjects also displayed oscillatory peaks within the low (13–21 Hz) and high beta
+(21–30 Hz) frequency ranges. The gray line in panel B indicates regions where oscillatory power was signiﬁcantly greater in the STN than in the GPi
+(between 23–33 Hz for the UCL cohort and between 20–26 Hz for the Shanghai cohort) in the ON medication state. In the upper image of Panel B the black
+line indicates regions where spectral power in the GPi exceeded spectral power in the STN in the ON medication state (13–19 Hz). Finally, also in this
+image, the yellow line indicates regions for the STN where power in the OFF medication state was greater than power in the ON medication state
+(13–19 Hz).
+
+UCL, but not for the Shanghai cohort we observed that low beta                     In addition, we observed a simple main effect of the frequency
+power was greater within the GPi compared to the STN (black                     band for the STN. Figure 3B depicts two mesial clusters that
+line in Fig. 2B; peak t = 6.58, FWE p < 1 × 10−3). For the                      include SMA and the leg area of M1 (posterior cluster peak
+Shanghai STN and GPi cohort and for the UCL GPi cohort                          t = 4.13, FWE p = 6 × 10−3, at MNI coordinates 2 -48 72;
+recordings were only performed ON medication. In contrast, for                  anterior cluster peak t = 4.44, FWE p = 2 × 10−3 at MNI
+the UCL STN cohort in which patients underwent both ON and                      coordinates 20 -14 72), where the cortico-STN coupling is
+OFF medication recordings, we observed a region within low beta                 greater at high rather than at low beta frequencies. Finally for the
+frequencies (yellow line in Fig. 2B; peak t = 4.24, FWE                         STN UCL cohort comparison of cortico-STN coherence proﬁles
+p = 3 × 10−3) where low beta power was increased in the OFF                     ON and OFF medication revealed only a main effect of the band,
+state compared to the ON state. Importantly there were no                       such that mesial motor areas including SMA were preferentially
+medication effects on high beta power within the STN.                           coupled to the STN at high rather than at low beta frequencies
+                                                                                (Fig. 3C; peak t = 5.24, FWE p = 4 × 10−3, at MNI coordinates 16
+                                                                                12 70). We observed no signiﬁcant main effect or interaction of
+Cortical-subcortical coherence at high beta frequencies occurs
+                                                                                medication state.
+preferentially within the cortico-STN network. Comparison of
+                                                                                   To further visualize these effects, and provide an indication of
+the proﬁle of cortical coherence for the STN and GPi for the UCL
+                                                                                effect sizes, source extracted coherence spectra are shown in
+cohort, revealed an interaction between frequency band and
+                                                                                Fig. 3D–E. Figures 3D and 3E show coherence proﬁles of the STN
+electrode location such that speciﬁc cortical regions displayed
+                                                                                and GPi for the peak locations within the mesial anterior (SMA)
+greater coherence with the STN than they did with the GPi,
+                                                                                and mesial posterior (mesial primary motor cortex, M1) clusters
+preferentially at high rather than at low beta frequencies. Regions
+                                                                                for which there was a simple main effect of the band for the STN
+displaying this interaction included the SMA and mesial areas of
+                                                                                (visualized in Fig. 3B). The cortical coherence proﬁles of the STN
+the primary motor cortex (Fig. 3A upper panel; peak t = 4.52,
+                                                                                reveal distinct peaks within the low (~13 Hz) and high (~27 Hz)
+FWE p = 2 × 10−3 at MNI coordinates 10 -46 82). In Fig. 3A the
+                                                                                beta frequency ranges. Cortical coherence at high beta frequencies
+blue and green contour lines represent the boundaries of the
+                                                                                is seen to be greater for the STN than for the GPi.
+primary motor cortex and the SMA derived from the Automated
+                                                                                   Corresponding results from the Shanghai cohort are displayed
+Anatomical Labelling (AAL) atlas. Interestingly the interaction
+                                                                                in Fig. 4. In this cohort, there were signiﬁcant main effects of both
+effect did not extend as far laterally as the hand area of the
+                                                                                band and site. Figure 4A displays a mesial cluster encompassing
+primary motor cortex (see lower panel of Fig. 3A). In contrast,
+                                                                                SMA for which there was a main effect of band such that
+there was no main effect of the frequency band or electrode
+                                                                                coherence at high beta frequencies was greater than that at low
+location (peak t = 1.7 and 1.9, respectively, in both cases FWE,
+                                                                                beta frequencies for both STN and GPi (peak t statistic = 5.09,
+p > 0.1).
+
+NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications                                   3
+ARTICLE                                                                      NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0
+
+
+       a                       b                       c                                 a                       b                      c
+
+
+
+
+                                                                                         d           SMA                       e        Mesial M1
+       d           SMA                       e       Mesial M1
+
+
+
+
+                                                                                  Fig. 4 Differences in cortico-STN and cortico-GPi coherence for the
+Fig. 3 Differences in cortico-STN and cortico-GPi coherence for the UCL           Shanghai cohort; high beta band coherence segregates to the cortico-
+cohort; high beta band coherence segregates to the cortico-STN network            STN network. As per Fig. 2 panels A–C are SPMs showing results of the
+and is largely uninﬂuenced by dopaminergic medication. Panels A and B             2 × 2 ANOVA with factors frequency (low beta versus high beta) and target
+are SPMs showing results of the 2x2 ANOVA with factors frequency (low             nucleus (STN versus GPi). A The upper panel displays regions where there
+beta versus high beta) and target nucleus (STN versus GPi). T-values of           was a signiﬁcant main effect of the band, such that cortical coherence with
+voxels within signiﬁcant clusters are superimposed onto a T1-weighted MRI         both the STN and GPi was greater at high rather than at low beta
+with the color bar indicating the value of the t-statistic. Contours of the       frequencies. The cluster encompasses the SMA. Cross-hairs are centered
+SMA and primary motor cortex are shown in green and blue, respectively.           on the location of the peak t-statistic at 2 -2 76. In the lower panel, the
+A The upper panel displays regions where there was a signiﬁcant                   cross-hairs are centered at the location of the hand area of the primary
+interaction, such that there was greater cortical coherence with the STN          motor cortex, highlighting that the main effect was centered medially. B A
+than with the GPi at high rather than at low beta frequencies. The cluster        cluster displaying a signiﬁcant main effect of site, such that coherence
+encompasses the mesial primary motor cortex and the SMA. Cross-hairs              across the high and low beta bands was greater for the STN than for the
+are centered on the location of the peak t-statistic at 10 -46 82. In the lower   GPi, is shown. The cluster includes the mesial primary motor cortex and the
+panel, the cross-hairs are centered at the location of the hand area of the       cross-hairs are centered on the location of the peak t-statistic at MNI
+primary motor cortex, highlighting that the interaction effect was centered       coordinates 8 -52 82. C A cluster lying within the SMA, for which there was
+medially. B Two clusters displaying a signiﬁcant simple main effect of the        a simple main effect of the band for the STN is displayed. The cross-hairs
+band for the STN. The clusters include SMA and the mesial primary motor           are centered on the peak t-statistic location at MNI coordinates 2 -16 54.
+cortex. In the upper panel, the cross-hairs are centered on the location of       Panels D and E show group mean (with standard errors) and individual
+the peak t-statistic within the posterior cluster at MNI coordinates 2 -48        coherence spectra computed between the STN/GPi and cortical locations
+72. In the lower panel cross-hairs are centered on the location of the peak       of the peak t-statistic separately for the main effect of the band (D) and site
+t-statistic within the anterior cluster at MNI coordinates 20 -14 72. Panels C    (E). These correspond to the clusters in A and B which are located in the
+shows results of the 2 × 2 ANOVA with factors frequency (low beta versus          SMA and in the mesial primary motor cortex (M1).
+high beta) and medication state (ON versus OFF) for the STN UCL cohort.
+There was a signiﬁcant main effect of frequency such that the SMA                 greater than low beta coherence with the SMA for the STN, but
+exhibited higher coherence with the STN at high rather than at low beta           not for the GPi (Fig. 4C; peak t statistic = 4.05, FWE
+frequencies (peak t-statistic at MNI coordinates 16 12 70). D and E show          p = 7 × 10−3, at MNI coordinates 2 -16 54). Figures 4D and 4E
+group mean (with standard errors) and individual coherence spectra                show coherence proﬁles of the STN and GPi for the peak
+computed between the STN/GPi and cortical locations of the peak                   locations within the SMA and mesial primary motor cortex for
+t-statistic of the simple main effect of the band for the STN (these              which there were main effects of band and site, respectively,
+correspond to the anterior and posterior clusters in C which are located in       (visualized in Fig. 4A and B). As per the UCL cohort, the cortical
+the SMA and in the mesial primary motor cortex (M1)).                             coherence proﬁles of both the STN and GPi reveal distinct peaks
+                                                                                  within the low and high beta frequency ranges. Cortical
+FWE p < 1 × 10−3, at MNI, coordinates 2 -2 76). Similarly, Fig. 4B                coherence at high beta frequencies is seen to be greater for the
+displays a cluster centered on mesial primary motor cortex for                    STN than for the GPi.
+which there was a main effect of site, such that beta coherence                      In summary, the ﬁndings from both surgical centers are
+summed across the low and high sub-bands was greater for the                      consistent and highlight the segregation of coherence at high beta
+STN than for the GPi (peak t statistic = 3.91, FWE p = 0.01, at                   frequencies to the SMA/M1—STN network.
+MNI coordinates 8 -52 82). Importantly, although a signiﬁcant
+interaction between site and frequency band was not observed for
+the Shanghai cohort, a site-speciﬁc simple main effect of                         Directionality of beta-band cortical-subcortical coupling and
+frequency band was seen—such that high beta coherence was                         estimation of transmission delays. Based on the above evidence
+
+4                   NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0                                                                          ARTICLE
+
+                                        a                          b                                c
+
+
+
+
+                            UCL
+
+                                        d                                                           e
+                             SHANGHAI
+
+
+
+
+                                                       f        UCL                      g    SHANGHAI
+
+
+
+
+Fig. 5 Granger directionality and analysis of net time delays: cortical driving of STN and GPi at high beta frequencies. Group means differences in
+Granger causality between the original data and time-reversed data are averaged across the high (21–30 Hz) and low (13–20 Hz) beta frequency ranges for
+the SMA-STN and mesial M1-STN networks in the ON medication condition (A UCL cohort and D Shanghai cohort). Panel B shows results from the UCL
+cohort in A in the OFF medication condition. Panels C and E show results for the SMA-GPi and mesial M1-GPi networks from both surgical centers in the
+ON medication condition. Source time series for Granger causality computation are extracted from the locations of peak t statistics of main effects
+separately for the STN and the GPi as per Figs. 3D, 3E, 4D, and 4E. The difference in Granger causality is signiﬁcantly greater than zero in the direction of
+SMA and mesial M1 to both STN and GPi for the upper beta frequency band. For the same cortical areas that drive sub-cortical activity, Granger causality
+estimates are negative in the (reverse) direction of subcortical sites driving cortex, conﬁrming that cortical activity leads the former. In the case of there
+being statistically signiﬁcant unidirectional coupling, time delays between cortex and the STN/GPi were estimated (F and G). Time delays were estimated
+for the same cortical locations and frequency bands used for Granger causality analysis. Mean values, standard errors, and individual data points are
+shown. For both the UCL and Shanghai cohorts, n = 6 patients (see Supplementary Table 1 and Supplementary Figs. 1 and 2 for details of the electrodes and
+contact pairs that were included for each patient).
+
+
+motor cortical coupling with the STN and GPi is divided into                       Similarly cortical activity in SMA and mesial M1led activity
+high and low beta frequencies. Coupling at high beta frequencies                within the GPi selectively over the high but not low beta
+appears to be less for the GPi than for the STN. We characterized               frequency range (Fig. 5C and E). For the SMA-GPi high beta
+the directionality of cortico-subcortical coupling at high and low              network: UCL ON medication: t20 = 2.5, P = 0.01, Shanghai
+beta frequencies in order to determine whether these signals                    t27 = 2.2, P = 0.02. Similarly for the high beta mesial M1-GPi
+originate from the cortex or subcortical structures. For the pur-               network: UCL ON medication: t20 = 1.98, P = 0.03, Shanghai
+poses of this analysis, we used source locations derived from the               t25 = 2.7, P < 0.01.
+locations of the peak t statistics used for the computation of                     After directionality analysis, net time delays in the high beta
+source extracted coherence proﬁles as described above.                          band between the SMA and mesial M1 regions and the STN/GPi
+   For both the UCL and Shanghai cohorts, the difference in                     were estimated (Fig. 5F and G). Time delays were estimated for
+Granger causality was signiﬁcantly greater than zero in the                     these networks as there was predominant unidirectional coupling
+direction of SMA and mesial M1 leading the STN for high but not                 in the direction of the cortex to both the GPi and the STN. Given
+for low beta frequencies (Fig. 5AB and D). For the SMA-STN                      that the GPi lies further downstream of the STN in the motor
+network one-sample t-tests for the high beta sub-band were; UCL                 cortico-basal ganglia circuit and lacks hyperdirect pathway
+ON medication: t25 = 3.88, P < 1 × 10−3, UCL OFF medication:                    inputs, we tested whether time delays from cortex to STN were
+t25 = 3.60, P < 1 × 10−3, Shanghai: t29 = 2.72, p < 1 × 10−3. In                shorter than those from cortex to GPi. Accordingly, we set up a
+addition, for the mesial M1-STN network the statistics were as                  2 × 2 ANOVA, adding covariates as previously described, with
+follows: UCL ON medication: t25 = 3.19, P = 2 × 10−3, UCL OFF                   factors cortical location (SMA versus Mesial M1) and target
+medication: t25 = 3.33, P = 1 × 10−3, Shanghai: t29 = 2.76,                     location (STN versus GPi). Our results revealed a signiﬁcant main
+P < 1 × 10−3.                                                                   effect of target location such that delays between SMA and mesial
+
+
+NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications                                    5
+ARTICLE                                                                    NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0
+
+
+
+                      a
+
+
+
+
+                      b
+
+
+
+
+                                          c              UCL                            SHANGHAI
+
+
+
+
+Fig. 6 Relationship between connectome derived structural and individual patient functional connectivity: tract density predicts hyperdirect pathway
+high beta coherence. A Statistical image of signiﬁcant clusters for the group level voxel-wise correlation between high beta band cortico-STN coherence
+and cortico-STN ﬁber density separately for the UCL (ON and OFF medication) and Shanghai cohorts (ON medication). The images are superimposed on a
+T1-weighted MRI and the crosshairs are centered on the location of the peak F-statistic of the cluster, which in all cases lies within the SMA. The blue and
+green contours enclose the volumes bounded by the SMA and primary motor cortex (M1) derived from the AAL atlas. The red and turquoise contours
+indicate regions were at the group level high beta band coherence and tract density, respectively, were greater than the 95% percentile. B The R2
+correlation coefﬁcient maps for voxels within each signiﬁcant cluster are displayed. In all cases, there are signiﬁcant clusters within the SMA. C Mean tract
+density estimates are plotted for the ipsilateral and contralateral ‘high beta’ and ‘broadband beta’ networks separately for STN (blue) and GPi (red)
+contacts for the two surgical centers. Vertical bars represent standard errors of the mean and individual data points are also shown. For both the UCL and
+Shanghai cohorts, n = 6 patients (see Supplementary Table 1 and Supplementary Figs. 1 and 2 for details of the electrodes and contact pairs that were
+included for each patient).
+
+M1 to STN were shorter than those from the same cortical areas                  shown in Fig. 6A, and reveal a lateralized cluster encompassing
+to the GPi (UCL: F(1,52) = 59.8, P < 1 × 10−3; Shanghai:                        the SMA (blue contour), where tract density was predictive of
+F(1,40) = 15.98, P < 1 × 10−3) Importantly there was no signiﬁ-                 high beta band coherence for the UCL dataset both ON and OFF
+cant main effect of cortical location (UCL: F(1,52) = 3.05,                     medication and for the Shanghai dataset. R2 correlation coefﬁ-
+P = 0.09; Shanghai: F(1,40) = 0.8, P = 0.38), nor was there a                   cient maps for voxels within each signiﬁcant cluster are displayed
+signiﬁcant interaction of the two factors (UCL: F(1,52) = 3.10,                 in Fig. 6B. Further analysis revealed no signiﬁcant relationship
+P = 0.08; Shanghai: F(1,40) = 1.26, P = 0.27). In a separate                    between cortico-STN tract density and cortico-STN low beta
+analysis, we conﬁrmed a lack of medication effects on delays                    band coherence. A similar correlation of cortico-GPi tract density
+for the UCL cohort (UCL: F(1,52) = 3.07, P = 0.09).                             with cortico-GPi coherence in the high and low beta frequency
+                                                                                bands was also not signiﬁcant.
+Functional connectivity is predicted by anatomical con-                            For further visualization of the overlap between MEG derived
+nectivity within the cortico-STN hyperdirect pathway. Our core                  functional connectivity and tractography derived structural
+hypothesis is that activity within the hyperdirect pathway is                   connectivity, we studied ﬁber tracts passing through the
+indexed by cortico-STN coherence at high beta frequencies.                      predeﬁned spherical ROI for each contact which originated
+Accordingly, we tested for a voxel-wise relationship between                    within cortical volumes for which: (1) there was either a main
+cortico-STN tract density and cortico-STN high beta band                        effect of the band (for the Shanghai cohort; see Fig. 4A) or a
+coherence across all studied contacts for each hemisphere and                   simple main effect of the band for the STN (for the UCL cohort;
+each subject. The results of cluster-based permutation testing are              see Fig. 3B)—which we name the ‘high beta network’ and (2)
+
+6                  NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0                                                                                                                       ARTICLE
+
+                                                                UCL Individual tractography
+     a                                                     b       OFF F statistic map
+
+
+
+                                                                                                                    c
+
+
+
+
+                                                                                                      F-statistic
+                                                                 UCL Individual tractography
+                                                                       OFF R2 map
+
+
+
+
+                                                                                                                                                                                         Broadband Beta Network
+                                                                                                                                                                Broadband Beta Network
+                                                                                                                        High Beta Network
+
+
+                                                                                                                                            High Beta Network
+
+
+
+
+                                                                                                                                                                                              Contralateral
+                                                                                                                                               Contralateral
+                                                                                                                            Ipsilateral
+
+
+
+
+                                                                                                                                                                      Ipsilateral
+                                                                                                       R2
+Fig. 7 Relationship between individual patient structural and individual patient functional connectivity: tract density predicts hyperdirect pathway
+high beta coherence. A Electrode localization for eight STN UCL patients (patients 7–14 in Supplementary Table 1) for whom individual subject structural
+and functional connectomes were available. B Statistical images of signiﬁcant clusters for the group level voxel-wise correlation between high beta band
+cortico-STN coherence and cortico-STN ﬁber density as per Fig. 6. The crosshairs are centered on the location of the peak F-statistic of the cluster, which
+lies within the SMA (blue contour). A corresponding R2 map is also shown for voxels within the cluster. C Mean tract density estimates are plotted for the
+ipsilateral and contralateral ‘high beta’ and ‘broadband beta’ networks. Vertical bars represent standard errors of the mean and individual data points are
+also shown. Data are shown for n = 8 patients (see Supplementary Table 1 and Supplementary Fig. 1 for details of electrodes and contacts that were
+included for each patient).
+
+coherence with the STN/GPi across the entire beta frequency                     Electrode localization for this cohort is displayed in Fig. 7A,
+range (which we name the ‘broadband beta network’) was greater                  whilst Fig. 7B displays the corresponding F statistics and R2
+than coherence at alpha band frequencies. Group analyses are                    correlation maps. In keeping with the results obtained from PPMI
+displayed in Supplementary Figs. 3 and 4. Tract densities were                  connectome data, there is a lateralized cluster including the SMA
+computed for the ipsilateral and contralateral high beta and                    where is tract density is predictive of high beta band coherence.
+broadband beta networks, separately for STN and GPi contacts.                   Finally, Fig. 7C displays tract densities for STN connections to the
+Results are summarized in Fig. 6C and reveal that STN contacts                  ‘high beta’ and ‘broadband beta networks’. In keeping with the
+tend to have denser ﬁber innervations than GPi contacts from                    results of the PPMI connectome, this highlights that the STN
+ipsilateral cortical regions that couple to them preferentially at              receives a high density of ﬁbers from the ipsilateral ‘high beta’
+high beta frequencies. We explored this phenomenon statistically                network (see Supplementary Results for statistics).
+by constructing a 2 × 2 × 2 factorial ANOVA with factors network
+(high beta versus beta), laterality (ipsilateral versus contralateral),
+and electrode location (STN versus GPi)(see Supplementary                       The computational model describing differential mechanisms
+Results for further details).                                                   by which high and low beta frequencies are generated in the
+   In a separate analysis, rather than limiting chosen ﬁbers to                 cortico-basal-ganglia circuit. We have provided empirical evi-
+those bypassing the striatum (indicative of hyperdirect connec-                 dence that the hyperdirect pathway drives high beta activity in the
+tions), we selected ﬁbers that passed through the striatum on their             basal ganglia. However, what is the origin of beta activity in the
+passage to either the STN or GPi. This procedure served to select               lower frequency band, and to what extent are the two activities
+ﬁbers that may form part of the indirect and direct pathways to                 functionally distinct4,30,31? It is after all the low beta activity that
+the STN and GPi, respectively. Using this approach we observed                  is believed to be pathological. To answer these questions, we
+no signiﬁcant relationship between tract densities and coherence                turned to computational modeling and designed a model able to
+in either the high or low beta bands for both cohorts. Taken                    capture a number of empirical features observed both in our own
+together, our ﬁndings suggest that cortico-STN coherence in the                 data and in those of other electrophysiological studies. Work in
+high beta band is related strongly to structural connectivity within            computational neuroscience suggests that circuits composed from
+the hyperdirect pathway.                                                        homogeneous populations of excitatory and inhibitory neurons
+   Finally, for the separate cohort of UCL patients with both                   may generate oscillations with a single dominant frequency32. To
+individual structural connectomes and combined MEG-LFP                          produce two frequencies in the model, we included two pairs of
+recordings (UCL STN patients 7–14; see Supplementary Table 1),                  excitatory-inhibitory network generators: (1) an excitatory-
+we observed an almost identical relationship between structural                 inhibitory cortical network capable of generating high beta fre-
+and functional connectivity within the hyperdirect pathway.                     quency oscillations and (2) the reciprocal excitatory-inhibitory
+
+NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications                                                                                          7
+ARTICLE                                                                    NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0
+
+
+
+
+Fig. 8 Computational modeling: the cortex generates high beta activity which is propagated subcortically and provokes the generation of pathological
+lower beta frequencies. A We explore the effect of altering the hyperdirect connection strength (WES, left ﬁgure), cortical time constants (τ E /τ I , middle
+ﬁgure), and the cortical delay (TIE/TIE, right ﬁgure) on the spectra of the STN and GPi. High beta frequency activity generated within the cortex propagates
+to the STN and GPi. In addition, under certain parameter values, a lower beta frequency (between 10 and 15 Hz) emerges. The left image in B is a
+bifurcation diagram highlighting that low beta frequency oscillatory activity may be generated in the STN-GPe feedback loop depending on cortical inputs.
+In the oscillatory region of STN and GPe ﬁring the dominant frequency is color-coded. The right image in B displays the effect on STN and GPi spectra of
+changing the subcortical delay parameters (TGeS /TSGe).
+
+STN-GPe subcortical network which served to generate low beta                   which transitions to instability and oscillatory behavior at cortical
+frequency oscillations18,33.                                                    input values between approximately 330–670 spikes/s. Above a spike
+   The structure of our model and its ability to generate high beta             range of approximately 670 spikes/s oscillatory behavior ceases as a
+activity cortically and low beta activity subcortically is illustrated          stable ﬁxed point returns. Within the oscillatory range, the peak of
+in Supplementary Fig. 4.                                                        the low beta frequency is indicated in the color bar. Interestingly this
+                                                                                simulation predicts that very high hyperdirect pathway strengths
+Modeling the effects of cortico-subcortical connectivity on the                 lead to the loss of low beta oscillations in the sub-cortex. The right
+frequency and coherence of oscillations. Figure 8 illustrates the               image in Fig. 8B shows how the peak frequency of the low beta
+effects of cortical input on the frequencies of oscillations within             oscillation generated in the STN-GPe loop can be inﬂuenced by the
+the STN-GPe loop. The left image in A shows the effect of                       transmission delays between these two structures (TGeS/SGe).
+modulating the hyperdirect pathway connection strength, WES on                     Next, using our model we simulated power spectra of the
+the simulated spectra of the STN and GPi. As WES is increased                   cortex, STN, and GPi, and coherences between cortex-STN and
+from 0, high beta oscillations from the cortex start to appear                  cortex-GPi (Fig. 9A). Parameters used are listed in Supplementary
+subcortically. At values of WES between 5 and 10, low beta fre-                 Table 2, but we varied the value of the strength of the net
+quency oscillations (~13 Hz) appear in the spectra of STN and                   inhibitory loop, WGiE, between the GPi, thalamus, and cortex. In
+GPi and then disappear when WES exceeds a value of 10. The                      these simulations, the noise was added (see Supplementary
+middle and rightmost images in A explores the effects of varying                Methods) in order to make coherence values physiologically
+cortical time constants (τ E /τ I ) and the delay between the two               plausible. A range of values of WGIE oscillatory peaks within the
+cortical populations (TEI/IE). Varying these cortical parameters                high and low beta frequency ranges are seen in the STN and GPi.
+primarily inﬂuences the frequency of the high beta oscillatory                  As observed in our own data (Figs. 2, 3, and 4), both high beta
+activity incoming from the cortex, with little effect on the low beta           band power and cortical coherence were greater for the STN than
+peak frequency.                                                                 for the GPi. Increasing WGiE led to an increase in the amplitude
+   Our simulations indicate how a strong hyperdirect pathway may                of the low beta frequency peak in both the STN and the GPi in
+lead to the generation of low beta frequency oscillations                       addition to increases in cortico-STN and cortico-GPi coherence
+subcortically. To illustrate this more clearly, in the left image of            at low beta frequencies. Interestingly, cortical activity predomi-
+Fig. 8B is a bifurcation diagram for STN and GPe activities for a               nantly displays a high beta frequency peak without the low beta
+reduced model of only the reciprocal STN-GPe network, where both                frequency peak observed in subcortical activity. This is in keeping
+populations receive striatal input and the STN receives ﬁxed (non-              with electrocorticographic studies in PD patients which display
+oscillatory) excitatory cortical inputs. The x-axis plots the cortical          spectral peaks above 20 Hz34–36.
+input which is the product of the hyperdirect pathway connection                   Finally, Fig. 9B reveals that the computational model developed
+strength, WES, and the ﬁring rate of the cortical excitatory                    predicts a monotonically increasing relationship between hyper-
+population. The system displays a stable ﬁxed point (black lines)               direct pathway strength WES and cortico-STN coherence in the
+
+
+8                  NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0                                                                                                                                                                       ARTICLE
+
+               a                                             WGiE = 0                                                               WGiE = 0.6                                                                WGiE = 1
+
+
+
+
+                b                                            WGiE = 0                                                               WGiE = 0.6                                                                WGiE = 1
+
+
+
+
+                                                                                                                                                                 Cortico-STN high beta coherence
+               Cortico-STN high beta coherence
+
+
+
+
+                                                                                        Cortico-STN high beta coherence
+
+
+
+
+                                                 Hyperdirect connection strength W ES                                     Hyperdirect connection strength W ES                                     Hyperdirect connection strength WES
+
+
+Fig. 9 Computational modeling captures observed power and coherence spectra and predicts the observed relationship between hyperdirect pathway
+structural and functional connectivity. A Simulated power spectra for the STN, GPi, and cortex are shown with the associated proﬁles of cortico-STN and
+cortico-GPi coherence spectra. Parameter values for this simulation are as per Supplementary Table 2, except for the fact that the strength of the net
+inhibitory loop, WGIE, between the GPi, thalamus, and cortex was varied as shown. Power and coherence spectra display peaks at high and low beta
+frequencies, in keeping with experimental data. Increasing WGIE results in increased low beta frequency power and coherence. The shaded areas represent
+standard errors of the mean. B The simulated relationship between hyperdirect pathway strength and cortico-STN high beta band coherence displays a
+monotonically increasing proﬁle. Standard errors of the mean are computed over n = 50 simulations.
+
+high beta frequency range (21–30 Hz). The slope of this                                                                                    ﬁber tract densities in a focal premotor region encompassing the
+relationship is greatest above values of WES that lead to the                                                                              SMA—an area that plays a key role in the volitional control of
+propagation of high beta oscillations sub-cortically (see Fig. 8A).                                                                        movement37. Collectively these data provide evidence that
+   In summary, modeling reveals that the hyperdirect pathway                                                                               hyperdirect pathway activity within the cortico-basal-ganglia
+propagates high beta frequencies subcortically and may con-                                                                                circuit evokes a unique spectral signature at high beta frequencies.
+tribute to the generation of subcortical low beta frequency                                                                                   We interpret the data in the context of a computational model
+rhythms. In addition, connections from basal ganglia via the                                                                               which provides important insight into the origins of beta oscil-
+thalamus to cortex may underlie the coherence between GPi/STN                                                                              latory activity in PD. Our model demonstrates how an exag-
+and cortex at low beta frequencies. The model also captures the                                                                            gerated hyperdirect pathway in PD is capable of both generating
+empirical relationship between structural and functional con-                                                                              high beta frequency oscillations and inducing synchrony at lower
+nectivity within the hyperdirect pathway.                                                                                                  beta frequencies within subcortical circuits. The model, therefore,
+                                                                                                                                           provides a formal biophysical mechanism for frequency trans-
+                                                                                                                                           duction in cortico-basal ganglia circuits, which hitherto has only
+Discussion                                                                                                                                 been speculated4,31. Excessive sub-cortical synchrony at low beta
+This study characterized the intersection between structural and                                                                           frequencies is considered to be closely related to motor impair-
+functional connectivity within the basal ganglia in PD patients                                                                            ment in PD38 and therefore strategies aimed at modulating the
+undergoing DBS surgery. We were able to isolate electro-                                                                                   hyperdirect pathway may exert therapeutic effect by reducing
+physiological markers of hyperdirect pathway activity by inte-                                                                             subcortical transduction to pathological low beta activity.
+grating high-resolution dMRI derived structural connectivity—
+from both connectomes and individual patient dMRI—with
+functional connectivity derived from simultaneous MEG and                                                                                  The intersection between structural and functional con-
+STN LFP recordings. In addition, we compared the power and                                                                                 nectivity within the cortico-basal-ganglia circuit. We report a
+cortical coherence proﬁles of the STN and GPi, which revealed                                                                              correlation between cortico-STN coherence and cortico-STN
+features suggestive of a relative lack of hyperdirect inputs to the                                                                        ﬁber tract density that was speciﬁc anatomically to mesial pre-
+latter. In comparison to GPi activity, STN activity displayed both                                                                         motor areas (SMA) and spectrally to upper beta-band fre-
+greater local synchrony, as indexed by LFP amplitude, and greater                                                                          quencies. Importantly this correlation was not observed in the
+functional connectivity with motor cortical areas, including the                                                                           proﬁle of cortical coherence with the GPi. We interpret this
+SMA and mesial primary motor cortex, at high beta frequencies.                                                                             ﬁnding as being indicative of a tight relationship between struc-
+Furthermore, these same cortical regions tended to drive STN                                                                               tural and functional connectivity within the monosynaptic
+activity within the high beta frequency range with shorter delays                                                                          hyperdirect pathway from the cortex to the STN9,15,39. Impor-
+than those that were observed for coupling to the GPi. More                                                                                tantly we isolated hyperdirect pathway ﬁbers by studying ﬁbers
+strikingly we show across participants that cortico-STN coher-                                                                             bypassing the striatum. When only striatal traversing ﬁbers were
+ence at high beta frequencies correlates with hyperdirect pathway                                                                          considered, which may be reﬂective of indirect and direct
+
+
+NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications                                                                                                                       9
+ARTICLE                                                                 NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0
+
+
+pathway connections to the STN and GPi, no relationships                     Insights from the computational modeling. The model pre-
+between structural and functional connectivity were observed.                sented here underscores the likely importance of an exaggerated
+   Of particular relevance to our ﬁndings is the strong theoretical          hyperdirect pathway in PD, which has also been suggested in the
+relationship between functional and effective—and implicitly also            previous reports4,18,21,39. More speciﬁcally we show how the
+structural—connectivity in networks such as the hyperdirect                  exaggerated subcortical propagation of high beta frequencies via
+pathway with unidirectional information transfer40. Previous                 the hyperdirect pathway can lead to the generation of the lower
+studies examining the intersection of tractography and fMRI are              beta frequencies that are believed to play a more direct role in the
+suggestive of a similar overlap of structural and functional                 genesis of motor impairment38. This explanation is consistent
+connectivity within hyperdirect connections during stopping                  with our own and previous ﬁndings that the net directionality of
+behavior10,41 with the strength of hyperdirect connections also              high beta frequency oscillations is from cortex to STN4,51. In
+correlating with the efﬁcacy of stopping42. More broadly, the                contrast, we observed no signiﬁcant net directionality for low beta
+relationship between functional and structural connectivity in               frequency oscillations, which may reﬂect low subcortico-cortical
+brain networks is highly complex43 and also limited by the pitfalls          feedback strengths via the GPi-thalamo-cortical loop (parameter
+of the modalities used to assess these measures. Nevertheless,               WGiE in Supplementary Table 2). Secondly, our model predicted a
+signiﬁcant overlaps between structural and functional connectiv-             monotonically increasing relationship between hyperdirect
+ity have been noted in highly conserved networks such as the                 pathway strength and cortico-STN high beta band coherence,
+default mode network44.                                                      which is in keeping with the observed tight relationship between
+   We hypothesize that the lack of an observed correlation                   structural and functional connectivity within the hyperdirect
+between structural and functional connectivity within the cortico-           pathway. The model also captures the relative difference in local
+GPi network is indicative of the fact that the GPi receives less             and cortical synchrony in the high beta band for the STN and
+synchronized cortical inputs through spatiotemporal intermixing              GPi, in the context of strong hyperdirect pathway inputs.
+of hyperdirect, direct and indirect pathway inputs that are                     Further in keeping with our model is the ﬁnding that DBS—
+themselves mediated by other nuclei before reaching the GPi45.               which may exert therapeutic beneﬁt by suppressing the
+Interestingly however the existence of a direct connection                   hyperdirect pathway4,14,21,52—has the effect of reducing coher-
+between the cortex and the GPi has recently been postulated                  ence in the upper beta frequency band between the cortex and the
+and this would explain our ﬁnding of ﬁbers passing between these             STN and also the cortex and the GPi, in addition to suppressing
+two structures which bypass the striatum46. Our data suggest that            low beta synchrony locally within the STN and the GPi4,36,53.
+this pathway is likely to be less dominant than the hyperdirect                 Finally, it is worth mentioning that although the data in this
+pathway based on the comparison of tract densities.                          report are consistent with a role of an exaggerated hyperdirect
+   We estimated a delay of ~15–20 ms for cortico-STN hyperdir-               pathway in the generation of abnormal synchrony in PD, other
+ect transmission in the high beta band. Previous studies of                  reports in monkeys and rodents suggest that a loss of hyperdirect
+cortical evoked responses to STN stimulation have identiﬁed the              pathway inputs to the STN can also reproduce the PD
+monosynaptic hyperdirect pathway based on the observation of                 phenotype54,55. Interestingly, this ﬁnding can be reconciled with
+response latencies ranging from 2 to 8 ms13,14,47,48. Importantly            our model when examining Figs. 8A and 8B. If we assume that in
+evoked response latencies are likely to be shorter than delays               the healthy state hyperdirect pathway strength is high, (e.g.,
+computed from phase-based estimates for a number of reasons.                 WES > 12) this will correspond to the stable regime of the STN-
+Firstly, delays from phase-based estimates depend not only on                GPe loop in Fig. 8B where high beta band activity is propagated
+conduction delays but also on synaptic integration delays (in                from the cortex to the subcortex. Pathological decreases in
+other words the delay for a neuronal population to synchronize               hyperdirect pathway strength will result in the system approach-
+its own activity to that of an input) which increase as more                 ing a bifurcation and then additionally producing low beta
+synapses are involved and may be extended by inhibitory inputs               frequency oscillations.
+to the STN. Secondly, it is possible that there will be some mixing
+of hyperdirect and indirect pathway components that overlap in
+                                                                             Medication effects on high and low beta band power and
+frequency leading to an increased estimate of time delays between
+                                                                             coherence. For the UCL STN cohort, in keeping with previous
+the cortex and the STN4,49. We found relatively little evidence of
+                                                                             reports, we observed no medication effects on coherence or on
+this in our own data however since we only observed a correlation
+                                                                             power within the high beta frequency range2,30,56,57. Levodopa
+between cortico-STN hyperdirect ﬁber density and cortico-STN
+                                                                             administration did however lead to a signiﬁcant reduction in low
+high beta band coherence and not between cortico-striatal-STN
+                                                                             beta band power within the STN as previously described22,27,30.
+ﬁber densities (indicative of indirect pathway connections) and
+                                                                             Importantly the relationship between hyperdirect pathway tract
+cortico-STN high beta band coherence. These observations
+                                                                             density and high beta band cortico-STN coherence was main-
+suggest that the hyperdirect pathway may be the predominant
+                                                                             tained regardless of medication state. These observations suggest
+route of transmission of high beta activity to the STN.
+                                                                             that levodopamine, in contrast to DBS, may not target the
+   The above reasons may explain discrepancies in hyperdirect
+                                                                             hyperdirect pathway, but rather that it could target subcortical
+pathway evoked response latencies (which were ~2 ms) and
+                                                                             mechanisms responsible for the transduction of high beta fre-
+delays estimated from cross-correlation measures (which were
+                                                                             quencies into lower frequencies.
+~60 ms) in a recent paper published by Chen and colleagues11,50.
+Importantly the magnitude of cross-correlation at these larger
+latencies predicted stopping behaviors, highlighting that in vivo            Study limitations. Our ﬁndings should be considered in light of
+information transmission within the hyperdirect pathway may                  the following limitations. Firstly, we observed phenotypic differ-
+occur signiﬁcantly more slowly than evoked response latencies.               ences between the STN and GPi DBS patient groups for the UCL
+Importantly we also observed relative differences in transmission            cohort but not for the Shanghai cohort (see “Methods” section).
+delays from the cortex to the STN and GPi. The ﬁnding of longer              We accounted for phenotypic differences at UCL by including
+delays to the GPi, which lies further downstream in the cortico-             them as covariates in our statistical analyses. Importantly the fact
+basal-ganglia circuit supports the notion that high beta activity            that the results of STN versus GPi comparisons were consistent
+originates within the cortex and is propagated to basal ganglia.             from both the Shanghai and UCL cohorts highlights that the
+
+
+10               NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0                                                                                        ARTICLE
+
+relative differences in observed STN and GPi activity and cou-                          DBS electrode localization and ﬁber tracking. DBS electrodes were localized
+pling are unlikely to have been driven by phenotypic differences.                       using Lead-DBS (www.lead-dbs.org). This involved linearly co-registering the post-
+                                                                                        operative MRI to the pre-operative MRI using SPM12 (Statistical Parametric
+   Secondly, although we were able to validate our ﬁndings with                         Mapping; http://www.ﬁl.ion.ucl.ac.uk/spm/software/spm12). In order to then
+on and off medication recordings from the STN UCL cohort,                               compare electrode placement across subjects, preoperative and postoperative MRI
+both GPi cohorts were recorded only on medication. In our                               acquisitions were non-linearly co-registered (normalization) into MNI ICBM152
+experience patients undergoing GPi DBS tend to have more                                NLIN 2009b stereotactic space (Montreal Neurological Institute; https://
+troublesome motor symptoms making it difﬁcult for them to                               www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009) using the
+                                                                                        SPM12 segment nonlinear option in Lead-DBS. Each electrode could then be
+tolerate prolonged on and off medication recordings58. Never-                           localized and visualized in the aforementioned MNI space simultaneously with
+theless, in keeping with its effects on STN activity, levodopamine                      masks of subcortical structures (including GPi and STN) derived from the DISTAL
+demonstrates suppressive effects on low but not high beta-band                          atlas within Lead-DBS.
+activity within the GPi59. Medication effects on cortico-pallidal                           For each electrode, we used an automated approach for determining which
+                                                                                        individual contacts lay within the STN or GPi. This approach relied on
+synchronization at high beta frequencies are less well character-                       determining whether MNI coordinates deﬁning individual contacts lay within a
+ized, although our group has previously attempted to investigate                        convex hull bounded by the surface of the STN or GPi (https://uk.mathworks.com/
+this in single patient data3. It, therefore, remains to be determined                   matlabcentral/ﬁleexchange/10226-inhull). Contact pairs where at least one contact
+whether akin to cortico-STN high beta coherence, cortico-GPi                            lay in the target nucleus were used for subsequent analyses; for instance, in the
+                                                                                        event of only contact 1 being inside the target nucleus, we selected contact pairs
+high beta coherence remains unaffected by medication                                    0–1 and 1–2. For the purposes of ﬁber tracking, a spherical region of interest
+administration.                                                                         centered at the midpoint of each chosen contact pair, with a radius that just
+   Finally, our recordings were performed a few days after                              encompassed each contact pair was constructed. For STN patients 1–6 and for GPi
+electrode implantation. It is known that the insertion of DBS                           patients 1–6 from both surgical centers this spherical volume was used as a seed
+                                                                                        region in an openly available group connectome (www.lead-dbs.org) which was
+electrodes can result in transient amelioration of parkinsonism                         derived from diffusion-weighted magnetic resonance (dMRI) images of 90 patients
+and may inﬂuence LFP activity before stimulation has been                               in the Parkinson’s progression markers initiative (PPMI) database. All scanning
+started60–62. This may be due to the physiological effects of the                       parameters are published on the website (www.ppmi-info.org). UCL STN patients
+lesion (a so-called ‘stun effect’) and also to placebo mechanisms63.                    7–14 additionally had preoperative dMRI as described in the Supplementary
+Nevertheless, studies of LFP activity months or years after initial                     Methods. For both connectome and individual subject dMRI Whole brain
+                                                                                        tractography ﬁber sets were calculated using a generalized q-sampling imaging
+implantation reveal strong similarities in beta activity and in                         algorithm as implemented in DSI studio (http://dsi-studio.labsolver.org) within a
+relationships between this activity and clinical state in the early                     white-matter mask after segmentation with SPM12. Fiber tracts were transformed
+postoperative and delayed postoperative periods64–67.                                   into MNI space70 for visualization. We then determined the number of ﬁbers
+                                                                                        passing through both the aforementioned spherical seed and each cubic voxel of
+                                                                                        side 2 mm. This yielded a single number for each voxel that served as an estimate of
+                                                                                        tract density and was written to a 3D image. Prior to statistical testing images were
+Methods                                                                                 smoothed with an 8 mm isotropic Gaussian kernel as per the analysis of MEG data.
+Patients and experimental details. Data from a total of thirty-two patients were
+included in this study. Twelve patients; six with bilateral implantation of STN DBS
+electrodes and six with bilateral implantation of GPi DBS electrodes were recruited     Analysis of oscillatory synchrony within the cortico-STN/cortico-GPi circuit.
+at each of two separate university hospitals; the National Hospital for Neurology       Power spectra from STN and GPi contact pairs were computed using multitaper
+and Neurosurgery (UCL) and the Ruijin University Hospital (Shanghai JaioTong            spectral estimation with a frequency resolution and taper smoothing frequency of
+University). A further eight patients with bilateral STN electrodes from UCL were       2.5 Hz71. Physiological power spectra may be thought of as a summation of two
+also included in the study. Patients were diagnosed with Parkinson’s disease            distinct processes: (1) an aperiodic component reﬂecting 1/f like characteristics
+according to the Queen Square Brain Bank criteria68.                                    which may differ across subjects and (2) periodic oscillatory components mani-
+    For the UCL cohort, patients in the GPi DBS subgroup had an additional              festing as band-limited peaks in the power spectrum. To make spectra comparable
+diagnosis of Parkinson’s disease dementia (PDD) and were recruited into a               across subjects we used a spectral parameterization algorithm (Fitting Oscillations
+separate trial that involved targeting both the motor GPi and the Nucleus Basalis of    and One-Over F algorithm, https://github.com/fooof-tools/fooof) to model the
+Meynert (NBM)69. Clinical characteristics of all patients are presented in              aperiodic (1/f) component72. This was visualized in all cases for quality control and
+Supplementary Table 1.                                                                  subsequently subtracted from the power spectrum in order to isolate the periodic
+    Phenotypic differences (Age, Disease Duration, pre-operative Levodopa               oscillatory component of interest. To test for differences in the spectra of STN and
+equivalent dose, pre-operative UPDRS Part III motor scores ON medication, and           GPi at each frequency, mean (across trials) log spectral time series were converted
+the Mini-Mental State Examination(MMSE)) between STN and GPi DBS patients               into 1D images, smoothed with a 2.5 Hz Gaussian kernel and subjected to a t-test
+were compared using unpaired t-tests separately for the UCL and Shanghai                within SPM. All analyses were corrected for multiple comparisons using random
+cohorts. For the UCL cohort, the disease durations of the STN and GPi DBS               ﬁeld theory and reported ﬁndings are signiﬁcant with familywise error (FWE)
+patients were similar in spite of the GPi DBS subgroup being on average older. In       correction at the cluster level (P < 0.01 corrected, cluster forming threshold
+addition, the STN subgroup had a higher levodopa equivalent dose, lower UPDRS           P < 0.001 uncorrected). In addition to modeling subject-speciﬁc dependencies in
+Part III motor scores ON medication, and higher cognitive performance scores as         the recordings from the two hemispheres, we included side as an additional
+measured by the MMSE (see Supplementary Table 1 for statistics of comparisons).         categorical variable for each subject to account for potential differences between the
+In contrast for the Shanghai cohort, there were no signiﬁcant group differences         recordings from the right and left sides. Covariates representing each patient’s age,
+between STN and GPi DBS patients. In order to account for phenotypic differences        preoperative levodopa equivalent dose, UPDRS Part III motor score on medication,
+for the UCL cohort, we included the four clinical features which were signiﬁcantly      and MMSE were introduced as described above in order to account for phenotypic
+different between the groups as covariates in all further statistical analyses.         differences between the STN and GPi patient groups at UCL.
+    MEG data were collected simultaneously with LFP activity recorded from DBS              Brain areas coherent with STN and GPi LFPs were localized using dynamic
+electrodes sited in the STN or GPi. Recordings were performed whilst patients were      imaging of coherent sources (DICS) beamforming73 yielding a 3D image of
+seated at rest either after overnight withdrawal of usual dopaminergic medication       coherence (see Supplementary Methods for further details). In light of previous
+(OFF state) or approximately one hour after medication administration (ON state).       work highlighting differences in the proﬁle of STN-cortical connectivity in the
+Patients were examined by a movement disorders neurologist (who was present for         upper (21–30 Hz) and lower (13–21 Hz) frequency bands, we restricted our DICS
+the duration of the recordings) prior to recordings in order to ensure that they were   beamformer analysis to these two bands4. For each subject and each hemisphere,
+in their usual on or off states. Patients 1–6 with STN electrodes at UCL underwent      coherence images were generated for the two frequency bands. Half of the resulting
+two separate recordings with randomized order: one in the OFF medication state          images (all left STN/GPi images) were reﬂected across the median sagittal plane to
+and one in the ON medication state. Patients 7–14 with STN electrodes at UCL            allow comparison of ipsilateral and contralateral sources regardless of the original
+participated in only OFF state recordings. Patients 1–6 with GPi electrodes at UCL,     side. These images were then subjected to a 2 × 2 factorial ANOVA, with frequency
+patients 1–6 with STN electrodes from Shanghai, and patients 1–6 with GPi               (low beta versus high beta) and electrode location (STN versus GPi) as factors in
+electrodes from Shanghai participated in only ON medication recordings (see             SPM. Covariates were added as described above and the direction of main effects
+Supplementary Table 1 for further details). Study procedures at UCL were                and interactions in the 2 × 2 ANOVA was tested by performing t-tests in SPM. All
+approved by the Oxford B Research Ethics Committee, whilst study procedures at          analyses were corrected for multiple comparisons using random ﬁeld theory and
+Shanghai were approved by the ethics committee at the Ruijin Hospital. Informed         reported ﬁndings are signiﬁcant with familywise error (FWE) correction at the
+consent was sought from patients for study participation and for sharing                cluster level (P < 0.01 corrected, cluster forming threshold P < 0.001 uncorrected).
+anonymized clinical variables. Further details of the operative procedure and           For the STN UCL cohort, where recordings were performed both ON and OFF
+combined MEG-LFP recordings are found in the Supplementary Methods.                     medication, we tested for medication and frequency interactions by performing a
+
+NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications                                                   11
+ARTICLE                                                                                   NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0
+
+
+separate 2 × 2 factorial ANOVA with factors frequency (low beta versus high beta)              2.    Litvak, V. et al. Resting oscillatory cortico-subthalamic connectivity in patients
+and medication state (ON versus OFF).                                                                with Parkinson’s disease. Brain 134, 359–374 (2011).
+    DICS beamformer images were also generated across the alpha (7–13 Hz) and                  3.    Williams, D. et al. Dopamine-dependent changes in the functional
+entire beta (13–30 Hz) frequency and subjected to a separate 2 × 2 factorial                         connectivity between basal ganglia and cerebral cortex in humans. Brain 125,
+ANOVA with factors frequency (alpha versus beta) and electrode location (STN                         1558–1569 (2002).
+versus GPi). As the aim of this analysis was to deﬁne a cortical network coupled to            4.    Oswal, A. et al. Deep brain stimulation modulates synchrony within spatially
+the STN/GPi across the entire beta frequency range—for subsequent visualization                      and spectrally distinct resting state networks in Parkinson’s disease. Brain 139,
+of tracts (see “Results” section)—we were primarily interested in the main effect of                 1482–1496 (2016).
+the band.                                                                                      5.    Albin, R. L., Young, A. B. & Penney, J. B. The functional anatomy of basal
+    Next, using beamforming we performed time-series extraction from peak voxels                     ganglia disorders. Trends Neurosci. 12, 366–375 (1989).
+in the SPMs of group-level main effects and interactions. Coherence was computed               6.    DeLong, M. R. & Wichmann, T. Circuits and circuit disorders of the basal
+between the reconstructed source and the subcortical LFP using multitaper spectral                   ganglia. Arch. Neurol. 64, 20–24 (2007).
+estimation with a frequency resolution and taper smoothing frequency of 2.5 Hz71.              7.    DeLong, M. R. Primate models of movement disorders of basal ganglia origin.
+Further details of time series analysis relating to directionality are found in the                  Trends Neurosci. 13, 281–285 (1990).
+Supplementary Methods.                                                                         8.    DeLong, M. & Wichmann, T. Update on models of basal ganglia function and
+                                                                                                     dysfunction. Park. Relat. Disord. 15, S237–S240 (2009).
+Relationship of structural and functional connectivity. For each contact pair                  9.    Nambu, A., Tokuno, H. & Takada, M. Functional signiﬁcance of the cortico-
+(with at least one contact lying in the STN or GPi) in each subject, we had isotropic                subthalamo-pallidal ‘hyperdirect’ pathway. Neurosci. Res. 43, 111–117 (2002).
+2 mm 3D images of both coherence and ﬁber density in MNI space. Fiber density                  10.   Aron, A. R., Behrens, T. E., Smith, S., Frank, M. J. & Poldrack, R. A.
+images were derived either from the PPMI connectome or from individual patient                       Triangulating a cognitive control network using diffusion-weighted Magnetic
+dMRI datasets for UCL STN patients 7–14. Further analysis was performed                              Resonance Imaging (MRI) and functional MRI. J. Neurosci. 27, 3743–3752
+separately for each patient group (STN electrodes versus GPi electrodes) and each                    (2007).
+frequency band (low beta 13–21 Hz, and high beta 21–30 Hz) in order to establish               11.   Chen, W. et al. Prefrontal-subthalamic hyperdirect pathway modulates
+whether tract density was predictive of coherence. As we were speciﬁcally inter-                     movement inhibition in humans. Neuron 1–10. https://doi.org/10.1016/
+ested in ﬁbers representing hyperdirect connections, we minimized the chance of                      j.neuron.2020.02.012 (2020).
+including ﬁbers from the direct and indirect pathways by limiting ﬁber tracts to               12.   Haynes, W. I. A. & Haber, S. N. The organization of prefrontal-subthalamic
+those not traversing the striatum. Accordingly, a striatal mask was created using the                inputs in primates provides an anatomical substrate for both functional
+DISTAL atlas within Lead-DBS74,75. In a separate analysis, we included only ﬁbers                    speciﬁcity and integration: implications for basal ganglia models and deep
+passing through the striatum on their passage to the STN or GPi as these may be                      brain stimulation. J. Neurosci. 33, 4804–4814 (2013).
+representative of non-hyperdirect connections from the indirect and direct path-               13.   Ashby, P. et al. Potentials recorded at the scalp by stimulation near the human
+ways, respectively.
+                                                                                                     subthalamic nucleus. Clin. Neurophysiol. 112, 431–437 (2001).
+    For each voxel, we constructed a General Linear Model (using spm_ancova) with
+                                                                                               14.   Miocinovic, S. et al. Cortical potentials evoked by subthalamic stimulation
+tract density as the independent variable and coherence as the dependent variable.
+                                                                                                     demonstrate a short latency hyperdirect pathway in humans. J. Neurosci. 38,
+Subject, side, age, medication dose, and MMSE were introduced as covariates as
+                                                                                                     9129–9141 (2018).
+described above. The F-statistic was used to determine a P value, with a threshold of
+                                                                                               15.   Lambert, C. et al. Conﬁrmation of functional zones within the human
+P < 0.01 being used to deﬁne voxels to form clusters for cluster-based permutation
+testing. This served to correct for multiple comparisons and we utilized a threshold                 subthalamic nucleus: patterns of connectivity and sub-parcellation using
+of P < 0.01 to deﬁne signiﬁcant clusters. The F-statistics of voxels within each                     diffusion weighted imaging. Neuroimage 60, 83–94 (2012).
+signiﬁcant cluster and the corresponding R2 correlation coefﬁcient were then                   16.   Akram, H. et al. Subthalamic deep brain stimulation sweet spots and
+written to a 3D image for visualization. In the further analysis we investigated ﬁber                hyperdirect cortical connectivity in Parkinson’s disease. Neuroimage 158,
+tracts traversing the spherical ROI associated with each contact, which started (or                  332–345 (2017).
+terminated) within cortical volumes derived from SPM analysis of the main effects              17.   Cagnan, H., Denison, T., McIntyre, C. & Brown, P. Emerging technologies for
+of cortico-STN and cortico-GPi coherence. For each contact, we computed a single                     improved deep brain stimulation. Nat. Biotechnol. 37, 1024–1033 (2019).
+overall tract density estimate by dividing the number of ﬁbers originating in each             18.   Pavlides, A., Hogan, S. J. & Bogacz, R. Computational models describing
+cortical volume by the number of voxels contained within the volume.                                 possible mechanisms for generation of excessive beta oscillations in
+                                                                                                     Parkinson’s disease. PLoS Comput. Biol. 11, e1004609 (2015).
+                                                                                               19.   Moran, R. J. et al. Alterations in brain connectivity underlying beta oscillations
+Computational modeling of high and low beta band oscillatory synchrony. A
+                                                                                                     in Parkinsonism. PLoS Comput. Biol. 7, e1002124 (2011).
+ﬁring rate model of the cortico-basal-ganglia circuit was developed, based on
+                                                                                               20.   Marreiros, A. C., Cagnan, H., Moran, R. J., Friston, K. J. & Brown, P. Basal
+models previously used to study beta oscillations18,33. The basic idea behind our
+                                                                                                     ganglia-cortical interactions in Parkinsonian patients. Neuroimage 66C,
+model is to generate oscillations via the interaction of excitatory and inhibitory
+                                                                                                     301–310 (2012).
+neural populations. Technical details are described in Supplementary Methods.
+                                                                                               21.   Gradinaru, V., Mogri, M., Thompson, K. R., Henderson, J. M. & Deisseroth,
+                                                                                                     K. Optical deconstruction of parkinsonian neural circuitry. Science 324,
+Data availability                                                                                    354–359 (2009).
+The MEG and LFP datasets generated within this study have not been deposited within a          22.   Brown, P. et al. Dopamine dependency of oscillations between subthalamic
+public repository because they contain patient-sensitive data. Anonymized datasets are               nucleus and pallidum in Parkinson’s disease. J. Neurosci. 21, 1033–1038
+available from Dr. Ashwini Oswal (ashwini.oswal@ndcn.ox.ac.uk) on reasonable request.                (2001).
+Source data for Figs. 2, 3d–e, 4d–e, 5, 6c, and 7c are provided as a source data ﬁle. Source   23.   Eusebio, A. et al. Deep brain stimulation can suppress pathological
+data are provided with this paper.                                                                   synchronisation in parkinsonian patients. J. Neurol. Neurosurg. Psychiatry 82,
+                                                                                                     569–573 (2011).
+                                                                                               24.   Whitmer, D. et al. High frequency deep brain stimulation attenuates
+Code availability                                                                                    subthalamic and cortical rhythms in Parkinson’s disease. Front. Hum.
+MATLAB code for reproducing: (1) the relationship between structural and functional
+                                                                                                     Neurosci. 6, 155 (2012).
+connectivity, (2) computation of time delays, and (3) results of computational modeling
+                                                                                               25.   Kühn, A. A., Kupsch, A., Schneider, G.-H. & Brown, P. Reduction in
+are deposited on the GitHub repository https://github.com/AshOswal/Multimodal_Tools
+                                                                                                     subthalamic 8-35 Hz oscillatory activity correlates with clinical improvement
+DOI: 10.5281/zenodo.5067980. We are grateful to Professor Karl Friston for statistical
+                                                                                                     in Parkinson’s disease. Eur. J. Neurosci. 23, 1956–1960 (2006).
+advice.
+                                                                                               26.   Kühn, A. A. et al. Pathological synchronisation in the subthalamic nucleus of
+                                                                                                     patients with Parkinson’s disease relates to both bradykinesia and rigidity.
+Received: 10 May 2020; Accepted: 2 August 2021;                                                      Exp. Neurol. 215, 380–387 (2009).
+                                                                                               27.   Weinberger, M. et al. Beta oscillatory activity in the subthalamic nucleus and
+                                                                                                     its relation to dopaminergic response in Parkinson’s disease. J. Neurophysiol.
+                                                                                                     96, 3248–3256 (2006).
+                                                                                               28.   Ray, N. J. et al. Local ﬁeld potential beta activity in the subthalamic nucleus of
+                                                                                                     patients with Parkinson’s disease is associated with improvements in
+                                                                                                     bradykinesia after dopamine and deep brain stimulation. Exp. Neurol. 213,
+References                                                                                           108–113 (2008).
+1.   Hirschmann, J. et al. Distinct oscillatory STN-cortical loops revealed by
+                                                                                               29.   Talakoub, O. et al. Time-course of coherence in the human basal ganglia
+     simultaneous MEG and local ﬁeld potential recordings in patients with
+                                                                                                     during voluntary movements. Sci. Rep. 6, 1–10 (2016).
+     Parkinson’s disease. Neuroimage 55, 1159–1168 (2011).
+
+
+
+12                     NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications
+NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0                                                                                            ARTICLE
+
+30. López-Azcárate, J. et al. Coupling between beta and high-frequency activity in       61. Deuschl, G. et al. Deep brain stimulation: postoperative issues. Mov. Disord.
+    the human subthalamic nucleus may be a pathophysiological mechanism in                   21, S219–S237 (2006).
+    Parkinson’s disease. J. Neurosci. 30, 6667–6677 (2010).                              62. Maltête, D. et al. Microsubthalamotomy: an immediate predictor of long-term
+31. Brittain, J. S. & Brown, P. Oscillations and the basal ganglia: Motor control            subthalamic stimulation efﬁcacy in Parkinson disease. Mov. Disord. 23,
+    and beyond. NeuroImage 85, 637–647 (2014).                                               1047–1050 (2008).
+32. Tiesinga, P. & Sejnowski, T. J. Cortical enlightenment: are attentional gamma        63. Mestre, T. A., Lang, A. E. & Okun, M. S. Factors inﬂuencing the outcome of
+    oscillations driven by ING or PING? Neuron 63, 727–732 (2009).                           deep brain stimulation: placebo, nocebo, lessebo, and lesion effects. Mov.
+33. Holgado, A. J. N., Terry, J. R. & Bogacz, R. Conditions for the generation of            Disord. 31, 290–298 (2016).
+    beta oscillations in the subthalamic nucleus-globus pallidus network. J.             64. Abosch, A. et al. Long-term recordings of local ﬁeld potentials from implanted
+    Neurosci. 30, 12340–12352 (2010).                                                        deep brain stimulation electrodes. Neurosurgery 71, 804–814 (2012).
+34. Crowell, A. L. et al. Oscillations in sensorimotor cortex in movement                65. Amadeus Steiner, L. et al. Subthalamic beta dynamics mirror parkinsonian
+    disorders: an electrocorticography study. Brain 135, 615–630 (2012).                     bradykinesia months after neurostimulator implantation. Mov. Disorder
+35. de Hemptinne, C. et al. Therapeutic deep brain stimulation reduces cortical phase-       https://doi.org/10.1002/mds.27068. (2017).
+    amplitude coupling in Parkinson’s disease. Nat. Neurosci. 18, 779–786 (2015).        66. Neumann, W. J. et al. Long term correlation of subthalamic beta band activity
+36. Wang, D. D. et al. Pallidal deep-brain stimulation disrupts pallidal beta                with motor impairment in patients with Parkinson’s disease. Clin.
+    oscillations and coherence with primary motor cortex in Parkinson’s disease.             Neurophysiol. 128, 2286–2291 (2017).
+    J. Neurosci. 38, 4556–4568 (2018).                                                   67. Neumann, W. J. et al. Deep brain recordings using an implanted pulse
+37. Nachev, P., Kennard, C. & Husain, M. Functional role of the supplementary                generator in Parkinson’s disease. Neuromodulation 19, 20–23 (2016).
+    and pre-supplementary motor areas. Nat. Rev. Neurosci. 9, 856–869 (2008).            68. Gibb, W. R. & Lees, A. J. A comparison of clinical and pathological features of
+38. Hammond, C., Bergman, H. & Brown, P. Pathological synchronization in                     young- and old-onset Parkinson’s disease. Neurology 38, 1402–1406 (1988).
+    Parkinson’s disease: networks, models and treatments. Trends Neurosci. 30,           69. Gratwicke, J. et al. Bilateral deep brain stimulation of the nucleus basalis of
+    357–364 (2007).                                                                          meynert for Parkinson disease dementia a randomized clinical trial. JAMA
+39. Baudrexel, S. et al. Resting state fMRI reveals increased subthalamic nucleus-           Neurol. 75, 169–178 (2018).
+    motor cortex connectivity in Parkinson’s disease. Neuroimage 55, 1728–1738           70. Horn, A., Ostwald, D., Reisert, M. & Blankenburg, F. The structural-functional
+    (2011).                                                                                  connectome and the default mode network of the human brain. Neuroimage
+40. Friston, K. J. et al. DCM for complex-valued data: cross-spectra, coherence              102, 142–151 (2014).
+    and phase-delays. Neuroimage 59, 439–455 (2012).                                     71. Mitra, P. P. & Pesaran, B. Analysis of dynamic brain imaging data. Biophys. J.
+41. Aron, A. R., Herz, D. M., Brown, P., Forstmann, B. U. & Zaghloul, K.                     76, 691–708 (1999).
+    Frontosubthalamic circuits for control of action and cognition. J. Neurosci. 36,     72. Donoghue, T. et al. Parameterizing neural power spectra into periodic and
+    11489–11495 (2016).                                                                      aperiodic components. Nat. Neurosci. 23, 1655–1665 (2020).
+42. Forstmann, B. U. et al. Cortico-subthalamic white matter tract strength              73. Gross, J. et al. Dynamic imaging of coherent sources: studying neural
+    predicts interindividual efﬁcacy in stopping a motor response. Neuroimage 60,            interactions in the human brain. Proc. Natl Acad. Sci. USA 98, 694–699
+    370–375 (2012).                                                                          (2001).
+43. Deco, G., Jirsa, V. K. & McIntosh, A. R. Emerging concepts for the dynamical         74. Horn, A. et al. Lead-DBS v2: towards a comprehensive pipeline for deep brain
+    organization of resting-state activity in the brain. Nat. Rev. Neurosci. 12,             stimulation imaging. Neuroimage 184, 293–316 (2019).
+    43–56 (2011).                                                                        75. Oswal, A et al. Neural Signatures of Hyperdirect Pathway Activity in
+44. Greicius, M. D., Supekar, K., Menon, V. & Dougherty, R. F. Resting-state                 Parkinson’s Disease. https://github.com/AshOswal/Multimodal_Tools. (2020).
+    functional connectivity reﬂects structural connectivity in the default mode
+    network. Cereb. Cortex 19, 72–78 (2009).
+45. Nambu, A. Globus pallidus internal segment. Prog. Brain Res. 160, 135–150            Acknowledgements
+    (2007).                                                                              A.O. is supported by an NIHR Academic Clinical Lectureship. The Wellcome Centre for
+46. Quartarone, A. et al. New insights into cortico-basal-cerebellar connectome:         Human Neuroimaging is supported by core funding from Wellcome [203147/Z/16/Z].
+    clinical and physiological considerations. Brain 143, 396–406 (2020).                The work was supported by the UK MEG community Medical Research Council grant
+47. Chen, W. et al. Prefrontal-subthalamic hyperdirect pathway modulates                 MK/K005464/1. C.C. is supported by the Natural Science Foundation of China
+    movement inhibition in humans. Neuron 106, 579–588.e3 (2020).                        (81571346, 82071547). A.H. was supported by the German Research Foundation
+48. Devergnas, A. & Wichmann, T. Cortical potentials evoked by deep brain                (Deutsche Forschungsgemeinschaft, Emmy Noether Stipend 410169619 and
+    stimulation in the subthalamic area. Front. Syst. Neurosci. 5, 30 (2011).            424778381—TRR 295), as well as Deutsches Zentrum für Luft-und Raumfahrt (DynaSti
+49. Cassidy, M. & Brown, P. Spectral phase estimates in the setting of                   grant within the EU Joint Programme Neurodegenerative Disease Research, JPND). RB
+    multidirectional coupling. J. Neurosci. Methods 127, 95–103 (2003).                  and PB are supported by the Medical Research Council (MC_UU_12024/5 and
+50. Narayanan, N. S., Wessel, J. R. & Greenlee, J. D. W. The fastest way to stop:        MC_UU_12024/1, respectively).
+    inhibitory control and IFG-STN hyperdirect connectivity. Neuron 106,
+    549–551 (2020).                                                                      Author contributions
+51. Fogelson, N. et al. Different functional loops between cerebral cortex and the       Study design and methodology: A.O., C.C., Q.W., V.L., R.B., M.H. and P.B. Contribution
+    subthalmic area in Parkinson’s disease. Cereb. Cortex 16, 64–75 (2006).              of software: A.O., C.Y., W.J.N., A.H., V.L. M.E.G. and L.F.P. Data collection: A.O., J.G.,
+52. Li, Q. et al. Therapeutic deep brain stimulation in Parkinsonian rats directly       D.L., S.Z., C.Z., B.S., V.L. Data analysis: A.O., and C.Y. Clinical data collection and
+    inﬂuences motor cortex. Neuron 76, 1030–1041 (2012).                                 patient characterization: A.O., C.C., H.A., D.L., Q.W., S.Z., C.Z., L.Z., T.F., P.L., B.S.
+53. Malekmohammadi, M. et al. Pallidal stimulation in Parkinson disease                  Writing—original draft: A.O. and P.B. Writing—review and editing: A.O., C.C., C.Y.,
+    differentially modulates local and network β activity. J. Neural Eng. 15, 056016     W.J.N., J.G., H.A., A.H., R.B., M.H., P.B., V.L. Funding acquisition: A.O., V.L., and P.B.
+    (2018).                                                                              Supervision: V.L. and P.B.
+54. Mathai, A. et al. Reduced cortical innervation of the subthalamic nucleus in
+    MPTP-treated parkinsonian monkeys. Brain 138, 946–962 (2015).
+55. Chu, H. Y., McIver, E. L., Kovaleski, R. F., Atherton, J. F. & Bevan, M. D. Loss     Competing interests
+    of hyperdirect pathway cortico-subthalamic inputs following degeneration of          The authors declare no competing interests.
+    midbrain dopamine neurons. Neuron 95, 1306–1318.e5 (2017).
+56. Silberstein, P. et al. Patterning of globus pallidus local ﬁeld potentials differs
+    between Parkinson’s disease and dystonia. Brain 126, 2597–2608 (2003).
+                                                                                         Additional information
+                                                                                         Supplementary information The online version contains supplementary material
+57. Lalo, E. et al. Patterns of bidirectional communication between cortex and
+                                                                                         available at https://doi.org/10.1038/s41467-021-25366-0.
+    basal ganglia during movement in patients with Parkinson disease. J. Neurosci.
+    28, 3008–3016 (2008).
+                                                                                         Correspondence and requests for materials should be addressed to A.O., P.B. or V.L.
+58. Foley, J. A., Foltynie, T., Limousin, P. & Cipolotti, L. Standardised
+    neuropsychological assessment for the selection of patients undergoing DBS           Peer review information Nature Communications thanks Helen Bronte-Stewart, Markus
+    for Parkinson’s disease. Parkinsons. Dis. 2018, 4328371, 13 https://doi.org/         Butz and the other, anonymous, reviewer(s) for their contribution to the peer review of
+    10.1155/2018/4328371 (2018).                                                         this work. Peer reviewer reports are available.
+59. Lofredi, R. et al. Pallidal beta bursts in Parkinson’s disease and dystonia. Mov.
+    Disord. 34, 420–424 (2019).                                                          Reprints and permission information is available at http://www.nature.com/reprints
+60. Chen, C. C. et al. Intra-operative recordings of local ﬁeld potentials can help
+    localize the subthalamic nucleus in Parkinson’s disease surgery. Exp. Neurol.
+                                                                                         Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in
+    198, 214–221 (2006).
+                                                                                         published maps and institutional afﬁliations.
+
+
+NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications                                                       13
+ARTICLE                                                                                  NATURE COMMUNICATIONS | https://doi.org/10.1038/s41467-021-25366-0
+
+
+                  Open Access This article is licensed under a Creative Commons
+                  Attribution 4.0 International License, which permits use, sharing,
+adaptation, distribution and reproduction in any medium or format, as long as you give
+appropriate credit to the original author(s) and the source, provide a link to the Creative
+Commons license, and indicate if changes were made. The images or other third party
+material in this article are included in the article’s Creative Commons license, unless
+indicated otherwise in a credit line to the material. If material is not included in the
+article’s Creative Commons license and your intended use is not permitted by statutory
+regulation or exceeds the permitted use, you will need to obtain permission directly from
+the copyright holder. To view a copy of this license, visit http://creativecommons.org/
+licenses/by/4.0/.
+
+
+© The Author(s) 2021
+
+
+
+
+14                     NATURE COMMUNICATIONS | (2021)12:5185 | https://doi.org/10.1038/s41467-021-25366-0 | www.nature.com/naturecommunications
+

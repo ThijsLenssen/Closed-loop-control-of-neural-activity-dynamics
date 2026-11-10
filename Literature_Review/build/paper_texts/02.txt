@@ -1,0 +1,747 @@
+https://doi.org/10.1093/brain/awac121                                                                           BRAIN 2022: 145; 2407–2421 | 2407
+
+
+
+
+Cortical phase-amplitude coupling is key
+to the occurrence and treatment of freezing
+of gait
+Zixiao Yin,1,2,† Guanyu Zhu,1,2,† Yuye Liu,1,2,† Baotian Zhao,1,2 Defeng Liu,1,2
+Yutong Bai,1,2 Quan Zhang,1,2 Lin Shi,1 Tao Feng,3 Anchao Yang,1 Huanguang Liu,1
+Fangang Meng,2,4 Wolf-Julian Neumann,5 Andrea A. Kühn,5,6,7 Yin Jiang2,4
+and Jianguo Zhang1,2,4
+
+†
+ These authors contributed equally to this work.
+See Tan (https://doi.org/10.1093/brain/awac172) for a scientiﬁc commentary on this article.
+
+
+Freezing of gait is a debilitating symptom in advanced Parkinson’s disease and responds heterogeneously to treat-
+ments such as deep brain stimulation. Recent studies indicated that cortical dysfunction is involved in the develop-
+ment of freezing, while evidence depicting the speciﬁc role of the primary motor cortex in the multi-circuit pathology
+of freezing is lacking. Since abnormal beta-gamma phase-amplitude coupling recorded from the primary motor cor-
+tex in patients with Parkinson’s disease indicates parkinsonian state and responses to therapeutic deep brain stimu-
+lation, we hypothesized this metric might reveal unique information on understanding and improving therapy for
+freezing of gait.
+Here, we directly recorded potentials in the primary motor cortex using subdural electrocorticography and synchron-
+ously captured gait freezing using optoelectronic motion-tracking systems in 16 freely-walking patients with
+Parkinson’s disease who received subthalamic nucleus deep brain stimulation surgery. Overall, we recorded 451
+timed up-and-go walking trials and quantiﬁed 7073 s of stable walking and 3384 s of gait freezing in conditions of
+on/off-stimulation and with/without dual-tasking.
+We found that (i) high beta-gamma phase-amplitude coupling in the primary motor cortex was detected in freezing trials
+(i.e. walking trials that contained freezing), but not non-freezing trials, and the high coupling in freezing trials was not
+caused by dual-tasking or the lack of movement; (ii) non-freezing episodes within freezing trials also demonstrated ab-
+normally high couplings, which predicted freezing severity; (iii) deep brain stimulation of subthalamic nucleus reduced
+these abnormal couplings and simultaneously improved freezing; and (iv) in trials that were at similar coupling levels,
+stimulation trials still demonstrated lower freezing severity than no-stimulation trials.
+These ﬁndings suggest that elevated phase-amplitude coupling in the primary motor cortex indicates higher probabilities
+of freezing. Therapeutic deep brain stimulation alleviates freezing by both decoupling cortical oscillations and enhancing
+cortical resistance to abnormal coupling. We formalized these ﬁndings to a novel ‘bandwidth model,’ which speciﬁes the
+role of cortical dysfunction, cognitive burden and therapeutic stimulation on the emergence of freezing. By targeting key
+elements in the model, we may develop next-generation deep brain stimulation approaches for freezing of gait.
+
+
+1 Department of Neurosurgery, Beijing Tiantan Hospital, Capital Medical University, Beijing, China
+2 Department of Functional Neurosurgery, Beijing Neurosurgical Institute, Capital Medical University, Beijing, China
+3 Department of Neurology, Beijing Tiantan Hospital, Capital Medical University, Beijing, China
+4 Beijing Key Laboratory of Neurostimulation, Beijing, China
+
+
+Received January 24, 2022. Revised March 11, 2022. Accepted March 24, 2022. Advance access publication June 15, 2022
+© The Author(s) 2022. Published by Oxford University Press on behalf of the Guarantors of Brain.
+This is an Open Access article distributed under the terms of the Creative Commons Attribution-NonCommercial License (https://creativecommons.org/licenses/by-
+nc/4.0/), which permits non-commercial re-use, distribution, and reproduction in any medium, provided the original work is properly cited. For commercial re-use,
+please contact journals.permissions@oup.com
+2408 | BRAIN 2022: 145; 2407–2421                                                                                                  Z. Yin et al.
+
+
+5 Movement Disorder and Neuromodulation Unit, Department of Neurology, Charité—Campus Mitte, Charite—
+  Universitatsmedizin Berlin, Chariteplatz 1, 10117 Berlin, Germany
+6 Berlin School of Mind and Brain, Charite—Universitatsmedizin Berlin, Unter den Linden 6, 10099 Berlin, Germany
+7 NeuroCure, Charite—Universitatsmedizin Berlin, Chariteplatz 1, 10117 Berlin, Germany
+
+Correspondence to: Prof. Dr Jianguo Zhang
+Capital Medical University
+Department of Neurosurgery, Beijing Tiantan Hospital
+No. 119 South 4th Ring West Road
+Fengtai District, 100070 Beijing, China
+E-mail: zjguo73@126.com
+
+Correspondence may also be addressed to: Dr Yin Jiang
+Capital Medical University
+Department of Functional Neurosurgery, Beijing Neurosurgical Institute
+No. 119 South 4208 Ring West Road
+Fengtai District, 100070 Beijing, China
+E-mail: jiangyin0802@foxmail.com
+
+Keywords: Parkinson’s disease; deep brain stimulation; freezing of gait; motor cortex; phase amplitude coupling
+Abbreviations: DBS = deep brain stimulation; ECoG = electrocorticography; FI = freezing index; FOG = freezing of gait;
+HFS = high frequency stimulation; linear mixed effect = linear mixed effect; LFS = low frequency stimulation; PAC =
+phase-amplitude coupling; power spectral density = power spectral density; STN = subthalamic nucleus; UPDRS =
+Uniﬁed Parkinson’s Disease Rating Scale
+
+
+
+Introduction                                                                parkinsonian motor impairment that can be reversed through
+                                                                            therapeutic DBS.15 PAC has been hypothesized as a physiological
+Freezing of gait (FOG), deﬁned as the ‘episodic absence or marked           mechanism for neural intra- and inter-region communication by
+reduction of forward motion of feet despite the intention to                coordinating the timing of spiking and synaptic inputs,16 while
+walk’,1 is one of the most debilitating symptoms in Parkinson’s dis-        excessive PAC may constrain information transmission.17 Since
+ease.2,3 Although deep brain stimulation (DBS) of the subthalamic           FOG also involves dysfunction in M1, and is characterized as a
+nucleus (STN) well controls cardinal symptoms of Parkinson’s dis-           disorder associated with impaired neural transmission efﬁciency
+ease such as tremor and motor ﬂuctuation, current DBS therapy               in the locomotion system,18 we hypothesized that PAC in M1 might
+provides modest and highly heterogeneous beneﬁts to FOG.4–8                 reveal unique information on mechanisms underlying the
+Revealing the neurophysiological patterns directly associated               emergence and treatment of FOG in Parkinson’s disease.
+with FOG and the underlying modulation effects induced by DBS                   In this study, we recorded subdural electrocorticographic (ECoG)
+will foster optimized DBS therapy targeting FOG.                            signals directly from the M1 of freely-walking patients with
+    As a higher-level modulator of the supraspinal locomotor net-           Parkinson’s disease who received STN-DBS therapy. Through syn-
+work, the primary motor cortex (M1) participates in the control of          chronized 3D optoelectronic motion tracking systems, we quanti-
+gait initiation and gait stability.9,10 Previous structural MRI and mag-    ﬁed long periods of stable walking and ongoing freezing in both
+netic resonance spectroscopy studies indicated that a lower grey            the stimulation off and on states. We observed that the intensity
+matter volume and abnormal metabolite ratios were evident in the            of PAC in M1 during walking predicted freezing severity and cogni-
+M1 of subjects with freezing/impaired gait.9,11 By leveraging function-     tive burdens exacerbate freezing through a ‘resources-competition’
+al MRI and virtual reality gait paradigms, Shine et al.12 observed a sig-   way. STN-DBS alleviated FOG by both reducing cortical PAC and in-
+niﬁcant decrease in blood oxygen level-dependent response in the            creasing cortical resilience to excessive PAC. Based on these ﬁnd-
+bilateral M1 during behavioural freezing compared to stable walking.        ings, we proposed the novel ‘bandwidth model,’ which extends
+Since neuroimaging studies were unable to model real gait during            the current multi-circuit hypothesis of FOG and may aid the devel-
+scanning, Pozzi et al.13 recently recorded multisite neurophysiological     opment of next-generation neuromodulation therapy for FOG.
+signals (STN and scalp EEG) during walking, and found that FOG was
+associated with low frequency decoupling between motor cortex re-
+gions and the STN, further conﬁrming the involvement of dysfunc-            Materials and methods
+tional M1 in FOG. However currently, the neurophysiological
+                                                                            Subject identiﬁcation
+characteristics speciﬁcally related to FOG within the M1 remain large-
+ly unknown. In addition, little attention has been paid to the inﬂuence     Patients with Parkinson’s disease who were scheduled to undergo
+of DBS in improving FOG and the corresponding underlying cortical           DBS surgery at Beijing Tiantan Hospital were recruited prospective-
+response. This knowledge, though can be challenging to get, is par-         ly from October 2019 to April 2021. Inclusion criteria included: (i)
+ticularly important for translating current ﬁndings into improved           diagnosis of idiopathic Parkinson’s disease according to the UK
+DBS therapy, e.g. adaptive DBS targeting freezing.14                        brain bank criteria; (ii) clinical FOGs can be successfully induced
+    Recent research has identiﬁed abnormal beta-gamma phase-                as conﬁrmed by at least one experienced movement disorders
+amplitude coupling (PAC) in the M1 as a cortical biomarker of               neurologist; (iii) FOG reached moderate severity as attested by
+Cortical PAC explains the pathology of FOG                                                        BRAIN 2022: 145; 2407–2421         | 2409
+
+a Freezing of Gait Questionnaire score >10; and (iv) aged between 50    deliver square biphasic pulses in a bipolar conﬁguration.
+and 80 years. Patients were excluded if they (i) were unable to walk    Stimulation bandwidth was always set to 60 μs. Stimulation voltage
+independently in the OFF-medication condition; (ii) demonstrated        was optimized according to the patient’s feedback on motor im-
+severe cognitive impairment making cooperation impossible; or           provement and the results of simpliﬁed motor test batteries.
+(iii) had prominent tremors [any item of the MDS-Uniﬁed                     Standard experimental tasks started with a 3 min of rest sitting
+Parkinson’s Disease Rating Scale (UPDRS) 3.15–3.18 ≥ 3]. Overall,       and a 3 min of rest standing recording. During rest sitting and
+16 patients were included in this study. This study was in agree-       standing, patients were asked to keep relaxed and look at the cross
+ment with the Declaration of Helsinki, approved by the IRB of           sign hanging on the wall 2 m away. After that, patients were
+Beijing Tiantan Hospital (KY 2018-008-01), registered in the            equipped with 22 sensors in both lower limbs (one in the foot,
+Chinese Clinical Trial Registry (ChiCTR1900026601) and conducted        one in the heel, four in the shank, four in the thigh, and one in
+under the supervision of an authoritative third party (China            the waist, both sides), and completed a 5 m back-and-forth (10 m
+National Clinical Research Center for Neurological Diseases). All       in total) timed up-and-go task (Fig. 1C). All walkings were captured
+patients signed written informed consent.                               using an optoelectronic system (CODA, Charnwood Dynamics Ltd),
+                                                                        which computed the 3D coordinates of the 22 lower limb sensors in
+                                                                        real-time with a sampling rate of 100 or 200 Hz. Each
+DBS and electrocorticography strip electrode
+                                                                        back-and-forth walking was counted as one walking trial. In each
+implantation
+                                                                        stimulation condition, patients completed at least four trials of nor-
+DBS electrodes were placed in the bilateral STN as previously re-       mal walking. As opposed to the ‘normal walking,’ patients also
+ported.19 Brieﬂy, DBS electrodes (model L301, Pins Medical) were        completed at least four trials of ‘dual-tasking walking,’ during
+implanted into the T2-weighted MRI identiﬁed STN target using a         which patients were asked to perform extra cognitive tasks while
+Leksell stereotactic system (Elekta Instrument AB) under local an-      walking. Cognitive tasks were randomly assigned, including calcu-
+aesthesia. Intraoperative microelectrode recording measuring the        lation, listing animal names and transferring coins between hands.
+length of the DBS trajectory in the STN and macro-stimulation tests     The whole course of the motor experiment was completed
+were conducted for trajectory selection. A CT scan was performed        OFF-medication and was video recorded using a wide-angle camera
+to conﬁrm the location of the lead and to look for any signs of cere-   synchronized with motion tracking.
+bral haemorrhage after surgery.
+    The subdural ECoG strip (HKHS), composed of eight stainless
+                                                                        Determination and quantiﬁcation of freezing
+steel contacts of 4 mm total diameter, 2.5 mm exposed diameter
+and 10 mm spacing interval (except one subject was implanted            Two independent raters clinically assessed all walking trials by
+with the 30 contact strip electrodes with 3 mm total diameter,          examining the raw video recordings and the optoelectronics-based
+1.7 mm exposed diameter and 5 mm spacing) was placed in the             lower limb motion track replays. The two raters each gave judge-
+right M1 region through the same burr hole as the DBS electrodes.       ments on whether a trial contained freezing and when the freezing
+Preoperative high-resolution CT with the stereotactic frame             occurred. We also adopted a freezing index (FI) approach to object-
+markers attached was computationally fused to the anatomical            ively determine and quantify freezing events21 and deposited the
+T1-weighted MRI, enabling stereotactic planning and conﬁrmation         code for computing FI from 3D optoelectronics data on https://
+that the distance between the burr hole and the M1 is within the        github.com/zixiao-yin/ecogFog. Brieﬂy, we ﬁrst transformed the
+range of the ECoG strip length. After surgery, the position of the      coordinate data recorded by the optoelectronic sensors to acceler-
+ECoG strip was conﬁrmed with a CT scan and 3D cortical surface re-      ation data by calculating differencing twice (Python function diff).
+construction.20 The exemplary postoperative CT-MRI fused image          Spectrum analysis was then performed on the transformed accel-
+and the surface reconstruction showing the position of the ECoG         eration data with respect to the forward walking direction using
+and DBS electrodes are displayed in Fig. 1A and B. ECoG strips          the fast Fourier transform.13 The FI was computed as the ratio of
+were taken out at the second stage of DBS surgery when the pulse        power between the ‘freezing band’ (3–8 Hz) and the ‘locomotion
+generator connected to DBS electrodes was implanted. The average        band’ (0–3 Hz)21 in a 6 s-sliding window centred in t with a step
+duration of lead externalization was 8.9 ± 2.3 days. No incision in-    size of 0.1 s. The ﬁnal FI was the average of eight sensor channels
+fections or other hardware-related complications were observed          that were least contaminated (four on each side, including foot,
+in the perioperative period in any of the included patients.            shank, thigh and waist). A ‘freezing threshold’ was set to ‘3’.21
+                                                                        Notably, because FI is a dynamic measurement, we deﬁned that if
+                                                                        FI dropped from >3 to a value between 2 and 3 and then rose back
+Experimental protocol and motion capture system
+                                                                        to >3, this was considered as one continuous freezing event rather
+Patients started to complete experimental tasks in the gait labora-     than two. But if the FI dropped from >3 to a value <2, this marked
+tory 3–5 days after electrode implantation. All anti-parkinsonian       the end of the freezing. Setting ‘2’ as a ‘lower freezing threshold’
+medication was stopped at least 12 h, and stimulation was stopped       was based on evidence that the lowest individual freezing thresh-
+2 h before all recordings. Motor tasks were conducted under             old is around ‘2’.22 The period lasting from the ﬁrst to the last
+three conditions: no-stimulation, high-frequency stimulation            time point where FI is >3 in a freezing event was referred to as
+(HFS, 130 Hz), and low-frequency stimulation (LFS, 60 Hz). The          the duration of a freezing event (Fig. 1D). In each trial, the number
+no-stimulation condition was always tested ﬁrst, with the order         of freezings and the duration of each freezing event were counted
+of HFS and LFS being randomly counterbalanced across patients           and calculated. In addition, we classiﬁed each walking trial as a
+(HFS ﬁrst in nine patients, LFS ﬁrst in seven patients). A 30–          freezing trial or a non-freezing trial based on whether it contained
+60 min wash-in period was set to prepare patients for the upcoming      a freezing event. Only trials with consistent judgements between
+tasks conducted in stimulation conditions. All subjects were            subjective and objective assessments were qualiﬁed for further
+blinded to their stimulation parameters during the experiment.          analysis. Inconsistent trials were excluded, as their uncertainty
+We used a portable analogue stimulator (T901, Pins Medical) to          may contaminate both the freezing and non-freezing groups.
+2410 | BRAIN 2022: 145; 2407–2421                                                                                                                  Z. Yin et al.
+
+
+
+
+Figure 1 Electrode localization, experimental setup and representation of the freezing index. (A) Localization of electrocorticography (ECoG) electro-
+des. The eight contacts (C1–C8) are visualized in the merged image of preoperative MRI and postoperative CT (left). C8 is the contact closest to the DBS
+bone hole. The white arrow points to the primary motor cortex. A reconstruction of the cortex and the eight contacts relative to the primary motor
+cortex (black arrow) is shown in the right ﬁgure. (B) Localization of the STN electrodes (white arrow) in the merged image of preoperative MRI and post-
+operative CT. (C) Experimental setup and protocol. Patients were asked to walk barefoot while completing a 10 m (5 m one way) back-and-forth timed
+up-and-go task at a self-selected pace with sensors attached to the lower limbs. The instant coordinates of the sensor were captured through an op-
+toelectronic motion tracking system hanging on walls on both sides. Synchronized ECoG potentials were recorded through an extended cable. (D) The
+representative diagram of the freezing index (FI). The blue line represents the vertical position of the foot. The green line represents the forward pos-
+ition of the foot. The red line represents the FI. When the vertical kinematic rhythm becomes irregular and the forward motion stagnates, FI rises and
+exceeds the 3-point threshold (solid black line). Notably, if the FI drops below ‘3’ but then rises back, with the lowest value still over ‘2’ (grey dashed line),
+we consider this as one continuous freezing event rather than two. Thus, the diagram shows one continuous freezing event lasting from time point I to
+time point III. Because FI does not drop below ‘2’, time point II does not mark the end of this freezing event.
+
+
+
+
+Potential recordings and contact selection                                          to synchronize ECoG potentials and the optoelectronic motion cap-
+                                                                                    ture system. In the ofﬂine analysis, the ECoG potentials of each con-
+The JE-212 ampliﬁer (Nihon Kohdenn) was used to record common                       tact were re-referenced to its closest contact, resulting in seven
+average ECoG potentials. A cup Ag/AgCl electroencephalogram                         bipolar cortical channels. We used a notch ﬁlter (Butterworth ﬁlter,
+electrode placed on the subject’s forehead was set as the ground.                   bandwidth = 4 Hz, order = 3) to reject the ambient noise of 50 Hz and
+Signals were recorded at a sampling rate of 2000 Hz, bandpass ﬁl-                   harmonics and the stimulation artefact of 60/130 Hz and harmo-
+tered at 0.08 and 600 Hz and ampliﬁed ×195. We used a DC channel                    nics. Signals were downsampled to 1000 Hz for further analysis.
+Cortical PAC explains the pathology of FOG                                                          BRAIN 2022: 145; 2407–2421          | 2411
+
+Out of the seven bipolar channels, the channel selected for analysis     Episode analysis
+was constituted by the contact pair where at least one of the con-
+                                                                         It should be noted that in freezing trials, it was not the case that at
+tacts was landed on M1. This could be the premotor-M1, the
+                                                                         all time points the subject was under freezing. Instead, a freezing
+M1-M1 or the M1-S1 contact pairs, depending on which pair de-
+                                                                         trial contained both the episodes where the subject was freezing
+monstrated the highest PAC during rest sitting.17 The coordinates
+                                                                         and episodes where the subject was walking stably. Thus, in each
+of the selected contact pairs covering M1 for each subject are shown
+                                                                         freezing trial, we extracted a continuous 5 s non-freezing-episode
+in Supplementary Table 1. In addition, the S1-post S1 contact pair
+                                                                         with the lowest average FI and termed it as the freezing trials’ non-
+was selected as a control channel, which represented signals that
+                                                                         freezing episode (FN), which best represented a period of clear,
+were irrelevant to the motor cortex.
+                                                                         rhythmic walking in a freezing trial. Moreover, the freezing episode,
+                                                                         where FI exceeded three, in a freezing trial was extracted and
+                                                                         termed as the freezing trials’ freezing episode (FF). For non-freezing
+Power spectral density calculation                                       trials, a continuous 5 s episode with the lowest average FI was also
+We employed the Welch periodogram method (Python MNE func-               extracted and termed as the non-freezing trials’ normal walking
+tion psd_welch23) to calculate power spectral density using a fast       episode (NN), served as a control. The schematic diagram of the epi-
+Fourier transform of 512 points. This rendered a frequency reso-         sode extraction is shown in Fig. 3A and B. Episodes with the same
+lution of 1.95 Hz. A 50% overlap using a Hanning window was              type extracted from trials in the same stimulation condition were
+used to reduce edge effects. Power spectral density was                  concatenated for each subject. A 10 s sliding window with a 1 s
+transformed into the log scale. In the computation of the beta           step size was employed for PAC computation to improve data util-
+(13–30 Hz) and gamma (50–200 Hz) power, a further inner-subject          ization. In the comparison of PAC between the three types of epi-
+normalization was made by calculating the percentage of the total        sodes, an inner-subject normalization was made by calculating
+power in each subject.                                                   the percentage relative change with respect to NN and scaling to
+                                                                         the max value:
+
+
+Phase-amplitude coupling analysis                                                                                PACk − PACNN
+                                                                              percentage relative changek =                         × 100%    (1)
+                                                                                                                max(abs(PACk, NN ))
+Phase-amplitude coupling was calculated using a method that
+has been previously described.24 Brieﬂy, potentials recorded in
+ECoG were ﬁrst bandpass ﬁltered into a low frequency band                Where ‘abs’ represents the absolute value, with k = {FN, FF}.
+(6–50 Hz in a 2 Hz step, without overlap) and a high frequency
+band (50–200 Hz in a 4 Hz step, without overlap) using a two-            Analysis on dual-tasking and stimulation
+way zero phase lag ﬁnite impulse response ﬁlter. Then, the in-
+stantaneous phase of the low frequency bandpass ﬁltered signal           Freezing severity and PAC statistics were compared between dual-
+and the instantaneous amplitude of the high frequency ﬁltered            task and no-task conditions, and stimulation and no-stimulation
+signal were extracted through the Hilbert transform. The modu-           conditions. Condition-wise freezing severity was measured using
+lation index (MI) was derived using the Kullback-Leibler dis-            three indices: (i) freezing time proportion, referred to as the propor-
+tance that measures the divergence between the probability               tion of the total duration of freezing to the total time spent on walk-
+distribution of high-frequency amplitudes and uniform distri-            ing; (ii) freezing frequency per trial, calculated by dividing the total
+bution. The obtained MI was normalized by calculating the                count of freezing by the total count of trials performed; and
+z-score of 200 surrogates generated by randomly swapping                 (iii) duration per freezing, calculated by dividing the total duration
+amplitudes time blocks.25 Z-scored PAC computed for multiple             of freezing by the total count of freezing. Condition-wise PAC was
+frequencies of phase and amplitude can be demonstrated as                calculated by averaging PAC in trials that were performed under
+a comodulogram (Fig. 2A). We used the Tensorpac toolbox                  the same condition. In analysing the effect of stimulation, we fur-
+(https://etiennecmb.github.io/tensorpac/)26 to conduct all PAC           ther correlated the stimulation-induced improvement of freezing
+calculations.                                                            severity to the stimulation-induced reduction of PAC. The improve-
+                                                                         ment/reduction was normalized by calculating percentage change
+                                                                         with respect to the no-stimulation condition for each subject:
+Trial analysis
+                                                                                                           valueNS − valueSTIM
+For data recorded during rest sitting and standing, the ﬁrst continu-             percentage change =                          × 100%         (2)
+                                                                                                               abs(valueNS )
+ous 30 s data without artifact and movement were selected for ana-
+lysis. For data recorded during walking, the whole length of data        Where ‘value’ represents the three indices of freezing severity and
+recorded in completing the walking trial was analysed. PAC was           PAC, ‘abs’ represents the absolute value, ‘NS’ represents the
+calculated using a 10 s sliding window with a 5 s step size and aver-    no-stimulation condition and ‘STIM’ represents the stimulation
+aged among windows. A 10 s sliding window was selected because           condition.
+the shortest walking trial lasted 11 s. Ten seconds is a reliable cal-
+culation length, which contains over 130 cycles of beta-band
+                                                                         Statistical analyses
+phase.27 Supplementary Fig. 1A and B show that the 10 s-window
+MIs were highly linearly correlated with the 30 s-window MIs in          Statistical analyses were performed using non-parametric tests
+both the trial wise correlation (Spearman r = 0.88, P < 0.001) and       whenever possible (signed-rank tests, Kruskal-Wallis test,
+the subject wise correlation (Spearman r = 0.97, P < 0.001). PAC sta-    Friedman test and Spearman’s correlation) because of the non-
+tistics were then compared among the standing, freezing, and non-        normal distribution of most studied variables. Linear mixed effect
+freezing trials.                                                         model was used for repeated measures data where the subject
+2412 | BRAIN 2022: 145; 2407–2421                                                                                                             Z. Yin et al.
+
+
+
+
+Figure 2 Freezing trials have higher M1 PAC than non-freezing trials. (A) Co-modulograms showing group-level M1 beta-gamma PAC in rest standing
+(left), freezing (middle) and non-freezing (right) trials. Deep colours indicate high PAC. (B) Box plots indicating the comparison of PAC between rest stand-
+ing, freezing and non-freezing trials, which was tested using the Wilcoxon signed-rank test. The top right plot shows the paired-comparison results.
+Each dot represents a patient. Dots landed above the grey dashed line have higher PACs in freezing trials (PACfreezing). Dots landed below the grey
+dashed line have higher PACs in non-freezing trials (PACnon-freezing). (C) Examples show the distributions of amplitude and preferred phase of the coup-
+ling in rest standing (red), freezing (orange) and non-freezing trials (blue). These data are based on Patient Sub8, which is represented by the dot marked
+with a red dashed box in B (top right plot). (D) Box plots comparing freezing time proportion, freezing frequency and duration per freezing between
+dual-tasking and no-task trials. (E) Box plots comparing PAC between dual-tasking and no-task conditions in all trials. (F) Box plots comparing PAC
+between dual-tasking and no-task conditions in non-freezing trials. In box plots, the lower and upper borders of the box represent the 25th and
+75th percentiles, respectively. The centreline represents the median. The whiskers extend to the smallest and largest data-points that are not outliers
+(1.5 times the interquartile range). Signiﬁcant P-values after Bonferroni correction are indicated. **P < 0.01, *P < 0.05, signed-rank test.
+
+
+
+was a random effect, and a random intercept was utilized. A two-                 study are available from the corresponding author upon reasonable
+tailed P-value < 0.05 was considered signiﬁcant, with multiple com-              request after approval of local IRB.
+parisons corrected using the Bonferroni correction. All statistical
+analyses were performed using Python 3.
+                                                                                 Results
+Data availability
+                                                                                 Overall, 16 patients were included in this study and were implanted
+All relevant codes reported in the paper can be freely accessed                  with the ECoG and DBS electrodes (see Fig. 1A, and B for exemplar
+without restriction. The raw data that support the ﬁndings of this               electrode locations of Patient Sub5). Table 1 summarizes the
+Cortical PAC explains the pathology of FOG                                                                 BRAIN 2022: 145; 2407–2421           | 2413
+
+
+
+
+Figure 3 Non-freezing episodes in freezing trials also have higher PAC in M1. (A) Schematic diagram depicting the slicing of non-freezing episodes
+(marked in orange, FN) and freezing episodes (marked in red, FF) in freezing trials. The blue line represents the vertical position of the foot, and the
+red line represents the freezing index (FI). (B) Schematic diagram depicting the slicing of normal-walking episodes (marked in blue, NN) in non-freezing
+trials. (C) Violin plots indicate the comparison of relative PAC change between FN, FF and NN episodes. The relative change was calculated as the per-
+centage change with respect to NN scaling to the max value. Violin plots outline illustrate kernel probability density, with overlaid box plots using the
+same conventions as in Fig. 2B. (D) A similar neurophysiological pattern that was characterized by higher M1 PAC in FN and FF episodes was presented
+in all subjects. **P < 0.01, signed-rank test.
+
+
+
+
+demographics, outcomes of motor assessments, and stimulation                   Freezing trials had higher PAC in M1, which was not
+parameters used during lead externalization. The 16 subjects                   induced by dual-tasking or velocity change
+were on average 66.1 years old, with an average disease duration
+of 9.3 years. The average preoperative MDS-UPDRS III scored 50.1               The co-modulograms of group-level PAC during rest standing,
+in the OFF-medication state, which was reduced to 25.1 in the                  freezing and non-freezing trials were shown in Fig. 2A. We ob-
+on-stimulation/OFF-medication state, rendering an average motor                served the highest PAC during rest standing (PBonferroni for standing
+improvement of 49.9%. Two subjects were excluded from later ana-               versus non-freezing < 0.001, for standing versus freezing = 0.042;
+lyses: Patient Sub7 was unable to complete the required number of              signed-rank test, Fig. 2B), and a signiﬁcantly higher PAC during
+walking trials due to severe gait problems, and Patient Sub10’s sub-           freezing trials than during non-freezing trials in the M1 (P = 0.013,
+dural electrode was shifted, not covering M1. Thus, the electro-               signed-rank test, Fig. 2B), but not the postcentral gyrus area (P =
+physiology and motion data from the remaining 14 subjects were                 0.375, signed-rank test, Supplementary Fig. 2A–C). Consistent re-
+analysed. A total of 451 walking trials at a self-selected pace were           sults were also revealed when PAC was computed using a 30 s win-
+completed by the 14 patients (Fig. 1C). After independent subjective           dow (Supplementary Fig. 1C). Taking Patient Sub8 as an example,
+and objective inspections, consensus between the two approaches                the preferred phases of coupling were similar, but the intensities
+was reached in 407 trials on whether the trial contained freezing              of coupling went down from standing to freezing and non-freezing
+(inter-rater reliability = 90.2%). Among the 407 trials, 114 were freez-       trials (Fig. 2C). Notably, we did not observe signiﬁcant differences in
+ing trials with an average trial duration of 85.9 s, including 294             cortical beta and gamma power between freezing and non-freezing
+freezing events with average event duration of 11.5 s and a total              trials, while higher beta power (P = 0.007, signed-rank test) and low-
+freezing duration of 3384 s, and 293 were non-freezing trials, with            er gamma power (P = 0.016, signed-rank test) were indeed observed
+an average trial duration of 24.1 s and a total walking duration of            during the rest standings compared to that during walking
+7073 s. All recordings were conducted in the OFF-medication state.             (Supplementary Fig. 3A and B).
+2414 | BRAIN 2022: 145; 2407–2421                                                                                                                  Z. Yin et al.
+
+
+Table 1 Demographics of the 16 FOG patients
+
+     Patient      Age/          DD       LEDD       FOGQ       MDS-UPDRSa      MDS-UPDRSb          MDS-UPDRSc      HFS voltage      LFS voltage     Stimulation
+                 gender       (years)                                                                                 (V)d              (V)e          contacts
+
+     Sub1         72/F          10         675        10              47              28               24               3.0             3.3          2–4+, 6–8+
+     Sub2         60/F           7         750        20              47              24               31               2.5             2.7          2–4+, 6–8+
+     Sub3         57/F           5         375        14              49              24               34               2.7             2.7          2–4+, 6–8+
+     Sub4         66/F          10         513        21              61              22               42               2.8             2.8          2–4+, 6–8+
+     Sub5         53/M          12        1100        24              79              25               31               2.1             1.8          3–1+, 7–5+
+     Sub6         70/M          12         688        17              70              37               28               2.8             2.8          2–4+, 6–8+
+     Sub7         73/F           9        1439        20              51              27               46               2.1             2.1          4–3+, 8–7+
+     Sub8         67/F           6         500        22              52              30               26               3.0             3.2          2–4+, 6–8+
+     Sub9         59/F           9         700        16              46              21               11               2.8             2.8          2–4+, 6–8+
+     Sub10        78/M           5         550        18              58              24               27               2.2             2.2          1–3+, 5–7+
+     Sub11        76/M           8        1351        13              41              11               10               3.0             3.2          2–4+, 6–8+
+     Sub12        66/F          15         669        13              55               8               21               3.5             3.5          2–4+, 6–8+
+     Sub13        61/M           7        1150        22              37              18               22               2.4             3.5          4–1+, 8–5+
+     Sub14        66/F          15         925        20              39              20               27               2.3             2.3          4–2+, 8–6+
+     Sub15        67/M          10         913        16              42              20               10               2.5             2.5          2–4+, 6–8+
+     Sub16        67/F           9        1000        15              27               5               13               3.0             3.5          1–3+, 6–8+
+
+DD = disease duration; LEDD = levodopa equivalent daily dose; FOGQ = freezing of gait questionnaire.
+a
+    Baseline OFF-medication score.
+b
+    Baseline ON-medication score.
+c
+ One month postoperative on-stimulation OFF-medication score.
+d
+ Stimulation frequency and pulse width for HFS: 130 Hz and 60 μs.
+e
+    Stimulation frequency and pulse width for LFS: 60 Hz and 60 μs.
+
+
+
+    Given that dual tasks (e.g. calculation while walking) have been                    not limited to the period where freezing occurred. To investigate,
+conducted in a number of trials to induce freezing, we asked if                         we compared PAC levels between different walking episodes
+the higher PAC during freezing trials could be directly related to                      (Fig. 3A and B). We found that PACs of the FN and FF were at similar
+dual tasks rather than freezing. We ﬁrst validated that                                 levels (P = 0.147, signed-rank test), while both were signiﬁcantly
+dual-task trials did have higher freezing severity than no-task trials                  higher than that of the NN (P = 0.003 for FN, P = 0.007 for FF,
+(P = 0.041 for freezing time proportion, P = 0.009 for freezing fre-                    signed-rank test, Fig. 3C). This trend was evident in almost each
+quency, signed-rank test, Fig. 2D). But interestingly, dual-task trials                 subject (Fig. 3D) and also held true after correcting the different FI
+had similar PAC levels to no-task trials (P = 0.278, signed-rank test,                  level using linear mixed effect models [FN versus NN: β = 0.427,
+Fig. 2E), and dual tasking itself was not correlated with high PAC le-                  95% conﬁdence interval (CI) = 0.104 to 0.749, P = 0.010; FF versus
+vel (Spearman r = 0.030, P = 0.583). If we controlled the factor of                     NN: β = 0.615, 95% CI = 0.060 to 1.170, P = 0.030]. These results indi-
+freezing by analysing only the non-freezing trials, we found that                       cated the non-freezing walking episodes in freezing trials were
+dual-task non-freezing trials had even signiﬁcantly lower PAC                           also electrophysiologically abnormal.
+than no-task trials (P = 0.006, signed-rank test, Fig. 2F). These results                   To investigate how different walking episodes were related to
+indicated that PAC and dual tasking were not directly associated,                       clinical freezings, we correlated the PAC in episodes of rest stand-
+but may interact in a more complex way.                                                 ing (PACstand), stable walking (FN and NN, PACstable) and unstable
+    Given that PAC in M1 can be related to bradykinesia in                              walking (FF, and 5 s with highest FI in the non-freezing trial,
+Parkinson’s disease,15 we assessed if higher PAC during freezing                        PACunstable, Fig. 4A) to the three indices of freezing severity after re-
+trials could be induced by the reduced walking velocity per se rather                   gressing out the effect of subjects using linear mixed effect models.
+than freezing. We instructed ﬁve subjects to complete extra trials of                   We observed that PACstable, but not PACunstable, were signiﬁcantly
+intentionally fast- and slow-velocity walking, and controlled the                       correlated with all three indices of freezing severity (Bonferroni cor-
+factor of freezing by analysing non-freezing trials only (n = 72). We                   rected P < 0.05, Fig. 4B–D).
+found that the average speed (total distance/total time) was signiﬁ-
+cantly different among fast, normal and slow-speed trials (tested
+                                                                                        The inﬂuence of DBS on PAC and freezing
+through linear mixed effect models, Supplementary Fig. 4A), while
+no difference was observed in PAC (Supplementary Fig. 4B and C).                        We next explored how STN-DBS may act on M1 PAC and freezing
+This suggested that PAC was not directly associated with walking                        severity. Given that we did not observe signiﬁcant differences be-
+velocity, and the higher PAC observed in freezing trials was unlikely                   tween HFS and LFS conditions in any of the trial-PAC,
+to be induced by velocity change.                                                       episode-PAC and freezing severity (although a trend favouring
+                                                                                        LFS manifested as lower trial PAC and less freezing were observed,
+                                                                                        Supplementary Fig. 5A–C), HFS and LFS were collectively referred to
+Non-freezing episodes in freezing trials also had
+                                                                                        as STIM in further analysis. We found that stimulation signiﬁcantly
+higher PAC, which predicted freezing severity
+                                                                                        reduced the three types of PAC and simultaneously alleviated
+There are two explanations for the observed high PAC in freezing                        freezing severity measured through the three aforementioned indi-
+trials. First, PAC peaked only when freezing occurred while main-                       ces (Fig. 5A and B). When we further correlated the STIM-induced
+taining a normal level during non-freezing walking. Second, PAC                         PAC reduction to the STIM-induced percentage improvement of
+was constantly at an abnormally higher level during freezing trials,                    freezing severity, only PACstable remained signiﬁcant in all three
+Cortical PAC explains the pathology of FOG                                                                  BRAIN 2022: 145; 2407–2421           | 2415
+
+
+
+
+Figure 4 PAC during stable walking is correlated with freezing severity. (A) Distribution of condition-wise PACs during pre-walking standing (PACstand,
+left), stable walking (PACstable, middle) and unstable walking (PACunstable, right). (B) Regression plots showing the correlation between PACstand and the
+freezing time proportion (top), freezing frequency (middle) and duration per freezing (bottom). (C) Regression plots showing the correlation between
+PACstable and the freezing time proportion (top), freezing frequency (middle) and duration per freezing (bottom). (D) Regression plots showing the correl-
+ation between PACunstable and the freezing time proportion (top), freezing frequency (middle) and duration per freezing (bottom). Note that each patient
+has three data points resulting in 14 × 3 PAC values (n = 42), as PAC was calculated in three stimulation conditions (i.e. HFS, LFS and no-stimulation).
+Statistical dependence within subjects was accounted for using linear mixed-effects models. Signiﬁcant correlations after Bonferroni correction are
+marked in red.
+
+
+
+indices of freezing measurements (Bonferroni corrected P < 0.05,                The ‘bandwidth model’ of FOG
+Fig. 5C–E). These results suggested that STN-DBS improved FOG
+by reducing PAC during stable walking.                                          Finally, based on the above ﬁndings, we formalized a theoretical
+    It’s also interesting to note, even in STIM trials that were at a           ‘bandwidth model’ of FOG to organically explain these observations
+similar PAC level to no-stimulation trials (by picking out                      (Fig. 7). The ‘bandwidth’ mimics the processing resource in human
+PAC-matched trials with z-scored PAC between 0–0.4, P = 0.455,                  brains. The model consists of three main elements, (i) the baseline
+signed-rank test, Fig. 6A and B), clinical freezing was still signiﬁ-           occupation; (ii) the dynamic ﬂuctuation; and (iii) the bandwidth
+cantly improved in these STIM trails as compared to no-stimulation              limit. The ‘baseline occupation’ depicts the occupation of cortical
+trials (Fig. 6C–E). These results suggested that the freezing allevi-           processing resources by the elevated neuronal synchrony, which
+ation induced by STN-DBS was not due solely to the PAC reduction.               can be quantiﬁed through M1 PAC and reﬂects the degree of motor
+Other modulation ways may also be in play here, such as elevating               impairment under a certain condition. The ‘dynamic ﬂuctuation’
+cortical resistance to excessive PAC.                                           reﬂects the instantaneous cognitive burden, which changes
+2416 | BRAIN 2022: 145; 2407–2421                                                                                                         Z. Yin et al.
+
+
+
+
+Figure 5 The reduction of PACstable predicts the improvement of freezing severity induced by DBS. (A) Box plots comparing PACstand, PACstable and
+PACunstable between no-stimulation (NS) and stimulation (STIM) conditions. (B) Box plots comparing freezing time proportion, freezing frequency
+and duration per freezing between NS and STIM conditions. Same conventions as in Fig. 2B. **P < 0.01, *P < 0.05, signed-rank test. (C) Regression plots
+showing the correlation between the percentage change of PACstand and the percentage change of freezing time proportion (top), freezing frequency
+(middle) and duration per freezing (bottom). (D) Regression plots showing the correlation between the percentage change of PACstable and the percentage
+change of freezing time proportion (top), freezing frequency (middle) and freezing duration (bottom). (E) Regression plots showing the correlation be-
+tween the percentage change of PACunstable and the percentage change of freezing time proportion (top), freezing frequency (middle) and duration
+per freezing (bottom). Note that each patient has two data points resulting in 14 × 2 PAC values (n = 28), as the reduction of PAC was calculated in two
+stimulation conditions (i.e. HFS and LFS). Statistical dependence within subjects was accounted for using linear mixed effects models. Signiﬁcant cor-
+relations after Bonferroni correction are marked in red. %RD = percentage reduction; %IMP = percentage improvement.
+
+
+
+
+dynamically with time. And the ‘bandwidth limit’ deﬁnes a thresh-              and (iii) STN-DBS reduced PAC and alleviated clinical freezing,
+old when it is exceeded, information processing overloads and                  while the PAC reduction was not the only cause of freezing allevi-
+freezing occurs. The blank zone laid between the bandwidth limit               ation. A ‘bandwidth model’ was further proposed to explain the oc-
+and baseline occupation is the ‘available bandwidth,’ whose area               currence and treatment of FOG.
+represents the instant available neural processing resource.                       We linked our observations to the model as follows. (i) Observed
+STN-DBS exerts therapeutic effects on FOG by both reducing the                 phenomenon: M1 PAC was signiﬁcantly and constantly higher in
+baseline occupation and elevating the bandwidth limit.                         freezing trials than in non-freezing trials (Figs. 2 and 3) and was cor-
+                                                                               related with freezing severity during stable walking (Fig. 4).
+                                                                               Reﬂected in the model: M1 PAC was indicative of the baseline occu-
+                                                                               pation. When holding the dynamic ﬂuctuation and bandwidth limit
+Discussion                                                                     on, the higher the baseline occupation was, the higher the chance
+In this study, leveraging direct motor cortex recording, 3D-motion             freezings were to occur. (ii) Observed phenomenon: freezings
+tracking, and walking task trials, we demonstrate that (i) freezing            were more likely to occur during dual-task trials, which, however,
+trials had higher PAC in M1, and the high PAC was not induced by               were not associated with high PAC. Contrarily, if picking only the
+dual-tasking or velocity change; (ii) non-freezing episodes in freez-          non-freezing trials, dual-tasks were accompanied with a lower
+ing trials also had excessive PAC, which predicted freezing severity;          PAC (Fig. 2D–F). Reﬂected in the model: a higher chance of freezing
+Cortical PAC explains the pathology of FOG                                                                   BRAIN 2022: 145; 2407–2421             | 2417
+
+
+
+
+Figure 6 Stimulation trials have lower freezing severity than no-stimulation trials even when under similar levels of PAC. (A) The distribution of PAC in
+no-stimulation (NS) and stimulation (STIM) trials. Trials with PACs between 0 and 0.4 in both the NS and STIM groups were picked out as PAC-matched
+trials (marked by yellow shadow background) for further analyses. Box plots showing the (B) comparison of PAC, (C) comparison of freezing time pro-
+portion, (D) comparison of freezing frequency and (E) comparison of duration per freezing between PAC-matched NS and STIM trials. Same conven-
+tions as in Fig. 2B. **P < 0.01, *P < 0.05, signed-rank test. ns = not signiﬁcant.
+
+
+
+
+in dual-task trials was the result of the elevated dynamic ﬂuctu-                 To our knowledge, four classical models have been proposed hy-
+ation rather than the baseline occupation. While due to the larger             pothesizing the mechanisms of FOG.28
+ﬂuctuation, only trials with low baseline occupation could avoid ex-
+ceeding bandwidth limit, resulting in the observed low PAC in non-               (i) The ‘threshold model’29 indicates that the motor deﬁcits such as reduced
+freezing dual-task trials. (iii) Observed phenomenon: stimulation                   stride amplitude and asymmetrical step sizes could accumulate during walk-
+signiﬁcantly reduced PAC while simultaneously improving freez-                      ing. When accumulated motor abnormality reaches a threshold, FOG occurs.
+ing. The STIM-induced reduction of PAC was correlated with the                  (ii) The ‘cognitive model’30 holds that FOG is triggered by impaired conﬂict
+STIM-induced improvement of freezing (Fig. 5). Reﬂected in the                      resolution and is exacerbated by freezing-related executive dysfunction.
+model: stimulation reduced baseline occupation, and whose reduc-                    One evidence is that freezers could have higher variability than non-
+                                                                                    freezers in selecting swing limb when initiating gait.31
+tion should be in accordance with the lowering of freezing probabil-
+                                                                                (iii) The ‘decoupling model’32 stresses that the decoupling between perceived
+ity when the dynamic ﬂuctuation and bandwidth limit were kept
+                                                                                    movement intention and the actual release of gait initiation results in
+generally constant. (iv) Observed phenomenon: STIM trials had
+                                                                                    FOG. This explains why patients describe freezing as having ‘their feet
+lower freezing severity than NS trials even when under similar le-                  glued to the ground.’
+vels of PAC (Fig. 6). Reﬂected in the model: except for reducing base-          (iv) The ‘interference model’33 explains the occurrence of FOG as the break-
+line occupation, DBS improved FOG also through enhancing                            down of parallel information processing of motor, cognitive and limbic
+bandwidth limit.                                                                    circuits.
+2418 | BRAIN 2022: 145; 2407–2421                                                                                                          Z. Yin et al.
+
+
+
+
+Figure 7 A graphical representation of the proposed ‘bandwidth model’ of FOG. Three main elements constitute the model: (i) the baseline occupation;
+(ii) the dynamic ﬂuctuation; and (iii) the bandwidth limit. The x-axis represents the time axis, and y-axis represents the occupied bandwidth. When
+baseline occupation plus dynamic ﬂuctuation exceeds the bandwidth limit, freezing occurs. Baseline occupation can be quantiﬁed through M1 PAC.
+In the off-stimulation state (left), the baseline occupation (M1 PAC) maintains at a high level, leading to a high probability of exceeding the bandwidth
+limit. In the on-stimulation state (right), a reduction of baseline occupation and an elevation of bandwidth limit clean up larger available bandwidth
+that can be used to process dynamic ﬂuctuation, leading to a lower probability of freezing.
+
+
+
+
+     Increasing the number or the difﬁculty of concurrent tasks                amplitude by the low-frequency rhythms is highly dynamic and
+could induce FOG. Notably, most models focused on a feature of                 task-speciﬁc.17,40 In the pathological Parkinson’s disease OFF state,
+freezing and explained changes in other features as secondary.                 perpetually elevated M1 PAC may reﬂect a restricted cortical activa-
+By comparison, the ‘interference model’ gave a more comprehen-                 tion state in which M1 neurons are not able to respond dynamically
+sive picture stressing the joint participation of motor, cognitive             to communication across other cortical and subcortical circuits.
+and limbic circuits in FOG, which was further supported by later               Given that M1 is a crucial node in human gait physiology,10 a patho-
+studies.34–36                                                                  logical hypersynchrony in M1, through entrainment and phase
+     One novel aspect of our model is that it provides an approach,            locking of the broad-gamma activity to the beta carrier rhythm,
+i.e. PAC in M1, to quantitatively track dynamic changes of the motor           could underpin the pathological basis for FOG in Parkinson’s dis-
+circuit in the occurrence of FOG. Previously, abnormal PAC has been            ease. Alternatively, elevated PAC may reﬂect changes in the sharp-
+documented in the M1 area in both animal models and humans                     ness and asymmetry of cortical beta band waves, representing the
+with Parkinson’s disease. It was shown that beta-gamma PAC is                  excessive neural synchrony in the basal ganglia-thalamocortical
+correlated with the severity of bradykinesia and decreases during              loop.41,42 Here, our data reveal moderate correlations of PAC and
+movement.17,37,38 In our study, we also observed reduced PAC dur-              beta waveform shape and sharpness asymmetry measures
+ing walking as compared to standing. We hypothesize that the re-               (Supplementary Fig. 6). This suggests, neither mechanism alone
+lease of cortical broad-gamma amplitude from low oscillation                   can explain PAC in our study and that either one demonstrates a
+phases may facilitate the motor execution.39 While by demonstrat-              form of excessive synchrony in M1 and could be relevant to the
+ing that trials with signiﬁcantly different walking velocities had             pathology of FOG.
+similar PAC as long as freezing did not occur (Supplementary Fig.                  On the other hand, the quantiﬁcation of motor circuit abnormal-
+3), we showed that PAC was not a mere reﬂection of movement in-                ity makes it possible to further investigate how speciﬁcally motor
+tensity but did indicate motor impairments related to FOG. PAC as              dysfunction interacts with cognitive burdens during freezing,
+one class of cross-frequency coupling is considered a vital                    therefore extending the classical ‘interference model’ of FOG. By
+fundamental mechanism underlying information processing.16                     showing that dual tasking did not directly impact the strength of
+In normal states, the modulation of the high-frequency                         PAC in M1, while only trials with low PAC could resist freezing
+Cortical PAC explains the pathology of FOG                                                          BRAIN 2022: 145; 2407–2421          | 2419
+
+when performing extra concurrent tasks, we reveal that motor and         or neural activities from the prefrontal cortex,34 would immensely
+cognitive processing are actually competing for ﬁnite computation-       enrich the proposed model.
+al capacity. Both walking and dual tasking require cortical process-         In conclusion, this study highlighted the key role of M1-PAC in
+ing resources, while the elevation of PAC due to the parkinsonian        the occurrence and treatment of FOG. Based on this, the proposed
+state makes walking take more resources. This leads to a corre-          ‘bandwidth model’ adequately explains the multi-circuit pathology
+sponding decrease of available resources for cognitive processing,       of FOG, uncovers the potential mechanism by which STN-DBS alle-
+increases the probability of ‘information overload’ and ultimately       viates FOG and may foster next-generation neuromodulation ther-
+causes FOG.                                                              apies targeting gait freezing in parkinsonian patients.
+    Our model also explains how STN-DBS may act on the pathology
+of FOG. Previous reports focused more on the direct improvement
+on motor function, suggesting that STN-DBS may exert its effect          Acknowledgements
+on freezing through improving overall gait speed, stride length,
+                                                                         We would like to present our acknowledgements to our patients for
+trunk ﬂexion or anticipatory postural adjustments.43–46 Our model
+                                                                         participating in this project, to Dr Zeyu Wang for her assistance on
+integrates motor improvement into a larger explanatory frame-
+                                                                         the art designing of the illustrations and to Dr Qiang Wang for his
+work. Loss of dopamine can lead to changes in local and distant
+                                                                         critical review.
+neural population activity.47,48 DBS can disrupt abnormal informa-
+tion ﬂow in basal ganglia circuits, potentially by dissociating input
+and output signals of the STN.49,50 This may result in the restor-
+ation of a normalized cortical activity pattern. Besides, the anti-      Funding
+dromic activation of the cortico-STN ﬁbres through DBS may               This study was funded by the National Natural Science Foundation
+desynchronize cortical neurons51,52 and increase their ability to        of China (81830033, 61761166004, 81870888) and the Capital
+transfer information individually, leading to higher information-        Foundation of Medical Development (2018-2Z-1076). A.A.K. and
+coding capacity.53,54 These effects, presented as the improved mo-       W.J.N. are funded by the Deutsche Forschungsgemeinschaft (DFG,
+tor function and the lower cortical PAC (analogues to lower baseline     German Research Foundation) – Project-ID 424778381 – TRR 295.
+occupation), contribute to enlarged disposable computational cap-
+acity (analogues to higher available bandwidth) that can be used to
+deal with dynamic cognitive burdens and therefore reduces freez-
+                                                                         Competing interests
+ing probability. Notably, since the STN is also actively involved in
+cognitive processings,55 investigating whether STN-DBS eases             The authors report no competing interests.
+freezing also through modulating cognitive circuit (i.e. the dynamic
+ﬂuctuation in our model) is warranted in the future.
+    Moreover, our results provide evidence supporting the clinical       Supplementary material
+utility of M1 PAC as a reliable feedback biomarker in the develop-
+                                                                         Supplementary material is available at Brain online.
+ment of symptom-speciﬁc adaptive DBS. In previous reports, cor-
+tical PAC in humans was almost exclusively recorded though
+ECoG in intraoperative settings17,56,57 or through high-density scalp
+EEG.58,59 While in both scenarios, a considerable extent of ﬁxation/
+                                                                         References
+stationary is needed. It is understudied how PAC responds to and         1. Nutt JG, Bloem BR, Giladi N, Hallett M, Horak FB, Nieuwboer A.
+whether PAC can be measured during naturalistic movement.60                 Freezing of gait: moving forward on a mysterious clinical phe-
+Our data demonstrate that although general movement (i.e. walk-             nomenon. Lancet Neurol. 2011;10(8):734–744.
+ing) signiﬁcantly reduced PAC compared to resting, the reduced           2. Moore O, Peretz C, Giladi N. Freezing of gait affects quality of life
+                                                                            of peoples with Parkinson’s disease beyond its relationships
+PAC still indicates pathological conditions and responses to thera-
+                                                                            with mobility and gait. Mov Disord. 2007;22(15):2192–2195.
+peutic DBS. Notably, the results obtained in this study were based
+                                                                         3. Muslimovic D, Post B, Speelman JD, Schmand B, de Haan RJ;
+on PAC calculated in a 10-s window. In developing adaptive DBS,
+                                                                            CARPA Study Group. Determinants of disability and quality of
+this slower control strategy, as opposed to the fast time scale burst-
+                                                                            life in mild to moderate Parkinson disease. Neurology. 2008;70-
+detecting strategy,61,62 may better track motor ﬂuctuations over a          (23):2241–2247.
+period of time.63 The latest Summit RC + S (Medtronic) study64 em-       4. Fasano A, Daniele A, Albanese A. Treatment of motor and non-
+ployed a feedback time scale of 2–10 min in chronic at-home re-             motor features of Parkinson’s disease with deep brain stimula-
+cordings. Longer data segment increases the signal-to-noise ratio           tion. Lancet Neurol. 2012;11(5):429–442.
+helping better differentiate pathological from the physiological         5. Bohnen NI, Costa RM, Dauer WT, et al. Discussion of research
+state, which may also be applied to PAC indices (e.g. PAC computed          priorities for gait disorders in Parkinson’s disease. Mov Disord.
+in 30 s window is approximately three times the PAC computed in             2022;37(2):253–263.
+10 s window, Supplementary Fig. 1). Overall, this study provides a       6. Thevathasan W, Cole MH, Graepel CL, et al. A spatiotemporal
+                                                                            analysis of gait freezing and the impact of pedunculopontine
+neurophysiology approach to quantify the severity of motor abnor-
+                                                                            nucleus stimulation. Brain. 2012;135(Pt 5):1446–1454.
+mality in FOG. But notably, PAC in M1 cannot model the dynamic
+                                                                         7. Xie T, Bloom L, Padmanaban M, et al. Long-term effect of low fre-
+change of cognitive burden, which also plays a vital role in the oc-
+                                                                            quency stimulation of STN on dysphagia, freezing of gait and
+currence of FOG. In fact, as per our model, it is the dynamic ﬂuctu-        other motor symptoms in PD. J Neurol Neurosurg Psychiatry.
+ation, but not baseline occupation decides the exact time point             2018;89(9):989–994.
+freezing   occurs   when    keeping    bandwidth    limit   constant.    8. Mei S, Li J, Middlebrooks EH, et al. New onset on-medication
+Therefore, future studies tracking changes in the cognitive/limbic          freezing of gait after STN-DBS in Parkinson’s disease. Front
+circuit during freezing, e.g. through recording heart rate change,65        Neurol. 2019;10:659.
+2420 | BRAIN 2022: 145; 2407–2421                                                                                                      Z. Yin et al.
+
+9. Annweiler C, Beauchet O, Bartha R, et al. Motor cortex and gait in        30. Vandenbossche J, Deroost N, Soetens E, et al. Freezing of gait in
+    mild cognitive impairment: a magnetic resonance spectroscopy                 Parkinson’s disease: disturbances in automaticity and control.
+    and volumetric imaging study. Brain. 2013;136(3):859–871.                    Front Hum Neurosci. 2013;6:356.
+10. McCrimmon         CM,        Wang     PT,   Heydari     P,   et    al.   31. Okada Y, Fukumoto T, Takatori K, Nagino K, Hiraoka K. Variable
+    Electrocorticographic encoding of human gait in the leg primary              initial swing side and prolonged double limb support represent
+    motor cortex. Cereb Cortex. 2018;28(8):2752–2762.                            abnormalities of the ﬁrst three steps of gait initiation in patients
+11. Jha M, Jhunjhunwala K, Sankara BB, et al. Neuropsychological                 with Parkinson’s disease with freezing of gait. Front Neurol. 2011;
+    and imaging proﬁle of patients with Parkinson’s disease and                  2:85.
+    freezing of gait. Parkinsonism Relat Disord. 2015;21(10):1184–1190.      32. Jacobs JV, Nutt JG, Carlson-Kuhta P, Stephens M, Horak FB. Knee
+12. Shine JM, Matar E, Ward PB, et al. Exploring the cortical and sub-           trembling during freezing of gait represents multiple anticipa-
+    cortical functional magnetic resonance imaging changes asso-                 tory postural adjustments. Exp Neurol. 2009;215(2):334–341.
+    ciated with freezing in Parkinson’s disease. Brain. 2013;136(Pt          33. Lewis SJG, Barker RA. A pathophysiological model of freezing of
+    4):1204–1215.                                                                gait in Parkinson’s disease. Parkinsonism Relat Disord. 2009;15(5):
+13. Pozzi NG, Canessa A, Palmisano C, et al. Freezing of gait in                 333–338.
+    Parkinson’s disease reﬂects a sudden derangement of loco-                34. Martens KA E, Hall JM, Georgiades MJ, et al. The functional net-
+    motor network dynamics. Brain. 2019;142(7):2037–2050.                        work signature of heterogeneity in freezing of gait. Brain. 2018;
+14. Petrucci MN, Neuville RS, Afzal MF, et al. Neural closed-loop                141(4):1145–1160.
+    deep brain stimulation for freezing of gait. Brain Stimul. 2020;         35. Lang S, Ismail Z, Kibreab M, Kathol I, Sarna J, Monchi O.
+    13(5):1320–1322.                                                             Common and unique connectivity at the interface of motor,
+15. de Hemptinne C, Swann NC, Ostrem JL, et al. Therapeutic deep                 neuropsychiatric, and cognitive symptoms in Parkinson’s dis-
+    brain stimulation reduces cortical phase-amplitude coupling                  ease: A commonality analysis. Hum Brain Mapp. 2020;41(13):
+    in Parkinson’s disease. Nat Neurosci. 2015;18(5):779–786.                    3749–3764.
+16. Canolty RT, Knight RT. The functional role of cross-frequency            36. Herman T, Shema-Shiratzky S, Arie L, Giladi N, Hausdorff JM.
+    coupling. Trends Cogn Sci. 2010;14(11):506–515.                              Depressive symptoms may increase the risk of the future devel-
+17. de Hemptinne C, Ryapolova-Webb ES, Air EL, et al. Exaggerated                opment of freezing of gait in patients with Parkinson’s disease:
+    phase-amplitude coupling in the primary motor cortex in                      Findings from a 5-year prospective study. Parkinsonism Relat
+    Parkinson disease. Proc Natl Acad Sci U S A. 2013;110(12):4780–4785.         Disord. 2019;60:98–104.
+18. Lewis SJG, Shine JM. The next step: A common neural mechan-              37. Devergnas A, Caiola M, Pittard D, Wichmann T. Cortical phase-
+    ism for freezing of gait. Neuroscientist. 2016;22(1):72–82.                  amplitude coupling in a progressive model of Parkinsonism in
+19. Yin Z, Bai Y, Zou L, et al. Balance response to levodopa predicts bal-       nonhuman primates. Cereb Cortex. 2019;29(1):167–177.
+    ance improvement after bilateral subthalamic nucleus deep brain          38. Malekmohammadi M, AuYong N, Ricks-Oddie J, Bordelon Y,
+    stimulation in Parkinson’s disease. NPJ Parkinsons Dis. 2021;7(1):47.        Pouratian N. Pallidal deep brain stimulation modulates exces-
+20. Hamilton LS, Chang DL, Lee MB, Chang EF. Semi-automated                      sive cortical high β phase amplitude coupling in Parkinson dis-
+    anatomical labeling and inter-subject warping of high-density                ease. Brain Stimul. 2018;11(3):607–617.
+    intracranial recording electrodes in electrocorticography. Front         39. Yanagisawa T, Yamashita O, Hirata M, et al. Regulation of motor
+    Neuroinform. 2017;11:62.                                                     representation by phase-amplitude coupling in the sensori-
+21. Moore ST, Yungher DA, Morris TR, et al. Autonomous identiﬁca-                motor cortex. J Neurosci. 2012;32(44):15467–15475.
+    tion of freezing of gait in Parkinson’s disease from lower-body          40. Miller KJ, Hermes D, Honey CJ, et al. Human motor cortical activ-
+    segmental accelerometry. J Neuroeng Rehabil. 2013;10:19.                     ity is selectively phase-entrained on underlying rhythms. PLoS
+22. Moore ST, MacDougall HG, Ondo WG. Ambulatory monitoring of                   Comput Biol. 2012;8(9):e1002655.
+    freezing of gait in Parkinson’s disease. J Neurosci Methods. 2008;       41. Cole SR, van der Meij R, Peterson EJ, de Hemptinne C, Starr PA,
+    167(2):340–348.                                                              Voytek B. Nonsinusoidal beta oscillations reﬂect cortical
+23. Gramfort A, Luessi M, Larson E, et al. MEG and EEG data analysis             pathophysiology in Parkinson’s disease. J Neurosci. 2017;37(18):
+    with MNE-python. Front Neurosci. 2013;7:267.                                 4830–4840.
+24. Tort ABL, Kramer MA, Thorn C, et al. Dynamic cross-frequency             42. Sherman MA, Lee S, Law R, et al. Neural mechanisms of transi-
+    couplings of local ﬁeld potential oscillations in rat striatum               ent neocortical beta rhythms: Converging evidence from hu-
+    and hippocampus during performance of a T-maze task. Proc                    mans, computational modeling, monkeys, and mice. Proc Natl
+    Natl Acad Sci U S A. 2008;105(51):20517–20522.                               Acad Sci U S A. 2016;113(33):E4885–E4894.
+25. Bahramisharif A, van Gerven MAJ, Aarnoutse EJ, et al.                    43. Johnsen EL, Mogensen PH, Sunde NAa, Østergaard K. Improved
+    Propagating neocortical gamma bursts are coordinated by trav-                asymmetry of gait in Parkinson’s disease with DBS: Gait and
+    eling alpha waves. J Neurosci. 2013;33(48):18849–18854.                      postural instability in Parkinson’s disease treated with bilateral
+26. Combrisson E, Nest T, Brovelli A, et al. Tensorpac: An open-                 deep brain stimulation in the subthalamic nucleus: Improved
+    source Python toolbox for tensor-based phase-amplitude coup-                 Asymmetry of Gait in PD with STN-DBS. Mov Disord. 2009;
+    ling measurement in electrophysiological brain signals. PLoS                 24(4):588–595.
+    Comput Biol. 2020;16(10):e1008302.                                       44. McNeely ME, Earhart GM. Medication and subthalamic nucleus
+27. Jurkiewicz GJ, Hunt MJ, ⍰ygierewicz J. Addressing pitfalls in                deep brain stimulation similarly improve balance and complex
+    phase-amplitude coupling analysis with an extended modula-                   gait in Parkinson disease. Parkinsonism Relat Disord. 2013;19(1):
+    tion index toolbox. Neuroinformatics. 2021;19(2):319–345.                    86–91.
+28. Nieuwboer A, Giladi N. Characterizing freezing of gait in                45. Ferrarin M, Rizzone M, Lopiano L, Recalcati M, Pedotti A. Effects
+    Parkinson’s disease: models of an episodic phenomenon. Mov                   of subthalamic nucleus stimulation and L-dopa in trunk kine-
+    Disord. 2013;28(11):1509–1519.                                               matics of patients with Parkinson’s disease. Gait Posture. 2004;
+29. Plotnik M, Giladi N, Hausdorff JM. Is freezing of gait in                    19(2):164–171.
+    Parkinson’s disease a result of multiple gait impairments?               46. Bleuse S, Delval A, Blatt JL, Derambure P, Destée A, Defebvre L.
+    Implications for treatment. Parkinsons Dis. 2012;2012:459321.                Effect of bilateral subthalamic nucleus deep brain stimulation
+Cortical PAC explains the pathology of FOG                                                              BRAIN 2022: 145; 2407–2421          | 2421
+
+    on postural adjustments during arm movement. Clin                        57. Kondylis ED, Randazzo MJ, Alhourani A, et al. Movement-related
+    Neurophysiol. 2011;122(10):2032–2035.                                        dynamics of cortical oscillations in Parkinson’s disease and es-
+47. McGregor MM, Nelson AB. Circuit mechanisms of Parkinson’s                    sential tremor. Brain. 2016;139(Pt 8):2211–2223.
+    disease. Neuron. 2019;101(6):1042–1056.                                  58. Gong R, Wegscheider M, Mühlberg C, et al. Spatiotemporal fea-
+48. DeLong MR, Wichmann T. Circuits and circuit disorders of the                 tures of β-γ phase-amplitude coupling in Parkinson’s disease
+    basal ganglia. Arch Neurol. 2007;64(1):20–24.                                derived from scalp EEG. Brain. 2021;144(2):487–503.
+49. McIntyre CC, Grill WM, Sherman DL, Thakor NV. Cellular effects           59. Swann NC, de Hemptinne C, Aron AR, Ostrem JL, Knight RT,
+    of deep brain stimulation: model-based analysis of activation                Starr PA. Elevated synchrony in Parkinson disease detected
+    and inhibition. J Neurophysiol. 2004;91(4):1457–1469.                        with electroencephalography. Ann Neurol. 2015;78(5):742–
+50. Bucher D, Goaillard JM. Beyond faithful conduction: short-term               750.
+    dynamics, neuromodulation, and long-term regulation of spike             60. Hwang BY, Salimpour Y, Tsehay YK, Anderson WS, Mills KA.
+    propagation in the axon. Prog Neurobiol. 2011;94(4):307–346.                 Perspective: phase amplitude coupling-based phase-dependent
+51. Li Q, Qian ZM, Arbuthnott GW, Ke Y, Yung WH. Cortical effects of             neuromodulation in Parkinson’s disease. Front Neurosci. 2020;14:
+    deep brain stimulation: implications for pathogenesis and treat-             558967.
+    ment of Parkinson disease. JAMA Neurol. 2014;71(1):100–103.              61. Little S, Brown P. Debugging adaptive deep brain stimulation for
+52. Chen W, de Hemptinne C, Miller AM, et al. Prefrontal-subthalamic             Parkinson’s disease. Mov Disord. 2020;35(4):555–561.
+    hyperdirect pathway modulates movement inhibition in humans.             62. Little S, Pogosyan A, Neal S, et al. Adaptive deep brain stimulation
+    Neuron. 2020;106(4):579–588.e3.                                              in advanced Parkinson disease. Ann Neurol. 2013;74(3):449–457.
+53. Brittain JS, Brown P. Oscillations and the basal ganglia: motor          63. Arlotti M, Marceglia S, Foffani G, et al. Eight-hours adaptive deep
+    control and beyond. Neuroimage. 2014;85(Pt 2):637–647.                       brain stimulation in patients with Parkinson disease. Neurology.
+54. Yin Z, Zhu G, Zhao B, et al. Local ﬁeld potentials in Parkinson’s dis-       2018;90(11):e971–e976.
+    ease: A frequency-based review. Neurobiol Dis. 2021;155:105372.          64. Gilron R, Little S, Perrone R, et al. Long-term wireless streaming
+55. Frank MJ, Samanta J, Moustafa AA, Sherman SJ. Hold your                      of neural recordings for circuit discovery and adaptive stimula-
+    horses: impulsivity, deep brain stimulation, and medication in               tion in individuals with Parkinson’s disease. Nat Biotechnol. 2021;
+    parkinsonism. Science. 2007;318(5854):1309–1312.                             39(9):1078–1085.
+56. Salimpour Y, Mills KA, Hwang BY, Anderson WS. Phase- targeted            65. Maidan I, Plotnik M, Mirelman A, Weiss A, Giladi N, Hausdorff
+    stimulation modulates phase-amplitude coupling in the motor                  JM. Heart rate changes during freezing of gait in patients with
+    cortex of the human brain. Brain Stimul. 2022;15(1):152–163.                 Parkinson’s disease. Mov Disord. 2010;25(14):2346–2354.
+

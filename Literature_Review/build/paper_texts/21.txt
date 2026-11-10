@@ -1,0 +1,1507 @@
+PLOS COMPUTATIONAL BIOLOGY
+
+
+                                                    RESEARCH ARTICLE
+
+                                                    Dopamine depletion leads to pathological
+                                                    synchronization of distinct basal ganglia loops
+                                                    in the beta band
+                                                    Andrea Ortone ID1,2,3, Alberto Arturo Vergani2,3, Mahboubeh Ahmadipour ID2,3,
+                                                    Riccardo Mannella1, Alberto Mazzoni ID2,3*
+                                                    1 Dipartimento di Fisica, Università di Pisa, Pisa, Italy, 2 The BioRobotics Institute, Scuola Superiore
+                                                    Sant’Anna, Pontedera, Italy, 3 Department of Excellence in Robotics and AI, Scuola Superiore Sant’Anna,
+                                                    Pisa, Italy
+a1111111111
+a1111111111                                         * alberto.mazzoni@santannapisa.it
+a1111111111
+a1111111111
+a1111111111
+                                                    Abstract
+                                                    Motor symptoms of Parkinson’s Disease (PD) are associated with dopamine deficits and
+                                                    pathological oscillation of basal ganglia (BG) neurons in the β range ([12-30] Hz). However,
+   OPEN ACCESS                                      how dopamine depletion affects the oscillation dynamics of BG nuclei is still unclear. With a
+Citation: Ortone A, Vergani AA, Ahmadipour M,       spiking neurons model, we here capture the features of BG nuclei interactions leading to
+Mannella R, Mazzoni A (2023) Dopamine depletion     oscillations in dopamine-depleted condition. We highlight that both the loop between sub-
+leads to pathological synchronization of distinct   thalamic nucleus (STN) and Globus Pallidus pars externa (GPe) and the loop between stria-
+basal ganglia loops in the beta band. PLoS Comput
+                                                    tal fast spiking and medium spiny neurons and GPe display resonances in the β range, and
+Biol 19(4): e1010645. https://doi.org/10.1371/
+journal.pcbi.1010645                                synchronize to a common β frequency through interaction. Crucially, the synchronization
+                                                    depends on dopamine depletion: the two loops are largely independent for high levels of
+Editor: Jonathan David Touboul, Brandeis
+University, UNITED STATES                           dopamine, but progressively synchronize as dopamine is depleted due to the increased
+                                                    strength of the striatal loop. The model is validated against recent experimental reports on
+Received: October 7, 2022
+                                                    the role of cortical inputs, STN and GPe activity in the generation of β oscillations. Our
+Accepted: April 12, 2023
+                                                    results highlight the role of the interplay between the GPe-STN and the GPe-striatum loop in
+Published: April 27, 2023                           generating sustained β oscillations in PD subjects, and explain how this interplay depends
+Copyright: © 2023 Ortone et al. This is an open     on the level of dopamine. This paves the way to the design of therapies specifically address-
+access article distributed under the terms of the   ing the onset of pathological β oscillations.
+Creative Commons Attribution License, which
+permits unrestricted use, distribution, and
+reproduction in any medium, provided the original
+author and source are credited.
+
+Data Availability Statement: The implemented          Author summary
+code is available on GitLab (https://gitlab.com/
+                                                      PD is associated with the death of neurons generating a particular neurotransmitter: the
+andrea.ortone/basal_ganglia_model) and the
+documentation is published on readthedocs.org         dopamine. Motor symptoms of PD, on the other hand, are known to be due to dysfunc-
+(https://basal-ganglia-model.readthedocs.io/en/       tions in a particular subcortical area of the brain: the BG network. In particular, the BG
+latest/?badge=latest).                                network develops pathological oscillations in the β ([12–30] Hz) frequency range. What is
+Funding: Alberto Arturo Vergani was supported by      unclear is the mechanism through which dopamine depletion leads to these oscillations.
+the PREVIEW project (PRedicting the EVolution of      In this work we developed a BG network model and we found that the actual reason for
+SubjectIvE Cognitive Decline to Alzheimer’s           these abnormal oscillations is the synchronization of two loops within the network that
+Disease With machine learning. PREVIEW - CUP.         are individually oscillating in the β range. For high levels of dopamine the two loops are
+D18D20001300002). Alberto Mazzoni was
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                  1 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                           Onset of pathological beta oscillations in basal ganglia
+
+
+
+supported by a Clinical Grant of the Marlene and
+Paolo Fresco Foundation for Parkinson’s Disease.     decoupled and the oscillation power is low. Conversely. when dopamine is depleted (as in
+The funders had no role in study design, data        PD) the two loops synchronize and originate the pathological oscillations associated with
+collection and analysis, decision to publish, or
+                                                     motor symptoms.
+preparation of the manuscript.
+
+Competing interests: The authors have declared
+that no competing interests exist.
+
+                                                   Introduction
+                                                   The basic architecture of the BG network (see Fig 1) consists of the striatum (STR), the globus
+                                                   pallidus, divided into pars interna (GPi) and pars esterna (GPe), the substantia nigra (reticulata
+                                                   SNr and compacta SNc) and the STN [1, 2]. In the STR there are several interacting cell types
+                                                   such as dopamine-excited D1 neurons, dopamine-inhibited D2 neurons and Fast Spiking
+                                                   Neurons (FSN).
+                                                       PD is a common neurodegenerative disease affecting about 0.3% of the world’s population
+                                                   [3]. Etiologically, PD follows the progressive death of dopaminergic neurons in the SNc. The
+                                                   consequent condition of dopamine depletion leads to an alteration of the balance between D1
+                                                   excitation and D2 inhibition [4] and this reverberates over the whole network. The main
+                                                   motor symptoms of PD (akinesia [5], bradykinesia [6], tremor [7], freezing of gait [8, 9]) corre-
+                                                   late with this dopamine deficiency. Following the condition of dopamine depletion and the
+                                                   consequent alteration of the striatal activity (higher spiking rate in D2 and lower in D1 [10,
+                                                   11]), pathological β oscillations [12 − 30] Hz emerge in the STR [12–15], in GPi and GPe [16,
+                                                   17], and in the STN [18, 19]. Experimental recordings [20–22] highlighted that such pathologi-
+                                                   cal activity is not characterized by constant intensity, but consists of phasic bursts. The pres-
+                                                   ence of β oscillations in correspondence with dopamine deficiency is common in the human
+                                                   species, but has been observed also in monkeys [23] and rats [24, 25]. Of note, in mice, dopa-
+                                                   mine depletion is associated instead with δ (0.5–4 Hz) oscillations [26].
+                                                       Despite the wealth of studies in the subject, the origin of these β activities is still debated.
+                                                       Some hypotheses argue that the oscillations depend on the interaction between GPe and
+                                                   STN [27]. In support of this hypothesis, it is known that the architecture of the STN-GPe cir-
+                                                   cuit is prone to generate oscillatory behaviors [28]: STN is a glutamatergic nucleus projecting
+                                                   substantially to GPe and GPe is a gabaergic nucleus projecting feedback to STN [29]. More-
+                                                   over, in PD, these nuclei present prominent and coherent oscillations in the firing rates [24,
+                                                   28] and are effective targets of Deep Brain Stimulation (DBS) therapy [30–32]. However,
+                                                   whether β band activity can be produced in the STN–GPe circuit is still debated [33]. Several
+                                                   computational models investigated the STN-GPe β band loop: first, Gillies at al [34]
+                                                   highlighted that β oscillations could emerge from the interaction between GPe and STN
+                                                   through neural mass models; later, Kumar et al [35] showed that pathological β activity could
+                                                   emerge from the same loop as a consequence of increased inhibitory input from the D2 popu-
+                                                   lation through a spiking neurons model. Further explorations of this hypothesis can also be
+                                                   found in [36–39].
+                                                       Alternative explanations for the experimental observations are that the cortex [40, 41] or
+                                                   the striatum [42] might be a source of β oscillations. In accordance with the former hypothesis,
+                                                   Van Albada et al. [43] suggested a cortico-thalamic loop source of β oscillations, which spread
+                                                   into the BG. Conversely, the latter hypotheses is supported by evidences of altered striatal
+                                                   interaction associated with β oscillations following dopamine depletion [44].
+                                                       The fourth hypothesis is the one of a prominent role of the interaction between GPe and
+                                                   STR: experimental recordings in rats [45–49] and mice [50–53] suggest that the GPe nucleus
+                                                   and the pallido-striatal pathway could play a major role. In vivo observations of pauses in FSN
+                                                   support this hypothesis as transient drop in the activity might arise from interactions with GPe
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                               2 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                                   Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                               Fig 1. Architecture of the adopted Complete Model of the BG. FSN, D1 and D2: striatal Fast Spike Neurons, and medium spiny
+                               neurons with D1 and D2 dopamine receptors; GPe-TA and GPe-TI: globus pallidus externa type A and type I; STN: subthalamic
+                               nucleus; GPi: globus pallidus interna; SNr: substantia nigra pars reticulata; ext: external poissonian input. By convention red/green
+                               arrows are inhibitory/excitatory projections. Dashed elements have not been included in our model.
+                               https://doi.org/10.1371/journal.pcbi.1010645.g001
+
+
+
+                                                [54] (see also [55, 56] for an extended review). From a computational point of view, a model of
+                                                the GPe-striatal circuit has been developed by Corbit et al [57], who investigated the onset of
+                                                pathological β oscillations in a subnetwork consisting of the closed loop set up by the inhibi-
+                                                tory synapses FSN ! D2-MSN ! GPe ! FSN.
+                                                   A recent work by Mallet and colleagues [49] provides, through optogenetic perturbations, a
+                                                convenient summary of the role of cortical inputs, GPe and STN activity in modulating abnor-
+                                                mal β oscillations in PD. The authors show that opto-inhibition of cortical inputs or STN did
+                                                not suppress such oscillations, that were instead suppressed by GPe inhibition: to date, no
+                                                computational model is able to comprehensively explain the observed dynamics.
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                           3 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                              Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                                To reach this goal, we propose a comprehensive model including all the loops, starting
+                                             from the network developed by Lindahl and Kotaleski [58] which includes all major nuclei
+                                             and connections of the BG. In this context, we identify the major sources of β activity, investi-
+                                             gate the role of their interaction and highlight the effects of dopamine depletion.
+
+
+                                             Materials and methods
+                                             1.1 Basal ganglia network model
+                                             Our model of the BG (Fig 1) includes:
+                                             • three striatal populations: D1-type dopamine receptor Medium Spiny Neurons (D1-MSN);
+                                               D2-type dopamine receptor Medium Spiny Neurons (D2-MSN) and a population of Fast
+                                               Spiking (inter-)Neurons (FSN);
+                                             • the Globus Pallidus external part (GPe) divided into two populations that will be labelled as
+                                               GPe-TA (characterized by a lower discharge rate and by a negligible input from striatal pop-
+                                               ulations) and GPe-TI (with a higher activity and receiving input from D2);
+                                             • the subthalamic nucleus (STN).
+                                                 Each population presents specific size (see Table 1) and neuron model (see Section 1.2).
+                                             Population sizes were adapted from the work of Lindahl and Kotaleski [58], based on rodents
+                                             data [46, 59–61]: the ranking of populations among nuclei is the same, but we rescaled all of
+                                             them for computational time reasons. Single neurons within connected populations are ran-
+                                             domly associated according to specific connection probabilities (see Section 1.2). Each neuron
+                                             receives inputs from within the network and from other brain regions (mainly the cortex)
+                                             which have not been explicitly included in our model. These external inputs have been mod-
+                                             eled as independent poissonian trains of pulses. The mean rates νext of these signals have been
+                                             adjusted for each population in order to ensure realistic population firing rates: FSN [1020] Hz
+                                             ([55, 62]), D1 and D2 (MSN) [0.5–2.5] Hz ([63]), GPe-TI [40–60] Hz ([45]), GPe-TA [5–15]
+                                             Hz ([45]) and STN [12–20] Hz ([24]).
+                                                 Note that the GPi and the SNr nuclei have not been included in the simulated model since
+                                             they do not present direct feedback to the other populations in the BG and hence cannot con-
+                                             tribute to the generation of oscillations.
+
+
+                                             1.2 Neuron models
+                                             All neurons in the adopted network are adaptive, conductance based, point neurons [64–67].
+                                             The STN, GPe-TI and GPe-TA populations are modelled as adaptive exponential neurons
+                                             (aeif_cond_exp model in the code implementation) [68] and the dynamics of their
+
+                                             Table 1. Reference size and neuron model of each population. Note that sizes have been modulated in a subset of the
+                                             analysis through the n parameter.
+                                             SubNetwork                                           N                                  model
+                                             D1 (MSN)                                            6000                          aqif_cond_exp
+                                             D2 (MSN)                                            6000                          aqif_cond_exp
+                                             FSN                                                 420                          aqif2_cond_exp
+                                             GPe-TA                                              264                           aeif_cond_exp
+                                             GPe-TI                                              780                           aeif_cond_exp
+                                             STN                                                 408                           aeif_cond_exp
+                                             https://doi.org/10.1371/journal.pcbi.1010645.t001
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                  4 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                               Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                             membrane potential is governed by:
+                                                                                                                                                     �                 �
+                                                    dV                                                                                                     V     Vth
+                                                 Cm    ¼       gL ðV   EL Þ     gex ðV     Eex Þ    gin ðV        Ein Þ þ gL DT exp                                        w þ Ie
+                                                    dt                                                                                                         DT
+
+                                             The striatal populations are modelled as adaptive quadratic neurons (aqif_cond_exp or
+                                             aqif2_cond_exp model) [69] and their membrane potential evolves according to:
+                                                               dV
+                                                          Cm      ¼    gex ðV     Eex Þ    gin ðV     Ein Þ þ kðV               EL ÞðV               Vth Þ       w þ Ie
+                                                               dt
+                                             In both cases, the membrane potential is reset to Vreset after each postsynaptic spike and excit-
+                                             atory and inhibitory conductances present exponential decays:
+                                                                     8                            X
+                                                                     >      dgex
+                                                                     >
+                                                                     > t         ¼  g    þ t               gi dðt ti tr Þ
+                                                                     >
+                                                                     <   ex
+                                                                             dt       ex    ex
+                                                                                               ex: input t             i
+
+                                                                         >
+                                                                         >    dgin                        X
+                                                                         >                  gin þ tin                  gi dðt     ti         tr Þ
+                                                                         : tin dt ¼
+                                                                         >
+                                                                                                        in: input ti
+
+
+                                             The evolution of the variable w, accounting for neural adaptation phenomena [70, 71] is gov-
+                                             erned by:
+                                                                            dw                                              X
+                                                                       tw      ¼     w þ aðV         EL Þ þ b tw                       dðt          ti Þ
+                                                                            dt                                             spikes ti
+
+
+                                             in the aeif_cond_exp and aqif_cond_exp model, while by:
+                                                                                         8
+                                                           dw         X                  < w þ aðV Vb Þ3 if V < Vb
+                                                        tw    ¼ b tw           dðt ti Þþ
+                                                           dt        spikes ti           :
+                                                                                           w             otherwise
+
+                                             in the case of the aqif2_cond_exp model.
+                                                 To introduce variations in each neural population, the synaptic weight of the external pois-
+                                             sonian input is not equal in all neurons. Rather, it is assumed to be uniformly distributed
+                                             around its central value with an amplitude equal to the dev-ext-weight parameter. The
+                                             adopted values of the parameters of each neuronal population are summarized in Table 2. The
+                                             connectivity properties (delays, connection probabilities and synaptic weights) are reported in
+                                             Table 3. These values have been adapted from the work of Lindahl and Kotaleski [45, 58, 72],
+                                             here simplified by neglecting synaptic plasticity, spatial restrictions on the connected popula-
+                                             tions and dopamine effects different from the ones described in Section 1.5.
+                                                 Hereinafter, we will refer to the described network of the BG as the Complete Model. Note
+                                             that the results of the model are not critically dependent on the exact values of the network
+                                             parameters (see Section 6 in S1 Text).
+
+
+
+                                             1.3 Selection of relevant β oscillators
+                                             In order to identify the more relevant structures generating β oscillations, the following strat-
+                                             egy has been pursued. Starting from the Complete Model (Fig 1), the relevance of each connec-
+                                             tion in generating oscillations in the β regime has been quantified referring to the decrease in
+                                             the mean intensity of β oscillations following its elimination. In particular, for each connection
+                                             Source ! Target (S ! T) in the adopted model, a simulation has been performed with the fol-
+                                             lowing properties:
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                                        5 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                                     Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                                                                                                      nS
+Table 2. Adopted values of the parameters of each neuronal population. (*): for the FSN population the units of a is mV 2.
+
+
+Parameter                           Unit                    D1                    D2              FSN                GPTI              GPTA                STN
+Cm                                  pF                      15.2               15.2               80.0                40.0              60.0               60.0
+EL                                  mV                     -78.2               -80.0              -80.0               -55.1             -55.1              -80.2
+Eex                                 mV                      0.0                   0.0              0.0                 0.0               0.0                0.0
+Ein                                 mV                      -74                -74                 -74                 -65               -65                -84
+τex                                 ms                      12.0               12.0               12.0                10.0              10.0                4.0
+τin                                 ms                      10.0               10.0               10.0                 5.5               5.5                8.0
+Vth                                 mV                     -29.7               -29.7              -50.0               -54.7             -54.7              -64.0
+Ie                                  pA                      0.0                   0.0              0.0                12.0               1.0                5.0
+tref                                ms                      0.0                   0.0              0.0                 0.0               0.0                0.0
+Vreset                              mV                      -60                -60                 -60                 -60               -60                -70
+a                                   nS                      -20                -20               0.025*                2.5               2.5                0.0
+b                                   pA                      67.0               91.0                0.0                70.0              105.0              0.05
+τw                                  ms                     100.0              100.0                5.0                20.0              20.0               333.0
+Vpeak                               mV                      40.0               40.0               25.0                15.0              15.0               15.0
+ΔT                                  mV                                                                                 1.7              2.55               16.2
+gL                                  nS                                                                                 1.0               1.0               10.0
+                                    nS
+k                                   mV
+                                                            1.0                   1.0              1.0
+Vb                                  mV                                                             -55
+νext                                kHz                     1.12              1.083               0.944               1.53              0.17                0.5
+dev-ext-weight                      nS                      0.05               0.05               0.05                0.05              0.05               0.05
+https://doi.org/10.1371/journal.pcbi.1010645.t002
+
+
+
+                                                    • an auxiliary subnetwork S* has been introduced with the same neuron model and size of S
+                                                      but with no input sources other than the external one;
+                                                    • the parameter Ie of the S* subnetwork has been adjusted so that the mean spiking-rate of S*
+                                                      neurons was close to the one of the S population;
+                                                    • the probability of connection between S and T neurons is set to 0;
+                                                    • the S ! T connections are replaced by S* ! T connections with the same probability and
+                                                      synaptic weight.
+                                                       The relevance of the S ! T connection has been thereby quantified by means of the ratio R
+                                                    (S ! T) between the mean PSD (see below Section 1.7 for details) with or without the (S ! T)
+                                                    connection:
+
+                                                                           P
+                                                                              p    Mean b PSD of p in the simulation with the S∗ ! T conn:
+                                                          RðS ! TÞ ¼ P                                                                                               ð1Þ
+                                                                               p   Mean b PSD of p in the simulation with the S ! T conn:
+
+
+
+                                                    where p indicates the different neuronal populations. The connections whose ratio was lower
+                                                    were considered as more relevant in the generation of β oscillations. The major oscillators in
+                                                    the β regime have been identified on the basis of the selected connections. Self-inhibition con-
+                                                    nections have not been considered in this analysis since they generate oscillations at much
+                                                    higher frequencies [73].
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                           6 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                                   Onset of pathological beta oscillations in basal ganglia
+
+
+
+Table 3. Connectivity properties of the adopted model of the BG. Type I represents inhibitory connections while type E represents excitatory connections.
+Source                   Target                         Probability                  Delay [ms]                   Type                   synaptic weight [nS]
+D1                        D1                               0.0607                         1.7                       I                            0.12
+                          D2                               0.0140                         1.7                       I                            0.30
+D2                        D1                               0.0653                         1.7                       I                            0.36
+                          D2                               0.0840                         1.7                       I                            0.20
+                          GPTI                             0.0833                         7.                        I                            1.28
+FSN                       D1                               0.0381                         1.7                       I                            6.60
+                          FSN                              0.0238                         1.0                       I                            0.50
+                          D2                               0.0262                         1.7                       I                            4.80
+GPTI                      GPTI                             0.0321                         1.0                       I                            1.20
+                          GPTA                             0.0321                         1.0                       I                            0.35
+                          FSN                              0.0128                         7.0                       I                            1.60
+                          STN                              0.0385                         1.0                       I                            0.08
+GPTA                      D1                               0.0379                         7.0                       I                            0.35
+                          D2                               0.0379                         7.0                       I                            0.61
+                          FSN                              0.0379                         7.0                       I                            1.85
+                          GPTA                             0.0189                         1.0                       I                            0.35
+                          GPTI                             0.0189                         1.0                       I                            1.20
+STN                       GPTA                             0.0735                         2.0                       E                            0.13
+                          GPTI                             0.0735                         2.0                       E                            0.42
+ext                       D1                               1.0                            0.0                       E                            0.45
+                          D2                               1.0                            0.0                       E                            0.45
+                          FSN                              1.0                            0.0                       E                            0.50
+                          GPTI                             1.0                            0.0                       E                            0.25
+                          GPTA                             1.0                            0.0                       E                            0.15
+                          STN                              1.0                            0.0                       E                            0.25
+https://doi.org/10.1371/journal.pcbi.1010645.t003
+
+
+
+                                                    1.4 Simplified Model of the Basal Ganglia and role of the coupling
+                                                    parameter ε
+                                                    As from our analysis emerged that two oscillators are mainly responsible for the onset of the
+                                                    pathological activity, we developed an ad hoc network to analyze the properties and the conse-
+                                                    quences of their interaction (see Section 2.3 and figures therein).
+                                                       The GPe-TI nucleus is present in both oscillators, hence its neurons have been equally
+                                                    divided in two populations (GPTI-A and GPTI-B) belonging to the two different loops: neu-
+                                                    rons in GPTI-A are reciprocally connected to STN, while those in GPTI-B receive inputs from
+                                                    D2 and send outputs to FSN. These connections present connection probabilities that are
+                                                    equal to the ones in the Complete Model (see Table 3).
+                                                       In contrast, in order to modulate the coupling between the two oscillators, inter-loop con-
+                                                    nections present connection probabilities which are modulated by a coupling parameter ε.
+                                                    Particularly, for each pair (S,T), the connection probability of each S neuron with each T neu-
+                                                    ron is set equal to:
+
+                                                                                                pðε; S ! TÞ ¼ εp1;S!T                                             ð2Þ
+
+                                                    where p1,S!T is the probability characterizing the corresponding connection in the Complete
+                                                    Model (Table 3).
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                        7 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                        Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                                 For every connection, synaptic weights are the same as in the Complete Model (and are not
+                                             affected by ε). As a result, for ε = 0 the two loops are completely independent, while for ε = 1
+                                             the network presents realistic connectivity properties. Further, in order to ensure that the over-
+                                             all inputs to each nucleus remain the same when ε is changed, the auxiliary populations
+                                             GPTI*, D2* and STN* have been introduced. Neurons in these nuclei receive constant and
+                                             independent external input such that their mean spiking rates are equal to the mean spiking
+                                             rates of the corresponding non-auxiliary populations. While the synaptic weights of the auxil-
+                                             iary connections are the same as the corresponding real ones in the original network, the con-
+                                             nection probabilities S* ! T are set equal to:
+                                                                                      pðεÞ ¼ ð1     εÞp1;S!T
+
+                                             Hence, for ε = 1 the auxiliary nuclei do not play any role; otherwise, they become external
+                                             drives meant to compensate for the input that is not received from the real presynaptic popula-
+                                             tions. The neuron models and the parameters of the auxiliary populations are the same of the
+                                             corresponding real populations (Table 2), except for νext and the size N, which is halved. As a
+                                             consequence, the connection probabilities D2*!GPTI-A and STN*!GPTI-B are doubled.
+                                                Since most nuclei in this simplified network receive less inhibition in comparison to the
+                                             Complete Model, some adaptations in the external current Ie and the external poissonian
+                                             input νext have been introduced in order to keep the mean activity of the populations in the
+                                             correct regime. Further, since all the non-β oscillators have been eliminated, β activity with the
+                                             original connection weights is dominant for all ε; to study the process of synchronization in
+                                             these conditions, it has been necessary to modulate the intensities of the connections constitut-
+                                             ing the two loops. The complete list of the introduced adaptations are listed in Table A in S1
+                                             Text.
+                                                In the following, and in contrast to the original Complete Model (see Section 1.1), the net-
+                                             work obtained after the listed assumptions and simplifications will be labelled Simplified
+                                             Model.
+
+                                             1.5 Modeling of the condition of Dopamine depletion
+                                             We aimed at modeling the effects of dopamine depletion on the firing rate of D1 and D2 popu-
+                                             lations [10, 11]. To achieve an increase of the D2 population and a complementary decrease of
+                                             the D1 population it was sufficient to modulate the intensity of the external input rate towards
+                                             the D2 population (and the corresponding auxiliary population D2*) according to:
+                                                                                     next ðDd Þ ¼ Dd next;1                                           ð3Þ
+
+                                             where νext,1 is the reference value of the input rate (see Table 2) and Dd is the parameter regu-
+                                             lating the severity of the condition of dopamine depletion (the higher is Dd, the more severe is
+                                             the condition). Throughout the analysis, Dd varies in an interval such that the activities of D1
+                                             and D2 range in the [* 0.5 Hz− * 2.5 Hz] interval (see Fig 2). The effects of dopamine deple-
+                                             tion will be studied in both the Complete and Simplified Model.
+                                                 With this assumption, we neglect the effects of dopamine depletion on the connectivity
+                                             properties of the network [57, 74–76]: the consequences of including these latter alterations
+                                             are addressed in Section 5 in S1 Text.
+
+                                             1.6 Modeling of optogenetic-driven activity modulations
+                                             To reproduce the conditions described in [49] we needed to introduce in our model an analo-
+                                             gous of the activity modulations induced by the experimenters through optogenetic stimula-
+                                             tion in a Parkinsonian mouse model. In particular, the authors focused on i) opto-inhibition
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                            8 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                                   Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                  Fig 2. D1 and D2 firing rates as a function of dopamine depletion. Alterations in the mean firing rates of D1 and D2 neurons as a
+                                  result of the adopted modelization of dopamine depletion for different values of population size n (see Section 1.8).
+                                  https://doi.org/10.1371/journal.pcbi.1010645.g002
+
+
+
+                                               of motor cortex input, ii) both opto-inhibition and opto-excitation of STN activity, iii) opto-
+                                               inhibition of GPe activity. Coherently, we analyzed the behavior of our model in pathological
+                                               conditions (Dd = 1.03) in response to the following activity perturbations.
+                                                  First, we modeled the motor cortex opto-inhibition (point i) as a reduction in the mean of
+                                               the poissonian external input to the STN and a portion of the striatal populations. Since the
+                                               dendritic domain of individual subthalamic neurons covers large parts of the whole nucleus
+                                               [77], we modulated the external input of the whole STN according to:
+
+                                                                                               n0ext;STN ¼ 0:75 � next;STN
+
+                                               Since the striatum receives inputs from all major cortical areas and these inputs are topograph-
+                                               ically arranged [78, 79], we partitioned each striatal population into a 20% of the neurons
+                                               mainly innervated by the motor cortex (D1m, D2m, FSNm) and the remaining 80% of the neu-
+                                               rons mainly innervated by other cortical areas (D1nm, D2nm, FSNnm). Hence, we modulated
+                                               their external input rate according to:
+
+                                                                         n0ext;D1m     ¼ 0:25 � next;D1                n0ext;D1nm      ¼ next;D1
+                                                                         n0ext;D2m     ¼ 0:25 � next;D2                n0ext;D2nm      ¼ next;D2
+                                                                            0                                              0
+                                                                        n   ext;FSNm   ¼ 0:25 � next;FSN               n   ext;FSNnm   ¼ next;FSN
+
+                                                 Then, we modeled the STN opto-inhibition and opto-excitation (point ii) modulating the
+                                               mean of the poissonian external input according to:
+
+                                                                                                n0ext;STN ¼ k � next;STN
+
+                                               with κ 2 [0.65, 1.7] so that the activity of STN varies in the range [* 8, *30] Hz, coherently
+                                               with the conditions considered in [49].
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                       9 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                            Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                                Finally, we modeled the GPe opto-inhibition (point iii) modulating the external current Ie
+                                             to both GPe-TA and GPe-TI populations according to:
+                                                                                 0
+                                                                                Ie;GPE TA      ¼ Ie;GPE TA          480 pA
+                                                                                  0
+                                                                                 Ie;GPE TI     ¼ Ie;GPE TI         120 pA
+
+                                             so that the activities of the two pallidal populations were coherent with those analysed in [49].
+
+                                             1.7 Spectral analysis
+                                             We measured the activity of each population as the time series of its firing rate computed over
+                                             time bins of one millisecond. For each nucleus we performed a constant detrend and com-
+                                             puted the Power Spectral Density (PSD) of the activity. In order to reduce the effects of noise,
+                                             the Welch method has been applied (we employed the signal.spectrogram function
+                                             from scipy with N_parseg = 2000, N_overlap = 1000 and Tukey window: alpha =
+                                             0.25); further, for each case studied, 4 simulations have been performed in order to estimate
+                                             the standard deviation of each computed quantity.
+                                                Starting from the PSD of the activity of each population i within the network, we defined:
+                                             • its mean frequency of oscillation:
+                                                                                                             Z M
+                                                                                                 1
+                                                                           Mean fi ¼ R M                           f Pi ðf Þ df                           ð4Þ
+                                                                                           m
+                                                                                               Pi ðf Þ df     m
+
+
+
+
+                                             • its mean value in the β regime:
+                                                                                                             Z M
+                                                                                                     1
+                                                                             Mean PSDi ¼                            Pi ðf Þ df                            ð5Þ
+                                                                                                 M       m    m
+
+
+
+
+                                             where Pi(f) is the PSD of the nucleus activity. The values of m and M have been fixed to 8 and
+                                             24 Hz respectively, within the β regime and coherently with the natural frequencies of the two
+                                             oscillators.
+                                                The Mean PSDi is a measure of the intensity of β oscillations within each considered nuclei.
+                                             We highlight that this measure is biased: in the presence of constant activity (no β oscillations),
+                                             fluctuations around the mean are present and the related spectrum is affected by noise. In
+                                             order to eliminate this bias we considered the corrected quantity:
+                                                                               PSDyi ¼ Mean PSDi                  Qðn0;i ; Ni Þ
+
+                                             where Q(ν0,i, Ni) is the Mean PSD of the activity of a population of Ni neurons with constant
+                                             mean activity ν(t) = ν0,i. The value of Q(ν0,i, Ni) has been estimated computing the PSD of a fic-
+                                             titious activity in which the number fnij gj of spiking neurons in each bin is given by indepen-
+                                             dent extractions from a binomial distribution:
+                                                                                                                !
+                                                                                                             Ni nij            N ni
+                                                                   pðnj ; n0;i ; Ni Þ ¼ Bðnj ; n0;i ; Ni Þ ¼
+                                                                       i                   i
+                                                                                                                 n0;i ð1 n0;i Þ i j
+                                                                                                             nj
+                                                                                                              i
+
+
+
+                                                Throughout this paper, we highlight the spectral properties of the system of the STN and
+                                             STR oscillators (the two loops mainly responsible for β activity) by the analysis of the spectral
+                                             properties of the STN and D2 populations respectively. The choice of these nuclei is due to the
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                              10 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                        Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                             fact that they set up one (and only one) of the two loops, hence determining a benefit in the
+                                             interpretability of the results.
+
+                                             1.8 Analysis of the limit of large populations
+                                             In order to verify whether the properties that we obtained persist in the limit of large popula-
+                                             tions (the realistic size of each population is approximately 103 times the adopted sizes [59,
+                                             80]) we repeated all the analysis with each population size multiplied by a factor n 2 [1, 2, 4, 8]:
+                                                                                           Np ðnÞ ¼ n Np
+
+                                             where p indicates the different neural populations and Np is the size of population p listed in
+                                             Table 1. In order to have comparable results for different values of n, the PSDs have been com-
+                                             puted over Np(1) neurons also in the case of n 6¼ 1. Further, in case of n 6¼ 1, all connection
+                                             probabilities were scaled in such a way that the mean number of presynaptic neurons per tar-
+                                             get neuron was constant for each connection.
+
+                                             1.9 Numerical methods
+                                             The code for the simulations has been developed in C++. In combination with this code, a
+                                             python3 module has been implemented in order to import and preliminarily analyse the
+                                             results of the simulations. The implemented code is available on GitLab (https://gitlab.com/
+                                             andrea.ortone/basal_ganglia_model) and the documentation is published on readthedocs.org
+                                             (https://basal-ganglia-model.readthedocs.io/en/latest). The numerical integration of the equa-
+                                             tions describing the evolution of each neuron in the simulated network are performed with a
+                                             fixed time step h = 0.1 ms and applying the 4th order Runge-Kutta procedure [81]. In order to
+                                             generate random numbers the PCG library [82] has been employed. The duration of each sim-
+                                             ulation has been fixed to 10 000 ms plus a warm-up interval of 500 ms which has been elimi-
+                                             nated from the analysis.
+
+                                             Results
+                                             With the aim of untangling the dynamics leading to the onset of pathological β oscillations, we
+                                             first identified the main structures generating β resonances (Section 2.1). Following we studied
+                                             the effects of dopamine depletion on the two independent β oscillators (Section 2.2). Then, we
+                                             focused on the consequences of their interplay (Section 2.3) and investigated the role of dopa-
+                                             mine depletion in shaping the spectral dynamics of the system (Section 2.4). Finally, in Section
+                                             2.5 we validated our model against recent experimental reports on the role of cortical inputs,
+                                             STN and GPe activity in the generation of pathological β oscillations.
+
+                                             2.1 Identification and characterization of β oscillators
+                                             In order to identify the connections mostly contributing to the generation of β oscillations, we
+                                             considered the Complete Model of the BG (see Fig 1 and Methods Section 1.1) and computed
+                                             the residual β power R(c) associated with the removal of each connection c from the network
+                                             (see 1.3 for details). According to the definition in Eq (1), the more relevant connections are
+                                             expected to be associated with lower values of the ratio R, hence we fixed a threshold R�¼1
+                                                                                                                                           3
+                                             and focused on the connections with R < R.   � As a result, five connections were identified as
+                                             main responsible for the onset of β activity (Fig 3A): FSN!D2, D2!GPe-TI, GPE-TI!FSN,
+                                             STN!GPe-TI and GPe-TI!STN. These connections set up two distinct oscillators, one
+                                             involving FSN, D2 and GPe-TI nuclei (STR loop, Fig 3B) and the other involving STN and
+                                             GPe-TI nuclei (STN loop, Fig 3C). The spectral analyses of the activity of the two oscillators
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                          11 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                               Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                             Fig 3. Identification of most relevant oscillators and investigation of their spectral properties. (A) Rationale about
+                                             the selection of salient nodes in the BG network for a single simulation run. The nodes, taken together, define the STR
+                                             and the STN loops (in blue and red shadow respectively). (B) STR loop with FSN, GPe-TI and D2 nuclei, connected
+                                             with feedforward inhibitory projections (in red) and with their natural mode. (C) STN loop with STN and GPe-TI
+                                             nuclei, connected with excitatory feedforward (in green) and inhibitory feedback projections (in red) and their natural
+                                             mode.
+                                             https://doi.org/10.1371/journal.pcbi.1010645.g003
+
+
+
+                                             (isolated from the other nuclei by setting ε = 0, see Methods) showed that:
+                                                                                                                    fD2 ¼ ð13:1 � 0:2Þ Hz
+                                                         fSTN ¼ ð18:9 � 0:3Þ Hz
+                                                                                                                    fGPeTI ðBÞ ¼ ð13:6 � 0:3Þ Hz                ð6Þ
+                                                         fGPe TI ðAÞ ¼ ð19:1 � 0:2Þ Hz
+                                                                                                                    fFSN ¼ ð13:3 � 0:2Þ Hz
+
+                                             hence the STR loop has a proper frequency fSTR * 13 Hz while STN naturally oscillates at fSTN
+                                             * 19 Hz.
+
+
+                                             2.2 Effect of dopamine depletion on the independent two main β oscillators
+                                             In this section we analyse the effects of dopamine depletion on the two separate, independent
+                                             β oscillators. In order to do so, we employ the Simplified Model (see Methods Section 1.4 and
+                                             Fig 4A), fix the value of ε = 0.00 and study the behaviour of the system as a function of the Dd
+                                             parameter, which regulates the severity of dopamine depletion. Varying Dd led to different
+                                             spectral modulations in the two oscillators (Fig 4B): the mean frequency of the STN nucleus
+                                             remains close to * 19 Hz, while that of the D2 population moves from * 16 Hz, that is the
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                     12 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                                 Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                           Fig 4. Effects of Dopamine Depletion Dd on the two independent oscillators. (A) Schematic representation of the
+                                           Simplified Model in the non-interacting case. (B) Mean frequencies of STN (blue) and D2 (red) nuclei as a function of
+                                           dopamine modulation Dd: note that the two mean frequencies do NOT converge due to the increase of Dd. (C) Unbiased
+                                           measure of the intensity of β activity as a function of Dd: note that the intensity of the D2 resonance grows for increasing
+                                           values of Dd. (D-E) Unbiased measure of the intensity of β activity in D2 (D) and STN (E) as a function of Dd and for
+                                           different sizes n of the populations.
+                                           https://doi.org/10.1371/journal.pcbi.1010645.g004
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                        13 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                      Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                             mean value between 8 and 24 (see Methods and Eq (4)), to the natural frequency of the D2
+                                             oscillator at * 13 Hz (Fig 4C); since the two oscillators do not interact, the system does not
+                                             undergo any process of synchronization.
+                                                 The intensity of β activity in the STN loop, measured through the STN nucleus, is only
+                                             slightly affected by the variation of Dd; conversely, the intensity of β activity in the STR oscilla-
+                                             tor, measured through the D2 nucleus, strongly increases with Dd (Fig 4C). Crucially, however,
+                                             the intensity of these oscillations does not persist in the STN (Fig 4D) loop nor in the STR one
+                                             in the limit of large populations (Fig 4E). This suggests that the increase of β activity in the iso-
+                                             lated loops is not sufficient to account for the emergence of the pathological oscillations in
+                                             realistic conditions.
+
+
+
+                                             2.3 Loops interplay
+                                             The results in the previous sections showed that as the value of Dd is increased, the STR oscilla-
+                                             tor increases its power. As a consequence, both the STN and STR loops may contribute to the
+                                             generation of β oscillations in this condition. Moreover, since both loops contain the GPe-TI
+                                             population, the two oscillators may interact with one another: the objective of this section is
+                                             the analysis of the consequences of this interplay.
+                                                 We now consider the Simplified Model, fix the value of Dd = 1.00 and analyse the effects of
+                                             increasing the value of the ε parameter which regulates the intensity of the connections
+                                             between the two oscillators (see Methods Section 1.4).
+                                                 Interplay variability resulted in fundamental changes in the spectral dynamics of the system
+                                             (Fig 5): for very low values of the coupling ε the STR and STN loops (measured through the
+                                             D2 and STN nuclei respectively) exhibit a power spectrum which is not dissimilar from the
+                                             case of the independent oscillators (ε = 0, Dd = 1.00) (Fig 3B and 3C). As the value of the cou-
+                                             pling ε is increased, the PSDs of both populations become affected by the presence of the other
+                                             resonance and present a broader peak which increasingly include the intermediate region
+                                             between the natural frequencies of the two independent oscillators. Finally, for high values of ε
+                                             * 0.85, the oscillators complete their process of synchronization: the two separate resonances
+                                             disappear and a single prominent peak emerges at an intermediate frequency.
+                                                 In order to highlight this behaviour, we computed the average frequency of the STR and
+                                             STN loops (with specific measurements respectively at the D2 and STN nuclei) as a function of
+                                             ε. As expected, the two frequencies start from the natural frequencies of the two oscillators (*
+                                             13 Hz and * 19 Hz in the region of ε = 0) and, as the interplay between the two loops
+                                             increases, converges to an intermediate common frequency f * 16 Hz (ε = 1, see Fig 6B).
+                                             Even more interestingly, the process of synchronization is associated with a strong increase in
+                                             the intensity of the activity in the β regime (Fig 6C).
+                                                 In order to verify whether the properties highlighted above persist in the limit of large pop-
+                                             ulations, we repeated the analysis with the size of each population multiplied by a factor n 2 [2,
+                                             4, 8] (see Methods sec 1.8). The results of this analysis highlight two different regimes (see Figs
+                                             6D and A in S1 Text):
+                                             • in case of low synchronization (ε * 0) the intensity of β oscillations goes to zero in the large
+                                               n limit;
+                                             • in case of high synchronization (ε * 1) the intensity of β activity is preserved.
+                                                On the one hand, these results confirm that the establishment of a state of complete syn-
+                                             chronization and the consequent onset of prominent β activity in the model are stable for vari-
+                                             ations in populations size; on the other hand, in accordance with the results in the previous
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                        14 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                              Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                          Fig 5. Evolution of the PSD of the STN and D2 populations for increasing values of the coupling strength ε. (A) PSD
+                                          of STN and D2 nuclei related to a low level of coupling (ε * 0.05) showing asynchronous states. (B) PSD of both STN and
+                                          D2 nuclei in relation with an intermediate level of coupling (ε * 0.45) showing larger peaks increasingly including the
+                                          intermediate region. (C) PSD of STN and D2 nuclei related to a high level of coupling (ε * 0.85) showing the emergence
+                                          of a common oscillatory mode.
+                                          https://doi.org/10.1371/journal.pcbi.1010645.g005
+
+
+
+
+                                             section, they suggest that single loop models are not capable of explaining strong β activity in
+                                             the limit of large populations.
+                                                A further insight on the process of synchronization is finally captured by the value of
+                                             PSDSTN(fSTR) (i.e., the power spectral density of the STN population computed at the natural
+                                             frequency of the STR loop; Fig 6E). Particularly, for low coupling, this value is low as STN
+                                             uniquely oscillates at the natural frequency of the STN loop (Fig 5A). In the intermediate
+                                             regime (ε * 0.5) higher values are registered since the activity of the STN nucleus becomes
+                                             more affected by the STR oscillator (Fig 5B). Finally, for ε * 1, the value of PSDSTN(fSTR)
+                                             decreases again as the two oscillators synchronize to a novel frequency which is different from
+                                             both the natural ones (Fig 5C). A very similar trend is shown by the power spectral density of
+                                             the D2 population computed at the natural frequency of the STN loop (see Fig A in S1 Text).
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                  15 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                                  Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                           Fig 6. Effects of the coupling strength ε on the Simplified Model. (A) Schematic representation of the Simplified
+                                           Model: the modulation of the coupling strength between the STR and STN loops is obtained by varying the connection
+                                           probabilities p(ε, S ! T) = εp1,S!T (see Eq (2)) of inter-loops connections. (B) Mean frequencies of STN (blue) and D2
+                                           (red) nuclei as function of the coupling strength ε: the two mean frequencies converge due to the increase of the coupling
+                                           strength between the two oscillators. (C) Unbiased measure of the intensity of β activity as a function of ε: note the
+                                           remarkable growth of the intensity in the synchronous regime. (D) Unbiased measure of the intensity of the STN β
+                                           activity as a function of ε for different values of the population size n: the intensity of β activity is preserved only in the
+                                           synchronous regime. (E) Value of the STN-PSD nuclei computed at the natural frequency of the STR oscillator as a
+                                           function of the coupling strength. These results are associated with the analogous shown in Fig A in S1 Text.
+                                           https://doi.org/10.1371/journal.pcbi.1010645.g006
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                          16 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                     Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                             2.4 Role of dopamine in β synchronization dynamics
+                                             In the previous section, we described the effects of synchronization as a result of increasing the
+                                             value of the coupling ε between the two β oscillators. In the real network, however, the value of
+                                             ε is fixed. This fact implies that there must be something else, within the network, which is
+                                             responsible for the increase of the interaction between the two oscillators and hence drives the
+                                             system towards higher degrees of synchronization. Similarly to Section 2.2 we now focus on
+                                             the effects of increasing the severity of the condition of dopamine depletion by regulating the
+                                             value of Dd; however, differently from there, we now study the effects of the variation of Dd
+                                             when interplay between the two oscillators is present.
+                                                 Role of dopamine in the Simplified Model. We start considering the Simplified Model
+                                             and introduce the coupling between the two oscillators by setting the value of ε = 0.75. Simi-
+                                             larly to the case in Section 2.2, the increase of Dd determines the increase of the intensity of β
+                                             activity in the STR loop. Crucially however, in this case, the increase in the intensity of the STR
+                                             Loop leads the two oscillators to undergo a process of synchronization: for low values of Dd the
+                                             two loops interact poorly (the STR oscillator is almost absent and only the STN resonance at
+                                             *19 Hz characterizes the status of the system; see Fig 7A); as the value of Dd is increased, the
+                                             enhancement in the intensity of the STR oscillator implies higher degrees of interaction
+                                             between the two loops and consequently leads to the emergence of a single resonance at an
+                                             intermediate frequency (* 16 Hz; see Fig 7B and 7C).
+                                                 Similarly to the increase of ε (Section 2.3), the increase of Dd determines the convergence
+                                             of the mean frequencies of oscillation of the STN and D2 populations (Fig 8B) and a remark-
+                                             able increase in the intensity of the pathological oscillations (Fig 8C).
+                                                 Further, the analysis of the limit of large populations shows that:
+                                             • if ε = 0.75 and Dd * 1.1 (synchronized oscillators), the intensity of β activity is preserved
+                                               (Figs 8D and B in S1 Text);
+                                             • if ε = 0.75 and Dd * 0.9 (non-synchronized oscillators), the intensity of β activity decreases
+                                               (Figs 8D and B in S1 Text);
+                                             • if ε = 0.00, for any value of Dd (non-synchronized oscillators), the intensity of β activity
+                                               decreases (Figs 8E and B in S1 Text).
+                                                 In accordance with previous results, this proves that the intensity of β activity in the large n
+                                             limit is only preserved when the two oscillators are in the synchronous state (ε = 0.75 and Dd
+                                             * 1.1).
+                                                 Beside that, the comparison between the uncoupled (ε = 0.00) and coupled (ε = 0.75) cases
+                                             highlights that the increase in the intensity of β activity is stronger in the latter case (Fig 8E).
+                                                 The results proposed in this section concerning the role of dopamine in the case of the Sim-
+                                             plified Model showed interesting changes in the functional and spectral dynamics of the two
+                                             loops. For low values of Dd, we observed a weak synchronisation between the STR and STN
+                                             loops, which then oscillate around their natural resonance. Conversely, the more severe is the
+                                             condition of dopamine depletion, the stronger the state of synchronisation of the two loops,
+                                             and the more the activity of the network is characterized by a single, prominent oscillatory
+                                             mode in the β regime.
+                                                 Role of dopamine in the Complete Model. In all previous analyses we focused on the
+                                             properties of the emergent β activity in the context of the Simplified Model. In that case, we
+                                             showed that the effects of dopamine depletion and the consequent process of synchronization
+                                             of the two oscillators set up by the STR and STN loops play a major role in the onset of patho-
+                                             logical, prominent β activity. In line with those results, in this section we will show that all the
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                       17 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                                 Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                          Fig 7. Evolution of the PSD of the STN and D2 populations for increasing values of Dopamine Depletion Dd. PSD of
+                                          both STN and D2 nuclei related to low (A), intermediate (B) and high (C) levels of dopamine depletion (Dd = 0.9, 0.97 and
+                                          1.05 respectively): for low values of Dd the system is characterized by the only STN-loop resonance; the increase of Dd leads
+                                          to higher degrees of interaction and to the emergence of a unique resonance at an intermediate frequency.
+                                          https://doi.org/10.1371/journal.pcbi.1010645.g007
+
+
+
+
+                                             highlighted properties are preserved in the Complete Model of the BG (see Fig 9A). Particu-
+                                             larly, even in this model, as the value of Dd is increased, the mean frequencies of the D2 and
+                                             STN populations converge (Fig 9B) and the intensity of β oscillations increases and presents
+                                             the characteristic speed up due to completion of the synchronization process (Fig 9C). Note
+                                             that these behaviours and the onset of synchronization associated with dopamine depletion,
+                                             which represent the key result of our work, are robust to alterations in network and single neu-
+                                             rons parameters (see Fig E in S1 Text).
+                                                 Finally, in accordance with previous results, the size analysis confirms that our model is
+                                             capable of capturing prominent β activity also in the limit of large populations (see Figs 9D
+                                             and C in S1 Text).
+                                                 Please note that in all the studies regarding the effects of dopamine depletion (Figs 4, 7, 8B,
+                                             8C, 9B and 9C) we showed the results related to the case n = 8. This has been necessary to
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                       18 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                                  Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                          Fig 8. Effects of Dopamine Depletion Dd on the Simplified Model (ε = 0.75). (A) Schematic representation of the
+                                          Simplified model in the interacting case: the targets of Dopamine modulation are highlighted. (B) Mean frequencies of
+                                          STN (blue) and D2 (red) nuclei as function of dopamine modulation Dd: the two mean frequencies converge due to the
+                                          increase of Dd. (C) Unbiased measure of the intensity of β activity as a function of Dd: note the remarkable growth of the
+                                          intensity in the synchronous regime. (D) Unbiased measure of the intensity of the D2 β activity as a function of Dd for
+                                          different values of the population size n: the intensity of β activity is preserved only in the synchronous regime. (E)
+                                          Unbiased measure of the intensity of the D2 β activity as a function of Dd for n = 1 and n = 8 and comparison between the
+                                          interacting (ε = 0.75, continuous lines) and non-interacting condition (ε = 0.00, dashed lines): the intensity of β activity is
+                                          preserved if and only if the two oscillators are synchronized. These results are associated with the analogous shown in Fig
+                                          B in S1 Text.
+                                          https://doi.org/10.1371/journal.pcbi.1010645.g008
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                          19 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                               Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                             Fig 9. Effects of Dopamine Depletion Dd on the Complete Model. (A) Schematic representation of the Complete
+                                             Model: the targets of Dopamine modulation are highlighted. (B) Mean frequencies of STN (blue) and D2 (red) nuclei
+                                             as function of dopamine modulation Dd: the two mean frequencies converge due to the increase of Dd. (C) Unbiased
+                                             measure of the intensity of β activity as a function of Dd: note the remarkable growth of the intensity in the
+                                             synchronous regime. (D) Unbiased measure of the intensity of the D2 β activity as a function of Dd for different values
+                                             of the population size n: the intensity of β activity is preserved only in the synchronous regime. Analogous results
+                                             about STN β activity are shown in Fig C in S1 Text.
+                                             https://doi.org/10.1371/journal.pcbi.1010645.g009
+
+                                             capture the relevant properties of the system in a clearer way (for example, the reader can com-
+                                             pare the speed up in the increase of β activity in case of n = 1 and n = 8 shown in Fig 8E). This
+                                             choice does not affect the results of the large n limit analysis.
+                                                β bursting activity. The presented results have been obtained by mediating over
+                                             different time intervals and different simulations (see Methods Section 1.7). Performing
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                     20 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                             Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                             Fig 10. Bursting dynamics for intermediate values of dopamine (Dd = 0.90) in the case of the Complete Model of
+                                             the BG. (A) Periodogram of the STN population activity highlighting the bursting characterization along a period of
+                                             20 seconds. (B) Difference between the instantaneous mean frequency of STN and D2 nuclei. (C) Instantaneous values
+                                             of PSD for the STN nucleus. The dashed lines in the inferior subplots represent the median values of Δf and β STN
+                                             Mean PSD respectively.
+                                             https://doi.org/10.1371/journal.pcbi.1010645.g010
+
+
+
+
+                                             this operation denied us the possibility of investigating the transient properties of the
+                                             network.
+                                                One of the most important feature of pathological β activity in the BG is that it presents a
+                                             strongly phasic characterization [20, 21]. As shown in Fig 10, our model is capable of capturing
+                                             this characterization. In particular, for intermediate values of Dd (Dd = 0.90), the system gains
+                                             temporary access to the synchronous condition and the two oscillators continuously switch
+                                             between the synchronous and asynchronous states. Moreover, when the value of Δf(t) = fSTN(t)
+                                             − fD2(t) decreases (meaning that the system spends more time in the synchronous status), the
+                                             intensity of the β oscillations increases (see the red-green and green-red matching of points
+                                             related to the same time intervals in the two inferior subplots of Fig 10). Analyzing the distri-
+                                             bution of high β power intervals in 10 s long simulations for different levels of Dd we found
+                                             strong differences in the skewness between values between high and low levels of Dd (see Fig F
+                                             in S1 Text). For low values of Dd the β power distribution displays a long right tail (skewness
+                                             between 0.85 and 1.5), indicating the presence of transient bursting. Therefore β bursts,
+                                             although uncommon, are possible, even for low levels of dopamine depletion. On the other
+                                             hand, when the synchronization occurs, the intensity of β activity increases and the distribu-
+                                             tion does not show any tail (skewness between -0.29 and 0.29). In this condition, high β power
+                                             intensity is stable and not transient anymore. These results are in accordance with the previous
+                                             considerations and indicate once again that the more the two oscillators interact, the more the
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                 21 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                     Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                             system spends time in the synchronous state and the higher is the intensity of β activity within
+                                             the network.
+
+                                             2.5 Comparison with relevant experimental results on the role of specific
+                                             nuclei in pathological β oscillations
+                                             The results in the previous sections support the hypothesis that pathological β oscillations orig-
+                                             inate from the synchronization of a striatopallidal loop and a subthalamic-pallidal loop medi-
+                                             ated by the GPe. The relevance of GPe in the generation of β oscillations was recently proved
+                                             by a work of Mallet group [49]. We wondered then to which extent our model was able to
+                                             account for the experimental results found in this work. First, in [49] the cortical origin of β
+                                             oscillations is ruled out by observing that optogenic cortical silencing led to a decrease of STN
+                                             activity but did not significantly affect β power. To test whether our model was coherent with
+                                             these results, we simulated the partial suppression of cortical inputs as described in Methods
+                                             Section 1.6. Introducing this perturbation in our model, we found that the inhibition of inputs
+                                             from motor cortex did entail a decrease (* −15%) in the firing rate of STN (Fig 11A); but did
+                                             not suppress pathological β activity (Fig 11A) in line with the results in [49] (see their Fig 1i-j
+                                             and 1k-l respectively). Interestingly, the same study showed that both suppression (see Fig 2 in
+                                             [49]) and amplification (see Fig 5 in [49]) of STN activity have a small effect on β intensity,
+                                             suggesting that STN might only have, in the words of the authors, “a supportive role” in the
+                                             generation of pathological β oscillations. In order to simulate these STN activity manipula-
+                                             tions, we induced a modulation of STN activity as described in Methods Section 1.6. Coher-
+                                             ently with [49], in our model the intensity of β oscillations decreased when STN activity
+                                             moved away from its reference value (* 18 Hz), but remained one order of magnitude stron-
+                                             ger than the values observed for low Dd even for relatively large variations of the STN discharge
+                                             rate (Fig 11B). Crucially, in [49] opto-inhibition of GPe induced an increase in STN activity
+                                             but at the same time a complete suppression of pathological β oscillations. We simulated the
+                                             inhibition of GPe as described in Methods Section 1.6. In this condition, the model displayed a
+                                             significant increase in STN activity (* +85%) and the complete suppression of pathological β
+                                             oscillations (Fig 11C), coherently with what observed in [49] (see Figs 4i-j and 4k-l
+                                             respectively).
+                                                Overall, these results shows that the model is capable of reproducing the main results about
+                                             the role of the different nuclei in the generation of pathological β oscillations displayed in [49].
+
+                                             Discussion
+                                             We characterized the interplay between two loops generating β oscillations within the BG: one
+                                             between GPe and striatal populations FSN and D2 and one between GPe and STN. While for
+                                             high values of dopamine the two loops are both weak and act largely as independent, when
+                                             dopamine is depleted the striatopallidal loop increases its strength, and this leads to the syn-
+                                             chronization and mutual reinforcement between the two loops and eventually to strong oscil-
+                                             lations in the whole BG network. We suggest that this mechanism plays a key role in the
+                                             generation of abnormal β oscillations in PD. D2 neurons are known to increase their firing
+                                             activity due to the loss of inhibitory effect of dopamine and to strongly synchronize in the β
+                                             range in dopamine-depleted conditions [14]. Our modeling work highlights a mechanism in
+                                             which the former phenomena leads to the latter due to the internal resonances of the BG
+                                             network.
+                                                 As a strong evidence of our hypothesis, we showed that our model is able to account for
+                                             main results in [49], and to shed light on the underlying mechanisms. To date, no computa-
+                                             tional model was able to comprehensively explain the observed dynamics: first of all, such
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                       22 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                                     Onset of pathological beta oscillations in basal ganglia
+
+
+
+
+                                     Fig 11. Effects of activity manipulations on network dynamics. All manipulations are based on the opto-genetic stimulations
+                                     discussed in [49]. OFF values are measured in pathologic conditions (Complete Model with Dd = 1.03) while ON values are
+                                     measured when the opto-genetic perturbations are applied. (A) Simulated effects of motor cortex opto-inhibition on STN
+                                     discharge rate (left) and intensity of β oscillations (right) (see also Figs 1k-l and 1i-j in [49]). (B) Predictions of the model on the
+                                     intensity of β activity as a consequence of large variations of the STN discharge rate (see also Figs 2e-f-g and 5i-k in [49]). (C)
+                                     Consequences of GPe opto-inhibition on GPe-TI and GPe-TA nuclei (first panels on the right) and predictions of the model on
+                                     the effects of GPe opto-inhibition on STN discharge rate and intensity of β oscillations (right panels) (see also Figs 4k-l and 4i-j
+                                     in [49]). Shaded areas in the plots reporting β intensity correspond to the values of STN‐PSDyb observed for low Dd in the
+                                     Complete Model (see Fig C in S1 Text).
+                                     https://doi.org/10.1371/journal.pcbi.1010645.g011
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                              23 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                      Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                             results can not be accounted for by models based on a cortical origin of β oscillations; further,
+                                             in the Discussion of [49] the authors mention two computational models suggesting the
+                                             importance of increased striatal inhibition to induce abnormal oscillations in the GPe-STN
+                                             network [35, 83], but stress that these models did not clarify the mechanism through which
+                                             this increase leads to the onset of synchronization at β-frequency. In contrast, the computa-
+                                             tional model that is proposed in this study succeeds in giving a causal reason for the generation
+                                             of pathological oscillations by considering the interaction between the STR and STN loops
+                                             under dopamine depleted condition.
+                                                 Our results are coherent with classic results highlighting the role of the STN-GPe loop in
+                                             generating β oscillations [27] as this loop indeed exists and does play an important role. The
+                                             key difference is that in our view this loop is not simply modulated by the intensity of the
+                                             striatal inhibition to GPe, but rather by the intensity of the β oscillations of the striatopallidal
+                                             loop. In a relevant work, Corbit and colleagues introduced a detailed small scale, closed-
+                                             loop model of the striatopallidal loop [57] and showed how it generated β oscillations. Later
+                                             models, including [58] which was the model laying the ground for this work, implemented
+                                             then this loop in their network descriptions ([84, 85]), but did not explicitly address how the
+                                             two loops interacted in originating β oscillations, rather focusing on action selection. Inter-
+                                             estingly, a recent study by the same group focusing on transient responses of the BG net-
+                                             work [86] also captured β activity, but did not address the question of its origins. A key
+                                             paper, [87] proposes that β oscillations rely on both the STN-GPe loop and the cortex (rather
+                                             than exclusively on the STN-GPe loop). One limitation of our model is indeed that it
+                                             neglects the effect of temporal evolution of cortical inputs, as the presence of cortical β
+                                             bursts or input correlations, which might contribute to the development of β oscillations
+                                             [15]. Moreover, our model is currently focused on account for experimental findings on
+                                             rats, hence translation to primates and humans is nontrivial. A third limitation is that we
+                                             only considered effects of dopamine in D1 and D2 activity, while connectivity changes
+                                             might play a role in β power modulation (see Fig. S5E and the interesting pre-print [88]).
+                                             Further limitations of our model include the lack of dynamics to account for plasticity
+                                             effects, and the fact that selecting an adaptive integrate and fire neuron model we did not
+                                             take into account specific currents that are included in Hodgkin and Huxley models of basal
+                                             ganglia (e.g. [89]).
+                                                 As a final remark, the presented size analyses highlight that the intensity of β activity is pre-
+                                             served when the two oscillators are in the synchronous regime. On the one hand this confirms
+                                             that our model is capable of reproducing β activity also in the limit of large populations; on the
+                                             other hand it suggests that single loop models (e.g. [35, 39, 57]) may not be capable of explain-
+                                             ing prominent β activity.
+                                                 In future works we will investigate how our model of the mechanisms underlying the path-
+                                             ological oscillations in PD can help in the understanding of the interplay between therapies for
+                                             PD and β activity. Dopamine agonists are known to alter β activity in the BG [90, 91]. In our
+                                             model, Dd values could both increase due to the progression of PD and decrease due to the
+                                             action of dopamine agonists, which would be coherent with the decrease in β activity induced
+                                             by drugs [92]. However, to proper model this aspect we would have to take into account other
+                                             pathophysiological aspects [93, 94].
+                                                 Moreover, it would be interesting to simulate the action of DBS as in [95–98] also in our
+                                             model to evaluate its effects on suppressing β oscillations and compare these to experimental
+                                             results [99–101]. Recent studies highlighted a dynamical and functional distinction between a
+                                             low β range [12–20] Hz and a high β range [20–30] Hz [102–104]. Even if the β activity dis-
+                                             cussed in the present work is within the low range, we do not claim to have specifically cap-
+                                             tured the dynamics of this band. Understanding the different mechanisms underlying low and
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                        24 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                           Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                             high β could also shed light on the underpinnings of PD therapies, as both dopamine agonist
+                                             [105] and DBS [106] seem to have a specific effect on the low β range.
+
+
+                                             Supporting information
+                                             S1 Text. Supporting information. This file collects the following supporting tables and fig-
+                                             ures: Table A. Parameter changes from the Complete to the Simplified Model. Fig A. Effects
+                                             of the coupling strength ε on the Simplified Model: plots for the D2 nucleus. Fig B. Effects of
+                                             Dopamine Depletion Dd on the Simplified Model (ε = 0.75): plots for the STN nucleus. Fig C.
+                                             Effects of Dopamine Depletion Dd on the Complete Model: plot for the STN nucleus. Fig D.
+                                             Effects of the connectivity alterations due to Dopamine Depletion on the intensity of β activity.
+                                             Fig E. Robustness of the results to alterations of the connectivity parameters and neuron and
+                                             population parameters. Fig F. Probability distribution of the instantaneous intensity of STN
+                                             activity for different degrees of Dopamine Depletion.
+                                             (PDF)
+
+
+                                             Author Contributions
+                                             Conceptualization: Andrea Ortone, Alberto Arturo Vergani, Riccardo Mannella, Alberto
+                                               Mazzoni.
+                                             Data curation: Andrea Ortone.
+                                             Formal analysis: Andrea Ortone, Alberto Arturo Vergani, Mahboubeh Ahmadipour.
+                                             Funding acquisition: Alberto Mazzoni.
+                                             Investigation: Andrea Ortone, Alberto Arturo Vergani, Mahboubeh Ahmadipour, Alberto
+                                                Mazzoni.
+                                             Methodology: Andrea Ortone, Mahboubeh Ahmadipour.
+                                             Project administration: Riccardo Mannella, Alberto Mazzoni.
+                                             Resources: Alberto Mazzoni.
+                                             Software: Andrea Ortone, Mahboubeh Ahmadipour.
+                                             Supervision: Alberto Arturo Vergani, Riccardo Mannella, Alberto Mazzoni.
+                                             Validation: Andrea Ortone.
+                                             Visualization: Andrea Ortone, Alberto Arturo Vergani, Alberto Mazzoni.
+                                             Writing – original draft: Andrea Ortone, Alberto Arturo Vergani, Riccardo Mannella,
+                                               Alberto Mazzoni.
+                                             Writing – review & editing: Andrea Ortone, Alberto Arturo Vergani, Mahboubeh Ahmadi-
+                                               pour, Riccardo Mannella, Alberto Mazzoni.
+
+
+                                             References
+                                                1.   Obeso JA, Rodriguez-Oroz MC, Stamelou M, Bhatia KP, Burn DJ. The expanding universe of disor-
+                                                     ders of the basal ganglia. The Lancet. 2014; 384(9942):523–531. https://doi.org/10.1016/S0140-6736
+                                                     (13)62418-6 PMID: 24954674
+                                                2.   Bergman H, Horn A. The Hidden Life of the Basal Ganglia: At the Base of Brain and Mind. Brain. 2021.
+                                                3.   Feigin VL, Nichols E, Alam T, Bannick MS, Beghi E, Blake N, et al. Global, regional, and national bur-
+                                                     den of neurological disorders, 1990–2016: a systematic analysis for the Global Burden of Disease
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                             25 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                            Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                                     Study 2016. The Lancet Neurology. 2019; 18(5):459–480. https://doi.org/10.1016/S1474-4422(18)
+                                                     30499-X
+                                                4.   Albin RL, Young AB, Penney JB. The functional anatomy of basal ganglia disorders. Trends in neuro-
+                                                     sciences. 1989; 12(10):366–375. https://doi.org/10.1016/0166-2236(89)90074-X PMID: 2479133
+                                                5.   Onofrj M, Thomas A. Acute akinesia in Parkinson disease. Neurology. 2005; 64(7):1162–1169. https://
+                                                     doi.org/10.1212/01.WNL.0000157058.17871.7B PMID: 15824341
+                                                6.   Berardelli A, Rothwell JC, Thompson PD, Hallett M. Pathophysiology of bradykinesia in Parkinson’s
+                                                     disease. Brain. 2001; 124(11):2131–2146. https://doi.org/10.1093/brain/124.11.2131 PMID:
+                                                     11673316
+                                                7.   Zimmermann R, Deuschl G, Hornig A, Schulte-Mönting J, Fuchs G, Lücking C. Tremors in Parkinson’s
+                                                     disease: symptom analysis and rating. Clinical neuropharmacology. 1994. https://doi.org/10.1097/
+                                                     00002826-199408000-00001 PMID: 9316677
+                                                8.   Perez-Lloret S, Negre-Pages L, Damier P, Delval A, Derkinderen P, Destée A, et al. Prevalence, deter-
+                                                     minants, and effect on quality of life of freezing of gait in Parkinson disease. JAMA neurology. 2014; 71
+                                                     (7):884–890. https://doi.org/10.1001/jamaneurol.2014.753 PMID: 24839938
+                                                9.   Nutt JG, Bloem BR, Giladi N, Hallett M, Horak FB, Nieuwboer A. Freezing of gait: moving forward on a
+                                                     mysterious clinical phenomenon. The Lancet Neurology. 2011; 10(8):734–744. https://doi.org/10.
+                                                     1016/S1474-4422(11)70143-0 PMID: 21777828
+                                               10.   Nambu A. Seven problems on the basal ganglia. Current opinion in neurobiology. 2008; 18(6):595–
+                                                     604. https://doi.org/10.1016/j.conb.2008.11.001 PMID: 19081243
+                                               11.   Mallet N, Ballion B, Le Moine C, Gonon F. Cortical inputs and GABA interneurons imbalance projection
+                                                     neurons in the striatum of parkinsonian rats. Journal of Neuroscience. 2006; 26(14):3875–3884.
+                                                     https://doi.org/10.1523/JNEUROSCI.4439-05.2006 PMID: 16597742
+                                               12.   McCarthy M, Moore-Kochlacs C, Gu X, Boyden E, Han X, Kopell N. Striatal origin of the pathologic
+                                                     beta oscillations in Parkinson’s disease. Proceedings of the National Academy of Sciences. 2011; 108
+                                                     (28):11620–11625. https://doi.org/10.1073/pnas.1107748108 PMID: 21697509
+                                               13.   Kondabolu K, Roberts EA, Bucklin M, McCarthy MM, Kopell N, Han X. Striatal cholinergic interneurons
+                                                     generate beta and gamma oscillations in the corticostriatal circuit and produce motor deficits. Proceed-
+                                                     ings of the National Academy of Sciences. 2016; 113(22):E3159–E3168. https://doi.org/10.1073/
+                                                     pnas.1605658113 PMID: 27185924
+                                               14.   Sharott A, Vinciati F, Nakamura KC, Magill PJ. A population of indirect pathway striatal projection neu-
+                                                     rons is selectively entrained to parkinsonian beta oscillations. Journal of Neuroscience. 2017; 37
+                                                     (41):9977–9998. https://doi.org/10.1523/JNEUROSCI.0658-17.2017 PMID: 28847810
+                                               15.   Manferlotti E, Vissani M, Mazzoni A, Kumar A. Correlated inputs to striatal population drive subthala-
+                                                     mic nucleus hyper-synchronization. In: 2021 10th International IEEE/EMBS Conference on Neural
+                                                     Engineering (NER). IEEE; 2021. p. 255–258.
+                                               16.   Eisinger RS, Cagle JN, Opri E, Alcantara J, Cernera S, Foote KD, et al. Parkinsonian beta dynamics
+                                                     during rest and movement in the dorsal pallidum and subthalamic nucleus. Journal of Neuroscience.
+                                                     2020; 40(14):2859–2867. https://doi.org/10.1523/JNEUROSCI.2113-19.2020 PMID: 32107277
+                                               17.   Valsky D, Blackwell KT, Tamir I, Eitan R, Bergman H, Israel Z. Real-time machine learning classifica-
+                                                     tion of pallidal borders during deep brain stimulation surgery. Journal of neural engineering. 2020; 17
+                                                     (1):016021. https://doi.org/10.1088/1741-2552/ab53ac PMID: 31675740
+                                               18.   Haumesser JK, Beck MH, Pellegrini F, Kühn J, Neumann WJ, Altschüler J, et al. Subthalamic beta
+                                                     oscillations correlate with dopaminergic degeneration in experimental parkinsonism. Experimental
+                                                     Neurology. 2021; 335:113513. https://doi.org/10.1016/j.expneurol.2020.113513 PMID: 33148526
+                                               19.   Mallet N, Pogosyan A, Sharott A, Csicsvari J, Bolam JP, Brown P, et al. Disrupted dopamine transmis-
+                                                     sion and the emergence of exaggerated beta oscillations in subthalamic nucleus and cerebral cortex.
+                                                     Journal of Neuroscience. 2008; 28(18):4795–4806. https://doi.org/10.1523/JNEUROSCI.0123-08.
+                                                     2008 PMID: 18448656
+                                               20.   Feingold J, Gibson DJ, DePasquale B, Graybiel AM. Bursts of beta oscillation differentiate postperfor-
+                                                     mance activity in the striatum and motor cortex of monkeys performing movement tasks. Proceedings
+                                                     of the National Academy of Sciences. 2015; 112(44):13687–13692. https://doi.org/10.1073/pnas.
+                                                     1517629112 PMID: 26460033
+                                               21.   Murthy VN, Fetz EE. Oscillatory activity in sensorimotor cortex of awake monkeys: synchronization of
+                                                     local field potentials and relation to behavior. Journal of neurophysiology. 1996; 76(6):3949–3967.
+                                                     https://doi.org/10.1152/jn.1996.76.6.3949 PMID: 8985892
+                                               22.   Deffains M, Iskhakova L, Katabi S, Israel Z, Bergman H. Longer β oscillatory episodes reliably identify
+                                                     pathological subthalamic activity in Parkinsonism. Movement Disorders. 2018; 33(10):1609–1618.
+                                                     https://doi.org/10.1002/mds.27418 PMID: 30145811
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                               26 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                             Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                               23.   Mizrahi-Kliger AD, Kaplan A, Israel Z, Deffains M, Bergman H. Basal ganglia beta oscillations during
+                                                     sleep underlie Parkinsonian insomnia. Proceedings of the National Academy of Sciences. 2020; 117
+                                                     (29):17359–17368. https://doi.org/10.1073/pnas.2001560117 PMID: 32636265
+                                               24.   Mallet N, Pogosyan A, Márton LF, Bolam JP, Brown P, Magill PJ. Parkinsonian Beta Oscillations in the
+                                                     External Globus Pallidus and Their Relationship with Subthalamic Nucleus Activity. Journal of Neuro-
+                                                     science. 2008; 28(52):14245–14258. https://doi.org/10.1523/JNEUROSCI.4199-08.2008 PMID:
+                                                     19109506
+                                               25.   Avila I, Parr-Brownlie LC, Brazhnik E, Castañeda E, Bergstrom DA, Walters JR. Beta frequency syn-
+                                                     chronization in basal ganglia output during rest and walk in a hemiparkinsonian rat. Experimental neu-
+                                                     rology. 2010; 221(2):307–319. https://doi.org/10.1016/j.expneurol.2009.11.016 PMID: 19948166
+                                               26.   Whalen TC, Willard AM, Rubin JE, Gittis AH. Delta oscillations are a robust biomarker of dopamine
+                                                     depletion severity and motor dysfunction in awake mice. Journal of neurophysiology. 2020; 124
+                                                     (2):312–329. https://doi.org/10.1152/jn.00158.2020 PMID: 32579421
+                                               27.   Plenz D, Kital ST. A basal ganglia pacemaker formed by the subthalamic nucleus and external globus
+                                                     pallidus. Nature. 1999; 400(6745):677–682. https://doi.org/10.1038/23281 PMID: 10458164
+                                               28.   Bevan MD, Magill PJ, Terman D, Bolam JP, Wilson CJ. Move to the rhythm: oscillations in the subtha-
+                                                     lamic nucleus–external globus pallidus network. Trends in Neurosciences. 2002; 25(10):525–531.
+                                                     https://doi.org/10.1016/S0166-2236(02)02235-X PMID: 12220881
+                                               29.   Sato F, Lavallée P, Lévesque M, Parent A. Single-axon tracing study of neurons of the external seg-
+                                                     ment of the globus pallidus in primate. Journal of Comparative Neurology. 2000; 417(1):17–31. https://
+                                                     doi.org/10.1002/(SICI)1096-9861(20000131)417:1%3C17::AID-CNE2%3E3.0.CO;2-I PMID:
+                                                     10660885
+                                               30.   Hammond C, Bergman H, Brown P. Pathological synchronization in Parkinson’s disease: networks,
+                                                     models and treatments. Trends in neurosciences. 2007; 30(7):357–364. https://doi.org/10.1016/j.tins.
+                                                     2007.05.004 PMID: 17532060
+                                               31.   Alavi SM, Mirzaei A, Valizadeh A, Ebrahimpour R. Excitatory deep brain stimulation quenches beta
+                                                     oscillations arising in a computational model of the subthalamo-pallidal loop. Scientific reports. 2022;
+                                                     12(1):1–20. https://doi.org/10.1038/s41598-022-10084-4
+                                               32.   Vitek JL, Zhang J, Hashimoto T, Russo GS, Baker KB. External pallidal stimulation improves parkinso-
+                                                     nian motor signs and modulates neuronal activity throughout the basal ganglia thalamic network.
+                                                     Experimental neurology. 2012; 233(1):581–586. https://doi.org/10.1016/j.expneurol.2011.09.031
+                                                     PMID: 22001773
+                                               33.   Lang AE, Zadikoff C. Parkinsonian tremor. Neurological disease and therapy. 2005; 70:195.
+                                               34.   Gillies A, Willshaw D, Li Z. Subthalamic–pallidal interactions are critical in determining normal and
+                                                     abnormal functioning of the basal ganglia. Proceedings of the Royal Society of London Series B: Bio-
+                                                     logical Sciences. 2002; 269(1491):545–551. https://doi.org/10.1098/rspb.2001.1817 PMID: 11916469
+                                               35.   Kumar A, Cardanobile S, Rotter S, Aertsen A. The role of inhibition in generating and controlling Par-
+                                                     kinson’s disease oscillations in the basal ganglia. Frontiers in systems neuroscience. 2011; 5:86.
+                                                     https://doi.org/10.3389/fnsys.2011.00086 PMID: 22028684
+                                               36.   Pasillas-Lépine W. Delay-induced oscillations in Wilson and Cowan’s model: an analysis of the subtha-
+                                                     lamo-pallidal feedback loop in healthy and parkinsonian subjects. Biological cybernetics. 2013; 107
+                                                     (3):289–308. https://doi.org/10.1007/s00422-013-0549-3 PMID: 23400597
+                                               37.   Merrison-Hort R, Borisyuk R. The emergence of two anti-phase oscillatory neural populations in a
+                                                     computational model of the Parkinsonian globus pallidus. Frontiers in computational neuroscience.
+                                                     2013; 7:173. https://doi.org/10.3389/fncom.2013.00173 PMID: 24348374
+                                               38.   Holgado AJN, Terry JR, Bogacz R. Conditions for the Generation of Beta Oscillations in the Subthala-
+                                                     mic Nucleus–Globus Pallidus Network. Journal of Neuroscience. 2010; 30(37):12340–12352. https://
+                                                     doi.org/10.1523/JNEUROSCI.0817-10.2010 PMID: 20844130
+                                               39.   Holt AB, Netoff TI. Origins and suppression of oscillations in a computational model of Parkinson’s dis-
+                                                     ease. Journal of computational neuroscience. 2014; 37(3):505–521. https://doi.org/10.1007/s10827-
+                                                     014-0523-7 PMID: 25099916
+                                               40.   Leblois A, Boraud T, Meissner W, Bergman H, Hansel D. Competition between Feedback Loops
+                                                     Underlies Normal and Pathological Dynamics in the Basal Ganglia. Journal of Neuroscience. 2006; 26
+                                                     (13):3567–3583. https://doi.org/10.1523/JNEUROSCI.5050-05.2006 PMID: 16571765
+                                               41.   van Albada SJ, Robinson PA. Mean-field modeling of the basal ganglia-thalamocortical system. I: Fir-
+                                                     ing rates in healthy and parkinsonian states. Journal of Theoretical Biology. 2009; 257(4):642–663.
+                                                     https://doi.org/10.1016/j.jtbi.2008.12.018 PMID: 19168074
+                                               42.   Damodaran S, Cressman JR, Jedrzejewski-Szmek Z, Blackwell KT. Desynchronization of fast-spiking
+                                                     interneurons reduces β-band oscillations and imbalance in firing in the dopamine-depleted striatum.
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                27 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                             Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                                     Journal of Neuroscience. 2015; 35(3):1149–1159. https://doi.org/10.1523/JNEUROSCI.3490-14.2015
+                                                     PMID: 25609629
+                                               43.   van Albada SJ, Gray RT, Drysdale PM, Robinson PA. Mean-field modeling of the basal ganglia-thala-
+                                                     mocortical system. II: dynamics of parkinsonian oscillations. Journal of theoretical biology. 2009; 257
+                                                     (4):664–688. https://doi.org/10.1016/j.jtbi.2008.12.013 PMID: 19154745
+                                               44.   Zemel D, Gritton H, Cheung C, Shankar S, Kramer M, Han X. Dopamine depletion selectively disrupts
+                                                     interactions between striatal neuron subtypes and LFP oscillations. Cell reports. 2022; 38(3):110265.
+                                                     https://doi.org/10.1016/j.celrep.2021.110265 PMID: 35045299
+                                               45.   Mallet N, Micklem BR, Henny P, Brown MT, Williams C, Bolam JP, et al. Dichotomous Organization of
+                                                     the External Globus Pallidus. Neuron. 2012; 74(6):1075–1086. https://doi.org/10.1016/j.neuron.2012.
+                                                     04.027 PMID: 22726837
+                                               46.   Abdi A, Mallet N, Mohamed FY, Sharott A, Dodson PD, Nakamura KC, et al. Prototypic and Arkypalli-
+                                                     dal Neurons in the Dopamine-Intact External Globus Pallidus. Journal of Neuroscience. 2015; 35
+                                                     (17):6667–6688. https://doi.org/10.1523/JNEUROSCI.4662-14.2015 PMID: 25926446
+                                               47.   Fujiyama F, Nakano T, Matsuda W, Furuta T, Udagawa J, Kaneko T. A single-neuron tracing study of
+                                                     arkypallidal and prototypic neurons in healthy rats. Brain Structure and Function. 2016; 221(9):4733–
+                                                     4740. https://doi.org/10.1007/s00429-015-1152-2 PMID: 26642797
+                                               48.   Bevan MD, Booth PA, Eaton SA, Bolam JP. Selective innervation of neostriatal interneurons by a sub-
+                                                     class of neuron in the globus pallidus of the rat. Journal of Neuroscience. 1998; 18(22):9438–9452.
+                                                     https://doi.org/10.1523/JNEUROSCI.18-22-09438.1998 PMID: 9801382
+                                               49.   Crompe Bdl, Aristieta A, Leblois A, Elsherbiny S, Boraud T, Mallet NP. The globus pallidus orches-
+                                                     trates abnormal network dynamics in a model of Parkinsonism. Nature Communications. 2020; 11
+                                                     (1):1570. https://doi.org/10.1038/s41467-020-15352-3 PMID: 32218441
+                                               50.   Dodson PD, Larvin JT, Duffell JM, Garas FN, Doig NM, Kessaris N, et al. Distinct Developmental Ori-
+                                                     gins Manifest in the Specialized Encoding of Movement by Adult Neurons of the External Globus Palli-
+                                                     dus. Neuron. 2015; 86(2):501–513. https://doi.org/10.1016/j.neuron.2015.03.007 PMID: 25843402
+                                               51.   Hernández VM, Hegeman DJ, Cui Q, Kelver DA, Fiske MP, Glajch KE, et al. Parvalbumin+ Neurons
+                                                     and Npas1+ Neurons Are Distinct Neuron Classes in the Mouse External Globus Pallidus. Journal of
+                                                     Neuroscience. 2015; 35(34):11830–11847. https://doi.org/10.1523/JNEUROSCI.4672-14.2015
+                                                     PMID: 26311767
+                                               52.   Mastro KJ, Bouchard RS, Holt HA, Gittis AH. Transgenic mouse lines subdivide external segment of
+                                                     the globus pallidus (GPe) neurons and reveal distinct GPe output pathways. Journal of Neuroscience.
+                                                     2014; 34(6):2087–2099. https://doi.org/10.1523/JNEUROSCI.4646-13.2014 PMID: 24501350
+                                               53.   Cagnan H, Mallet N, Moll CKE, Gulberti A, Holt AB, Westphal M, et al. Temporal evolution of beta
+                                                     bursts in the parkinsonian cortical and basal ganglia network. Proceedings of the National Academy of
+                                                     Sciences. 2019; 116(32):16095–16104. https://doi.org/10.1073/pnas.1819975116 PMID: 31341079
+                                               54.   Wilson CJ. What controls the timing of striatal spiny cell action potentials in the up state? In: The Basal
+                                                     Ganglia IX. Springer; 2009. p. 49–61.
+                                               55.   Gage GJ, Stoetzner CR, Wiltschko AB, Berke JD. Selective activation of striatal fast-spiking interneu-
+                                                     rons during choice execution. Neuron. 2010; 67(3):466–479. https://doi.org/10.1016/j.neuron.2010.06.
+                                                     034 PMID: 20696383
+                                               56.   Dong J, Hawes S, Wu J, Le W, Cai H. Connectivity and Functionality of the Globus Pallidus Externa
+                                                     Under Normal Conditions and Parkinson’s Disease. Frontiers in Neural Circuits. 2021; 15. https://doi.
+                                                     org/10.3389/fncir.2021.645287 PMID: 33737869
+                                               57.   Corbit VL, Whalen TC, Zitelli KT, Crilly SY, Rubin JE, Gittis AH. Pallidostriatal Projections Promote
+                                                     beta Oscillations in a Dopamine-Depleted Biophysical Network Model. Journal of Neuroscience. 2016;
+                                                     36(20):5556–5571. https://doi.org/10.1523/JNEUROSCI.0339-16.2016 PMID: 27194335
+                                               58.   Lindahl M, Kotaleski JH. Untangling basal ganglia network dynamics and function: Role of dopamine
+                                                     depletion and inhibition investigated in a spiking network model. Eneuro. 2016; 3(6). https://doi.org/10.
+                                                     1523/ENEURO.0156-16.2016 PMID: 28101525
+                                               59.   Oorschot DE. Total number of neurons in the neostriatal, pallidal, subthalamic, and substantia nigral
+                                                     nuclei of the rat basal ganglia: a stereological study using the cavalieri and optical disector methods.
+                                                     Journal of Comparative Neurology. 1996; 366(4):580–599. https://doi.org/10.1002/(SICI)1096-9861
+                                                     (19960318)366:4%3C580::AID-CNE3%3E3.0.CO;2-0 PMID: 8833111
+                                               60.   Saunders A, Huang KW, Sabatini BL. Globus pallidus externus neurons expressing parvalbumin inter-
+                                                     connect the subthalamic nucleus and striatal interneurons. PloS one. 2016; 11(2):e0149798. https://
+                                                     doi.org/10.1371/journal.pone.0149798 PMID: 26905595
+                                               61.   Steiner H, Tseng KY. Handbook of basal ganglia structure and function. Academic Press; 2016.
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                 28 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                           Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                               62.   Berke JD, Okatan M, Skurski J, Eichenbaum HB. Oscillatory entrainment of striatal neurons in freely
+                                                     moving rats. Neuron. 2004; 43(6):883–896. https://doi.org/10.1016/j.neuron.2004.08.035 PMID:
+                                                     15363398
+                                               63.   Miller BR, Walker AG, Shah AS, Barton SJ, Rebec GV. Dysregulated information processing by
+                                                     medium spiny neurons in striatum of freely behaving mouse models of Huntington’s disease. Journal
+                                                     of neurophysiology. 2008; 100(4):2205–2216. https://doi.org/10.1152/jn.90606.2008 PMID: 18667541
+                                               64.   Fourcaud N, Brunel N. Dynamics of the firing probability of noisy integrate-and-fire neurons. Neural
+                                                     computation. 2002; 14(9):2057–2110. https://doi.org/10.1162/089976602320264015 PMID:
+                                                     12184844
+                                               65.   Burkitt AN. A review of the integrate-and-fire neuron model: II. Inhomogeneous synaptic input and net-
+                                                     work properties. Biological cybernetics. 2006; 95(2):97–112. https://doi.org/10.1007/s00422-006-
+                                                     0082-8 PMID: 16821035
+                                               66.   Meffin H, Burkitt AN, Grayden DB. An analytical model for the ‘large, fluctuating synaptic conductance
+                                                     state’typical of neocortical neurons in vivo. Journal of computational neuroscience. 2004; 16(2):159–
+                                                     175. https://doi.org/10.1023/B:JCNS.0000014108.03012.81 PMID: 14758064
+                                               67.   Cavallari S, Panzeri S, Mazzoni A. Comparison of the dynamics of neural interactions between cur-
+                                                     rent-based and conductance-based integrate-and-fire recurrent networks. Frontiers in neural circuits.
+                                                     2014; 8:12. https://doi.org/10.3389/fncir.2014.00012 PMID: 24634645
+                                               68.   Fourcaud-Trocmé N, Hansel D, Van Vreeswijk C, Brunel N. How spike generation mechanisms deter-
+                                                     mine the neuronal response to fluctuating inputs. Journal of neuroscience. 2003; 23(37):11628–
+                                                     11640. https://doi.org/10.1523/JNEUROSCI.23-37-11628.2003 PMID: 14684865
+                                               69.   Ermentrout GB, Kopell N. Parabolic bursting in an excitable system coupled with a slow oscillation.
+                                                     SIAM journal on applied mathematics. 1986; 46(2):233–253. https://doi.org/10.1137/0146017
+                                               70.   Izhikevich EM. Simple model of spiking neurons. IEEE Transactions on neural networks. 2003; 14
+                                                     (6):1569–1572. https://doi.org/10.1109/TNN.2003.820440 PMID: 18244602
+                                               71.   Brette R, Gerstner W. Adaptive exponential integrate-and-fire model as an effective description of neu-
+                                                     ronal activity. Journal of neurophysiology. 2005; 94(5):3637–3642. https://doi.org/10.1152/jn.00686.
+                                                     2005 PMID: 16014787
+                                               72.   Baufreton J, Kirkham E, Atherton JF, Menard A, Magill PJ, Bolam JP, et al. Sparse but selective and
+                                                     potent synaptic transmission from the globus pallidus to the subthalamic nucleus. Journal of neuro-
+                                                     physiology. 2009;. https://doi.org/10.1152/jn.00305.2009 PMID: 19458148
+                                               73.   Brunel N, Wang XJ. What determines the frequency of fast network oscillations with irregular neural
+                                                     discharges? I. Synaptic dynamics and excitation-inhibition balance. Journal of neurophysiology. 2003;
+                                                     90(1):415–430. https://doi.org/10.1152/jn.01095.2002 PMID: 12611969
+                                               74.   Fan KY, Baufreton J, Surmeier DJ, Chan CS, Bevan MD. Proliferation of external globus pallidus-sub-
+                                                     thalamic nucleus synapses following degeneration of midbrain dopamine neurons. Journal of Neuro-
+                                                     science. 2012; 32(40):13718–13728. https://doi.org/10.1523/JNEUROSCI.5750-11.2012 PMID:
+                                                     23035084
+                                               75.   Gittis AH, Hang GB, LaDow ES, Shoenfeld LR, Atallah BV, Finkbeiner S, et al. Rapid target-specific
+                                                     remodeling of fast-spiking inhibitory circuits after loss of dopamine. Neuron. 2011; 71(5):858–868.
+                                                     https://doi.org/10.1016/j.neuron.2011.06.035 PMID: 21903079
+                                               76.   Blesa J, Trigo-Damas I, Dileone M, Del Rey NLG, Hernandez LF, Obeso JA. Compensatory mecha-
+                                                     nisms in Parkinson’s disease: circuits adaptations and role in disease modification. Experimental neu-
+                                                     rology. 2017; 298:148–161. https://doi.org/10.1016/j.expneurol.2017.10.002 PMID: 28987461
+                                               77.   Yelnik J, Percheron G. Subthalamic neurons in primates: a quantitative and comparative analysis.
+                                                     Neuroscience. 1979; 4(11):1717–1743. https://doi.org/10.1016/0306-4522(79)90030-7 PMID: 117397
+                                               78.   Shepherd GM. Corticostriatal connectivity and its role in disease. Nature Reviews Neuroscience.
+                                                     2013; 14(4):278–291. https://doi.org/10.1038/nrn3469 PMID: 23511908
+                                               79.   Verstynen TD, Badre D, Jarbo K, Schneider W. Microstructural organizational patterns in the human
+                                                     corticostriatal system. Journal of neurophysiology. 2012; 107(11):2984–2995. https://doi.org/10.1152/
+                                                     jn.00995.2011 PMID: 22378170
+                                               80.   Hardman CD, Henderson JM, Finkelstein DI, Horne MK, Paxinos G, Halliday GM. Comparison of the
+                                                     basal ganglia in rats, marmosets, macaques, baboons, and humans: volume and neuronal number for
+                                                     the output, internal relay, and striatal modulating nuclei. Journal of Comparative Neurology. 2002; 445
+                                                     (3):238–255. https://doi.org/10.1002/cne.10165 PMID: 11920704
+                                               81.   Butcher J. Practical Runge–Kutta methods for scientific computation. The ANZIAM Journal. 2009; 50
+                                                     (3):333–342. https://doi.org/10.1017/S1446181109000030
+                                               82.   O’Neill ME. PCG: A family of simple fast space-efficient statistically good algorithms for random num-
+                                                     ber generation. ACM Transactions on Mathematical Software. 2014.
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                             29 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                             Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                               83.   Terman D, Rubin JE, Yew A, Wilson C. Activity patterns in a model for the subthalamopallidal network
+                                                     of the basal ganglia. Journal of Neuroscience. 2002; 22(7):2963–2976. https://doi.org/10.1523/
+                                                     JNEUROSCI.22-07-02963.2002 PMID: 11923461
+                                               84.   Suryanarayana SM, Hellgren Kotaleski J, Grillner S, Gurney KN. Roles for globus pallidus externa
+                                                     revealed in a computational model of action selection in the basal ganglia. Neural Networks. 2019;
+                                                     109:113–136. https://doi.org/10.1016/j.neunet.2018.10.003 PMID: 30414556
+                                               85.   Blenkinsop A, Anderson S, Gurney K. Frequency and function in the basal ganglia: the origins of beta
+                                                     and gamma band activity. The Journal of Physiology. 2017; 595(13):4525–4548. https://doi.org/10.
+                                                     1113/JP273760 PMID: 28334424
+                                               86.   Chakravarty K, Roy S, Sinha A, Nambu A, Chiken S, Hellgren Kotaleski J, et al. Transient Response of
+                                                     Basal Ganglia Network in Healthy and Low-Dopamine State. eNeuro. 2022; 9(2):ENEURO.0376–
+                                                     21.2022. https://doi.org/10.1523/ENEURO.0376-21.2022 PMID: 35140075
+                                               87.   Pavlides A, Hogan SJ, Bogacz R. Computational models describing possible mechanisms for genera-
+                                                     tion of excessive beta oscillations in Parkinson’s disease. PLoS computational biology. 2015; 11(12):
+                                                     e1004609. https://doi.org/10.1371/journal.pcbi.1004609 PMID: 26683341
+                                               88.   Azizpour Lindi S, Mallet NP, Leblois A. Synaptic changes in pallidostriatal circuits observed in parkin-
+                                                     sonian model triggers abnormal beta synchrony with accurate spatio-temporal properties across the
+                                                     basal ganglia. bioRxiv. 2023; p. 2023–03.
+                                               89.   Adam EM, Brown EN, Kopell N, McCarthy MM. Deep brain stimulation in the subthalamic nucleus for
+                                                     Parkinson’s disease can restore dynamics of striatal networks. Proceedings of the National Academy
+                                                     of Sciences. 2022; 119(19):e2120808119. https://doi.org/10.1073/pnas.2120808119 PMID:
+                                                     35500112
+                                               90.   Oswal A, Cao C, Yeh CH, Neumann WJ, Gratwicke J, Akram H, et al. Neural signatures of hyperdirect
+                                                     pathway activity in Parkinson’s disease. Nature communications. 2021; 12(1):5185. https://doi.org/10.
+                                                     1038/s41467-021-25366-0 PMID: 34465771
+                                               91.   Iskhakova L, Rappel P, Deffains M, Fonar G, Marmor O, Paz R, et al. Modulation of dopamine tone
+                                                     induces frequency shifts in cortico-basal ganglia beta oscillations. Nature communications. 2021; 12
+                                                     (1):7026. https://doi.org/10.1038/s41467-021-27375-5 PMID: 34857767
+                                               92.   Sharott A, Magill PJ, Harnack D, Kupsch A, Meissner W, Brown P. Dopamine depletion increases the
+                                                     power and coherence of β-oscillations in the cerebral cortex and subthalamic nucleus of the awake rat.
+                                                     European Journal of Neuroscience. 2005; 21(5):1413–1422. https://doi.org/10.1111/j.1460-9568.
+                                                     2005.03973.x PMID: 15813951
+                                               93.   Rubin JE. Computational models of basal ganglia dysfunction: the dynamics is in the details. Current
+                                                     opinion in neurobiology. 2017; 46:127–135. https://doi.org/10.1016/j.conb.2017.08.011 PMID:
+                                                     28888856
+                                               94.   Moran RJ, Mallet N, Litvak V, Dolan RJ, Magill PJ, Friston KJ, et al. Alterations in brain connectivity
+                                                     underlying beta oscillations in Parkinsonism. PLoS computational biology. 2011; 7(8):e1002124.
+                                                     https://doi.org/10.1371/journal.pcbi.1002124 PMID: 21852943
+                                               95.   Lai HY, Liao LD, Lin CT, Hsu JH, He X, Chen YY, et al. Design, simulation and experimental validation
+                                                     of a novel flexible neural probe for deep brain stimulation and multichannel recording. Journal of neural
+                                                     engineering. 2012; 9(3):036001. https://doi.org/10.1088/1741-2560/9/3/036001 PMID: 22488106
+                                               96.   Butenko K, Bahls C, Schröder M, Köhling R, van Rienen U. OSS-DBS: Open-source simulation plat-
+                                                     form for deep brain stimulation with a comprehensive automated modeling. PLoS computational biol-
+                                                     ogy. 2020; 16(7):e1008023. https://doi.org/10.1371/journal.pcbi.1008023 PMID: 32628719
+                                               97.   Fleming JE, Dunn E, Lowery MM. Simulation of closed-loop deep brain stimulation control schemes
+                                                     for suppression of pathological beta oscillations in Parkinson’s disease. Frontiers in neuroscience.
+                                                     2020; 14:166. https://doi.org/10.3389/fnins.2020.00166 PMID: 32194372
+                                               98.   West TO, Magill PJ, Sharott A, Litvak V, Farmer SF, Cagnan H. Stimulating at the right time to recover
+                                                     network states in a model of the cortico-basal ganglia-thalamic circuit. PLoS computational biology.
+                                                     2022; 18(3):e1009887. https://doi.org/10.1371/journal.pcbi.1009887 PMID: 35245281
+                                               99.   Tinkhauser G. The present and future role of clinical neurophysiology for Deep Brain Stimulation;
+                                                     2022.
+                                             100.    Shah A, Nguyen TAK, Peterman K, Khawaldeh S, Debove I, Shah SA, et al. Combining multimodal
+                                                     biomarkers to guide deep brain stimulation programming in Parkinson disease. Neuromodulation:
+                                                     technology at the neural interface. 2022;. https://doi.org/10.1016/j.neurom.2022.01.017 PMID:
+                                                     35219571
+                                             101.    Tinkhauser G, Moraud EM. Controlling Clinical States Governed by Different Temporal Dynamics With
+                                                     Closed-Loop Deep Brain Stimulation: A Principled Framework. Frontiers in neuroscience. 2021; 15.
+                                                     https://doi.org/10.3389/fnins.2021.734186 PMID: 34858126
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                                30 / 31
+PLOS COMPUTATIONAL BIOLOGY                                                                           Onset of pathological beta oscillations in basal ganglia
+
+
+
+                                             102.   Crowell AL, Ryapolova-Webb ES, Ostrem JL, Galifianakis NB, Shimamoto S, Lim DA, et al. Oscilla-
+                                                    tions in sensorimotor cortex in movement disorders: an electrocorticography study. Brain. 2012; 135
+                                                    (2):615–630. https://doi.org/10.1093/brain/awr332 PMID: 22252995
+                                             103.   Vissani M, Palmisano C, Volkmann J, Pezzoli G, Micera S, Isaias IU, et al. Impaired reach-to-grasp
+                                                    kinematics in parkinsonian patients relates to dopamine-dependent, subthalamic beta bursts. npj Par-
+                                                    kinson’s Disease. 2021; 7(1):53. https://doi.org/10.1038/s41531-021-00187-6 PMID: 34188058
+                                             104.   Canessa A, Palmisano C, Isaias IU, Mazzoni A. Gait-related frequency modulation of beta oscillatory
+                                                    activity in the subthalamic nucleus of parkinsonian patients. Brain Stimulation. 2020; 13(6):1743–
+                                                    1752. https://doi.org/10.1016/j.brs.2020.09.006 PMID: 32961337
+                                             105.   López-Azcárate J, Tainta M, Rodrı́guez-Oroz MC, Valencia M, González R, Guridi J, et al. Coupling
+                                                    between beta and high-frequency activity in the human subthalamic nucleus may be a pathophysiolog-
+                                                    ical mechanism in Parkinson’s disease. Journal of Neuroscience. 2010; 30(19):6667–6677. https://doi.
+                                                    org/10.1523/JNEUROSCI.5459-09.2010 PMID: 20463229
+                                             106.   Oswal A, Beudel M, Zrinzo L, Limousin P, Hariz M, Foltynie T, et al. Deep brain stimulation modulates
+                                                    synchrony within spatially and spectrally distinct resting state networks in Parkinson’s disease. Brain.
+                                                    2016; 139(5):1482–1496. https://doi.org/10.1093/brain/aww048 PMID: 27017189
+
+
+
+
+PLOS Computational Biology | https://doi.org/10.1371/journal.pcbi.1010645 April 27, 2023                                                              31 / 31
+

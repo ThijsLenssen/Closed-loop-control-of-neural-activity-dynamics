@@ -1,0 +1,936 @@
+12340 • The Journal of Neuroscience, September 15, 2010 • 30(37):12340 –12352
+
+
+
+
+Neurobiology of Disease
+
+
+Conditions for the Generation of Beta Oscillations in the
+Subthalamic Nucleus–Globus Pallidus Network
+Alejo J. Nevado Holgado,1 John R. Terry,2 and Rafal Bogacz1
+1Department of Computer Science, University of Bristol, Bristol BS8 1UB, United Kingdom, and 2Department of Engineering Mathematics, University of
+Bristol, Bristol BS8 1TR, United Kingdom
+
+
+
+The advance of Parkinson’s disease is associated with the existence of abnormal oscillations within the basal ganglia with frequencies in the beta
+band (13–30 Hz). While the origin of these oscillations remains unknown, there is some evidence suggesting that oscillations observed in the
+basalgangliaariseduetointeractionsoftwonuclei:thesubthalamicnucleus(STN)andtheglobuspallidusparsexterna(GPe).Toinvestigatethis
+hypothesis, we develop a computational model of the STN–GPe network based upon anatomical and electrophysiological studies. Significantly,
+our study shows that for certain parameter regimes, the model intrinsically oscillates in the beta range. Through an analytical study of the model,
+we identify a simple set of necessary conditions on model parameters that guarantees the existence of beta oscillations. These conditions for
+generation of oscillations are described by a set of simple inequalities and can be summarized as follows: (1) The excitatory connections from
+STN to GPe and the inhibitory connections from GPe to STN need to be sufficiently strong. (2) The time required by neurons to react to their
+inputs needs to be short relative to synaptic transmission delays. (3) The excitatory input from the cortex to STN needs to be high relative to the
+inhibition from striatum to GPe. We confirmed the validity of these conditions via numerical simulation. These conditions describe changes in
+parameters that are consistent with those expected as a result of the development of Parkinson’s disease, and predict manipulations that could
+inhibit the pathological oscillations.
+
+
+
+Introduction                                                                                                          (Bogacz and Gurney, 2007). In the diseased state, prominent coher-
+Parkinson’s disease is attributed to the death of dopaminergic                                                        ent oscillations in firing rate are observed in both nuclei (Bevan et al.,
+neurons of the substantia nigra pars compacta (Jankovic, 2008), a                                                     2002; Boraud et al., 2005; Mallet et al., 2008a,b), as in other basal
+brainstem nucleus projecting to virtually all of the basal ganglia.                                                   ganglia structures. It is commonly thought that some of these oscil-
+The symptoms of Parkinson’s disease include bradykinesia,                                                             lations could be generated in the STN–GPe network, because the
+which is a hallmark of basal ganglia disorders, and is character-                                                     architecture of the circuit (STN exciting GPe and GPe inhibiting
+ized by a general slowing of movement execution (Berardelli et                                                        STN) is prone to generate oscillatory behavior (Bevan et al., 2002).
+al., 2001). The advance of bradykinesia is highly correlated with                                                     Experimentally it has been already shown that this circuit can sustain
+the presence of abnormal coherent oscillations within basal nu-                                                       oscillatory delta band activity on its own in in vitro studies (Plenz and
+clei in the beta band frequency (13–30 Hz) (Boraud et al., 2005).                                                     Kital, 1999). However, the existing experimental data does not pro-
+    Some evidence suggests that the oscillations observed in the                                                      vide a clear answer as to whether beta band activity can be produced
+dopamine-depleted basal ganglia may originate from the network                                                        in the STN–GPe circuit (Lang and Zadikoff, 2005).
+composed of two basal nuclei: the subthalamic nucleus (STN) and                                                           To shed light on the origin of oscillations associated with Par-
+the globus pallidus pars externa (GPe) (Plenz and Kital, 1999). The                                                   kinson’s disease, many computational models have been pro-
+STN is a glutamatergic nucleus projecting substantially to GPe (Sato                                                  posed (Gillies et al., 2002; Terman et al., 2002; Frank, 2006;
+et al., 2000b), while the GPe is a GABAergic nucleus projecting pro-                                                  Humphries et al., 2006; Leblois et al., 2006; Gillies and Willshaw,
+fusely back to STN (Sato et al., 2000a). The STN provides widespread                                                  2007; van Albada and Robinson, 2009). These models provide
+inhibition of all movements (Mink, 1996). Recent computational                                                        interesting conclusions and explain experimentally observed
+models suggest that this inhibition permits more accurate choices                                                     phenomena; however, most have a drawback in that the com-
+during difficult decisions (Frank, 2006; Frank et al., 2007), and the                                                 plexity of the equations used in the model make them unsuitable
+optimal level of this inhibition is computed by the STN–GPe circuit                                                   for mathematical analysis. Furthermore, none of them have been
+                                                                                                                      able to produce beta oscillations associated with bradykinesia.
+                                                                                                                          In the present study, we develop a computational model of the
+Received Feb. 15, 2010; revised June 14, 2010; accepted July 6, 2010.
+   A.J.N.H. was fully funded by Caja Madrid Foundation, Madrid, Spain. J.R.T. acknowledges the financial support of
+                                                                                                                      STN–GPe network, based upon anatomical and electrophysio-
+the Engineering and Physical Sciences Research Council via Grant EP/E003249/01 “Applied Nonlinear Mathematics:        logical studies. The model is detailed enough to reproduce mul-
+Making it Real.” We acknowledge Kevin Gurney, Peter Magill, and Frank Marten for their pertinent comments on an       tiple experimental studies showing the reciprocal connectivity
+earlier version of the manuscript.                                                                                    between STN and GPe, while being straightforward enough to
+   Correspondence should be addressed to Rafal Bogacz, Department of Computer Science, University of Bristol,
+Merchant Venturers, Building Woodland Road, Bristol BS8 1UB, UK. E-mail: R.Bogacz@bristol.ac.uk.
+                                                                                                                      permit mathematical analysis of the system. This allows us to
+   DOI:10.1523/JNEUROSCI.0817-10.2010                                                                                 identify a simple set of necessary conditions on model parameters
+Copyright © 2010 the authors 0270-6474/10/3012340-13$15.00/0                                                          that guarantees the existence of beta oscillations. These condi-
+Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease                                                            J. Neurosci., September 15, 2010 • 30(37):12340 –12352 • 12341
+
+
+
+
+Figure 1. Schematic diagrams of the three computational models considered in the paper: A, original model; B, delayed linear model; C, nondelayed linear model. Each rectangle denotes a
+nucleus. The excitatory connections are denoted by arrows, while the inhibitory connections by lines ended with circles. The parameters associated with each connection (weights w and transmission
+delays ⌬t) are also shown. The indexes of those parameters refer to the origin and target nuclei of the connection, and these can be any of the following: cortex (C), striatum (X), subthalamic nucleus
+(S), or globus pallidus pars externa (G).
+
+                                                                                                      Table 1. Values of the parameters of the model and sources used to establish each
+tions predict manipulations that could reduce the pathological                                        value
+oscillations.                                                                                         Parameter      Value         Source
+
+Materials and Methods                                                                                 ⌬tSG             6 ms        Kita et al. (2005)
+                                                                                                      ⌬tGS             6 ms        Extrapolation to monkeys based on Fujimoto and Kita (1993) and ⌬tSG
+In this section, we provide a detailed description of the model of the STN–
+                                                                                                      ⌬tGG             4 ms        Based on proximity between cells
+GPe circuit. We then describe how parameter values in the model were
+                                                                                                      ␶S               6 ms        Kita et al. (1983); Nakanishi et al. (1987a); Paz et al. (2005)
+obtained on the basis of experimental data.
+                                                                                                      ␶G              14 ms        Kita and Kitai (1991)
+Computational model                                                                                   Ctx             27 spk/s     Lebedev and Wise (2000)
+The architecture of our model is shown in Figure 1 A. The STN–GPe                                     Str              2 spk/s     Schultz and Romo (1988)
+network is a mutually coupled system, where STN neurons project exci-                                 MS             300 spk/s     Hallworth et al. (2003)
+tatory glutamatergic axons to the GPe (Sato et al., 2000b), while GPe                                 BS              17 spk/s     Hallworth et al. (2003)
+neurons project inhibitory GABAergic axons to the STN and to other                                    MG             400 spk/s     Kita et al. (2005); Kita (2007)
+neurons within GPe (Sato et al., 2000a). Additionally, these two nu-                                  BG              75 spk/s     Kita et al. (2004); Kita (2007)
+clei receive inputs from cortex and striatum, respectively (Kita, 2007).
+To characterize the firing rate of neural populations in STN and GPe,
+we use the well described firing rate model (Dayan and Abbott, 2001; Vogels                           equations as the “original model,” to distinguish it from the two simplified
+et al., 2005). The differential equation used by this type of model to describe                       models we consider in the Results section.
+the changes in the firing rate of a neuronal population has the following
+form:                                                                                                 Determining model parameters from experimental studies
+                                                                                                      For many of the parameters of the model, we were able to determine their
+                                     ␶ v̇ ⫽ F 共 w
+                                                ជ uជ 兲 ⫺ v,                                 (1)       values on the basis of published experimental studies. We used the results of
+                                                                                                      experimental studies from monkeys, unless stated otherwise. Table 1 lists the
+where v is the firing rate of the neural population being modeled, v̇ denotes
+                                                                                                      parameters of the model and experimental studies from which they were
+the rate of change in the firing rate (i.e., derivative of v), uជ is a vector of firing
+                                                                                                      estimated; these parameters describe the following properties of the model:
+rates of the presynaptic neural populations, w    ជ is a vector of weights describ-
+                                                                                                         Connection delays ⌬t. In our model, we consider the existence of a trans-
+ing strengths of synaptic connections from the presynaptic populations, ␶ is
+                                                                                                      mission delay between STN and GPe neurons. We were unable to find ex-
+the time constant describing how rapidly the population reacts to its inputs,
+                                                                                                      perimental studies investigating the delay in transmission from GPe to STN
+and F( 䡠 ) is the input– output relationship of the neurons in the steady state,
+                                                                                                      in monkeys, and hence used the value from an analogous study in rat (Fuji-
+typically termed the activation function or F–I relationship. Using Equation
+                                                                                                      moto and Kita, 1993). We were also unable to find studies investigating
+1 to model STN and GPe populations, we obtain the following set of differ-
+                                                                                                      transmission delays between two GPe neurons. However, given that these
+ential equations describing our system:
+                                                                                                      neurons are located closer to each other than STN neurons to GPe, we
+␶ SSṪN ⫽ FS共⫺wGSGP(t ⫺ ⌬tGS) ⫹ wCSCtx) ⫺ STN(t)                                                      assume that the corresponding time delay between GPe neurons is shorter
+                                                                                                      than that between GPe and STN neurons.
+    ў                                                                                                    Time constants ␶. The time constant of a firing rate model corresponds to
+ ␶GGP ⫽ FG(wSGSTN(t ⫺ ⌬tSG) ⫺ wGGGP(t ⫺ ⌬tGG) ⫺ wXGStr) ⫺ GP(t), (2)
+                                                                                                      the membrane time constant of the neurons being modeled (Dayan and
+where STN and GP are, respectively, the firing rates of the STN and GPe                               Abbott, 2001). Hence, we chose the values of the time constants on the basis
+neural populations. Ctx and Str are the constant inputs from cortex and                               of electrophysiological studies of STN and GPe neurons (Kita et al., 1983;
+striatum, respectively. Although beta oscillations have been reported in the                          Nakanishi et al., 1987b; Kita and Kitai, 1991; Paz et al., 2005).
+cortex and the striatum (Courtemanche et al., 2003; Sharott et al., 2005), we                            Firing rates of cortical Ctx and striatal Str neurons. As mentioned in the
+wish to explore whether the STN–GPe network could generate beta oscilla-                              previous subsection, the firing rate of cortex and striatum are assumed con-
+tions independently of an external oscillatory drive. Consequently, we do not                         stant in the model (as we wished to explore whether the STN–GPe network
+explicitly model corticostriatal interactions and consider these inputs to be                         can generate oscillations without external oscillatory input). The firing rates
+constant, and in this way, we ensure that any oscillatory phenomena appear-                           of cortex and striatum were determined from experimental studies where the
+ing in our model will be exclusively due to the STN–GPe network. ␶S and ␶G                            mean activity of motor cortex and striatal medium spiny neurons were mea-
+are the time constants for STN and GPe populations, respectively. FS( 䡠 ) and                         sured (Schultz and Romo, 1988; Lebedev and Wise, 2000).
+FG( 䡠 ) are the input– output relationships for STN and GPe populations.                                 The activation function F( 䡠 ). The firing rate of STN and GPe neurons as a
+wAB are the weights of the connections from neural population A to neural                             function of injected current has been studied in detail (Nakanishi et al.,
+population B. ⌬tAB are the transmission delays of connections from popu-                              1987a; Kita and Kitai, 1991; Hallworth et al., 2003; Wilson et al., 2004; Deister
+lation A to population B, respectively. Here the indexes A and B used to                              et al., 2009). All STN neurons reported in these studies showed very similar
+indicate different neural populations can be any of the following: S for STN,                         activation functions with a characteristic sigmoidal shape (Hallworth et al.,
+G for GPe, C for cortex, or X for striatum. For clarity, we refer to this set of                      2003; Wilson et al., 2004), and hence the activation function for the popula-
+12342 • J. Neurosci., September 15, 2010 • 30(37):12340 –12352                                                                   Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease
+
+
+                                                                                                           we estimate these network weights by finding the values for which the behav-
+                                                                                                           ior of the model fits a wide array of experimental data on neural activity in
+                                                                                                           STN and GPe.
+                                                                                                               The experimental data recordings of STN and GPe activity used to fit the
+                                                                                                           model can be divided into two types: passive and active. The passive record-
+                                                                                                           ings are a group of measures of mean STN and GPe firing rates. These
+                                                                                                           measures have not been exclusively collected in control conditions, but also
+                                                                                                           following injecting glutamate and GABAA blockers into the nuclei, a sce-
+                                                                                                           nario that we modeled by setting the related connection weights to zero.
+                                                                                                           These passive measures are listed in Table 2 and plotted in Figure 3A. On the
+                                                                                                           other hand, active measures are the recordings of GPe activity performed
+                                                                                                           while electric current is injected into STN. In one such experiment by Kita et
+                                                                                                           al. (2005), two types of STN stimulation were used: single pulse (Fig. 3B) and
+                                                                                                           burst high-frequency stimulation (BHFS), which consists of a train of 10
+                                                                                                           pulses spanned 0.01 s from each other (100 Hz) (Fig. 3C). The data from this
+                                                                                                           experiment are particularly suitable for the estimation of the synaptic weights in
+                                                                                                           the STN–GPe circuit, because, as concluded by Kita et al. (2005), the responses
+                                                                                                           observed in this study resulted from intrinsic connections of this circuit.
+                                                                                                               The estimation of network weights was performed using a computational
+                                                                                                           search with an advanced genetic algorithm (Goldberg, 1989; Mitchell, 1998).
+                                                                                                           We term it advanced because it introduces a number of important improve-
+                                                                                                           ments over a classical genetic algorithm [specifically crossover, elitism, local
+Figure 2. F–I curves of STN and GPe in the model. Solid lines show the sigmoidal activation
+                                                                                                           hill climbing with inertia, stochastic universal sampling, automatic variation
+functions FS and FG (see vertical axis labels). Dotted lines indicate the firing rates in the absence of
+                                                                                                           of mutation step, fitness sharing, and old elite genes freezing (Goldberg,
+input, and values of parameters MS, BS, MG, and BG label the vertical axes. Dashed-dotted and dashed
+                                                                                                           1989; Mitchell, 1998)]. An in-depth description of this algorithm falls out of
+lines show two different linearizations of the sigmoidal input– output relationships. Dashed-doted
+                                                                                                           the scope of this paper; however, we provide a brief summary for complete-
+lines have slope equal to 1, while the dashed lines indicate the linearizations performed around the
+                                                                                                           ness. For each set of experiments whose results are shown in Figure 3, values
+mean firing rate of each nucleus in the steady state.
+                                                                                                           of model parameters were estimated using this genetic algorithm, which
+tion of STN neurons in our model is sigmoidal. There exist some studies of                                 found the parameter set that minimized the error of the simulation with
+GPe neurons whose activation functions were close to sigmoidal (Deister et                                 respect to the experimental recordings, defined as follows:
+
+
+                                                                                                                        冉 冘冉                                冊
+al., 2009), while other studies reported that different GPe neurons had dif-
+ferent activation functions (Nambu and Llinas, 1994). Nevertheless theoret-                                             1 6 FRexMean, j ⫺ FRmean, j 2
+ical studies have shown that a population of neurons with heterogeneous                                    E ⫽ q mean
+                                                                                                                        6 j⫽1     FRexMean
+activation functions can be approximated in a population level model by a
+unit with a sigmoidal activation function (Wilson and Cowan, 1972). There-
+fore, the population of GPe neurons in our model also has a sigmoidal
+activation function. The activation functions of STN and GPe in our model
+                                                                                                                                 ⫹ max   冉
+                                                                                                                                     j⫽1..6
+                                                                                                                                              FRexMean, j ⫺ FRmean, j 2
+                                                                                                                                                      FRexMean            冊冊
+                                                                                                                                        冘冉                                       冊
+are shown by solid lines in Figure 2. A sigmoidal curve can be defined with
+                                                                                                                                 qsingle t single GPexSingle(t) ⫺ GPsingle(t) 2
+four parameters—its minimum firing rate, its maximum firing rate, its max-                                                   ⫹
+imum slope, and the firing rate in the absence of inputs. For both STN and                                                       tsingle t⫽0               GPexSingle
+
+
+                                                                                                                                                     冘冉                                       冊
+GPe, we define the minimum firing rate as 0, as this is the minimum possible
+neuronal firing rate and it is the common figure observed in experimentally                                                                   qBHFS t BHFS GPexBHFS(t) ⫺ GPBHFS(t) 2
+obtained F–I curves. Also in both STN and GPe, the slope will be defined as
+                                                                                                                                        ⫹                                            , (4)
+                                                                                                                                              tBHFS t⫽0           GPexBHFS
+1 (note in Fig. 2 that in a wide range the activation function is parallel to
+dashed-dotted line with slope 1), as this creates a simple interpretation of the                           where FRexMean,j, GPexSingle, and GPexBHFS are the experimental firing rates
+units of synaptic weight in our model (see Results). The remaining two                                     of STN or GPe in the three types of experiment (mean firing rates of STN and
+parameters, maximum firing rate and the firing rate in the absence of input,                               GPe in six different situations, single stimulation of STN and BHFS stimu-
+are enough to constrain a sigmoidal F–I curve. These parameters will be                                    lation of STN, respectively). FRmean,j, GPsingle, and GPBHFS are the firing rates
+called MS and BS for STN, and MG and BG for GPe (see labeling in Fig. 2), and                              obtained in the simulations of the model corresponding to each one of the
+they can be directly established from electrophysiological observations. We                                three mentioned types of experiment. The index j refers to the specific ex-
+set MS and MG to the maximum observed firing rate in electrophysiological                                  periment where the mean activity of the nuclei was recorded, and it corre-
+experiments for each nuclei (Hallworth et al., 2003; Kita et al., 2005; Kita,                              sponds to the index used in Figure 3A. tsingle and tBHFS are the numbers of
+2007), BG to the firing rate in GPe when all inputs are blocked (through the                               bins in the firing rate histograms in Figure 3, B and C. qmean, qsingle, and qBHFS
+use of GABA antagonist–agonists and glutamate antagonists) (Kita et al.,                                   are coefficients that assign more relevance to the experiments that we
+2004; Kita, 2007), and BS to the spontaneous firing rate of STN neurons in                                 thought were more important to be reproduced closely. The value of these
+slices taken from rats (since there is no published corresponding primate data)                            coefficients are 0.8, 0.1, and 0.1, respectively, which are chosen to optimize
+(Hallworth et al., 2003). In summary, the activation functions are as follows:                             the algorithm’s performance, based on our experience. The overbar x៮ used in
+                                                         MS                                                some variables denotes the mean value of that variable in the experimental data,
+   FS共in兲 ⫽ sig(in, MS, BS ) ⫽                                                                             which is used throughout the equation to normalize squared error measures.
+                                            1 ⫹ exp(⫺4in/MS) 䡠 共MS ⫺ BS兲/BS                                   The stimulation of STN was simulated by increasing its input by a
+                                                               (3)
+                                             M                                                             value proportional to the electrode current used and during the periods
+    FG共in兲 ⫽ sig(in, M , B ) ⫽                G
+                                                               ,                                           of time that the real stimulation lasted. This added quantity corresponds
+                      G   G
+                               1 ⫹ exp(⫺4in/MG) 䡠 共MG ⫺ BG兲/BG
+                                                                                                           to the term IeStim added to Equation 2:
+
+
+
+
+                                                                                                                        冦
+where “in” is the input to the neural population being modeled.                                                             ␶ SSṪN ⫽ FS(⫺wGSGP共t ⫺ ⌬tGS) ⫹ wCSCtx)
+                                                                                                                            ⫺ STN共t兲 ⫹ IeStim
+Estimating network weights in the healthy state                                                                                ў                                                                      (5)
+The parameters describing weights of synaptic connections cannot be di-                                                     ␶GGP ⫽ FG共wSGSTN共t ⫺ ⌬tSG)
+rectly established from published experimental data. We now describe how                                                    ⫺ wGG GP共t ⫺ ⌬tGG) ⫺ wXGStr) ⫺ GP共t兲.
+Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease                                                                                     J. Neurosci., September 15, 2010 • 30(37):12340 –12352 • 12343
+
+
+Table 2. Experimentally observed STN and GPe firing rates in different experimental conditions used to constrain the model
+Number                            Experimental measure                                        Nucleus                           Firing rate (spk/s)                               n                            Source
+1                                 Control                                                     STN                                   19 ⫾ 10 (SD)                                  220                          Bergman et al. (1994)
+2                                 Control                                                     GPe                                 62.6 ⫾ 25.8 (SD)                                 35                          Kita et al. (2004, 2005)
+3                                 wSG ⫽ 0                                                     GPe                                 17.3 ⫾ 8.5 (SD)                                     6                        Kita et al. (2004)
+                                  Glutamate blocker into GPe
+4                                 wSG ⫽ 0, wGG ⫽ 0, wXG ⫽ 0                                   GPe                                 68.4 ⫾ 28.5 (SD)                                    5                        Kita et al. (2004)
+                                  Glutamate blocker into GPe
+                                  GABAA blocker into GPe
+5                                 wGS ⫽ 0                                                     GPe                                 96.8 ⫾ 35.0 (SD)                                    6                        Kita et al. (2004)
+                                  GABAA blocker into STN
+6                                 wGG ⫽ 0, wXG ⫽ 0                                            GPe                               135.1 ⫾ 107.3 (SD)                                 11                          Kita et al. (2004)
+                                  GABAA blocker into GPe
+In some of the experimental conditions shown, neurotransmitter blockers were injected into different nuclei, which corresponds in our model to the suppression of the related network weights, as indicated in the second column. n ⫽ Number
+of sample measurements.
+
+
+                                                                                                                                      shown in Table 3. A comparison of model behav-
+                                                                                                                                      ior with different experimental measures is pre-
+                                                                                                                                      sented in Figure 3, where the model essentially
+                                                                                                                                      reproduces a low-pass-filtered version of the fir-
+                                                                                                                                      ing rate, in accordance with theoretical studies of
+                                                                                                                                      the firing rate model (Dayan and Abbott, 2001).
+                                                                                                                                         The range of the weight values obtained is
+                                                                                                                                      in accordance with known STN–GPe func-
+                                                                                                                                      tional interconnectivity. To start with, it is
+                                                                                                                                      widely accepted that STN axons are diffuse,
+                                                                                                                                      such that every GPe neuron receives inputs
+                                                                                                                                      from a large number of STN neurons (Sato et
+                                                                                                                                      al., 2000b). Similarly, diffuse projections are
+                                                                                                                                      observed in the axons projecting from stria-
+                                                                                                                                      tum to GPe, where each GPe neuron receives
+                                                                                                                                      inputs from a large number of striatal cells
+                                                                                                                                      (Kita, 2007). These two similar situations,
+                                                                                                                                      where on average each GPe cell is influenced
+                                                                                                                                      by many presynaptic striatal and STN neu-
+                                                                                                                                      rons, are in accordance with the high values
+                                                                                                                                      we obtained for the weights wSG and wXG.
+                                                                                                                                      Conversely, GPe axons project to small areas
+                                                                                                                                      of both STN and itself (Sato et al., 2000a).
+                                                                                                                                      This significantly limits its ability to contact
+Figure 3. Comparison of model behavior with experimental data obtained from healthy monkeys. Vertical axes indicate firing a high number of postsynaptic neurons, and
+rate in units of spikes per second. A, Measures of STN⬘s and GPe’s mean firing rate in different experimental situations, as shown in therefore could explain the smaller values
+Table 2. Gray crosses show the mean values and vertical lines indicate SDs. This is compared with the mean firing rate of the model obtained for wGG and wGS compared to wSG
+in the same situations indicated by black circles. The numbers under the x-axis correspond to the numbers shown in Table 2. B, GPe and wXG. At the same time, although local
+firing rate after single stimulation of STN (Kita et al., 2005). Gray bars show experimental data and black curve corresponds to the GPe axons project mainly inside the dendritic
+results of simulation. C, GPe firing rate after burst high-frequency stimulation of STN (Kita et al., 2005).                          tree of the presynaptic neuron (Sato et al., 2000a),
+                                                                                                                                      they show relatively large boutons contacting the
+                                                                                                                                      soma and proximal dendrites of postsynaptic
+Table 3. Estimated parameter values for synaptic connection weight and electrode                         cells (Kita, 2007), which would explain the relatively high value of wGG in
+stimulation (i.e., Stim)                                                                                 comparison to wGS.
+Parameter                                Healthy state                              Diseased state
+wSG                                           19.0                                               20.0                    Simulating the advance of Parkinson’s disease in the model
+wGS                                            1.12                                              10.7                    Experimental evidence has established that dopamine influences den-
+wGG                                            6.60                                              12.3                    dritic excitability through the opposite action of D1-like and D2-like
+wCS                                            2.42                                               9.2                    receptors (Surmeier et al., 2007); therefore, the loss in dopamine ob-
+wXG                                           15.1                                              139.4                    served in Parkinson’s disease produces an important alteration in how
+Stim                                          4.6 ⫻ 10 3                                        —                        neurons respond to their inputs. In particular, the experimental data
+                                                                                                                         summarized in Table 4 suggest that the weights of all synaptic connec-
+                                                                                                                         tions included in our model increase with dopamine loss. The main
+In this equation, the term Ie corresponds to the stimulation current in mil-                                             reason for this increase is that all synaptic connections in the model
+liamps used in experiments by Kita et al. (2005). Stim is a conversion factor                                            terminate either in STN or in GPe and, in both of these nuclei, D2 recep-
+relating electrode current (in milliamps) to the modification induced in                                                 tors are present (Shen and Johnson, 2000; Hoover and Marshall, 2004).
+neuronal firing rate. This conversion factor is also found by the genetic                                                These receptors reduce synaptic transmission (Shen and Johnson, 2000;
+search together with the network weights. The resulting parameter values are                                             Cooper and Stanford, 2001), and hence in the dopamine-depleted state
+12344 • J. Neurosci., September 15, 2010 • 30(37):12340 –12352                                                                             Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease
+
+
+Table 4. Summary of literature supporting increase in specific synaptic weights                                        aptic weights of the STN–GPe network. However, these studies do not
+with the advance of Parkinson’s disease                                                                                specify quantitatively by how much each synaptic weight should be in-
+Weight          Literature supporting weight increase in Parkinson’s disease                                           creased. To estimate how much these weights increase, we fitted the
+                                                                                                                       computational model to experimental data recorded from monkey mod-
+wSG             Dopamine reduces the effect of glutamate on GPe neurons (Johnson and Napier,                           els of Parkinson’s disease (see Table 5) using the same method that was
+                   1997; Kita, 2007)                                                                                   previously used to fit data from healthy animals (see above, Estimating
+                D2 receptors are present in GPe (Hoover and Marshall, 2004; Kita, 2007)                                network weights in the healthy state). When using this method to esti-
+                                                                                                                       mate the weights of the diseased state, we treated the frequency of oscil-
+wGS             In the parkinsonian state, GABA agonists in GPe evokes greater currents in STN
+                                                                                                                       lations in the same manner as the mean firing rates are treated in
+                    (Shen and Johnson, 2005)
+                                                                                                                       Equation 4. The model successfully reproduced several properties of ex-
+                Dopamine reduces the effect of GABA on STN neurons (Cragg et al., 2004)
+                                                                                                                       perimental data listed in Table 5, and these are illustrated in Figure 4. The
+                D2 receptors are present in STN (Shen and Johnson, 2000)
+                                                                                                                       estimated values of synaptic weights in the diseased state are listed in
+wGG             Increased ambient GABA in GPe in animal models of Parkinson’s disease                                  Table 3.
+                   (Robertson et al., 1991; Ochi et al., 2000; Schroeder and Schneider, 2002)                             To simulate the advance of Parkinson’s disease, we set the weights in
+                D2 receptors are present in GPe (Hoover and Marshall, 2004; Kita, 2007)                                simulations corresponding to different stages of disease progression as
+                                                                                                                       follows:
+wCS             In the parkinsonian state, STN neurons are excited to a greater extent by cortex
+                    (Magill et al., 2001)                                                                                                  w AB ⫽ w ABh ⫹ K 䡠 共wABd ⫺wABh兲,                                     (6)
+                In the parkinsonian state, AMPA and NMDA currents are greater in the STN
+                    (Shen and Johnson, 2005)                                                                           where wAB is the synaptic weight from nucleus A to nucleus B, wABh the
+                D2 receptors are present in STN (Shen and Johnson, 2000)                                               weight value corresponding to the healthy state (see Table 3), wABd the
+wXG             Striatal neurons activity is increased after dopamine depletion (Kish et al., 1999;                    value corresponding to the diseased state (see Table 3), and K a parameter
+                   Tseng et al., 2001; O’Donnell, 2003)                                                                that is increased from 0 (corresponding to a healthy state) to 1 (corre-
+                D2 receptors reduce the excitability of striatopallidal neurons (Obeso et al., 2000;                   sponding to the diseased state) to simulate the continuous advance of the
+                                                                                                                       illness. Similar changes in STN–GPe synaptic weights to model dopa-
+                   Surmeier et al., 2007)
+                                                                                                                       mine depletion have been used in a previous computational model
+                Increased GPe ambient GABA in animal models of Parkinson’s disease (Robertson et
+                                                                                                                       (Humphries et al., 2006).
+                   al., 1991; Ochi et al., 2000; Schroeder and Schneider, 2002)
+                D2 receptors are present in GPe (Hoover and Marshall, 2004; Kita, 2007)
+                Striatopallidal neurons are activated by dopamine lesion (Mallet et al., 2006)                         Results
+The indexes of the weights refer to the origin and target nuclei of the connection they describe, and these can be C   We have simulated a model describing changes in firing rates of
+(cortex), X (striatum), S (STN), or G (GPe).                                                                           STN and GPe neurons. Connectivity in the model is shown in
+                                                                                                                       Figure 1 A, and its parameters were estimated from published
+this reduction is likely to be smaller. We now review additional studies                                               experimental data. The STN–GPe circuit in our model receives a
+suggesting weight increase specifically for individual connections:                                                    constant (rather than oscillatory) input from the cortex and the
+   STN to GPe. Increase in wSG is suggested by a study showing that                                                    striatum, as we wanted to investigate whether the STN–GPe cir-
+dopamine reduces the effect of glutamate on GPe neurons (Johnson and                                                   cuit can generate oscillations on its own. The constant inputs
+Napier, 1997).                                                                                                         ensure that any oscillations observed in our simulations are gen-
+   GPe to STN. For wGS, different studies suggest that the influence from                                              erated within the model of STN–GPe network rather than result-
+GPe to STN is exaggerated in parkinsonian patients: (1) In rodent models                                               ing from external oscillatory input. We simulated the advance of
+of Parkinson’s disease, GABA agonists evoke greater currents in STN
+                                                                                                                       Parkinson’s disease by increasing weights of synaptic connections
+neurons than in the healthy state (Shen and Johnson, 2005). (2) Dopa-
+mine application in the STN of rats reduces the impact of GABAergic                                                    terminating in STN or GPe in agreement with existing literature
+inputs in this nucleus (Cragg et al., 2004).                                                                           (see Materials and Methods).
+   GPe collaterals. Increase in wGG is suggested by the observation that
+ambient GABA is increased in animal models of Parkinson’s disease                                                      Model of the STN–GPe circuit can generate beta oscillations
+(Robertson et al., 1991; Ochi et al., 2000; Schroeder and Schneider, 2002).                                            When the model was simulated with parameter values corre-
+   Cortex to STN. For wCS, studies suggesting an increase include the                                                  sponding to a healthy state, the firing rate of STN and GPe pop-
+following: (1) In rodent models, STN neurons are excited to a greater                                                  ulations converged to a stable state and the model did not
+extent by cortex in the parkinsonian state (Magill et al., 2001). (2) Currents                                         produce oscillations (Fig. 5A). The initial changes in the firing
+evoked by AMPA and NMDA agonists are significantly greater in parkinso-                                                rate within the first ⬃50 ms in Figure 5A were due to the differ-
+nian STN neurons of rodent models (Shen and Johnson, 2005).
+                                                                                                                       ence between the initial values of the firing rates of STN and GPe
+   Striatum to GPe. Finally, the increase in wXG is supported by the fol-
+lowing observations: (1) Striatal activity is increased in Parkinson’s dis-                                            populations at time 0 and the firing rates at the equilibrium, so
+ease (Kish et al., 1999; Tseng et al., 2001; O’Donnell, 2003) (in our model,                                           they reflect the network converging to an equilibrium.
+the striatal activity is not directly modified as we simulate the advance of                                              Figure 5B shows a simulation of the model with slightly in-
+the disease, so the increased impact of striatum on GPe can be modeled                                                 creased synaptic weights (corresponding to a relatively mild do-
+by increasing wXG). (2) It is commonly stated that dopamine inhibits the                                               pamine depletion). Although the firing rates converge to an
+action of striatal neurons projecting predominantly to GPe through the                                                 equilibrium, the difference between initial firing rates and the
+action of D2 receptors (Obeso et al., 2000; Surmeier et al., 2007), so                                                 equilibrium causes transient oscillations with decreasing ampli-
+dopamine depletion should increase the activity of such neurons. (3)                                                   tude. The model with these values of parameters produces a tran-
+An increase in wXG is also supported by the previously mentioned                                                       sient oscillation whenever the values of the external inputs
+increased levels of GABA in animal models of Parkinson’s disease
+                                                                                                                       change.
+(Robertson et al., 1991; Ochi et al., 2000; Schroeder and Schneider,
+2002). (4) Dopaminergic depletion enhances the discharge activity of                                                      Figure 5C shows a simulation of the model with synaptic
+striatal neurons projecting to GPe and their responsiveness to cortical                                                weights increased to the values estimated from monkey models of
+input (Mallet et al., 2006).                                                                                           Parkinson’s disease (see Materials and Methods). The model in
+   The above studies suggest that the advance of Parkinson’s disease                                                   this state produces sustained oscillations even though the exter-
+should be simulated in our computational model by increasing the syn-                                                  nal inputs remain constant. This is a significant finding as it sug-
+Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease                                                                                 J. Neurosci., September 15, 2010 • 30(37):12340 –12352 • 12345
+
+
+Table 5. Experimentally observed STN and GPe firing rates and oscillation frequency in monkey models of Parkinson’s disease
+Number                     Experimental measure                                    Nucleus                        Value                                         n                      Source
+ 7                         Oscillation minimum firing rate                         STN                              0.2 spk/s                                     1                    Bergman et al. (1994)
+ 8                         Mean firing rate                                        STN                            25.8 ⫾ 14.9 (SD) spk/s                        220                    Bergman et al. (1994)
+ 9                         Oscillation maximum firing rate                         STN                             76.9 spk/s                                     1                    Bergman et al. (1994)
+10                         Oscillation minimum firing rate                         GPe                             20.7 spk/s                                     3                    Raz et al. (2000)
+11                         Mean firing rate                                        GPe                            44.8 ⫾ 4.6 (SD) spk/s                         445                    Raz et al. (2000)
+12                         Oscillation maximum firing rate                         GPe                            117.7 spk/s                                     3                    Raz et al. (2000)
+13                         Oscillation frequency                                   STN & GPe                         15 Hz                                      220                    Bergman et al. (1994); Raz et al. (2000)
+The maximum and minimum firing rates of the oscillatory activity for STN and GPe neurons can be extracted from the autocorrelograms used in the cited studies (see supplemental material A, available at www.jneurosci.org). n ⫽ number
+of sample measurements.
+
+
+                                                                                                                                                              This corresponds in Figure 5F to the curve
+                                                                                                                                                              continuing leftward and upward, etc. Fi-
+                                                                                                                                                              nally, note that the oscillation in Figure 5C
+                                                                                                                                                              corresponds to a closed loop in Figure 5F.
+                                                                                                                                                                   Figure 5G shows the range of firing rates
+                                                                                                                                                              of STN population after the initial transient
+                                                                                                                                                              response as a function of factor K determin-
+                                                                                                                                                              ing how much the weights are increased in
+                                                                                                                                                              the model. Figure 5G demonstrates that up
+                                                                                                                                                              to K ⬇ 0.3, the model converges to a stable
+                                                                                                                                                              state, which we will refer to as a stable steady
+                                                                                                                                                              state. But at K ⬇ 0.3, a transition occurs (for
+                                                                                                                                                              details, see supplemental material B, avail-
+                                                                                                                                                              able at www.jneurosci.org), after which sus-
+                                                                                                                                                              tained oscillations occur. For these values of
+                                                                                                                                                              K, there exists a pair of values of STN and
+                                                                                                                                                              GPe firing rates such that if the STN and
+                                                                                                                                                              GPe firing rates are equal to these values,
+                                                                                                                                                              they do not change, but any small perturba-
+                                                                                                                                                              tion will make the system oscillate. This
+                                                                                                                                                              value of STN firing rate is shown by the
+                                                                                                                                                              dashed line in Figure 5G, and we will refer to
+                                                                                                                                                              it as an unstable steady state. Finally, Figure
+Figure 4. Comparison of model behavior with experimental data obtained from monkey models of Parkinson’s disease. A,                                          5H shows that the frequency of the sus-
+Comparison of the experimental measurements shown in Table 5 with the corresponding values observed in the computational                                      tained oscillations is in the range 16 –28 Hz;
+model. The numbers under the x-axis correspond to the numbers shown in Table 5. For measurements 7–12, vertical axis indicates                                thus, it falls into the beta band, commonly
+firing rate in spikes per second, while for measurement 13 it indicates oscillation frequency in Hz. Black circles correspond to the                          observed in Parkinson’s disease (Boraud et
+equivalent values using model simulations, while gray crosses show the mean experimental values. In measurements 8 and 11,                                    al., 2005). Interestingly, the model demon-
+gray vertical lines indicate SD, while in measurement 13, the gray vertical line indicates the frequency range observed in studies by                         strates that the frequency of oscillations de-
+Bergman et al. (1994) and Raz et al. (2000). B, Firing rate of the STN and GPe generated by the model for the same parameter values
+                                                                                                                                                              creases, as the synaptic weights associated
+as in A. C, A single cycle of oscillation from B. The horizontal axis shows the phase of the oscillation, where phase 0° corresponds to
+the lowest GPe firing rate. The vertical dashed line shows the mean value of phase of each nuclei, which was calculated using the
+                                                                                                                                                              with the onset of Parkinson’s are increased.
+standard equation for the mean of a circular quantity (in this case, the phase).                                                                              This suggests that as the condition
+                                                                                                                                                              progresses, we should expect a slowing of
+                                                                                                                                                              beta band activity.
+
+gests that the connectivity structure of the basal ganglia makes it                                                   Conditions for the onset of oscillations
+prone to oscillate, even in the absence of oscillatory inputs.                                                        This subsection describes a simple set of conditions that the
+    To better understand the origin of these oscillations (in the                                                     model parameters must satisfy for the model to produce sus-
+next subsection), it is helpful to visualize them in a different                                                      tained oscillations. These conditions are derived analytically,
+manner. Figure 5D–F shows the same simulated neural activity as                                                       and therefore they specify whether the oscillations are present
+Figure 5A–C, but now the two axes correspond to the firing rates                                                      for any value of parameters. This complements the results of
+of the STN and GPe populations, and different points on the                                                           the previous section, which showed that beta oscillations can
+black curves correspond to the firing rates in different moments                                                      be generated by the simulated STN–GPe circuit with a specific
+of time. For example, the initial firing rates in Figure 5C for both                                                  range of values of parameters that were estimated from the
+STN and GPe are equal to 0 Hz; thus, the initial firing rates are                                                     experimental data. Hence the analytic results of this section
+represented in Figure 5F as a point with coordinates STN ⫽ GPe ⫽                                                      predict when the STN–GPe circuit produces oscillations even
+0 Hz (indicated by a gray circle). In Figure 5C, initially both firing                                                if the model has different parameters from those used in the
+rates of STN and GPe increase, which corresponds in Figure 5F to the                                                  previous subsection. This property is valuable because it
+curve continuingrightwardandupwardfromtheinitialstate.Figure5C                                                        makes our results robust to errors in parameter estimations,
+shows that after ⬃20 ms from the start of the simulation, the firing rate                                             and consequently the results can be generalized to other mam-
+of STN starts to decrease while the firing rate of GPe still increases.                                               malian species.
+12346 • J. Neurosci., September 15, 2010 • 30(37):12340 –12352                                                                  Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease
+
+
+
+
+Figure 5. Simulations of the original model. A–C, Firing rate as a function of time for different values of K. D–F, Phase portraits of the system showing the same firing rates as in A–C. G, Range
+of firing rates of STN as a function of parameter K. A stable steady state is shown with a solid gray line. The unstable steady state is shown with a dashed gray line. The maximum and minimum values
+in a cycle of oscillations are shown in black. H, Frequency of the oscillations for different values of K. Note that the model predicts a decrease in frequency of oscillation as the weights increase.
+
+
+    We now summarize the main findings before going into                                                  The change in values of synaptic transmission delays and ex-
+more technical details. We show below that three conditions                                           ternal inputs is relatively smaller in Parkinson’s disease than the
+need to be satisfied for the model to produce oscillations. First,                                    change in synaptic weights between STN and GPe. Therefore, the
+the excitatory connection from STN to GPe and the inhibitory                                          increase in these synaptic weights is most likely a critical factor
+connection from GPe to STN need to be relatively strong.                                              causing the oscillations.
+Biological systems that include both excitatory and inhibitory                                            We now turn to the analysis of the model. The original model
+feedback often produce robust oscillations (Tsai et al., 2008).                                       is difficult to analyze mathematically because of nonlinear acti-
+The reason why the strong excitatory and inhibitory feedback                                          vation functions and transmission delays. To investigate the ori-
+produce oscillations in the model can be understood by con-                                           gin of oscillations analytically, we consider two successive
+sidering Figure 5C: ⬃10 ms from the start of the simulation, the                                      reductions of the original model illustrated in Figure 1, B and C.
+activity in GPe becomes so large that it starts to inhibit STN, and the                               The first reduction consists of approximation of the sigmoidal acti-
+STN activity decreases. But the decrease in STN activity reduces ex-                                  vation function in the original model by a linear function. We con-
+citatory input to GPe, so from ⬃20 ms, the GPe firing starts to                                       sider two such approximations shown by dashed-dotted and dashed
+decrease. The decreased firing rate of GPe reduces inhibition in STN,                                 lines in Figure 2. For simplicity of argument, in this subsection we
+so from ⬃50 ms, the STN firing rate starts to increase, and the oscil-                                will consider the linearization shown by the dashed-dotted line in
+latory cycle continues.                                                                               Figure 2, and we will come back to the more precise approximation
+    Second, the synaptic transmission delays need to be large                                         shown by dashed line in the next subsection. The second simplifica-
+relative to the time constant describing how rapidly neurons                                          tion of the original model is the assumption that both time constants
+change their firing rate in response to changes in their inputs.                                      and all transmission delays are equal. Modifying Equation 2 using
+Intuitively, the transmission delays need to be sufficiently long                                     these simplifications, we obtain the following system:
+to allow STN neurons to “charge” and increase their firing rate
+
+
+                                                                                                             冦
+while GPe firing rate remains low. If the transmission delays                                                    ␶ SṪN共t兲 ⫽ ⫺wGSGP(t ⫺ ⌬t) ⫹ wCSCtx ⫺ STN(t)
+were very short, the increase in STN firing rate would very                                                         ў
+                                                                                                                 ␶GP共t兲 ⫽ wSGSTN(t ⫺ ⌬t) ⫺ wGGGP(t ⫺ ⌬t)                                            (7)
+quickly result in increase in GPe, which would stop any further
+                                                                                                                 ⫺ wXGStr ⫺ GP(t),
+increase in STN firing rate, and the system would quickly
+converge to an equilibrium.
+    Finally, the cortical input to the STN needs to be relatively
+larger than the striatal inhibition to GPe. Although we assume                                        and since firing rates cannot be negative, we additionally extend
+that the external inputs to the STN–GPe circuit are constant,                                         this equation by imposing two lower boundaries along each axis,
+these inputs need to provide “energy” so the system can generate                                      STN ⫽ 0 and GP ⫽ 0. Equation 7 will be referred to as “delayed
+oscillations. It is common that systems generating oscillations                                       linear model,” to distinguish it from the “original model” (Eq. 2).
+require a constant input: A familiar example would be a whistle or                                       To obtain the second reduction (which is suitable for mathe-
+any wind instrument that requires a constant stream of air to                                         matical analysis), we further approximate this delayed dynamical
+generate oscillations in air pressure.                                                                system by linearizing also about the delay using the Taylor expan-
+Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease                                                   J. Neurosci., September 15, 2010 • 30(37):12340 –12352 • 12347
+
+
+                                                                                                      respectively. Intuitively, both inequalities describe the situation
+                                                                                                      in which the reciprocal synaptic influence between STN and GPe
+                                                                                                      is higher than a value depending on the self-inhibition of GPe
+                                                                                                      neurons. Furthermore, in supplemental material E (available at
+                                                                                                      www.jneurosci.org), we show that the direction of the flow in the
+                                                                                                      spiral is clockwise in the (GP, STN) plane as shown in Figure 6 A.
+                                                                                                          The third condition required for oscillations is that a closed
+                                                                                                      loop trajectory is formed between the intersection of the bound-
+                                                                                                      aries and one of the spiral paths. This condition requires some
+                                                                                                      explanation. If the steady state is unstable and the flow of the
+                                                                                                      system follows a clockwise spiral path, then an appropriate flow
+Figure 6. Schematic illustrations of the boundary flow of the nondelayed linear model.                on each boundary could force a connection of one spiral path
+Small open circles denote the location of a steady state. Dotted spirals show a trajectory origi-     with itself to form a closed trajectory as shown in Figure 6 A (the
+nating from the vicinity of the steady state. Arrows on the axes show the direction of flow on the
+                                                                                                      different types of the limit cycle that could be created in this
+boundaries. Labels wCSCtx on the vertical axes show
+                                                 ў locations of a steady state of the flow on the
+vertical boundary. Lines labeled SṪN ⫽ 0 and G P ⫽ 0 show nullclines—these are lines in which
+                                                                                                      manner can be seen in supplemental Fig. 2, available at www.
+there is no flow in STN and GP directions, respectively. Importantly the nullclines separate parts    jneurosci.org as supplemental material). As can be seen, under
+of the state space with flow in different directions: Belowўthe SṪN ⫽ 0 nullcline, the flow is       specific conditions, the flow along the boundary could act to
+always upward, while above it is downward; below the G P ⫽ 0 nullcline, the flow is always            redirect a spiral path along the boundary and ultimately recon-
+leftward, while above it is rightward (as indicated by arrows in 4 partsў of the state space          nect it at an earlier point on the same trajectory. If this happens,
+separated by the nullclines). A, If wCSCtx is above the intersection of the G P ⫽ 0 nullcline with    the section of spiral path, together with the flow along the bound-
+the vertical boundary, then no steady state appearsў in the boundary. This is due to the flow on      aries, would form a limit cycle. In the nondelayed linear model
+the boundary above the intersection with the G P ⫽ 0 nullcline not being invariant (i.e., you         (Eq. 8), it can be shown that for certain parameter values the
+move away from ў the boundary if you begin there). B, If wCSCtx is smaller than the intersection of   horizontal boundary (STN ⫽ 0) conducts the flow first toward
+the nullcline G P ⫽ 0 with the vertical boundary, then a stable steady state appears in this axis
+                                                                                                      the point (0, 0), and then the vertical boundary (GP ⫽ 0) from
+(indicated by a small filled circle).
+                                                                                                      here toward (0, ⬁) until it abandons the GP ⫽ 0 boundary (see
+                                                                                                      supplemental material F, available at www.jneurosci.org). Aban-
+                                                                                                      doning the GP ⫽ 0 boundary, it rejoins a spiral path, which closes
+sions of the terms GP(t ⫺ ⌬t) and STN(t ⫺ ⌬t). This approxima-                                        again afterward when intersecting the STN ⫽ 0 boundary.
+tion for Equation 7 is given by the following (for full details, see                                      The condition necessary for the boundaries to behave in this
+supplemental material C, available at www.jneurosci.org):                                             way, is as follows (see supplemental material F, available at
+                                                                                                      www.jneurosci.org):
+
+
+
+
+        冦
+                                            ў
+             ␶ SṪN共t兲 ⫽ ⫺wGS(GP(t) ⫺ ⌬t 䡠 GP(t))
+              ⫹ wCSCtx ⫺ STN(t)                                                                                              w SGwCSCtx ⬎ wXGStr.                                   (11)
+                ў                                                                            (8)
+             ␶GP共t兲 ⫽ wSG(STN(t) ⫺ ⌬t 䡠 SṪN(t))                                                      A situation in which the condition is not satisfied is shown in
+                                  ў                                                                   Figure 6 B where the flow in the boundaries will stop at point
+             ⫺ wGG(GP(t) ⫺ ⌬t 䡠 GP(t)) ⫺ wXGStr ⫺ GP(t),
+                                                                                                      (0, wCSCtx) and will not abandon the GP ⫽ 0 boundary.
+                                                                                                          For parameter values found to reproduce the healthy state, the
+                                                                                                      third condition (Eq. 11) strongly holds. This situation is main-
+where all the terms depend now on t. This system will be referred                                     tained for higher values of K that simulate the advance of the
+to as “nondelayed linear model,” to distinguish it from the pre-                                      disease. However, the first and second conditions (Eqs. 9, 10),
+vious two ones.                                                                                       which are false for K ⫽ 0, become true when K is increased, giving
+    For oscillations to occur, a trajectory in the (GP, STN) plane                                    rise in this manner to the limit cycle.
+must create a closed loop such as that shown in Figure 5F. Such a
+closed loop trajectory will exist in the nondelayed linear model
+(Eq. 8), when the following three conditions are satisfied.                                           Comparison of analytical results with numerical simulations
+    First, the steady state of the STN–GPe system is unstable. Oth-                                   In this subsection, we compare the conditions found analytically
+erwise, the system would converge to a stable steady state and                                        for the nondelayed linear model with simulations of the delayed
+remain there (as in Fig. 5 A, B).                                                                     linear and original models to test how well these conditions de-
+    Second, the trajectories starting from the neighborhood of the                                    scribe the occurrence of the oscillations in these two progressively
+steady state form spirals. An example of such trajectory is shown in                                  more realistic models.
+Figure 6A. If this condition was not satisfied, the trajectories origi-                                   Equations 9 –11 describe a surface in parameter space that
+nating from the neighborhood of the steady state would move away                                      divides the parameter values for which oscillations occur from
+from the steady state and form straight lines or exponential curves.                                  values for which they do not. A direct method to test these con-
+Supplemental material E (available at www.jneurosci.org) shows                                        ditions in the delayed linear and original models is to determine,
+that the first and second conditions are satisfied when                                               numerically, regions in parameter space for each model where the
+                                                                                                      oscillations occur, and compare the limits of these regions with
+
+                     w SGwGS
+                                  ⌬t
+                                  ␶
+                                     ⬎ 1 ⫹ wGG 1 ⫺
+                                                   ⌬t
+                                                   ␶      冉             冊冒   2               (9)
+                                                                                                      the surface defined analytically by Equations 9 –11. To find these
+                                                                                                      oscillatory regions in parameter space, a methodical numerical
+                                                                                                      procedure was used: Each of the three parameters critical in Equa-
+and                                                                                                   tions 9 –11 (wSG, wGS, and ⌬t/␶) are varied around the values sug-
+                                                                                                      gested by the literature for the healthy state. For each combination of
+                                     w SGwGS ⬎ wGG
+                                                2
+                                                   /4,                                     (10)       the three parameters, the system was simulated and the power spec-
+12348 • J. Neurosci., September 15, 2010 • 30(37):12340 –12352                                                                    Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease
+
+
+
+
+Figure 7. A–C, Comparison of conditions for the occurrence of oscillations with the simulations of the delayed linear (A) and original (B, C) models for different values of parameters. In each panel,
+the left column of displays shows the power spectral density of dominant oscillations, and the right column shows their frequency (in hertz). In each display, each of the small squares summarizes
+the results of simulation with particular values of parameters shown on the axes. For example, the top-left square in the top-left display indicates that for wSG ⫽ 2 and wGS ⫽ 3 the model did not
+produce any oscillations, while the top-right square of this display indicates that for wSG ⫽ 50 and wGS ⫽ 3 the model did produce oscillations, and the display to the right indicates that these
+oscillations had frequency of 15 Hz. In the simulations of the delayed linear model in A, all parameters were kept as for simulations of the healthy state, except for wSG, wGS, ␶, and ⌬t. The values of
+wSG and wGS are shown on the axes, ␶ ⫽ 10 ms, i.e., the average of ␶S and ␶G in the healthy state, and ⌬t is equal to 15.3 ms, 12.8 ms, and 10.3 ms in each of the rows, respectively. Analogously,
+in the simulations of the original model in B, the values of wSG and wGS are shown on the axes, ␶S and ␶G are set to the values in the healthy state, and ⌬tSG, ⌬tGS, and ⌬tGG are increased from the
+values in the healthy state by 10 ms, 7.5 ms, and 5 ms in each of the rows, respectively. In the simulations of the original model in C, all parameters were kept as for simulations of the healthy state,
+except for ␶S, ␶G, ⌬tSG, ⌬tGS, and ⌬tGG, which were set as shown on the axes.
+
+
+trum of oscillations in STN was calculated. In each simulation, if the                                 oscillations to occur, the system should oscillate when the
+oscillations occurred, their frequency was recorded.                                                   following is true:
+   The recorded power and frequency of oscillations for each
+combination of parameters are shown in Figure 7, A and B, where
+each colored square represents results obtained for a specific
+combination of parameter values for wSG, wGS, and ⌬t/␶. These
+                                                                                                                 w SGwGS ⬎ max         冉冋   1 ⫹ wGG 1 ⫺  冉         ⌬t
+                                                                                                                                                                   ␶  冊冒 册 2
+                                                                                                                                                                               ␶ 2
+                                                                                                                                                                                 , w /4 .
+                                                                                                                                                                               ⌬t GG           冊
+figures show that oscillations arise as parameters wSG and wGS                                                                                                                                      (12)
+increase, in accordance with Equations 9 and 10.
+   As mentioned in the previous subsection, in the parameter                                           The white curves in Figure 7A show the boundaries defined in
+range considered Equations 9 and 10 determine the occur-                                               Equation 12. They match the regions found in simulations quite
+rence of the oscillations. Since they both need to hold for the                                        well. The dashed curves in Figure 7B show analogous boundaries
+Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease                                         J. Neurosci., September 15, 2010 • 30(37):12340 –12352 • 12349
+
+
+for the original model where ⌬t in Equation 12 is taken as the                                   Figure 7B also shows that that there exists a separate region in
+average of transmission delays in the original model (⌬tSG, ⌬tGS,                            the parameter space with high wSG and low wGS, where oscilla-
+and ⌬tGG) and ␶ is taken as the average of ␶S and ␶G. In the original                        tions of a higher frequency occur. These oscillations are gener-
+model, however, the oscillations’ boundaries do not fit the sur-                             ated by inhibitory connections within GPe (simulations not
+face defined by Equation 12. The reason for this is that the delayed                         shown here demonstrate that when the inhibitory connections
+linear model was obtained by linearizing the original sigmoidal                              within GPe are removed, these oscillations disappear). For the
+function with a linear function of slope equal to 1 (Fig. 2, dashed-                         parameter values for which these oscillations occur (high wSG and
+dotted line). This slope is different from the slope of the sigmoidal                        low wGS), the firing rate in GPe is particularly high. It is known
+curve corresponding to a typical state of the network, i.e., the                             that a system including just inhibitory feedback with delay can
+slope at the input commonly received by STN and GPe. For ex-                                 generate oscillations (Gore and van Oudenaarden, 2009), but
+ample, in the condition corresponding to a healthy state, the                                since the power of these oscillations is two orders of magnitude
+inputs are as follows:                                                                       lower than the oscillations generated by the STN–GPe loop (see
+                                                                                             Fig. 7B), we do not analyze them further.
+                 inSTN ⫽ ⫺wGS 䡠 62.6 ⫹ wCS 䡠 27 ⫽ ⫺5.22                               (13)       Figure 7C shows the dependence of power and frequency of
+                                                                                             oscillations in the original model on synaptic transmission delay
+             inGP ⫽ wSG 䡠 19 ⫺ wGG 䡠 62.6 ⫺ wXG 䡠 2 ⫽ ⫺85,                            (14)   and time constant. The boundary defined by Equation 15
+                                                                                             matches well the region of the parameter space where the oscilla-
+where the numbers in the above equations correspond to exper-
+                                                                                             tions occur in the simulations. Importantly, Figure 7C shows that
+imentally observed firing rates in the healthy state listed in Tables
+                                                                                             the values of ⌬t and ␶ influence significantly the frequency of the
+1 and 2. The lines parallel to sigmoidal function with these inputs
+                                                                                             oscillation, while variations in synaptic weights were not able to
+are shown by dashed lines in Figure 2. The slopes of these lines are
+                                                                                             produce such significant change (Fig. 7 A, B). Intuitively, the rea-
+F⬘S ⫽ 0.201 and F⬘G ⫽ 0.3269. If the original system is linearized
+                                                                                             son why ⌬t and ␶ influence the frequency of the oscillations is that
+around the above inputs, then weights of all connections termi-
+                                                                                             these two parameters describe how long it takes for information
+nating in STN are multiplied by F⬘S and the weights of all connec-
+                                                                                             to “traverse the STN–GPe loop,” hence these two parameters
+tions terminating in GPe are multiplied by F⬘G. Equation 12 then
+                                                                                             determine the period of the oscillations.
+becomes the following:
+                                                                                                 A final point of importance is that simulations performed for
+
+ F G⬘wSGFS⬘wGS ⬎ max             冉冋   1 ⫹ FG⬘wGG 1 ⫺   冉 冊冒 册   ⌬t
+                                                                ␶
+                                                                         2
+                                                                             ␶
+                                                                                        冊
+                                                                               , F⬘w2 /4 .
+                                                                             ⌬t G GG
+                                                                                             equivalent parameter values as per Figure 7B, but with striatal
+                                                                                             and cortical inputs set to zero, do not produce oscillations. This is
+                                                                                             consistent with Equation 11, which states that cortical excitation
+                                                                                      (15)   is a necessary condition for the existence of oscillations.
+
+Boundaries defined by Equation 15 are shown by solid curves in                               Interpretation of the values of synaptic weights
+Figure 7B, and they provide a much closer match to simulations.                              In the previous subsection, we compared Equations 9 and 10 with
+Nevertheless there is still a discrepancy for high wGS and relatively                        simulations, but a real test of the validity of these conditions
+low wSG where Equation 15 predicts that the oscillations should                              would be a comparison with an neurophysiological experiment.
+occur but they are not observed in the simulations. Note, how-                               However, before such comparison can be made, one first needs to
+ever, that for high inhibitory weight wGS and low excitatory                                 be able to estimate the values of weight parameters from an ex-
+weight wSG the firing rate in the model will be very low, and the                            periment. In this subsection, we describe in what units the weight
+slopes of the sigmoidal functions at a typical state of the network                          parameters occurring in Equations 9 and 10 are measured, and
+for these parameter values would be even lower. Reducing the                                 how they could be estimated from an experiment.
+slopes of the linear approximations moves the boundary toward                                    The weights in the model are measured in units that describe
+higher values of wGS and wSG (Fig. 7B, compare the dashed and                                the impact of change in firing rate of presynaptic neurons on the
+solid curves), which explains why the model does not produce                                 firing rate of postsynaptic neurons. To illustrate this, let us con-
+oscillations for high wGS and low wSG.                                                       sider two neuronal populations A and B, such that B receives
+    Comparison between rows of Figure 7, A and B, reveals that                               excitatory input from population A, and does not receive any
+the oscillations become more likely as ⌬t/␶ increases. Although                              other input. Let us initially assume that that population B has a
+this effect is relatively weak in Figure 7A, it is strong in Figure 7B.                      linear input– output transfer function with slope equal to 1 (we
+This is because in the range of parameters shown in Figure 7A, the                           made such an assumption for STN and GPe neurons in the de-
+second term in the maximum operator in Equation 12 is higher                                 layed linear and nondelayed linear models). Let us denote the
+than the first, thus the second condition (Eq. 10) governs the                               firing rate of these populations by A and B, the weight of their
+occurrence of oscillations, and ⌬t/␶ does not appear in Equation                             connection by wAB, and the membrane time constants of popu-
+10. Therefore, Equation 12 does not predict dependence of oc-                                lation B by ␶B. Thus, the dynamics of population B is described by
+currence of oscillations on ⌬t/␶ (note that white curves in Fig. 7A                          the following: ␶BḂ ⫽ wABA ⫺ B. Note that if A is constant, then
+do not differ between rows), and indeed the effect of ⌬t/␶ on the                            the firing rate of population B converges to steady state B* ⫽
+occurrence of the oscillations in the simulations is weak. In con-                           wABA*. This implies that increasing firing rate in all neurons in
+trast, for the range of parameters shown in Figure 7B, the first                             population A by 1 [Hz] will increase the mean firing rate in pop-
+term in the maximum operator in Equation 15 is higher than the                               ulation B by wAB [Hz]. This illustrates that wAB is expressed in
+second, thus the first condition (Eq. 9) governs the occurrence of                           units that describe the change in firing rate of the postsynaptic
+oscillations, and ⌬t/␶ does appear in Equation 9. Therefore,                                 population to a unit change in the firing rate of the presynaptic
+Equation 15 does predict the dependence of occurrence of oscil-                              population.
+lations on ⌬t/␶ (note that white curves in Fig. 7B do differ be-                                 We now argue that the above interpretation of the units of
+tween rows), and indeed the effect of ⌬t/␶ on the occurrence of                              weight in Equations 9 and 10 remains valid if we further assume
+the oscillations in the simulations is strong.                                               that B has a nonlinear input– output transfer function F. In this
+12350 • J. Neurosci., September 15, 2010 • 30(37):12340 –12352                              Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease
+
+
+case, the firing rate of population B converges to B ⫽ F(wABA).              Humphries et al. (2006) observed gamma (30 – 80 Hz) and
+This implies that increasing the firing rate of all neurons in pop-      slow (⬃1 Hz) oscillatory activity. Beta oscillations that we obtain
+ulation A by 1 [Hz] will increase the mean firing rate in popula-        could correspond to their gamma oscillatory activity, as their
+tion B by F⬘(wABA)wAB [Hz], where F⬘(wABA) is the slope of the           model includes the STN–GPe network. The higher-frequency ac-
+input– output relationship for the present input. However, recall        tivity could be accounted for by the use of a smaller STN–GPe
+in the previous subsection that the synaptic weights in the origi-       delay. They consider a set of values for conduction delays and
+nal model had to be rescaled by multiplying them by this slope           synaptic time constants equivalent to a 2 ms transmission delay in
+before inserting their values into Equations 9 and 10. Therefore,        our system, which is smaller than the value of 6 ms used in our
+in summary, the values of synaptic weights wAB in Equations 9            study. According to our analysis, this smaller delay will make any
+and 10 are expressed in units that describe the increase in the          frequency generated in the STN–GPe subnetwork higher.
+firing rate of population B due to the increase in the firing rate of
+population A by 1 [Hz], both for linear and nonlinear input–             Extending the model
+output transfer functions.                                               In this paper, we considered constant external inputs to the STN–
+    The above interpretation is correct when each connection be-         GPe network, as we wished to explore whether this circuit could
+tween two populations is considered in isolation (because if B           generate oscillations on its own. In the future, it would be inter-
+provided feedback to A, the change in B due to change in A will be       esting to include the feedback from STN–GPe circuit to cortex
+more complex). Thus for example, the value of wSG could be               and striatum (via the cortico-basal-ganglia-thalamic loop), so
+interpreted as the change in GPe firing to a unit increase in STN        that the cortex and striatum provide oscillatory input while sim-
+firing, if the feedback connections from STN to GPe were                 ulating Parkinson’s disease. It would be very interesting to inves-
+blocked.                                                                 tigate how gamma oscillations occurring in the cortex propagate
+                                                                         in the basal ganglia and interact with the beta oscillations.
+Discussion
+Relationship to other models                                             Relationship to experimental data
+There have been a number of other modeling studies that inves-           The model replicates two features observed in Parkinson’s dis-
+tigated the oscillations present in the basal ganglia (Gillies et al.,   ease, that were not included among the data to which the model
+2002; Terman et al., 2002; Humphries et al., 2006; Leblois et al.,       was fitted. The first feature is the striatal hyperactivity of the
+2006). Two of those studies (Gillies et al., 2002; Terman et             indirect basal ganglia path, a central property of the classical
+al., 2002) also focused on the STN–GPe circuit and found that it         model of Parkinson’s disease (Obeso et al., 2000), which is clearly
+can generate oscillatory activity, but the mechanisms that gener-        displayed in our model by the very noticeable increase in striato-
+ated these oscillations were very different from our model, as we        pallidal synaptic weight (wXGd ⫽ 139.4 for the diseased state,
+now describe. Gillies et al. (2002) developed a firing rate model of     wXGh ⫽ 15.1 for the healthy state). Second, the model displays the
+the STN–GPe circuit that was simple enough to be studied ana-            whole range of beta frequencies observed in Parkinson’s disease
+lytically. They found that their model could produce oscillations        [13–30 Hz (Brown, 2003; Courtemanche et al., 2003; Boraud et
+only if the strength of connections from STN neurons to other            al., 2005; Hammond et al., 2007)], and the particular frequency of
+STN neurons was increased. Such connections are not present in           oscillation depends on the parameter K describing the advance of
+our model, because we judged that the evidence for such connec-          the disease (see Fig. 5H ). Thus the model suggests that different
+tions (Hammond and Yelnik, 1983; Sato et al., 2000b) was not             frequencies within the beta band observed in experiments may
+strong enough to consider that they play a prominent role in             correspond to different stages of disease progression.
+information transmission in the basal ganglia. We think that the              Equations 9 and 10 predict that the reduction in synaptic weights
+reason why Gillies et al. (2002) did not find oscillations without       wGS and wSG can stop beta oscillations. Existing data provides sup-
+these connections is that they did not consider transmission de-         port for this prediction. It has been shown that blocking glutamater-
+lays between STN and GPe, and our results (Eq. 9) imply that             gic neurotransmission has anti-parkinsonian effects in a variety of
+these delays must exist for the oscillations to be present.              rodent and primate models of Parkinson’s disease (Greenamyre,
+    Terman et al. (2002) developed a spiking neuron model of the         1993; Lange et al., 1997), which provides initial support to this pre-
+STN–GPe circuit. The main difference with our model is that              diction in relation with wSG. Further, it has been shown that the
+they did not consider excitatory input to STN from cortex, but           inhibition from GPe to STN is crucial for the appearance of beta
+instead introduced a rebound mechanism to simulated STN neu-             oscillations in the STN–GPe network (Baufreton et al., 2005).
+rons, which was the only means by which the STN neurons could                 Equation 9 also predicts that the beta oscillations can be in-
+generate activity in their model. Since the rebound mechanism            duced by reducing the time constant ␶. Leblois et al. (2006) pro-
+operated on a slow time scale, the oscillations they observed had        posed that the time constant of a neuronal population in their
+much lower frequency than the beta range. One possibility why            firing rate model is influenced by the relative proportion of fast,
+Terman et al. (2002) did not observe beta oscillations is that they      i.e., AMPA, and slow, i.e., NMDA, synapses. Thus, the time con-
+did not consider the cortical input to the STN, which, according         stant could be reduced by enhancing AMPA transmission and
+to our analysis (Eq. 11), is critical for the presence of the beta       reducing transmission through NMDA receptors. Such an in-
+oscillations.                                                            crease in AMPA and decrease in NMDA transmission (corre-
+    Two other models simulated a more general circuit including          sponding to reduction in ␶) has been shown to accompany the
+the cortex, the basal ganglia, and the thalamus (Humphries et al.,       onset of Parkinson’s disease in rat models (Shen and Johnson,
+2006; Leblois et al., 2006). Leblois et al. (2006) observed oscilla-     2005), which gives support to our prediction.
+tory behavior in theta-alpha band for realistic values of transmis-           Equation 11 predicts that cortical input is necessary for the
+sion delays. Beta oscillations were not observed, but we think this      presence of beta oscillations. This is consistent with recent results
+is due to the fact that they did not include the GPe into the            (Gradinaru et al., 2009) that show that the therapeutic effects of
+architecture of the model (recall that the STN–GPe feedback loop         the deep brain stimulation in STN can be accounted by direct
+did generate this frequency in our model).                               selective stimulation of afferent cortical axons projecting to this
+Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease                              J. Neurosci., September 15, 2010 • 30(37):12340 –12352 • 12351
+
+
+region. Thus, in the framework of our model, the effect of deep               Bogacz R, Gurney K (2007) The basal ganglia and cortex implement optimal
+brain stimulation could be described by a reduction in wCS.                       decision making between alternative actions. Neural Comput
+                                                                                  19:442– 477.
+                                                                              Boraud T, Brown P, Goldberg JA, Graybiel AM, Magill PJ (2005) Oscilla-
+Experimental predictions
+                                                                                  tions in the basal ganglia: the good, the bad, and the unexpected. In:
+Until now it has not been shown experimentally that an isolated                   Advances in behavioral biology, Vol 56, The basal ganglia VIII (Bolam JP,
+STN–GPe circuit in vitro can produce sustained beta oscillations.                 Ingham CA, Magill PJ, eds), pp 1–24. New York: Springer.
+It has been discussed that the lack of beta oscillations in vitro may         Brown P (2003) Oscillatory nature of human basal ganglia activity: relation-
+be due to the lack of cortical input in slices (Loucif et al., 2005;              ship to the pathophysiology of Parkinson’s disease. Mov Disord
+Wilson et al., 2006). Our analysis supports this suggestion: Equa-                18:357–363.
+tion 11 states that to generate beta oscillations, STN needs to               Cooper AJ, Stanford IM (2001) Dopamine D2 receptor mediated presynap-
+receive an excitatory input from the cortex. Hence our analysis                   tic inhibition of striatopallidal GABA(A) IPSCs in vitro. Neuropharma-
+                                                                                  cology 41:62–71.
+predicts that to produce beta oscillations in a STN–GPe circuit in            Courtemanche R, Fujii N, Graybiel AM (2003) Synchronous, focally mod-
+vitro, the STN neurons need to be activated (e.g., by application of              ulated beta-band oscillations characterize local field potential activity in
+glutamate or a constant excitatory stimulation).                                  the striatum of awake behaving monkeys. J Neurosci 23:11741–11752.
+    Our simulations suggest that the beta oscillations observed in            Cragg SJ, Baufreton J, Xue Y, Bolam JP, Bevan MD (2004) Synaptic release
+Parkinson’s disease are produced in the STN–GPe circuit. This                     of dopamine in the subthalamic nucleus. Eur J Neurosci 20:1788 –1802.
+predicts that a local application of dopamine to STN and GPe                  Dayan P, Abbott LF (2001) Theoretical neuroscience. Cambridge, MA: MIT
+(rather than to the whole brain) should be sufficient to stop beta                Press.
+oscillations and reduce bradykinesia. Furthermore, since we as-               Deister CA, Chan CS, Surmeier DJ, Wilson CJ (2009) Calcium-activated SK
+                                                                                  channels influence voltage-gated ion channels to determine the precision
+sume that the beta oscillations occur due to increase in weights                  of firing in globus pallidus neurons. J Neurosci 29:8452– 8461.
+caused by reduced activation of D2 receptors, the model predicts              Frank MJ (2006) Hold your horses: a dynamic computational role for the
+that an application of D2 agonist (rather than dopamine) should                   subthalamic nucleus in decision making. Neural Netw 19:1120 –1136.
+be sufficient to stop beta oscillations.                                      Frank MJ, Samanta J, Moustafa AA, Sherman SJ (2007) Hold your horses:
+    A further prediction of the model is that we should expect to                 impulsivity, deep brain stimulation, and medication in parkinsonism.
+see a slowing in frequency of beta oscillations as the parkinsonian               Science 318:1309 –1312.
+condition develops. This can be seen from the relationship be-                Fujimoto K, Kita H (1993) Response characteristics of subthalamic neurons
+                                                                                  to the stimulation of the sensorimotor cortex in the rat. Brain Res
+tween frequency of oscillations and increases in synaptic weight
+                                                                                  609:185–192.
+parameters (shown in Fig. 5H ).                                               Gillies A, Willshaw D (2007) Neuroinformatics and modeling of the basal
+    As mentioned in the previous subsection, the predictions of                   ganglia: bridging pharmacology and physiology. Expert Rev Med Devices
+Equations 9 and 10 on therapeutic effect of reduction in wGS and                  4:663– 672.
+wSG is qualitatively supported by published experiments. How-                 Gillies A, Willshaw D, Li Z (2002) Subthalamic-pallidal interactions are crit-
+ever, Equations 9 and 10 also make quantitative predictions on                    ical in determining normal and abnormal functioning of the basal ganglia.
+how much wGS and wSG need to be reduced for oscillations to                       Proc Biol Sci 269:545–551.
+cease. These predictions could be tested by applying different                Goldberg DE (1989) Genetic algorithms in search, optimization, and ma-
+                                                                                  chine learning. Reading, MA: Addison-Wesley.
+concentrations of the antagonists, measuring wGS and wSG (last
+                                                                              Gore J, van Oudenaarden A (2009) The yin and yang of nature. Nature 457:
+subsection of Results), and observing whether the oscillations are                271–272.
+present.                                                                      Gradinaru V, Mogri M, Thompson KR, Henderson JM, Deisseroth K (2009)
+    Equation 9 also predicts that the beta oscillations can be                    Optical deconstruction of parkinsonian neural circuitry. Science 324:
+stopped by increasing the time constant ␶. As described in the                    354 –359.
+previous section, this can be achieved by blocking fast AMPA                  Greenamyre JT (1993) Glutamate-dopamine interactions in the basal gan-
+receptors (e.g., with antagonist) and enhancing transmission                      glia: relationship to Parkinson’s disease. J Neural Transm Gen Sect
+through slower NMDA receptors (e.g., by reducing the concen-                      91:255–269.
+                                                                              Hallworth NE, Wilson CJ, Bevan MD (2003) Apamin-sensitive small con-
+tration of magnesium ions). The model predicts that such ma-
+                                                                                  ductance calcium-activated potassium channels, through their selective
+nipulation should stop the beta oscillations. Furthermore, the                    coupling to voltage-gated calcium channels, are critical determinants of
+model predicts that if the time constant is increased gradually,                  the precision, pace, and pattern of action potential generation in rat sub-
+the frequency of the oscillations should initially decrease before                thalamic nucleus neurons in vitro. J Neurosci 23:7525–7542.
+the oscillations stop.                                                        Hammond C, Yelnik J (1983) Intracellular labelling of rat subthalamic neu-
+    In summary, our computational model predicts novel phar-                      rones with horseradish peroxidase: computer analysis of dendrites and
+macological manipulations that could inhibit beta oscillations                    characterization of axon arborization. Neuroscience 8:781–790.
+related to bradykinesia. If the predictions of our model are con-             Hammond C, Bergman H, Brown P (2007) Pathological synchronization in
+                                                                                  Parkinson’s disease: networks, models and treatments. Trends Neurosci
+firmed in animal experiments, we hope that the model can inspire
+                                                                                  30:357–364.
+new treatments for Parkinson’s disease.                                       Hoover BR, Marshall JF (2004) Molecular, chemical, and anatomical char-
+References                                                                        acterization of globus pallidus dopamine D2 receptor mRNA-containing
+Baufreton J, Atherton JF, Surmeier DJ, Bevan MD (2005) Enhancement of             neurons. Synapse 52:100 –113.
+   excitatory synaptic integration by GABAergic inhibition in the subtha-     Humphries MD, Stewart RD, Gurney KN (2006) A physiologically plausible
+   lamic nucleus. J Neurosci 25:8505– 8517.                                       model of action selection and oscillatory activity in the basal ganglia.
+Berardelli A, Rothwell JC, Thompson PD, Hallett M (2001) Pathophysiol-            J Neurosci 26:12921–12942.
+   ogy of bradykinesia in Parkinson’s disease. Brain 124:2131–2146.           Jankovic J (2008) Parkinson’s disease: clinical features and diagnosis. J Neu-
+Bergman H, Wichmann T, Karmon B, DeLong MR (1994) The primate                     rol Neurosurg Psychiatry 79:368 –376.
+   subthalamic nucleus. ii. Neuronal activity in the MPTP model of parkin-    Johnson PI, Napier TC (1997) GABA- and glutamate-evoked responses in
+   sonism. J Neurophysiol 72:507–520.                                             the rat ventral pallidum are modulated by dopamine. Eur J Neurosci
+Bevan MD, Magill PJ, Terman D, Bolam JP, Wilson CJ (2002) Move to the             9:1397–1406.
+   rhythm: oscillations in the subthalamic nucleus-external globus pallidus   Kish LJ, Palmer MR, Gerhardt GA (1999) Multiple single-unit recordings in
+   network. Trends Neurosci 25:525–531.                                           the striatum of freely moving animals: effects of apomorphine and
+12352 • J. Neurosci., September 15, 2010 • 30(37):12340 –12352                                             Nevado Holgado et al. • Origin of Beta Oscillations in Parkinson’s Disease
+
+    d-amphetamine in normal and unilateral 6-hydroxydopamine-lesioned                 Paz JT, Deniau J-M, Charpier S (2005) Rhythmic bursting in the cortico-
+    rats. Brain Res 833:58 –70.                                                           subthalamo-pallidal network during spontaneous genetically determined
+Kita H (2007) Globus pallidus external segment. Prog Brain Res 160:                       spike and wave discharges. J Neurosci 25:2092–2101.
+    111–133.                                                                          Plenz D, Kital ST (1999) A basal ganglia pacemaker formed by the subtha-
+Kita H, Kitai ST (1991) Intracellular study of rat globus pallidus neurons:               lamic nucleus and external globus pallidus. Nature 400:677– 682.
+    membrane properties and responses to neostriatal, subthalamic and ni-             Raz A, Vaadia E, Bergman H (2000) Firing patterns and correlations of
+    gral stimulation. Brain Res 564:296 –305.                                             spontaneous discharge of pallidal neurons in the normal and the tremu-
+Kita H, Chang HT, Kitai ST (1983) Pallidal inputs to subthalamus: intracel-               lous 1-methyl-4-phenyl-1,2,3,6-tetrahydropyridine vervet model of par-
+    lular analysis. Brain Res 264:255–265.                                                kinsonism. J Neurosci 20:8559 – 8571.
+Kita H, Nambu A, Kaneda K, Tachibana Y, Takada M (2004) Role of iono-                 Robertson RG, Graham WC, Sambrook MA, Crossman AR (1991) Further
+    tropic glutamatergic and gabaergic inputs on the firing activity of neurons           investigations into the pathophysiology of MPTP-induced parkinsonism
+    in the external pallidum in awake monkeys. J Neurophysiol 92:                         in the primate: an intracerebral microdialysis study of gamma-
+    3069 –3084.                                                                           aminobutyric acid in the lateral segment of the globus pallidus. Brain Res
+Kita H, Tachibana Y, Nambu A, Chiken S (2005) Balance of monosynaptic                     563:278 –280.
+    excitatory and disynaptic inhibitory responses of the globus pallidus in-
+                                                                                      Sato F, Lavallée P, Lévesque M, Parent A (2000a) Single-axon tracing study
+    duced after stimulation of the subthalamic nucleus in the monkey. J Neu-
+                                                                                          of neurons of the external segment of the globus pallidus in primate.
+    rosci 25:8611– 8619.
+                                                                                          J Comp Neurol 417:17–31.
+Lang AE, Zadikoff C (2005) Parkinsonian tremor. In: Handbook of essential
+                                                                                      Sato F, Parent M, Levesque M, Parent A (2000b) Axonal branching pattern
+    tremor and other tremor disorders (Lyons K, Pahwa R, eds), Chap 13, pp
+    195–220. New York: Taylor and Francis.                                                of neurons of the subthalamic nucleus in primates. J Comp Neurol
+Lange KW, Kornhuber J, Riederer P (1997) Dopamine/glutamate interac-                      424:142–152.
+    tions in Parkinson’s disease. Neurosci Biobehav Rev 21:393– 400.                  Schroeder JA, Schneider JS (2002) GABA-opioid interactions in the globus
+Lebedev MA, Wise SP (2000) Oscillations in the premotor cortex: single-                   pallidus: [d-Ala2]]-Met-enkephalinamide attenuates potassium-evoked
+    unit activity from awake, behaving monkeys. Exp Brain Res 130:195–215.                GABA release after nigrostriatal lesion. J Neurochem 82:666 – 673.
+Leblois A, Boraud T, Meissner W, Bergman H, Hansel D (2006) Competi-                  Schultz W, Romo R (1988) Neuronal activity in the monkey striatum dur-
+    tion between feedback loops underlies normal and pathological dynamics                ing the initiation of movements. Exp Brain Res 71:431– 436.
+    in the basal ganglia. J Neurosci 26:3567–3583.                                    Sharott A, Magill PJ, Harnack D, Kupsch A, Meissner W, Brown P (2005)
+Loucif KC, Wilson CL, Baig R, Lacey MG, Stanford IM (2005) Functional                     Dopamine depletion increases the power and coherence of ␤]-oscillations
+    interconnectivity between the globus pallidus and the subthalamic nu-                 in the cerebral cortex and subthalamic nucleus of the awake rat. Eur
+    cleus in the mouse brain slice. J Physiol 567:977–987.                                J Neurosci 21:1413–1422.
+Magill PJ, Bolam JP, Bevan MD (2001) Dopamine regulates the impact of                 Shen K-Z, Johnson SW (2005) Dopamine depletion alters responses to glu-
+    the cerebral cortex on the subthalamic nucleus-globus pallidus network.               tamate and GABA in the rat subthalamic nucleus. Neuroreport
+    Neuroscience 106:313–330.                                                             16:171–174.
+Mallet N, Ballion B, Le Moine C, Gonon F (2006) Cortical inputs and GABA              Shen KZ, Johnson SW (2000) Presynaptic dopamine d2 and muscarine m3
+    interneurons imbalance projection neurons in the striatum of parkinso-                receptors inhibit excitatory and inhibitory transmission to rat subtha-
+    nian rats. J Neurosci 26:3875–3884.                                                   lamic neurones in vitro. J Physiol 525:331–341.
+Mallet N, Pogosyan A, Márton LF, Bolam JP, Brown P, Magill PJ (2008a) Par-           Surmeier DJ, Ding J, Day M, Wang Z, Shen W (2007) D1 and d2 dopamine-
+    kinsonian beta oscillations in the external globus pallidus and their relation-       receptor modulation of striatal glutamatergic signaling in striatal medium
+    ship with subthalamic nucleus activity. J Neurosci 28:14245–14258.                    spiny neurons. Trends Neurosci 30:228 –235.
+Mallet N, Pogosyan A, Sharott A, Csicsvari J, Bolam JP, Brown P, Magill PJ            Terman D, Rubin JE, Yew AC, Wilson CJ (2002) Activity patterns in a
+    (2008b) Disrupted dopamine transmission and the emergence of exag-                    model for the subthalamopallidal network of the basal ganglia. J Neurosci
+    gerated beta oscillations in subthalamic nucleus and cerebral cortex.                 22:2963–2976.
+    J Neurosci 28:4795– 4806.                                                         Tsai TY-C, Choi YS, Ma W, Pomerening JR, Tang C, Ferrell JE Jr (2008)
+Mink JW (1996) The basal ganglia: focused selection and inhibition of com-                Robust, tunable biological oscillations from interlinked positive and neg-
+    peting motor programs. Prog Neurobiol 50:381– 425.                                    ative feedback loops. Science 321:126 –129.
+Mitchell M (1998) An introduction to genetic algorithms. Cambridge, MA:
+                                                                                      Tseng KY, Kasanetz F, Kargieman L, Riquelme LA, Murer MG (2001) Cor-
+    MIT Press.
+                                                                                          tical slow oscillatory activity is reflected in the membrane potential and
+Nakanishi H, Kita H, Kitai ST (1987a) Electrical membrane properties of
+                                                                                          spike trains of striatal neurons in rats with chronic nigrostriatal lesions.
+    rat subthalamic neurons in an in vitro slice preparation. Brain Res
+                                                                                          J Neurosci 21:6430 – 6439.
+    437:35– 44.
+                                                                                      van Albada SJ, Robinson PA (2009) Mean-field modeling of the basal
+Nakanishi H, Kita H, Kitai ST (1987b) Intracellular study of rat substantia
+    nigra pars reticulata neurons in an in vitro slice preparation: electrical            ganglia-thalamocortical system. i: firing rates in healthy and parkinsonian
+    membrane properties and response characteristics to subthalamic stimu-                states. J Theor Biol 257:642– 663.
+    lation. Brain Res 437:45–55.                                                      Vogels TP, Rajan K, Abbott LF (2005) Neural network dynamics. Annu Rev
+Nambu A, Llinas R (1994) Electrophysiology of globus pallidus neurons in                  Neurosci 28:357–376.
+    vitro. J Neurophysiol 72:1127–1139.                                               Wilson CJ, Weyrick A, Terman D, Hallworth NE, Bevan MD (2004) A
+Obeso JA, Rodríguez-Oroz MC, Rodríguez M, Lanciego JL, Artieda J,                         model of reverse spike frequency adaptation and repetitive firing of sub-
+    Gonzalo N, Olanow CW (2000) Pathophysiology of the basal ganglia in                   thalamic nucleus neurons. J Neurophysiol 91:1963–1980.
+    Parkinson’s disease. Trends Neurosci 23:S8 –S19.                                  Wilson CL, Cash D, Galley K, Chapman H, Lacey MG, Stanford IM (2006)
+Ochi M, Koga K, Kurokawa M, Kase H, Nakamura J, Kuwana Y (2000) Sys-                      Subthalamic nucleus neurones in slices from 1-methyl-4-phenyl-1,2,3,6-
+    temic administration of adenosine A2A receptor antagonist reverses increased          tetrahydropyridine-lesioned mice show irregular, dopamine-reversible
+    GABA release in the globus pallidus of unilateral 6- hydroxydopamine-                 firing pattern changes, but without synchronous activity. Neuroscience
+    lesioned rats: a microdialysis study. Neuroscience 100:53– 62.                        143:565–572.
+O’Donnell P (2003) Dopamine gating of forebrain neural ensembles. Eur                 Wilson HR, Cowan JD (1972) Excitatory and inhibitory interactions in lo-
+    J Neurosci 17:429 – 435.                                                              calized populations of model neurons. Biophys J 12:1–24.
+

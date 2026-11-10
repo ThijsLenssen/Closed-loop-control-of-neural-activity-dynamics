@@ -1,0 +1,597 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[margin=0.75in,columnsep=0.25in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\theoremstyle{plain}
+\setcounter{theorem}{5}
+\setcounter{lemma}{6}
+\setcounter{equation}{0}
+\newcommand{\col}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\TT}{\mathcal T}
+\newcommand{\opA}{\mathcal A}
+\newcommand{\opB}{\mathcal B}
+\newcommand{\opC}{\mathcal C}
+\newcommand{\opD}{\mathcal D}
+\newcommand{\opP}{\mathcal P}
+\newcommand{\opK}{\mathcal K}
+\allowdisplaybreaks
+\title{\large Definitions, Theorem 6, and Lemma 7\\
+\normalsize Nonzero plant initial conditions}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent
+The following replacement text follows the notation, numbering, and proof
+structure of the supplied ACC paper~\cite{channels}. Throughout, $G$ maps
+an input to the output for the specified initial state $x(0)$; this initial
+state is arbitrary and is never set to zero. Thus an initialized linear
+plant generally defines an affine input--output operator. The multiplier
+$\Psi$ has its standard zero initialization, and $\Delta$ has the
+initialization specified by its input--output operator. No conclusion
+about arbitrary hidden states of $\Delta$ is implied.
+
+\section*{Notation and signal spaces}
+
+For a Hilbert space $\mathcal H$, let $L_{\mathcal H}$ denote the space
+of square-integrable functions $u:[0,\infty)\to\mathcal H$, with
+\[
+ \ip{u}{v}_{L_{\mathcal H}}
+ =\int_0^\infty\ip{u(t)}{v(t)}_{\mathcal H}\,dt.
+\]
+Let $L_{e,\mathcal H}$ denote the extended space of functions for which
+$\int_0^T\norm{u(t)}_{\mathcal H}^2dt$ is finite for every $T\geq0$.
+Given $a<b$ and $n=(n_1,n_2)$, write
+\[
+ \begin{gathered}
+ Z^n:=\mathbb R^{n_1}\times L_2^{n_2}[a,b],\\
+ L^n_{e,[a,b]}:=L_{e,Z^n},\qquad L^n_Z:=L_{Z^n}.
+ \end{gathered}
+\]
+The norm on $Z^n$ is induced by the Euclidean inner product and the
+spatial $L_2$ inner product. The stacked signal $\col{u\\v}$ denotes
+componentwise concatenation in $Z^{n+m}$. The subscript $L$ denotes the
+appropriate time-signal Hilbert norm, and $Z$ the appropriate state or
+spatial Hilbert norm. Define the time-truncation operator by
+\[
+ (P_\tau y)(t)=
+ \begin{cases}y(t),&0\leq t\leq\tau,\\0,&t>\tau.\end{cases}
+\]
+The bounded PI operators $\Pi_4$ and their adjoints are as in the paper.
+The storage operator $\opP$ is distinct from the truncation $P_\tau$.
+
+\begin{definition}[Operators]
+Let $\mathcal H,\mathcal G$ be Hilbert spaces. For each fixed admissible
+initial condition $x(0)$, an operator
+$G:L_{e,\mathcal H}\to L_{e,\mathcal G}$ is
+\begin{enumerate}
+\item \emph{Causal} if $P_\tau G=P_\tau GP_\tau$ for any $\tau\geq0$.
+The same initial condition is used on both sides.
+\item \emph{Bounded on $L_{\mathcal H}$ allowing for initial conditions}
+if there exist $C_G,c_G\geq0$ such that, for all $v\in L_{\mathcal H}$
+and all admissible $x(0)$,
+\[
+ \norm{Gv}_{L_{\mathcal G}}
+ \leq C_G\norm{v}_{L_{\mathcal H}}+c_G\norm{x(0)}_Z.
+\]
+\item \emph{Bounded on $L_{e,\mathcal H}$ allowing for initial conditions}
+if there exist $C_G,c_G\geq0$ such that, for all
+$v\in L_{e,\mathcal H}$, all admissible $x(0)$, and all $\tau\geq0$,
+\[
+ \norm{P_\tau Gv}_{L_{\mathcal G}}
+ \leq C_G\norm{P_\tau v}_{L_{\mathcal H}}+c_G\norm{x(0)}_Z.
+\]
+\item \emph{Incrementally $L_{e,\mathcal H}$-bounded} if there exists
+$C\geq0$ such that, for all $v,u\in L_{e,\mathcal H}$,
+\[
+ \norm{P_\tau(Gv-Gu)}_{L_{\mathcal G}}
+ \leq C\norm{P_\tau(v-u)}_{L_{\mathcal H}},\quad \tau\geq0.
+\]
+Here $Gv$ and $Gu$ have the same initial condition; the bound is uniform
+over the admissible initial conditions under consideration.
+\end{enumerate}
+The constants in items 2 and 3 are independent of $x(0)$.
+\end{definition}
+
+Items 2 and 3 are the modifications to the paper's boundedness
+definitions. For an operator without an initial-state contribution,
+take $c_G=0$ to recover the original bounds. In particular, this
+convention is used for $\Psi$. The notation $\mathcal L(\mathcal H,\mathcal G)$
+continues to mean bounded linear operators; an initialized plant $G$
+need not be linear as an input--output operator. For
+$K\in\mathcal L(\mathcal H)$, define
+\[
+ (M_Kw)(t):=Kw(t).
+\]
+
+\section*{Feedback interconnections on Hilbert space}
+
+\begin{definition}[Interconnection of $G$ and $\Delta$]
+Given operators $G:L^n_{e,[a,b]}\to L^m_{e,[a,b]}$ and
+$\Delta:L^m_{e,[a,b]}\to L^n_{e,[a,b]}$, an admissible initial condition
+$x(0)$ for $G$, and signals $e\in L^n_{e,[a,b]}$ and
+$f\in L^m_{e,[a,b]}$, we say that $u\in L^n_{e,[a,b]}$ and
+$v\in L^m_{e,[a,b]}$ satisfy the interconnection defined by $[G,\Delta]$ if
+\begin{equation}\label{eq:one}
+ v=Gu+f,\qquad u=\Delta v+e.
+\end{equation}
+Here $G$ is evaluated with the specified initial condition $x(0)$.
+\end{definition}
+
+\begin{definition}[Well-posedness]
+Given $G,\Delta$ as above, we say the interconnection defined by
+$[G,\Delta]$ is well posed for all admissible plant initial conditions if,
+for every such $x(0)$ and any $e\in L^n_{e,[a,b]}$,
+$f\in L^m_{e,[a,b]}$, the following hold.
+\begin{enumerate}
+\item \emph{Existence and uniqueness:} There exist unique
+$u\in L^n_{e,[a,b]}$, $v\in L^m_{e,[a,b]}$ satisfying
+\eqref{eq:one} with that $x(0)$.
+\item \emph{Causality:} If $u,v$ satisfy the interconnection for $e,f$,
+and $\hat u,\hat v$ satisfy it for $P_\tau e,P_\tau f$, with the same
+$x(0)$, then $P_\tau(u-\hat u)=0$ and $P_\tau(v-\hat v)=0$.
+\end{enumerate}
+\end{definition}
+
+For a well-posed interconnection, retain the paper's notation
+\[
+ \col{u\\v}=F_{G,\Delta}\left(\col{e\\f}\right),
+\]
+with the dependence on the specified $x(0)$ left implicit in $G$.
+
+\begin{definition}[Stability allowing for plant initial conditions]
+We say the feedback system defined by $[G,\Delta]$ is stable allowing
+for plant initial conditions if it is well posed in the sense of
+Definition 3 and there exist constants $C,C_{\mathrm{init}}\geq0$ such
+that, for any $e\in L^n_Z$, $f\in L^m_Z$, and every admissible $x(0)$,
+the corresponding signals satisfy
+\[
+ \norm{\col{u\\v}}_L
+ \leq C\norm{\col{e\\f}}_L+C_{\mathrm{init}}\norm{x(0)}_Z.
+\]
+Both constants are independent of $e,f,x(0)$. Stability is robust over
+a class $\boldsymbol\Delta$ if well-posedness and this estimate hold
+for every $\Delta\in\boldsymbol\Delta$ with common constants.
+\end{definition}
+
+This changes the paper's Definition 4 by retaining the possible output
+caused by the initial state. It is an input--output definition; it does
+not, by itself, assert convergence of hidden internal states.
+
+\begin{definition}[Hard IQC]
+We say the operator $\Delta:L^m_{e,[a,b]}\to L^n_{e,[a,b]}$ satisfies
+the hard IQC defined by
+$\Psi:L^{m+n}_{e,[a,b]}\to L^{m+n}_{e,[a,b]}$ and
+$K\in\mathcal L(Z^{m+n})$ if, for any $T>0$ and all
+$v\in L^m_{e,[a,b]}$,
+\begin{equation}\label{eq:two}
+ \ip{P_T\Psi\col{v\\\Delta v}}{
+     P_TM_K\Psi\col{v\\\Delta v}}_L\geq0.
+\end{equation}
+The multiplier uses its specified zero initialization, and $\Delta$
+uses the initialization specified by its input--output operator.
+\end{definition}
+
+Definition 5 is unchanged apart from making initialization and the
+input dimension explicit. It does not require $x(0)=0$ for the plant.
+
+\section*{The main theorem}
+
+\begin{theorem}[IQC theorem with nonzero plant initial conditions]
+If
+\begin{enumerate}
+\item $G:L^n_{e,[a,b]}\to L^m_{e,[a,b]}$ is causal and bounded on
+$L^n_{e,[a,b]}$ allowing for initial conditions, in the sense of
+Definition 1, with constants $C_G,c_G$;
+\item $\Delta:L^m_{e,[a,b]}\to L^n_{e,[a,b]}$ and the interconnection
+defined by $[G,\Delta]$ is well posed as in Definition 3;
+\item $\Psi:L^{n+m}_{e,[a,b]}\to L^{n+m}_{e,[a,b]}$ is causal and
+incrementally bounded, $\Psi(0)=0$, and $K\in\mathcal L(Z^{n+m})$;
+\item $\Delta$ satisfies the hard IQC defined by $\Psi,K$;
+\item there exist $\varepsilon>0$, $c_V\geq0$, and a nonnegative
+function $V$ satisfying $V(x(0))\leq c_V\norm{x(0)}_Z^2$ such that,
+for every admissible $x(0)$ and every $u\in L^n_{e,[a,b]}$,
+\begin{equation}\label{eq:three}
+\begin{aligned}
+ &\ip{P_T\Psi\col{Gu\\u}}{
+          P_TM_K\Psi\col{Gu\\u}}_L\\
+ &\qquad\leq
+ -\varepsilon\norm{P_Tu}_L^2+V(x(0)),
+ \qquad T>0.
+\end{aligned}
+\end{equation}
+\end{enumerate}
+then the feedback system defined by $[G,\Delta]$ is stable in the sense
+of Definition 4.
+If these hypotheses hold with the same $G$ bounds, $\Psi,K$,
+$\varepsilon,c_V$ for every $\Delta\in\boldsymbol\Delta$, then the
+stability is robust over $\boldsymbol\Delta$ in the sense of Definition 4.
+\end{theorem}
+
+\begin{proof}
+Define the shorthand notation $u_T:=P_Tu$ and
+$\ip{u}{v}_T:=\ip{P_Tu}{P_Tv}_L$.
+Clearly, by Cauchy--Schwarz,
+$\ip{u}{v}_T\leq\norm{u_T}_L\norm{v_T}_L$.
+
+Now, because the interconnection defined by $[G,\Delta]$ is well posed,
+it suffices to establish the claimed bound uniformly over all finite
+horizons. For $e\in L^n_Z$, $f\in L^m_Z$, suppose that $u,v$ satisfy
+the interconnection defined by $G,\Delta$. Then
+\[
+ v=Gu+f,\qquad u=\Delta v+e.
+\]
+By the hard IQC and \eqref{eq:three},
+\begin{align*}
+ \varepsilon\norm{u_T}_L^2
+ &\leq V(x(0))
+  +\ip{\Psi\col{v\\\Delta v}}{M_K\Psi\col{v\\\Delta v}}_T\\
+ &\quad-\ip{\Psi\col{Gu\\u}}{M_K\Psi\col{Gu\\u}}_T.
+\end{align*}
+
+Now, because $\Psi$ and hence $M_K\Psi$ are incrementally bounded,
+with bounds $C_\Psi$ and
+$C_{M_K\Psi}=C_\Psi\norm{K}$, respectively, and
+$\Psi(0)=0$, expanding the difference of the quadratic forms and
+applying Cauchy--Schwarz gives
+\begin{align*}
+ \varepsilon\norm{u_T}_L^2
+ &\leq V(x(0))+C_\Psi C_{M_K\Psi}
+ \left(\norm{\col{v-Gu\\\Delta v-u}_T}_L^2\right.\\
+ &\left.\qquad
+ +2\norm{\col{Gu\\u}_T}_L
+      \norm{\col{v-Gu\\\Delta v-u}_T}_L\right).
+\end{align*}
+Since $v-Gu=f$, $\Delta v-u=-e$, and
+\[
+ \norm{\col{Gu\\u}_T}_L
+ \leq (C_G+1)\norm{u_T}_L+c_G\norm{x(0)}_Z,
+\]
+we conclude that
+\begin{align*}
+ \varepsilon\norm{u_T}_L^2
+ &\leq V(x(0))
+ +C_\Psi C_{M_K\Psi}\norm{\col{f\\e}_T}_L^2\\
+ &\quad+2C_\Psi C_{M_K\Psi}(C_G+1)
+       \norm{u_T}_L\norm{\col{f\\e}_T}_L\\
+ &\quad+2C_\Psi C_{M_K\Psi}c_G\norm{x(0)}_Z
+                         \norm{\col{f\\e}_T}_L.
+\end{align*}
+Applying Young's inequality to the last two terms yields
+\begin{align*}
+ \frac{\varepsilon}{2}\norm{u_T}_L^2
+ &\leq V(x(0))
+      +C_\Psi C_{M_K\Psi}c_G^2\norm{x(0)}_Z^2\\
+ &\quad+2C_\Psi C_{M_K\Psi}\norm{\col{f\\e}_T}_L^2\\
+ &\quad+\frac{2(C_\Psi C_{M_K\Psi})^2(C_G+1)^2}{\varepsilon}
+                  \norm{\col{f\\e}_T}_L^2.
+\end{align*}
+Using $V(x(0))\leq c_V\norm{x(0)}_Z^2$, define
+\begin{align*}
+ \gamma_x^2&=\frac{2(c_V+C_\Psi C_{M_K\Psi}c_G^2)}
+                  {\varepsilon},\\
+ \gamma_d^2&=\frac{4C_\Psi C_{M_K\Psi}}{\varepsilon}
+ +\frac{4(C_\Psi C_{M_K\Psi})^2(C_G+1)^2}{\varepsilon^2}.
+\end{align*}
+Thus
+\[
+ \norm{u_T}_L\leq
+ \gamma_d\norm{\col{f\\e}_T}_L+\gamma_x\norm{x(0)}_Z.
+\]
+Finally, since $v=Gu+f$,
+\begin{align*}
+ \norm{\col{u\\v}_T}_L
+ &\leq (C_G+1)\norm{u_T}_L+
+                 c_G\norm{x(0)}_Z+\norm{f_T}_L\\
+ &\leq \bigl((C_G+1)\gamma_d+1\bigr)
+                         \norm{\col{f\\e}_T}_L\\
+ &\quad+\bigl((C_G+1)\gamma_x+c_G\bigr)\norm{x(0)}_Z.
+\end{align*}
+The constants are independent of $T$. Letting $T\to\infty$ proves the
+claim. No step sets $x(0)=0$.
+\end{proof}
+
+\noindent\emph{Remark:}
+The bound on $G$ replaces the original zero-state boundedness assumption.
+For a linear plant it requires a uniformly finite-energy initial output
+in addition to the bounded zero-state input--output map. It does not
+follow from zero-state boundedness alone. The conclusion is initialized
+input--output stability, not an assertion of internal state convergence.
+
+\medskip
+\noindent
+As in the paper, consider a PIE realization
+\begin{equation}\label{eq:four}
+ \begin{aligned}
+ \TT\dot x(t)&=\opA x(t)+\opB u(t),\\
+ y(t)&=\opC x(t)+\opD u(t).
+ \end{aligned}
+\end{equation}
+The initial condition is now any admissible $x(0)$.
+
+\begin{lemma}[Sufficient version of KYP lemma with nonzero initial conditions]
+If
+\begin{enumerate}
+\item $G:L^n_{e,[a,b]}\to L^m_{e,[a,b]}$ is causal and bounded allowing
+for initial conditions in the sense of Definition 1;
+\item there exist $\TT,\opA,\opB,\opC,\opD\in\Pi_4$ such that, for any
+$u\in L^n_{e,[a,b]}$, $y=Gu$ implies that $y$ satisfies
+\eqref{eq:four} for a trajectory $x$ with the specified admissible
+$x(0)$, and the integrated dissipation calculation below is valid
+for these trajectories;
+\item $K\in\Pi_4$ and there exist $\varepsilon>0$ and
+$\opP\in\Pi_4$ such that $\opP\succeq0$ and
+\begin{equation}\label{eq:five}
+\begin{aligned}
+ &\col{\TT^*\opP\opA+\opA^*\opP\TT&
+                       \TT^*\opP\opB\\
+        \opB^*\opP\TT&\varepsilon I}\\
+ &\quad+\col{\opC^*\\\opD^*}
+             K\begin{bmatrix}\opC&\opD\end{bmatrix}
+ \preceq0.
+\end{aligned}
+\end{equation}
+\end{enumerate}
+then, for any admissible $x(0)$ and any
+$u\in L^n_{e,[a,b]}$,
+\begin{equation*}
+ \begin{aligned}
+ &\ip{P_TGu}{P_TM_KGu}_L\\
+ &\quad\leq-\varepsilon\norm{P_Tu}_L^2
+       +\ip{\TT x(0)}{\opP\TT x(0)}_Z,
+ \end{aligned}
+\end{equation*}
+for all $T>0$.
+\end{lemma}
+
+\begin{proof}
+Define $V(x)=\ip{\TT x}{\opP\TT x}$. Since $\opP\succeq0$ and
+$\TT,\opP\in\Pi_4$ are bounded, Cauchy--Schwarz and the operator
+norm give
+\[
+ 0\leq V(x)=\ip{x}{\TT^*\opP\TT x}
+ \leq\norm{\TT^*\opP\TT}\norm{x}_Z^2.
+\]
+Suppose that
+$u\in L^n_{e,[a,b]}$ and $y(t)=(Gu)(t)$ for a trajectory
+$x$ satisfying \eqref{eq:four} with arbitrary admissible $x(0)$.
+By inequality \eqref{eq:five}, multiplying on both sides by
+$\col{x(t)\\u(t)}$ in the quadratic form gives
+\begin{align*}
+ &\ip{\TT\dot x(t)}{\opP\TT x(t)}
+   +\ip{\TT x(t)}{\opP\TT\dot x(t)}\\
+ &\quad+\varepsilon\norm{u(t)}_Z^2+\ip{y(t)}{Ky(t)}_Z\\
+ &=\dot V(x(t))+\varepsilon\norm{u(t)}_Z^2
+                         +\ip{y(t)}{Ky(t)}_Z
+ \leq0.
+\end{align*}
+Integrating in time, we obtain
+\begin{align*}
+ &\varepsilon\norm{P_Tu}_L^2
+    +\int_0^T\ip{y(t)}{Ky(t)}_Z\,dt\\
+ &\qquad\leq -V(x(T))+V(x(0))\\
+ &\qquad\leq V(x(0)),
+\end{align*}
+since $V(x(T))\geq0$. We conclude that
+\begin{align*}
+ &\ip{P_TGu}{P_TM_KGu}_L\\
+ &=\int_0^T\ip{y(t)}{Ky(t)}_Z\,dt\\
+ &\leq-\varepsilon\norm{P_Tu}_L^2+V(x(0))\\
+ &=-\varepsilon\norm{P_Tu}_L^2
+       +\ip{\TT x(0)}{\opP\TT x(0)}_Z.
+\end{align*}
+The initial term is retained throughout.
+\end{proof}
+
+\noindent\emph{Remarks:}
+The cross blocks in \eqref{eq:five} include
+$\TT^*\opP\opB$ and $\opB^*\opP\TT$, as required by the storage
+$V(x)=\ip{\TT x}{\opP\TT x}$ and the stated dynamics.
+The supplied PDF prints $\opP\opB$ and $\opB^*\opP$ instead.
+For mild solutions, the integrated inequality must be justified by
+regularity or extension from regular solutions.
+
+Applying this lemma to the augmented plant--multiplier realization, as in
+Corollary 8 of the original paper, supplies \eqref{eq:three}, with the
+initial-storage allowance evaluated at
+$\col{x(0)\\0}$. The initialized bound on the nominal $G$ is still
+a separate hypothesis; the lemma does not establish it.
+
+One way to compute an admissible $c_V$ is to impose
+\[
+ 0\preceq\TT^*\opP\TT\preceq c_V I
+\]
+together with \eqref{eq:five}. Since $\TT$ is fixed, the upper bound
+is linear in $\opP,c_V$. Alternatively take
+$c_V=\norm{\TT}^2\norm{\opP}$. No coercive lower bound on the storage
+is needed for the initialized input--output conclusion of Theorem 6.
+
+\section*{Examples verifying the conditions}
+
+\begin{example}[Verifying initialized boundedness by a gain LPI]
+For a PIE realization \eqref{eq:four}, suppose one can find
+$\mathcal R\in\Pi_4$, $\mathcal R\succeq0$, and constants
+$\gamma,r_0\geq0$ satisfying
+\begin{gather*}
+ \col{\TT^*\mathcal R\opA+\opA^*\mathcal R\TT&
+          \TT^*\mathcal R\opB\\
+       \opB^*\mathcal R\TT&-\gamma^2I}
+ +\col{\opC^*\\\opD^*}
+       \begin{bmatrix}\opC&\opD\end{bmatrix}\preceq0,\\
+ 0\preceq\TT^*\mathcal R\TT\preceq r_0 I.
+\end{gather*}
+Multiplication by $\col{x(t)\\u(t)}$ and integration, justified for
+the chosen realization, give
+\[
+ \norm{P_TGu}_L^2
+ \leq\gamma^2\norm{P_Tu}_L^2+r_0\norm{x(0)}_Z^2.
+\]
+Consequently Definition 1(3) holds with
+$C_G=\gamma$, $c_G=\sqrt{r_0}$. These are separate sufficient gain
+conditions for Theorem 6's first assumption. The operator
+$\mathcal R$ need not equal the IQC storage $\opP$. For fixed
+$\gamma$, these are LPIs in $\mathcal R,r_0$; one can also search
+over $\gamma^2$ as a scalar variable.
+\end{example}
+
+\begin{example}[The initialized bound for a stable nominal realization]
+Consider a linear realization on a Hilbert state space, with bounded
+input and output operators $B,C,D$. Suppose its state-transition
+semigroup satisfies
+\[
+ \norm{S(t)}\leq M e^{-\alpha t},\qquad M,\alpha>0.
+\]
+For any admissible initial state, its output is
+\[
+ (Gu)(t)=CS(t)x(0)+Du(t)
+             +\int_0^t CS(t-s)Bu(s)\,ds.
+\]
+The initial-output term satisfies
+\[
+ \norm{CS(\cdot)x(0)}_L
+ \leq\frac{M\norm{C}}{\sqrt{2\alpha}}\norm{x(0)}_Z.
+\]
+The convolution kernel has $L_1$ norm at most
+$M\norm{C}\norm{B}/\alpha$. Young's convolution inequality, applied
+to the truncated input, therefore verifies Definition 1(3) with
+\begin{align*}
+ C_G&=\norm{D}+\frac{M\norm{C}\norm{B}}{\alpha},\\
+ c_G&=\frac{M\norm{C}}{\sqrt{2\alpha}}.
+\end{align*}
+This is a sufficient way to verify the added assumption, not an
+assertion that exponential nominal stability is necessary. If the
+realization has an unbounded input or observation operator, appropriate
+admissibility estimates must replace these bounded-operator formulas.
+\end{example}
+
+\begin{example}[A complete scalar certificate with arbitrary initial state]
+Consider
+\[
+ \dot x(t)=-2x(t)+u(t),\qquad y(t)=x(t),\qquad x(0)\in\mathbb R.
+\]
+Example 2 gives $C_G=1/2$ and $c_G=1/2$. Let
+$\boldsymbol\Delta$ consist of the memoryless operators
+$(\Delta v)(t)=\phi(v(t))$, where $\phi(0)=0$ and $\phi$ is globally
+Lipschitz with constant at most one. Then $|\phi(v)|\leq|v|$, so every
+member satisfies the same hard IQC with
+\[
+ \Psi=I,\qquad K=\col{1&0\\0&-1}.
+\]
+Indeed,
+\[
+ \int_0^T\bigl(|v(t)|^2-|\phi(v(t))|^2\bigr)dt\geq0.
+\]
+Here $\Psi$ is causal, $\Psi(0)=0$, and its incremental bound is one.
+
+For arbitrary $e,f\in L_{2e}$, the feedback equations give
+\[
+ \dot x(t)=-2x(t)+\phi(x(t)+f(t))+e(t).
+\]
+Its right-hand side is globally Lipschitz in $x$, uniformly in time,
+and has locally integrable forcing. Consequently it has a unique
+global absolutely continuous solution for every $x(0)$; causality
+follows from uniqueness. This verifies Definition 3 without requiring
+an algebraic-loop assumption, because the plant has no feedthrough.
+
+Apply Lemma 7 to the graph output $\col{y\\u}$, as in the paper's
+augmented construction. Its output operators are
+$\opC=\col{1\\0}$ and $\opD=\col{0\\1}$, while
+$\TT=1$, $\opA=-2$, and $\opB=1$. Choose
+\[
+ \opP=2,\qquad \varepsilon=\tfrac14.
+\]
+The left-hand side of \eqref{eq:five} becomes
+\[
+ \col{-8&2\\2&1/4}+\col{1&0\\0&-1}
+ =\col{-7&2\\2&-3/4}\prec0.
+\]
+The first diagonal entry is negative and the determinant is
+$21/4-4=5/4>0$, verifying strict negative definiteness. The storage is
+\[
+ V(x)=2x^2,\qquad c_V=2.
+\]
+Lemma 7 consequently supplies precisely the initialized separation
+condition required in Theorem 6:
+\[
+ \int_0^T\bigl(|(Gu)(t)|^2-|u(t)|^2\bigr)dt
+ \leq-\tfrac14\int_0^T|u(t)|^2dt+2|x(0)|^2.
+\]
+All constants are common to the uncertainty class. Theorem 6 therefore
+gives robust input--output stability allowing for every $x(0)$.
+The time-domain calculations in Lemma 7 are valid almost everywhere
+for these absolutely continuous trajectories and can be integrated.
+\end{example}
+
+\begin{example}[An infinite-dimensional initial-output bound]
+On the Hilbert space $L_2(0,1)$ consider the heat equation
+\begin{align*}
+ x_t(s,t)&=x_{ss}(s,t)+u(s,t),\\
+ x(0,t)&=x(1,t)=0,\qquad y(s,t)=x(s,t).
+\end{align*}
+The initial profile $x(\cdot,0)$ may be any element of $L_2(0,1)$.
+The Dirichlet heat semigroup has eigenvalues $-j^2\pi^2$,
+$j=1,2,\ldots$, and satisfies $\norm{S(t)}\leq e^{-\pi^2t}$.
+Taking $B=C=I$, $D=0$ in Example 2 gives
+\[
+ C_G=\frac{1}{\pi^2},\qquad
+ c_G=\frac{1}{\sqrt{2}\,\pi}.
+\]
+Thus the initialized boundedness assumption is meaningful for arbitrary
+nonzero infinite-dimensional initial profiles, not just for ODE states.
+
+For a pointwise nonlinearity $\phi$ as in Example 3, the induced operator
+on $L_2(0,1)$ is globally Lipschitz with constant one. The resulting
+semilinear heat equation with $e,f\in L_{2e}$ has unique global mild
+solutions. This verifies the corresponding well-posedness requirement.
+For regular initial profiles and inputs, energy differentiation is
+available directly. To use a PIE storage estimate for all mild
+solutions, first prove it for regular data and pass to the limit using
+density, continuous dependence, and boundedness of the storage
+operators. A particular PIE realization and its LPI must still be
+verified; the semigroup bound alone does not verify \eqref{eq:five}.
+The initial-state norm and admissible profiles must match that PIE
+realization: a general physical $L_2$ profile is not automatically an
+admissible initial fundamental state if that state contains derivatives.
+\end{example}
+
+\begin{example}[A dynamic multiplier satisfying the IQC conditions]
+Let $(\Delta v)(t)=d\,v(t)$ for an unknown constant $d\in[-1,1]$.
+Choose the zero-initialized stable filter $H$ with transfer function
+$H(s)=1/(s+1)$, acting componentwise if the signals are Hilbert-valued,
+and take
+\[
+ \Psi=\col{H&0\\0&H},\qquad
+ K=\col{I&0\\0&-I}.
+\]
+The filter is causal, bounded, incrementally bounded, and maps zero to
+zero. Its $L_2$ gain is at most one. Since $d$ is constant and $H$ is
+linear, $H(dv)=dHv$. Therefore
+\begin{align*}
+ &\ip{P_T\Psi\col{v\\\Delta v}}{
+          P_TM_K\Psi\col{v\\\Delta v}}_L\\
+ &\qquad=(1-d^2)\int_0^T\norm{(Hv)(t)}_Z^2dt\geq0.
+\end{align*}
+This verifies the hard IQC with the same multiplier for every allowed
+$d$. The argument uses a constant scalar uncertainty; it does not
+establish the same filtered IQC for a general time-varying $d(t)$.
+The plant still needs the initialized bound, well-posedness, and the
+separation certificate in Theorem 6.
+\end{example}
+
+\begin{thebibliography}{1}
+\bibitem{channels}
+A. Talitckii, M. M. Peet, and P. Seiler,
+\emph{Integral Quadratic Constraints with Infinite-Dimensional Channels},
+2023 American Control Conference, pp. 1576--1583, 2023,
+doi: 10.23919/ACC55779.2023.10156335.
+\end{thebibliography}
+\end{document}
+

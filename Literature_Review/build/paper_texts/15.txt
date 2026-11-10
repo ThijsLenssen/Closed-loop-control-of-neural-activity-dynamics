@@ -1,0 +1,1091 @@
+                IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023                                                                                      91
+
+
+
+
+      Electrophysiology-Based Closed Loop
+  Optogenetic Brain Stimulation Devices: Recent
+       Developments and Future Prospects
+          Lekshmy Sudha Kumari , Student Member, IEEE, and Abbas Z. Kouzani , Member, IEEE
+
+                                                            (Methodological Review)
+
+
+   Abstract—With its potential of single cell specificity, op-                  popularity. DBS is a highly invasive neurosurgical procedure
+togenetics has made the investigation into the brain circuits                   which works in a similar way as artificial cardiac pacemakers.
+more controllable. Closed loop optogenetic brain stimula-                       While a cardiac pacemaker maintains suitable heart rate by
+tion enhances the efficacy of the stimulation by adjusting
+the stimulation parameters based on direct feedback from                        electrically stimulating the heart muscles, a DBS device
+the target area of the brain. It combines the principles of                     delivers electrical stimulation to the target area of the brain
+genetics, physiology, electrical engineering, optics, signal                    using electrodes [2]. The electrodes are invasively implanted
+processing and control theory to create an efficient brain                      into the brain for this purpose. This electrical stimulation helps
+stimulation system. To read the underlying neuronal condi-                      control the neural activity in the target brain region.
+tion from the electrical activity of neurons, a sensor, sensor
+interface circuit, and signal conditioning are needed. Also,                       Along with the developments in DBS techniques, non-
+efficient feature extraction, classification, and control algo-                 invasive and less expensive modes of brain stimulation modali-
+rithms should be in place to interpret and use the sensed                       ties are also being considered [3]. Transcranial magnetic stimu-
+data for closing the feedback loop. Finally, a stimulation                      lation (TMS) is one of those stimulation techniques which is non-
+circuitry is required to effectively control a light source                     invasive, where stimulation is achieved using pulsed magnetic
+to deliver light based stimulation according to the feed-
+back signal. Thus, the backbone to a functioning closed                         field through electromagnetic induction [4]. TMS is an approved
+loop optogenetic brain stimulation device is a well-built                       treatment option for conditions like MDD and obsessive compul-
+electronic circuitry for sensing and processing of brain                        sive disorder [5]. Transcranial electrical stimulation (tES) is yet
+signals, running efficient signal processing and control al-                    another non-invasive brain stimulation where electrical current
+gorithm, and delivering timed light stimulations. This pa-                      is applied to the scalp for neuronal stimulation. Single-pulse,
+per presents a review of electronic and software concepts
+and components used in recent closed-loop optogenetic                           paired-pulse, and repetitive TMS (rTMS) are the different types
+devices based on neuro-electrophysiological reading and                         of TMS depending on the specifications of the pulsed magnetic
+an outlook on the future design possibilities with the aim                      field [6]. Transcranial direct current stimulation (tDCS), tran-
+of providing a compact and easy reference for developing                        scranial alternating current stimulation (tACS), transcranial ran-
+closed loop optogenetic brain stimulation devices.                              dom noise stimulation (tRNS), and transcranial pulsed current
+  Index Terms—Closed-loop optogenetics, neurosignal                             stimulation (tPCS) [7], [8] are the types of tES methodologies
+acquisition, neurosignal processing, neurostimulation,                          under research and clinical trials, as listed in Fig. 1.
+phase-locked neurostimulation.                                                     With DBS and other non-invasive brain stimulation modali-
+                                                                                ties, the exact neuronal circuits responsible for the therapeutic
+                          I. INTRODUCTION                                       effects are unknown as it is not easy to control the specificity of
+                                                                                stimulation [9]. Accordingly, to elucidate the underlying mech-
+      VER the past three decades, brain stimulation techniques
+O     have evolved into powerful tools for investigating
+brain functions and as treatment options for different brain
+                                                                                anism behind the occurrence of disease condition and dissecting
+                                                                                the role of different neuronal circuitry, researchers have focused
+                                                                                on optical brain stimulation called optogenetics [10].
+conditions [1] including Parkinson’s disease (PD), Alzheimer’s                     As the term suggests, optogenetics involves the incorporation
+disease (AD), multiple sclerosis (MS), epilepsy, and Major                      of concepts of optics and genetics to manipulate well-defined
+Depressive Disorder (MDD. Among all the brain stimulation                       events within specific cells of living tissue. The light insensitive
+methodologies, Deep Brain Stimulation (DBS) has gained much                     nerve cells are made sensitive to light by genetically transfecting
+                                                                                them to express light sensitive protein molecules. Upon light
+   Manuscript received 3 October 2021; accepted 26 December 2021.
+Date of publication 7 January 2022; date of current version 6 January           illumination, these light sensitive protein channels open and
+2023. (Corresponding author: Abbas Z. Kouzani.)                                 facilitate the movement of ions across the membrane causing
+   The authors are with the School of Engineering, Deakin Univer-               the change of membrane voltage potential. As a result, the
+sity, Waurn Ponds, VIC 3216, Australia (e-mail: lsudhakumari@deakin.
+edu.au; kouzani@deakin.edu.au).                                                 neuronal cell undergoes depolarization and thus the activity of
+   Digital Object Identifier 10.1109/RBME.2022.3141369                          the genetically modified neurons can be precisely controlled.
+                   1937-3333 © 2022 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission.
+                                 See https://www.ieee.org/publications/rights/index.html for more information.
+
+
+ Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+92                                                                                             IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023
+
+
+
+
+Fig. 1.   Types of brain stimulation methodologies.
+
+
+
+
+Fig. 2. Processes in optogenetic brain stimulation in transgenic mice – introducing optogenetic actuator protein in the target neuron followed by
+stimulation using light of specific wavelength to cause activation/inhibition of the target neuron.
+
+
+Thus, optogenetics offers the ability to control one type of cell,              neurons will be activated by delivering blue light at required
+while leaving others unaltered.                                                 specifications. While, HR - an inhibitory opsin, produces inward
+   The fundamental requirement in optogenetic brain stimula-                    chloride flux resulting in the inhibition or silencing of neuron
+tion is the introduction of the optogenetic actuator proteins [11]              on stimulation [13]. Fig. 2 illustrates the process of optogenetic
+to the neurons, using genetic engineering techniques. These are                 brain stimulation.
+the proteins that makes the cell responsive to light by altering the               With the cell specificity, optogenetic brain stimulation (OBS)
+electrical activity of the cell in which they are introduced when               can deliver optical stimuli that are more focused than other
+exposed to light of a definite wavelength. Opsin is the widely                  brain stimulation approaches [9]. This allows manipulation of
+used optogenetic actuator protein in various studies. Opsins are                specific neuronal circuits, and can help in better understanding
+the light sensitive proteins that absorb light at specific wave-                of how different neuronal circuits get altered under different
+lengths [12]. Upon exposure to light of particular wavelength                   neurological disease conditions [14]. Apart from its specificity,
+and intensity, these channels respond by opening or closing                     another advantage of optogenetic brain stimulation is the ability
+allowing a flux of ions into or out of the cell. Opsins underlie                to excite or inhibit neural activity with the co-expression of
+the molecular basis of various light-sensing systems including                  excitatory and inhibitory opsins. This enables the bi-directional
+phototaxis, circadian rhythms, eyesight, and certain types of                   control of neuronal circuits with lights of different wavelengths
+photosynthesis. Commonly used optogenetic opsins are types I                    [15]. The direct inhibition of the neurons with inhibitory opsins
+(microbial opsins) and II (animal/vertebrate opsins). Microbial                 have important clinical applications in treating neurological
+opsins are single component light sensing systems that offer                    conditions such as seizure, and acute pain [16].
+fast and precise manipulation of neural excitability by directly                   On the device engineering side, the control strategy used in
+altering the membrane potential of a neuron to bring it closer to,              most of the commercially available brain stimulation systems,
+above, or further away from the threshold for generating action                 irrespective of the methodology, is open loop [17]. This is an
+potential. Opsin is expressed in the neural population by either                important issue to be addressed. One of the main characteristics
+virus-based transfection method, or by developing transgenic                    of neurological disorders is that the associated symptoms do not
+mice line. The commonly used opsins in optogenetic studies,                     stay constant. The conditions of the patients vary throughout a
+channelrhodopsin (ChR), and halorhodopsin (HR) are microbial                    period. Because of the open loop nature of the control strategy,
+opsins. By expressing ChR, a cation channel activated by light,                 patients may receive more or less stimulation doses than their
+Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+KUMARI AND KOUZANI: ELECTROPHYSIOLOGY-BASED CLOSED LOOP OPTOGENETIC BRAIN STIMULATION                                                                      93
+
+
+
+                                                                                the manual nature of the control and the uncertainty in the neural
+                                                                                conditions of the patient, it often takes frequent hospital visits
+                                                                                to control the stimulation effectively. In closed loop optogenetic
+                                                                                stimulation systems, however, the stimulation parameters are
+                                                                                modified automatically with the help of the feedback signal from
+                                                                                the controller. The feedback signal is obtained by sensing and
+                                                                                analyzing different measurable medical signs, called biomarkers
+                                                                                [28]. Electrophysiological and neurochemical signals are some
+                                                                                of the measurable biological signals that can be used to get an un-
+                                                                                derstanding of the underlying state of the neuronal network [29].
+                                                                                    Biomarkers are sensed using electrodes implanted into the
+                                                                                patient’s brain. A sensor circuit, comprising of amplifiers and
+                                                                                filters, conditions the sensed signal for further analysis. The con-
+                                                                                troller extracts the features of the sensed biomarkers, classifies
+Fig. 3.   Steps in Closed-loop Brain stimulation.                               the biomarkers, and generates control signal for closing the feed-
+                                                                                back loop. A control algorithm identifies deviations, if any, of the
+                                                                                actual stimulation output from the required level of stimulation.
+symptoms require. Too much stimulation can cause side effects,
+                                                                                Accordingly, the algorithm adjusts the stimulation parameters
+while too little could mean symptoms are not well managed.
+                                                                                to minimize the difference in actual and desired outputs with the
+In addition, extra stimulation uses up battery life unnecessar-
+                                                                                help of the stimulation control circuit. Thus, feedback control
+ily. Moreover, open loop stimulation is not a good choice for
+                                                                                helps make the brain stimulation more efficient. Also, as the
+diagnostic purposes. A novel approach to brain stimulation to
+                                                                                stimulation parameters are not modified manually, thus frequent
+solve these issues is the introduction of closed loop control in the
+                                                                                manual interrupts would not be required. This helps improve the
+stimulation process [18]–[20], where stimulation parameters can
+                                                                                diagnostic efficiency of the closed loop optogenetic stimulation
+be adjusted based on live neurological conditions, and optimized
+                                                                                systems by enabling uninterrupted study with freely behaving
+stimulation is provided. Literature indicates that closed loop
+                                                                                subjects. The essential stages in a closed loop optogenetic brain
+brain stimulation (clBS) has offered promising results in pain
+                                                                                stimulation can be listed as: neural sensing, feature extraction,
+relief [21], [22], epilepsy seizure reduction [23], [24], and motor
+                                                                                classification, control, and optical stimulation.
+response improvement in PD [25], [26] 42, 43. Closed loop
+                                                                                    To fully leverage the closed-loop scheme, it is an important
+brain stimulation paradigms, as given in Fig. 3, use brain signals,
+                                                                                consideration for the closed loop optogenetic brain stimulation
+called biomarkers, as a feedback signal to modulate the stimula-
+                                                                                (clOBS) system to be untethered [30]. Physically tethered tech-
+tion in real-time. Using extra circuitry, the biomarkers are quan-
+                                                                                nologies such as those using power cables and optical fibers can
+titatively analyzed to give precise stimulation at accurate times.
+                                                                                pose difficulty for freely behaving animals as the tethered sys-
+   Accordingly, the closed loop optogenetic stimulation can
+                                                                                tems will affect the free mobility and behavior of the subject un-
+provide a distinctive method for efficient cell-type targeting and
+                                                                                der study. Tetherless operation is enabled in optogenetic systems
+controlled neuromodulation. Currently, closed loop optogenetic
+                                                                                by using small implantable light sources, and through replacing
+stimulation is used to study neural circuits that underlie both
+                                                                                wired power supply with small and light-weight batteries. Along
+healthy and pathological conditions. This information is then
+                                                                                with this, in many of the recent publications on portable clOBS
+used to guide the development of effective diagnostics and
+                                                                                systems, a transceiver is also included which transmits the
+therapeutics. And recently, a closed-loop DBS device from
+                                                                                digitized signals from the sensor to a nearby tethered system
+Medtronics has been approved by the United States Food and
+                                                                                with higher computational capabilities and power requirements.
+Drug Admiration for treatment of PD symptoms [27].
+                                                                                In such a system, the optogenetic system receives control signals
+   An overview of a closed loop optogenetic brain stimulation
+                                                                                from the nearby tethered system. Wireless power transmission
+system with brief description of the components is presented in
+                                                                                techniques using inductive or capacitive coupling can also be
+the next section.
+                                                                                seen in some of the recent systems [31].
+                                                                                    The following sections describe each of the components
+    II. CLOSED LOOP OPTOGENETIC BRAIN STIMULATION                               (biomarkers, biomarker sensing circuitry, stimulation circuitry,
+   The essential difference between closed loop and open loop                   and signal processing and control) of untethered closed loop
+control systems lies in the feedback mechanism. In a closed loop                optogenetic brain stimulation devices in detail, and review the
+control system, a feedback control is in action to modulate the                 recent literature to identify the methods in which these are
+variables of the system depending on the actual output and the                  implemented in the recent works.
+desired output. The feedback signal, thus, aims to bring the out-
+put of the system to the desired value. The same is the case with
+the optogenetic brain stimulation system as well. The functional                           III. BIOMARKERS: SIGNALS AND FEATURES
+block diagrams of an open loop and a closed loop optogenetic                       Biomarkers are measurable signs that indicate the physiolog-
+stimulation system are presented in Fig. 4. In an open loop OBS                 ical as well as pathological conditions of an individual subject.
+system, the stimulation parameters (stimulator specifications)                  Neurons communicate with each other using electrical action
+are changed manually based on the user feedback. Because of                     potentials (formed by transfer of charged ions across synapses)
+ Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+94                                                                                             IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023
+
+
+
+
+Fig. 4.   Functional block diagrams. (a) An open loop optogenetic stimulation system. (b) A closed loop optogenetic stimulation system.
+
+
+and chemical neurotransmitters. Hence, the essential biomarkers                 (FSCV), high speed chronoamperometry, and potentiometry,
+for studying brain and diagnosing and monitoring neurological                   impedance spectrometry are some of such methods [39]. Among
+pathologies can be obtained from the measured bioelectric (elec-                these, FSCV has been a popular method used in some of the
+trophysiological) and biochemical signals. A biochemical brain                  recent deep brain stimulation studies. For example in ref. [40],
+signal refers to the neurotransmitters which are considered as                  the antidepressant effect of the medial forebrain bundle neural
+the chemical messengers. Some of the key neurotransmitters                      pathway is studied by combining DBS with FSCV to measure
+are dopamine, glutamate, gamma aminobutyric acid (GABA),                        dopamine concentration in the ventromedial striatum. In ref.
+glycine, serotonin, epinephrine, endorphins, and acetylcholine,                 [41], a miniaturized FSCV device with a dimension of 40 mm
+to list a few. Normal brain function requires a precise balance                 × 24 mm is reported which enables portability and use in
+of chemical signaling done by the release of specific neu-                      tether-less closed loop settings.
+rotransmitters. Important body functions like sleep, memory,                       Electrophysiological signals acquired using electroen-
+metabolism, temperature control, mood, motor control etc. are                   cephalography (EEG), electromyography (EMG), electrocor-
+closely associated with neurotransmitters [32], and hence the                   ticography (ECoG), and invasive microelectrode arrays (Local
+level of different neurotransmitters in the measured biochemical                field potentials (LFPs), Action Potentials (APs)) can be used
+signals can function as the biomarkers for many neurological                    as a feedback signal in closed-loop brain stimulation systems.
+pathologies including PD [33], AD [34], MDD [35] etc. On                        Each of these signals has different method of recording, level
+a similar note, different wave characteristics like amplitude,                  of invasiveness, information content, resolution, and medical
+power, frequency, etc. of the electrophysiological signals can                  significance [42]. Fig. 5 summarizes the main features of the
+serve as the diagnostic measure of different neurological condi-                electrophysiological signals. EMG records myoelectric signals
+tions [36]–[38]. For using these signals for closing the loop in                which are formed by the changes in the state of muscle fiber
+brain stimulation systems, efficient measurement is required.                   membrane [43]. EEG contains the recording of the electrical
+   For monitoring changes in neurotransmitters, different meth-                 activity of cortical neurons over a short period of time using
+ods have been employed. Fast-Scan Cyclic Voltammetry                            electrodes placed on the scalp [44]. Spatial resolution of EEG
+
+Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+KUMARI AND KOUZANI: ELECTROPHYSIOLOGY-BASED CLOSED LOOP OPTOGENETIC BRAIN STIMULATION                                                                      95
+
+
+
+
+Fig. 5.   Main features of electrophysiological biomarkers.
+
+
+depends on the number of electrodes used, even with more than                   band – 4 to 8 Hz, alpha band – 8 to 15 Hz, beta band – 15 to
+200 electrodes, the spatial resolution is still low [45]. In ref. [46],         30 Hz, gamma – 30 to 300 Hz) are the sources of information
+a spatial resolution of 22-37 cm3 is reported for EEG measured                  about the underlying brain pathologies, and studies indicate that
+with 19 scalp electrodes, and 6-8 cm3 with 129 electrodes.                      multiple brain oscillations could be altered in different patho-
+ECoG or intracranial EEG (iEEG) is invasive and uses subdural                   logical conditions of brain. Alterations in oscillation amplitude,
+electrodes placed on the surface of cerebral cortex to measure                  phase, and coherence, which are studied by spectral analysis of
+the cortical neuron activity and is less susceptible to artefacts               the acquired signal, are some of the indications of underlying
+when compared with EEG [47]. ECoG has a comparatively                           neurological pathologies [50]. For example, excessive activity in
+higher spatial resolution of < 1 cm and temporal resolution of                  beta band is linked to movement disorders in PD [51]. In a similar
+< 1ms [48]. In contrast to EEG and ECoG, LFP and AP are                         study, Swann et al. [52] proposes hyperkinetic disorders in PD
+the electrophysiological signals that captures the neural activity              is connected to gamma band activities in neural oscillations.
+from the deeper locations of brain. These are the extracellular                 Neumann et al. [53] proposes alpha band activity as a biomarker
+signals acquired using metal or glass microelectrodes or mi-                    for MDD symptom severity following the studies showing el-
+croelectrode arrays. LFP and AP signals offer better spatial                    evation in alpha power in the human limbic system in patients
+resolution, less distortion and attenuation from tissues owing                  with MDD. The role of slow gamma oscillations (30-60 Hz)
+to its small contact area [42]. Much progress has been attained                 in memory in AD is established in [54]. References [55], [56]
+in acquiring these LFP and AP signals with advancements in                      reported aberrant gamma band oscillations in Schizophrenia.
+microelectrodes design.                                                         Recent closed-loop optogenetic brain stimulation experiments
+                                                                                and systems involving electrophysiological biomarker sensing
+                                                                                is reported in Table I.
+    IV. ACTION POTENTIAL AND LOCAL FIELD POTENTIAL                                 In this work, we focus on reviewing electrophysiological
+   One of the major advantages of using microelectrodes and                     signal based closed loop optogenetic brain stimulation systems
+microelectrode arrays, with tip dimension of the order of mi-                   with an emphasis on the requirements of untethered operation.
+crometers, is the opportunity for size reduction and realization of             The remaining sections of the paper focuses on concepts and
+untethered brain stimulation devices. As mentioned earlier, the                 components for the realization of such systems. The following
+recorded electrophysiological signal picks up two components                    section discusses the circuits for electrophysiological biomark-
+– AP and LFP. The AP, which are extensively studied encodes                     ers sensing circuits in recent brain stimulation systems.
+the spiking or firing of the nearby neurons. Whereas, LFP
+oscillations are the summation of variations in synaptic potential
+                                                                                           V. BIOMARKER ACQUISITION AND SENSING
+across thousands of neurons near the electrode from a volume
+of up to several hundred cubic micrometers [49]. The acquired                      Untethered closed loop optogenetic stimulation demands an
+signals are low pass filtered at around 300 Hz cut-off frequency to             implantable neural probe for combined light stimulation and
+obtain the LFP frequencies. The oscillatory activities of different             electrophysiological signal measurement. Such neural probes
+frequency bands in the LFP signal (delta band – 0.5 to 4 Hz, theta              are referred to as optrodes [64], [65]. The rapid developments
+
+ Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+96                                                                                             IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023
+
+
+
+                          TABLE I                                               frequency components including the noise. Accordingly, the
+RECENT CLOSED-LOOP OPTOGENETIC BRAIN STIMULATION SYSTEMS WITH
+           ELECTROPHYSIOLOGICAL BIOMARKER SENSING
+                                                                                favorable features of a signal conditioning circuitry are: firstly,
+                                                                                high gain, high input impedance amplifier with suitable band-
+                                                                                width (BW), high signal-to-noise ratio (SNR), common-mode
+                                                                                rejection ratio (CMRR) and power supply rejection ratio (PSRR)
+                                                                                to boost the weak analog bio-signals, and secondly, an effective
+                                                                                filtering to remove any unwanted frequency components in the
+                                                                                signals corresponding to the artefacts and noise, like the large DC
+                                                                                offset causing from the electrode tissue interface [70]. Finally,
+                                                                                the conditioned signals are then used to drive the analog to
+                                                                                digital convertor. As expected from any stand-alone, wireless
+                                                                                implantable system, low-power performance is anticipated from
+                                                                                the circuit.
+                                                                                    Over the years, several AFE circuits for recording neural
+                                                                                signal recording interfaces have been developed for various un-
+                                                                                tethered closed-loop brain stimulation systems. Both application
+                                                                                specific integrated circuits (ASIC), and commercial off-the-shelf
+                                                                                (COTS) components based on microcontroller units (MCU)
+                                                                                and field programmable gate arrays (FPGAs) are adopted in
+                                                                                designing AFE in the closed loop systems. Fig. 6 shows the
+                                                                                block diagrams of the neural sensors in recent clBS systems
+                                                                                discussed in this section and Table II compares the neural sensor
+                                                                                specifications in those systems.
+                                                                                    In some of the early untethered closed loop brain stimula-
+                                                                                tion systems commercially available digital electrophysiology
+                                                                                interface chips are used. Liu et.al. [71] presented a closed
+                                                                                loop optogenetic brain stimulation system for behaving animals
+                                                                                with real time electrophysiological recording. The electrodes
+                                                                                are directly connected to a digital electrophysiology interface
+                                                                                chip (Intan RHD2216) using a ZIF connector. The chip contains
+                                                                                an array of low noise amplifiers with programmable bandwidth
+                                                                                (250 Hz - 7.5 kHz), analog and digital filters, and 16-bit ADC.
+in the microelectronics industry supported the development                      The interface chip is controlled by a low power microcontroller
+of small implantable optrodes with multiple stimulation and                     (MSP430). The microcontroller drives the interface chip to
+recording sites on board. However, the stimulating light falling                digitize the analog signal (sampling rate of 30 kHz/channel).
+on the metal electrodes can generate electrical artefacts in the                Following this, the digitized signal is directed to the MSP430
+recorded signal. The artefacts are not easy to distinguish from                 through the SPI interface to realize feature extraction, and closed
+the neural signal, especially the low frequency LFP signals.                    loop control operation. The electrophysiology system has a
+And to avoid this, recently transparent graphene electrodes                     dimension of 31.8 mm × 21.8 mm. A similar approach is used
+are used in some of the closed loop optogenetic systems as                      in the LFP sensing circuit for the wireless head stage in ref. [72]
+careful design of the important fabrication process steps for                   using the Intan RHD2132 neural recorder.
+transparent graphene electrodes can lessen the light-induced                        Further reduction in form factor for better untethered oper-
+artefact problems [66]–[69].                                                    ation was realized by using commercially available instrumen-
+   Once the bio-signals are acquired using microelectrodes,                     tation amplifier and operational amplifier ICs. Jia et al. [73]
+the next step is to process them to extract information of the                  reported a 2-channel neural interface for recording ECoG signals
+underlying brain condition of the subject. Often the acquired                   for wireless optogenetic brain stimulation. Here the stimulation
+signals will be very feeble (with amplitudes in µV and a few                    parameters are controlled through a graphical user interface
+mV range), with varying frequency, and highly corrupted by                      (GUI) after analysing the ECoG signals. The circuit has active
+external and device noise. Moreover, in the case of closed                      high pass filter made of the commercially available low power,
+loop brain stimulation, due to the closeness of stimulation and                 high precision instrumentation amplifier IC, INA118 from Texas
+recording electrodes in the neural probes, artefacts can distort                Instruments. The output from INA118 is used to drive an active
+the signals. Thus, in order to perform efficient digital processing             low pass filter stage realized using low-noise, AD8603 from
+of the signals, it is essential to condition the received analog                Analog Devices, and other passive components. The low pass fil-
+signals prior to digitization. Analog signal processing of the                  ter output is then subtracted from the input to provide a high pass
+acquired signal is thus done using the analog front end (AFE)                   filtered output. Finally, an 11-bit built in ADC in CC2441 micro-
+circuit or a sensor circuit which consists of filters and amplifiers            controller is used to digitize the signal. The input referred noise
+to amplify the low-level signals and filter out the unwanted                    of the channels are 8.47 µVrms and 8.64 µVrms and has a total
+
+Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+KUMARI AND KOUZANI: ELECTROPHYSIOLOGY-BASED CLOSED LOOP OPTOGENETIC BRAIN STIMULATION                                                                      97
+
+
+
+
+Fig. 6. Block diagrams of neural sensors in recent clBS systems. (a) Hardware components in a neural sensor. (b) Block diagram of the neural
+sensor in [71]. (c) Block diagram of the neural sensor in [73]. (d) Block diagram of the neural sensor in [74.] (e) Block diagram of the neural sensor
+in [75]. (f) Block diagram of the neural sensor in [77], [78]. (g) Block diagram of the neural sensor in [79].
+
+
+
+power consumption of 1.5 µW per channel. The processed and                      filter formed by a capacitor and two metal–oxide–semiconductor
+digitized data is sent to a user interface via a Bluetooth link for             field-effect (MOSFET) transistors working as variable resistors
+monitoring the state of the brain and produce the control signal.               follow. The subsequent amplifier has an overall gain of 51.5 dB
+   Parastarfeizabadi et al. [74] presented a 2 channel COTS-                    and amplifies the neural signal to a voltage of 200 mV peak-peak.
+components based neural interface design for wireless closed                    The final stage is a unity gain buffer which will futher feed an
+loop DBS. The device has the capability of recording both                       ADC for signal digitization. The IC, however, lacks an inbuilt
+AP and LFP signals. The device consisits of four parts – a                      ADC and uses a data acquisition card for digitization. In- vivo
+pre-amplifier with a gain of 100 V/V, which is realised us-                     and simulation based experimental evaluation were undertaken
+ing a low-noise, low-offset, high common-mode rejection ratio                   to characterise and confirm the electrical properties of the neural
+precision instrumentation amplifier IC AD8232. Filtering and                    amplifier and is documented to have a good SNR of at least 6.6,
+post-amplification is realised using TSZ124, a high accuracy                    adequate for extracellular in-vivo neural recording.
+quad operational amplifer IC, and other passive components.                         Ramezani et al. [76] presented an ASIC implementation
+The post amplification is made programmable (1-1000 V/V) by                     (0.35 µm technology) of an opto-electro neural interface. This
+including a digital potentiometer chip, MAX5479. The digital                    work realized a system with 4 LFP recording channels and
+potentimeter is programmed using ATMega32E5 MCU. The                            two stage amplification for each channel. The low noise am-
+amplified neural signals are directed to the MCU for digitization               plifier (LNA) has a capacitively coupled input with capacitive
+using its inbuild ADC.                                                          feedback. This is done to fulfil the requirement of high input
+   While COTS offers low cost sensor design, important device                   impedance (of the order of 10 -100 kΩ). A capacitance of
+parameters like number of input channels, power consumption,                    approximately 3.4 pF is used for this purpose. The amplifier
+and noise rejection factor are not on-par with the ASIC based                   uses a differential folded cascode operational transconductance
+sensors. Chen et al. [75] presented a monolithic IC integrating                 topology with resistive source degeneration for noise suppres-
+a neural amplifier for combined electrophysiological recording                  sion and provides a gain of 50. The low pass cut-off frequency
+and laser/LED driver for optogenetic stimulation using 0.18 µm                  is 7 kHz. There is a second stage amplifier to provide enough
+CMOS processing technology. The first amplifying stage is a                     signal amplification for the analog-to-digital convertor (ADC)
+unity gain buffer to form a high input impedence stage to improve               requirement. A single ended amplifier with capacitive feedback
+the SNR. A high pass filter is formed using capacitors and tran-                is used to provide a gain of 6. Further, the outputs forming all the
+sistors to eliminate the DC offset. A low-noise, low-power op-                  four different channels are multiplexed (controlled by the signal
+erational transconductance programmable gain amplifier (PGA)                    generated by the recording control block) and digitized using
+forms the following stage. The gain is adjustable by modifying                  a custom-made ADC based on 9:1 fully differential successive
+the ratio of the external resistances. A second stage RC high pass              approximation register (SAR) with 10-bit resolution.
+ Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+98                                                                                             IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023
+
+
+
+                                                                   TABLE II
+                                 ANALOG FRONT END CIRCUITS IN EXISTING CLOSED LOOP BRAIN STIMULATION SYSTEMS
+
+
+
+
+    Gagnon et al. [77], [78] reported another ASIC implemeta-                   technology) neural sensor for LFP signals for electrical DBS.
+tion of an opto-electro neural interface using 0.13 µm CMOS                     The amplification and digitization of the input neural signal
+processing technology. The single IC design has 10 recording                    is done using a ΔΣ based ADC. The design is Δ2 Σ ADC,
+channels, a 3rd order discrete time sigma delta ADC with on                     with an additional Δ stage for removing input DC offset by
+chip decimation filter. A differential folded cascade operational               implementing a feedback loop to find the temporal difference
+trans-conductance amplifier (OTA) forms the first stage of the                  between successive signals.
+AFE. The input referred noise of the component is limited                          As compared in Table II, the custom ASIC design provides
+to 3.2 µVrms using source degeneration resistors. The sensor                    better noise rejection factor in terms of noise rms value. The
+has the capacility to sense both AP and LFP signals. These                      ASIC based design also ensures accommodating more input
+multiple modalities are sensed using a tunable high pass cut-off                channels in the neural sensor. Also, the custom made neural
+frequency realised by means of the feeback element formed                       sensor design ensures less power consumption than that de-
+by two capacitors and two pseudoresistor banks to the OTA.                      signed using COTS components, which facilitates more efficient
+Another feature is ΔΣ MASH ADC – 3rd order ΔΣ modulator                         untethered operation. However, as explained earlier, apart from
+is followed by a 4th order cascaded integrator-comb decimation                  being less expensive, COTS based neural sensor design also has
+filter on the same chip. An improved quantization error and                     the advantage of easy re-design option.
+reduced power consumption is reported using ΔΣ MASH ADC                            Once the neural signal is digitized, the subsequent step is to
+instead of the SAR ADC. On a similar note, Kassiri et al. [79]                  analyze the signal to gain information about the neural state
+reported a 64-channel ASIC design (0.13 µm CMOS processing                      of the subject and generate control signals for modifying the
+
+Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+KUMARI AND KOUZANI: ELECTROPHYSIOLOGY-BASED CLOSED LOOP OPTOGENETIC BRAIN STIMULATION                                                                      99
+
+
+
+                                                                                   After feature extraction, the signals are classified into groups.
+                                                                                Binary classification is a commonly used method in portable
+                                                                                clBS, where the neural signals are classified into either normal
+                                                                                or abnormal signals. More sophisticated machine learning (ML)
+                                                                                based classification algorithms [91] are computationally studied
+                                                                                in classification of tremor, and they could improve the efficacy of
+                                                                                the classification in clBS systems. Some of the studies reported
+                                                                                the use of artificial neural networks (ANNs) in classification
+                                                                                of tremor in PD from wearable sensor signals [92] and EMG
+                                                                                signals [93]. In ref. [94], ε-recurrence networks are adopted to
+                                                                                classify resting tremors in PD. In [95], a computational study
+                                                                                of a two-stage neural network is done for classification of sleep
+Fig. 7.   Algorithm flow in a ClBS system.                                      stages from EEG and EMG data with a reported accuracy of
+                                                                                80.6%.
+                                                                                   The most commonly used control strategy in portable closed
+stimulation parameters. This is done using digital signal pro-
+                                                                                loop optogenetic brain stimulation devices, or generally in
+cessing methods, and implementing feature extraction, signal
+                                                                                closed-loop neuroscience, is the ON/OFF control, where the
+classification, and control algorithms. The next section discusses
+                                                                                stimulation is turned on and off depending on the events ex-
+the software components and their deployment on hardware
+                                                                                tracted from the processed bio-signal. The strategy commonly
+platforms in closed loop brain stimulation systems.
+                                                                                employed is to compare the detected activity against a preset
+                                                                                threshold value/template and turn the stimulation ON/OFF ac-
+ VI. DIGITAL SIGNAL PROCESSING AND ANALYSIS: FEATURE                            cordingly. Apart from that dual threshold is adopted in ref.
+   EXTRACTION, CLASSIFICATION, AND CONTROL SIGNAL                               [96], where the electrical stimulation amplitude can be in-
+                      GENERATION                                                creased or decreased to keep the sensed biomarker within a spe-
+   The purpose of feature extraction is to reduce the number of                 cific range. Another control strategy is proportional approach,
+variables involved in describing the data in order to improve                   where the stimulation amplitude is proportional to the measured
+the computational efficiency, and increase processing speed.                    biomarker. A fuzzy logic based classifier and controller is im-
+Features that are meaningful in the classification stage are                    plemented in the multi disease deep brain stimulation device in
+identified and chosen. This process excludes the outliers and                   ref. [83].
+noise from the incoming data. It is followed by classification                     While there are several different approaches used for feature
+of the signals based on the extracted features. Finally, based on               extraction and classification of recorded neural signals, applying
+the classification step, control signals are generated to close the             many of these algorithms to untethered implantable devices is
+feedback loop of the stimulation process. This algorithm flow in                a challenging task. The computational limitation imposed by
+a clBS is illustrated in Fig. 7.                                                wireless battery powered platforms like MCU, FPGAs, and
+   The digitized signal can be either AP (neural spike data) or                 DSP is the bottleneck [97]. Hence, some sophisticated methods
+LFP (neural oscillations). Neural spike data analysis involves                  of neural signal analysis for feature extraction and classifica-
+spike sorting. Spike sorting consists of the following steps: spike             tion are often implemented offline or by sending the data to
+detection of the filtered signal, feature extraction, and clustering.           an external computer. For example, while realizing a closed
+Spike detection is usually done by employing amplitude thresh-                  loop optogenetic system for studying temporal lobe epilepsy,
+olding on the filtered data. From the detected spikes, critical                 Krook et al. [98] and Armstrong et al. [99] extracted informa-
+features are extracted in the feature extraction step. Cutting edge             tion on the occurrence of seizure in epileptic mice subject by
+feature extraction approaches like principal component analysis                 analyzing the EEG using spike sorting algorithm running on a
+(PCA), wavelet analysis, singular value decomposition (SVD)                     computer. The amplified and digitized hippocampal EEG signal
+etc. are also used apart from simple approaches like classification             is relayed to a computer, where a custom-designed software
+based on spike amplitude and spike template matching [84]–                      (created in MATLAB) was used to detect seizures real time.
+[88]. PCA is a very popular unsupervised learning algorithm,                    The algorithm uses signal power properties, spike features, and
+and it takes the input and reduces its dimensionality by finding                frequency properties. Triggering is initiated in the following con-
+out the combination of the input features which best summarizes                 ditions: (i) Amplitude correlation trigger: Amplitude correlation
+the original dimensions [89].                                                   of the signal of the current frame (0.12s) with the previous frame
+   Discussing about the feature extraction and classification of                is done, and triggering is performed if the correlation is greater
+LFP signals, classically, LFP data analysis involves frequency                  than a set threshold value; (ii) Narrow spike trigger: Triggering
+domain analysis such as power spectral density (PSD) analysis                   is enabled when the number of narrow spikes exceeds a set
+to determine the energy related to the frequency bands of LFP                   threshold value during the time frame; (iii) Spike ratio trigger:
+signals [90]. However, owing to the non-stationary nature of                    Here if the distance of spike train exceeds the minimum number
+LFP signals, time-frequency analysis techniques like short-time                 specified by the user, triggering is enabled; and (iv) Frequency
+Fourier transform, wavelet transform, Hilbert transform etc. best               band ratio trigger: Triggering is enabled when the relative con-
+suit the signal for finding information on phase, frequency, and                tribution of the power of specific bands of frequencies to the
+temporal features.                                                              frequency band of the signal exceeds or drops below a threshold
+ Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+100                                                                                            IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023
+
+
+
+value. A simple ON/OFF controller is employed for controlling                   sliding window [77]. The FPGA is replaced by an ASIC named
+the stimulation. Following the trigger, light stimulation is made               as ‘neural decoder’ core. The ASIC houses a detection core for
+ON in 50% of the cases. In the absence of the trigger, light                    detecting the spikes based on amplitude thresholding, a com-
+stimulation is made OFF.                                                        pression core for compressing the data using discrete wavelet
+   On a similar line, Pashaie et al. [100] while realizing a tethered           transform for low-power transmission to a nearby computer,
+closed-loop rain interface protocol using optogenetics, imple-                  and a classification core for classifying the AP based on wave
+mented a proportional control algorithm by real-time processing                 shape. A closed loop algorithm based on the classified AP is
+of the data on a computer. Integral of the incoming ECoG                        implemented on a low power FPGA (Igloo AGLN250 FPGA).
+signal is calculated over a 100 ms period. Finally, an error is                 The closed loop algorithm works based on a sliding window,
+calculated by taking the difference of the measured voltage                     which counts the number of spikes crossing the threshold in a
+signal and the corresponding pre-set desired voltage level for                  specific duration. The closed loop is implemented by producing
+each electrode. The final step involves adjusting the duration                  a stimulation pattern after a predefined number of threshold
+of the light stimulation to minimize the error signal. The error                crossing occurs within the sliding window.
+in the form of voltage is translated to pulse duration (adjusting                  In a recent work, Luo et al. [80] deployed a closed loop
+the pulse widths) by means of a proportional constant, Kp . The                 algorithm on an embedded processor which is an ARM Cortex-
+optimal value of the proportional constant is found by using a                  M4 microcontroller with DSP function block. The algorithm is
+calibration process in the computer to be used for the realization              realized in three blocks: a detector module, a suppressor module,
+of the control algorithm.                                                       and an optical convertor module. The detection module employs
+   For untethered systems, hardware platforms such as custom                    three criteria for detecting abnormalities, if any, in the incoming
+ASICs, FPGAs, and MCUs are being used. FPGAs and MCUs                           signal. The criteria include measuring amplitude thresholding,
+offer portability and configurability. However, due to memory                   changing rate of amplitude over a period of time, and power
+constraints, algorithms deployed on MCUs are rather simple                      spectral density. The suppressor module contains a phase shift al-
+ones. In [71], the sensed and digitized recording is processed in               gorithm and a proportional–integral–derivative (PID) controller.
+a simple threshold detection algorithm to detect any abnormality                The phase shift algorithm determines the intensity of the signal
+in the sensed neural signal. Here, the threshold algorithm runs                 at a given frequency and then returns a corresponding signal
+on-board a standard microcontroller (MSP430 FR59891) in the                     with a phase shift. The optical convertor translates the control
+device. A simple ON/OFF control algorithm is used. If any of the                signal into the corresponding optical output. There are four
+signals sensed from the recording sites exceeds a certain thresh-               modes: (i) threshold maximum – when the incoming signals
+old amplitude, which was set as 200 µV, the light stimulation is                are above the set threshold, set the output stimulation to be
+turned ON, otherwise LED remains in OFF state. More complex                     maximum, (ii) pulse amplitude modulation – converts algorithm
+feature extraction, disease classification, and control algorithms              output into LED digital-to-analog convertor (DAC) values using
+in portable systems are deployed in FPGAs with more memory                      pulse amplitude modulation, and (iii) pulse width modulation –
+resources.                                                                      convert algorithm outputs into LED DAC values using pulse
+   Xia et al. [101], [102] used a Flash-FPGA based imple-                       width modulation.
+mentation of seizure detection and untethered closed loop op-                      While all of the above mentioned algorithms work based on
+togenetic stimulation control in rodent. Feature extraction is                  controlling the stimulation by providing stimulation pulses on
+performed using wavelet filter followed by threshold detection.                 the detection of any abnormal signal, there is a demand for
+A proportional-integral-derivative (PID) controller is employed                 closed-loop algorithms to implement another control scheme
+for modulating the pulse width of the stimulating pulses. The                   for suppressing or amplifying the neural oscillations in only the
+proportional, integral, and differential kernels are stored as look             frequency bands of LFP signals. This control approach is called
+up-tables in the flash FPGA hardware. The incoming digitized                    phase-locked stimulation [104], [105]. The rationale behind this
+signal is convolved with these kernels. This is followed by                     control approach is that delivering stimulation pulses at peaks of
+converting the convolution outputs to optogenetic pulse width                   an oscillation results in constructive interference and resultant
+modulation (PWM) stimulus.                                                      enhancement of the ongoing oscillation, whereas delivering
+   Gagnon et al. [103] utilized a low power FPGA for imple-                     stimulation pulses at troughs of an oscillation produces destruc-
+menting a digital spike detector and a wavelet data compres-                    tive interference and resultant diminishing of the ongoing oscil-
+sion module in their untethered optogenetic stimulation device                  lation. Hence it can be deducted that for enhancing the power
+for combined optogenetics and multichannel electrophysiology                    of a particular frequency band of neural oscillation, stimulation
+recording. Threshold detection and wavelet data compression                     should be applied in-phase with that oscillation. This theory
+is done using an embedded digital signal processing core and                    is supported by some recent research in this field [106], [107],
+a Microblaze soft processor core implemented inside a low-                      where the power of only a specific frequency band was enhanced
+power LX16 Spartan-6 FPGA from Xilinx. The detected and                         by in-phase stimulation. For realizing this control strategy, the
+compressed data is transmitted to a computer using a radio                      algorithm in place should be able to perform accurate and fast
+transceiver and the stimulation pattern is also received from the               estimations of the phase of the LFP data in real-time. The liter-
+computer using the transceiver. The same group developed an                     ature on untethered closed-loop phase-locked optogenetic stim-
+ASIC based approach for controlling the stimulation based on                    ulation is very limited. Reviewing the related research in phase
+AP threshold detection, classification, and triggering based on a               estimation algorithm for in-phase neuro-stimulation strategy, in
+
+Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+KUMARI AND KOUZANI: ELECTROPHYSIOLOGY-BASED CLOSED LOOP OPTOGENETIC BRAIN STIMULATION                                                                     101
+
+
+
+an early study, Chen et al. [108] developed an algorithm to assess              maximum of 30 mA. Thus, the circuit delivers a maximum
+the phase of LFP samples (4-9 Hz) using passband optimization,                  current of 330 mA to drive the light source. Each array has a
+zero-phase filtering, autoregressive model-based prediction, and                4-bit digital input, to which the PWM signal from the previous
+Hilbert transform. However, the algorithm produces a delay of                   stage can be provided to adjust the current outputs based on the
+around 100 ms between the identified phase and target phase.                    neuronal condition.
+A continuous phase estimation using autoregressive model for                       Ramezani et al. [76] presented an ASIC design (0.35 µm
+signal prediction with reduced stimulation delay is discussed                   CMOS technology) for driving CREE DA2432 µLEDs. The
+in [109].                                                                       design has a DAC, transconductance amplifier (TCA), H-bridge
+   Once feature extraction, classification, and control algorithms              circuit for bi-directional biasing of the LEDs, and the related
+are in place, the next step in a closed loop optogenetic brain                  control logic. The H-bridge configuration biases the LED in
+stimulation system involves the implementation of the stimula-                  forward mode for stimulation in the first stage, and then biases
+tion circuitry which gives timely and efficient stimulation pulses              the LED in reverse mode and inverts the generated charge
+based on the control signals.                                                   over the tissue, thus increasing the life of the electrodes. PWM
+                                                                                information from the previous stage is used in the circuit by
+                                                                                writing into memory cells and reading accordingly using finite
+                          VII. STIMULATION                                      state machine (FSM) control logic. DAC with 8-bit resolution,
+   For a closed loop operation, the stimulation circuitry controls              current range of 0 - 1.1 mA, and voltage range of 0-3.3 V is
+the stimulation light parameters based on the received control                  followed by a transconductance amplifier to deliver the current
+signals from the signal processing and control signal generation                pulses to the µLEDs.
+stage. Frequency, pulse width, and intensity of the stimulating                    Another ASIC based design (0.13 µm CMOS technology)
+light are important stimulation parameters. Parameters such as                  is proposed in ref. [78], [111] for a 4 channel LED driver.
+the frequency and pulse width can be controlled to give the right               Current flowing to the LEDs is controlled by a regulated cascode
+stimulation necessary to produce neural responses. The optimal                  current source with feedback and ensures that the LED delivers
+value of stimulation parameters for effective stimulation is still              adequate optical power. An external PWM signal controls the
+an open question. In ref. [110], the effective parameters of light              driver current. A current reference source generates the reference
+stimulation are estimated for ChR2 stimulation conditions in                    current depending on the PWM signal. Wide swing current
+experiments with primary hippocampal cultures and the opti-                     mirrors are present in the design which helps in reducing the
+mal parameters are presented as optimal frequency range of                      voltage drop inside the chip, thus enabling the use of small
+11-5 Hz, pulse duration of 1-5 ms, and an interval of 10-30                     battery voltages. The system can provide an LED current of
+ms between stimulations. Various studies suggest that a light                   up to 20 mA, and an output optical power of 40 mW/mm2 .
+density of 1-10 mW/mm2 is needed to evoke action potential                         Another approach seen in the literature to regulate LED
+in the transfected neurons, depending on the type of opsin used                 brightness uses PWM signals from microcontrollers. PWM
+[100].                                                                          signal based on the feedback control algorithm is used to
+   For untethered devices with an integrated head stage, light                  turn the LED ON and OFF. And the brightness of the LED
+from µLED sources placed in vivo are mostly found in recent                     can be changed accordingly. As many commercially available
+works. To drive the µLEDs, a suitable driver circuit is required to             microcontrollers already have PWM outputs integrated into
+supply constant current to the LEDs. The input to the LED driver                their architecture, they can easily derive the PWM signal to
+circuit is based on the commands from the control algorithm. The                switch the stimulation ON and OFF and adjust the duty cycle via
+driver subsequently produces an output and makes it available                   the program running on the microcontroller. In ref. [71], a µLED
+to the LED circuitry, to change the intensity or duration of the                chip is soldered on a stretchy cable and driven via the circuit
+stimulation accordingly.                                                        which is controlled by a microcontroller through pulse width
+   Reviewing different LED driving circuitry in optogenetic                     modulated signals. The brightness of the µLED changes with the
+brain stimulation experiments using µLEDs as the light source,                  duty cycle of the pulses. In ref. [73], µLEDs are controlled using
+some researchers have used application specific custom-made                     PWM signals from the microcontroller CC2541 with the driving
+ICs, while some others have used commercial off-the-self com-                   adjustable current between 5 to 30 mA. The pulse characteristics
+ponent to build the circuit. In ref. [72], a custom-made IC                     are: stimulation period of 100 - 900 ms with 100 ms steps, or 1-10
+based on 0.18 µm complementary metal-oxide-semiconductor                        s with 1 s steps and a duty cycle varying between 0.1 to 0.9%.
+(CMOS) technology is used to drive the LEDs. A digital-to-                         There are some systems which use commercially available
+analog convertor (DAC) is available, controlled by the SPI based                laser diode (LD) chips instead of µLED, which are driven using
+serial input, to drive the µLEDs with 10-bit resolution and a                   commercially available LD drivers. For example, in ref. [112],
+maximum current of 1.023 mA. A level shifting current mirror is                 LT1932 LD driver by Analog Devices is used to drive an LD.
+made by cascoded positive-channel metal-oxide-semiconductor                     It operates as a constant current source between 5 and 40 mA
+(PMOS) transistors is used to drive µLEDs up to 5V.                             based on the PWM signal coming from the feature extraction
+   Chen et al. [75] presented a custom-made LED/laser driver IC                 section.
+based on 0.18 µm CMOS technology. It has a two-state current                       Power source to the system is another important aspect of the
+control design using programmable PMOS arrays. The first array                  tether-less optogenetic devices. Different power supply options
+gives a maximum current of 300 mA and the second gives a                        are discussed in the following section.
+
+ Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+102                                                                                            IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023
+
+
+
+                        VIII. POWER SOURCE                                                  IX. DISCUSSION AND FUTURE PROSPECTS
+   Unrestricted power without making the device bulky increases                    To fully leverage closed loop optogenetic brain stimulation, it
+the efficiency of the portable closed loop optogenetic system.                  is desirable to have compact, fully implantable, and untethered
+Identification of hardware and software systems and practices                   devices for use with freely behaving subjects. From an engineer-
+to reduce the power consumption overhead should be an im-                       ing point of view, recent research on optogenetic brain stimula-
+portant design consideration for realization of portable closed                 tion focusses on developing miniaturized untethered devices. It
+loop optogenetic brain stimulation systems. Gagnon et al. [78],                 mainly focuses on using commercially available components as
+Jia et al. [73], and Liu et al. [71] in their fully wireless closed loop        well as custom made ICs for light weight head-stages incorporat-
+optogenetic stimulation devices, used light weight rechargeable                 ing small, efficient, and implantable light sources, light weight
+Lithium Polymer (LiPo) batteries. A 40 mAh Lithium polymer                      battery or wireless power transfer technology, and small but
+battery is used to power the ASIC based system in ref. [78]                     enhanced computational resources for long duration behavioral
+with a power consumption of 11.2 µW/channel. A bulkier 3.7                      studies. Table III presents a summary of the state-of-the-art
+V 150 mAh battery is used in ref. [71]. In ref. [73], a 3.75 V,                 neural interface technology for closed loop optogenetic brain
+45 mAh battery is used. Commercially available low drop out                     stimulation.
+regulators are used in these designs along with the battery to                     The light sources in some of the earliest brain stimulation
+provide steady supply of power to different components in the                   experiments using optogenetics were large table top laser de-
+head stage.                                                                     vices, where light is guided to the specific region of the brain
+   With optogenetic stimulation experiments on freely moving                    using optical fibers [118], [119]. As a process of miniaturization
+animals lasting for weeks being held these days [113], reliable                 and improving efficiency, those large light sources have been
+and seamless power source without the hustle of replacing the                   replaced by small laser diodes and µLEDs, which come in µm
+batteries has become a requirement. Ample developments in the                   dimensions, thus eliminating the use of optical fibers. µLEDs
+field of wireless power transfer (WPT) technology has enabled                   have the advantages of compact size, low power consumption,
+many of the recent optogenetic devices to replace batteries with                and negligible heat generation and are being used in most
+efficient energy harvesting modalities to provide stable power to               implantable modules of the untethered optogenetic devices.
+the system. The WPT technology involves a transmitter device                       The most important attributes to be met during the design
+which generates a time-varying electromagnetic field which                      process of front end analog signal conditioning circuit and
+transmits power across space to a receiver device which extract                 backend stimulation control circuit are PSRR, CMRR, and good
+power from the field and supplies it to the load. Near field power              SNR ratio [120]. The analog front-end circuit responsible for
+transfer, which uses non-radiative waves like radio frequency                   conditioning the sensed neural signals has also undergone a sig-
+(RF) waves, covers shorter distance, and uses magnetic field                    nificant evolution. Some of the earlier publications we reviewed
+and electric field to transfer the power through inductive or                   have used a commercially available digital electrophysiology
+capacitive coupling respectively. Efficient design of the receiver              interface chip offered by companies like Intan Technologies
+antenna module with minimal power leakage and small form                        for the analog front-end stage. This interface chip is a fully
+factor is key to developing a fully closed loop device which                    integrated amplifier array with on-chip 16-bit ADC with low
+generates a time-varying electromagnetic field which transmits                  input noise 2.4 Vrms . Upper (100 Hz – 20 kHz) and lower
+power across space to a receiver device which extract power                     (0.1 Hz – 500 Hz) cut off frequencies can be programmed into
+from the field and supplies it to the load Near field power transfer,           the chip. The package size for the chip is 8 mm × 8 mm, with
+which uses non-radiative waves like radio frequency (RF) waves,                 the gain of up to 60 dB and supply voltage range of 3.2 - 3.6 V.
+covers shorter distance, and uses magnetic field and electric field             Recent developments in micro/nano fabrication technology have
+to transfer the power through inductive or capacitive coupling                  enabled the design of neural front-end circuits of small form fac-
+respectively.                                                                   tor, in the configuration of head mountable or implantable chips.
+   Efficient design of the receiver antenna module with minimal                 Some researchers have tried to further reduce the form factor of
+power leakage and small form factor is key to developing a                      the neural interface by using CMOS technology. ASIC designs
+fully closed loop optogenetic system with wireless power trans-                 based on CMOS technology provide the advantages of increased
+form. Recently, much research is being done in this area [31],                  efficiency by optimizing noise, power consumption, size, and
+[114]–[117]. In ref. [31], Shin et al. presents a flexible, miniatur-           speed of operation. Different design strategies like the use of
+ized, and battery-free optogenetic implant with wireless power                  auto-zero amplifiers to improve precision and eliminate com-
+transfer and communication achieved by near-field inductive                     monly occurring offset error and flicker noise, programmable
+coupling (13.56 MHz). The device is placed in subdermal of                      gain amplifiers and programmable bandwidth filters for sensing
+the subject. The electronic components of the device include the                neural signals of particular frequencies, sigma-delta ADC for
+stimulation light source, µLED (465 nm × 220 µm × 50 µm),                       improving resolution could be observed in recent designs of the
+an indicating LED (1.6 mm × 0.8 mm × 0.75 mm), 25 pF                            electrophysiological signal sensing circuit setup. The back-end
+capacitor (0.4 mm × 0.2 mm × 0.22 mm), and a Schotkky diode                     stimulation circuit helps to generate precisely timed and high-
+for smoothening the transferred power. The device stimulation                   intensity light pulses as required in optogenetic applications to
+light source is powered and controlled with the help of a loop                  activate the Channelrhodopsins and Halorhodopsins to excite
+antenna interface to an RF generator with 12 W output power.                    and inhibit neurons, respectively. Hence, a high driving current
+Reliable power transfer is assured within a range of 30 cm.                     is required, and the current should change as per the feedback
+
+Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+KUMARI AND KOUZANI: ELECTROPHYSIOLOGY-BASED CLOSED LOOP OPTOGENETIC BRAIN STIMULATION                                                                     103
+
+
+
+                                                                  TABLE III
+                                          EXISTING CLOSED-LOOP OPTOGENETIC BRAIN STIMULATION SYSTEMS
+
+
+
+
+signal generated by the control unit in a closed loop device.                   fabrication technology and have been successful in achieving
+Commercially available bench top LED drivers like M470F1 by                     completely portable and small devices for experimentation on
+Thorlabs were used in the earlier optogenetic brain stimulation                 freely moving lab animals. However, the downside of ASIC
+experiments. However, small (millimeter sized) LED driver                       design for the neural interface circuit is the increase in cost and
+chips have enabled miniaturization of the stimulation circuitry.                complexity of the design.
+Some publications have considered using a single application                       ASIC with built-in digital signal processing, FPGAs, general
+specific chip integrating the functionalities of the analog sig-                purpose microcontrollers and external computers could be the
+nal conditioning and stimulation circuits based on the CMOS                     platforms for performing the signal processing and generating
+ Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+104                                                                                            IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023
+
+
+
+control signals in untethered settings. Dedicated ASIC imple-
+mentations can be low power provided they are implemented on
+a sufficiently advanced technology node. However, the downside
+is that they cannot be reconfigured, and hence lack flexibility
+which is highly desirable for the underlying platform. FPGAs, on
+the other hand are configurable and computationally sound and
+could be used to implement computationally demanding tasks
+such as spike sorting and control algorithms. There is always a
+tradeoff between computational complexity and power require-
+ments and even with the availability of ultra-low power FPGAs,
+they could be more power hungry than microcontrollers. While,
+limited computational power of microcontrollers makes the
+                                                                                Fig. 8. Block diagram for a plausible ML-based closed loop optoge-
+implementation of complex spike sorting and control algorithms                  netic brain stimulation device.
+difficult. Wireless data communication techniques including
+Bluetooth technology can be used to receive user control signals
+from an external computer, where the complex computations                       signals for phase estimation and generating timely stimulation
+are done. Including such communication protocols in the design                  on the fly.
+helps in storing the incoming data to an external high capacity                    Like any other tether-less device, maximizing the perfor-
+storage system for future offline analysis. However, such a setup               mance of closed-loop algorithms using the least amount of
+has restricted range of distance of operation.                                  energy is the ideal requirement of untethered optogenetic brain
+   Regarding the feature extraction, classification, and control                stimulation devices. As mentioned earlier, high performance
+algorithms for closed loop brain stimulation, we have observed                  data processing demands more computational elements and
+that most of the published works on miniaturized optogenetic                    memory resources. These improve the algorithm efficiency, but
+systems have used the simple threshold detection techniques for                 use more energy. Hence, there will always be a trade-off between
+identifying abnormalities, simple binary classification strategies              computational power of the implanted device and its power con-
+for grouping the signals into either normal or abnormal cate-                   sumption. For a tether-less device, the algorithm can be deployed
+gory, and mainly an ON/OFF control method for controlling                       on the device, or the sensed data can be sent to a computationally
+the stimulation light. This could be due to the fact that fast                  powerful external machine wirelessly [122]. For example, in
+and real-time processing of brain signals puts a computational                  ref. [123], wearable IoT DBS sensors are used to collect and
+burden on resource constraint untethered system. However, for                   transmit neural data to perform processing using powerful and
+more sophisticated systems and for the realization of efficient                 computationally demanding heuristic tubu optimized sequence
+brain-machine interfaces, research should be widened to imple-                  modular neural networks (HTSMNN) classification algorithms
+ment classifiers based on advanced artificial neural networks and               implemented in MATLAB on a PC. While passing data to the
+intelligent control algorithms in an untethered scenario.                       external platform helps in achieving powerful data processing,
+   Nowadays, machine learning (ML) methods have become an                       allowing the on-device processing of the data has its advantages
+important tool for data analysis and control. For tasks such as                 of reducing the expenditure of the wireless transceiver.
+anomaly detection in sensors’ time-series data, most suited ML                     Power management unit consists of batteries and regulators.
+algorithms come under the category of deep neural networks                      Devices running on rechargeable batteries form the majority
+(DNNs), where multiple neural layers are employed to deliver                    of existing portable closed loop optogenetic systems. Batteries
+the outcome. In the case of tether-less closed loop optogenetic                 account for around or even more than half of the weight of the
+brain stimulation devices, there is a requirement for on-device                 head-stages in the optogenetic devices. Light weight batteries
+data analysis, where the stimulation needs to be adjusted based                 are to be used for reducing the weight of the device to enable
+on the analysis. Hence, deployment of the DNNs on tiny resource                 ease of untethered operation without hindering the freedom
+constraint edge devices such as FPGAs or MCUs is needed.                        of movement of the small laboratory animals. The duration
+ML algorithms on edge devices is a growing field with the                       over which the batteries hold charge for long term untethered
+availability of open source frameworks like TensorFlow Lite                     operation is also an area of concern. Moreover, batteries in these
+Micro (TFLM) [121] for running DNNs on edge devices. TFLM                       implantable devices could contribute to the heat increase which
+can be deployed on ARM Cortex–M and ESP32 MCUs that                             could be an area of concern. With the development in wireless
+have the memory constraints. Fig. 8 presents a block diagram                    communication and wireless power transfer technology, con-
+description of a plausible portable closed loop optogenetic brain               trolling the stimulation through an external controller could also
+stimulation system with a DNN classifier. The DNN classifier                    help in realizing untethered optogenetic simulation systems for
+is trained in a TensorFlow training environment on a PC. The                    battery-less operation. Of course, the bottleneck here is the range
+trained model is then converted into TFLM after optimizing for                  constraint.
+size and accuracy and deployed into an ARM Cortex-M MCU.                           Apart from these design considerations, there are other chal-
+   Also, as more medical research is concentrating on providing                 lenges to be dealt with while building a closed loop optogenetic
+phase-specific stimulation to manipulate individual brain oscil-                brain stimulation system, Fig. 9 lists the issues. Possible tissue
+lation, there is a demand for developing efficiently engineered                 heating in in-vivo light delivery due to photothermal heating
+systems for meeting the challenge of rapidly analyzing the brain                is one of the major concerns among the scientific community.
+Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+KUMARI AND KOUZANI: ELECTROPHYSIOLOGY-BASED CLOSED LOOP OPTOGENETIC BRAIN STIMULATION                                                                       105
+
+
+
+                                                                                   Adding to the challenges, most currently used optogenetic
+                                                                                probes are bifurcated structures at their tip and may cause
+                                                                                extensive tissue damage upon insertion into the brain. The min-
+                                                                                imized tissue damage may lead to obtaining neurophysiological
+                                                                                data that have not been possible to see before. The durable
+                                                                                tip allows many re-uses after proper cleaning and storage in
+                                                                                between experiments. Along with this, biocompatibility of the
+                                                                                implant material is of paramount importance for the durability
+                                                                                of the implant. Biocompatibility is required for preventing the
+                                                                                occurrence of chronic inflammatory events in the long term
+                                                                                interaction with brain tissue [130]. Encapsulation technologies
+                                                                                for implantable biomedical devices should be considered for
+Fig. 9. Challenges to handle in the development of closed-loop opto-            ensuring biocompatibility and increasing safety and stability of
+genetic brain stimulation devices.                                              the neural implants. Along with the conventional technologies
+                                                                                based on ceramic and titanium packaging, other approaches like
+                                                                                thin film coating of Al2O3, HfO2, SiO2, SiC, diamond, organic
+It is a known fact that photons in light transfer their energy to               polymers of polyimide, parylene, liquid crystal polymer, silicone
+the interacting body in the form of heat. As a result of this,                  elastomer, SU-8, and cyclic olefin copolymer are also being
+the temperature of the body in contact with the light increases.                studied for encapsulation of microfabricated implants [131].
+In the context of optogenetic brain stimulation using light, this                  It is also worth noting that all the recent reviewed works follow
+indicates that the brain tissues getting illuminated by the light               the concept of sensing the electrical signals from the subject
+from the laser/LED optical sources can get heated up due to their               to be used as the feedback information for the stimulation.
+exposure to light. To prevent the occurrences of adverse effects,               However, various neurochemicals like dopamine, serotonin, his-
+temperature increase in the tissue surrounding the probe should                 tamine, taurine, etc. are proved to be closely linked with various
+be below 2 °C, as reported in some of the references [124],                     neurological disorders and should be considered together with
+[125]. As temperature increase could lead to serious damage                     the electrophysiological biomarkers in realizing efficient brain
+to the brain tissue, it is always good to have a temperature                    stimulation systems.
+monitoring mechanism in place. Placing the stimulating light
+source external to the brain to avoid direct contact of heat source                                         X. CONCLUSION
+with the brain tissue can be realized in implantable devices with
+                                                                                   The paper reviews closed loop optogenetic brain stimulation
+the help of integrated waveguides. However, it is to be considered
+                                                                                devices in detail, with an emphasis on untethered operation.
+that LEDs create light by the process called electroluminescence.
+                                                                                The purpose of the review was to understand the evolutions in
+Non-radiative heat is generated in the LED due to the inherent
+                                                                                the optogenetic brain stimulation devices over the years since
+inefficiency of the electroluminescence process. This heat can be
+                                                                                their first successful use. It is clear from the review that there
+transferred to the brain tissue by the process of conduction. This
+                                                                                is still ample scope for improvements in developing efficient,
+heating effect becomes more distinct at higher current levels
+                                                                                effective, and standalone devices. Advancements in all the three
+[126]. In ref. [127], McAlinden et al. examined the thermal
+                                                                                supporting aspects (genetics, optics, and electronics) can be uti-
+properties of a µLED based probe for optogenetics and reported
+                                                                                lized for the betterment of the closed loop optogenetic devices.
+that the local tissue temperature rises, but to a value within the
+                                                                                From the system design point of view, integration of real-time
+threshold limit.
+                                                                                readout of biochemical biomarkers, employing sophisticated
+   Along with µLED, a laser diode can also be considered as
+                                                                                feature extraction, classification, and control algorithm design,
+the light source. A laser diode, even though has the advantage of
+                                                                                and systems for effectively addressing the disadvantages of
+coherent emission profile, poses the disadvantage of being power
+                                                                                temperature rise in the tissues caused by the stimulation light are
+demanding. On the other hand, a µLED with its Lambertian
+                                                                                understood as the possible areas of improvement. Optogenetics
+emission profile causes coupling inefficiency.
+                                                                                brain stimulation offers potential for remarkable advance in the
+   Another major problem to be considered during combined
+                                                                                coming decade with the help of continued extensive research in
+optogenetic stimulation and electrophysiological recording is
+                                                                                this area to improve the different facets of systems engineering
+the light induced artefact. The close proximity of light source and
+                                                                                by incorporating developments in micro-fabrication, sensors,
+recording metal electrodes on a compact scale makes the effect of
+                                                                                computational platforms, batteries, wireless power transfer tech-
+light induced artefacts predominant. Such light induced artefacts
+                                                                                niques, and ML.
+distort the recordings as voltage swings, not corresponding to
+any electrical activity in the brain, might get recorded [128]. As
+a method to prevent this from happening, recently, a few closed                                               REFERENCES
+loop optogenetic systems have made use of transparent graphene                    [1] S. F. Oliveria, “The dark history of early deep brain stimulation,” Lancet
+microelectrode array instead of metal electrodes to ensure that                       Neurol., vol. 17, no. 9, 2018, Art. no. 748.
+                                                                                  [2] J. K. Krauss et al., “Technology of deep brain stimulation: Current status
+the recorded potential values are not corrupted due to effects on                     and future directions,” Nature Rev. Neurol., vol. 17, no. 2, pp. 75–87,
+the electrodes by the stimulating light [69], [129], [71].                            2021.
+
+
+ Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+106                                                                                                IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023
+
+
+
+  [3] F. Fregni, D. Simon, A. Wu, and A. Pascual-Leone, “Non-invasive brain          [27] P. Medtronic, “Green light for deep brain stimulator incorporating neu-
+      stimulation for parkinson’s disease: A systematic review and meta-                  rofeedback,” Nat. Biotechnol., vol. 38, pp. 1014–1015, 2020.
+      analysis of the literature,” J. Neurol., Neurosurgery Psychiatry, vol. 76,     [28] W. Bouthour, P. Mégevand, J. Donoghue, C. Lüscher, N. Birbaumer,
+      no. 12, pp. 1614–1623, 2005.                                                        and P. Krack, “Biomarkers for closed-loop deep brain stimulation in
+  [4] M. Hallett, “Transcranial magnetic stimulation: A primer,” Neuron,                  parkinson disease and beyond,” Nature Rev. Neurol., vol. 15, no. 6,
+      vol. 55, no. 2, pp. 187–199, 2007.                                                  pp. 343–352, 2019.
+  [5] A. Tendler, Y. Roth, and T. Harmelech, “Deep repetitive TMS with the H7        [29] J. B. Price et al., “Clinical applications of neurochemical and electro-
+      coil is sufficient to treat comorbid MDD and OCD,” Brain Stimulation:               physiological measurements for closed-loop neurostimulation,” Neuro-
+      Basic, Trans., Clin. Res. Neuromodulation, vol. 14, no. 3, pp. 658–661,             surgical Focus, vol. 49, no. 1, 2020, Art. no. E6.
+      2021.                                                                          [30] S. M. Won, L. Cai, P. Gutruf, and J. A. Rogers, “Wireless and battery-free
+  [6] E. E. Galletta, P. R. Rao, and A. M. Barrett, “Transcranial magnetic                technologies for neuroengineering,” Nature Biomed. Eng., vol. no. 3,
+      stimulation (TMS): Potential progress for language improvement in                   pp. 1–19, 2021.
+      aphasia,” Topics Stroke Rehabil., vol. 18, no. 2, pp. 87–91, 2011.             [31] G. Shin et al., “Flexible near-field wireless optoelectronics as subdermal
+  [7] T. Reed and R. C. Kadosh, “Transcranial electrical stimulation (tES)                implants for broad applications in optogenetics,” Neuron, vol. 93, no. 3,
+      mechanisms and its effects on cortical excitability and connectivity,” J.           pp. 509–521, 2017.
+      Inherited Metabolic Dis., vol. 41, no. 6, pp. 1123–1130, 2018.                 [32] G. Ayano, “Common neurotransmitters: Criteria for neurotransmitters,
+  [8] K. Saito et al., “Comparison of transcranial electrical stimulation regi-           key locations, classifications, and functions,” Adv. Psychol. Neurosci.,
+      mens for effects on inhibitory circuit activity in primary somatosensory            vol. 1, no. 1, pp. 1–5, 2016.
+      cortex and tactile spatial discrimination performance,” Behav. Brain Res.,     [33] F. N. Emamzadeh and A. Surguchov, “Parkinson’s disease: Biomarkers,
+      vol. 375, 2019, Art. no. 112168.                                                    treatment, and risk factors,” Front. Neurosci., vol. 12, 2018, Art. no. 612.
+  [9] V. Gradinaru, M. Mogri, K. R. Thompson, J. M. Henderson, and K.                [34] P. T. Francis, “The interplay of neurotransmitters in alzheimer’s disease,”
+      Deisseroth, “Optical deconstruction of parkinsonian neural circuitry,”              CNS Spectrums, vol. 10, no. S18, pp. 6–9, 2005.
+      Science, vol. 324, no. 5925, pp. 354–359, 2009.                                [35] H. Kunugi, H. Hori, and S. Ogawa, “Biochemical markers subtyping
+ [10] K. Deisseroth, “Optogenetics,” Nature Methods, vol. 8, no. 1, pp. 26–29,            major depressive disorder,” Psychiatry Clin. Neurosci., vol. 69, no. 10,
+      2011.                                                                               pp. 597–608, 2015.
+ [11] A. Guru, R. J. Post, Y.-Y. Ho, and M. R. Warden, “Making sense of              [36] R. J. Staba, M. Stead, and G. A. Worrell, “Electrophysiological
+      optogenetics,” Int. J. Neuropsychopharmacol., vol. 18, no. 11, 2015,                biomarkers of epilepsy,” Neurotherapeutics, vol. 11, no. 2, pp. 334–346,
+      Art. no. pyv079.                                                                    2014.
+ [12] J. L. Spudich, C.-S. Yang, K.-H. Jung, and E. N. Spudich, “Retinylidene        [37] W.-J. Neumann, R. S. Turner, B. Blankertz, T. Mitchell, A. A. Kühn, and
+      proteins: Structures and functions from archaea to humans,” Annu. Rev.              R. M. Richardson, “Toward electrophysiology-based intelligent adaptive
+      Cell Devlop. Biol., vol. 16, no. 1, pp. 365–392, 2000.                              deep brain stimulation for movement disorders,” Neurotherapeutics,
+ [13] J. G. Bernstein and E. S. Boyden, “Optogenetic tools for analyzing                  vol. 16, no. 1, pp. 105–118, 2019.
+      the neural circuits of behavior,” Trends Cogn. Sci., vol. 15, no. 12,          [38] P. C. Koo et al., “Combined cognitive, psychomotor and electrophysio-
+      pp. 592–600, 2011.                                                                  logical biomarkers in major depressive disorder,” Eur. Arch. Psychiatry
+ [14] F. Shirai and A. Hayashi-Takagi, “Optogenetics: Applications in psychi-             Clin. Neurosci., vol. 269, no. 7, pp. 823–832, 2019.
+      atric research,” Psychiatry Clin. Neurosci., vol. 71, no. 6, pp. 363–372,      [39] P. Puthongkham and B. J. Venton, “Recent advances in fast-scan cyclic
+      2017.                                                                               voltammetry,” Analyst, vol. 145, no. 4, pp. 1087–1102, 2020.
+ [15] P. Mahmoudi, H. Veladi, and F. G. Pakdel, “Optogenetics, tools and             [40] M. Klanker, M. Feenstra, I. Willuhn, and D. Denys, “Deep brain stimu-
+      applications in neurobiology,” J. Med. Signals Sensors, vol. 7, no. 2,              lation of the medial forebrain bundle elevates striatal dopamine concen-
+      2017, Art. no. 71.                                                                  tration without affecting spontaneous or reward-induced phasic release,”
+ [16] S. M. Iyer et al., “Optogenetic and chemogenetic strategies for sustained           Neuroscience, vol. 364, pp. 82–92, 2017.
+      inhibition of pain,” Sci. Rep., vol. 6, no. 1, pp. 1–10, 2016.                 [41] S. D. Adams, E. H. Doeven, S. J. Tye, K. E. Bennet, M. Berk, and A. Z.
+ [17] M. S. Okun, “Tips for choosing a deep brain stimulation device,” JAMA               Kouzani, “TinyFSCV: FSCV for the masses,” IEEE Trans. Neural Syst.
+      Neurol., vol. 76, no. 7, pp. 749–750, 2019.                                         Rehabil. Eng., vol. 28, no. 1, pp. 133–142, Jan. 2019.
+ [18] F. T. Sun and M. J. Morrell, “Closed-loop neurostimulation: The                [42] G. Buzsáki, C. A. Anastassiou, and C. Koch, “The origin of extracel-
+      clinical experience,” Neurotherapeutics, vol. 11, no. 3, pp. 553–563,               lular fields and currents—EEG, ECoG, LFP and spikes,” Nature Rev.
+      2014.                                                                               Neurosci., vol. 13, no. 6, pp. 407–420, 2012.
+ [19] M. Parastarfeizabadi and A. Z. Kouzani, “Advances in closed-loop deep          [43] P. Konrad, “The ABC of EMG: A practical introduction to kinesiolog-
+      brain stimulation devices,” J. Neuroeng. Rehabil., vol. 14, no. 1, pp. 1–20,        ical electromyography,” Arizona, Phoenix, AZ, USA, vol. 1, no. 2005,
+      2017.                                                                               pp. 30–35, 2005.
+ [20] S.-Y. Chang et al., “Development of the mayo investigational neuromod-         [44] B. Burle, L. Spieser, C. Roger, L. Casini, T. Hasbroucq, and F. Vidal,
+      ulation control system: Toward a closed-loop electrochemical feedback               “Spatial and temporal resolutions of EEG: Is it really black and white?
+      system for deep brain stimulation,” J. Neurosurgery, vol. 119, no. 6,               A scalp current density view,” Int. J. Psychophysiol., vol. 97, no. 3,
+      pp. 1556–1565, 2013.                                                                pp. 210–220, 2015.
+ [21] N. Mekhail et al., “Long-term safety and efficacy of closed-loop spinal        [45] M. X. Cohen, Analyzing Neural Time Series Data: Theory and Practice.
+      cord stimulation to treat chronic back and leg pain (Evoke): A double-              Cambridge, MA, USA: MIT press, 2014.
+      blind, randomised, controlled trial,” Lancet Neurol., vol. 19, no. 2,          [46] T. C. Ferree, M. Clay, and D. M. Tucker, “The spatial resolution of scalp
+      pp. 123–134, 2020.                                                                  EEG,” Neurocomputing, vol. 38, pp. 1209–1216, 2001.
+ [22] D. M. Schultz, L. Webster, P. Kosek, U. Dar, Y. Tan, and M. Sun, “Sensor-      [47] J. I. Sirven, “Electrocorticogram (ECOG),” in Proc. Encyclopedia Neu-
+      driven position-adaptive spinal cord stimulation for chronic pain,” Pain            rological Sci.: Elsevier Inc., 2014, pp. 1080–1083.
+      Physician, vol. 15, no. 1, pp. 1–12, 2012.                                     [48] N. J. Hill et al., “Recording human electrocorticographic (ECoG) signals
+ [23] M. T. Salam, J. L. P. Velazquez, and R. Genov, “Seizure suppression                 for neuroscientific research and real-time functional cortical mapping,”
+      efficacy of closed-loop versus open-loop deep brain stimulation in a                J. Visualized Experiments, vol. 64, 2012, Art. no. e3993.
+      rodent model of epilepsy,” IEEE Trans. Neural Syst. Rehabil. Eng.,             [49] M. Esghaei, M. R. Daliri, and S. Treue, “Local field potentials are induced
+      vol. 24, no. 6, pp. 710–719, Jun. 2015.                                             by visually evoked spiking activity in macaque cortical area MT,” Sci.
+ [24] M. J. Morrell and C. Halpern, “Responsive direct brain stimulation for              Rep., vol. 7, no. 1, pp. 1–11, 2017.
+      epilepsy,” Neurosurgery Clin., vol. 27, no. 1, pp. 111–121, 2016.              [50] E. Başar, C. Başar-Eroğlu, B. Güntekin, and G. G. Yener, “Brain’s alpha,
+ [25] M. Rosa et al., “Adaptive deep brain stimulation in a freely moving                 beta, gamma, delta, and theta oscillations in neuropsychiatric diseases:
+      parkinsonian patient,” Movement Disord., vol. 30, no. 7, pp. 1003–1005,             Proposal for biomarker strategies,” Supplements Clin. Neurophysiol.,
+      2015.                                                                               vol. 62, pp. 19–54, 2013.
+ [26] M. F. Afzal, A. Velisar, C. Anidi, R. Neuville, V. Prabhakar, and H.           [51] N. Ray et al., “Local field potential beta activity in the subthalamic
+      M. Bronte-Stewart, “Abstract# 96: Subthalamic neural closed-loop deep               nucleus of patients with parkinson’s disease is associated with improve-
+      brain stimulation for bradykinesia in parkinson’s disease,” Brain Stimu-            ments in bradykinesia after dopamine and deep brain stimulation,” Exp.
+      lation: Basic, Trans., Clin. Res. Neuromodulation, vol. 12, no. 2, 2019,            Neurol., vol. 213, no. 1, pp. 108–113, 2008.
+      Art. no. e33.
+
+
+
+Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+KUMARI AND KOUZANI: ELECTROPHYSIOLOGY-BASED CLOSED LOOP OPTOGENETIC BRAIN STIMULATION                                                                           107
+
+
+
+[52] N. C. Swann et al., “Gamma oscillations in the hyperkinetic state detected     [76] R. Ramezani et al., “On-probe neural interface ASIC for combined
+     with chronic human brain recordings in parkinson’s disease,” J. Neurosci.,          electrical recording and optogenetic stimulation,” IEEE Trans. Biomed.
+     vol. 36, no. 24, pp. 6445–6458, 2016.                                               Circuits Syst., vol. 12, no. 3, pp. 576–588, Jun. 2018.
+[53] W. Neumann et al., “Different patterns of local field potentials from          [77] G. Gagnon-Turcotte, I. Keramidis, C. Ethier, Y. De Koninck, and B.
+     limbic DBS targets in patients with major depressive and obsessive                  Gosselin, “A wireless electro-optic headstage with a 0.13-µm CMOS
+     compulsive disorder,” Mol. Psychiatry, vol. 19, no. 11, pp. 1186–1192,              custom integrated DWT neural signal decoder for closed-loop optogenet-
+     2014.                                                                               ics,” IEEE Trans. Biomed. Circuits Syst., vol. 13, no. 5, pp. 1036–1051,
+[54] G. Etter, S. van der Veldt, F. Manseau, I. Zarrinkoub, E. Trillaud-Doppia,          May 2019.
+     and S. Williams, “Optogenetic gamma stimulation rescues memory im-             [78] G. Gagnon-Turcotte, C. Ethier, Y. De Köninck, and B. Gosselin, “A
+     pairments in an Alzheimer’s disease mouse model,” Nature Commun.,                   13µm CMOS SoC for simultaneous multichannel optogenetics and elec-
+     vol. 10, no. 1, pp. 1–11, 2019.                                                     trophysiological brain recording,” in Proc. IEEE Int. Solid-State Circuits
+[55] M. Baradits et al., “Alterations in resting-state gamma activity in patients        Conf., 2018, pp. 466–468.
+     with schizophrenia: A high-density EEG study,” Eur. Arch. Psychiatry           [79] H. Kassiri et al., “27.3 All-wireless 64-channel 0.013 mm 2/ch closed-
+     Clin. Neurosci., vol. 269, no. 4, pp. 429–437, 2019.                                loop neurostimulator with rail-to-rail DC offset removal,” in Proc. IEEE
+[56] J. M. McNally and R. W. McCarley, “Gamma band oscillations: A key                   Int. Solid-State Circuits Conf., 2017, pp. 452–453.
+     to understanding schizophrenia symptoms and neural circuit abnormali-          [80] J. Luo et al., “The neural engine: A reprogrammable low power platform
+     ties,” Curr. Opin. Psychiatry, vol. 29, no. 3, 2016, Art. no. 202.                  for Closed-loop optogenetics,” IEEE Trans. Biomed. Eng., vol. 67, no. 11,
+[57] J. H. Siegle and M. A. Wilson, “Enhancement of encoding and retrieval               pp. 3004–3015, Nov. 2020.
+     functions through theta phase-specific manipulation of hippocampus,”           [81] A. Zhou et al., “A wireless and artefact-free 128-channel neuromodu-
+     Elife, vol. 3, 2014, Art. no. e03061.                                               lation device for closed-loop stimulation and recording in non-human
+[58] V. Magloire, M. S. Mercier, D. M. Kullmann, and I. Pavlov, “GABAer-                 primates,” Nature Biomed. Eng., vol. 3, no. 1, pp. 15–26, 2019.
+     gic interneurons in seizures: Investigating causality with optogenetics,”      [82] B. C. Johnson et al., “An implantable 700µW 64-channel neuromodu-
+     Neuroscientist, vol. 25, no. 4, pp. 344–358, 2019.                                  lation IC for simultaneous recording and stimulation with rapid artifact
+[59] V. Kanta, D. Pare, and D. B. Headley, “Closed-loop control of gamma                 recovery,” in Proc. Symp. VLSI Circuits, 2017, pp. C48–C49.
+     oscillations in the amygdala demonstrates their role in spatial memory         [83] M. Parastarfeizabadi, R. V. Sillitoe, and A. Z. Kouzani, “Multi-Disease
+     consolidation,” Nature Commun., vol. 10, no. 1, pp. 1–14, 2019.                     deep brain stimulation,” IEEE Access, vol. 8, pp. 216933–216947,
+[60] J. M. Sorokin et al., “Bidirectional control of generalized epilepsy net-           2020.
+     works via rapid real-time switching of firing mode,” Neuron, vol. 93,          [84] L. Hamilton et al., “Neural signal processing and closed-loop control
+     no. 1, pp. 194–210, 2017.                                                           algorithm design for an implanted neural recording and stimulation
+[61] M. L. Streng and E. Krook-Magnuson, “Excitation, but not inhibition,                system,” in Proc. 37th Annu. Int. Conf. IEEE Eng. Med. Biol. Soc., 2015,
+     of the fastigial nucleus provides powerful control over temporal lobe               pp. 7831–7836.
+     seizures,” J. Physiol., vol. 598, no. 1, pp. 171–187, 2020.                    [85] H. G. Rey, C. Pedreira, and R. Q. Quiroga, “Past, present and future
+[62] J. T. Paz et al., “Closed-loop optogenetic control of thalamus as a tool            of spike sorting techniques,” Brain Res. Bull., vol. 119, pp. 106–117,
+     for interrupting seizures after cortical injury,” Nature Neurosci., vol. 16,        2015.
+     no. 1, pp. 64–70, 2013.                                                        [86] S. Hojjatinia and C. M. Lagoa, “Comparison of different spike sorting
+[63] C.-F. V. Latchoumane, H.-V. V. Ngo, J. Born, and H.-S. Shin, “Thalamic              subtechniques based on rat brain basolateral amygdala neuronal activity,”
+     spindles promote memory formation during sleep through triple phase-                in Proc. IEEE Int. Conf. Bioinform. Biomed., 2019, pp. 2251–2258.
+     locking of cortical, thalamic, and hippocampal rhythms,” Neuron, vol. 95,      [87] A. O. Hebb et al., “Creating the feedback loop: Closed-loop neurostim-
+     no. 2, pp. 424–435, 2017.                                                           ulation,” Neurosurgery Clin., vol. 25, no. 1, pp. 187–204, 2014.
+[64] J. Rivnay, H. Wang, L. Fenno, K. Deisseroth, and G. G. Malliaras, “Next-       [88] A. Hazarika, M. Barthakur, L. Dutta, and M. Bhuyan, “F-SVD based
+     generation probes, particles, and proteins for neural interfacing,” Sci.            algorithm for variability and stability measurement of bio-signals, feature
+     Adv., vol. 3, no. 6, 2017, Art. no. e1601649.                                       extraction and fusion for pattern recognition,” Biomed. Signal Process.
+[65] S. Dufour and Y. De Koninck, “Optrodes for combined optogenetics and                Control, vol. 47, pp. 26–40, 2019.
+     electrophysiology in live animals,” Neurophotonics, vol. 2, no. 3, 2015,       [89] J. Qi, G. Jiang, G. Li, Y. Sun, and B. Tao, “Surface EMG hand gesture
+     Art. no. 031205.                                                                    recognition system based on PCA and GRNN,” Neural Comput. Appl.,
+[66] Y. Lu, X. Liu, and D. Kuzum, “Graphene-based neurotechnologies for ad-              vol. 32, no. 10, pp. 6343–6351, 2020.
+     vanced neural interfaces,” Curr. Opin. Biomed. Eng., vol. 6, pp. 138–147,      [90] D. Huberdeau, H. Walker, H. Huang, E. Montgomery, and S. V. Sarma,
+     2018.                                                                               “Analysis of local field potential signals: A systems approach,” in Proc.
+[67] X. Liu et al., “A fully integrated wireless compressed sensing neural               Annu. Int. Conf. IEEE Eng. Med. Biol. Soc., 2011, pp. 814–817.
+     signal acquisition system for chronic recording and brain machine inter-       [91] J. Watts, A. Khojandi, O. Shylo, and R. A. Ramdhani, “Machine learn-
+     face,” IEEE Trans. Biomed. Circuits Syst., vol. 10, no. 4, pp. 874–883,             ing’s application in deep brain stimulation for Parkinson’s disease: A
+     Aug. 2016.                                                                          review,” Brain Sci., vol. 10, no. 11, 2020, Art. no. 809.
+[68] D. Kuzum et al., “Transparent and flexible low noise graphene elec-            [92] R. LeMoyne, T. Mastroianni, D. Whiting, and N. Tomycz, “Parametric
+     trodes for simultaneous electrophysiology and neuroimaging,” Nature                 evaluation of deep brain stimulation parameter configurations for Parkin-
+     Commun., vol. 5, no. 1, pp. 1–10, 2014.                                             son’s disease using a conformal wearable and wireless inertial sensor
+[69] M. Thunemann et al., “Deep 2-photon imaging and artifact-free opto-                 system and machine learning,” in Proc. 42nd Annu. Int. Conf. IEEE Eng.
+     genetics through transparent graphene microelectrode arrays,” Nature                Med. Biol. Soc., 2020, pp. 3606–3611.
+     Commun., vol. 9, no. 1, pp. 1–12, 2018.                                        [93] N. Khobragade, D. Tuninetti, and D. Graupe, “On the need for adap-
+[70] M. Zhang, Z. Tang, X. Liu, and J. Van der Spiegel, “Electronic neural               tive learning in on-demand deep brain stimulation for movement disor-
+     interfaces,” Nature Electron., vol. 3, no. 4, pp. 191–200, 2020.                    ders,” in Proc. 40th Annu. Int. Conf. IEEE Eng. Med. Biol. Soc., 2018,
+[71] X. Liu, Y. Lu, E. Iseri, Y. Shi, and D. Kuzum, “A compact closed-loop op-           pp. 2190–2193.
+     togenetics system based on artifact-free transparent graphene electrodes,”     [94] C. Camara, N. P. Subramaniyam, K. Warwick, L. Parkkonen, T. Aziz,
+     Front. Neurosci., vol. 12, 2018, Art. no. 132.                                      and E. Pereda, “Non-linear dynamical analysis of resting tremor for
+[72] A. E. Mendrela et al., “A high-resolution opto-electrophysiology system             demand-driven deep brain stimulation,” Sensors, vol. 19, no. 11, 2019,
+     with a miniature integrated headstage,” IEEE Trans. Biomed. Circuits                Art. no. 2507.
+     Syst., vol. 12, no. 5, pp. 1065–1075, Oct. 2018.                               [95] X. Liu and A. G. Richardson, “A System-on-chip for closed-loop op-
+[73] Y. Jia et al., “Wireless opto-electro neural interface for experiments with         togenetic sleep modulation,” in Proc. 43rd Annu. Int. Conf. IEEE Eng.
+     small freely behaving animals,” J. Neural Eng., vol. 15, no. 4, 2018,               Med. Biol. Soc., 2021, pp. 5678–5681.
+     Art. no. 046032.                                                               [96] A. Velisar et al., “Dual threshold neural closed loop deep brain stimu-
+[74] M. Parastarfeizabadi, A. Z. Kouzani, J. Beckinghausen, T. Lin, and R. V.            lation in parkinson disease patients,” Brain Stimulation, vol. 12, no. 4,
+     Sillitoe, “A programmable multi-biomarker neural sensor for closed-loop             pp. 868–876, 2019.
+     DBS,” IEEE Access, vol. 7, pp. 230–244, 2018.                                  [97] S. Raghunathan, S. K. Gupta, H. S. Markandeya, P. P. Irazoqui, and
+[75] C. H. Chen et al., “An integrated circuit for simultaneous extracellular            K. Roy, “Ultra low-power algorithm design for implantable devices:
+     electrophysiology recording and optogenetic neural manipulation,” IEEE              Application to epilepsy prostheses,” J. Low Power Electron. Appl., vol. 1,
+     Trans. Biomed. Eng., vol. 64, no. 3, pp. 557–568, Mar. 2017.                        no. 1, pp. 175–203, 2011.
+
+
+
+ Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+108                                                                                                IEEE REVIEWS IN BIOMEDICAL ENGINEERING, VOL. 16, 2023
+
+
+
+ [98] E. Krook-Magnuson, C. Armstrong, M. Oijala, and I. Soltesz, “On-              [121] R. David et al., “Tensorflow lite micro: Embedded machine learning on
+      demand optogenetic control of spontaneous seizures in temporal lobe                 tinyml systems,” in Proc. 4th MLSys Conf., 2021.
+      epilepsy,” Nature Commun., vol. 4, no. 1, pp. 1–8, 2013.                      [122] B. D. Nelson, S. S. Karipott, Y. Wang, and K. G. Ong, “Wireless
+ [99] C. Armstrong, E. Krook-Magnuson, M. Oijala, and I. Soltesz, “Closed-                technologies for implantable devices,” Sensors, vol. 20, no. 16, 2020,
+      loop optogenetic intervention in mice,” Nature Protocols, vol. 8, no. 8,            Art. no. 4604.
+      pp. 1475–1493, 2013.                                                          [123] A. A. AlZubi, A. Alarifi, and M. Al-Maitah, “Deep brain simulation
+[100] R. Pashaie et al., “Closed-loop optogenetic brain interface,” IEEE Trans.           wearable IoT sensor device based parkinson brain disorder detection
+      Biomed. Eng., vol. 62, no. 10, pp. 2327–2337, Oct. 2015.                            using heuristic tubu optimized sequence modular neural network,” Mea-
+[101] L. Xia, A. Soltan, J. Luo, G. Chester, and P. Degenaar, “A flash-FPGA               surement, vol. 161, 2020, Art. no. 107887.
+      based rodent control system for closed-loop optogenetic control of            [124] S. Mrozek, F. Vardon, and T. Geeraerts, “Brain temperature: Physiol-
+      epilepsy,” in Proc. IEEE Int. Symp. Circuits Syst., 2018, pp. 1–5.                  ogy and pathophysiology after brain injury,” Anesthesiol. Res. Pract.,
+[102] L. Xia, N. Fattah, A. Soltan, A. Jackson, G. Chester, and P. Degenaar,              vol. 2012, 2012, Art. no. 989487.
+      “A low power flash-FPGA based brain implant micro-system of PID               [125] E. Iseri and D. Kuzum, “Implantable optoelectronic probes for in vivo
+      control,” in Proc. 39th Annu. Int. Conf. IEEE Eng. Med. Biol. Soc., 2017,           optogenetics,” J. Neural Eng., vol. 14, no. 3, 2017, Art. no. 031001.
+      pp. 173–176.                                                                  [126] A. Vaskuri et al., “Relationships between junction temperature, electro-
+[103] G. Gagnon-Turcotte, Y. LeChasseur, C. Bories, Y. Messaddeq, Y. De                   luminescence spectrum and ageing of light-emitting diodes,” Metrologia,
+      Koninck, and B. Gosselin, “A wireless headstage for combined opto-                  vol. 55, no. 2, 2018, Art. no. S86.
+      genetics and multichannel electrophysiological recording,” IEEE Trans.        [127] N. McAlinden et al., “Thermal and optical characterization of micro-LED
+      Biomed. Circuits Syst., vol. 11, no. 1, pp. 1–14, Feb. 2017.                        probes for in vivo optogenetic neural stimulation,” Opt. Lett., vol. 38,
+[104] H. Cagnan et al., “Stimulating at the right time: Phase-specific deep brain         no. 6, pp. 992–994, 2013.
+      stimulation,” Brain, vol. 140, no. 1, pp. 132–145, 2017.                      [128] J. A. Cardin et al., “Targeted optogenetic stimulation and recording of
+[105] L. S. Kumari and A. Z. Kouzani, “Phase-dependent deep brain stimula-                neurons in vivo using cell-type-specific expression of Channelrhodopsin-
+      tion: A review,” Brain Sci., vol. 11, no. 4, 2021, Art. no. 414.                    2,” Nature Protocols, vol. 5, no. 2, pp. 247–254, 2010.
+[106] E. Nicholson, D. A. Kuzmin, M. Leite, T. E. Akam, and D. M. Kullmann,         [129] D. Budai et al., “A novel carbon tipped single micro-optrode for combined
+      “Analogue closed-loop optogenetic modulation of hippocampal pyrami-                 optogenetics and electrophysiology,” PloS One, vol. 13, no. 3, 2018,
+      dal cells dissociates gamma frequency and amplitude,” Elife, vol. 7, 2018,          Art. no. e0193836.
+      Art. no. e38346.                                                              [130] M. Gulino, D. Kim, S. Pané, S. D. Santos, and A. P. Pêgo, “Tissue
+[107] A. S. Widge et al., “Altering alpha-frequency brain oscillations with rapid         response to neural implants: The use of model systems toward new design
+      analog feedback-driven neurostimulation,” PloS One, vol. 13, no. 12,                solutions of implantable microelectrodes,” Front. Neurosci., vol. 13,
+      2018, Art. no. e0207781.                                                            2019, Art. no. 689.
+[108] L. L. Chen, R. Madhavan, B. I. Rapoport, and W. S. Anderson, “Real-time       [131] S.-H. Ahn, J. Jeong, and S. J. Kim, “Emerging encapsulation technolo-
+      brain oscillation detection and phase-locked stimulation using autore-              gies for long-term reliability of microfabricated implantable devices,”
+      gressive spectral estimation and time-series forward prediction,” IEEE              Micromachines, vol. 10, no. 8, 2019, Art. no. 508.
+      Trans. Biomed. Eng., vol. 60, no. 3, pp. 753–762, Mar. 2013.
+[109] E. Blackwood, M.-c. Lo, and S. A. Widge, “Continuous phase estimation
+      for phase-locked neural stimulation using an autoregressive model for
+      signal prediction,” in Proc. 40th Annu. Int. Conf. IEEE Eng. Med. Biol.
+      Soc., 2018, pp. 4736–4739.
+[110] A. Erofeev et al., “Light stimulation parameters determine neuron dy-
+      namic characteristics,” Appl. Sci., vol. 9, no. 18, 2019, Art. no. 3673.
+[111] G. Gagnon-Turcotte, E. Maghsoudloo, Y. Messaddeq, Y. De Koninck,                                       Lekshmy Sudha Kumari (Student Member,
+      and B. Gosselin, “A wireless photostimulator for optogenetics with                                     IEEE) received the B.Tech. degree in elec-
+      live animals,” in Proc. 15th IEEE Int. New Circuits Syst. Conf., 2017,                                 tronics and communication from the University
+      pp. 193–196.                                                                                           of Kerala, Thiruvananthapuram, India, and the
+[112] A. Mesri, M. Sampietro, A. B. Cunha, G. Ferrari, and Ø. G. Martinsen, “A                               M.Tech. degree in microelectronics from Am-
+      laser diode-based wireless optogenetic headstage,” in Proc. 14th Conf.                                 ritha University, India. She is currently working
+      Ph. D. Res. Microelectron. Electron., 2018, pp. 257–260.                                               toward the Ph.D. degree in biomedical engi-
+[113] K. A. Tennant, S. L. Taylor, E. R. White, and C. E. Brown, “Optogenetic                                neering with Deakin University, Melbourne, VIC,
+      rewiring of thalamocortical circuits to restore function in the stroke                                 Australia. Her research interests include devel-
+      injured brain,” Nature Commun., vol. 8, no. 1, pp. 1–14, 2017.                                         opment of miniaturized devices for implantable
+[114] A. D. Mickle et al., “A wireless closed-loop system for optogenetic                                    standalone closed-loop optogenetic brain stim-
+      peripheral neuromodulation,” Nature, vol. 565, no. 7739, pp. 361–365,         ulation device for studies in laboratory settings.
+      2019.
+[115] V. K. Samineni et al., “Fully implantable, battery-free wireless opto-
+      electronic devices for spinal optogenetics,” Pain, vol. 158, no. 11, 2017,
+      Art. no. 2108.
+[116] D. K. Biswas, M. Sinclair, J. Hyde, and I. Mahbub, “An NFC (near-
+      field communication) based wireless power transfer system design with
+      miniaturized receiver coil for optogenetic implants,” in Proc. Texas Symp.
+      Wireless Microw. Circuits Syst., 2018, pp. 1–5.                                                       Abbas Z. Kouzani (Member, IEEE) is currently
+[117] L.-G. Tran, H.-K. Cha, and W.-T. Park, “A compact wireless power                                      a Professor with the School of Engineering with
+      transfer system at 915 MHz with supercapacitor for optogenetics ap-                                   Deakin University, Melbourne, VIC, Australia.
+      plications,” Sensors Actuators A: Phys., vol. 285, pp. 386–394, 2019.                                 He was the Associate Head of School (Re-
+[118] C. E. Bass, V. P. Grinevich, Z. B. Vance, R. P. Sullivan, K. D. Bonin, and                            search) with the School of Engineering, Deakin
+      E. A. Budygin, “Optogenetic control of striatal dopamine release in rats,”                            University. He is an OzReader with the Aus-
+      J. Neurochem., vol. 114, no. 5, pp. 1344–1352, 2010.                                                  tralian Research Council. He is involved in more
+[119] C. Bartic, F. P. Battaglia, L. Wang, T. T. Nguyen, H. Cabral, and Z.                                  than $17 million research grants, and has au-
+      Navratilova, “A multichannel recording system with optical stimulation                                thored or coauthored more than 500 papers.
+      for closed-loop optogenetic experiments,” in Optogenetics, Berlin, Ger-                               He has carried out research and consultancy
+      many: Springer, 2016, pp. 333–344.                                                                    for more than 25 companies. He provides re-
+[120] D. Firfilionis et al., “Design considerations for artefact-free optoelec-     search leadership in integrated and connected devices that incorporate
+      tronic systems,” in Proc. 41st Annu. Int. Conf. IEEE Eng. Med. Biol.          sensing, actuation, control, IoT, and AI. He is the Director of Deakin
+      Soc., 2019, pp. 3742–3745.                                                    University’s Advanced Integrated Microsystems (AIM) Research Group.
+
+
+
+
+Authorized licensed use limited to: Eindhoven University of Technology. Downloaded on November 05,2026 at 13:11:44 UTC from IEEE Xplore. Restrictions apply.
+

@@ -1,0 +1,196 @@
+https://doi.org/10.1093/brain/awac172                                                                        BRAIN 2022: 145; 2236–2238           | 2236
+
+
+
+
+Towards adaptive deep brain stimulation
+for freezing of gait
+This scientiﬁc commentary refers to ‘Cortical phase-amplitude                    range of the PAC for normal functioning, thus enhancing cortical
+coupling is key to the occurrence and treatment of freezing of                   resistance to abnormal coupling (Fig. 1). These novel ﬁndings raise
+gait’ by Yin et al. (https://doi.org/10.1093/brain/awac121).                     several questions.
+
+Freezing of gait (FoG) is a debilitating symptom affecting over half of
+patients with advanced Parkinson’s disease. Yet, the neurobiologic-
+al basis of FoG is poorly understood, and the available therapies are            What is the neural mechanism underlying elevated
+unsatisfactory. One of the key therapies for Parkinson’s disease,                phase-amplitude coupling and how is it related to
+deep brain stimulation (DBS), is currently undergoing a period of in-            freezing?
+tense innovation. So-called ‘adaptive’ DBS automatically adjusts
+                                                                                 Statistical PAC quantiﬁes how much the phase of a low frequency os-
+the stimulation in response to ﬂuctuating biomarkers such as neur-
+                                                                                 cillation modulates the amplitude of a high frequency oscillation. At
+al synchrony to increase the efﬁcacy of DBS for suppressing brady-
+                                                                                 least two different neural mechanisms can lead to increased PAC: (i)
+kinesia and rigidity while reducing side effects.1
+                                                                                 the interactions between low and high frequency oscillations; and (ii)
+    This success has raised the question of whether DBS can also be
+                                                                                 repeated sharp or non-sinusoidal deﬂections in the waveforms of the
+optimized to treat FoG. Achieving this goal will require identifying
+                                                                                 low frequency oscillation.3,4 Both are forms of elevated synchrony in-
+reliable biomarkers and understanding more completely the neural
+                                                                                 dicative of reduced cortical information processing capability, and
+signatures underlying this phenomenon. In this issue of Brain, Yin
+                                                                                 therefore could be relevant to the pathology of FoG. However, the
+and colleagues2 make progress towards this goal by identifying in-
+                                                                                 two interpretations may have important implications for the me-
+creased beta-gamma phase-amplitude coupling (PAC) in the motor
+                                                                                 chanisms of PAC and its pathophysiological signiﬁcance. Detailed
+cortex during freezing episodes compared to normal walking in pa-
+                                                                                 time-domain waveform analyses can offer more insights into the
+tients with Parkinson’s disease. In addition, they show that DBS of
+                                                                                 neural mechanism of PAC.3,4
+the subthalamic nucleus (STN) reduces this coupling along with
+                                                                                     Yin and colleagues2 showed that cortical PAC during walking
+freezing episodes.                                                               was moderately correlated with the beta band waveform asymmet-
+    A variety of cognitive and affective challenges can trigger freezing         ries, suggesting that the waveform asymmetry contributed to the
+episodes in Parkinson’s disease, suggesting a cortical contribution to           PAC. However, this is unlikely to be the sole explanation for ele-
+the pathogenesis of FoG. However, the neurophysiological character-              vated PAC. More likely, nested oscillations and changes in β wave-
+istics of FoG within the motor cortex and how they respond to cogni-             forms co-occur during freezing.
+tive overload and DBS remain largely unknown. In this study, 16                      Elevated PAC due to nested oscillations may reﬂect a loss of
+patients with Parkinson’s disease undergoing STN DBS surgery                     physiological segregation of distinct feedback loops within the
+were temporarily implanted with a subdural electrocorticography                  basal-ganglia-thalamocortical (BGTC) circuit, leading to coupling
+(ECoG) grid placed above the right primary motor cortex (M1). The                between otherwise distinct circuits. Increased synchronization in
+ECoG lead was externalized for an average of 8 days prior to place-              the β-frequency range in the BGTC circuit is a hallmark of
+ment of the pulse generator. This allowed the authors to record local            Parkinson’s disease. Synchronization of basal ganglia spiking is
+ﬁeld potentials (LFPs) from M1 during a walking task with concomi-               likely to promote a rhythmic pattern of spike timing in target cor-
+tant recordings of gait kinematics using a 3D motion tracking system.            tical areas, which can be detected as a contributor to broadband-γ
+    The authors detected higher beta-gamma PAC in M1 during                      spectral power and manifests as exaggerated coupling of the
+walking trials with freezing episodes than trials without. Though                β-phase to broadband-γ activity.3 In patients with freezing, activity
+with very limited spatial coverage, the investigators showed that                in the low β frequency band (12–22 Hz) was signiﬁcantly enhanced
+the increased PAC was speciﬁc to the primary motor cortex and                    in the STN during walking compared to patients without freezing.5
+was not observed in the postcentral gyrus (S1). Electrical stimula-              Transient increases in STN multi-unit activity in the theta and
+tion delivered to the STN reduced PAC in M1 and simultaneously                   beta frequency bands were also observed before the onset of
+improved freezing. The authors concluded that elevated beta-                     freezing.6 Simultaneous recordings of LFPs from the cortex and
+gamma PAC in the primary motor cortex indicates a higher prob-                   the STN could show if the increased cortical β-γ PAC in freezing
+ability of freezing, and that therapeutic DBS alleviates freezing by             trials is a correlate of increased β in the STN or an independent
+both decoupling cortical oscillations and increasing the dynamic                 phenomenon.
+
+
+Received May 09, 2022. Accepted May 09, 2022. Advance access publication July 15, 2022
+© The Author(s) 2022. Published by Oxford University Press on behalf of the Guarantors of Brain.
+This is an Open Access article distributed under the terms of the Creative Commons Attribution License (https://creativecommons.org/licenses/by/4.0/), which
+permits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited.
+Scientiﬁc Commentary                                                                                                                               BRAIN 2022: 145; 2236–2238   | 2237
+
+
+                                   B Phase-Amplitude Coupling (PAC)                                                   Nested Oscillaons                   Waveform deﬂecon
+
+
+
+
+                                                 Frequency for power
+
+
+
+
+                                                                                               Modulaon Index
+      A
+
+
+
+
+                                                                       Frequency for phase
+                                   C                                                                                       D                       Normal walking
+                                                                       No Sm
+
+
+
+
+                                                                                                                               PAC Dynamic Range
+                                    M1 ß-γ PAC
+
+
+                                                                       STN Sm
+                                                                                                                                                                      State
+                                                                                                                                                                      vulnerable
+                                                                                                                                                                      to freezing
+                                                                        Stand       Freezing                     Stable
+                                                                                                                 walking                              Baseline PAC
+
+Figure 1 Schematic showing the key ﬁndings of Yin and colleagues.2 (A) Potentials from primary motor cortex were recorded from patients with
+Parkinson’s disease undergoing surgery for DBS. (B) Beta-gamma PAC in the motor cortex was observed, which can arise from either nested oscillations,
+or deﬂected waveforms in the beta frequency bands, or both (adapted from Cole et al.3 and Vaz et al.4). (C) PAC in motor cortex decreased during walking
+compared to standing, but temporarily increased during states vulnerable to freezing, compared with normal walking. (D) STN stimulation reduced the
+baseline PAC and increased the dynamic range of PAC for normal functioning.
+
+
+
+    On the other hand, elevated PAC due to repeated deﬂections of                                            or reduced movement velocity. However, the highest PAC was ob-
+the beta band waveform may reﬂect local synchrony of excitatory                                              served during standing. Therefore, a single threshold-based method
+input currents onto cortical pyramidal neurons. The exact wave-                                              would not be sufﬁcient to differentiate freezing from both standing
+form change may reﬂect the temporal organisation of the synaptic                                             with high PAC and normal walking with low PAC. Since excessive
+inputs. Cortical PAC during walking predicted freezing in                                                    PAC was also observed during non-freezing episodes in FoG trials,
+Parkinson’s disease and correlated with waveform asymmetry                                                   the temporal relationship between FoG and PAC needs to be further
+(the ratio of the rising versus falling steepness).2 However, cortical                                       investigated. In addition, the authors reported that at a similar PAC
+PAC during rest has also been shown to correlate with other parkin-                                          level, trials with STN stimulation had signiﬁcantly lower probability
+sonian symptoms including rigidity and bradykinesia, and was bet-                                            of containing freezing episodes than no-stimulation trials, suggest-
+ter explained by the asymmetry in extrema sharpness.3 Further                                                ing that the exact relationship between PAC and freezing depends
+analysis of the cycle-by-cycle waveforms and preferred phase of                                              on the stimulation. Previous observations of correlations between
+high frequency activity may reveal differences in the temporal or-                                           enhanced PAC over broad cortical regions and other parkinsonian
+ganisation of synaptic inputs and further help to differentiate                                              symptoms such as bradykinesia,3,8 highlight the fact that further
+rest, freezing and standing.                                                                                 studies are required to test the speciﬁcity of temporally enhanced
+                                                                                                             PAC in M1 as a biomarker for freezing.
+Can cortical phase-amplitude coupling serve as a
+biomarker for freezing of gait?                                                                              How to optimize deep brain stimulation to better
+                                                                                                             treat freezing of gait?
+Titrating the timing and intensity of stimulation according to bio-
+markers that capture current clinical state has great potential to                                           Once a biomarker is detected, one way to improve DBS is to change
+improve efﬁcacy, reduce side effects, and decrease the cost of treat-                                        the stimulation to a predeﬁned pattern that is more suitable for the
+ment. To achieve this goal, identifying appropriate feedback signals                                         speciﬁc clinical state. Low-frequency stimulation (generally 60
+that faithfully reﬂect the clinical state and can be measured with                                           Hz or 80 Hz) may help some patients with axial symptoms.
+minimal extra interventions is crucial.1                                                                     However in this study,2 60 Hz stimulation did not reduce freezing
+    Chronic recording of LFPs using subdural cortical grids has been                                         episodes compared to 130 Hz stimulation. Stimulating the substan-
+shown to be feasible and safe over a one-year period.7 Here, Yin and                                         tia nigra pars reticulata (SNr) has been shown to improve temporal
+colleagues showed that β-γ PAC can be reliably calculated in a 10-s win-                                     parameters of gait9 and combining low-frequency SNr stimulation
+dow. However, time-domain waveform analyses, such as the wave-                                               and high-frequency STN stimulation may have a synergistic effect
+form symmetry, which correlated with PAC, can be calculated for                                              for some patients. Recently, Fischer et al.10 found that alternating
+individual cycles and require less computational power. Thus, these                                          stimulation between the left and right STN in a rhythm close to
+waveform parameters could potentially provide an instantaneous                                               the natural stepping frequency, which resembles the endogenous
+measure of clinical state so that therapy does not lag impairment.                                           STN modulation pattern observed during stepping, could entrain
+    Apart from feasibility, we also need to evaluate the sensitivity                                         patients’ stepping movements. It remains to be tested if this new
+and speciﬁcity of PAC as a correlate or predictor for FoG. Yin and                                           biomimetic stimulation pattern can facilitate rhythmic movements
+colleagues showed that elevated PAC was not due to dual tasking                                              during free walking and thus reduce freezing.
+2238 | BRAIN 2022: 145; 2236–2238                                                                                   Scientiﬁc Commentary
+
+    Another way to improve DBS is to speciﬁcally target pathologic-       References
+al brain signals by optimizing the precise pattern of stimulation. In
+this case, the brain signal must not merely correlate with the clin-      1. Little S, Brown P. What brain signals are suitable for feedback
+ical state, but must also cause it in order to be a legitimate target.1       control of deep brain stimulation in Parkinson’s disease? Ann
+FoG can be triggered by multiple scenarios, including encountering            N Y Acad Sci. 2012;1265:9–24.
+                                                                          2. Yin Z, Zhu G, Liu Y, et al. Cortical phase-amplitude coupling is
+a narrow doorway. If we can understand what causes FoG in re-
+                                                                              key to the occurrence and treatment of freezing of gait. Brain.
+sponse to sensory inputs or increased cognitive demands, we could
+                                                                              2022;145(7):2407–2421.
+develop tailored stimulation patterns involving cross-site sensing
+                                                                          3. Cole SR, van der Meij R, Peterson EJ, de Hemptinne C, Starr PA,
+and stimulation that can modulate local synchrony as well as
+                                                                              Voytek B. Nonsinusoidal beta oscillations reﬂect cortical patho-
+cross-site functional connectivity. Such an approach has the poten-
+                                                                              physiology in Parkinson’s disease. J Neurosci. 2017;37:4830–4840.
+tial to probe the causal relationship between different neural signa-
+                                                                          4. Vaz AP, Yaffe RB, Wittig JH, Inati SK, Zaghloul KA. Dual origins of
+tures and freezing, and may also open up new therapeutic avenues.             measured phase-amplitude coupling reveal distinct neural me-
+    In summary, to improve DBS for better treatment of FoG, a more            chanisms underlying episodic memory in the human cortex.
+detailed understanding of the pathological brain signals underlying           NeuroImage. 2017;148:148–159.
+this symptom and more research on novel stimulation patterns              5. Singh A, Plate A, Kammermeier S, Mehrkens JH, Ilmberger J,
+and targets will be required.                                                 Bötzel K. Freezing of gait-related oscillatory activity in the hu-
+                                                                              man subthalamic nucleus. Basal Ganglia. 2013;3:25–32.
+                                                                          6. Georgiades MJ, Shine JM, Gilat M, et al. Hitting the brakes: patho-
+  Huiling Tan                                                                 logical subthalamic nucleus activity in Parkinson’s disease gait
+Medical Research Council Brain Network Dynamics Unit, Nufﬁeld                 freezing. Brain J Neurol. 2019;12:3906–3916.
+Department of Clinical Neurosciences, University of Oxford, Oxford, UK    7. Swann NC, de Hemptinne C, Miocinovic S, et al. Chronic multi-
+                                                                              site brain recordings from a totally implantable bidirectional
+E-mail: Huiling.tan@ndcn.ox.ac.uk                                             neural interface: experience in 5 patients with Parkinson’s dis-
+                                                                              ease. J Neurosurg. 2018;128:605–616.
+                                                                          8. Gong R, Wegscheider M, Mühlberg C, et al. Spatiotemporal fea-
+Funding                                                                       tures of β-γ phase-amplitude coupling in Parkinson’s disease
+                                                                              derived from scalp EEG. Brain J Neurol. 2021;144:487–503.
+H.T. is supported by the Medical Research Council (MC_UU_00003/2
+                                                                          9. Scholten M, Klemt J, Heilbronn M, et al. Effects of subthalamic
+and MR/V00655X/1), and the Rosetrees Trust, UK.
+                                                                              and nigral stimulation on gait kinematics in Parkinson’s dis-
+                                                                              ease. Front Neurol. 2017;8:543.
+                                                                          10. Fischer P, He S, de Roquemaurel A, et al. Entraining stepping
+Competing interests                                                           movements of Parkinson’s patients to alternating subthalamic
+The author reports no competing interests.                                    nucleus deep brain stimulation. J Neurosci. 2020;40:8964–8972.
+

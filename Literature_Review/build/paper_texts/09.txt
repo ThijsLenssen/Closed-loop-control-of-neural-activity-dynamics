@@ -1,0 +1,661 @@
+https://doi.org/10.1093/brain/awad239                                                                           BRAIN 2023: 146; 4456–4468             | 4456
+
+
+
+
+Neurophysiological mechanisms of deep
+brain stimulation across spatiotemporal
+resolutions
+    Wolf-Julian Neumann,1,† Leon A. Steiner1,2,† and                                              Luka Milosevic2,3,†
+
+†
+    These authors contributed equally to this work.
+
+
+Deep brain stimulation is a neuromodulatory treatment for managing the symptoms of Parkinson’s disease and other
+neurological and psychiatric disorders. Electrodes are chronically implanted in disease-relevant brain regions and
+pulsatile electrical stimulation delivery is intended to restore neurocircuit function. However, the widespread inter­
+est in the application and expansion of this clinical therapy has preceded an overarching understanding of the neu­
+rocircuit alterations invoked by deep brain stimulation. Over the years, various forms of neurophysiological evidence
+have emerged which demonstrate changes to brain activity across spatiotemporal resolutions; from single neuron, to
+local field potential, to brain-wide cortical network effects. Though fruitful, such studies have often led to debate
+about a singular putative mechanism.
+In this Update we aim to produce an integrative account of complementary instead of mutually exclusive neuro­
+physiological effects to derive a generalizable concept of the mechanisms of deep brain stimulation. In particular,
+we offer a critical review of the most common historical competing theories, an updated discussion on recent litera­
+ture from animal and human neurophysiological studies, and a synthesis of synaptic and network effects of deep
+brain stimulation across scales of observation, including micro-, meso- and macroscale circuit alterations.
+
+
+1 Movement Disorder and Neuromodulation Unit, Department of Neurology, Charité - Universitätsmedizin Berlin,
+  Berlin 10117, Germany
+2 Department of Clinical and Computational Neuroscience, Krembil Brain Institute, University Health Network,
+  Toronto M5T 1M8, Canada
+3 Institute of Biomedical Engineering, Institute of Medical Sciences, and CRANIA Neuromodulation Institute,
+  University of Toronto, Toronto M5S 3G9, Canada
+
+Correspondence to: Luka Milosevic
+399 Bathurst St, 11MP301, Toronto, M5T 2S6, Canada
+E-mail: luka.milosevic@mail.utoronto.ca
+
+Keywords: deep brain stimulation; neuromodulation; mechanisms of action; singe neurons; oscillations
+
+
+
+
+                                                                                   insight into the neurophysiological effects of DBS, but the hope to
+Introduction                                                                       find a single mechanism of action has often resulted in competitive
+Deep brain stimulation (DBS) is a neurosurgical treatment that uses                and contradictory claims over the most relevant findings. No unify­
+implanted electrodes and pulsatile electrical stimulation (Fig. 1A) to             ing theory on the causal therapeutic mechanism of DBS has won the
+treat patients with Parkinson’s disease and other neurological and                 consensus of experts, and it is now appreciated that the widespread
+psychiatric disorders. Recent studies have provided significant                    effects are multifactorial.1 In the present Update, we aim to develop
+
+
+Received March 27, 2023. Revised June 04, 2023. Accepted June 28, 2023. Advance access publication July 14, 2023
+© The Author(s) 2023. Published by Oxford University Press on behalf of the Guarantors of Brain.
+This is an Open Access article distributed under the terms of the Creative Commons Attribution License (https://creativecommons.org/licenses/by/4.0/), which per­
+mits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited.
+Spatiotemporal mechanisms of DBS                                                                            BRAIN 2023: 146; 4456–4468            | 4457
+
+
+
+
+Figure 1 Circuit engagements associated with subthalamic deep brain stimulation (STN-DBS). DBS refers to pulsatile electric current applied through
+an implanted electrode.1 Typically, the contact expected to yield best clinical effects is set as the cathode, with the anode either set to the case of the
+implantable pulse generator (monopolar setting) or to another contact of the same electrode (bipolar stimulation).2 (A) In movement disorders, DBS is
+usually only effective when applied at high frequencies, with efficacy gradually increasing from 60 Hz up to or beyond 130–180 Hz.3 Typical pulse
+widths range from 30–200 µs. The pulse shape is rectangular and pseudo-monophasic with an initial square at therapeutic amplitudes of ∼1–5 V or
+0.7–4 mA, followed by a passive charge balancing pulse with a several-fold longer pulse duration and lower amplitude. The total electrical energy de­
+livered (TEED) is a function of the stimulation pulse width, amplitude, frequency and the impedance between the electrode contact and brain tissue.4
+These parameters have significant influences on DBS effects3 by governing the extent of neural tissue engagement. (B) The stimulation activates neur­
+onal structures, producing local and distant effects, which can include ‘orthodromic’ (downstream) and ‘antidromic’ (upstream) activation of afferent
+and efferent neuron projections, as well as ‘invasion’ of axonal architectures (i.e. activation of axonal branches/collaterals). The schematic takes into
+consideration common inputs and outputs of the STN and their collateral axonal branches to demonstrate the widespread effects of DBS. (C) Each plot
+shows the peristimulus spike firing histogram of engaged brain structures, demonstrating that STN-DBS can produce differential responses upstream
+in cortical regions (adapted from Johnson et al.5), as well as mixed responses in downstream structures such as globus pallidus internus (GPi) and ex­
+ternus (GPe) (adapted from Hashimoto et al.6). Single neuron traces of cortical7 (red), GPe8 (blue) and STN8 (yellow) are also depicted from three ana­
+tomical non-human primate tracing studies.
+
+
+a holistic account on the current state of research on the neuro­               primary target for DBS in Parkinson’s disease is the purportedly
+physiological mechanisms of DBS, with a focus on movement disor­                overactive subthalamic nucleus (STN), which exhibits widespread
+ders. To dissect the effects of DBS, we must consider the affected              mono- and polysynaptic connections with distributed cortical and
+circuits to which stimulation is applied. In Parkinson’s disease,               subcortical networks (Fig. 1B). In addition to the modulation of syn­
+loss of dopaminergic innervation leads to an imbalance of activity              aptic connections of the STN, DBS leads to parallel effects in mul­
+of the basal ganglia’s direct and indirect pathways (summarized in              tiple if not all nodes of these networks (Fig. 1C).11 We aim to
+detail within Supplementary Fig. 1),9 producing over-inhibition of              provide an integrative account of complementary, instead of mutu­
+thalamocortical motor networks and a global network state                       ally exclusive, neurophysiological effects to derive a generalizable
+change10 in the cortico-basal-ganglia-thalamo-cortical circuit. The             concept of DBS mechanisms. In particular, we offer a critical review
+4458 | BRAIN 2023: 146; 4456–4468                                                                                      W. -J. Neumann et al.
+
+of the most common competing theories of DBS mechanisms, an               relatively unspecific DBS mechanism, reminiscent of a new appre­
+updated discussion on recent literature from human neurophysio­           ciation of the complexity of electrical stimulation effects on neural
+logical studies, and a synthesis of synaptic and network effects of       circuits. In recent neurophysiological works (detailed in the
+DBS across scales of observation, including micro-, meso- and             ‘Microscale circuit effects’ section), this complexity has been attrib­
+macro-scale circuit alterations.                                          uted to synapse-specific dynamics of short-term synaptic plasti­
+                                                                          city, in that afferent and efferent synapses can have unique
+                                                                          functional properties (e.g. resilient versus vulnerable synaptic
+Common hypotheses on DBS                                                  transmission fidelities). Recent studies have shown that local and
+mechanisms                                                                antidromic firing can be increased in the short-term, but sup­
+                                                                          pressed after longer stimulation periods,5 and it is therefore pos­
+Local suppression                                                         sible that high-frequency DBS cannot chronically sustain the high
+The first studies on the therapeutic effects of electrical stimulation    rate of activation associated with clinically effective stimulation
+with DBS in movement disorders were derived from a case series in         over longer durations.28 This is further supported by in vitro studies
+patients who were undergoing stereotactic ablation of basal ganglia       that have reported that HFS of thalamocortical axons can lead to a
+nuclei. Stereotactic radiofrequency ablation of the globus pallidus       rapid sigmoidal decrease of efferent layer 4 neuron firing through
+internus (GPi) and STN can alleviate motor signs of Parkinson’s dis­      short-term synaptic transmission failure.29
+ease12; a procedure currently being revived through the opportun­
+ity to perform lesions without opening the skull using magnetic           Antidromic activation
+resonance-guided focused ultrasound.13,14 The comparable clinical
+effects of DBS to pallidal and subthalamic lesions in human and           A series of rodent studies has suggested that antidromic activation
+animal studies led to the primary hypothesis that DBS causes re­          of motor cortex may play a particularly important role in producing
+versible functional deafferentation of the neural target popula­          anti-parkinsonian effects in animal models.30–33 Low latency anti­
+tions.15 An early study in patients with Parkinson’s disease              dromic evoked potentials have also been reported in patients using
+showed that intraoperative microinjections of lidocaine (local an­        invasive and non-invasive electrophysiology.34–36 However, the
+aesthetic) or muscimol (GABA agonist) to the STN led to a rapid re­       causal or mechanistic role of antidromic cortical activation in the
+versal of parkinsonian symptoms in parallel with local suppression        clinical effect of DBS has been challenged by an important non-
+of neuronal firing in all three studied patients.16 These acute intrao­   human primate report suggesting that antidromic activation is
+perative effects resembled the subsequent therapeutic effects of          unstable over time, can shift to synaptic depression, and is only
+high-frequency STN-DBS in these patients. Beyond the STN in               present during therapeutically effective STN but not GPi stimula­
+Parkinson’s disease, suppression of local activity was also sug­          tion.5 Given that both STN and GPi DBS are effective for the
+gested as a primary mechanism of DBS in the pallidum and thal­            alleviation of Parkinson’s disease motor signs, these findings are
+amus.17–19 The suppression of somatic firing had been                     difficult to integrate with an important role of antidromic activation
+hypothesized to be mediated by GABAergic activation,20 synaptic           of cortex for the clinical treatment of Parkinson’s disease. Of note,
+depression21 or depolarization blockade.22 The distant conse­             short latency cortical evoked responses have been reported for
+quences of DBS in downstream subcortical nuclei were not easily           GPi-DBS but were attributed to direct stimulation of the corticosp­
+accessible in patients, as neurophysiological recordings in structur­     inal tract instead of specific subcortical pathways, whereas long
+ally connected brain regions would require additional stereotactic        latency cortical evoked responses during GPi-DBS are thought to
+trajectories beyond the therapeutic target. However, in addition          reflect feedforward/downstream basal-ganglia-thalamo-cortical
+to thorough characterizations of the cortical network effects of          network interactions rather than direct antidromic activation of
+DBS in patients (summarized in the ‘Macroscale circuit effects’ sec­      cortico-basal ganglia fibres.5,34 Furthermore, one study showed
+tion), a large body of computational modelling and preclinical ani­       that the effects of direct motor cortical stimulation have elicited
+mal work has focused on potential distant neural modulation by            improvements in the motor signs of patients with essential tremor,
+orthodromic and antidromic axonal activations.23,24 These works           but not Parkinson’s disease,37 while other studies have shown only
+have often found more complex DBS effects than expected                   modest symptom alleviation in patients with Parkinson’s disease38
+(Fig. 1C), which has cast doubt on the local suppression hypothesis.      or transient beneficial effects in parkinsonian non-human primate
+                                                                          models.39
+
+Information lesion
+                                                                          Action potential collision and axonal invasion
+In non-human primates rendered parkinsonian by treatment with
+1-methyl-4-phenyl-1,2,3,6-tetrahydropyridine (MPTP), short trains         It must also be considered that axonal projections may be polysy­
+of subthalamic high-frequency stimulation (HFS) were reported to          naptic, with axonal branches terminating at different neural tar­
+increase pallidal firing, which was incompatible with the hypoth­         gets. Thus, in addition to ‘jamming’ incoming information
+esis that STN-DBS suppresses all synaptic connections (in this            through action potential collisions (via antidromic backpropaga­
+case, glutamatergic excitation of the pallidum).6 Similarly, short        tion of action potentials towards the soma),24 axonal activations
+durations of pallidal DBS lead to decreased firing of thalamic neu­       may also ‘invade’ axonal branches of afferent and efferent projec­
+rons,25 as opposed to the expected inactivation of GABAergic palli­       tions, leading to neurotransmitter release at various terminal loca­
+dothalamic projections. While DBS appeared to reduce somatic              tions (summarized in Fig. 1B).23 For example, an STN-DBS pulse can
+firing (local suppression hypothesis), these studies suggest that         produce an action potential upon a cortico-subthalamic fibre,
+the efferent axons and their synaptic terminals could in fact be re­      which can antidromically backpropagate along the axon towards
+liably activated by DBS pulses. This led to the decoupling of axon        the soma of cortical neuron ‘A’; but, if the axon of ‘A’ also branches
+and soma hypothesis,26 and an adaptation of the local suppression         off to innervate cortical neuron ‘B’ (i.e. polysynaptic connection),
+hypothesis: the idea of an informational lesion27—an accepted yet         then the A-B synapse can be activated via ‘invasion’ of the axonal
+Spatiotemporal mechanisms of DBS                                                                   BRAIN 2023: 146; 4456–4468          | 4459
+
+collateral projection (see Fig. 1B inset for schematic).23 This inva­    highlighting the most recent mechanistic insights from the litera­
+sion principle can also apply to subcortical circuitry leading to        ture across various spatiotemporal resolutions.
+more complex effects, whereby STN-DBS pulses may simultan­
+eously excite GPi or the substantia nigra pars reticulata (SNr; by
+way of STN efferent axonal activations) and inhibit GPi or SNr [by       Microscale circuit effects: modulation of
+way of invading the axon collaterals of afferents from the globus
+pallidus externus (GPe)].6,40
+                                                                         single neuron and synaptic activity
+                                                                         Building upon previous modelling studies,28,48–50 an integrated
+                                                                         computational framework51 has recently been developed that is
+Mixed insights from optogenetics studies
+                                                                         capable of reproducing experimental results of stimulation induced
+Optogenetics is a powerful neuroscientific tool that allows for the      local neuronal firing rate changes in human STN,52,53 SNr53 (or
+manipulation of neuronal circuits in vivo with unprecedented,            GPi54), and thalamic ventral intermediate nucleus (Vim)55 at vari­
+millisecond precision, enabling mechanistic studies of potential         ous stimulation frequencies. The framework suggests that individ­
+DBS effects in rodents.41 In 2009, Gradinaru et al.30 published a sem­   ual DBS pulses simultaneously activate the presynaptic terminals
+inal report that optogenetic activation of cortico-subthalamic hy­       of all afferent axons terminating49 at the target structure. The con­
+perdirect pathway axons in the acute 6-OHDA mouse model of               sequent neuronal responses are thereby dependent upon the rela­
+Parkinson’s disease was necessary for therapeutic benefit, while         tive distributions of excitatory and inhibitory afferent inputs
+direct inhibition of local STN neurons was not. However, stimula­        converging50 upon the target site (Fig. 2A). These neuronal re­
+tion of the hyperdirect pathway was not entirely dissociated from        sponses to individual stimuli are furthermore embedded within a
+the inhibition/suppression of STN firing (as seen in their fifth fig­    model of short-term synaptic plasticity,48 which is used to modu­
+ure). This may have been a result of activating both excitatory hy­      late the synaptic transmission fidelity of successive afferent input
+perdirect and inhibitory indirect pathway projections, or perhaps        activations depending on the stimulation frequency. Therefore,
+a result of inactivation/depression of excitatory cortico-               this integrative model takes both neuroanatomical (local microcir­
+subthalamic inputs. Nevertheless, more refined channel rhodop­           cuitry) and neurophysiological (short-term plasticity) properties
+sins (i.e. optogenetics 3.0, referred to as the ‘dual virus approach’    into consideration to reproduce site-specific and frequency-
+that targets both projection source and target, with the opsin only      dependent responses to DBS.
+expressed in neurons that get both) supported the therapeutic                In targets with predominantly glutamatergic excitatory inputs
+role of hyperdirect pathway axons in a mouse model of                    (e.g. cortico- and rubro-thalamic projections to Vim), individual
+Parkinson’s disease.31 However, more elaborate behavioural ana­          stimuli lead to a net postsynaptic depolarization and resultant
+lyses (spontaneous behavioural tests instead of amphetamine pro­         stimulus-locked generation of action potentials.51,55 In stimulation
+voked) have also shown a direct beneficial effect of optogenetic         targets with predominantly GABAergic inputs (e.g. striatal projec­
+inhibition or inactivation of the STN42,43 using the same opsin as       tions to GPi and SNr), individual DBS pulses lead to a net hyperpo­
+Gradinaru et al.30 Similarly, next generation ultrafast opsins (i.e.     larization and stimulus-locked inhibition of target neuron
+Chronos) have provided evidence that optogenetic stimulation of          firing.53,57 STN has a more balanced distribution of glutamatergic
+STN neurons that resulted in bidirectional neuronal responses            (i.e. hyperdirect pathway) and GABAergic (i.e. indirect pathway) in­
+(53% of STN neurons showed increases in firing rate, while 32%           puts, leading to weaker net inhibitory responses compared to SNr
+showed decreases) could in fact also improve parkinsonian symp­          or GPi.53,58 These single-pulse phenomena (evoked fields and asso­
+toms in rodents.44 Moreover, optogenetic interventions in GPe have       ciated single neuron responses) are visualized in Fig. 2B. In the case
+produced long-lasting motor recovery in parkinsonian rodents,            of HFS, empirical data suggest that STN, SNr and GPi neurons be­
+achieved by stimulating a subpopulation of parvalbumin-expressing        come suppressed, while Vim neurons are initially excited, followed
+GPe cells that preferably project to the STN.45,46 These studies have    by a rapid attenuation of neuronal firing (Fig. 2C). In the model, this
+therefore provided evidence that activation of indirect pathway          was accounted for by modulating the strength of consecutive post­
+pallido-subthalamic projections may also hold therapeutic potential.     synaptic activations in a frequency-dependent manner; which is
+                                                                         the basis of short-term synaptic plasticity (i.e. transient/reversible
+                                                                         changes to synaptic efficacy during repetitive stimuli). Namely,
+Conclusion: complex and multifaceted
+                                                                         synaptic depression may explain the loss of synaptic efficacy dur­
+Ultimately, the mechanisms elicited by DBS have historically been        ing HFS, which can be caused by the depletion of presynaptic
+considered as complex and varied; with effects that are parameter-       neurotransmitter vesicles, altered vesicle release dynamics, and/
+dependent, site-specific, synapse-specific and likely more. Future       or reduction in presynaptic calcium.59
+studies investigating neural effects over longer time periods, with          However, while the model could simulate the suppression of
+simultaneous recordings from multiple structurally and/or func­          neuronal firing by non-selective synaptic depression of afferent cur­
+tionally connected regions, together with related clinical informa­      rents (both excitatory and inhibitory), it has recently been suggested
+tion, will have significant impact on our understanding on               that the modulations of short-term synaptic dynamics differ across
+underlying brain network interactions.47 While optogenetics has          synapse types. In naïve rodent STN slices, DBS-like extracellular
+provided a powerful means of circuit-level interrogation of the me­      HFS rapidly and reliably depressed excitatory cortico-subthalamic
+chanisms of DBS, the results of such studies have similarly pro­         synaptic currents; however, inhibitory GPe-STN synaptic transmis­
+duced mixed insights, and it is moreover important to consider           sion efficacy was maintained over time, after an initial weakening.60
+that these studies are putatively limited in translational value         This resiliency of inhibitory synaptic transmission to STN has now
+due to the level of invasiveness and manipulation required for fur­      also been confirmed in patients with Parkinson’s disease.58
+ther validation in humans. As such, the remainder of this article is     Importantly, this new empirical work emphasizes that differences
+focused on recent mechanistic insights gained from intraoperative        in susceptibility to synaptic depression are not neurotransmitter-
+and perioperative neurophysiological studies in DBS patients,            specific, but are in fact synapse-specific. While inhibitory synaptic
+4460 | BRAIN 2023: 146; 4456–4468                                                                                            W. -J. Neumann et al.
+
+
+
+
+Figure 2 Microscale effects of DBS. The local neuronal effects of deep brain stimulation (DBS) have been proposed to be governed by activation of af­
+ferent inputs. (A) In the thalamic ventral intermediate nucleus (Vim) the vast majority of inputs are glutamatergic from the dentatorubrothalamic tract,
+with some GABAergic afferents from the thalamic reticular nucleus. In the subthalamic nucleus (STN), there are similar proportions of GABAergic (from
+globus pallidus externus, GPe) and glutamatergic (from cortex) inputs, somewhat favouring inhibitory inputs in number.56 In both globus pallidus in­
+ternus (GPi) and substantia nigra parts reticulata (SNr), GABAergic projections (mainly from striatum and to a lesser degree from GPe) outweigh glu­
+tamatergic projections from STN. Pie charts depict estimated distributions of excitatory (E) versus inhibitory (I) afferent inputs. (B) The balance of
+GABAergic versus glutamatergic afferent fibres activated defines the net response to single pulses of stimulation, producing strong excitations in
+Vim, weak net inhibitory responses in STN, and strong inhibitions in GPi and SNr (adapted from Milosevic et al.51,53,57). (C) In Vim, high-frequency
+stimulation (HFS) produces an initial increase of firing, followed by a suppression of firing, which is stronger when higher stimulation frequencies
+are applied; hypothesized to be the result of synaptic depression (adapted from Milosevic et al.55; dashed time series is from n = 1 previously unpub­
+lished data demonstrating the persistence of neuronal suppression over time). HFS produces sustained inhibition of neuronal firing in STN due to per­
+sistent activation of GABAergic inputs, but incomplete neuronal suppression in SNr and GPi (n = 1; previously unpublished data depicted by dashed
+time series) where a return of neuronal firing can be observed over several seconds due to the depression of GABAergic inputs from striatum (STN
+and SNr figures adapted from Steiner et al.58). SNc = substantia nigra pars compacta.
+Spatiotemporal mechanisms of DBS                                                                    BRAIN 2023: 146; 4456–4468          | 4461
+
+transmission to STN (mediated by GPe) was partially sustained during      locked single-neuron burst firing patterns in the STN occurring at
+subthalamic HFS, inhibitory synaptic transmission to SNr (mediated        the same frequency,84 and similarly to LFP oscillations, pause burst
+primarily by striatum) was rapidly depressed by SNr HFS.58 This po­       firing patterns in the alpha and beta frequency bands correlate with
+tent depression of inhibitory synaptic fidelity during SNr HFS resulted   Parkinson’s disease motor sign severity.85 Therefore, suppression
+in the return of spontaneous neuronal firing in SNr after several sec­    of beta rhythmicity and exaggerated neuronal firing can go hand
+onds, compared to sustained inhibition as seen in STN with STN HFS        in hand, given that these phenomena are likely to be manifesta­
+(Fig. 2C).                                                                tions of one another at different spatiotemporal resolutions.84
+    Ultimately, it can now be empirically supported that the effects      While the exact relevance of oscillatory phenomena nevertheless
+of DBS are anatomy-dependent and synapse-specific; adding expli­          remains disputed,68,82 the presence of beta activity in Parkinson’s
+cit mechanistic details to the otherwise unspecific claims of com­        disease and its suppression through DBS is a highly robust and
+plexity. When taking each of these nuances into consideration             reproducible finding. The most recent evidence suggests that pro­
+(which synapses are engaged and how they behave), it is possible          longed episodes of elevated beta LFP power (> 900 ms) are particu­
+to conceive a generalizable theory as to how DBS may modulate             larly detrimental to the parkinsonian state.70,86–88 Conversely,
+neuronal activity. Mechanistic studies demonstrating the target-          antiparkinsonian medications and adaptive closed-loop DBS were
+and circuit-specific effects of DBS51,61 furthermore emphasize            retrospectively shown to shorten prolonged beta episodes, imply­
+that it may be possible to achieve more selective control of neural       ing that short duration beta episodes may be of a more physiologic­
+activity than anticipated with extracellular stimulation,62,63 par­       al nature.86,89
+ticularly when strategically leveraging neurophysiological readouts           In addition to the suppression of pathological beta activity, a no­
+to titrate stimulation location and parameter settings.64 Therefore,      vel stimulation-evoked LFP marker of DBS response has recently
+such functional readouts should be considered in the development          been described, termed evoked resonant neural activity (ERNA).90–
+                                                                          92
+of new and emerging DBS paradigms and indications.                           After each DBS pulse, a transient evoked phenomenon is visible,
+    Lastly, while the local neuronal suppression in STN and Vim has       which typically contains two positive-going peaks in the 7 ms inter­
+been suggested to be associated with clinical symptom alleviation         stimulus window during 130 Hz stimulation, and remains observ­
+in patients with movement disorders,52,55 these studies do not            able for a short time period after cessation of stimulation
+rule out the clinical importance of broader network-level effects.        [Fig. 3B(i)].94 ERNA has been postulated to be the result of entraining
+To this end, from a mechanistic standpoint, the aforementioned            the inhibitory-excitatory reciprocal connections between GPe and
+theoretical framework can be expanded upon to capture the simul­          STN.95 An ERNA substrate has now also been detected in the con­
+taneously evoked (synapse-specific) up- and downstream re­                text of intraoperative microelectrode recordings, and it has been
+sponses at structurally connected targets (Fig. 1B and C).                confirmed that each peak of the interstimulus waveform is asso­
+However, the inevitable causality of local versus distal effects on       ciated with temporally-locked neuronal inhibition [Fig. 3B(ii)],
+clinical benefit is an area of continued research interest. The fol­      with ERNA magnitude being positively correlated with the potency
+lowing sections focus on mechanistic insights beyond the effects          of inhibition.93,96 Mechanistically, it is hypothesized that the first
+elicited upon stimulation target neurons.                                 ERNA peak is the result of a net inhibitory response from activating
+                                                                          the afferent inputs to STN, while the resonant peak is the result of
+                                                                          concurrent activation of STN efferents, which excite GPe, resulting
+Mesoscale circuit effects: modulation of                                  in feedback inhibition to STN [Fig. 3B(ii)].93,96 While this theory is
+                                                                          dependent upon the unique ability of GPe afferent synapses to
+oscillatory local field potential activity                                maintain a high rate of activation,58 the same would need to be
+Beyond firing patterns, access to intracranial field potentials from      true for STN efferent synapses. To this end, it has indeed been
+DBS electrodes has defined research into disease and symptom              shown that STN HFS results in persistent upregulation of GPe fir­
+specific pathological oscillatory patterns.65 The local field potential   ing, albeit decaying over a slow time course.6 Connecting insights,
+(LFP) represents a summation of presynaptic transmembrane volt­           it can now be confirmed that patterned interstimulus inhibitions
+age fluctuations, ion flux and local action potential firing.66 Thus,     of neuronal activity in STN (neuronal ERNA substrate in STN dur­
+with LFP, synchronized neural population activity can be recorded         ing HFS) [Fig. 3B(ii)] occur at almost exactly the same time as pat­
+that likely reflects pre- and postsynaptic currents from thousands        terned interstimulus excitations of neuronal activity in GPe
+of neurons surrounding the DBS electrode directly in the target           (depicted in Fig. 1C)6; further corroborating the reciprocal mesocir­
+region. Increased oscillatory power in the beta frequency band            cuit activation hypothesis. Moreover, through the use of a recently
+(13–35 Hz) was demonstrated to be related to the parkinsonian             published expert anatomist-derived subcortical fibre atlas,97 it
+hypodopaminergic state,67 both in the STN and GPi,68 and the amp­         was shown that the ERNA hot spot in STN is in fact associated pre­
+litude of these oscillations was shown to be correlated with parkin­      dominantly with the activation of reciprocal fibres between STN
+sonian motor sign severity in the dopaminergic OFF state.69,70            and GPe.96
+    Importantly, DBS was demonstrated to cause a local suppres­               Most recently, observations of ERNA have also been recorded by
+sion of this pathological activity pattern71–78 (Fig. 3B), with the       macrocontacts of the DBS electrode during GPi-DBS,98 and these ob­
+amount of beta suppression correlating with the magnitude of              servations have also been confirmed intraoperatively [Fig. 3B(iii)].93
+symptom alleviation.79 These observations have therefore given            Since various studies have shown that ERNA amplitude scales with
+rise to the hypothesis that DBS acts through modulation of oscilla­       therapeutic benefit of both STN-64,92 and GPi-DBS,98 ERNA may re­
+tory patterns.76,80 While this has led to debate regarding the import­    present a convergent subcortical mechanistic signature, orchestrated
+ance of single neuron ‘firing rate’ versus aggregate level LFP            by persistent GPe-mediated inhibition, that is able to explain the com­
+‘oscillation’ changes9,81,82 as putative physiological signatures of      mon efficacy of these two interventions. Given that hyperdirect path­
+Parkinson’s disease and DBS, cumulative evidence in fact supports         way activation is not able to explain the common efficacy,5 ERNA may
+a complementary and integrative nature of these two phenom­               therefore impose a downstream influence on the greater
+ena.83 In particular, ongoing LFP oscillations are encoded by phase-      basal-ganglia-thalamo-cortical network, which could explain the
+4462 | BRAIN 2023: 146; 4456–4468                                                                                             W. -J. Neumann et al.
+
+
+
+
+Figure 3 Mesoscale effects of DBS. Deep brain stimulation (DBS) can simultaneously suppress pathological oscillatory beta (13–35 Hz) activity in
+Parkinson’s disease and give rise to high-frequency evoked resonant neural activity (ERNA). (A) Time-frequency plot demonstrates changes to subtha­
+lamic beta oscillatory power with increasing DBS stimulation amplitude in an LFP recording from a parkinsonian patient OFF medication (adapted from
+Feldmann et al.78). (B) The ERNA waveform is observable (i) after each high-frequency pulse (blue downward arrows in waveform panel during stimu­
+lation; adapted from Sinclair et al.92) with decaying resonance even after stimulation is switched off (green downward arrows after stimulation). In tan­
+dem with the suppression of beta activity at higher stimulation intensities, the amplitude of ERNA increases (adapted from Sinclair et al.90). The
+schematics below demonstrate intraoperative ERNA waveforms and peristimulus spike firing histograms in both (ii) subthalamic nucleus (STN) and
+(iii) globus pallidus internus (GPi) during 100 Hz stimulation, as well as hypothesized circuit activation profiles that would explain the emergence of
+ERNA (adapted from Steiner et al.93). In STN, each stimulus would produce a net inhibitory response in STN, as well as concurrent excitation of globus
+pallidus externus (GPe), resulting in feedback inhibition in STN. The same is hypothesized for GPi ERNA via invasion/activation of collateral projections
+and axons of passage of the reciprocal STN-GPe connectivity. Thus, each of the ERNA waveform peaks is likely a substrate of inhibitory input via GPe.
+An important note is that the spike firing patterns in STN are only achieved when using subthreshold stimulation amplitudes, which do not cause com­
+plete suppression of neuronal firing. High-frequency stimulation (HFS) at clinically relevant intensities would result in the complete suppression of
+firing and the elicitation of large amplitude ERNA waveforms. In GPi, patterned firing seems to manifest when spike firing re-emerges (as shown in
+Fig. 2) after depression of striatal GABAergic inputs, likely unmasking inhibitory-excitatory GPe-STN competition, which could give rise to the mixed
+response as depicted in Fig. 1C. This phenomenon is currently under further investigation by the authors. The inset in the top right summarizes that
+stimulation intensity differentially modulates beta versus ERNA amplitudes, and furthermore emphasizes an additional potential use of ERNA as a
+closed-loop marker during NREM sleep, during which beta oscillations are attenuated.
+
+
+common cortical functional connectomic anti-correlation (a slower              these aggregate-level LFP markers therefore seem to imply that
+time course functional MRI-based readout), which co-localizes the              DBS replaces spontaneous pathological activity (i.e. increased
+predictive efficacy of STN- and GPi-DBS to the M1 region.99                    beta oscillatory power) with evoked high-frequency activity by
+    Intriguingly, ERNA amplitudes have been found to correlate                 way of increased efficacy of GPe-mediated inhibition (which is
+with amplitudes of beta oscillations,90 and the emergence of each              otherwise pathologically downregulated in Parkinson’s disease).
+of these signatures has been attributed to the same mesocircuit                Both of these mesoscale signatures are presently under investiga­
+network.95,96,100–102 From an integrative standpoint, studies of               tion in closed-loop DBS applications.103,104
+Spatiotemporal mechanisms of DBS                                                                               BRAIN 2023: 146; 4456–4468            | 4463
+
+
+
+
+Figure 4 Macroscale effects of DBS. In addition to neurophysiological circuit alterations at the local level (i.e. subcortical functional changes at target
+structures), deep brain stimulation (DBS) has an influence upon whole-brain interregional networks. The modulation of a single node of a circuit will
+likely lead to state changes in all circuit connections. This could, in part, be achieved by local axonal activations (bottom left), as evidenced by (A) short-
+latency stimulation-induced evoked potentials in the cortex128,129; wherein the strength of network engagement (evoked potential amplitude) may be
+reflective of the achieved anti-parkinsonian efficacy with therapeutic settings (adapted from Bahners et al.128). Moreover, in addition to the suppression
+of subcortical beta oscillations, (B) DBS can suppress beta power across the sensorimotor cortical network (adapted from Abbasi et al.109), as well as (C)
+attenuate cortico-cortical beta-gamma coupling (adapted from De Hemptinne et al.112), which is otherwise pathologically elevated in Parkinson’s dis­
+ease.110 Despite such findings, direct antidromic activation of cortical circuitry is suggested not be able to corroborate the clinical efficacy of GPi-DBS.5
+(D) As such, the spatial overlap in functional connectivity, which co-localizes the predictive efficacy of STN- and GPi-DBS to the M1 region may be rep­
+resentative of a slower timescale (functional MRI-based) functional readout of a downstream basal-ganglia-thalamo-cortical network effect, which
+could be generated by a convergent GPe-mediated subcortical network activation profile achieved by STN- and GPi-DBS (i.e. ERNA). GPe = globus pal­
+lidus externus; GPi = globus pallidus internus; STN = subthalamic nucleus.
+
+
+
+
+Macroscale circuit effects: modulation of                                         (ECoG) have independently replicated findings that cortical beta is
+                                                                                  modulated by STN-DBS in Parkinson’s disease.79,108,109 Beyond beta
+distributed neurophysiological networks                                           suppression, it was further shown that more complex neurophysio­
+In addition to intracranial recordings from subcortical structures, it is         logical phenomena can be observed in response to DBS. Namely,
+possible to record broader network level cortical activity during                 ECoG and EEG studies have shown that cortical beta-gamma cross-
+DBS (Fig. 4).105,106 To this end, it was shown that the suppression of            frequency coupling was increased in Parkinson’s disease110,111 and
+beta activity can be observed not only in target nuclei (STN or GPi),             suppressed with DBS.112 It was moreover reported that cortical broad­
+but also in distant cortical sensorimotor networks.107 Several studies            band activity was coupled to specific phases of the beta oscilla­
+using EEG, magnetoencephalography (MEG) and electrocorticography                  tion.110,112 Later, some of these observations were explained by a
+4464 | BRAIN 2023: 146; 4456–4468                                                                                      W. -J. Neumann et al.
+
+change of waveform shape of beta itself. Cycle-by-cycle waveform in­         Conclusion
+vestigations113,114 have revealed that particularly sharp signal deflec­
+tions are shorter and therefore less likely to nest broadband signals        The effects of DBS are dependent upon the therapeutic target and
+during DBS. Thus, increased sharpness asymmetry of trough and                the specific synapses that are present within the vicinity of the
+peak of the beta oscillation in Parkinson’s disease was shown to be          electrical field that are engaged by the stimulation pulses. While
+smoothed during therapeutic DBS.115,116 In fact, specifically sharp sin­     the distribution of GABAergic versus glutamatergic afferent in­
+gle cycle discharges in the beta oscillation could be isolated in the par­   puts may determine the net neuronal response to individual
+kinsonian motor cortex and associated with the hypodopaminergic              pulses (i.e. selective excitation versus inhibition),51 the unique
+OFF state.116,117 More recently, altered cross-frequency coupling in         functional properties of engaged synapses seem to govern the re­
+patients with Parkinson’s disease undergoing STN-DBS was also de­            sponse at high frequencies of stimulation58; underscoring the im­
+scribed using ECoG and EEG.118 Namely, coupling of finely tuned cor­         portance of understanding the short-term synaptic dynamics of
+tical gamma to the stimulation frequency and lower harmonics can             engaged synapses on a structure-by-structure basis. In the case
+be observed during DBS and may reveal underlying mechanisms of               of STN-DBS, HFS seems to depress/abolish the cortical excitatory
+symptom alleviation.118,119 These effects have been hypothesized to          influence on STN, while promoting/persistently eliciting
+be the result of a dynamic entrainment mechanism of neural popula­           GPe-mediated inhibition.58,60 The suppression of cortical inputs
+tions to the stimulation frequency described in regions of a cortical        could explain aggregate-level observations of the attenuation of
+(motor cortex, supplementary motor area, premotor cortex) and sub­           pathological beta frequency oscillations, which are hypothesized
+cortical (STN and cerebellum) network. In particular, implementation         to be dependent on cortical influence of the STN via the hyperdir­
+of a Wilson-Cowan model (commonly used mean field computational              ect pathway projections.124 Conversely, the persistent suprahar­
+model with local reciprocal excitatory-inhibitory network connectiv­         monic entrainment of GPe-mediated inhibition (i.e. ERNA) may
+ity) was able to be replicate these gamma entrainment responses120;          prove to be an important therapeutic mechanism, which seems
+however, empirical neuronal/synaptic underpinnings are yet to be es­         to be able to explain the common clinical efficacy of STN- and
+tablished, though these observations are perhaps reminiscent of the          GPi-DBS64,93,98; which cannot otherwise be explained by anti­
+mechanistic underpinnings of ERNA (described earlier).                       dromic activation of the hyperdirect pathway.5 To this end, it is
+    Network-level studies demonstrate that modulation of one                 perhaps subcortical alterations that give rise to broader, down­
+node in the circuit can lead to distinct neurophysiological altera­          stream basal-ganglia-thalamo-cortical network level changes,
+tions recorded in other nodes of the same network. But beyond                which functionally co-localize the predictive efficacy of STN-
+local subcortical or cortical changes in oscillatory activity,               and GPi-DBS to the M1 region (a functional MRI-based slow time­
+neurophysiology also allows for the investigation of functional              scale functional readout).99 Meanwhile, invasion of the cortico-
+oscillatory connectivity.121–123 The most comprehensive account              subthalamic hyperdirect pathway may explain faster timescale
+of this was reported in a study in subthalamic DBS for                       functional readouts such as the disruption of excessive oscilla­
+Parkinson’s disease using combined MEG-LFP recordings.79                     tory power124 and cortico-cortical coupling79,112 achieved by
+During DBS, it was shown that beta-band coherence (a measure                 STN-DBS in Parkinson’s disease.
+of frequency specific correlation of phase and power between
+two recordings) can be suppressed by DBS, an effect that loca­
+lizes to the medial frontal cortex overlapping with the supple­              Funding
+mentary motor area (SMA).79 In addition to synchrony,                        This project has been made possible with the financial support
+oscillatory networks can also be investigated for directionality             of Health Canada, through the Canada Brain Research Fund, an
+of information flow, e.g. using Granger causality-based metrics.             innovative    partnership    between      the   Government    of
+In patients with Parkinson’s disease, subthalamic beta activity              Canada (through Health Canada) and Brain Canada, and of the
+is hypothesized to be driven by cortex. The most recent multi-               Azrieli Foundation (L.M.); Natural Sciences and Engineering
+modal work124 (combining MEG, LFP and computational model­                   Council (NSERC) RGPIN-2022-05181 (L.M.); European Union
+ling) suggests that cortical high-frequency beta oscillations                (ERC, ReinforceBG) project 101077060 (W.J.N.); Deutsche
+(20–35 Hz) are propagated to STN, where they are subsequently                Forschungsgemeinschaft (DFG, German Research Foundation)
+converted to the more pathological low-frequency (13–20 Hz)                  Project-ID    424778381—TRR       295    (W.J.N.   and   .L.AS.);
+rhythm125,126 by the reciprocal connectivity of the STN-GPe net­             Bundesministerium für Bildung und Forschung (BMBF) project
+work; a phenomenon that may be exacerbated in the hypodopa­                  FKZ01GQ1802 (W.J.N.); Junior Clinician Scientist Program of the
+minergic state.110,123 Importantly, while DBS modulates                      Berlin Institute of Health (L.A.S.); Hertie Foundation P1230041
+synchrony between cortex and STN, it does not change direc­                  (L.A.S.).
+tionality of this network that follows the neuroanatomical/axon­
+al orientation of the hyperdirect pathway.79,124
+    Finally, through recent functional connectomic works (investi­           Competing interests
+gation of functional MRI-based signatures of circuit activation),
+                                                                             W.J.N. and L.M. have received honoraria for talks unrelated to this
+widespread changes to brain circuitry have been shown to con­
+                                                                             manuscript from Medtronic, which is a manufacturer of deep brain
+verge on a common network that can be remarkably predictive of
+                                                                             stimulation devices. L.M. has intellectual property related to some
+therapeutic success; with a particular emphasis on the functional
+                                                                             of the previously published content within this work (Pub Num:
+anticorrelation between subcortical targets (STN and GPi) and pri­
+                                                                             US20220152396A1).
+mary motor cortex.99,127 Achievement of this optimal network pro­
+file can in fact result in the restoration of neurocircuit function that
+closely resembles that of age-matched healthy controls,11 which
+represents the ultimate goal of DBS as a neuromodulatory
+                                                                             Supplementary material
+intervention.                                                                Supplementary material is available at Brain online.
+Spatiotemporal mechanisms of DBS                                                                     BRAIN 2023: 146; 4456–4468         | 4465
+
+
+References                                                                      globus pallidus and substantia nigra. Exp Brain Res. 2010;205:
+                                                                                251-261.
+1.    Krauss JK, Lipsman N, Aziz T, et al. Technology of deep brain       21.   Iremonger KJ, Anderson TR, Hu B, Kiss ZHT. Cellular mechan­
+      stimulation: Current status and future directions. Nat Rev                isms preventing sustained activation of cortex during subcor­
+      Neurol. 2021;17:75-87.                                                    tical high-frequency stimulation. J Neurophysiol. 2006;96:
+2.    Brocker DT, Grill WM. Chapter 1 - Principles of electrical stimu­         613-621.
+      lation of neural tissue. In: Lozano AM, Hallett M, eds. Handbook    22.   Beurrier C, Bioulac B, Audin J, Hammond C. High-Frequency
+      of clinical neurology. Elsevier; 2013:3-18.                               stimulation produces a transient blockade of voltage-gated
+3.    Benabid AL, Pollak P, Hoffmann D, et al. Long-term suppression            currents in subthalamic neurons. J Neurophysiol. 2001;85:
+      of tremor by chronic stimulation of the ventral intermediate              1351-1356.
+      thalamic nucleus. Lancet. 1991;337:403-406.                         23.   Anderson RW, Farokhniaee A, Gunalan K, Howell B, McIntyre
+4.    Koss AM, Alterman RL, Tagliati M, Shils JL. Calculating total             CC. Action potential initiation, propagation, and cortical inva­
+      electrical energy delivered by deep brain stimulation systems.            sion in the hyperdirect pathway during subthalamic deep
+      Ann Neurol. 2005;58:168-168.                                              brain stimulation. Brain Stimul. 2018;11:1140-1150.
+5.    Johnson LA, Wang J, Nebeck SD, Zhang J, Johnson MD, Vitek JL.       24.   McIntyre CC, Hahn PJ. Network perspectives on the mechan­
+      Direct activation of primary motor Cortex during subthalamic              isms of deep brain stimulation. Neurobiol Dis. 2010;38:329-337.
+      but not pallidal deep brain stimulation. J Neurosci. 2020;40:       25.   Anderson ME, Postupna N, Ruffo M. Effects of high-frequency
+      2166-2177.                                                                stimulation in the internal globus pallidus on the activity of
+6.    Hashimoto T, Elder CM, Okun MS, Patrick SK, Vitek JL.                     thalamic neurons in the awake monkey. J Neurophysiol. 2003;
+      Stimulation of the subthalamic nucleus changes the firing pat­            89:1150-1160.
+      tern of pallidal neurons. J Neurosci. 2003;23:1916-1923.            26.   McIntyre CC, Savasta M, Kerkerian-Le Goff L, Vitek JL. Uncovering
+7.    Coudé D, Parent A, Parent M. Single-axon tracing of the corti­            the mechanism(s) of action of deep brain stimulation: Activation,
+      cosubthalamic hyperdirect pathway in primates. Brain Struct               inhibition, or both. Clin Neurophysiol. 2004;115:1239-1248.
+      Funct. 2018;223:3959-3973.                                          27.   Grill WM, Snyder AN, Miocinovic S. Deep brain stimulation cre­
+8.    Sato F, Parent M, Levesque M, Parent A. Axonal branching pat­             ates an informational lesion of the stimulated nucleus.
+      tern of neurons of the subthalamic nucleus in primates. J Comp            Neuroreport. 2004;15:1137-1140.
+      Neurol. 2000;424.                                                   28.   Rosenbaum R, Zimnik A, Zheng F, et al. Axonal and synaptic
+9.    Wichmann T, DeLong MR. Functional and pathophysiological                  failure suppress the transfer of firing rate oscillations, syn­
+      models of the basal ganglia. Curr Opin Neurobiol. 1996;6:751-758.         chrony and information during high frequency deep brain
+10.   Kim J, Criaud M, Cho SS, et al. Abnormal intrinsic brain func­            stimulation. Neurobiol Dis. 2014;62:86-99.
+      tional network dynamics in Parkinson’s disease. Brain. 2017;        29.   Urbano FJ, Leznik E, Llinás RR. Cortical activation patterns
+      140:2955-2967.                                                            evoked by afferent axons stimuli at different frequencies: An
+11.   Horn A, Wenzel G, Irmen F, et al. Deep brain stimulation in­              in vitro voltage-sensitive dye imaging study. Thalamus Relat
+      duced normalization of the human functional connectome in                 Syst. 2002;1:371-378.
+      Parkinson’s disease. Brain. 2019;142:3129-3143.                     30.   Gradinaru V, Mogri M, Thompson KR, Henderson JM,
+12.   Alvarez L, Macias R, Pavón N, et al. Therapeutic efficacy of uni­         Deisseroth K. Optical deconstruction of parkinsonian neural
+      lateral subthalamotomy in Parkinson’s disease: Results in 89              circuitry. Science. 2009;324:354-359.
+      patients followed for up to 36 months. J Neurol Neurosurg           31.   Sanders TH, Jaeger D. Optogenetic stimulation of cortico-
+      Psychiatry. 2009;80:979-985.                                              subthalamic projections is sufficient to ameliorate bradykine­
+13.   Rodriguez-Rojas R, Pineda-Pardo JA, Martinez-Fernandez R,                 sia in 6-ohda lesioned mice. Neurobiol Dis. 2016;95:225-237.
+      et al. Functional impact of subthalamotomy by magnetic              32.   Li S, Arbuthnott GW, Jutras MJ, Goldberg JA, Jaeger D. Resonant
+      resonance-guided focused ultrasound in Parkinson’s disease:               antidromic cortical circuit activation as a consequence of
+      A hybrid PET/MR study of resting-state brain metabolism. Eur              high-frequency subthalamic deep-brain stimulation. J
+      J Nucl Med Mol Imaging. 2020;47:425-436.                                  Neurophysiol. 2007;98:3525-3537.
+14.   Martínez-Fernández R, Máñez-Miró JU, Rodríguez-Rojas R,             33.   Li Q, Ke Y, Chan DCW, et al. Therapeutic deep brain stimulation
+      et al. Randomized trial of focused ultrasound subthalamotomy              in parkinsonian rats directly influences motor Cortex. Neuron.
+      for Parkinson’s disease. N Engl J Med. 2020;383:2501-2513.                2012;76:1030-1041.
+15.   Benazzouz A, Hallett M. Mechanism of action of deep brain           34.   Miocinovic S, de Hemptinne C, Chen W, et al. Cortical potentials
+      stimulation. Neurology. 2000;55(12 Suppl 6):S13-S16.                      evoked by subthalamic stimulation demonstrate a short latency
+16.   Levy R, Lang AE, Dostrovsky JO, et al. Lidocaine and muscimol             hyperdirect pathway in humans. J Neurosci. 2018;38:9129-9141.
+      microinjections in subthalamic nucleus reverse parkinsonian         35.   Chen W, de Hemptinne C, Miller AM, et al.
+      symptoms. Brain. 2001;124:2105-2118.                                      Prefrontal-Subthalamic hyperdirect pathway modulates
+17.   Dostrovsky JO, Levy R, Wu JP, Hutchison WD, Tasker RR,                    movement inhibition in humans. Neuron. 2020;106:579-588.e3.
+      Lozano AM. Microstimulation-Induced inhibition of neuronal          36.   Jorge A, Lipski WJ, Wang D, Crammond DJ, Turner RS,
+      firing in human globus Pallidus. J Neurophysiol. 2000;84:570-574.         Richardson RM. Hyperdirect connectivity of opercular speech
+18.   Boraud T, Bezard E, Bioulac B, Gross C. High frequency stimu­             network to the subthalamic nucleus. Cell Rep. 2022;38:110477.
+      lation of the internal globus Pallidus (GPi) simultaneously im­     37.   Moro E, Schwalb JM, Piboolnurak P, et al. Unilateral subdural
+      proves parkinsonian symptoms and reduces the firing                       motor cortex stimulation improves essential tremor but not
+      frequency of GPi neurons in the MPTP-treated monkey.                      Parkinson’s disease. Brain. 2011;134(Pt 7):2096-2105.
+      Neurosci Lett. 1996;215:17-20.                                      38.   Piano C, Bove F, Mulas D, et al. Extradural motor Cortex stimu­
+19.   Meissner W, Leblois A, Hansel D, et al. Subthalamic high fre­             lation in Parkinson’s disease: Long-term clinical outcome.
+      quency stimulation resets subthalamic firing and reduces ab­              Brain Sci. 2021;11:416.
+      normal oscillations. Brain. 2005;128(Pt 10):2372-2382.              39.   Wu AK, McCairn KW, Zada G, Wu T, Turner RS. Motor cortex
+20.   Lafreniere-Roula M, Kim E, Hutchison WD, Lozano AM, Hodaie                stimulation: Mild transient benefit in a primate model of
+      M, Dostrovsky JO. High-frequency microstimulation in human                Parkinson disease. J Neurosurg. 2007;106:695-700.
+4466 | BRAIN 2023: 146; 4456–4468                                                                                       W. -J. Neumann et al.
+
+40. Bar-Gad I, Elias S, Vaadia E, Bergman H. Complex locking ra­            60. Steiner LA, Tomás FJB, Planert H, Alle H, Vida I, Geiger JRP.
+    ther than complete cessation of neuronal activity in the globus             Connectivity and dynamics underlying synaptic control of
+    Pallidus of a 1-methyl-4-phenyl-1,2,3,6-tetrahydropyridine-                 the subthalamic nucleus. J Neurosci. 2019;39:2470-2481.
+    treated primate in response to pallidal microstimulation.               61. Basu I, Robertson MM, Crocker B, et al. Consistent linear and
+    J Neurosci. 2004;24:7410-7419.                                              non-linear responses to invasive electrical brain stimulation
+41. Boyden ES, Zhang F, Bamberg E, Nagel G, Deisseroth K.                       across individuals and primate species with implanted elec­
+    Millisecond-timescale, genetically targeted optical control of              trodes. Brain Stimul. 2019;12:877-892.
+    neural activity. Nat Neurosci. 2005;8:1263-1268.                        62. Escobar Sanabria D, Johnson LA, Yu Y, et al. Real-time suppres­
+42. Yoon HH, Park JH, Kim YH, et al. Optogenetic inactivation of the            sion and amplification of frequency-specific neural activity using
+    subthalamic nucleus improves forelimb akinesia in a rat mod­                stimulation evoked oscillations. Brain Stimul. 2020;13:1732-1742.
+    el of Parkinson disease. Neurosurgery. 2014;74:533-541.                 63. Escobar Sanabria D, Aman JE, Zapata Amaya V, et al.
+43. Yoon HH, Min J, Hwang E, et al. Optogenetic inhibition of the               Controlling pallidal oscillations in real-time in Parkinson’s dis­
+    subthalamic nucleus reduces levodopa-induced dyskinesias                    ease using evoked interference deep brain stimulation (eiDBS):
+    in a rat model of Parkinson’s disease. Stereotact Funct                     Proof of concept in the human. Brain Stimul. 2022;15:1111-1119.
+    Neurosurg. 2016;94:41-53.                                               64. Xu SS, Lee WL, Perera T, et al. Can brain signals and anatomy
+44. Yu C, Cassar IR, Sambangi J, Grill WM. Frequency-Specific opto­             refine contact choice for deep brain stimulation in
+    genetic deep brain stimulation of subthalamic nucleus improves              Parkinson’s disease? J Neurol Neurosurg Psychiatry. 2022;93:
+    parkinsonian motor behaviors. J Neurosci. 2020;40:4323-4334.                1338–1341. doi: 10.1136/jnnp2021-327708
+45. Mastro KJ, Zitelli KT, Willard AM, Leblanc KH, Kravitz AV, Gittis AH.   65. Neumann WJ, Turner RS, Blankertz B, Mitchell T, Kühn AA,
+    Cell-specific pallidal intervention induces long-lasting motor re­          Richardson RM. Toward electrophysiology-based intelligent
+    covery in dopamine-depleted mice. Nat Neurosci. 2017;20:815-823.            adaptive deep brain stimulation for movement disorders.
+46. Spix TA, Nanivadekar S, Toong N, et al. Population-specific                 Neurotherapeutics. 2019;16:105-118.
+    neuromodulation prolongs therapeutic benefits of deep brain             66. Buzsáki G, Anastassiou CA, Koch C. The origin of extracellular
+    stimulation. Science. 2021;374:201-206.                                     fields and currents—EEG, ECoG, LFP and spikes. Nat Rev
+47. Gilron R, Little S, Perrone R, et al. Long-term wireless streaming          Neurosci. 2012;13:407-420.
+    of neural recordings for circuit discovery and adaptive stimu­          67. Brown P. Abnormal oscillatory synchronisation in the motor
+    lation in individuals with Parkinson’s disease. Nat Biotechnol.             system leads to impaired movement. Curr Opin Neurobiol.
+    2021;39:1078-1085. doi: 10.1038/s41587-021-00897-5                          2007;17:656-664.
+48. Farokhniaee A, McIntyre CC. Theoretical principles of deep              68. Eusebio A, Brown P. Synchronisation in the beta frequency-
+    brain stimulation induced synaptic suppression. Brain Stimul.               band—The bad boy of parkinsonism or an innocent bystander?
+    2019;12:1402-1409.                                                          Exp Neurol. 2009;217:1-3.
+49. Bower KL, McIntyre CC. Deep brain stimulation of terminating            69. Neumann WJ, Degen K, Schneider GH, et al. Subthalamic syn­
+    axons. Brain Stimul. 2020;13:1863-1870.                                     chronized oscillatory activity correlates with motor impair­
+50. McIntyre CC, Grill WM, Sherman DL, Thakor NV. Cellular ef­                  ment in patients with Parkinson’s disease. Mov Disord. 2016;
+    fects of deep brain stimulation: Model-based analysis of acti­              31:1748-1751.
+    vation and inhibition. J Neurophysiol. 2004;91:1457-1469.               70. Lofredi R, Okudzhava L, Irmen F, et al. Subthalamic beta bursts
+51. Milosevic L, Kalia SK, Hodaie M, et al. A theoretical framework             correlate with dopamine-dependent motor symptoms in 106
+    for the site-specific and frequency-dependent neuronal effects              Parkinson’s patients. npj Parkinsons Dis. 2023;9:1-9.
+    of deep brain stimulation. Brain Stimul. 2021;14:807-821.               71. Kühn AA, Kempf F, Brücke C, et al. High-Frequency stimulation
+52. Milosevic L, Kalia SK, Hodaie M, Lozano A, Popovic MR,                      of the subthalamic nucleus suppresses oscillatory β activity in
+    Hutchison W. Subthalamic suppression defines therapeutic                    patients with Parkinson’s disease in parallel with improve­
+    threshold of deep brain stimulation in Parkinson’s disease. J               ment in motor performance. J Neurosci. 2008;28:6165-6173.
+    Neurol Neurosurg Psychiatry. 2019;90:1105-1108.                         72. Eusebio A, Thevathasan W, Gaynor LD, et al. Deep brain stimu­
+53. Milosevic L, Kalia SK, Hodaie M, et al. Neuronal inhibition and             lation can suppress pathological synchronisation in parkin­
+    synaptic plasticity of basal ganglia neurons in Parkinson’s dis­            sonian patients. J Neurol Neurosurg Psychiatry. 2011;82:569-573.
+    ease. Brain. 2018;141:177-190.                                          73. Kehnemouyi YM, Wilkins KB, Anidi CM, Anderson RW, Afzal
+54. Liu LD, Prescott IA, Dostrovsky JO, Hodaie M, Lozano AM,                    MF, Bronte-Stewart HM. Modulation of beta bursts in subthala­
+    Hutchison WD. Frequency-dependent effects of electrical                     mic sensorimotor circuits predicts improvement in bradykine­
+    stimulation in the globus pallidus of dystonia patients. J                  sia. Brain. 2021;144:473-486.
+    Neurophysiol. 2012;108:5-17.                                            74. Anidi C, O’Day JJ, Anderson RW, et al. Neuromodulation targets
+55. Milosevic L, Kalia SK, Hodaie M, Lozano AM, Popovic MR,                     pathological not physiological beta bursts during gait in
+    Hutchison WD. Physiological mechanisms of thalamic ventral                  Parkinson’s disease. Neurobiol Dis. 2018;120:107-117.
+    intermediate nucleus stimulation for tremor suppression.                75. Eusebio A, Cagnan H, Brown P. Does suppression of oscillatory
+    Brain. 2018;141:2142-2155.                                                  synchronisation mediate some of the therapeutic effects of
+56. Kita T, Kita H. The subthalamic nucleus is one of multiple in­              DBS in patients with Parkinson’s disease? Front Integr
+    nervation sites for long-range corticofugal axons: A single-                Neurosci. 2012;6:47.
+    axon tracing study in the rat. J Neurosci. 2012;32:5990-5999.           76. Neumann WJ, Staub F, Horn A, et al. Deep brain recordings
+57. Milosevic L, Gramer R, Kim TH, et al. Modulation of inhibitory              using an implanted pulse generator in Parkinson’s disease.
+    plasticity in basal ganglia output nuclei of patients with                  Neuromodulation. 2016;19:20-24.
+    Parkinson’s disease. Neurobiol Dis. 2019;124:46-56.                     77. Wang DD, de Hemptinne C, Miocinovic S, et al. Pallidal deep-
+58. Steiner LA, Kühn AA, Geiger JRP, et al. Persistent synaptic in­             brain stimulation disrupts pallidal Beta oscillations and coher­
+    hibition of the subthalamic nucleus by high frequency stimu­                ence with primary motor Cortex in Parkinson’s disease. J
+    lation. Brain Stimul. 2022;15:1223-1232.                                    Neurosci. 2018;38:4556-4568.
+59. von Gersdorff H, Borst JGG. Short-term plasticity at the calyx of       78. Feldmann LK, Neumann WJ, Krause P, Lofredi R, Schneider GH,
+    held. Nat Rev Neurosci. 2002;3:53-64.                                       Kühn AA. Subthalamic beta band suppression reflects
+Spatiotemporal mechanisms of DBS                                                                      BRAIN 2023: 146; 4456–4468          | 4467
+
+      effective neuromodulation in chronic recordings. Eur J Neurol.        98. Johnson KA, Cagle JN, Lopes JL, et al. Globus pallidus internus
+      2021;28:2372-2377.                                                         deep brain stimulation evokes resonant neural activity in
+79.   Oswal A, Beudel M, Zrinzo L, et al. Deep brain stimulation mod­            Parkinson’s disease. Brain Commun. 2023;5:fcad025.
+      ulates synchrony within spatially and spectrally distinct rest­       99. Sobesky L, Goede L, Odekerken VJJ, et al. Subthalamic and pal­
+      ing state networks in Parkinson’s disease. Brain. 2016;139:                lidal deep brain stimulation: Are we modulating the same net­
+      1482-1496.                                                                 work? Brain. 2022;145:251-262.
+80.   Kühn AA, Kempf F, Brücke C, et al. High-frequency stimulation         100. Bevan M. Move to the rhythm: Oscillations in the subthalamic
+      of the subthalamic nucleus suppresses oscillatory beta activity            nucleus–external globus pallidus network. Trends Neurosci.
+      in patients with Parkinson’s disease in parallel with improve­             2002;10:525-531.
+      ment in motor performance. J Neurosci. 2008;28:6165-6173.             101. Baufreton J. Enhancement of excitatory synaptic integration
+81.   Brown P. Bad oscillations in Parkinson’s disease. In: Riederer P,          by GABAergic inhibition in the subthalamic nucleus. J
+      Reichmann H, Youdim MBH, Gerlach M, eds. Parkinson’s disease               Neurosci. 2005;25:8505-8517.
+      and related disorders. Journal of Neural Transmission. Supplementa.   102. de la Crompe B, Aristieta A, Leblois A, Elsherbiny S, Boraud T,
+      Vol 70. Springer; 2006:27-30. doi: 10.1007/978-3-211-45295-0_6             Mallet NP. The globus pallidus orchestrates abnormal network
+82.   Pan MK, Kuo SH, Tai CH, et al. Neuronal firing patterns out­               dynamics in a model of parkinsonism. Nat Commun. 2020;11:1570.
+      weigh circuitry oscillations in parkinsonian motor control. J         103. Thevathasan W, Sinclair NC, Bulluss KJ, McDermott HJ.
+      Clin Invest. 2016;126:4516-4526.                                           Tailoring subthalamic nucleus deep brain stimulation for
+83.   Kühn AA, Trottenberg T, Kivi A, Kupsch A, Schneider GH,                    Parkinson’s disease using evoked resonant neural activity.
+      Brown P. The relationship between local field potential and                Front Hum Neurosci. 2020;14:71.
+      neuronal discharge in the subthalamic nucleus of patients             104. Little S, Tripoliti E, Beudel M, et al. Adaptive deep brain stimu­
+      with Parkinson’s disease. Exp Neurol. 2005;194:212-220.                    lation for Parkinson’s disease demonstrates reduced speech
+84.   Scherer M, Steiner LA, Kalia SK, et al. Single-neuron bursts en­           side effects compared to conventional stimulation in the acute
+      code pathological oscillations in subcortical nuclei of patients           setting. J Neurol Neurosurg Psychiatry. 2016;87:1388-1389.
+      with Parkinson’s disease and essential tremor. Proc Natl Acad         105. Panov F, Levin E, de Hemptinne C, et al. Intraoperative electro­
+      Sci USA. 2022;119:e2205881119.                                             corticography for physiological research in movement disor­
+85.   Belova EМ, Filyushkina VI, Dzhalagoniia I, et al. Oscillations of          ders: Principles and experience in 200 cases. J Neurosurg.
+      pause-burst neurons in the STN correlate with the severity of              2017;126:122-131.
+      motor signs in Parkinson’s disease. Exp Neurol. 2022;356:114155.      106. Harmsen IE, Rowland NC, Wennberg RA, Lozano AM.
+86.   Tinkhauser G, Pogosyan A, Tan H, Herz DM, Kuhn AA, Brown P.                Characterizing the effects of deep brain stimulation with mag­
+      Beta burst dynamics in Parkinson’s disease OFF and ON dopa­                netoencephalography: A review. Brain Stimul. 2018;11:481-491.
+      minergic medication. Brain. 2017;140:2968-2981.                       107. Crowell AL, Ryapolova-Webb ES, Ostrem JL, et al. Oscillations in
+87.   Lofredi R, Neumann WJ, Brucke C, et al. Pallidal beta bursts in            sensorimotor cortex in movement disorders: An electrocorti­
+      Parkinson’s disease and dystonia. Mov Disord. 2018;34:420-424.             cography study. Brain. 2012;135:615-630.
+88.   Deffains M, Iskhakova L, Katabi S, Israel Z, Bergman H. Longer        108. Weiss D, Klotz R, Govindan RB, et al. Subthalamic stimulation
+      beta oscillatory episodes reliably identify pathological subtha­           modulates cortical motor network activity and synchroniza­
+      lamic activity in parkinsonism. Mov Disord. 2018;33:1609-1618.             tion in Parkinson’s disease. Brain. 2015;138:679-693.
+89.   Tinkhauser G, Pogosyan A, Little S, et al. The modulatory effect      109. Abbasi O, Hirschmann J, Storzer L, et al. Unilateral deep brain
+      of adaptive deep brain stimulation on beta bursts in                       stimulation suppresses alpha and beta oscillations in sensori­
+      Parkinson’s disease. Brain. 2017;140:1053-1067.                            motor cortices. Neuroimage. 2018;174:201-207.
+90.   Sinclair NC, McDermott HJ, Fallon JB, et al. Deep brain stimulation   110. Hemptinne C de, Ryapolova-Webb ES, Air EL, et al. Exaggerated
+      for Parkinson’s disease modulates high-frequency evoked and                phase–amplitude coupling in the primary motor cortex in
+      spontaneous neural activity. Neurobiol Dis. 2019;130:104522.               Parkinson disease. PNAS. 2013;110:4780-4785.
+91.   Sinclair NC, Fallon JB, Bulluss KJ, Thevathasan W, McDermott          111. Swann NC, de Hemptinne C, Aron AR, Ostrem JL, Knight RT,
+      HJ. On the neural basis of deep brain stimulation evoked reson­            Starr PA. Elevated synchrony in Parkinson disease detected
+      ant activity. Biomed Phys Eng Express. 2019;5:057001.                      with electroencephalography. Ann Neurol. 2015;78:742-750.
+92.   Sinclair NC, McDermott HJ, Bulluss KJ, et al. Subthalamic nu­         112. de Hemptinne C, Swann NC, Ostrem JL, et al. Therapeutic deep
+      cleus deep brain stimulation evokes resonant neural activity:              brain stimulation reduces cortical phase-amplitude coupling
+      STN DBS. Ann Neurol. 2018;83:1027-1031.                                    in Parkinson’s disease. Nat Neurosci. 2015;18:779-786.
+93.   Steiner LA, Milosevic L. A convergent subcortical signature to        113. Cole S, Voytek B. Cycle-by-cycle analysis of neural oscillations.
+      explain the common efficacy of subthalamic and pallidal                    J Neurophysiol. 2019;122:849-861.
+      deep brain stimulation. Brain Commun. 2023;5:fcad033.                 114. Cole SR, Voytek B. Brain oscillations and the importance of
+94.   Wiest C, Tinkhauser G, Pogosyan A, et al. Local field potential            waveform shape. Trends Cogn Sci (Regul Ed). 2017;21:137-149.
+      activity dynamics in response to deep brain stimulation of            115. Jackson N, Cole SR, Voytek B, Swann NC. Characteristics
+      the subthalamic nucleus in Parkinson’s disease. Neurobiol                  of waveform shape in Parkinson’s disease detected with
+      Dis. 2020;143:105019.                                                      scalp electroencephalography. eNeuro. 2019;6:ENEURO.0151
+95.   Schmidt SL, Brocker DT, Swan BD, Turner DA, Grill WM.                      -19.2019.
+      Evoked potentials reveal neural circuits engaged by human             116. Cole SR, van der Meij R, Peterson EJ, de Hemptinne C, Starr PA,
+      deep brain stimulation. Brain Stimul. 2020;13:1706-1718.                   Voytek B. Nonsinusoidal Beta oscillations reflect cortical
+96.   Steiner LA, Compton DJ, Sumarac S, et al. Recruitment of the               pathophysiology in Parkinson’s disease. J Neurosci. 2017;37:
+      indirect pathway by subthalamic deep brain stimulation.                    4830-4840.
+      Brain Stimul. 2023;16:402.                                            117. Swann N, Poizner H, Houser M, et al. Deep brain stimulation of
+97.   Petersen MV, Mlakar J, Haber SN, et al. Holographic reconstruc­            the subthalamic nucleus alters the cortical profile of response
+      tion of axonal pathways in the human brain. Neuron. 2019;104:              inhibition in the beta frequency band: A scalp EEG study in
+      1056-1064.e3.                                                              Parkinson’s disease. J Neurosci. 2011;31:5721-5729.
+4468 | BRAIN 2023: 146; 4456–4468                                                                                          W. -J. Neumann et al.
+
+118. Muthuraman M, Bange M, Koirala N, et al. Cross-frequency               123. Sharott A, Gulberti A, Hamel W, et al. Spatio-temporal dynam­
+     coupling between gamma oscillations and deep brain stimula­                 ics of cortical drive to human subthalamic nucleus neurons in
+     tion frequency in Parkinson’s disease. Brain. 2020;143:                     Parkinson’s disease. Neurobiol Dis. 2018;112:49-62.
+     3393-3407.                                                             124. Oswal A, Cao C, Yeh CH, et al. Neural signatures of hyperdirect
+119. Swann NC, de Hemptinne C, Miocinovic S, et al. Gamma oscil­                 pathway activity in Parkinson’s disease. Nat Commun. 2021;12:5185.
+     lations in the hyperkinetic state detected with chronic human          125. Fim Neto A, de Luccas JB, Bianqueti BL, et al. Subthalamic low
+     brain recordings in Parkinson’s disease. J Neurosci. 2016;36:               beta bursts differ in Parkinson’s disease phenotypes. Clin
+     6445-6458.                                                                  Neurophysiol. 2022;140:45-58.
+120. Sermon JJ, Olaru M, Anso J, et al. Sub-harmonic entrainment of         126. Feldmann LK, Lofredi R, Neumann WJ, et al. Toward therapeutic
+     cortical gamma oscillations to deep brain stimulation in                    electrophysiology: Beta-band suppression as a biomarker in
+     Parkinson’s disease: Predictions and validation of a patient-spe­           chronic local field potential recordings. npj Parkinsons Dis. 2022;8:
+     cific nonlinear model. bioRxiv. [Preprint]. doi: 10.1101/2022.03.01.        1-9.
+     482549                                                                 127. Horn A, Reich M, Vorwerk J, et al. Connectivity predicts deep
+121. Cagnan H, Mallet N, Moll CKE, et al. Temporal evolution of beta             brain stimulation outcome in Parkinson disease. Ann Neurol.
+     bursts in the parkinsonian cortical and basal ganglia network.              2017;82:67-78.
+     PNAS. 2019;116:16095-16104.                                            128. Bahners BH, Spooner RK, Hartmann CJ, Schnitzler A, Florin E.
+122. Shimamoto       SA,    Ryapolova-Webb          ES,    Ostrem     JL,        Subthalamic stimulation evoked cortical responses relate to motor
+     Galifianakis NB, Miller KJ, Starr PA. Subthalamic nucleus                   performance in Parkinson’s disease. Brain Stimul. 2023;16:561-563.
+     neurons are synchronized to primary motor Cortex local                 129. Spooner RK, Bahners BH, Schnitzler A, Florin E. DBS-evoked cor­
+     field potentials in Parkinson’s disease. J Neurosci. 2013;33:               tical responses index optimal contact orientations and motor
+     7220-7233.                                                                  outcomes in Parkinson’s disease. npj Parkinsons Dis. 2023;9:1-11.
+

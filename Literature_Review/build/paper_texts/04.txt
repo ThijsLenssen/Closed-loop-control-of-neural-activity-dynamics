@@ -1,0 +1,782 @@
+https://doi.org/10.1093/brain/awae219                                                                           BRAIN 2024: 147; 3358–3369             | 3358
+
+
+
+
+Dopamine and deep brain stimulation
+accelerate the neural dynamics of volitional
+action in Parkinson’s disease
+  Richard M. Köhler,1 Thomas S. Binns,1,2,3 Timon Merk,1 Guanyu Zhu,4,5
+Zixiao Yin,4,5 Baotian Zhao,4,5 Meera Chikermane,1 Jojo Vanhoecke,1
+Johannes L. Busch,1 Jeroen G. V. Habets,1 Katharina Faust,6 Gerd-Helge Schneider,6
+Alessia Cavallo,1 Stefan Haufe,2,3,7,8,9 Jianguo Zhang,4,5 Andrea A. Kühn,1,2,3,10,11
+John-Dylan Haynes2,3,8,9,10,11,† and Wolf-Julian Neumann1,2,3,†
+
+†
+ These authors contributed equally to this work.
+
+
+The ability to initiate volitional action is fundamental to human behaviour. Loss of dopaminergic neurons in
+Parkinson’s disease is associated with impaired action initiation, also termed akinesia. Both dopamine and subtha­
+lamic deep brain stimulation (DBS) can alleviate akinesia, but the underlying mechanisms are unknown. An import­
+ant question is whether dopamine and DBS facilitate de novo build-up of neural dynamics for motor execution or
+accelerate existing cortical movement initiation signals through shared modulatory circuit effects. Answering these
+questions can provide the foundation for new closed-loop neurotherapies with adaptive DBS, but the objectification
+of neural processing delays prior to performance of volitional action remains a significant challenge.
+To overcome this challenge, we studied readiness potentials and trained brain signal decoders on invasive neuro­
+physiology signals in 25 DBS patients (12 female) with Parkinson’s disease during performance of self-initiated move­
+ments. Combined sensorimotor cortex electrocorticography and subthalamic local field potential recordings were
+performed OFF therapy (n = 22), ON dopaminergic medication (n = 18) and on subthalamic deep brain stimulation
+(n = 8). This allowed us to compare their therapeutic effects on neural latencies between the earliest cortical represen­
+tation of movement intention as decoded by linear discriminant analysis classifiers and onset of muscle activation
+recorded with electromyography.
+In the hypodopaminergic OFF state, we observed long latencies between motor intention and motor execution for
+readiness potentials and machine learning classifications. Both, dopamine and DBS significantly shortened these la­
+tencies, hinting towards a shared therapeutic mechanism for alleviation of akinesia. To investigate this further, we
+analysed directional cortico-subthalamic oscillatory communication with multivariate granger causality. Strikingly,
+we found that both therapies independently shifted cortico-subthalamic oscillatory information flow from antiki­
+netic beta (13–35 Hz) to prokinetic theta (4–10 Hz) rhythms, which was correlated with latencies in motor execution.
+Our study reveals a shared brain network modulation pattern of dopamine and DBS that may underlie the acceler­
+ation of neural dynamics for augmentation of movement initiation in Parkinson’s disease. Instead of producing or
+increasing preparatory brain signals, both therapies modulate oscillatory communication. These insights provide
+a link between the pathophysiology of akinesia and its’ therapeutic alleviation with oscillatory network changes in
+other non-motor and motor domains, e.g. related to hyperkinesia or effort and reward perception. In the future,
+our study may inspire the development of clinical brain computer interfaces based on brain signal decoders to pro­
+vide temporally precise support for action initiation in patients with brain disorders.
+
+
+
+Received January 29, 2024. Revised May 16, 2024. Accepted June 13, 2024. Advance access publication July 2, 2024
+© The Author(s) 2024. Published by Oxford University Press on behalf of the Guarantors of Brain.
+This is an Open Access article distributed under the terms of the Creative Commons Attribution-NonCommercial License (https://creativecommons.org/licenses/by-
+nc/4.0/), which permits non-commercial re-use, distribution, and reproduction in any medium, provided the original work is properly cited. For commercial re-use,
+please contact reprints@oup.com for reprints and translation rights for reprints. All other permissions can be obtained through our RightsLink service via the
+Permissions link on the article page on our site—for further information please contact journals.permissions@oup.com.
+Modulating neural dynamics of akinesia                                                            BRAIN 2024: 147; 3358–3369        | 3359
+
+
+
+
+ 1 Movement Disorder and Neuromodulation Unit, Department of Neurology, Charité—Universitätsmedizin Berlin,
+   corporate member of Freie Universität Berlin and Humboldt-Universität zu Berlin, Berlin 10117, Germany
+ 2 Einstein Center for Neurosciences Berlin, Charité—Universitätsmedizin Berlin, corporate member of Freie
+   Universität Berlin and Humboldt-Universität zu Berlin, Berlin 10117, Germany
+ 3 Bernstein Center for Computational Neuroscience, Berlin 10115, Germany
+ 4 Department of Neurosurgery, Beijing Tiantan Hospital, Capital Medical University, Beijing 100070, China
+ 5 Beijing Key Laboratory of Neurostimulation, Beijing 100070, China
+ 6 Department of Neurosurgery, Charité—Universitätsmedizin Berlin, corporate member of Freie Universität Berlin
+   and Humboldt-Universität zu Berlin, Berlin 10117, Germany
+ 7 Research Group for Uncertainty, Inverse Modeling and Machine Learning, Technische Universität Berlin, Berlin
+   10623, Germany
+ 8 Physikalisch-Technische Bundesanstalt Braunschweig und Berlin, Berlin 10587, Germany
+ 9 Berlin Center for Advanced Neuroimaging, Bernstein Center for Computational Neuroscience, Berlin 10117,
+   Germany
+10 NeuroCure Clinical Research Centre, Charité—Universitätsmedizin Berlin, corporate member of Freie Universität
+   Berlin and Humboldt-Universität zu Berlin, Berlin 10117, Germany
+11 Berlin School of Mind and Brain, Humboldt-Universität zu Berlin, Berlin 10115, Germany
+
+Correspondence to: Wolf-Julian Neumann
+Charité–Universitätsmedizin Berlin, Campus Mitte
+Klinik für Neurologie mit Experimenteller Neurologie
+Virchowweg 23 (CSB), Ebene 01, Raum: 2652 01 013
+Charitéplatz 1, 10117 Berlin, Germany
+E-mail: julian.neumann@charite.de
+Keywords: oscillations; bereitschaftspotential; Granger causality; neuromodulation; electrocorticography
+
+
+
+
+Introduction                                                                 In the present study, we leveraged multielectrode invasive
+                                                                         neurophysiology recordings of preparatory brain signals combined
+The conscious intent to initiate movement represents the core of         with machine learning based brain signal decoding to investigate
+our ability to exert autonomous control over our actions.1 The           effects of dopamine and STN-DBS on the neural representation of
+underlying interplay of neural circuits builds the foundation for        motor intention in Parkinson’s disease. We provide physiological
+our capacity to interact with the world and adapt to our surround­       evidence for the importance of dopamine for volitional action initi­
+ings. The ‘“decision” to act’ robustly elicits brain signals that pre­   ation in humans and show that both dopaminergic medication and
+cede motor output,2 which are observable from the single unit            STN-DBS can shift oscillatory drive from cortex to the STN to theta
+level3 to whole-brain activity with functional MRI.4 The most prom­      (4–10 Hz) rhythms, providing mechanistic insight into cortex–basal
+inent neural correlate of action initiation is the so-called readiness   ganglia interactions that govern and impede action initiation in
+potential, an electrophysiological signature that is first and most      Parkinson’s disease.
+robustly observable over the supplementary motor cortex, followed
+by other motor areas.5-7 Nevertheless, the underlying neural dy­
+namics that govern volitional action remain largely unknown.             Materials and methods
+    Rodent studies employing optogenetics and fibre photometry
+                                                                         Patient details and surgical approach
+have suggested that dopamine plays a pivotal role in volition and
+self-initiated movement.8 Dopaminergic neurons of the substantia         Twenty-five patients (12 female) diagnosed with idiopathic
+nigra pars compacta (SNc) innervating the striatum increase their        Parkinson’s disease of primary akinetic-rigid motor phenotype
+activity prior to spontaneous movement,9 while direct optogenetic        with clinical indication for deep brain stimulation (DBS) were en­
+activation of these neurons can increase the probability for move­       rolled (Table 1) at the Department of Neurosurgery of the Beijing
+ment initiation, suggestive of a causal role for dopamine in action      Tiantan Hospital, Capital Medical University (n = 9) or at the
+initiation.                                                              Department of Neurosurgery at Charité—Universitätsmedizin
+    Parkinson’s disease is associated with a loss of dopaminergic        Berlin (n = 16). The mean age of the subjects was 62.4 ± 8.4 years
+neurons in the SNc that results in impaired movement initiation,         and mean disease duration was 9.9 ± 4.2 years. DBS leads were
+also termed akinesia.10 Dopaminergic medication (levodopa) and           implanted into the STN of both hemispheres in all patients. A sub­
+subthalamic nucleus (STN) deep brain stimulation (DBS) can allevi­       dural electrocorticography (ECoG) electrode was placed subdurally
+ate akinesia in Parkinson’s disease.11 Invasive neurophysiological       aimed posteriorly toward the hand knob region of the motor cortex
+recordings through DBS electrodes revealed that both dopamine            in one hemisphere after minimal enlargement (∼2 mm) of the
+and subthalamic DBS can shift akinetic pathological cortex–basal         frontal burr hole. The ECoG electrode was placed either on the right
+ganglia circuit synchrony to prokinetic states,12 but the shared         hemisphere (Beijing; right = 9) or on the hemisphere ipsilateral to
+mechanism of dopamine and DBS for action initiation is unclear.          the implantable pulse generator (Berlin; right = 11, left = 5). All
+3360 | BRAIN 2024: 147; 3358–3369                                                                                                                 R. M. Köhler et al.
+
+
+Table 1 Participant information
+
+  ID               Age           Sex          DD, years          LEDD, mg             DBS lead model                    ECoG model                 ECoG hemisphere
+
+  EL002             62         Male               10                1032           BS Vercise Cartesia             AT TS06R-AP10X-0W6              Left
+  EL003             56         Female             15                 600           MT 3389                         AT TS06R-AP10X-0W6              Left
+  EL004             45         Female              2                1462           BS Vercise Cartesia             AT TS06R-AP10X-0W6              Left
+  EL005             43         Female              4                1221           MT SenSight Short               AT TS06R-AP10X-0W6              Right
+  EL006             57         Male                6                1000           MT SenSight Short               AT TS06R-AP10X-0W6              Right
+  EL007             55         Male                3                 850           MT SenSight Short               AT DS12A-SP10X-000              Right
+  EL008             66         Male                8                 858           BS Vercise Cartesia X           AT TS06R-AP10X-0W6              Left
+  EL009             59         Male                7                1600           MT SenSight Short               AT TS06R-AP10X-0W6              Left
+  EL010             66         Female             12                 900           MT SenSight Short               AT TS06R-AP10X-0W6              Right
+  EL011             67         Male                7                 949           MT SenSight Short               AT TS06R-AP10X-0W6              Right
+  EL012             54         Male               12                 866           MT SenSight Short               AT TS06R-AP10X-0W6              Right
+  EL013             64         Male                9                 800           MT SenSight Short               AT DS12A-SP10X-000              Right
+  EL014             52         Male               14                1750           MT SenSight Short               AT TS06R-AP10X-0W6              Right
+  EL015             60         Male               14                 708           MT SenSight Short               AT TS06R-AP10X-0W6              Right
+  EL016             73         Male               20                1630           MT SenSight Short               AT TS06R-AP10X-0W6              Right
+  EL017             65         Female              8                1150           MT SenSight Short               AT TS06R-AP10X-0W6              Right
+  FOG006            66         Female             10                 513           PINS L301                       SMT PSE-8A                      Right
+  FOG008            70         Male               12                 688           PINS L301                       SMT PSE-8A                      Right
+  FOG010            73         Female              9                1439           PINS L301                       SMT PSE-8A                      Right
+  FOG012            59         Female              9                 700           PINS L301                       SMT PSE-8A                      Right
+  FOG014            76         Male                8                1351           PINS L301                       SMT PSE-8A                      Right
+  FOG016            66         Female             15                 669           PINS L301                       SMT PSE-8A                      Right
+  FOG021            66         Female             15                 925           PINS L301                       SMT PSE-8A                      Right
+  FOG022            67         Female              9                1000           PINS L301                       SMT PSE-8A                      Right
+  FOGC001           72         Female             10                 675           PINS L301                       SMT PSE-8A                      Right
+
+AT = Ad-Tech; BS = Boston Scientific; DBS = deep brain stimulation; DD = disease duration; ECoG = electrocorticography; LEDD = levodopa-equivalent daily dose; MT =
+Medtronic; PINS = PINS Medical; SMT = Sinovation Medical Technologies.
+
+
+
+electrodes were then externalized through the burr holes via dedi­                      movements, but to avoid counting seconds in between. Subjects
+cated externalization cables for a duration of 4–7 days during which                    performed an average of 66 ± 36.25 movements.
+all electrophysiological recordings were performed. ECoG electro­                           Participants performed the experimental task either under their
+des were removed via the burr hole during the second surgery for                        current clinical intake of dopaminergic medication (ON levodopa;
+pulse generator implantation.                                                           see Table 1 for details of levodopa-equivalent daily doses at time
+                                                                                        of recording) or after at least 12 h of withdrawal of all dopaminergic
+                                                                                        medication (OFF therapy). A total of 22 subjects performed the task
+Ethics declaration
+                                                                                        OFF therapy and 18 subjects ON levodopa. Sixteen subjects per­
+The study was performed according to the standards set by the dec­                      formed the task both OFF therapy and ON levodopa. An additional
+laration of Helsinki and after approval of the local independent eth­                   eight subjects of the Berlin cohort that performed the task OFF ther­
+ics review board at the included academic centres (Berlin and                           apy also performed the task after withdrawal of medication but un­
+Beijing). All patients provided informed consent to participate in                      der high-frequency DBS of the STN (on STN-DBS). Notably, given
+the respective research according to the declaration of Helsinki.                       the additional required for monopolar review in the medication
+For data from Berlin, the studies were approved by the ethics com­                      OFF-state, not all patients participated in this additional recording.
+mittee at Charité—Universitätsmedizin Berlin (EA2/129/17). The                          Unified Parkinson’s Disease Rate Scale III (UPDRS-III) scores at
+data was collected, stored, and processed in compliance with the                        12 months post-implantation for patients recorded both OFF ther­
+General Privacy Protection Regulation of the European Union. The                        apy and on STN-DBS were 41/22 ± 14/8 (Fig. 1H; n = 7—unavailable
+data collection for Beijing was approved by the independent review                      in n = 1; see Supplementary Table 2 for details). Contacts and stimu­
+board of Beijing Tiantan Hospital (KY 2018-008-01), registered in the                   lation parameters to be used during recording were determined in a
+Chinese Clinical Trial Registry (ChiCTR1900026601) and conducted                        monopolar clinical review. Clinically effective contacts were cho­
+under the supervision of an authoritative third party (China                            sen while avoiding stimulation-induced side-effects altogether.
+National Clinical Research Center for Neurological Diseases).                           DBS was applied at 130 Hz with 60 µs pulse-width, with a mean
+                                                                                        amplitude per subject of 1.88 ± 0.55 mA (see Supplementary
+                                                                                        Table 2 for details). Six participants received bilateral monopolar
+Experimental paradigm
+                                                                                        stimulation. Owing to side effects, two participants received unilat­
+Study participants performed self-initiated movements with the                          eral DBS in the hemisphere contralateral to the extremity used in
+upper limb contralateral to the ECoG hemisphere. Sixteen subjects                       the task, one receiving monopolar and one bipolar stimulation.
+performed a wrist rotation on a custom-built ‘rotameter’ device
+that translated the degree of rotation to voltage (see Fig. 1C for sche­
+                                                                                        Electrophysiological recordings
+matic). Nine subjects performed a button press with their left index
+finger that elicited a transistor-transistor logic (TTL) signal.                        ECoG and subthalamic local field potentials (STN-LFP) were recorded
+Participants were instructed to pause for about 10 s between                            in all patients. Additionally, bipolar EEG over supplementary motor
+Modulating neural dynamics of akinesia                                                                      BRAIN 2024: 147; 3358–3369            | 3361
+
+
+
+
+Figure 1 Sensorimotor electrocorticography and subthalamic local field potentials during self-initiated movements in Parkinson’s disease patients.
+(A) Twenty-five Parkinson’s disease patients were implanted with bilateral deep brain stimulation (DBS) leads and a single electrocorticography
+(ECoG) strip. (B) ECoG strips were placed on the sensorimotor cortex and DBS electrodes placed into the dorsolateral part of the subthalamic nucleus.
+Exemplar traces show ECoG activity from the motor cortex and subthalamic local field potentials (STN-LFP) from the hemisphere contralateral to
+movement during a single movement. (C) Schematic of the rotational handle used by Parkinson’s disease patients in the Berlin cohort.
+(D) Oscillatory activity from the hemisphere contralateral to movement recorded OFF therapy, averaged across patients (n = 22) and electromyography
+(EMG) of the brachioradial muscle during a self-initiated movement. (E) Unified Parkinson’s Disease Rating Scale III (UPDRS-III) scores during experi­
+mental sessions of patients recorded both OFF and ON levodopa (29/18 ± 8/8, P = 6 × 10–5, n = 15; Supplementary Table 1) and UPDRS-III scores at
+12 months post-implantation for patients recorded both OFF therapy and on subthalamic deep brain stimulation (STN-DBS; 41/22 ± 14/8, n = 7, unavail­
+able in n = 1; Supplementary Table 2). (F) Readiness potentials of motor cortex (left) and STN-LFP signals (right) contralateral to movement side, averaged
+across patients. Motor cortex readiness potentials differed significantly from baseline between −1.78 and 1.55 s (OFF therapy), −1.0 and 1.09 s (ON levo­
+dopa) and −1.18 and 1.51 s (on STN-DBS). Subthalamic readiness potentials differed significantly from baseline between −1.19 and 1.32 s (OFF therapy),
+−1.28 and 2.0 s (ON levodopa) and −0.17 and 1.2 s (on STN-DBS; all P ≤ 0.05, cluster corrected). Data are presented as mean ± standard error of the mean.
+Coloured triangles within subplots and on the lowest x-axis indicate the earliest significant difference.
+3362 | BRAIN 2024: 147; 3358–3369                                                                                              R. M. Köhler et al.
+
+cortex (Cz-Fz) was recorded in a subset of Berlin patients (OFF ther­         (50 Hz and all upper harmonics). For ECoG data, bipolar channels lo­
+apy n = 14, ON levodopa n = 14, on STN-DBS n = 7). Subdural ECoG              cated on motor cortex were selected (see section Anatomical local­
+strips had either 6 (n = 14), 8 (n = 9) or 12 contacts (n = 2). STN-LFP       ization of electrodes for details). Epochs from −3 to 2 s relative to
+were recorded from one of four DBS lead models implanted with ei­             EMG onset were extracted. Power was calculated from epochs using
+ther 4 (n = 10), 8 (n = 14) or 16 (n = 1) contacts (Table 1). All data were   Morlet wavelets (3–200 Hz, 1 Hz steps, seven cycles) and averaged
+amplified and digitized with either a NeuroOmega (Alpha Omega                 across trials within each subject after which baseline correction
+Engineering; 1376 Hz sampling rate), Saga64+ (Twente Medical                  was applied to each channel and epoch individually by subtracting
+Systems International; 4000 Hz sampling rate) or Neurofax EEG-1200            the mean and dividing by the standard deviation of the baseline.
+(Nihon Kohden; 2000 Hz sampling rate) device. ECoG and STN-LFP
+were hardware-referenced to the lowermost contact of the DBS elec­
+                                                                              Machine learning based classification of motor
+trode (ipsilateral to movement). In a small number of cases
+                                                                              intention
+where excessive noise was visible before recording, either a different
+STN contact or an average of two ECoG contacts were used as hard­             We processed data in a real-time compatible fashion using the
+ware reference. Additionally, accelerometry, bipolar electromyogra­           open-source toolbox py_neuromodulation.20 In 100 ms steps, data
+phy (EMG) and TTL (button press) or rotameter (wrist rotation)                batches of the previous 500 ms were processed. ECoG and
+signals were recorded. Data were saved to disk for offline processing         STN-LFP signals were referenced in a bipolar setup and notch-
+and converted to iEEG-BIDS13 format. Offline processing was, unless           filtered to remove line noise (50, 100 and 150 Hz). Band power was
+noted otherwise, performed with custom python scripts using the               calculated for each bipolar channel via fast Fourier transform
+MNE-Python,14 MNE-BIDS,15 NumPy,16 Pandas,17 SciPy,18 toolboxes               with a frequency resolution of 1 Hz and power at each frequency
+and MATLAB scripts using the FieldTrip19 and SPM12 (https://www.              was normalized to samples from the previous 10 s. Band power at
+fil.ion.ucl.ac.uk/spm/software/spm12/) toolboxes.                             each time step was then averaged for seven frequency bands: theta
+                                                                              (4–7 Hz), alpha (8–12 Hz), low beta (13–20 Hz), high beta (21–35 Hz),
+EMG annotation                                                                low gamma (60–80 Hz), high gamma (90–200 Hz) and high fre­
+EMG was recorded from brachioradialis for wrist rotations and                 quency activity (201–400 Hz).
+from finger flexors for button presses. The root mean square                      To ensure that the target activity pattern had relevant modula­
+(RMS) of EMG was calculated using a sliding window of 100 ms                  tion, while excluding activity after movement onset, we defined the
+length centred around each sample. EMG onset and end for each                 single sample 100 ms prior to EMG onset as our motor intention de­
+trial were manually annotated by inspection of the RMS data. In               coding target. Samples between −3 and −2 s prior to EMG onset
+three subjects, noise in EMG was too high for adequate interpret­             were defined as rest for model training (Fig. 2A). Linear discrimin­
+ation, and in one subject, no EMG was recorded. Onset and end                 ant analysis (LDA) classifiers (scikit-learn21 implementation with
+of the rotation and button press (TTL) signal were manually anno­             least squares solver, automated shrinkage with equal class prior
+tated for all available recordings. The mean differences between              probabilities) were trained to separate motor intention from rest
+EMG and rotation/button press onset, and EMG and rotation/button              samples for each subject individually and on features across all
+press end, were calculated in recordings where both data were pre­            available recording channels from ECoG and STN-LFP signals separ­
+sent. For recordings where no adequate EMG signal was available,              ately. For example, a classifier trained on ECoG data of a single re­
+EMG onset and end were estimated by subtracting the mean differ­              cording with five bipolar ECoG channels would use 35 features at
+ence between objective rotation/button press and EMG from all                 each time sample (five channels × seven frequency bands).
+other recordings of the respective group (rotation/button press).             Additionally, LDA classifiers were trained for each individual
+                                                                              ECoG channel separately. As an example, a classifier trained in
+Artefact rejection                                                            this analysis would use seven features for classification (one bipo­
+                                                                              lar channel × seven frequency bands). To avoid information leak­
+ECoG and STN-LFP data were high-pass filtered at 3 Hz and epoched             age from training to testing data, classifiers were trained in a
+between −3 and 2 s relative to EMG onset. All trials were visually in­        leave-one-group-out approach for each recording, where each sep­
+spected and trials containing significant high-amplitude artefacts,           arate movement trial represented a separate group. For example, if
+for example due to cable movement during motor activity, were                 a participant had performed 50 movement trials in a single record­
+marked and excluded from further analysis.                                    ing, the classifier was trained and tested in a 50-fold group cross-
+                                                                              validation. In each fold, all samples from a single trial were left
+Readiness potentials                                                          out and the classifier was trained on the remaining 49 trials.
+                                                                              Then, classifications for the samples of the left-out trial were ob­
+Raw ECoG, EEG and STN-LFP signals were filtered between 0.1 and
+                                                                              tained from the trained classifier and balanced accuracy was calcu­
+40 Hz and epochs were extracted from −3 to 2 s relative to EMG on­
+                                                                              lated as metric of performance. The balanced accuracy was then
+set for each movement trial. The signals of each channel and epoch
+                                                                              averaged across all folds to obtain a single metric for each
+individually were baseline corrected by subtracting the mean of the
+                                                                              recording.
+baseline period (−3 to −2 s relative to EMG onset). Epochs were then
+                                                                                  Additionally, for each left-out trial the distance from the hyper­
+averaged across channels for each subject and ECoG/EEG/STN-LFP
+                                                                              plane separating rest and motor intention classes was calculated
+channels separately. EEG recordings are only reported for readiness
+                                                                              for samples between −3 s prior to 2 s after EMG onset as a proxy
+potentials and were omitted from further analysis, given the in­
+                                                                              for the certainty of motor intention classification. This provides a
+complete availability across cohorts and conditions.
+                                                                              sample-wise distinction metric of rest and motor intention. Data
+                                                                              were then normalized by subtracting the mean and dividing by
+Time-frequency analysis
+                                                                              the standard deviation of the baseline period (−3 to −2 s) and aver­
+Raw ECoG and STN-LFP data was resampled to 500 Hz, referenced                 age across trials within each recording. For each therapeutic condi­
+in a bipolar montage, and notch-filtered to remove line noise                 tion (OFF therapy, ON levodopa, on STN-DBS), the mean distance
+Modulating neural dynamics of akinesia                                                                      BRAIN 2024: 147; 3358–3369           | 3363
+
+
+
+
+Figure 2 Dopamine and subthalamic deep brain stimulation reduce motor intention to execution delays in Parkinson’s disease. (A) Features of a single
+motor cortex channel averaged across trials. (B) Classifier outputs averaged across subjects. Classifier outputs of electrocorticography (ECoG) and sub­
+thalamic local field potentials (STN-LFP) differed between −2.2 to 1.7 s (OFF therapy), −1.6 to 1.6 s (ON levodopa) and −1.0 to 0.9 s [on subthalamic deep
+brain stimulation (STN-DBS)]; all P ≤ 0.05, cluster corrected. Data are presented as mean ± standard error of the mean. Coloured triangles within sub­
+plots and on the lowest x-axis indicate the earliest significant difference. (C) Time of motor intention of single subjects derived from ECoG classifier
+outputs. (D) Time of motor intention derived from single-channel ECoG classifier outputs. Left hemispheric channels were flipped onto the right hemi­
+sphere. *P ≤ 0.05, **P ≤ 0.01, ***P ≤ 0.001.
+
+
+
+from hyperplane per recording at each time step between −3 to 2 s               channels as targets were subtracted to obtain net GC scores.
+was compared for ECoG and STN-LFP classifiers using two-sided                   Subsequently, the net GC scores from time-reversed data were ob­
+permutation tests. P-values were corrected for multiple compari­                tained and subtracted from the original net GC scores to give TRGC
+sons using cluster-based permutation testing (see the ‘Statistical              scores. The final Granger scores therefore represent the net drive of
+analysis’ section for details).                                                 information flow between motor cortex and STN, corrected for
+    To allow for group comparisons across therapeutic conditions,               spurious estimates of connectivity arising from weak data asym­
+we determined the earliest significant deviation within subjects                metries such as volume conduction and measurement noise.23
+across baseline corrected trials (hereafter termed ‘time of motor in­           The connectivity values were smoothed within each recording
+tention’). For each recording, baseline corrected samples at each               with a 300 ms smoothing kernel and downsampled to 10 Hz for dir­
+time step between −3 to 2 s were tested against zero (x > 0) using a            ect statistical comparison across OFF therapy, ON levodopa and on
+one-sided permutation test. P-values were corrected for multiple                STN-DBS cohorts. Figures related to Granger causality analyses
+comparisons using cluster-based permutation testing (see                        were created using custom code in MATLAB R2022a.
+‘Statistical analysis’ section for details). The time of the first statistic­
+ally significant sample was then termed ‘time of motor intention’.              Anatomical localization of electrodes
+                                                                                DBS and ECoG electrodes were localized using standard settings in
+Time-reversed Granger causality
+                                                                                Lead-DBS electrode localization software.24 In brief, preoperative
+Raw data was high-pass filtered at 1 Hz, re-sampled to 200 Hz, re­              MRI and post-operative CT images were co-registered, corrected
+ferenced in a bipolar montage, and notch-filtered to remove line                for brain shift, and normalized to MNI space (Montreal
+noise (50 Hz). STN-LFP channels and bipolar ECoG channels located               Neurological Institute; MNI 2009b NLIN ASYM atlas). Electrode arte­
+on motor cortex were selected (see ‘Anatomical localization of elec­            facts were marked manually and MNI coordinates were extracted.
+trodes’ section for details), all contralateral to the side of move­            See Supplementary Fig. 1 for reconstructed electrode localizations.
+ment, and epochs from −3 to 2 s relative to EMG onset were                      Individual electrode contacts were then assigned to one of either
+extracted. Time-frequency estimates of multivariate22 time-                     parietal, sensory, motor, or prefrontal cortex regions based on prox­
+reversed Granger causality23 (TRGC) were computed using a modi­                 imity to these regions using the AAL3 parcellation.25 Equally, bipo­
+fied implementation of the MNE-Connectivity toolbox (https://mne.               lar ECoG channels were assigned to one of parietal, sensory, motor,
+tools/mne-connectivity/stable/index.html). TRGC was calculated                  or prefrontal cortex based on proximity of the mean Euclidian dis­
+on time-frequency cross-spectral densities derived using Morlet                 tance between the MNI coordinates of the two used electrode con­
+wavelets (4–35 Hz, 1 Hz frequency resolution, seven cycles) within              tacts to the respective cortical regions. Notably, ECoG implant
+the motor intention period (−2 to 0 s), and vector autoregressive               trajectories were determined by the DBS burr hole, which was cho­
+models with orders of 30. Following the definition of TRGC in                   sen solely based on the optimal clinical approach for STN implant­
+Winkler et al.,23 Granger causality (GC) scores with motor cortex               ation. In some cases a relatively posterior burr-hole has led to
+channels as seeds and STN channels as targets were obtained,                    coverage of parietal cortex by the six-contact strip, even though
+and GC scores with STN channels as seeds and motor cortex                       the primary target was sensorimotor cortex.
+3364 | BRAIN 2024: 147; 3358–3369                                                                                           R. M. Köhler et al.
+
+
+Statistical analysis                                                      at −1.18 s (n = 8; all P ≤ 0.05, cluster corrected). The therapeutic
+                                                                          modulation of readiness potentials was also visible in EEG where
+All statistical tests were performed using non-parametric permuta­        available, with earlier onset in the OFF therapy, when compared
+tion tests with at least 10 000 permutations and a value of α = 0.05      to ON levodopa and on STN-DBS states (Supplementary Fig. 2).
+for significance. P-values in time series and time-frequency series       Readiness potentials in the STN, despite being significantly lower
+were corrected for multiple dependent comparisons using cluster-          in amplitude when compared to ECoG, were also found consistently
+based permutation tests with at least 2000 permutations.                  below baseline at −1.19 s (OFF therapy; n = 22), −1.28 s (ON levo­
+                                                                          dopa; n = 18) and −0.17 s (on STN-DBS; n = 8; all P ≤ 0.05, cluster cor­
+                                                                          rected; Fig. 1F). While the difference of ECoG and STN-LFP in latency
+Results                                                                   patterns is interesting, we should be cautious not to overinterpret
+                                                                          these results as STN readiness potentials were overall less stable
+Subjects
+                                                                          and could have been affected by DBS artefacts. To control for a po­
+Invasive neural population activity from sensorimotor electrocortico­     tential bias from subjects that had no EMG signal, we reproduced
+graphy (ECoG) and subthalamic deep brain stimulation (DBS) electro­       the main effects restricting the analysis to subjects with good
+des was recorded during self-initiated movements in 25 patients with      EMG. Readiness potentials in motor cortex were significantly below
+Parkinson’s disease (Fig. 1A–D). Patients were recruited from two spe­    baseline at −1.81 s OFF therapy (n = 18), −0.63 s ON levodopa (n = 15)
+cialized DBS centres at Charité—Universitätsmedizin Berlin in             and −0.81 s on STN-DBS (n = 6; all P ≤ 0.05, cluster corrected;
+Germany and Tiantan Hospital Beijing in China and performed either        Supplementary Fig. 3A). In STN, readiness potentials were signifi­
+rotational hand movements (n = 16; Berlin) or index finger button         cantly below baseline at −1.54 s OFF therapy (n = 18), −1.35 s ON
+presses (n = 9; Beijing). Patients performed 66 ± 36.25 movements         levodopa (n = 15) and −0.21 s on STN-DBS (n = 6; all P ≤ 0.05, cluster
+(mean ± standard deviation) at their individual pace without any ex­      corrected; Supplementary Fig. 3B).
+ternal cues that were recorded with EMG. Experiments were per­
+formed after withdrawal (n = 22; 12/10 male/female) or
+                                                                          ECoG oscillations predict motor output before
+administration of levodopa (n = 18; 11/7 male/female). Dopaminergic
+                                                                          movement execution
+medication led to an acute and significant alleviation of parkinsonian
+motor signs (UPDRS-III OFF/ON levodopa 29/18 ± 8/8, P = 6 × 10−5,         We aimed to get a more reliable estimate of the neural representa­
+available in n = 15; Fig. 1E and Supplementary Table 1). In a subset of   tion of motor intention in Parkinson’s disease and its modulation
+eight patients (Berlin), ECoG-LFP recordings were repeated during         with dopamine and STN-DBS, and to confirm our results with an
+high-frequency DBS of the STN (OFF levodopa; 130 Hz, 60 µs, clinically    additional analysis that is independent of readiness potential. For
+effective contact, mean amplitude 1.88 ± 0.55 mA; available in n = 8;     this, we trained multivariate machine learning classifiers on the os­
+Supplementary Table 2). ECoG and STN-LFP activity from the hemi­          cillatory premotor patterns from all available channels. ECoG and
+sphere contralateral to movement showed typical movement-related          STN-LFP signals were decomposed into seven frequency bands
+oscillatory changes with decreased alpha (∼8–12 Hz) and beta (∼13–        [theta (4–7 Hz), alpha (8–12 Hz), low beta (13–20 Hz), high beta
+35 Hz) activity and increased gamma (∼60–90 Hz) and broadband             (21–35 Hz), low gamma (60–80 Hz), high gamma (90–200 Hz) and
+high frequency activity (∼90–200 Hz).                                     high frequency activity (HFA; 201–400 Hz)] at a temporal resolution
+                                                                          of 100 ms.
+                                                                              To ensure that the target activity pattern has relevant prepara­
+Readiness potentials in motor cortex are shorter with
+                                                                          tory modulation, while excluding activity after movement onset,
+dopamine and STN-DBS
+                                                                          we defined activity 100 ms prior to EMG onset as our motor inten­
+To investigate pathophysiological changes related to Parkinson’s          tion decoding target. Samples between −3 and −2 s prior to EMG on­
+disease and to study the modulatory effect of dopaminergic medi­          set were defined as rest for model training (Fig. 2A). Linear
+cation and STN-DBS on the neural representation of movement ini­          discriminant analysis (LDA) classifiers were trained to separate mo­
+tiation, we first extracted readiness potentials (also called local       tor intention from resting activity. The classifier output (distance
+motor potential or Bereitschaftspotential) from motor cortex and          from the hyperplane separating rest and motor intention classes)
+STN activity contralateral to the moved hand. Across subjects,            was then calculated for each sample on left out cross-validation
+readiness potential amplitude in motor cortex was significantly           folds between −3 s prior to 2 s after EMG onset for each trial as a
+above baseline relative to EMG onset and significantly stronger in        proxy for the certainty of motor intention classification.
+amplitude than STN-LFP across all conditions (all P ≤ 0.05; not               Significant deviations of classifier output across subjects pre­
+shown). In the medication and stimulation OFF therapy condition           ceded the longest readiness potentials and were significantly high­
+(n = 22) the earliest significant readiness potential deflections in      er for ECoG than STN-LFP classifiers (Fig. 2B). Significant clusters
+motor cortex started on average as early as −1.78 s relative to           started earliest OFF therapy −2.2 s to 1.7 s (n = 22), followed by ON
+EMG onset (Fig. 1F; P ≤ 0.05; cluster corrected).                         levodopa −1.6 to 1.6 s (n = 18) and on STN-DBS −1.0 to 0.9 s (n = 8;
+    We hypothesized that this could be indicative of a pathological­      all P ≤ 0.05, cluster corrected). When excluding subjects where no
+ly prolonged movement initiation period in the hypodopaminergic           adequate EMG signal was available, similar results were observed
+parkinsonian state and analysed the effect of levodopa and                with significant clusters detected from −2.0 to 1.6 s (OFF therapy),
+STN-DBS therapy. Indeed, the latency between readiness potential          −1.5 to 1.5 s (ON levodopa) and −0.8 to 0.6 s (on STN-DBS; all P ≤
+onset and motor execution in the ON levodopa (n = 18) condition           0.05, cluster corrected; Supplementary Fig. 3C).
+was 780 ms shorter with earliest significant signal deflections ob­           Before investigating specific delays from earliest decoding time
+servable at −1.0 s relative to EMG onset. Similarly, the on               points and comparison across cohorts, we ensured that classifier
+STN-DBS (n = 8) condition showed a 600 ms shorter latency be­             accuracy was satisfactory. Motor intention and rest features from
+tween readiness potential onset and motor execution with earliest         ECoG were classified significantly above chance (50%) across sub­
+deflections in the on STN-DBS (OFF levodopa) condition occurring          jects with a mean balanced accuracy of 79.7 ± 7.4% (P = 4 × 10−6),
+Modulating neural dynamics of akinesia                                                                BRAIN 2024: 147; 3358–3369            | 3365
+
+77.2 ± 9.9% (P = 8 × 10−6) and 77.2 ± 8.0% (P = 8 × 10−3) in recordings    we cannot rule out that dopamine affects preparatory brain signals
+OFF therapy, ON levodopa and on STN-DBS, respectively                      for non-motor function, we interpret these results to reflect a com­
+(Supplementary Fig. 4A). Classification accuracy did not differ            bination of cortical connectivity to striatum that is higher in motor
+across medication and stimulation conditions (Supplementary                than sensory cortex and the regionally specific neurodegeneration
+Fig. 4A and B; all P > 0.05), but ECoG classifiers were significantly      pattern in Parkinson’s disease that primarily affects the motor
+more accurate than STN-LFP classifiers in all therapeutic condi­           circuit.
+tions (Supplementary Fig. 4C). It should be noted that in all in­
+stances the classifier output peaked after movement onset,                 Dopaminergic medication and STN-DBS shift
+indicating that our classifiers could not distinguish between motor        cortico-subthalamic coupling to theta rhythms
+preparation and movement execution.
+                                                                           To elucidate neurophysiological correlates of the therapy induced
+                                                                           reduction in motor intention to execution, we investigated cortico-
+Dopamine and STN-DBS shorten latencies from                                subthalamic oscillatory coupling and directionality of information
+motor intention to execution                                               flow with Granger causality. Time-frequency estimates of Granger
+                                                                           causality were extracted for motor cortex-STN channel pairs within
+To allow for robust and direct group comparisons across therapeut­
+                                                                           the motor preparation period (−2 to 0 s). Surrogate matrices from
+ic conditions, we determined the earliest significant deviation of
+                                                                           time-reversed signals were subtracted to normalize the resulting
+classifier output at the single-subject level across baseline cor­
+                                                                           time-frequency estimates while reducing the impact of measure­
+rected trials (‘time of motor intention’). Following this analysis,
+                                                                           ment noise.23 A previously reported cortico-subthalamic driving
+the mean ‘time of motor intention’ derived from ECoG occurred sig­
+                                                                           of beta oscillations26 is visible throughout all conditions with an ap­
+nificantly before EMG onset (Fig. 2C) at −1.3 ± 0.4 s (OFF therapy; n =
+                                                                           preciable but temporally inconsistent difference between OFF ther­
+22; P = 4 × 10−6), −1.1 ± 0.4 s (ON levodopa; n = 18; P = 8 × 10−6) and
+                                                                           apy and ON levodopa states at end of baseline resting period (−2 s;
+−1 ± 0.3 s (on STN-DBS; n = 8; P = 8 × 10−3). Mirroring the observed
+                                                                           Fig. 3A). At the time of motor intention, the ON levodopa condition
+pattern of readiness potential onset, but now statistically compar­
+                                                                           was associated with a significant cluster of cortico-subthalamic
+able across therapeutic conditions, the mean time of motor inten­
+                                                                           coupling in the theta band (n = 18; 4–10 Hz; peak significance at
+tion in ECoG was earlier for recordings OFF therapy than ON
+                                                                           7 Hz, −0.9 s, P ≤ 0.05 cluster corrected) when compared to the OFF
+levodopa (Δ = −270 ms, P = 0.039) and OFF therapy than on
+                                                                           therapy condition (Fig. 3C and E). Granger causality at the peak
+STN-DBS (Δ = −360 ms, P = 0.03). The effect for OFF versus
+                                                                           OFF-ON difference correlated with intention to execution delays,
+ON levodopa was reproduced when only subjects recorded
+                                                                           as measured as the time of motor intention, in the ON levodopa
+in both conditions were considered (Supplementary Fig. 4D;
+                                                                           (n = 18; Spearman’s ρ = 0.6, P = 9 × 10−3; Fig. 3G) but not levodopa
+P = 0.046, ΔLevodopa−140 ± 470 ms).
+                                                                           OFF state (P > 0.05; not shown). Moreover, comparison of on
+    For STN-LFP recordings, mean ‘time of motor intention’ was not
+                                                                           STN-DBS with OFF therapy conditions revealed a similar cluster
+reliably estimable before EMG onset across all subjects
+                                                                           with increased cortico-subthalamic coupling in the theta frequency
+(Supplementary Fig. 4G) indicative of the conservative nature of
+                                                                           band (n = 8; 4–8 Hz; peak significance at 6 Hz, −0.9 s; P ≤ 0.05 cluster
+this measure. We therefore did not consider the STN-LFP for further
+                                                                           corrected; Fig. 3D and F). The correlation of OFF-ON difference with
+analysis of motor intention times.
+                                                                           intention to execution delays for on STN-DBS resembled the ON
+    In summary, our results provide evidence for a prolonged cor­
+                                                                           levodopa condition, but was insignificant in this smaller cohort
+tical representation of motor intention in the parkinsonian OFF
+                                                                           (n = 8; Spearman’s ρ = 0.643, P = 0.096; Supplementary Fig. 6).
+state that may reflect the impairment in movement initiation.
+                                                                           Thus, both dopaminergic medication and STN-DBS modulated
+Both dopaminergic medication and STN-DBS may reduce motor in­
+                                                                           cortico-subthalamic oscillatory communication with a spectrally
+tention to movement execution delays, potentially reflective of
+                                                                           specific shift from resting beta to premotor theta coupling, poten­
+their ability to alleviate akinesia in Parkinson’s disease.
+                                                                           tially reflective of a shift to a prokinetic circuit state that can accel­
+                                                                           erate movement initiation in Parkinson’s disease. In summary, this
+Therapeutic modulation of motor intention signals is                       suggests that dopaminergic medication and STN-DBS may share
+regionally specific to motor cortex                                        similar mechanisms in the modulation of cortico-subthalamic
+                                                                           communication that facilitates action initiation.
+To investigate anatomical specificity, we calculated the time of mo­
+tor intention for every channel separately (Fig. 2D; OFF therapy:
+n = 120 channels). Channels were assigned to one of either parietal,
+sensory, or motor cortex based on proximity using the Automated
+                                                                           Discussion
+Anatomical Label (AAL3) parcellation.25 Due to the location of the         Our study demonstrates that dopamine and subthalamic deep
+burr hole in STN-DBS surgery, only a few ECoG channels (n = 13             brain stimulation (STN-DBS) can accelerate and shift the neural dy­
+from 11 patients) were located anterior to motor cortex (mostly            namics for volitional action in patients with Parkinson’s disease.
+middle frontal gyrus), which is prefrontal areas could not be in­          We found that both motor cortical readiness potentials and oscilla­
+cluded in further analyses. Time of motor intention occurred sig­          tory activity that precede self-initiated movement execution show
+nificantly before EMG onset for all three parietal, sensory and            long latencies before EMG onset in the hypodopaminergic OFF
+motor cortical regions (all P ≤ 1 × 10−3) but was significantly earlier    state. These latencies could be shortened with dopamine and
+in motor cortex than in parietal (Δ=−520 ms, P = 5 × 10−4) or sensory      STN-DBS therapy. This provides evidence that cortical motor repre­
+(Δ = −370 ms, P = 4 × 10−3) cortex in recordings OFF therapy               sentations, including readiness potentials, are modulated by dopa­
+(Supplementary Fig. 5A). Importantly, the significant dopaminergic         mine and STN-DBS. When analysing cortico-subthalamic
+modulation of motor intention was spatially specific for motor cor­        oscillatory coupling, we found that both dopamine and STN-DBS
+tex (Δ = −200 ms, P = 0.029) but not in sensory (Δ = 40 ms, P = 0.81) or   could shift cortico-subthalamic dynamic oscillatory drive in the
+parietal (Δ = −7 ms, P = 0.96) cortex (Supplementary Fig. 5D). While       motor preparation phase from beta to theta frequencies. These
+3366 | BRAIN 2024: 147; 3358–3369                                                                                                  R. M. Köhler et al.
+
+                                                                                 findings could link the modulation of neural dynamics of motor
+                                                                                 preparation to shared circuit mechanisms of dopamine and
+                                                                                 STN-DBS for the alleviation of impaired action initiation in
+                                                                                 Parkinson’s disease.
+
+
+                                                                                 Human evidence for a role of dopamine in volitional
+                                                                                 action initiation
+                                                                                 After movement related activity of dopaminergic neurons was first
+                                                                                 described for movement execution, it was later often conceptua­
+                                                                                 lized to result from a subjective encoding of sensory input, that
+                                                                                 was formalized as the well-known reward prediction error.27,28
+                                                                                 Since then, dopamine research has often been focused on reward
+                                                                                 processing. Nevertheless, the investigation of movement related
+                                                                                 dopamine release has recently experienced a renaissance, primar­
+                                                                                 ily through methodological advances in animal research.29 In the
+                                                                                 last decade multiple impactful studies have clearly demonstrated
+                                                                                 the phasic increase of firing and release of dopamine prior to action
+                                                                                 initiation that was unrelated to sensory stimuli or reward contin­
+                                                                                 gency.8,30 Importantly, optogenetic and spontaneous activation of
+                                                                                 dopaminergic neurons has repeatedly been shown to facilitate
+                                                                                 the neural process underlying movement initiation in rodents.30
+                                                                                 While direct cell-type specific recordings of dopaminergic activity
+                                                                                 remain unavailable in human subjects, the unique access to inva­
+                                                                                 sive brain signals in patients with Parkinson’s disease undergoing
+                                                                                 neurosurgery for deep brain stimulation has allowed us to charac­
+                                                                                 terize the effects of dopamine on the neural representation of mo­
+                                                                                 tor preparation signals. Our findings corroborate a role for
+                                                                                 dopamine in the modulation of motor intention coding and provide
+                                                                                 direct evidence for the involvement of subcortical brain circuits in
+                                                                                 the generation of cortical readiness potentials and oscillatory cor­
+                                                                                 relates of motor intention in humans. Dopamine decreased the
+                                                                                 time between onset of cortical readiness potentials and oscillatory
+                                                                                 activity related to motor intention and the onset of motor execu­
+                                                                                 tion, indicative that cortex–basal ganglia circuits are involved in
+                                                                                 their processing. Of note, while dopamine may have additional un­
+                                                                                 specific effects directly on cortex, STN-DBS could reproduce this ef­
+                                                                                 fect and is a causal targeted subcortical intervention. However, the
+                                                                                 effect of STN-DBS was less robust as the most conservative paired
+                                                                                 statistical comparison of individual onset times restricted to only
+                                                                                 patients that received STN-DBS was insignificant. However, at the
+                                                                                 group average and in comparison to all subjects the effect was
+                                                                                 stable. Most recently, it has been proposed that action related dopa­
+Figure 3 Dopamine and subthalamic deep brain stimulation drive cortico-          mine signals may relate to neural reinforcement of action,31 puta­
+subthalamic theta coupling that is correlated with shorter intention to exe­
+                                                                                 tively through the calculation of action prediction errors.32,33
+cution latencies. (A) At the end of the baseline period (−2 s) motor cortex
+drives oscillatory cortico-subthalamic coupling in the beta frequency range      Dopamine and subthalamic DBS may thus reinstate neural re­
+as measured by time-reverse corrected Granger causality (TRGC). (B) With         inforcement for action initiation, vigour generation and neural
+start of movement intention motor cortex may drive activity through the          learning.
+striatopallidal indirect and monosynaptic hyperdirect pathways to the sub­
+thalamic nucleus (STN), that can be modulated by dopaminergic afferences
+from substantia nigra pars compacta (SNc) and subthalamic deep brain             Increased intention to execution latency may
+stimulation (STN-DBS). GPe = globus pallidus externus; THAL = thalamus.          underlie akinesia in Parkinson’s disease
+(C) Comparison of Granger causality OFF versus ON Levodopa reveals
+stronger coupling in the theta range (dashed cluster, P ≤ 0.05). Peak signifi­   Akinesia, the impairment to initiate movement, is a pathognomon­
+cance occurred 900 ms before movement onset at 7 Hz (yellow rectangle in         ic clinical feature of the hypodopaminergic parkinsonian state.
+inlet), shortly after average decoding time onset (vertical dashed line in       Investigation of akinesia in experimental settings has so far been
+blue/green for OFF/ON in inlet). (D) A similar effect was observed when
+comparing OFF therapy cohorts with the sub-cohort on STN-DBS with a
+peak significance 900 ms before movement at 6 Hz. Granger causality spec­
+tra demonstrate spectrally specific differences for dopamine (E) and             Figure 3 (Continued)
+STN-DBS (F) in the theta frequency range. (G) Granger causality at peak dif­     coupling is predominantly observed in the beta frequency range, that
+ference correlated with the time of motor intention in the ON levodopa, but      could be attributed to excessive indirect pathway (D2) activity.
+not OFF therapy cohorts. (H) In the hypodopaminergic Parkinson’s disease         Dopamine and STN-DBS shorten motor intention to execution latencies
+state, intention to execution latency is prolonged and cortico-subthalamic       and shift cortico-subthalamic coupling to the theta frequency band, po­
+                                                                                 tentially through suppression and consecutive changes in direct to in­
+                                                                 (continued)     direct pathway balance. HD = hyperdirect pathway.
+Modulating neural dynamics of akinesia                                                               BRAIN 2024: 147; 3358–3369           | 3367
+
+largely limited to reaction time experiments that included one or         study has found that cortical beta oscillations could track perceived
+multiple alternative sensory cues.34 Both dopaminergic medication         effort, while theta oscillations related to previous rewards during de­
+and STN-DBS can shorten reaction times, but effects were reported         cision making.53 The observed shift to cortico-subthalamic theta
+to vary with complexity of the tasks that were primarily defined by       drive related to therapeutic alleviation of akinesia in our study could
+sensory input.34 Meanwhile, it is known that visual cues can help         thus be conceptualized as an overcoming of pathologically exagger­
+patients to overcome akinesia, which may indicate that movement           ated effort perception and decreased reward prediction at the circuit
+initiation in response to sensory cues is less affected than self-        level, which could be rebalanced with dopamine and DBS to acceler­
+initiation in Parkinson’s disease. Experimental studies have pro­         ate motor initiation. While this remains speculative, it provides an
+vided some evidence for this,35-37 but in self-initiated tasks often      intriguing conceptual foundation to interpret oscillatory changes in
+only surrogate behavioural markers after movement onset were              hyperkinetic states, where excessive theta and low frequency activ­
+measured as it is inherently difficult to develop a behavioural pre­      ity in the basal ganglia has been associated with tics in Tourette’s
+dictor of the intention to move in a fully self-initiated movement.       syndrome and involuntary muscle contraction in dystonia.12
+Therefore, some studies have instead measured electroencephalo­           Similarly, previous human studies in Parkinson’s disease patients
+graphic readiness potentials for the investigation of akinesia, most­     have shown that a shift from an akinetic to a dyskinetic state with in­
+ly focusing on signal magnitudes that were initially reported to be       voluntary movements as a side-effect of levodopa can be accompan­
+increased in Parkinson’s disease but followed by conflicting              ied by a persistent change in oscillatory patterns from beta to theta as
+results.5,35,38-44 Similar to our approach, one study used EEG during     the dominant rhythm of the basal ganglia,54,55 but these studies
+self-paced movements and found longer latencies between readi­            mostly investigated patient states rather than dynamic modulations.
+ness potential onset in Parkinson’s disease patients compared to          Notably, one study has reported that phasic theta increases in the
+healthy controls.39 This suggests that motor preparation in cortex        subthalamic nucleus during movement may be associated with de­
+takes longer in the parkinsonian state, which is further supported        creased symptom severity in the parkinsonian ON state, further sup­
+by reports of prolonged premotor excitability in Parkinson’s disease      port for our observation that theta synchrony can be associated with
+patients compared to healthy controls,45 and in studies of maca­          shorter intention to execution latencies.56 Taken together, our re­
+ques with neurotoxin-induced parkinsonism that found evidence             sults corroborate a role for theta oscillations in the reduction of in­
+for longer delays between onset of motor cortex activity and move­        tention to execution delays and their underlying neural processes.
+ment.46,47 Our study significantly extends these findings by using        While beta oscillations may signal the maintenance of a ‘status
+invasive cortical recordings combined with brain signal decoding          quo’ or increased effort perception in the absence of dopamine, theta
+to demonstrate that both readiness potentials and oscillatory re­         oscillations may signal the deviation of a ‘status quo’ that can be as­
+presentations preceding self-initiated movement can be shortened          sociated with increased reward predictions during dopamine release
+by dopamine and STN-DBS in Parkinson’s disease and providing a            that can be facilitated by deep brain stimulation.
+neural circuit mechanism of this these effects through modulation
+of oscillatory cortex–basal ganglia communication with therapy in­
+                                                                          Motor intention decoding for the future of adaptive
+duced increases in cortical theta drive to the subthalamic nucleus.
+                                                                          deep brain stimulation
+                                                                          This study demonstrates for the first time that it is possible to accur­
+Dopamine and deep brain stimulation shift
+                                                                          ately predict the intention to move from ECoG activity in Parkinson’s
+cortico-subthalamic circuit communication to
+                                                                          disease patients performing self-initiated movements. This may
+prokinetic oscillatory states
+                                                                          have significant implications on the development of adaptive DBS
+The inhibitory akinetic state in Parkinson’s disease has previously       systems, in which stimulation parameters are adapted to the pa­
+been linked to excessive indirect pathway activity that is correlated     tient’s behavioural state or to neural physiomarkers in real-time.
+with pathological beta band oscillations (13–35 Hz) in Parkinson’s dis­   First multicentre trials have been initiated to test the clinical utility
+ease. Beta oscillations and their coupling have been proposed to sig­     of subthalamic beta power as a feature for adaptive stimulation
+nal the maintenance of a ‘status quo’ that is suppressed by               control algorithms. Additionally, it has been proposed that ma­
+behavioural, motor and cognitive state changes.48 Importantly, cor­       chine learning based symptom decoding using multivariate fea­
+tex drives beta activity in the basal ganglia, which can develop a vul­   tures from cortical or subthalamic electrodes may extend this
+nerability to beta hypersynchrony in the absence of dopamine.26,49        approach,57-60 especially because beta activity is suppressed by
+An impactful rodent study has demonstrated this vulnerability in in­      both voluntary and involuntary movements, such as tremor, in
+dividually identified striatal medium spiny neurons in vivo in a dopa­    Parkinson’s disease. Our study showcases high prediction accur­
+minergic lesion model of Parkinson’s disease.50 Compared to healthy       acies of motor intention in cortical but not subthalamic signals.
+animals, striatal indirect pathway medium spiny neurons of animals        In the future, decoding of movement intention could inform adap­
+with dopaminergic lesions showed increased firing rates and exces­        tive stimulation algorithms to support movement initiation. Given
+sive phase locking to cortical beta oscillations. Another study found     that DBS suppresses STN activity and thus the indirect pathway,61
+that in healthy rodents, strong theta oscillations are present in stri­   DBS may have similar effects to a phasic dopamine release. We
+atum (∼8 Hz) and associated with movement.51 In our study, we             might speculate that this could not only improve movement in­
+demonstrate that dopamine and STN-DBS can shift oscillatory               tention but reenact the connection of volition and neural re­
+cortico-subthalamic drive from beta to theta rhythms. In the context      inforcement that is lost in the parkinsonian OFF state.31 Through
+of perceptual decision making, cortico-subthalamic theta activity         this, motor intention-based adaptive DBS could represent a neuro­
+has been associated with the modulation of decision thresholds in         prosthetic support of dopamine circuits for invigoration and re­
+the presence of conflict.52 Thus, one could speculate that similar        inforcement of volitional action. If successful, it could usher a
+threshold mechanisms govern the intention to execution period of          paradigm shift away from the demand-dependent suppression
+simple self-initiated movements that could relate to a balance of dir­    of ‘noisy signals’,62 towards the targeted restoration of cortex-
+ect (theta) and indirect pathway (beta) activation. A more recent         basal ganglia communication, precisely when it is required.
+3368 | BRAIN 2024: 147; 3358–3369                                                                                             R. M. Köhler et al.
+
+
+Conclusion                                                                 Supplementary material
+In conclusion, we provide direct human evidence that dopamine and          Supplementary material is available at Brain online.
+the basal ganglia can modulate preparatory brain signals for the self-
+initiation of volitional action in people with Parkinson’s disease. Our
+findings suggest that the hypodopaminergic parkinsonian OFF state
+                                                                           References
+is associated with increased latencies between the earliest cortical re­
+presentations of movement initiation and the onset of motor execu­         1. Roskies AL. How does neuroscience affect our conception of vol­
+tion. Dopamine and subthalamic deep brain stimulation shortened                ition? Annu Rev Neurosci. 2010;33:109-130.
+these latencies which could underlie their effectiveness in alleviating    2. Kornhuber HH, Deecke L. Hirnpotentialänderungen bei
+the impairment to initiate movements in Parkinson’s disease patients.          Willkürbewegungen und passiven Bewegungen des Menschen:
+This shortening was accompanied by a shift of neural dynamics and              Bereitschaftspotential und reafferente Potentiale. Pflügers Arch.
+brain network connectivity, from antikinetic beta towards prokinetic           1965;284:1-17.
+                                                                           3. Fried I, Mukamel R, Kreiman G. Internally generated preactiva­
+theta coupling between motor cortex and subthalamic nucleus. Our
+                                                                               tion of single neurons in human medial frontal cortex predicts
+study provides mechanistic insights into the interplay of dopamine
+                                                                               volition. Neuron. 2011;69:548-562.
+and cortex–basal ganglia communication in the sequence from motor
+                                                                           4. Soon CS, Brass M, Heinze H-J, Haynes J-D. Unconscious determi­
+intention to movement execution. In the future, our study could in­
+                                                                               nants of free decisions in the human brain. Nat Neurosci. 2008;
+spire a clinical paradigm shift, away from the suppression of basal
+                                                                               11:543-545.
+ganglia noise, towards targeted network interventions that support in­     5. Deecke L, Kornhuber HH. An electrical sign of participation of
+trinsic capacity of dopaminergic circuits for invigoration and re­             the mesial ‘supplementary’ motor cortex in human voluntary
+inforcement of purposeful action.                                              finger movement. Brain Res. 1978;159:473-476.
+                                                                           6. Schurger A, Hu PB, Pak J, Roskies AL. What is the readiness po­
+                                                                               tential? Trends Cogn Sci (Regul Ed). 2021;25:558-570.
+Data availability                                                          7. Libet B, Gleason CA, Wright EW, Pearl DK. Time of conscious in­
+Data from Berlin can be made available conditionally to data shar­             tention to act in relation to onset of cerebral activity
+ing agreements in accordance with data privacy statements signed               (readiness-potential). The unconscious initiation of a freely vol­
+by the patients within the legal framework of the General Data                 untary act. Brain. 1983;106(Pt 3):623-642.
+                                                                           8. Coddington LT, Dudman JT. Learning from action:
+Protection Regulation of the European Union. All code is made pub­
+                                                                               Reconsidering movement signaling in midbrain dopamine neu­
+licly available under https://github.com/richardkoehler/paper-
+                                                                               ron activity. Neuron. 2019;104:63-77.
+motor-intention.
+                                                                           9. da Silva JA, Tecuapetla F, Paixão V, Costa RM. Dopamine neuron
+                                                                               activity before action initiation gates and invigorates future
+                                                                               movements. Nature. 2018;554:244-248.
+Acknowledgements                                                           10. Bologna M, Paparella G, Fasano A, Hallett M, BerardelliA. Evolving
+We thank all patients who participated in this study. Without their            concepts on bradykinesia. Brain. 2020;143:727-750.
+dedication to contribute to the understanding and treatment of             11. Brown RG, Limousin Dowsey P, Brown P, et al. Impact of deep
+Parkinson’s disease, our research would not be possible.                       brain stimulation on upper limb akinesia in Parkinson’s dis­
+Computation has been performed on the HPC for Research cluster                 ease. Ann Neurol. 1999;45:473-488.
+of the Berlin Institute of Health.                                         12. Neumann W-J, Horn A, Kühn AA. Insights and opportunities for
+                                                                               deep brain stimulation as a brain circuit intervention. Trends
+                                                                               Neurosci. 2023;46:472-487.
+Funding                                                                    13. Holdgraf C, Appelhoff S, Bickel S, et al. iEEG-BIDS, extending the
+                                                                               brain imaging data structure specification to human intracra­
+The study was funded by Deutsche Forschungsgemeinschaft (DFG,                  nial electrophysiology. Sci Data. 2019;6:102.
+German Research Foundation, Project-ID 424778381—TRR295).                  14. Gramfort A, Luessi M, Larson E, et al. MEG and EEG data analysis
+W.J.N. received funding from the European Union (ERC,                          with MNE-python. Front Neurosci. 2013;7:267.
+ReinforceBG, Project 101077060). A.A.K. has received grant funding         15. Appelhoff S, Sanderson M, Brooks TL, et al. MNE-BIDS:
+from the Lundbeck foundation as part of the collaborative project              Organizing electrophysiological data into the BIDS format and
+grant ‘Adaptive and precise targeting of cortex-basal ganglia cir­             facilitating their analysis. J Open Source Soft. 2019;4:1896.
+cuits in Parkinson’s disease’ (Grant Nr. R336-2020-1035). The              16. Harris CR, Millman KJ, van der Walt SJ, et al. Array programming
+NeuroCure Research Centre is Funded by the Deutsche                            with NumPy. Nature. 2020;585:357-362.
+Forschungsgemeinschaft (DFG, German Research Foundation) un­               17. The pandas development team. pandas-dev/pandas: Pandas.
+der Germany’s Excellence Strategy (EXC-2049–390688087). S.H. has               Zenodo; 2023.
+received funding via the European Research Council (ERC) under             18. Virtanen P, Gommers R, Oliphant TE, et al. Scipy 1.0:
+the European Union’s Horizon 2020 research and innovation pro­                 Fundamental algorithms for scientific computing in python.
+                                                                               Nat Methods. 2020;17:261-272.
+gramme (Grant agreement No. 758985).
+                                                                           19. Oostenveld R, Fries P, Maris E, Schoffelen J-M. FieldTrip: Open
+                                                                               source software for advanced analysis of MEG, EEG, and invasive
+Competing interests                                                            electrophysiological data. Comput Intell Neurosci. 2011;2011:e156869.
+                                                                           20. Merk T, Köhler R, Peterson V, et al. Invasive neurophysiology and
+A.A.K. reports personal fees from Medtronic and Boston Scientific.             whole brain connectomics for neural decoding in patients with
+G.H.S. reports personal fees from Medtronic, Boston Scientific and             brain implants. Res Sq. [Preprint] doi: 10.21203/rs.3.rs-3212709/v1
+Abbott. W.J.N. serves as consultant to InBrain and reports personal        21. Pedregosa F, Varoquaux G, Gramfort A, et al. Scikit-learn:
+fees from Medtronic.                                                           Machine learning in python. J Mach Learn Res. 2011;12:2825-2830.
+Modulating neural dynamics of akinesia                                                                 BRAIN 2024: 147; 3358–3369           | 3369
+
+22. Barnett L, Seth AK. Granger causality for state-space models.              choice hand movements in Parkinson’s disease. Ann Neurol.
+    Phys Rev E. 2015;91:040101.                                                1995;37:791-799.
+23. Winkler I, Panknin D, Bartz D, Müller K-R, Haufe S. Validity of        44. Gerschlager W, Alesch F, Cunnington R, et al. Bilateral subthala­
+    time reversal for testing granger causality. IEEE Trans Signal             mic nucleus stimulation improves frontal cortex function in
+    Process. 2016;64:2746-2760.                                                Parkinson’s disease. An electrophysiological study of the con­
+24. Horn A, Kühn AA. Lead-DBS: A toolbox for deep brain stimula­               tingent negative variation. Brain. 1999;122(Pt 12):2365-2373.
+    tion electrode localizations and visualizations. NeuroImage.           45. Pascual-Leone A, Valls-Solé J, Brasil-Neto JP, Cohen LG, Hallett
+    2015;107:127-135.                                                          M. Akinesia in Parkinson’s disease. I. Shortening of simple reac­
+25. Rolls ET, Huang C-C, Lin C-P, Feng J, Joliot M. Automated ana­             tion time with focal, single-pulse transcranial magnetic stimu­
+    tomical labelling atlas 3. NeuroImage. 2020;206:116189.                    lation. Neurology. 1994;44:884-891.
+26. Baaske MK, Kormann E, Holt AB, et al. Parkinson’s disease un­          46. Doudet DJ, Gross C, Arluison M, Bioulac B. Modifications of pre­
+    covers an underlying sensitivity of subthalamic nucleus neu­               central cortex discharge and EMG activity in monkeys with
+    rons to beta-frequency cortical input in vivo. Neurobiol Dis.              MPTP-induced lesions of DA nigral neurons. Exp Brain Res.
+    2020;146:105119.                                                           1990;80:177-188.
+27. Schultz W, Romo R. Dopamine neurons of the monkey mid­                 47. Watts RL, Mandir AS. The role of motor cortex in the patho­
+    brain: Contingencies of responses to stimuli eliciting immedi­             physiology of voluntary movement deficits associated with par­
+    ate behavioral reactions. J Neurophysiol. 1990;63:607-624.                 kinsonism. Neurol Clin. 1992;10:451-469.
+28. Schultz W. Dopamine reward prediction-error signalling: A              48. Engel AK, Fries P. Beta-band oscillations—Signalling the status
+    two-component response. Nat Rev Neurosci. 2016;17:183-195.                 quo? Curr Opin Neurobiol. 2010;20:156-165.
+29. Klaus A, Alves da Silva J, Costa RM. What, if, and when to move:       49. Binns TS, Köhler RM, Vanhoecke J, et al. Shared pathway-
+    Basal Ganglia circuits and self-paced action initiation. Annu Rev          specific network mechanisms of dopamine and deep brain
+    Neurosci. 2019;42:459-483.                                                 stimulation for the treatment of Parkinson’s disease. bioRxiv.
+30. Hughes RN, Bakhurin KI, Petter EA, et al. Ventral tegmental                [Preprint] doi: 10.1101/2024.04.14.586969
+    dopamine neurons control the impulse vector during motivated           50. Sharott A, Vinciati F, Nakamura KC, Magill PJ. A population of
+    behavior. Curr Biol. 2020;30:2681-2694.e5.                                 indirect pathway striatal projection neurons is selectively en­
+31. Cavallo A, Neumann W-J. Dopaminergic reinforcement in the                  trained to Parkinsonian beta oscillations. J Neurosci. 2017;37:
+    motor system: Implications for Parkinson’s disease and deep                9977-9998.
+    brain stimulation. Eur J Neurosci. 2024;59:457-472.                    51. Berke JD, Okatan M, Skurski J, Eichenbaum HB. Oscillatory en­
+32. Greenstreet F, Vergara HM, Johansson Y, et al. Action prediction er­       trainment of striatal neurons in freely moving rats. Neuron.
+    ror: a value-free dopaminergic teaching signal that drives stable          2004;43:883-896.
+    learning. bioRxiv. [Preprint] doi: 10.1101/2022.09.12.507572           52. Cavanagh JF, Frank MJ. Frontal theta as a mechanism for cogni­
+33. Bogacz R. Dopamine role in learning and action inference. eLife.           tive control. Trends Cogn Sci (Regul Ed). 2014;18:414-421.
+    2020;9:e53262.                                                         53. Hoy CW, de Hemptinne C, Wang SS, et al. Beta and theta oscilla­
+34. Gauntlett-Gilbert J, Brown VJ. Reaction time deficits and                  tions track effort and previous reward in human basal ganglia
+    Parkinson’s disease. Neurosci Biobehav Rev. 1998;22:865-881.               and prefrontal cortex during decision making. bioRxiv.
+35. Jahanshahi M, Jenkins IH, Brown RG, Marsden CD, Passingham RE,             [Preprint] doi: 10.1101/2023.12.05.570285
+    Brooks DJ. Self-initiated versus externally triggered movements:       54. Alegre M, López-Azcárate J, Alonso-Frech F, et al. Subthalamic
+    I. An investigation using measurement of regional cerebral blood           activity during diphasic dyskinesias in Parkinson’s disease.
+    flow with PET and movement-related potentials in normal and                Mov Disord. 2012;27:1178-1181.
+    Parkinson’s disease subjects. Brain. 1995;118:913-933.                 55. Alonso-Frech F, Zamarbide I, Alegre M, et al. Slow oscillatory ac­
+36. Michely J, Barbe MT, Hoffstaedter F, et al. Differential effects of        tivity and levodopa-induced dyskinesias in Parkinson’s disease.
+    dopaminergic medication on basic motor performance and ex­                 Brain. 2006;129:1748-1757.
+    ecutive functions in Parkinson’s disease. Neuropsychologia. 2012;      56. Lofredi R, Neumann W-J, Bock A, et al. Dopamine-dependent
+    50:2506-2514.                                                              scaling of subthalamic gamma bursts with movement velocity
+37. Siegert RJ, Harper DN, Cameron FB, Abernethy D. Self-initiated             in patients with Parkinson’s disease. eLife. 2018;7:e31895.
+    versus externally cued reaction times in Parkinson’s disease.          57. Gilron R, Little S, Perrone R, et al. Chronic wireless streaming of in­
+    J Clin Exp Neuropsychol. 2002;24:146-153.                                  vasive neural recordings at home for circuit discovery and adap­
+38. Dick JP, Rothwell JC, Day BL, et al. The Bereitschaftspotential is         tive stimulation. bioRxiv. [Preprint] doi: 10.1101/2020.02.13.948349
+    abnormal in Parkinson’s disease. Brain. 1989;112(Pt 1):233-244.        58. He S, Baig F, Mostofi A, et al. Closed-loop deep brain stimulation
+39. Shibasaki H, Shima F, Kuroiwa Y. Clinical studies of the                   for essential tremor based on thalamic local field potentials.
+    movement-related cortical potential (MP) and the relationship              Mov Disord. 2021;36:863-873.
+    between the dentatorubrothalamic pathway and readiness po­             59. Opri E, Cernera S, Molina R, et al. Chronic embedded
+    tential (RP). J Neurol. 1978;219:15-25.                                    cortico-thalamic closed-loop deep brain stimulation for
+40. Dick JPR, Cantello R, Buruma O, et al. The Bereitschaftspotential,         the treatment of essential tremor. Sci Transl Med. 2020;12:eaay7680.
+    l-DOPA and Parkinson’s disease. Electroencephalogr Clin                60. Merk T, Peterson V, Köhler R, Haufe S, Richardson RM,
+    Neurophysiol. 1987;66:263-274.                                             Neumann WJ. Machine learning based brain signal decoding
+41. Barrett G, Shibasaki H, Neshige R. Cortical potential shifts pre­          for intelligent adaptive deep brain stimulation. Exp Neurol.
+    ceding voluntary movement are normal in parkinsonism.                      2022;351:113993.
+    Electroencephalogr Clin Neurophysiol. 1986;63:340-348.                 61. Neumann W-J, Steiner LA, Milosevic L. Neurophysiological me­
+42. Tarkka IM, Reilly JA, Hallett M. Topography of                             chanisms of deep brain stimulation across spatiotemporal reso­
+    movement-related cortical potentials is abnormal in                        lutions. Brain. 2023;146:4456-4468.
+    Parkinson’s disease. Brain Res. 1990;522:172-175.                      62. Marsden CD, Obeso JA. The functions of the basal ganglia and
+43. Touge T, Werhahn KJ, Rothwell JC, Marsden CD. Movement-                    the paradox of stereotaxic surgery in Parkinson’s disease.
+    related cortical potentials preceding repetitive and random-               Brain. 1994;117:877-897.
+

@@ -1,0 +1,284 @@
+Initial Win CP for (console input, console output, system): (CP1252, CP1252, CP1252)
+I changed them all to CP1252
+Rc files read (in order):
+  NONE
+Latexmk: This is Latexmk, John Collins, 9 March 2026. Version 4.88.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="build"  "02_yin_2022_cortical_pac_freezing.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(02_yin_2022_cortical_pac_freezing.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(notes_preamble.tex
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+ (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-pdf
+tex.def)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
+))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty)))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+)))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
+ty) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty)))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty)))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def)
+(C:\Users\thijs\Desktop\Graduation_Project_TML\Documentation\Closed-loop contro
+l of time-delayed neural activity dynamics\Literature_Review\Paper_Notes\build\
+02_yin_2022_cortical_pac_freezing.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd) [1{C:/Use
+rs/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/thijs/AppDa
+ta/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/thijs/AppData/L
+ocal/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
+(C:\Users\thijs\Desktop\Graduation_Project_TML\Documentation\Closed-loop contro
+l of time-delayed neural activity dynamics\Literature_Review\Paper_Notes\build\
+02_yin_2022_cortical_pac_freezing.aux)
+
+Package rerunfilecheck Warning: File `02_yin_2022_cortical_pac_freezing.out' ha
+s changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )<C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pf
+b><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pf
+b><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb
+><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><
+C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><
+C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on "C:\Users\thijs\Desktop\Graduation_Project_TML\Documentation\
+Closed-loop control of time-delayed neural activity dynamics\Literature_Review\
+Paper_Notes\build\02_yin_2022_cortical_pac_freezing.pdf" (1 page, 162608 bytes)
+.
+Transcript written on "C:\Users\thijs\Desktop\Graduation_Project_TML\Documentat
+ion\Closed-loop control of time-delayed neural activity dynamics\Literature_Rev
+iew\Paper_Notes\build\02_yin_2022_cortical_pac_freezing.log".
+Latexmk: Getting log file 'build/02_yin_2022_cortical_pac_freezing.log'
+Latexmk: Examining 'build/02_yin_2022_cortical_pac_freezing.fls'
+Latexmk: Examining 'build/02_yin_2022_cortical_pac_freezing.log'
+Latexmk: References changed.
+Latexmk: Log file says output to 'build/02_yin_2022_cortical_pac_freezing.pdf'
+Latexmk: Log file says output to 'build/02_yin_2022_cortical_pac_freezing.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  build/02_yin_2022_cortical_pac_freezing.aux
+  build/02_yin_2022_cortical_pac_freezing.out
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="build"  "02_yin_2022_cortical_pac_freezing.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(02_yin_2022_cortical_pac_freezing.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(notes_preamble.tex
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+ (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-pdf
+tex.def)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
+))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty)))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+)))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
+ty) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty)))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty)))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty))
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def)
+(C:\Users\thijs\Desktop\Graduation_Project_TML\Documentation\Closed-loop contro
+l of time-delayed neural activity dynamics\Literature_Review\Paper_Notes\build\
+02_yin_2022_cortical_pac_freezing.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg)
+(C:\Users\thijs\Desktop\Graduation_Project_TML\Documentation\Closed-loop contro
+l of time-delayed neural activity dynamics\Literature_Review\Paper_Notes\build\
+02_yin_2022_cortical_pac_freezing.out)
+(C:\Users\thijs\Desktop\Graduation_Project_TML\Documentation\Closed-loop contro
+l of time-delayed neural activity dynamics\Literature_Review\Paper_Notes\build\
+02_yin_2022_cortical_pac_freezing.out)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg)
+(C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd) [1{C:/Use
+rs/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/thijs/AppDa
+ta/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/thijs/AppData/L
+ocal/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
+(C:\Users\thijs\Desktop\Graduation_Project_TML\Documentation\Closed-loop contro
+l of time-delayed neural activity dynamics\Literature_Review\Paper_Notes\build\
+02_yin_2022_cortical_pac_freezing.aux) )<C:/Users/thijs/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/thijs/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/thijs/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/thijs/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/thijs/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/thijs/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on "C:\Users\thijs\Desktop\Graduation_Project_TML\Documentation\
+Closed-loop control of time-delayed neural activity dynamics\Literature_Review\
+Paper_Notes\build\02_yin_2022_cortical_pac_freezing.pdf" (1 page, 162608 bytes)
+.
+Transcript written on "C:\Users\thijs\Desktop\Graduation_Project_TML\Documentat
+ion\Closed-loop control of time-delayed neural activity dynamics\Literature_Rev
+iew\Paper_Notes\build\02_yin_2022_cortical_pac_freezing.log".
+Latexmk: Getting log file 'build/02_yin_2022_cortical_pac_freezing.log'
+Latexmk: Examining 'build/02_yin_2022_cortical_pac_freezing.fls'
+Latexmk: Examining 'build/02_yin_2022_cortical_pac_freezing.log'
+Latexmk: Log file says output to 'build/02_yin_2022_cortical_pac_freezing.pdf'
+Latexmk: Log file says output to 'build/02_yin_2022_cortical_pac_freezing.pdf'
+Latexmk: All targets (build/02_yin_2022_cortical_pac_freezing.pdf) are up-to-date
+
+
+log4cxx: setFile(C:\Users\thijs\AppData\Local\MiKTeX\miktex\log/latexmk.log,true) call failed.
+log4cxx: IO Exception : status code = 720005(Access is denied.  )
+latexmk: security risk: running with elevated privileges
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LC_ALL = "C.UTF-8",
+	LC_CTYPE = "C.UTF-8",
+	LC_NUMERIC = (unset),
+	LC_COLLATE = (unset),
+	LC_TIME = (unset),
+	LC_MONETARY = (unset),
+	LANG = "C.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the system default locale ("English_Netherlands.utf8").
+log4cxx: setFile(C:\Users\thijs\AppData\Local\MiKTeX\miktex\log/pdflatex.log,true) call failed.
+log4cxx: IO Exception : status code = 720005(Access is denied.  )
+pdflatex: security risk: running with elevated privileges
+log4cxx: setFile(C:\Users\thijs\AppData\Local\MiKTeX\miktex\log/pdflatex.log,true) call failed.
+log4cxx: IO Exception : status code = 720005(Access is denied.  )
+pdflatex: security risk: running with elevated privileges

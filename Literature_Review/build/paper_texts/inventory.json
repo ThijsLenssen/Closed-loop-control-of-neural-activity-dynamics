@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "source": "References\\deep brain stimulation\\Cortical beta oscillations map to shared brain networks modulated by dopamine.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\01.txt",
+    "pages": 17,
+    "sha256": "30bf56955a8a271754bf5d825cb5b383a7fa1c9b9bfe620d68e7b0e7433c6ce8"
+  },
+  {
+    "id": 2,
+    "source": "References\\deep brain stimulation\\Cortical phase-amplitude coupling is key to the occurrence and treatment of freezing of gait.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\02.txt",
+    "pages": 15,
+    "sha256": "982bddc881774223fdc8c8636761940abbf9b699fa9787281b6bce22780bb216"
+  },
+  {
+    "id": 3,
+    "source": "References\\deep brain stimulation\\Deep brain stimulation of symptom-specific networks in Parkinson's disease.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\03.txt",
+    "pages": 16,
+    "sha256": "044d312d3921e5eb2f481cd700b875205c84ce1b05cb35bd5765568df0d2f992"
+  },
+  {
+    "id": 4,
+    "source": "References\\deep brain stimulation\\Dopamine and deep brain stimulation  accelerate the neural dynamics of volitional  action in Parkinson’s disease.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\04.txt",
+    "pages": 12,
+    "sha256": "f3a5cca3b926a322490913a33ea7ff84a34231ede2c98f35e09e9ead3680fdce"
+  },
+  {
+    "id": 5,
+    "source": "References\\deep brain stimulation\\Dopamine and neuromodulation accelerate the neural dynamics of volitional action in Parkinson's disease (preprint).pdf",
+    "text": "Literature_Review\\build\\paper_texts\\05.txt",
+    "pages": 24,
+    "sha256": "38a50fedbcd2350b592ce331d610c0968f5f49802c809d447eec7d3ab61fffa6"
+  },
+  {
+    "id": 6,
+    "source": "References\\deep brain stimulation\\Generalized sleep decoding with basal ganglia signals in multiple movement disorders.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\06.txt",
+    "pages": 13,
+    "sha256": "680176bea2f7141df5e6347aefbbeb3887db58d67ab1d4dccba3311c592ecca0"
+  },
+  {
+    "id": 7,
+    "source": "References\\deep brain stimulation\\Insights and opportunities for deep brain stimulation as a brain circuit intervention.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\07.txt",
+    "pages": 16,
+    "sha256": "0352ad68895f964b306060b7b0af8370bb60f8c18ffc3b1860678dea7383093c"
+  },
+  {
+    "id": 8,
+    "source": "References\\deep brain stimulation\\Neural signatures of hyperdirect pathway activity in Parkinson's disease.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\08.txt",
+    "pages": 14,
+    "sha256": "9177f158b636f1c60bf1b7eedf666f2df59def37128688b298bcbb6302012ef1"
+  },
+  {
+    "id": 9,
+    "source": "References\\deep brain stimulation\\Neurophysiological mechanisms of deep brain stimulation across spatiotemporal resolutions.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\09.txt",
+    "pages": 13,
+    "sha256": "a138013c76fa0ed9d9395472bfc3ad87936f0ebfc5d89666c7c96463f886040b"
+  },
+  {
+    "id": 10,
+    "source": "References\\deep brain stimulation\\Pathological pallidal beta activity in Parkinson's disease is sustained during sleep and associated with sleep disturbance.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\10.txt",
+    "pages": 12,
+    "sha256": "c798523165fe56091e1abbaee62b27781aecc4fc08b7b0647ecce50e7b507ee9"
+  },
+  {
+    "id": 11,
+    "source": "References\\deep brain stimulation\\Towards adaptive deep brain stimulation for freezing of gait.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\11.txt",
+    "pages": 3,
+    "sha256": "fc0582ec5dce383514f117faf772b896a0e17b5a8d6fd6e7b602d5985dafb47d"
+  },
+  {
+    "id": 12,
+    "source": "References\\optogenetics\\A Compact Closed-Loop Optogenetics System Based on Artifact-Free Transparent Graphene Electrodes.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\12.txt",
+    "pages": 13,
+    "sha256": "2cfd0ab211685ca81f436a6fc8f251bb7c890141265326da7fed52f29fafc9ff"
+  },
+  {
+    "id": 13,
+    "source": "References\\optogenetics\\Closed-Loop and Activity-Guided Optogenetic Control.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\13.txt",
+    "pages": 34,
+    "sha256": "c4ecd6d3254c9bae2c3d967ba733bf286f76e99996b29fda72bdaf6d0ec5ba90"
+  },
+  {
+    "id": 14,
+    "source": "References\\optogenetics\\Closed-loop optogenetic control of the dynamics of neural activity in non-human primates.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\14.txt",
+    "pages": 27,
+    "sha256": "b02444589ae40e77094874132e8e1bcf7e2695ef61f4e76fda180892c4fc10d8"
+  },
+  {
+    "id": 15,
+    "source": "References\\optogenetics\\Electrophysiology-Based_Closed_Loop_Optogenetic_Brain_Stimulation_Devices_Recent_Developments_.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\15.txt",
+    "pages": 18,
+    "sha256": "cf0d0d43b44baf0b14c37908779319ba3fd2e532d07d00fb74204f43fb46fc06"
+  },
+  {
+    "id": 16,
+    "source": "References\\optogenetics\\optogenetics.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\16.txt",
+    "pages": 9,
+    "sha256": "51484ca3c1aa24d09b8a0648d18cb4c824991c56ed51b2dafff7a3f6b2219095"
+  },
+  {
+    "id": 17,
+    "source": "References\\optogenetics\\The Development and Application of Optogenetics.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\17.txt",
+    "pages": 24,
+    "sha256": "fa9f7a8842539d57d01463580e7eb91fef2f20ef6ba02c5f7036b3605a4fa0ff"
+  },
+  {
+    "id": 18,
+    "source": "References\\optogenetics\\Wireless closed-loop optogenetics across the.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\18.txt",
+    "pages": 35,
+    "sha256": "2c805d0f716d785c610f4a2426cc7db7a2534fb6110f8edc6495b85a2b374a68"
+  },
+  {
+    "id": 19,
+    "source": "References\\parkinsons\\1-s2.0-B9780443219924000130-main.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\19.txt",
+    "pages": 14,
+    "sha256": "66c63ed1b193a00ba7012088b76463b6ae22e0d62ba147a45513b9583dd2b66a"
+  },
+  {
+    "id": 20,
+    "source": "References\\parkinsons\\jneuro-44-e0419232023.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\20.txt",
+    "pages": 19,
+    "sha256": "90f5de76e220d10128e729c3132ca0878865c2b1fef75b31d87e0358dc14067d"
+  },
+  {
+    "id": 21,
+    "source": "References\\parkinsons\\journal.pcbi.1010645.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\21.txt",
+    "pages": 31,
+    "sha256": "d49cd781207c240eab088349efdb017f756ff9871235e196c6c4be8301e12886"
+  },
+  {
+    "id": 22,
+    "source": "References\\parkinsons\\Movement Disorders - 2026 - Koeglsperger - Adaptive Deep Brain Stimulation for Parkinson s Disease  Navigating the.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\22.txt",
+    "pages": 14,
+    "sha256": "606138b62b7549ea05e59255d4d9f75d012fb877fad72952b05b617f36d56050"
+  },
+  {
+    "id": 23,
+    "source": "References\\parkinsons\\Oscilattions in the Subthalamic Nucleus.pdf",
+    "text": "Literature_Review\\build\\paper_texts\\23.txt",
+    "pages": 13,
+    "sha256": "9592a50a8c34b8fdd3665d975fb02e417c7da2d6948258ad24483bf225357dd4"
+  },
+  {
+    "id": 24,
+    "source": "References\\optogenetics\\observations\\photon shot noise limits on optical detection of neuronal spikes and estimation of spike timing.pdf",
+    "text": "Literature_Review/build/paper_texts/photon_shot_noise.txt",
+    "pages": 12,
+    "sha256": "7069d243ac29ac9d55fb973377adfac857c3414777560db2efa6232b68915abb"
+  }
+]

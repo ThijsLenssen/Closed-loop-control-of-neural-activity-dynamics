@@ -1,0 +1,715 @@
+Biophysical Journal Volume 104 January 2013 51–62                                                                                            51
+
+
+Photon Shot Noise Limits on Optical Detection of Neuronal Spikes and
+Estimation of Spike Timing
+
+Brian A. Wilt,† James E. Fitzgerald,† and Mark J. Schnitzer†‡*
+†
+    James H. Clark Center and ‡Howard Hughes Medical Institute, CNC Program, Stanford University, Stanford, California
+
+
+ABSTRACT Optical approaches for tracking neural dynamics are of widespread interest, but a theoretical framework quanti-
+fying the physical limits of these techniques has been lacking. We formulate such a framework by using signal detection and
+estimation theory to obtain physical bounds on the detection of neural spikes and the estimation of their occurrence times as
+set by photon counting statistics (shot noise). These bounds are succinctly expressed via a discriminability index that depends
+on the kinetics of the optical indicator and the relative fluxes of signal and background photons. This approach facilitates quan-
+titative evaluations of different indicators, detector technologies, and data analyses. Our treatment also provides optimal filtering
+techniques for optical detection of spikes. We compare various types of Ca2þ indicators and show that background photons are
+a chief impediment to voltage sensing. Thus, voltage indicators that change color in response to membrane depolarization may
+offer a key advantage over those that change intensity. We also examine fluorescence resonance energy transfer indicators and
+identify the regimes in which the widely used ratiometric analysis of signals is substantially suboptimal. Overall, by showing how
+different optical factors interact to affect signal quality, our treatment offers a valuable guide to experimental design and provides
+measures of confidence to assess optically extracted traces of neural activity.
+
+
+INTRODUCTION
+Neuroscientists are keenly interested in the use of fluores-               spike detection. Few publications describe spike detection
+cent Ca2þ indicators for optical studies that track concur-                as the statistical comparison of signal amplitudes to fluctu-
+rently the dynamics of large populations of individual                     ations of the background photon flux (9,14,16,17) or
+neurons (1). Such studies rely on neurons’ voltage-gated                   consider the accompanying issues regarding spike timing
+Ca2þ channels, and detection of single action potentials is                estimation (16,18). Thus, basic but important questions
+sometimes feasible (2–7). Yet, all optical techniques for                  regarding how many photons are needed to reliably detect
+detecting neural spikes are fundamentally limited by the                   spikes and estimate their timing have remained unanswered.
+statistics of photon emission and detection. The photomulti-               Filling this gap in the theoretical literature will resolve
+plier tubes commonly used in laser-scanning microscopy                     issues central to experimental work, such as how much
+and advanced camera technologies that reduce electronic                    improvement is needed to render optical voltage indicators
+noise regularly permit imaging studies that approach the                   capable of reporting single spikes in live mammalian brains.
+photon shot noise limit. In the live brain, this limit is often               Here we establish optical limits on the detection of neural
+unattainable due to other sources of signal corruption,                    spikes and estimation of spike timing using the statistical
+such as brain motion, but the shot noise limit still sets                  tools of signal detection theory and estimation theory. We
+a performance bound on spike detection. Thus, it is crucial                use signal detection theory to frame spike identification as
+to understand the physical limits of optical methods to opti-              a binary classification problem and quantify the ability to
+mize experimental design, compare and improve imaging                      distinguish action potentials from background and noise.
+techniques, develop data analysis methods, and assess the                  Signal detection theory sets the optimal performance on
+reliability of empirical results (1,8).                                    this classification task and yields not only the optical detec-
+   Several studies have explored the signal-to-noise ratio                 tion limits but also optimal filtering methods that attain
+(SNR) of fluorescent neural activity indicators (8–10), but                these limits. To study the inference of spike timing we
+the quantitative links between neural spike detection and                  use estimation theory, which provides statistical tools for
+optical properties of the indicator and instrumentation                    describing the accuracy of quantitative measurements. The
+remain poorly defined. Metrics used to evaluate indicators                 Chapman-Robbins lower bound from this theory (19,20)
+and experiments vary widely (11–16), from single optical                   sets the minimum (error) variance of any unbiased means
+parameters (11,13) to heuristic combinations of indicator                  of estimating a parameter from noisy data, which we apply
+brightness, signal amplitude, and signal duration (12,14,16).              to the estimation of spike times.
+These metrics do not capture the relationships among the                      When shot-noise-limited data are available, our treatment
+indicator, microscope performance, and the statistics of                   provides metrics to assess if algorithms to extract spikes from
+                                                                           optical data are optimal. We illustrate this for dual-color
+Submitted December 27, 2011, and accepted for publication July 24, 2012.
+                                                                           studies using fluorescence resonant energy transfer (FRET)
+*Correspondence: mschnitz@stanford.edu
+                                                                           indicators. Most spike detection routines examine the ratio
+Editor: Leslie Loew.
+                                                                           of the two color channels (21,22). However, one channel
+Ó 2013 by the Biophysical Society
+0006-3495/13/01/0051/12 $2.00                                                                        http://dx.doi.org/10.1016/j.bpj.2012.07.058
+52                                                                                                                            Wilt et al.
+
+of low signal quality can corrupt the ratiometric analysis        a spike, the mean photon flux of the signal plus background,
+despite a high quality second channel. Our theory identifies      Sn , is the time integral of both terms in Eq. 1:
+the regimes in which ratiometric analysis approaches opti-
+                                                                                 Zn=n
+mality and provides superior methods when it does not.                                              F0                
+                                                                        Sn ¼             SðtÞdt ¼      þ At e1=ðtnÞ  1 en=ðtnÞ :   (3)
+                                                                                                    n
+                                                                               ðn1Þ=n
+RESULTS
+Statistical analysis of neuronal spike detection                  Sn is also the mean of a Poisson process, which unlike B
+                                                                  depends on n because the signal is time-varying.
+We first quantify how identification of neural spikes in             We now consider how to use N successive samples from
+optical recordings is limited by photon shot noise. Our model     the detector, F ¼ (F1, F2, ., FN), to detect spikes. In the
+for a spike’s optical waveform is based on fluorescent Ca2þ       shot-noise-limited regime, F is distributed according to
+indicators, but our framework also applies to voltage indica-     Poisson statistics. We use this distribution to express two
+tors. The typical Ca2þ transient in response to an action         mutually exclusive hypotheses regarding the occurrence of
+potential is a rapid rise in [Ca2þ] followed by an approxi-       a spike: the null hypothesis, H(0), which posits the absence
+mately exponential decay back to baseline (23). The decay         of a spike; and the alternative, H(1), which posits that a spike
+time reflects the cell’s Ca2þ extrusion and buffering             occurred at time zero. Given a specific set of photon
+processes as well as Ca2þ unbinding from the indicator. To        measurements, F ¼ f, we compute the probability of attain-
+simplify our description of the indicator, we approximate         ing f under each hypothesis by multiplying the independent
+intracellular [Ca2þ] and the fluorescence signal as being         detection probabilities for each time bin,
+linearly related. This ignores indicator saturation and is
+a good approximation when the intracellular [Ca2þ] is                           Y
+                                                                                  N
+                                                                                              Y
+                                                                                                N
+                                                                                                        f
+                                                                      pF fjHð0Þ ¼   Poisson B ¼   e B B n=fn !                      (4)
+much less than the indicator’s Ca2þ binding constant. This
+                                                                                          n¼1                   n¼1
+approach is commonly used for neurons with temporally
+sparse patterns of spiking (24). We further assume fluores-                       Y              Y
+                                                                                N
+                                                                                               N
+                                                                                                         f
+cence signals from distinct spikes add linearly and do not           pF fjH ð1Þ ¼   Poisson Sn ¼   eSn Sn n =fn ! :                 (5)
+depend on the cell’s spiking history or absolute [Ca2þ].                                 n¼1                    n¼1
+Neither all neuron types nor all Ca2þ indicators obey these
+assumptions (8).                                                  We now use signal detection theory to optimally classify f as
+   We express the mean fluorescence signal, S(t), after           an instantiation of either H(0) or H(1). This rests on interpret-
+a spike at t ¼ 0 as                                               ing pF(fjH(i)) as the likelihood of hypothesis H(i) being true
+                                                                  given observation f. Dividing Eq. 5 by Eq. 4 and taking the
+                   SðtÞ ¼ F0 þ Aet=t qðtÞ:                (1)    natural logarithm, the log-likelihood ratio is
+                                                                                           
+F0 represents a time-independent background fluorescence                        pF fjH ð1Þ      XN
+                                                                                                            Sn X N
+                                                                                                                           
+rate and is the sum of: the rate of autofluorescence from          LðfÞ ¼ log                 ¼     f n log          Sn  B : (6)
+                                                                                pF ðfjH ð0Þ Þ   n¼1         B   n¼1
+unlabeled cellular structures; the rate of fluorescence from
+improperly targeted indicator molecules such as those in
+the extracellular space; and the rate of fluorescence from        Intuitively, if L(f) is greater than zero, it is more likely
+properly targeted indicators when the neuron is at its resting    a spike occurred; if L(f) is less than zero, it is more likely
+[Ca2þ]. Thus, F0 specifies the rate of detected photons in the    there was no spike. Formally, one uses a decision rule,
+absence of a neural spike. A and t represent the signal wave-                             ð1Þ
+                                                                                           H      if LðfÞ > log C
+form’s amplitude and decay time constant, respectively. The                      dðfÞ ¼                           ;          (7)
+                                                                                           H ð0Þ if LðfÞ < log C
+unit step function q(t) equals zero if its argument is negative
+and is one otherwise.                                             to classify whether f is an instantiation of a spike or not. The
+   We further assume the detected photon signals are digi-        cutoff between the two hypotheses, log C, is set by choosing
+tized at sampling rate n, so each time bin has duration 1/n.      a cost function, Cij, which quantifies both the penalties for
+When there is no action potential, the mean background            incorrect choices of H(i) when H(j) is true (for i s j) and
+photon flux, B, is the integral of the first term in Eq. 1        the benefits of correct choices (i ¼ j). For example, if one
+over one time bin (shown below for the nth time bin):             wanted to avoid false positives but could tolerate false nega-
+                        Zn=n                                      tives, one would choose C01 < C10. One then minimizes the
+                                 F0 :
+                     B ¼ F0 dt ¼                           (2)    mean expected cost given the prior odds of each hypothesis.
+                                 n                                The cutoff between the two hypotheses that results is
+                        ðn1Þ=n
+                                                                                                                 
+                                                                                                 p0 ðC10  C00 Þ
+B is the mean of a Poisson process that combines fluores-                       log C ¼ log                         ;           (8)
+cence excitation, emission, and detection. When there is                                         p1 ðC01  C11 Þ
+
+Biophysical Journal 104(1) 51–62
+Noise Limits on Optical Detection of Neural Spikes                                                                                                          53
+
+
+where pi is the prior probability of hypothesis H(i) (25).                           These two approximations allow us to introduce a dis-
+                                                                                                                  ð1Þ      ð0Þ
+Further, by using the log-likelihood ratio to classify f, we                      criminability index, d 0 ¼ ðmL  mL Þ=sL , that is often
+can assess the statistical significance of each assignment                        used in signal detection theory to describe systems with
+(i.e., we can compute a p-value).                                                 Gaussian fluctuations (25) (Fig. 1 A).
+   To examine which measurements are classified as spikes,                           Varying the decision cutoff yields a curve known as
+we now make two approximations to Eq. 6:                                          the receiver operating characteristic (ROC) (25), which
+   First, we assume the total number of detected photons is                       describes the tradeoff between detection sensitivity and
+sufficiently large to approximate the probability distribution                    susceptibility to noise (Fig. 1 B). The area under the ROC
+of the log-likelihood ratio as a Gaussian function. This is                       curve is a measure of detection fidelity that is independent
+a standard approximation to Poisson counting statistics.                          of the cutoff (Fig. 1 C): this area equals the probability of
+Importantly, the Gaussian distribution differs between the                        an ideal observer correctly identifying the spike in a choice
+set of measurements in which there was a spike and the                            between a pair of measurements, one of which contains a
+set in which there was not.                                                       spike and one of which does not (25). Importantly, d 0 indexes
+   Second, we assume the background, F0 , is much greater                         the receiver operating characteristic for spike detection (25)
+than the fluorescence increment during a spike, A=F0                             (Fig. 1, B and C, and see Section S2 in the Supporting
+1. This is presently true for nearly all voltage indicators                       Material). If the sampling rate is sufficiently high
+and most Ca2þ indicators; moreover, as we show later,                             that tn > 1, then
+when this approximation is invalid, spike detection becomes                                                       rﬃﬃﬃﬃﬃﬃﬃ
+                                                                                                          0   DF F0 t
+straightforward from the perspective of signal detection                                                 dz                 ;                (9)
+theory. With A=F0  1, the dominant contribution to the                                                        F      2
+shot noise comes from the background photon flux, so the                          where DF/F z A=F0 is the amplitude of the optical transient
+standard deviation of L(f ) is independent of whether or                          (Fig. 1 D, and see Section S1 in the Supporting Material).
+                        ð1Þ   ð0Þ              ðiÞ
+not there is a spike, sL zsL zsL , where sL denotes the                           The value of d 0 provides a simple metric of the difficulty
+standard deviation of the distribution of the log-likelihood                      of spike detection. Shot noise fluctuations in the background
+                        ðiÞ
+ratio about its mean, mL , under hypothesis H(i) (see Section                     photon flux influence d 0 via the dependence of DF/F on F0 .
+S1 in the Supporting Material).                                                   Note that in our treatment DF/F is not an intrinsic property
+
+
+            A
+
+
+
+
+                                                                                               D
+
+
+
+            B                                          C
+
+
+
+
+FIGURE 1 Signal detection theory. (A) Distribution of log-likelihood ratios, in cases with a spike (green curve), pL(fjH(1)), and without a spike (red curve),
+pL(fjH(0)), for d 0 ¼ 1 and d 0 ¼ 3 and two different detection thresholds. (B and C) The receiver operating characteristic (ROC) curve describes the trade off
+between the true positive rate versus the false positive rate for different values of the detection threshold. (B) In the approximation these distributions are
+Gaussians of equal variance, d 0 completely characterizes the ROC curve. For d 0 R 5, the ROC curve is visually indistinguishable from the panel axes.
+(C) The area under the ROC curve is a metric of spike detectability that is independent of the user’s choice of detection threshold. This area equals the prob-
+ability of an ideal observer correctly identifying the spike in a choice between a pair of instantiations of each hypothesis. (D) Contour plot showing how
+d 0 depends on the transient amplitude, DF/F, and F0 t, the mean number of background photons collected over an interval of t in duration. Contours are
+plotted for d 0 ¼ 1–5, 10, 15, 20, and 25. Discriminability improves for increased F0 at fixed DF/F, due to the rise in signal photons.
+
+                                                                                                                         Biophysical Journal 104(1) 51–62
+54                                                                                                                                                       Wilt et al.
+
+of the indicator and the neuron’s resting [Ca2þ] but also                            rate, PF , as a function of d 0 (see Section S2 in the
+depends on tissue autofluorescence and indicator labeling                            Supporting Material) and used the equal-cost condition
+patterns. Any means of reducing background labeling thus                             (C10 ¼ C01, C00 ¼ C11) to set the threshold for spike detec-
+directly benefits spike discriminability.                                            tion (Fig. 2 C). Although straightforward, this condition has
+   We verified Eq. 9 by simulating the detection of spikes in                        some interesting consequences. For example, for d 0 ¼ 1 we
+isolation (Fig. 2 A) and within spike trains (Fig. 2 B). We                          did not detect any spikes. Because of the low a priori prob-
+calculated the detection rate, PD , and the false positive                           ability of a time bin containing a spike, any drop in detection
+
+ A                                                                                                                             C
+
+
+
+
+ B
+
+
+
+
+FIGURE 2 Simulations of spike detection. (A) Probability distributions of log-likelihood ratios, Eq. 6, taken over all possible photon measurements in the
+presence (green) and absence (red) of a neural spike, based on simulations of neural spiking with shot-noise-limited optical detection at d 0 ¼ 1 or d 0 ¼ 3.
+(Solid lines) Theoretically predicted Gaussian distributions. (Histograms) measured distributions from the simulation. The slight disagreements between the
+two are due to the use of leading-order approximations in the theory and can be remedied by including higher-order terms (see Section S1 in the Supporting
+Material). (B) Simulated optical traces and detected spikes for several values of d 0 . (Blue lines) Optical traces shown in units of the standard deviation from
+the mean photon count. (Green spikes) The true spike train. (Orange spikes) correctly estimated spikes. (Spikes in non orange hues) Spikes estimated with
+errors in frame timing. (Gray spikes) False positives. (Gray trace) For a moving window of nine time bins, the log-likelihood ratio for the hypotheses that
+there is (H(1)) and is not (H(0)) a spike. (Dashed black line) Spike detection threshold, log C, given equal costs for false positives and false negatives (see Eq.
+8). (Purple) Threshold crossings. Spikes were detected using an iterative, greedy algorithm that assigned a spike to the instance of the log-likelihood ratio’s
+maximum in each iteration. At low d 0 , few spikes are detected with this choice of threshold (see panel C). Simulation parameters: DF/F ¼ 0.05, t ¼ 0.15 s,
+n ¼ 20 Hz, spike rate l ¼ 0.5 Hz. The cutoff is given by log C ¼ log ((n/l)  1). For d 0 ¼ 1, 3, 5, and 7, the probability of detection is 7.8  104, 0.61, 0.96,
+and 0.999, respectively, whereas the expected number of false positives is 0.0092, 1.9, 0.36, and 0.017, respectively. (C) Detection probability, PD , and false
+positive probability, PF, as a function of d 0 calculated using Eqs. S17 and S18 in the Supporting Material and the same equal-cost condition as in panel B. For
+low values of d 0 , the false positive probability rises with d 0 , because at d 0 ¼ 0 there are very few spikes detected and thus very few false positives. At large
+d 0 values nearly all spikes are detected, and the false positive rate nearly vanishes.
+
+Biophysical Journal 104(1) 51–62
+Noise Limits on Optical Detection of Neural Spikes                                                                                     55
+
+threshold to improve sensitivity would be more than offset        Wiener filter reduce to a scaled version of what is termed
+by a rise in false positives.                                     a matched filter in the signal detection literature (28).
+   To estimate the spike trains in Fig. 2 B we used an itera-
+tive approach. We first initialized the estimated spike train
+                                                                  Robustness of the discriminability index
+with zero spikes. For each time point in the entire trace,
+we then evaluated the log-likelihood ratio for the occur-         Having characterized spike detection using d 0 , we studied
+rence of a spike. If this ratio ever exceeded log C, we added     this metric’s robustness to deviations from the simplest
+a spike to the estimated train at the time for which the log-     model. We first considered spikes that initiate incommensu-
+likelihood ratio was greatest. We then iterated this pro-         rate with the start of a time bin, as occurs in most ex-
+cess, one spike at a time, by calculating the log-likelihood      periments. The value of d 0 decreased by <14% across all
+ratio between the estimated spike train (the null hypothesis      sampling rates and by <5% at sampling rates n > 2/t (see
+that no more spikes are present) and the estimated train          Section S3 in the Supporting Material). We also explored
+plus one additional spike. As in the first iteration, we con-     scenarios in which the neuron is examined during only
+sidered the candidate additional spike at the time when the       a fraction of the data acquisition time bin. This arises in
+log-likelihood ratio was greatest. The algorithm stopped          laser-scanning microscopy, as a single cell usually occupies
+as soon as the log-likelihood ratio failed to exceed log C        a subset of a scanned line or frame. This can often be
+across the entire trace. In the terminology of optimization       modeled by scaling the emission rates A and F0 by the frac-
+theory, this algorithm is called ‘‘greedy’’ because it makes      tion of the time bin that the laser dwells on the cell (see
+the locally optimal decision at each iteration (26). This ap-     Section S3 in the Supporting Material). We further studied
+proach is simple and fast, but methods that can estimate          how parameter misestimation affects spike detection. Mis-
+globally optimal spike trains would clearly be superior (26).     estimating t by up to 50% only has an ~11% effect on d 0 (see
+   Equation 6 defines a linear filter that can be used to esti-   Section S4 in the Supporting Material). Another study has
+mate spike trains from optical data when spiking patterns         also reported minimal effects from misestimating t (24).
+are temporally sparse. In this regime, spike train estimation        We also explored the low photon limit, for which the deri-
+is well approximated by the detection of a series of isolated     vation of d 0 is invalid (Fig. 3). We simulated optical traces of
+spikes (27). Thus, given the waveform of Eq. 1 subject to         spikes and then detected them using our greedy approach to
+Poisson noise, Eq. 6 provides the optimal filter for spike        spike detection. Though the log-likelihood ratios were not
+train estimation. When the background photon flux is              Gaussian-distributed, the area under the ROC curve was still
+much greater than the signal flux, both Eq. 6 and the noted       well predicted by the Gaussian approximation (Fig. 3, A and
+
+ A                                         B
+                                                                                      FIGURE 3 Spike detection with modest photon
+                                                                                      counts. When the number of photons collected
+                                                                                      from signal and background sources is insufficient
+                                                                                      to justify Gaussian approximations, the treatment
+                                                                                      involving d 0 is not guaranteed to be valid. To ex-
+                                                                                      plore this regime, we randomly sampled the log-
+                                                                                      likelihood ratio distributions of Eq. 6, computed
+                                                                                      the ROC curves, and calculated the underlying
+                                                                                      areas. The area under the ROC curve is plotted as
+                                                                                      a joint function of background and signal photons,
+                                                                                      (A), or of background photons and DF/F (B).
+                                                                                      (Dashed lines) Areas under ROC curves deter-
+                                                                                      mined using the d 0 calculation, demonstrating the
+                                                                                      robustness of the calculation result despite the
+ C                                                                                    invalidity of the Gaussian approximation. The
+                                                                                      contours in both plots are spaced in 0.05 increments
+                                                                                      of area under the ROC curve. (Note that unlike in
+                                                                                      Fig. 1 D, the x-axes are on a linear scale.) As ex-
+                                                                                      pected, the agreement between the direct calcula-
+                                                                                      tions and the d 0 approximation degrades as the
+                                                                                      condition A/F0 ~ DF/F  1 is relaxed. This leads
+                                                                                      to a maximum disagreement of ~0.025 in the area
+                                                                                      under the ROC curve. (C) Simulated trace plotted
+                                                                                      using the same conventions as in Fig. 2. Simulation
+                                                                                      parameters: DF/F ¼ 0.75, t ¼ 0.15 s, n ¼ 20 Hz,
+                                                                                      spike rate l ¼ 0.5 Hz. Probability of detection is
+                                                                                      0.96 and the expected number of false positives is
+                                                                                      0.36.
+
+
+                                                                                                    Biophysical Journal 104(1) 51–62
+56                                                                                                                         Wilt et al.
+
+B). Further, some studies with Ca2þ indicators may achieve            Our framework reveals the expected performance de-
+signal amplitudes much greater than the background photon          crease associated with ratiometric analysis. For those strug-
+flux. These cases do not fit into the d 0 framework, which         gling in the regimes highlighted above, a direct approach
+requires A=F0 1. However, the simulations showed that             may facilitate extraction of higher quality spike trains. In
+if the signal amplitude is comparable to or greater than           particular, one can process each channel individually using
+background fluorescence, the area under the ROC curve              Eq. 6 and sum the log-likelihood ratios from each channel.
+can attain values >0.99 (e.g., Fig. 3).                            We did this to compare the traces for the direct approach to
+   We also examined the issue that real indicators do not          those based on a ratiometric analysis, and the superiority of
+respond instantly to an action potential and have a finite         the direct approach is apparent in Fig. 4 C.
+on-time, ton. This reduces the signal amplitude and
+broadens its waveform (see Fig. S1, A and B, in the Support-
+ing Material). For Ca2þ indicators, the on-time is typically       Spike time estimation
+brisker than the decay, ton /t < 0.1, because the former is        For many neurons, spike times may encode information
+usually limited by Ca2þ binding to the indicator but the           such as in the retina (30), hippocampus (31–33), visual
+latter is limited by Ca2þ buffering, extrusion, and unbinding      cortex (34), and auditory system (35–37). Thus, studies of
+from the indicator (23). In this case, d 0 is reduced by at most   neural coding often benefit from precise determinations of
+~10% (see Fig. S1 B). For voltage indicators the on- and off-      spike timing.
+times can be similar, necessitating a more careful treatment           We use estimation theory to compute a lower bound on
+(see Section S5 in the Supporting Material).                       the (error) variance of an unbiased estimate of a spike’s
+                                                                   occurrence time, t0, based on properties of the optical indi-
+Spike detection with FRET indicators                               cator and instrumentation. We use the Chapman-Robbins
+                                                                   lower bound (19,20) to describe the optimal performance
+Most studies that use FRET indicators analyze the ratio of         of any unbiased estimator of the spike time. Unbiased esti-
+the two emission channels. This helps remove correlated            mators are those that, on average, yield the true value.
+noise, such as from motion artifacts or illumination fluctua-      Although biased estimators may sometimes be preferable,
+tions (21). But with these factors increasingly under exper-       we do not consider them here. Some readers may be familiar
+imental control, nonratiometric analyses may yield spike           with the Cramer-Rao lower bound (19). The Chapman-Rob-
+trains of higher fidelity (29).                                    bins bound is as small or smaller than the Cramer-Rao
+    We assume both channels are shot-noise-limited and obey        bound when they both exist (19,20) and is applicable to
+Eq. 1 but with different signal amplitudes and F0 values.          a wider class of models including the discretized measure-
+Both channels share the same t, reflecting the time course         ments considered here.
+by which a Ca2þ transient alters the indicator’s physical              We model the mean photon flux of the signal plus back-
+conformation and thus the FRET efficiency. We derive the           ground for a spike at time t0 as
+noise covariance between the two channels to be zero in                    8
+Section S6 in the Supporting Material. From these starting                 >
+                                                                           > F0 =n                               ; n % t0 n
+                                                                           >
+                                                                           <
+points, we calculated the discriminability of the log-likeli-        ðt0 Þ                                
+hood ratio for a ratiometric analysis (d V0 ) and for a direct     Sn ¼ F0 =n þ At 1  eðt0 nQt0 nSÞ=ðtnÞ       ; n ¼ Qt0 nS :
+                                                                           >
+                                                                           >                      
+analysis that treats the two channels separately (d 0W). A                 >
+                                                                           : F =n þ At e1=ðtnÞ  1 eðn=nt0 Þ=t ; n > Qt nS
+                                                                              0                                              0
+Gaussian approximation to the ratio of the two Poisson-
+distributed channels allowed us to determine d 0V (see Section                                                                   (10)
+S7 in the Supporting Material). We found d 0W by adding the        Here QxS denotes the smallest integer not less than x and
+d 0 for the two channels in quadrature.                            identifies the first frame containing signal photons. The
+    This comparison revealed that although a ratiometric           Chapman-Robbins lower bound assures the variance of the
+                                                                                           2
+analysis cannot outperform the direct analysis, in many situ-      estimated spike time, s^t0, satisfies
+ations a ratiometric analysis is adequate. However, asymme-
+tries between the two channels, such as different collection                                           1      ;
+                                                                                       s^2t0 R max                               (11)
+efficiencies or donor and acceptor fluors of different bright-                                 D     EfJjt0 g
+ness, exacerbate the deficits of ratiometric analyses (Fig. 4,
+A and B). We verified this using simulated traces (Fig. 4 C).                                                   2 
+                                                                                        1          pF ðf; t0 þ DÞ
+Notably, our analysis reveals the ratiometric approach attains          J ¼ Jðt0 ; DÞ ¼ 2                           1 ;         (12)
+the optimum discriminability if the two channels have match-                           D              pF ðf; t0 Þ
+ing signal amplitudes, irrespective of the background photon
+fluxes (see Section S7 in the Supporting Material). There is       where bt 0 denotes the estimated spike time, E is the expecta-
+also a regime in which it is better to discard a channel           tion operator over the distribution of F, and maxD represents
+completely than to use a ratiometric analysis.                     the maximization over the dummy variable D. We restrict D
+
+Biophysical Journal 104(1) 51–62
+Noise Limits on Optical Detection of Neural Spikes                                                                                                 57
+
+to a few t, because spikes found beyond the duration of the                         n ¼ 20 Hz. Increasing the sampling rate to n ¼ 2000 Hz,
+signal transient are better interpreted as false positives than                     which also slightly increased d 0 , improved the lower bound
+mistimed spikes. Similarly to Eqs. 4 and 5, the probability of                      to 2.8 ms. As above, the simulations did not attain the
+a set of measurements F ¼ f is                                                      Chapman-Robbins lower bound and revealed only modest
+                                                                                    improvement in timing resolution from 19.9 5 1.7 ms to
+                Y
+                N                          Y
+                                           N
+                                                    ðt 0 Þ
+pF ðf; t0 Þ ¼
+                               ðt0 Þ
+                      Poisson Sn       ¼         eSn
+                                                              ðt0 Þ fn
+                                                             Sn      =fn ! : (13)   16.0 5 1.3 ms at the faster sampling rate. However, more
+                n¼1                        n¼1                                      substantial gains in spike timing resolution are attainable
+                                                                                    using random-access laser-scanning methods to increase
+    For d 0 between 2 and 10, t between 0.15 and 2 s, and                           the laser dwell time per cell and hence d 0 (see Section S3
+n between 8 and 40 Hz, the Chapman-Robbins lower bound                              in the Supporting Material) (38,39).
+varies by two orders of magnitude. Contour plots of this
+lower bound are shown in Fig. 5 A–C, for fixed values of                            DISCUSSION
+t, n, or d 0 . Even experiments with high discriminability
+and sampling rates can suffer from poor spike timing.                               Microscopists are familiar with how the numerical aperture,
+Importantly, the precision of spike time estimation can be                          signal intensity, field of view, integration time, and back-
+poorer or finer than the time bin 1/n and depends most                              ground labeling affect photon counts, but knowledge of
+sharply on d 0 and t. Super-resolution of spike times —                             how photon detection relates to spike detectability and
+i.e., timing of spike occurrences to better than the 2/n                            timing estimation has been missing. The metric of discrim-
+resolution suggested by the Nyquist sampling criterion —                            inability, d 0 , enables a quantitative treatment of these issues.
+may be possible even when spike discriminability is low                             Our derivation of d 0 is valid when background photon
+(Fig. 5, A–C). Intuitively, such super-resolution may be                            counts are larger than signal amplitudes and is consistent
+attainable by use of the prior knowledge about the shape                            with the SNR heuristic proposed but not derived in Yasuda
+of the spike’s waveform (Eq. 1) for the estimation of its                           et al. (10). By relating the photon collection capacity to the
+timing. However, estimation theory does not guarantee the                           parameters governing d 0 , experimentalists can compare
+existence of an estimator attaining the Chapman-Robbins                             specific instruments, fluorescent indicators, or experimental
+lower bound.                                                                        configurations for studies of neural spiking. Our framework
+    Using an exhaustive likelihood maximization routine, we                         quantifies how methods that improve fluorescence excita-
+estimated the timing of simulated spikes across a range of                          tion (41,42) or detection (43) impact spike detection and
+d 0 and t values. The estimated spike times were approxi-                           timing estimation, even though the physical principles un-
+mately distributed in a Laplace distribution centered on                            derlying these methods vary considerably.
+the true spike time,                                                                   Researchers use a variety of computational methods
+                              ej ^t0 t0 j=b                                     to extract neural spikes from optical traces (5,16–
+                    p ^t0 t0 ¼                  :                                   18,24,44,45). Provided the data are shot-noise-limited and
+                                  ð2bÞ
+                                                                                    that our model of [Ca2þ]-related fluorescence and its noise
+To determine the errors in estimated spike times, we removed                        fluctuations remains valid, our bounds on detection perfor-
+the contributions to the variance from the uniform background                       mance are applicable. However, our treatment assumes
+of the false positives and then performed a curve to fit a                          signals from individual cells have already been isolated
+Laplace distribution (Fig. 5, D and E). Although the spike                          from the raw data. Extracting individual cells’ dynamics
+time estimates obeyed Eq. 11, for longer transients and lower                       from within raw movie data can often be challenging in
+d 0 values exhaustive likelihood maximization was unable to                         its own right (7). Some cell sorting methods produce
+attain the Chapman-Robbins lower bound. The difficulty or                           dynamical traces that are weighted sums of the signals
+impossibility of finding an estimator that attains this bound                       from different pixels (7), and these traces will generally
+implies it should perhaps be considered the best-case for the                       not have Poisson-distributed noise fluctuations. Further,
+estimation variance. Still, the Chapman-Robbins lower bound                         poor optical signals may limit the sorting process, causing
+provides useful limits on the statistical confidence for spike                      an incorrect assignment of photons to cells or failure to
+times. When estimating the time interval between two spikes,                        remove optical crosstalk between cells. Such factors could
+the minimum possible variance is the sum of the minimum                             prevent subsequent spike detection from achieving the limit
+variances associated with each spike.                                               expressed via d 0 .
+    To improve spike timing resolution, researchers are                                When estimating trains of temporally sparse spikes, we
+pushing optical microscopy to higher sampling rates, for                            used a filtering approach based on log-likelihood ratios,
+example by using acoustooptic laser-scanning methods                                which has several advantages. Equation 6 follows directly
+(15,38–40). To examine the efficacy of such strategies, we                          from Eqs. 1–5 and does not require further approximations
+tested how rapid sampling improves spike timing resolution.                         regarding the nature of the signal. As Eq. 6 does not assume
+To take an example, the theoretically calculated Chapman-                           Gaussian noise, it applies even in the low background limit
+Robbins lower bound is 20.7 ms for d 0 ¼ 5, t ¼ 0.15 s, and                         in which use of d 0 is inappropriate. Equation 6 readily
+
+                                                                                                                     Biophysical Journal 104(1) 51–62
+58                                                                                                                                                        Wilt et al.
+
+
+        A                                                                                          B
+
+
+
+
+        C
+
+
+
+
+FIGURE 4 Spike detection using FRET indicators. In the shot noise limit, ratiometric treatment of FRET indicators generally makes suboptimal use of the
+photon statistics for spike detection (A and B). (A) The decline in spike detectability is plotted as a joint function of the ratios of signal amplitude A(1)/A(2) and
+the background brightness F0(1)/F0(2). When the fluorescence transients are equal in amplitudes, a direct statistical analysis does not yield any benefit.
+
+Biophysical Journal 104(1) 51–62
+Noise Limits on Optical Detection of Neural Spikes                                                                                                            59
+
+generalizes to FRET indicators by summing the log-likeli-                          ground rejection mechanisms, such as planar illumination
+hood ratios of both color channels (Fig. 4 C) and to spike                         (45), have the potential to improve spike discriminability,
+train estimation by adjusting the null hypothesis to include                       at least at shallow tissue depths where scattering does not
+previously detected spikes. Finally, the filter of Eq. 6 is                        substantially diminish signal quality.
+simple to implement and truer to the statistics of optical                            As our calculations show, another key influence on the
+recordings than other forms of deconvolution. More sophis-                         fidelity of spike detection is the duration of the indicator’s
+ticated methods exist for spike train estimation involving                         response. Several genetically encoded Ca2þ indicators,
+supervised machine learning (16), particle filtering (17), or                      such as TN-XXL (13), d3cpv (3), and members of the Cam-
+nonnegative deconvolution (18), but these are more chal-                           eleon-Nano family (11), exhibit prolonged optical transients
+lenging to implement and not yet widely adopted. Although                          (>1 s) in response to one spike, allowing these indicators to
+Eq. 6 does not prescribe how to estimate the optical wave-                         emit far more signal photons than an indicator with compa-
+form parameters, our simulations show that successful spike                        rable brightness and dynamic range but brisker kinetics.
+extraction does not usually hinge on accurate parameter                            Especially when monitoring neurons with temporally sparse
+estimates. Pseudo-expectation maximization approaches                              firing patterns, these indicators may offer superior d 0 values
+that alternate estimation of the spike train with estimation                       than faster indicators such as Oregon Green BAPTA-1
+of the optical parameters may facilitate spike train estima-                       (OGB-1) (>100–200 ms). However, indicators with high
+tion (17,18).                                                                      Ca2þ affinity may also perturb a cell’s native Ca2þ-depen-
+   Notable effort has focused on creating brighter fluores-                        dent processes (2,23). We found that d 0 was relatively
+cent indicators (3,11–13). Yet, d 0 improves only as the                           insensitive to the fine temporal structure of the transient
+square-root of the brightness for fixed DF/F z A/F0                                waveform, depending most sensitively on the rise time
+(Eq. 9). The linear dependence of d 0 on DF/F suggests                             and total number of signal photons collected above back-
+greater gains may be possible by increasing DF/F, such                             ground. To retain single spike resolution, the indicator’s
+as by reducing background emissions and increasing the                             transient duration can be prolonged up to roughly the recip-
+signal’s dynamic range in response to Ca2þ binding.                                rocal of the spike rate.
+Although DF/F is bounded above by the indicator response                              Although our model was developed with Ca2þ indicators
+in the labeled cell type, background flux from mistargeted                         in mind, our formalism also applies to membrane voltage
+indicator and poor rejection of out-of-focus emissions                             indicators. Existing voltage indicators have been success-
+reduce the DF/F of the data. This is especially pertinent                          fully applied to individual cells or axons (49–52), inverte-
+with voltage indicators, due to the challenge of selectively                       brate neurons (49–51,53), tissue slices and cultured cells
+labeling neural membranes (46).                                                    (49–52,54,55), and cells exhibiting prolonged subthreshold
+   We illustrate these considerations using published in vivo                      voltage transients (56). However, the available voltage
+recordings of dendritic Ca2þ spikes from cerebellar Purkinje                       indicators generally fail to reliably report single action poten-
+neurons (6,7). Using the Ca2þ indicator Oregon Green                               tials in the live mammalian brain (46). Voltage depolariza-
+BAPTA-1, two-photon microscopy attains DF/F values                                 tions associated with Naþ spikes are typically ~1 ms or less,
+of ~30% (7,47), but one-photon microscopy attains DF/F                             and the associated optical signals lack the prolonged decay
+values of only ~0.5–1.5% due to lack of optical sectioning                         times seen with Ca2þ indicators. Thus, for voltage indicators
+(6,48). Yet, one-photon microscopy captures far more                               to achieve spike discriminability comparable to Ca2þ indica-
+photons per frame, because the pixels are sampled in parallel                      tors, they must be brighter (>100 times), generate a larger
+rather than by laser-scanning. We compared d 0 values for the                      signal response (>10 times), or be used in a way that
+two modalities and determined that the improved photon                             affords each neuron a far higher proportion of the frame
+collection of one-photon microscopy adequately compen-                             acquisition time. This suggests possible advantages of volt-
+sates for the increased background, yielding comparable                            age indicators based on changes in emission color, provided
+spike discriminability for both forms of microscopy. Ap-                           the background could be minimized in the emission color
+proaches that furnish one-photon microscopy with back-                             band used to signal a spike occurrence (Fig. 3) (57).
+
+
+However, when the ratio of signal amplitudes differs from unity, a ratiometric analysis is inferior. (B) The decline in spike detectability is plotted as a joint
+function of the ratios of the background-normalized signal amplitudes (A(1)/F0(1))/(A(2)/F0(2)) and the background brightness. (C) Simulated pairs of traces
+(blue and green traces) for the donor and acceptor channels of a FRET indicator. Here, we calculate the log-likelihood ratio of a spike with a moving window
+of 60 observations using Eq. 6 (the sum of the log-likelihood ratios for the donor and acceptor traces) and a Gaussian approximation (Eqs. S49–S51 in the
+Supporting Material) to the ratio of the donor and acceptor traces (purple trace). The true spike train is shown (green, top spike trains) above the spike trains
+estimated via direct analysis of the channels (middle spike trains) or a ratiometric analysis (bottom spike trains). (Spikes in non orange hues) Spikes estimated
+with errors in frame timing. (Gray spikes) False positive spikes. (Light- and dark-gray traces) Log-likelihood ratio of a spike for the ratiometric and direct
+channel analyses, respectively. Threshold crossing events for these two traces (highlighted in purple and blue, respectively) were analyzed using the greedy
+algorithm approach to detect spikes, applying the same equal-cost condition to set the detection threshold for both methods. Note the superior log-likelihood
+ratio values attained using the direct analysis. The strong correlations between the ratiometric and direct channel calculations occur because the same simu-
+lation trial was used for both calculations. In these simulations, DF/F ¼ 0.05 for both channels, t ¼ 1.0 s, n ¼ 20 Hz, spike rate l ¼ 0.5 Hz.
+
+                                                                                                                          Biophysical Journal 104(1) 51–62
+60                                                                                                                                                       Wilt et al.
+
+
+            A
+
+
+
+
+            B
+
+
+
+
+            C
+
+
+
+
+            D                                                                                       E
+
+
+
+
+FIGURE 5 Chapman-Robbins lower bounds on the estimation of spike times. The ability to accurately estimate a spike’s time is governed by the
+discriminability, d 0 , the sampling rate, n, and the duration of the signal transient, t. For fixed d 0 , spike timing precision improves with shorter optical tran-
+sients and higher sampling rates. The Chapman-Robbins lower bound can be either lower or higher than the sampling rate and exhibits strong dependence
+on discriminability d 0 and transient duration. (A) Comparison of three optical indicators with different decay kinetics. A fast optical indicator (t ~ 0.15 s)
+such as Oregon Green BAPTA-1 (OGB-1) can localize spikes to ~30 ms, even in regimes with modest SNR regimes (d 0 ~ 3). Slower indicators with time
+constants resembling those of GCaMP3 (~0.5 s) exhibit poorer spike timing characteristics. In regimes with modest SNR, even slower indicators with
+kinetics resembling those of d3cpv or TN-XXL (1.5 s) allow spike localization with ~100 ms resolution. (B) Comparison of estimation bounds at three
+different sampling rates. Increasing the sampling rate modestly improves spike timing resolution. (C) Increasing discriminability also significantly
+improves spike timing resolution. (A–C, white dashed line) Boundary of the regime of temporal super-resolution. (D) Simulations of spike timing reso-
+lution. Using a brute-force maximum likelihood method for determining the spike time, we obtained histograms of the spike time error for two indicators
+with distinct temporal dynamics. Note the different time scales on the two panels. For visual clarity, histograms are shown normalized to a common peak
+value. (E) Plots of simulated spike timing resolution and the theoretically calculated Chapman-Robbins lower bound. The simulations generally do not
+attain the Chapman-Robbins lower bound, especially for situations with low SNR and slow temporal dynamics. Simulations in panels D and E were
+done using n ¼ 20 Hz.
+
+
+
+Biophysical Journal 104(1) 51–62
+Noise Limits on Optical Detection of Neural Spikes                                                                                           61
+
+     When reporting the properties of fluorescent activity indi-    actual spike are not considered detected in our classification.
+cators, researchers can facilitate quantitative comparisons         A more complete treatment might ameliorate this deficiency.
+by carefully describing the imaging context. Assessments            Finally, the ideas presented here may be applicable to the
+of indicator performance using laser line scans over a single       inference of time-varying spike rates from fluorescence data.
+cell or detection at fixed points in space inflate d 0 by the
+square-root of the laser dwell time. For example, if a cell
+occupies 1% of an image frame, d 0 can be inflated by a factor      SUPPORTING MATERIAL
+of 10 by fixing the laser beam over the cell. Similarly,            Seven sections, one figure, and 58 equations are available at http://www.
+pipette loading of the dye to high levels or constructing           biophysj.org/biophysj/supplemental/S0006-3495(12)00969-1.
+unusually low background levels also overstate indicator
+                                                                    The authors thank Limor Freifeld, Eran Mukamel, Damon Clark, and Jesse
+performance as compared to state-of-the-art studies of large        Marshall for helpful conversations.
+numbers of individual neurons. Unfortunately, the bright-
+                                                                    B.A.W. was supported by a Bio-X Research Fellowship. J.E.F. was sup-
+ness contributions from extinction coefficients, expression         ported by a predoctoral fellowship from the National Science Foundation
+patterns, and labeling densities are sometimes reported             and a National Science Foundation Integrative Graduate Education and
+ambiguously, making it difficult to predict d 0 in novel exper-     Research Traineeship under Award No. 0801700. M.J.S.’s work on imaging
+imental situations. For voltage indicators this ambiguity is        was supported by the Packard, Paul G. Allen Family, and W.M. Keck foun-
+compounded by the challenges of reliable membrane target-           dations, the National Institute of Neurological Disorders and Stroke, the
+                                                                    National Institute on Drug Abuse, the National Science Foundation, the
+ing (46).                                                           Office of Naval Research, and a National Institutes of Health Director’s
+     In addition to examining spike detection, our study intro-     Pioneer award.
+duces limits on spike time estimation based on optically re-
+corded neural activity. Computational methods for spike
+train inference should be evaluated jointly on their capabil-       REFERENCES
+ities for spike detection and timing estimation. The
+                                                                     1. Wilt, B. A., L. D. Burns, ., M. J. Schnitzer. 2009. Advances in light
+Chapman-Robbins lower bound on timing errors is distinct                microscopy for neuroscience. Annu. Rev. Neurosci. 32:435–506.
+from d 0 and strongly depends on transient duration for fixed        2. Helmchen, F., J. G. G. Borst, and B. Sakmann. 1997. Calcium
+d 0 . Intuitively, for a given d 0 value, a brisk transient makes       dynamics associated with a single action potential in a CNS presyn-
+timing estimation easier than a prolonged one. More surpris-            aptic terminal. Biophys. J. 72:1458–1471.
+ingly, faster sampling rates in our simulations yielded only         3. Wallace, D. J., S. Meyer zum Alten Borgloh, ., M. T. Hasan. 2008.
+                                                                        Single-spike detection in vitro and in vivo with a genetic Ca2þ sensor.
+modestly improved spike timing precision. The substan-                  Nat. Methods. 5:797–804.
+tially improved timing estimates achieved using acousto-
+                                                                     4. Mao, T., D. H. O’Connor, ., K. Svoboda. 2008. Characterization and
+optic random-access laser-scanning microscopy (15) seem                 subcellular targeting of GCaMP-type genetically-encoded calcium
+to stem from the increased dwell times over the chosen                  indicators. PLoS ONE. 3:e1796.
+subset of cells, which increases spike discriminability,             5. Kerr, J. N. D., D. S. Greenberg, and F. Helmchen. 2005. Imaging input
+rather than faster sampling rates.                                      and output of neocortical networks in vivo. Proc. Natl. Acad. Sci. USA.
+                                                                        102:14063–14068.
+     Even with modest SNR and sampling rates, one can
+                                                                     6. Flusberg, B. A., A. Nimmerjahn, ., M. J. Schnitzer. 2008. High-speed,
+resolve spike times with greater precision than suggested               miniaturized fluorescence microscopy in freely moving mice. Nat.
+by the naı̈ve Nyquist criterion. Many spike train estimation            Methods. 5:935–938.
+routines assign spikes at discrete times, but it may be pref-        7. Mukamel, E. A., A. Nimmerjahn, and M. J. Schnitzer. 2009. Auto-
+erable to treat spike times as continuous variables. Our                mated analysis of cellular signals from large-scale calcium imaging
+                                                                        data. Neuron. 63:747–760.
+calculations bound the statistical confidence of spike times,
+and researchers should ideally report confidence intervals           8. Hires, S. A., L. Tian, and L. L. Looger. 2008. Reporting neural activity
+                                                                        with genetically encoded calcium indicators. Brain Cell Biol. 36:
+alongside spike trains. Importantly, the Chapman-Robbins                69–86.
+lower bound is only valid for unbiased estimators, and we            9. Sjulson, L., and G. Miesenböck. 2007. Optical recording of action
+did not examine how parameter misestimation impacts spike               potentials and other discrete physiological events: a perspective from
+time estimation.                                                        signal detection theory. Physiology (Bethesda). 22:47–55.
+     Future work might extend our results in several ways. Our      10. Yasuda, R., E. A. Nimchinsky, ., K. Svoboda. 2004. Imaging calcium
+                                                                        concentration dynamics in small neuronal compartments. Sci. STKE.
+treatment considered only isolated spikes. Spike detection              2004:pl5.
+with temporally overlapping spike waveforms should be               11. Horikawa, K., Y. Yamada, ., T. Nagai. 2010. Spontaneous network
+rigorously examined, including with indicator saturation                activity visualized by ultrasensitive Ca2þ indicators, yellow Camel-
+effects that reduce signals from a rapid succession of action           eon-Nano. Nat. Methods. 7:729–732.
+potentials. This is not easily described in the framework pre-      12. Tian, L., S. A. Hires, ., L. L. Looger. 2009. Imaging neural activity in
+sented here, but could be analyzed by inclusion of additional           worms, flies and mice with improved GCaMP calcium indicators. Nat.
+                                                                        Methods. 6:875–881.
+parameters. Our reliance on d 0 is only suitable for binary
+                                                                    13. Mank, M., A. F. Santos, ., O. Griesbeck. 2008. A genetically encoded
+classification problems, so spikes that may have been de-               calcium indicator for chronic in vivo two-photon imaging. Nat.
+tected at times not coincident with, but within time t, of an           Methods. 5:805–811.
+
+                                                                                                          Biophysical Journal 104(1) 51–62
+62                                                                                                                                              Wilt et al.
+
+14. Hendel, T., M. Mank, ., D. F. Reiff. 2008. Fluorescence changes of         38. Duemani Reddy, G., K. Kelleher, ., P. Saggau. 2008. Three-dimen-
+    genetic calcium indicators and OGB-1 correlated with neural activity           sional random access multiphoton microscopy for functional imaging
+    and calcium in vivo and in vitro. J. Neurosci. 28:7399–7411.                   of neuronal activity. Nat. Neurosci. 11:713–720.
+15. Grewe, B. F., D. Langer, ., F. Helmchen. 2010. High-speed in vivo          39. Reddy, G. D., and P. Saggau. 2005. Fast three-dimensional laser
+    calcium imaging reveals neuronal network activity with near-milli-             scanning scheme using acousto-optic deflectors. J. Biomed. Opt. 10:
+    second precision. Nat. Methods. 7:399–405.                                     064038.
+16. Sasaki, T., N. Takahashi, ., Y. Ikegaya. 2008. Fast and accurate           40. Vucinic, D., and T. J. Sejnowski. 2007. A compact multiphoton 3D
+    detection of action potentials from somatic calcium fluctuations.              imaging system for recording fast neuronal activity. PLoS ONE.
+    J. Neurophysiol. 100:1668–1676.                                                2:e699.
+17. Vogelstein, J. T., B. O. Watson, ., L. Paninski. 2009. Spike infer-        41. Ji, N., J. C. Magee, and E. Betzig. 2008. High-speed, low-photodamage
+    ence from calcium imaging using sequential Monte Carlo methods.                nonlinear imaging using passive pulse splitters. Nat. Methods. 5:
+    Biophys. J. 97:636–655.                                                        197–202.
+18. Vogelstein, J. T., A. M. Packer, ., L. Paninski. 2010. Fast nonnegative    42. Ji, N., D. E. Milkie, and E. Betzig. 2010. Adaptive optics via pupil
+    deconvolution for spike train inference from population calcium                segmentation for high-resolution imaging in biological tissues. Nat.
+    imaging. J. Neurophysiol. 104:3691–3704.                                       Methods. 7:141–147.
+19. Chapman, D. G., and H. Robbins. 1951. Minimum variance estimation          43. Engelbrecht, C. J., W. Göbel, and F. Helmchen. 2009. Enhanced
+    without regularity assumptions. Ann. Math. Stat. 22:581–586.                   fluorescence signal in nonlinear microscopy through supplementary
+20. Hammersley, J. M. 1950. On estimating restricted parameters. J. R.             fiber-optic light collection. Opt. Express. 17:6421–6435.
+    Stat. Soc. B. 12:192–240.                                                  44. Greenberg, D. S., A. R. Houweling, and J. N. D. Kerr. 2008. Population
+21. Grynkiewicz, G., M. Poenie, and R. Y. Tsien. 1985. A new generation            imaging of ongoing neuronal activity in the visual cortex of awake rats.
+    of Ca2þ indicators with greatly improved fluorescence properties.              Nat. Neurosci. 11:749–751.
+    J. Biol. Chem. 260:3440–3450.
+                                                                               45. Holekamp, T. F., D. Turaga, and T. E. Holy. 2008. Fast three-dimen-
+22. Miyawaki, A., J. Llopis, ., R. Y. Tsien. 1997. Fluorescent indicators          sional fluorescence imaging of activity in neural populations by objec-
+    for Ca2þ based on green fluorescent proteins and calmodulin. Nature.           tive-coupled planar illumination microscopy. Neuron. 57:661–672.
+    388:882–887.
+                                                                               46. Peterka, D. S., H. Takahashi, and R. Yuste. 2011. Imaging voltage in
+23. Helmchen, F., K. Imoto, and B. Sakmann. 1996. Ca2þ buffering and               neurons. Neuron. 69:9–21.
+    action potential-evoked Ca2þ signaling in dendrites of pyramidal
+    neurons. Biophys. J. 70:1069–1081.                                         47. Ozden, I., H. M. Lee, ., S. S. Wang. 2008. Identification and clus-
+                                                                                   tering of event patterns from in vivo multiphoton optical recordings
+24. Yaksi, E., and R. W. Friedrich. 2006. Reconstruction of firing rate            of neuronal ensembles. J. Neurophysiol. 100:495–503.
+    changes across neuronal populations by temporally deconvolved
+    Ca2þ imaging. Nat. Methods. 3:377–383.                                     48. Ghosh, K. K., L. D. Burns, ., M. J. Schnitzer. 2011. Miniaturized inte-
+                                                                                   gration of a fluorescence microscope. Nat. Methods. 8:871–878.
+25. Poor, H. V. 1998. An Introduction to Signal Detection and Estimation.
+    Springer, New York.                                                        49. Salzberg, B. M., H. V. Davila, and L. B. Cohen. 1973. Optical recording
+                                                                                   of impulses in individual neurones of an invertebrate central nervous
+26. Cormen, T. H., C. E. Leiserson, ., C. Stein. 2009. Introduction to             system. Nature. 246:508–509.
+    Algorithms. The MIT Press, Cambridge, MA.
+                                                                               50. Cohen, L. B., B. M. Salzberg, ., C. H. Wang. 1974. Changes in axon
+27. Kay, S. M. 1993. Fundamentals of Statistical Signal Processing. Pren-
+                                                                                   fluorescence during activity: molecular probes of membrane potential.
+    tice-Hall, Englewood Cliffs, NJ.
+                                                                                   J. Membr. Biol. 19:1–36.
+28. Reiffen, B., and H. Sherman. 1963. An optimum demodulator for Pois-
+    son processes: photon source detectors. Proc. IEEE. 51:1316–1320.          51. Sacconi, L., D. A. Dombeck, and W. W. Webb. 2006. Overcoming
+                                                                                   photodamage in second-harmonic generation microscopy: real-time
+29. Joucla, S., A. Pippow, ., C. Pouzat. 2010. Quantitative estimation of          optical recording of neuronal action potentials. Proc. Natl. Acad. Sci.
+    calcium dynamics from ratiometric measurements: a direct, nonratio-            USA. 103:3124–3129.
+    ing method. J. Neurophysiol. 103:1130–1144.
+                                                                               52. Acker, C. D., P. Yan, and L. M. Loew. 2011. Single-voxel recording of
+30. Rieke, F., D. Warland, ., W. Bialek. 1999. Spikes: Exploring the               voltage transients in dendritic spines. Biophys. J. 101:L11–L13.
+    Neural Code. MIT Press, Cambridge, MA.
+                                                                               53. Zecevic, D., J.-Y. Wu, ., C. X. Falk. 1989. Hundreds of neurons in the
+31. Skaggs, W. E., B. L. McNaughton, ., C. A. Barnes. 1996. Theta phase            Aplysia abdominal ganglion are active during the gill-withdrawal
+    precession in hippocampal neuronal populations and the compression             reflex. J. Neurosci. 9:3681–3689.
+    of temporal sequences. Hippocampus. 6:149–172.
+                                                                               54. Sacconi, L., J. Mapelli, ., F. S. Pavone. 2008. Optical recording of
+32. O’Keefe, J., and M. L. Recce. 1993. Phase relationship between hippo-
+                                                                                   electrical activity in intact neuronal networks with random access
+    campal place units and the EEG q-rhythm. Hippocampus. 3:317–330.
+                                                                                   second-harmonic generation microscopy. Opt. Express. 16:14910–
+33. Buzsáki, G. 2002. Theta oscillations in the hippocampus. Neuron.              14921.
+    33:325–340.
+                                                                               55. Holthoff, K. P., D. Zecevic, and A. Konnerth. 2010. Rapid time course
+34. Usrey, W. M., and R. C. Reid. 1999. Synchronous activity in the visual         of action potentials in spines and remote dendrites of mouse visual
+    system. Annu. Rev. Physiol. 61:435–456.                                        cortex neurons. J. Physiol. 588:1085–1096.
+35. Covey, E., and J. H. Casseday. 1999. Timing in the auditory system of      56. Akemann, W., H. Mutoh, ., T. Knöpfel. 2010. Imaging brain electric
+    the bat. Annu. Rev. Physiol. 61:457–476.                                       signals with genetically targeted voltage-sensitive fluorescent proteins.
+36. Oertel, D. 1999. The role of timing in the brain stem auditory nuclei of       Nat. Methods. 7:643–649.
+    vertebrates. Annu. Rev. Physiol. 61:497–519.                               57. Kralj, J. M., D. R. Hochbaum, ., A. E. Cohen. 2011. Electrical spiking
+37. Trussell, L. O. 1999. Synaptic mechanisms for coding timing in audi-           in Escherichia coli probed with a fluorescent voltage-indicating
+    tory neurons. Annu. Rev. Physiol. 61:477–496.                                  protein. Science. 333:345–348.
+
+
+
+
+Biophysical Journal 104(1) 51–62
+

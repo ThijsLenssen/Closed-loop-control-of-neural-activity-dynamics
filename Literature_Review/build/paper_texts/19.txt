@@ -1,0 +1,728 @@
+                                                     C H A P T E R
+
+
+
+                                                        17
+Reevaluating the role of the STN-GPe network
+  in generating beta synchronized oscillatory
+           activity in parkinsonism
+Brice De la Crompe1, Marc Deffains2, Arthur Leblois3 and Nicolas Mallet3,*
+   1
+  University Bordeaux, CNRS, INCIA, UMR 5287, Bordeaux, France; 2CNRS, Universit�e d Bordeaux, Institute of
+Neurodegenerative Diseases, Bordeaux, France; 3CNRS, Universit�e de Bordeaux, Institute of Neurodegenerative Diseases,
+                                                 Bordeaux, France
+                            *Corresponding author: E-mail: nicolas.mallet@u-bordeaux.fr
+
+
+   1. From normal to abnormal BG dynamics                     BG (Fig. 17.1B). Rate modifications include hyperactivity
+ following the loss of dopamine in parkinsonism               of the indirect D2-expressing striatal projection neurons
+                                                              (D2-SPNs) and hypoactivity of the direct D1-expressing
+    BG circuits play a crucial role in learning, selecting,   striatal projection neurons (D1-SPNs) [15,16], although
+and optimizing actions that lead to rewarding outcomes.       these changes in activity depend on the motor state—for
+Early models suggested that these functions are medi-         example, during locomotion versus immobility [17,18].
+ated through firing rate changes across BG networks,          Together, these rate modification are thought to lead to
+starting at the level of the striatum and ultimately lead-    an excessive inhibition of motor programs via increased
+ing to motor program disinhibition in the thalamo-            BG GABAergic output to the thalamo-cortical and brain-
+cortical system [1,2]. Such “rate-coding models” have         stem motor regions. However, experimental data sup-
+been highly influential in shaping our understanding          porting this BG output hyperactivity remain
+of the anatomo-functional organization of BG circuits         conflicting [19–23,23a]. In parallel to these rate changes,
+(Fig. 17.1A), and the behavioral consequences of firing       dopamine depletion also disrupts the expression of beta
+rate changes in BG have been demonstrated experimen-          oscillations, shifting them from a highly transient and
+tally. Indeed, selective opto- or pharmacogenetic manip-      dynamic nature to more prolonged and powerful beta
+ulation of striatal direct or indirect neurons in the motor   bursts, as most prominently observed in PD patients
+loop profoundly impacts movement, facilitating or             [24]. This change in beta oscillations dynamics contrib-
+inhibiting motoric aspects, respectively [4–6].               utes to excessive spike synchronization at beta fre-
+    However, a major limitation of this “rate-coding”         quencies in BG circuits [25,26].
+framework is that it does not account for other neuronal          Although beta synchronization is strongly correlated
+dynamics, such as synchronized oscillatory activity,          with PD motor symptoms, accumulating evidence sug-
+which is a fundamental feature of brain circuits [7]. In      gests a temporal dissociation between the onset of aki-
+particular, accumulating evidence suggests that, under        netic symptoms and the expression of pathological
+physiological conditions, BG circuits express brief burst     beta oscillations. Specifically, motor deficits in PD
+(<200 ms) of synchronized beta oscillations that are pre-     appear before the emergence of synchronized beta activ-
+cisely timed-locked to task-relevant events (e.g., cue pre-   ity, as observed in MPTP-treated monkeys [27] and in
+sentation or movement completion) and play a role in          toxin-based (6-OHDA) or pharmacological rat models
+neural operation [8–14].                                      of PD [28–31]. Importantly, this chapter will not focus
+    The loss of dopamine in PD profoundly alters both         on the precise causal contributions of firing rate changes
+firing rate and synchronized oscillatory dynamics in          versus abnormal synchronization to PD motor
+
+
+Handbook of Parkinson’s Disease Mechanisms                                      © 2025 Elsevier B.V. All rights are reserved, including those for text
+https://doi.org/10.1016/B978-0-443-21992-4.00013-0        343                                and data mining, AI training, and similar technologies.
+344                                                  17. Reevaluating the role of the STN-GPe network
+
+
+
+FIGURE 17.1         Firing rate versus Synchronization
+in classic basal ganglia model. (A–B), Schematic
+representation of the classic “rate based” basal ganglia
+model in normal condition (A) or in Parkinson’s dis-
+ease (B) [1, 2]. Abnormal spike synchronization at beta
+frequency in BG circuits were only detected following
+the loss of dopamine in PD [3]. Abbreviations are STR:
+Striatum; GPe: Globus Pallidus external part; STN:
+Subthalamic nucleus; SNr: Substantia nigra pars
+reticulata; EPN: Entopedoncular nucleus.
+
+
+
+
+symptoms, as these topics are explored in greater detail                       threshold, leading to the generation of more sustained
+elsewhere in this handbook (see Chapter 14 by Qiaoling                         oscillations (Fig. 17.2B).
+et al., Chapter 19 by Judith Walters and Petersson, and                            The complex anatomo-functional organization of BG
+Chapter 21 by Aman et al.). Rather, we will examine                            neuronal networks, along with their projections to
+the neuronal substrates within the BG that contribute                          thalamo-cortical systems, forms multiple parallel and
+to the generation and propagation of the parkinsonian                          recurrent inhibitory feedback loops (Fig. 17.2C)
+beta oscillations in 6-OHDA unilaterally lesioned rat                          [36–38], many of which represent putative candidates
+model of PD. While alterations in firing rate dynamics                         for generating transient oscillatory activity such as the
+within the BG likely stem from the striatum as a result                        beta transients observed in physiological conditions
+of striatal dopamine depletion [20,32], the mechanisms                         [39]. In PD, however, dopamine loss triggers widespread
+driving the abnormal increase in beta synchrony remain                         functional alterations, profoundly affecting the dynam-
+poorly understood.                                                             ical properties of these circuits. Some of these changes
+                                                                               might first occur in the striatum following dopamine
+                                                                               loss. For example, lack of D2 receptor stimulation has
+2. Synchronized beta oscillations in BG neuronal                               been associated to stronger beta oscillations expression
+                   networks                                                    [40], while increased activity of striatal cholinergic inter-
+                                                                               neurons can enhance beta oscillations in healthy mice
+                                                                               and induce PD-like motor deficits [41]. Similar func-
+    Any closed biological system that incorporates a
+                                                                               tional or anatomical changes have also been reported
+delayed negative feedback loop inherently possesses
+                                                                               throughout many regions of BG circuits under PD con-
+rhythmic properties, including the ability to generate os-
+                                                                               ditions [42–47]. These alterations—whether compensa-
+cillations in response to external perturbations [33]. This
+                                                                               tory, pathological, or incidental consequences of
+principle also applies to neuronal networks integrating
+                                                                               dopamine depletion—can strongly alter the gain of spe-
+negative feedback mechanisms, a basic example being
+                                                                               cific negative feedback loops, potentially shifting them
+a reciprocally connected network of inhibitory and excit-
+                                                                               from a transient beta generation mode to a more persis-
+atory neurons [34]. Following small external perturba-
+                                                                               tent state of beta-activity, thereby contributing to exces-
+tions, such network can generate oscillations that may
+                                                                               sive synchronization within these networks [48].
+be either transient or persistent, depending on the sys-
+                                                                                   While the precise circuit mechanisms underlying
+tem’s dynamical regime (e.g., stable stationary vs.
+                                                                               excessive beta oscillations in animal model of PD remain
+persistent oscillatory activity). In the case of transient os-
+                                                                               unclear, numerous studies have implicated the motor
+cillations, the rhythmic activity decays over time and
+                                                                               cortex, the striatum, the STN, and the GPe in various as-
+eventually returns to the system’s stable steady state
+                                                                               pects of beta oscillation dynamics, including their gener-
+(Fig. 17.2A). However, changes in key parameters—such
+                                                                               ation, amplification, and propagation [19,49–51, 51a]. In
+as the strength of the positive or negative feedback, the
+                                                                               addition, a key feature of beta oscillations is the precise
+strength of mutual coupling within nodes, synaptic de-
+                                                                               spike-timing relationship they impose on BG neurons,
+lays, and membrane time constants, among other rele-
+                                                                               giving rise to specific phase alignments between
+vant factors—can push the system past a critical
+                                                  2. Synchronized beta oscillations in BG neuronal networks                                      345
+
+
+
+
+FIGURE 17.2 From theory to practice: synchronized beta oscillatory activity in basal ganglia. (A–B) Schematic representation of a simple
+reciprocally connected inhibitory/excitatory (I/E) feedback neuronal network (top), along with theoretical mean activity plots (middle) and raster
+plots (bottom) for the two sets of neurons (red: inhibitory, blue: excitatory). Panel A shows the condition in which oscillatory activity is transient,
+346                                                    17. Reevaluating the role of the STN-GPe network
+
+subpopulation of neurons that has been particularly                              ce—reaching up to 44%—between pairs of GPe neurons
+well characterized for STN-GPe neurons in 6-OHDA                                 [35].
+rat PD model (Fig. 17.2D). As such, a prominent hypoth-
+esis suggests that beta oscillations originate in the cortex
+and its loop with the STN via the hyperdirect pathway                               3. An update of the STN-GPe microcircuit:
+[36,52], where they could get abnormally amplified                                  cellular diversity and functional connectivity
+through recurrent STN–GPe feedback mechanism [53].
+   That being said, the STN-GPe negative feedback loop
+                                                                                     The STN-GPe network has traditionally been consid-
+has been proposed to act as a BG central pacemaker for
+                                                                                 ered functionally homogenous, with all GPe neurons
+the generation of synchronized oscillatory activity, even
+                                                                                 projecting to STN, and vice versa. However, this mono-
+in the absence of cortical inputs. Indeed, this network
+                                                                                 lithic view is both oversimplified and inaccurate, espe-
+can exhibit rhythmic properties in organotypic slices
+                                                                                 cially as it fails to account for the cellular diversity
+[54]. The synaptic organization and intrinsic properties
+                                                                                 present within this network and the potential functional
+of STN and GPe neurons can further reinforce the recur-
+                                                                                 connectivity enabled by this diversity. While some cell
+rent feedback properties of this circuit. Anatomically,
+                                                                                 diversity seems to exist in the STN [57,58], it has been
+GPe projections to STN are sparse yet highly selective
+                                                                                 particularly well characterized in GPe neurons across
+and potent, predominantly targeting the proximal den-
+                                                                                 multiple functional levels: molecular [59], embryonic
+drites and soma of STN neurons [54a]. Studies conduct-
+                                                                                 origin [60], structural [61–63], electrophysiological
+ed in brain slices have demonstrated that activation of
+                                                                                 [64–67], and behavioral [68–70]. Our work has also
+just a few GPe inputs is sufficient to inhibit, reset, and
+                                                                                 revealed that the GPe functional heterogeneity becomes
+synchronize the autonomous activity of STN neurons
+                                                                                 evident in the 6-OHDA lesioned rats. Indeed, while
+[54a,b,c]. In addition, both STN and GPe neurons ex-
+                                                                                 most GPe neurons exhibit tonic firing and remain uncor-
+press voltage-gated ion channels that confer intrinsic
+                                                                                 related in control rats, dopamine depletion reveals two
+pacemaking properties, allowing these neurons to
+                                                                                 distinct population of GPe neurons, each strongly corre-
+generate spontaneous rhythmic activity independent
+                                                                                 lated with both slow-wave or beta oscillations but with
+of excitatory synaptic inputs [54d,e]. However, while it
+                                                                                 opposite spike-timing phase relationships [35,61]. These
+is true that STN and GPe neurons exhibit strong pace-
+                                                                                 results ultimately led to the discovery of the dichoto-
+making properties at the single-cell level, the STN-GPe
+                                                                                 mous organization of GPe neurons based on in vivo jux-
+network as a whole does not appear to generate strong
+                                                                                 tacellular labeling to correlate the electrophysiological,
+synchronized spike-timing activity under physiological
+                                                                                 with molecular/structural properties of individual
+conditions [35,55,56]. Instead, it displays low levels of
+                                                                                 GPe neurons [61]. As such, we found that the predomi-
+oscillatory activity spike cross-correlation, likely due to
+                                                                                 nant GPe cell-type, representing approximately 70% of
+active decorrelation mechanisms present in BG network
+                                                                                 all cells, corresponds to prototypic neurons that consis-
+[56a,b]. Indeed, when examining entrainment between
+                                                                                 tently project long-range axons to the STN and all major
+spikes and the mean field (i.e., local field potential), Lev-
+                                                                                 downstream BG nuclei (Fig. 17.3A). This canonical pop-
+enthal et al. found that only a small fraction of BG neu-
+                                                                                 ulation originates developmentally from the medial
+rons (<10%) were phase-locked to beta oscillations in
+                                                                                 ganglionic eminence [73] and is characterized by the
+healthy animals engaged in a motor task [9]. However,
+                                                                                 expression of molecular markers such as parvalbumin
+following dopamine depletion, synaptic and circuit-
+                                                                                 (expressed in the majority, but not all, of these cells), as
+level adaptations may disrupt the balance of excitation
+                                                                                 well as transcription factors including NK2 homeobox
+and inhibition within BG circuits, in particular the
+                                                                                 1 (Nkx2.1) and LIM homeobox 6 (Lhx6) [73–76]. More
+STN-GPe network. This disruption may impair active
+                                                                                 recently, the classification of prototypic neurons has
+decorrelation mechanisms, shifting the network toward
+                                                                                 been further divided into molecularly defined sub-
+an abnormally exaggerated state of synchronization, as
+                                                                                 classes, which are likely to contribute to distinct behav-
+evidenced by the strong increase in beta coheren-
+                                                                                 ioral specializations [63,76,77]. The remaining
+
+
+
+while panel B illustrates the scenario where modifications to the connectivity/coupling strength induce sustained activity. (C) Simplified sche-
+matic of the BG in the parkinsonian state, illustrating the main inter-nuclei connections (top), and example of four neuronal circuits integrating
+negative feedback loops (bottom). The direct D1-expressing striatal projection neurons are not represented due to their decreased activity in the PD
+state [15,17]. (D) Mean phase histograms of STN-GPe neurons illustrating the spike-timing phase relationship during parkinsonian beta oscil-
+lations, along with a proposed scenario (arrows) for their generation and propagation within cortico-BG circuits. Vertical lines under phase
+histograms are means ± 2 SEM. Abbreviations are: GPe: Globus Pallidus external part; STN: Subthalamic nucleus; SNR: Substantia nigra pars
+reticulata. Figures panel D was modified from N. Mallet, A. Pogosyan, L.F. M�arton, J.P. Bolam, P. Brown, P.J. Magill, Parkinsonian beta oscillations in the
+external globus pallidus and their relationship with subthalamic nucleus activity. J. Neurosci. 28 (2008a) 14245–14258.
+                                       3. An update of the STN-GPe microcircuit: cellular diversity and functional connectivity                             347
+
+
+
+
+FIGURE 17.3 Prototypic and arkypallidal structural properties and functional inputs organization. A,B, Full reconstruction of one pro-
+totypic (Proto, A) and one arkypallidal (Arky, B) GPe neuron view in sagittal plane. Somata and dendrites are drawn in red, axons in blue, and
+axonal boutons in green. Note that this prototypic neuron belongs to the one-third subpopulation of prototypic neuron that project back to
+striatum [71]. C,D, Representative examples illustrating the in vivo impact of D2-SPNs (C) and STN (D) opto-excitation on prototypic and
+arkypallidal neurons. Vertical Scale bars represent 0.5 mV. The optogenetic strategy relied on D2-Cre (C) or Vglut2-Cre (D) mice with AAV-DIO-
+ChR2-eYFP in the striatum or STN, respectively. E, Schematic illustrating the functional connectivity of D2-SPNs, D1-SPNs, and STN inputs onto
+prototypic and arkypallidal neurons. Abbreviations are: Arky: arkypallidal GPe neuron; D1-SPNs: D1-expressing striatal projection neurons; D2-
+SPNs: D2-expressing striatal projection neurons; GPe: external part of the Globus Pallidus; Ins: striatal interneurons; Proto: prototypic GPe neuron;
+SNR: Substantia nigra pars reticulata, STN: Subthalamic nucleus; STR: striatum. Figure panels A–B were modified from N. Mallet, B.R. Micklem, P.
+Henny, M.T. Brown, C. Williams, J.P. Bolam, K.C. Nakamura, P.J. Magill, Dichotomous organization of the external globus pallidus. Neuron. 10974199. 74
+(6) (2012), 1075–1086. https://doi.org/10.1016/j.neuron.2012.04.027. Figure panels C–D were extracted from A. Aristieta, M. Barresi, S.A. Lindi, G. Barri�ere,
+                                                                               Ï
+G. Courtand, B. de la Crompe, L. Guilhemsang, S. Gauthier, St�ephanie F., J�erome B., N.P. Mallet, A disynaptic circuit in the globus pallidus controls locomotion
+inhibition. Curr. Biol. 31 (4) (2021), 707. https://doi.org/10.1016/j.cub.2020.11.019.
+
+
+population of GPe cells, known as arkypallidal neurons,                              to their input connectivity, or whether D2-SPN and
+project exclusively to the striatum, where they provide a                            STN inputs impact prototypic and arkypallidal neurons
+major source of extrinsic GABAergic input [61]                                       equally. This functional connectivity has been directly
+(Fig. 17.3B). If we first identified this GPe dichotomous                            investigated using optogenetic approaches in D2-Cre
+organization in parkinsonian animals, its existence was                              and Vglut2-Cre mice, enabling selective manipulation
+later confirmed in control rats [75] and mice [73]. Unlike                           of D2-SPNs and STN neurons, respectively [72,79].
+prototypic neurons, arkypallidal cells originate from the                            These experiments demonstrate that GPe neurons inte-
+lateral ganglionic eminence and are defined by a distinct                            grate inputs from both D2-SPNs and STN neurons in a
+molecular profile, including the opioid precursor pre-                               cell-type-specific manner. Specifically, both D2-SPN
+proenkephalin and the transcription factors Forkhead                                 and STN inputs preferentially impact prototypic neu-
+box protein P2 (FoxP2) and Meis homeobox 2 (Meis2)                                   rons, resulting in opposite response patterns between
+[61,73–75]. In conclusion, the projections from arkypalli-                           prototypic and arkypallidal neurons (Fig. 17.3C–D).
+dal neurons reveal a novel mode of striatal GABAergic                                The opposition of activity between both GPe neurons
+inhibition, although the operational principles of this                              arises from the powerful inhibitory control that proto-
+control remain largely unknown [78].                                                 typic neurons exert on arkypallidal neurons through
+   As part of the indirect pathway, the GPe receives most                            their dense axon collaterals [80]. This mirrored activity
+of its inputs from two main BG structures of opposite na-                            resembles the opposite spike-timing phase relationship
+ture: GABAergic inputs from striatal spiny neurons                                   observed during slow wave and beta oscillations in
+(particularly D2-SPNs) and glutamatergic afferents                                   parkinsonian rats, as discussed earlier [61].
+from STN. A key question that comes to mind is whether                                  Accordingly, in vivo optogenetic excitation of D2-
+the dichotomous organization of GPe neurons extends                                  SPNs inhibits prototypic neuron activity, thereby
+348                                       17. Reevaluating the role of the STN-GPe network
+
+disinhibiting arkypallidal neurons and increasing their             activity. Besides, optogenetic stimulations can be com-
+firing rate (Fig. 17.3C). This difference in effect was             bined with electrophysiological recordings in parkinso-
+caused by the fact that the magnitude of D2-SPNs inhib-             nian rats for a fast readout of both the effects and their
+itory inputs measured in slice recordings was three                 recovery [82].
+times bigger in prototypic compared with arkypallidal                  Given the potential roles of STN, and GPe in the gen-
+neurons [72]. Under these conditions, the reduced inhi-             eration/propagation mechanisms of beta oscillations, we
+bition from prototypic neurons also leads to the disinhi-           systematically assess their involvement using an optoge-
+bition of STN neurons, explaining their concurrent                  netic inhibition strategy in parkinsonian rats. This
+increase in firing activity. Conversely, in vivo optoge-            approach was based on the expression of
+netic stimulation of the STN preferentially excited proto-          Archaerhodopsin-3 (ArchT3), a light-activated outward
+typic neurons, leading to disynaptic inhibition of                  proton pump that hyperpolarizes and inhibits neurons
+arkypallidal neurons (Fig. 17.3D). Once again, this effect          under green/yellow light stimulation [83]. We also tested
+could be explained by the fact that STN inputs in vitro             whether beta oscillations depended on motor cortex
+were 74% smaller in arkypallidal than prototypic neu-               (mCx) activity like in nonhuman primates. Indeed, these
+rons, while the opposite activity between prototypic                oscillations are readily detected in electrocorticogram
+and arkypallidal neurons strongly suggests the involve-             (ECoG) recordings from this region in 6-OHDA rats
+ment of collateral inhibition [72]. It is important to              [31,84], and cortical circuits are well known to generate
+mention that this differential input organization also ap-          oscillatory activity across multiple frequency bands
+plies to collateral projections from D1-SPNs to the GPe,            [85]. Viral-mediated ArchT3 expression in mCx, STN, or
+which preferentially target arkypallidal neurons [79].              GPe resulted in robust neuronal inhibition upon yellow
+Altogether, these results call for a revaluation of how             light delivery, as confirmed by electrophysiological re-
+the direct/indirect, and hyperdirect pathway interact               cordings [82]. However, power spectral analysis of
+at the level of GPe neurons (Fig. 17.3E). Moreover, these           ECoG recordings revealed distinct effects: neither mCx
+functional connectivity rules are not only crucial for un-          (Fig. 17.4A), nor STN opto-inhibition (Fig. 17.4B), signifi-
+derstanding normal GPe motor function but are likely                cantly altered beta oscillation power, whereas GPe inhibi-
+fundamental in governing how synchronized activity,                 tion led to a pronounced suppression of beta power
+such as parkinsonian beta oscillations, emerge and prop-            (Fig. 17.4C).
+agate within the STN-GPe network.                                      Altogether, these findings strongly refute the involve-
+                                                                    ment of mCx or STN in generating beta oscillations
+                                                                    while supporting the hypothesis that GPe activity is
+      4. Optogenetic interrogation of the BG                        necessary for beta synchronization in 6-OHDA rats.
+      mechanism underlying the generation of                        This suggests that the GPe is a key driver of abnormal
+          parkinsonian beta oscillations                            oscillations in BG circuits, and that beta oscillations do
+                                                                    not propagate to the GPe via excitatory inputs from
+    The mechanism underlying parkinsonian neuronal os-              the STN, as proposed in nonhuman primate BG.
+cillations has been investigated using pharmacological                 To further elucidate the circuit mechanisms underly-
+manipulations, such as local infusion of GABAergic or               ing parkinsonian beta oscillations and to validate our
+glutamatergic agonist and antagonist into the GPe or                previous findings, we developed an alternative optoge-
+STN, in nonhuman primates BG [51,81]. This work has                 netic approach by reintroducing synthetic beta oscilla-
+highlighted the role of cortical glutamatergic inputs to            tions through direct patterning of GPe (Fig. 17.5A) or
+the STN and the reciprocal connection between the STN               STN (Fig. 17.5B) neuronal activities using light stimula-
+and GPe in propagating and amplifying oscillatory activ-            tion. This stimulation mimicked both the frequency
+ity, which occurred in the low beta frequency range                 (20 Hz) and sine-wave oscillatory pattern of beta oscilla-
+(8–15 Hz). This raises the question of whether similar              tions. These two approaches were based on distinct
+mechanisms are at play in parkinsonian rodents, where               optogenetic strategies: in the GPe, we applied optoge-
+beta oscillations occur at faster frequencies (~20 Hz).             netic inhibition to examine the effects of rhythmic inhib-
+    The development of circuit-specific optogenetic ma-             itory input on beta oscillations properties, whereas in
+nipulations in rodents enables direct dissection of the             the STN, we used optogenetic excitation to determine
+contributions of different BG circuit components and                the impact of rhythmic excitatory inputs to STN (such
+testing of hypotheses related to the generation and prop-           as those coming from mCx) and how they would prop-
+agation of parkinsonian beta oscillations. Notably,                 agate to GPe neurons.
+compared with pharmacological manipulations, optoge-                   To determine which beta-patterned optogenetic pro-
+netic approaches provide a powerful tool adapted to the             tocol most accurately replicated the properties of real
+fast dynamics of beta oscillations in vivo, as they allow           parkinsonian beta oscillations, we compared the spike-
+millisecond timescale ON/OFF control of neuronal                    timing, phase properties, and firing rate changes
+                            4. Optogenetic interrogation of the BG mechanism underlying the generation of parkinsonian beta oscillations             349
+
+
+
+
+FIGURE 17.4 Optogenetic mapping of parkinsonian beta oscillations dynamics in basal ganglia. A–C, Schematic of the experimental
+paradigm (top) and peri-event spectrogram (bottom) of mCx electrocorticogram (ECoG) recording showing the beta-frequency power during mCx
+(A), STN (B), and GPe (C) opto-inhibition. Abbreviations are: ECoG: electrocorticogram; GPe: external part of the Globus Pallidus; mCx: motor
+cortex; SNR: Substantia nigra pars reticulata, STN: Subthalamic nucleus; STR: striatum. Figure panels A–C were extracted from B.d.l. Crompe, A.
+Aristieta, A. Leblois, S. Elsherbiny, T. Boraud, N.P. Mallet, The globus pallidus orchestrates abnormal network dynamics in a model of Parkinsonism. Nature
+Res. France Nat. Commun. 11 (1) (2020) 20411723, Available from: https://doi.org/10.1038/s41467-020-15352-3
+
+
+induced by these synthetic beta oscillations in the STN-                            opposition between prototypic and arkypallidal neu-
+GPe network to those of spontaneous beta oscillations                               rons, which arises from the differential synaptic organi-
+(Fig. 17.5 C and D). Consistent with our hypothesis,                                zation of STN inputs as discussed in the previous
+optogenetic inhibition of GPe neurons best replicated                               section. Altogether, these results confirm that the gener-
+key features of parkinsonian beta oscillations, including                           ation of abnormal beta synchronization in 6-OHDA ro-
+the correct phase-locking properties of STN and proto-                              dent is not driven by STN excitatory inputs (unlike in
+typic neurons, as well as the characteristic anti-phase                             nonhuman primates) [81,86], but rather by increased
+relationship between them. Regarding spike-rate                                     inhibitory input to GPe prototypic neurons. This inhibi-
+changes, this protocol successfully reproduced STN hy-                              tory input may originate from striatal D2-SPNs, which
+peractivity and prototypic hypoactivity as in parkinso-                             are selectively entrained to parkinsonian beta oscilla-
+nian animals but failed to replicate the opposing                                   tions [16] and, through their preferential connectivity
+activity patterns of prototypic and arkypallidal neuro-                             to prototypic neurons [72], could underlie the observed
+ns—likely because optogenetic inhibition affected both                              phase opposition between prototypic and arkypallidal
+cell types equally. In contrast, optogenetic excitation of                          neurons. The previous findings also underscore the
+the STN at beta frequency induced an abnormal phase-                                pivotal role of prototypic neurons in shaping firing
+locking of STN and prototypic neurons, an incorrect                                 rate dynamics and orchestrating neuronal synchroniza-
+in-phase relationship between them, and an aberrant in-                             tion within the STN. While the minimal neuronal cir-
+crease in prototypic neuron firing rates. However, some                             cuits required for the generation of beta oscillations
+aspects of parkinsonian beta oscillations were pre-                                 remain unknown, striato-pallidal loops have been impli-
+served, such as the STN hyperactivity and the phase                                 cated [87,88]. In addition, broader circuits—including
+350                                                     17. Reevaluating the role of the STN-GPe network
+
+
+
+
+FIGURE 17.5          Spike-timing and spike-rate properties of spontaneous or opto-evoked beta oscillations in STN-GPe network. A–C, Mean
+phase histograms of STN (top, blue), prototypic (middle, red), and arkypallidal (bottom, green) neurons during spontaneous parkinsonian beta
+oscillations recorded in 6-OHDA-lesioned rats (A), or synthetic beta oscillations evoked by beta-frequency opto-patterning of GPe (B) or STN (C)
+neurons in control rats. The beta signal recorded from the motor cortex ECoG was used as the reference signal to calculate the linear phase
+histograms for the different neuronal populations. D, Comparison of the spike-rate changes in STN (top, blue), prototypic (middle, red), and
+arkypallidal (bottom, green) neurons during spontaneous (Spont β, middle) or opto-evoked GPe (GPe Laser, left) or STN (STN laser, right) beta
+oscillations. Figure panels A, B, and D were extracted from B.d.l. Crompe, A. Aristieta, A. Leblois, S. Elsherbiny, T. Boraud, N.P. Mallet, The globus pallidus
+orchestrates abnormal network dynamics in a model of Parkinsonism. Nat. Res. France Nat. Commun. 11 (1) (2020) 20411723. https://doi.org/10.1038/s41467-
+020-15352-3. Figure panels C was extracted from N. Mallet, A. Pogosyan, L.F. M�arton, J.P. Bolam, P. Brown, P.J. Magill, Parkinsonian beta oscillations in the
+external globus pallidus and their relationship with subthalamic nucleus activity. J. Neurosci. 28 (2008a) 14245–14258, N. Mallet, A. Pogosyan, L.F. M�arton, J.
+P. Bolam, P. Brown, P.J. Magill Disrupted dopamine transmission and the emergence of exaggerated beta oscillations in subthalamic nucleus and cerebral cortex.
+J. Neurosci. 28 (2008b) 4795–4806.
+
+
+projections from basal ganglia output nuclei such as the                          oscillations, are independent of dopamine loss, and
+substantia nigra pars reticulata to the thalamus—may                              depend on the integrity of both cortical and thalamic cir-
+also play a role [89].                                                            cuits [90,92]. The fact that cortical inputs are necessary
+                                                                                  for the generation of SWDs but appear dispensable for
+                                                                                  beta oscillations [82] suggests that distinct mechanisms
+5. Comparison of the spike-timing properties of                                   underlie their generation. Despite these fundamental
+parkinsonian beta oscillations and spike-and-wave                                 differences, analyzing the spike-timing phase relation-
+                   discharges                                                     ships induced by both rhythms in the STN-GPe network
+                                                                                  can yield key insights into the neuronal mechanisms
+    Absence seizures, a hallmark of certain types of non-                         driving the propagation of excessive synchronization
+convulsing epileptic syndromes characterized by tran-                             in BG circuits. Based on their known firing entrainment
+sient loss of consciousness and typically developing                              [91], we extrapolated the linear phase histograms of
+during brain maturation in childhood, are associated                              STN-/GPe neurons during SWDs (Fig. 17.6B), to best
+with the abnormal expression of synchronous spike-                                compare their spike-timing phase properties with those
+and-wave discharges (SWDs) on the electroencephalo-                               observed during beta oscillations (Fig. 17.5C).
+gram. Genetic rat models of absence epilepsy, such as                                A striking finding from Ref. [91] was that GPe record-
+the GAERS rats, replicate the expression of SWDs and                              ings during SWDs also revealed two distinct cell popu-
+provide a valuable model for investigating their mecha-                           lation based on firing patterns. Although the prototypic
+nisms of generation [90]. Notably, SWDs propagate to                              and arkypallidal classification had not yet been estab-
+BG circuits, inducing pronounced spike synchronization                            lished at the time, the authors identified a subset of
+within the STN-GPe network (Fig. 17.6A) [91]. These os-                           GPe neurons, named “early discharge” (ED-GP) neu-
+cillations occur at a lower frequency (7–11 Hz) than beta                         rons, comprising ~25% of the recorded GPe population
+                             5. Comparison of the spike-timing properties of parkinsonian beta oscillations and spike-and-wave discharges         351
+
+
+
+
+FIGURE 17.6         Spike-timing relationship of STN-GPe neurons during spike-and-wave discharges oscillations. (A) Representative example
+illustrating two successive spike-wave discharges recorded in the EEG (top traces) and corresponding intracellular activity of cortical neurons (1),
+extracellular (2) and intracellular (3) firing activity of an STN neuron, and extracellular activity of an ED-GP (4) and a P-GP (5) neuron. (B) Putative
+linear phase histograms (extrapolated from firing activity shown in A) for STN (blue, top), putative prototypic P-GP (red, middle), and putative
+arkypallidal ED-GP (green, bottom) neurons during spike-wave discharge. For clarity, two cortical SWD oscillations cycles are shown, and to
+facilitate the comparison, the representative spike activity of each cell type (as shown in A) was superimposed below the extrapolated phase
+histogram and aligned to the through (dashed line) of the SWD oscillations. Figure panels A is extracted from J.T. Paz, J.-M. Deniau, S. Charpier,
+Rhythmic bursting in the cortico-subthalamo-pallidal network during spontaneous genetically determined spike and wave discharges. J. Neurosci. 25 (2005)
+2092–2101. http://www.ncbi.nlm.nih.gov/pubmed/15728849 (Accessed 2 December, 2014) with permission from the relevant source.
+
+
+(3 out of 13 cells). These neurons were characterized by                                The origin of this rhythmic inhibition to prototypic
+slow, irregular firing outside the SWD episode but                                   neurons during beta oscillations and SWDs remains
+became rhythmically entrained during SWDs, aligning                                  unclear, though, as mentioned earlier, striatopallidal
+their activity with the excitation of STN neurons                                    D2-SPNs neurons are a strong candidate as they pro-
+(Fig. 17.6A). In contrast, the remaining ~75% of GPe neu-                            vide the main inhibitory input to the GPe. However,
+rons (10 out of 13 neurons) were classified as “pausing”                             during SWDs recorded under anesthesia, striatal neu-
+(P-GP), exhibiting tonic firing during interictal periods                            rons reduce their firing rate by ~79%, due to an
+but switching to a pause with rebound burst pattern                                  increased inhibition from striatal GABergic interneu-
+during the SWDs. Notably, the pause in P-GP coincided                                rons [93]. This finding was initially interpreted as evi-
+with increased STN firing activity (Fig. 17.6A). Remark-                             dence against striatal D2-SPNs being the primary
+ably, these ED-GP and P-GP neurons closely resemble                                  driver of such rhythmic inhibition to prototypic neu-
+arkypallidal and prototypic neurons, both in their rela-                             rons during SWDs. That being said, in freely moving
+tive proportions, their mean firing rate and firing                                  rats, putative striatal neurons can be entrained by
+pattern: irregular and bursty for arkypallidal-like (ED-                             high-voltage spindles (HVS), the electrophysiological
+GP) neurons and regular and tonic for prototypic-like                                equivalent of SWDs. However, their firing pattern dur-
+(P-GP) neurons. Even more striking is the fact that the                              ing the oscillation is characterized by single spikes that
+spike-timing phase relationship among STN, ED-GP                                     do not occur in every oscillation cycle—unlike striatal
+(putative arkypallidal), and P-GP (putative prototypic)                              GABAergic interneurons, which exhibit more consis-
+neurons during SWDs closely mirror those observed                                    tent oscillatory entrainment [94]. Importantly, the
+during parkinsonian beta oscillations. Specifically, the                             phase-locked activity of striatal neurons during HVS
+antiphase activity between prototypic and STN neurons                                occurs just after the trough of the EEG oscillations,
+in both oscillatory states suggests that their spike inter-                          aligning precisely with the timing of prototypic neuron
+action during excessive synchronization is driven by                                 inhibition. In summary, these findings strongly suggest
+prototypic inhibitory activity, rather than by STN excit-                            that the striatal D2-SPNs neurons may directly propa-
+atory input (Fig. 17.5C vs. Fig. 17.6B).                                             gate synchronized oscillatory activity to the GPe in
+352                                       17. Reevaluating the role of the STN-GPe network
+
+both SWDs and beta oscillations. However, unlike in                 frequencies and underlying mechanisms, suggest a
+STN or GPe, where oscillatory firing is present at the              fundamental constraint imposed by the intrinsic
+single-neuron level (e.g., individual neurons can fire              anatomical and functional connectivity of BG network.
+one action potential per oscillation cycle), oscillatory               In conclusion, analyzing the spike-timing phase rela-
+activity in D2-SPNs appears to be encoded at the pop-               tionships between neuronal population during synchro-
+ulation level. That is, individual D2-SPNs tend to fire             nized oscillations serves as a powerful tool for dissecting
+single spike but not on every cycle [94]. Similarly, dur-           the contributions of different neuronal element to the
+ing beta oscillations, aberrant phase-locked firing has             chrono-circuitry of brain oscillations. We propose that
+been shown to be selectively restricted to striatopallidal          applying such phase-based analyses to simultaneously
+D2-SPNs neurons [16]. However, their entrainment oc-                recorded STN and GPe neurons in nonhuman primates
+curs only on a minority of beta cycles, further support-            could yield valuable insights into whether similar circuit
+ing that their contribution to driving pathological                 mechanisms underlie beta oscillations generation in
+oscillatory dynamics arises through population-level                MPTP monkeys as in rodent PD models. Overall, this
+entrainment. The idea that GPe activity is primarily                framework suggests that the temporal dynamics of
+controlled by striatal inhibition during excessive                  neuronal circuits are shaped by the network’s intrinsic
+neuronal synchronization—rather than excitatory in-                 architecture and functional connectivity, which together
+puts from STN—is supported by anatomical evidence.                  determine when and how different neuronal popula-
+On average, if each D2-SPNs in the rat striatum forms               tions become entrained to ongoing oscillatory activity.
+approximately 224 synapses within the GPe [95], while
+each STN neuron forms about 457 synapses [96], and
+considering that the total number of D2-SPNs is esti-               Declaration of interests
+mated to be around 1.4 million, compared with the
+approximately 13,600 STN neurons and 46,000 GPe                         The authors declare no competing interests.
+[97], then the cumulative number of striatal D2-SPNs
+synapses formed onto single GPe neuron far outweighs
+those from STN. This results in an estimated striatal-to-           Acknowledgments
+STN synaptic ratios ranging from 30:1 to 50:1.                      This work was supported by grants from the French Agence Nationale
+                                                                    de la Recherche (ANR-21-CE16-0025-01 and ANR-22-CE16-0014-02),
+                                                                    the Fondation pour la Recherche M�edicale (Equipe FRM
+                                                                    EQU202203014688), the French government in the framework of the
+                                                                    University of Bordeaux’s IdEx (Investments for the Future—France
+6. Conclusion on the phase propagation dynamics                     2030 program/GPR BRAIN_2030).
+    during synchronized oscillatory activity
+
+   In this chapter, we challenge the prevailing view that           References
+the STN is the primary driver of parkinsonian beta oscil-
+lations in the BG circuits of PD rat model. Drawing on               [1] G.E. Alexander, M.D. Crutcher, Functional architecture of basal
+                                                                         ganglia circuits: neural substrates of parallel processing, Trends
+data from 6-OHDA rodent models, we present evidence                      Neurosci. 13 (7) (1990) 266–271, https://doi.org/10.1016/0166-
+that GABAergic inhibition from the GPe plays a central                   2236(90)90107-L.
+role in generating and coordinating these synchronous                [2] R.L. Albin, A.B. Young, J.B. Penney, The functional anatomy of
+beta oscillations. We propose that the GPe acts as a key                 basal ganglia disorders, Trends Neurosci. 12 (1989) 366–375.
+                                                                         http://www.ncbi.nlm.nih.gov/pubmed/2479133.
+hub within the BG, orchestrating the precise spike-
+                                                                     [3] H. Bergman, T. Wichmann, B. Karmon, M.R. DeLong, The primate
+timing relationships observed within and across BG                       subthalamic nucleus. II. Neuronal activity in the MPTP model of
+neuronal populations. This framework builds upon                         parkinsonism, J. Neurophysiol. 72 (2) (1994) 507–520, https://
+earlier claims that emphasized the role of striatopallidal               doi.org/10.1152/jn.1994.72.2.507.
+mechanisms in propagating abnormal low-frequency                     [4] A.V. Kravitz, B.S. Freeze, P.R.L. Parker, K. Kay, M.T. Thwin,
+synchronization (<2 Hz) characteristic of the “slow-                     K. Deisseroth, A.C. Kreitzer, Regulation of parkinsonian motor be-
+                                                                         haviours by optogenetic control of basal ganglia circuitry, Nature
+wave” cortical state [98]. We extend this perspective to                 466 (7306) (2010) 622–626, https://doi.org/10.1038/nature09159.
+account for the emergence of excessive beta oscillations             [5] E.A. Yttri, J.T. Dudman, Opponent and bidirectional control of
+present following dopamine depletion in awake or acti-                   movement velocity in the basal ganglia, Nature 533 (2016)
+vated brain state (i.e., those lacking slow-wave activity),              402–406, https://doi.org/10.1038/nature17639.
+as well as other forms of pathological synchronization,              [6] C. Alcacer, L. Andreoli, I. Sebastianutto, J. Jakobsson, T. Fieblinger,
+                                                                         M.A. Cenci, Chemogenetic stimulation of striatal projection neu-
+such as the SWDs observed in absence epilepsy. The                       rons modulates responses to Parkinson’s disease therapy, J. Clin.
+consistent phase relationships seen in both PD-related                   Investig. 127 (2) (2017) 720–734, https://doi.org/10.1172/
+beta oscillations and SWDs, despite their differing                      JCI90132.
+                                                                       References                                                                  353
+ [7] G. Buzs� aki, A. Draguhn, Neuronal oscillations in cortical net-         [22] A.M. Willard, B.R. Isett, T.C. Whalen, K.J. Mastro, C.S. Ki, X. Mao,
+     works, Science 304 (5679) (2004) 1926–1929, https://doi.org/                  A.H. Gittis, State transitions in the substantia nigra reticulata pre-
+     10.1126/science.1099745.                                                      dict the onset of motor deficits in models of progressive dopamine
+ [8] S.N. Baker, Oscillatory interactions between sensorimotor cortex              depletion in mice, eLife 8 (2019), https://doi.org/10.7554/
+     and the periphery, Curr. Opin. Neurobiol. 17 (6) (2007) 649–655,              eLife.42746.
+     https://doi.org/10.1016/j.conb.2008.01.007.                              [23] L. Delgado-Zabalza, N.P. Mallet, C. Glangetas, G. Dabee,
+ [9] D.K. Leventhal, G.J. Gage, R. Schmidt, J.R. Pettibone, A.C. Case, J.          M. Garret, C. Miguelez, J. Baufreton, Targeting parvalbumin-
+     D. Berke, Basal ganglia beta oscillations accompany cue utiliza-              expressing neurons in the substantia nigra pars reticulata restores
+     tion, Neuron 73 (3) (2012) 523–536, https://doi.org/10.1016/j.                motor function in parkinsonian mice, Cell Rep. 42 (10) (2023)
+     neuron.2011.11.032.                                                           113287, https://doi.org/10.1016/j.celrep.2023.113287.
+[10] R. Bartolo, H. Merchant, β oscillations are linked to the initiation     [23a] A. Raz, E. Vaadia, H. Bergman, Firing patterns and correlations
+     of sensory-cued movement sequences and the internal guidance                    of spontaneous discharge of pallidal neurons in the normal
+     of regular tapping in the monkey, J. Neurosci. 35 (11) (2015)                   and the tremulous 1-methyl-4-phenyl-1,2,3,6-tetrahydropyridine
+     4635–4640, https://doi.org/10.1523/jneurosci.4570-14.2015.                      vervet model of parkinsonism, J. Neurosci. 20 (2000) 8559–8571.
+[11] J. Feingold, D.J. Gibson, B. Depasquale, A.M. Graybiel, Bursts of        [24] G. Tinkhauser, A. Pogosyan, H. Tan, D.M. Herz, A.A. Kühn,
+     beta oscillation differentiate postperformance activity in the stria-         P. Brown, Beta burst dynamics in Parkinson’s disease off and on
+     tum and motor cortex of monkeys performing movement tasks,                    dopaminergic medication, Brain 140 (11) (2017) 2968–2981,
+     Proc. Natl. Acad. Sci. U. S. A 112 (44) (2015) 13687–13692,                   https://doi.org/10.1093/brain/awx252.
+     https://doi.org/10.1073/pnas.1517629112.                                 [25] H. Cagnan, N. Mallet, C.K.E. Moll, A. Gulberti, A.B. Holt,
+[12] R. Basanisi, K. Marche, E. Combrisson, P. Apicella, A. Brovelli,              M. Westphal, C. Gerloff, A.K. Engel, W. Hamel, P.J. Magill,
+     Beta oscillations in monkey striatum encode reward prediction er-             P. Brown, A. Sharott, Temporal evolution of beta bursts in the
+     ror signals, J. Neurosci. 43 (18) (2023) 3339–3352, https://doi.org/          parkinsonian cortical and basal ganglia network, Proc. Natl.
+     10.1523/jneurosci.0952-22.2023.                                               Acad. Sci. U. S. A 116 (32) (2019) 16095–16104, https://doi.org/
+[13] R. Courtemanche, N. Fujii, A.M. Graybiel, Synchronous, focally                10.1073/pnas.1819975116.
+     modulated β-band oscillations characterize local field potential         [26] I. Grennan, N. Mallet, P.J. Magill, H. Cagnan, A. Sharott, Beta
+     activity in the striatum of awake behaving monkeys, J. Neurosci.              bursts in the parkinsonian cortico-basal ganglia network form
+     23 (2003) 11741–11752, https://doi.org/10.1523/JNEUROSCI.23-                  spatially discrete ensembles, Neurobiol. Dis. 201 (2024) 106652,
+     37-11741.                                                                     https://doi.org/10.1016/j.nbd.2024.106652.
+[14] R. Schmidt, J. Rose, V. Muralidharan, Transient oscillations as          [27] A. Leblois, W. Meissner, B. Bioulac, C.E. Gross, D. Hansel,
+     computations for cognition: analysis, modeling and function,                  T. Boraud, Late emergence of synchronized oscillatory activity
+     Curr. Opin. Neurobiol. 83 (2023) 102796, https://doi.org/                     in the pallidum during progressive parkinsonism, Eur. J. Neuro-
+     10.1016/j.conb.2023.102796.                                                   sci. 26 (6) (2007) 1701–1713, https://doi.org/10.1111/j.1460-
+[15] N. Mallet, B. Ballion, C. Le Moine, F. Gonon, Cortical inputs and             9568.2007.05777.x.
+     GABA interneurons imbalance projection neurons in the striatum           [28] J.M. Burkhardt, C. Constantinidis, K.K. Anstrom, D.C.S. Roberts,
+     of parkinsonian rats, J. Neurosci. 26 (14) (2006) 3875–3884,                  D.J. Woodward, Synchronous oscillations and phase reorganiza-
+     https://doi.org/10.1523/jneurosci.4439-05.2006.                               tion in the basal ganglia during akinesia induced by high-dose
+[16] A. Sharott, F. Vinciati, K.C. Nakamura, P.J. Magill, A population of          haloperidol, Eur. J. Neurosci. 26 (7) (2007) 1912–1924, https://
+     indirect pathway striatal projection neurons is selectively                   doi.org/10.1111/j.1460-9568.2007.05813.x.
+     entrained to parkinsonian beta oscillations, J. Neurosci. 37 (41)        [29] B. Degos, J.-M. Deniau, M. Chavez, N. Maurice, Chronic but not
+     (2017) 9977–9998, https://doi.org/10.1523/JNEUROSCI.0658-                     acute dopaminergic transmission interruption promotes a pro-
+     17.2017.                                                                      gressive increase in cortical beta frequency synchronization: rela-
+[17] J.G. Parker, J.D. Marshall, B. Ahanonu, Y.W. Wu, T.H. Kim, B.                 tionships to vigilance state and akinesia, Cerebr. Cortex 19 (7)
+     F. Grewe, Y. Zhang, J.Z. Li, J.B. Ding, M.D. Ehlers, M.                       (2009) 1616–1630, https://doi.org/10.1093/cercor/bhn199.
+     J. Schnitzer, Diametric neural ensemble dynamics in parkinsonian         [30] E. Brazhnik, N. Novikov, A.J. McCoy, N.M. Ilieva, M.W. Ghraib, J.
+     and dyskinetic states, Nature 557 (7704) (2018) 177–182, https://             R. Walters, Early decreases in cortical mid-gamma peaks coincide
+     doi.org/10.1038/s41586-018-0090-6.                                            with the onset of motor deficits and precede exaggerated beta
+[18] M.B. Ryan, C. Bair-Marshall, A.B. Nelson, Aberrant striatal activ-            build-up in rat models for Parkinson’s disease, Neurobiol. Dis.
+     ity in parkinsonism and levodopa-induced dyskinesia, Cell Rep.                155 (2021), https://doi.org/10.1016/j.nbd.2021.105393.
+     23      (2018)       3438–3446,       https://doi.org/10.1016/j.cel-     [31] N. Mallet, A. Pogosyan, A. Sharott, J. Csicsvari, J.P. Bolam,
+     rep.2018.05.059, e5.                                                          P. Brown, P.J. Magill, Disrupted dopamine transmission and the
+[19] A. Leblois, W. Meissner, E. Bezard, B. Bioulac, C.E. Gross,                   emergence of exaggerated beta oscillations in subthalamic nu-
+     T. Boraud, Temporal and spatial alterations in GPi neuronal                   cleus and cerebral cortex, J. Neurosci. 28 (2008b) 4795–4806.
+     encoding might contribute to slow down movement in Parkinso-             [32] M.G. Murer, K.Y. Tseng, F. Kasanetz, M. Belluscio, L.A. Riquelme,
+     nian monkeys, Eur. J. Neurosci. 24 (4) (2006) 1201–1208, https://             Brain oscillations, medium spiny neurons, and dopamine, Cell.
+     doi.org/10.1111/j.1460-9568.2006.04984.x.                                     Mol. Neurobiol. 22 (5–6) (2002) 611–632, https://doi.org/
+[20] J.R. Walters, D. Hu, C.A. Itoga, L.C. Parr-Brownlie, D.                       10.1023/A:1021840504342.
+     A. Bergstrom, Phase relationships support a role for coordinated         [33] S. Pigolotti, S. Krishna, M.H. Jensen, Oscillation patterns in nega-
+     activity in the indirect pathway in organizing slow oscillations              tive feedback loops, Proc. Natl. Acad. Sci. 104 (2007) 6533–6537,
+     in basal ganglia output after loss of dopamine, Neuroscience                  https://doi.org/10.1073/pnas.0610759104.
+     144      (2)     (2007)     762–776,      https://doi.org/10.1016/j.     [34] N. Brunel, Dynamics of sparsely connected networks of excitatory
+     neuroscience.2006.10.006.                                                     and inhibitory spiking neurons, J. Comput. Neurosci. 8 (3) (2000)
+[21] C.J. Lobb, D. Jaeger, Bursting activity of substantia nigra pars              183–208, https://doi.org/10.1023/A:1008925309027.
+     reticulata neurons in mouse parkinsonism in awake and anesthe-           [35] N. Mallet, A. Pogosyan, L.F. M�     arton, J.P. Bolam, P. Brown, P.
+     tized states, Neurobiol. Dis. 75 (2015) 177–185, https://doi.org/             J. Magill, Parkinsonian beta oscillations in the external globus pal-
+     10.1016/j.nbd.2014.12.026.                                                    lidus and their relationship with subthalamic nucleus activity, J.
+                                                                                   Neurosci. 28 (2008a) 14245–14258.
+354                                                   17. Reevaluating the role of the STN-GPe network
+
+[36] A. Pavlides, S.J. Hogan, R. Bogacz, L.J. Graham, Computational                  Parkinson’s disease, Proc. Natl. Acad. Sci. U. S. A 108 (28) (2011)
+     models describing possible mechanisms for generation of exces-                  11620–11625, https://doi.org/10.1073/pnas.1107748108.
+     sive beta oscillations in Parkinson’s disease, PLoS Comput. Biol.          [51] A. Nambu, Y. Tachibana, Mechanism of parkinsonian neuronal
+     11 (12) (2015) e1004609, https://doi.org/10.1371/journal.                       oscillations in the primate basal ganglia: some considerations
+     pcbi.1004609.                                                                   based on our recent work, Front. Syst. Neurosci. 8 (MAY) (2014),
+[37] J.E. Rubin, Computational models of basal ganglia dysfunction:                  https://doi.org/10.3389/fnsys.2014.00074.
+     the dynamics is in the details, Curr. Opin. Neurobiol. 46 (2017)           [51a] A. Leblois, T. Boraud, W. Meissner, H. Bergman, D. Hansel,
+     127–135, https://doi.org/10.1016/j.conb.2017.08.011.                              Competition between feedback loops underlies normal and
+[38] J. Zang, S. Liu, P. Helson, A. Kumar, Structural constraints on the               pathological dynamics in the basal ganglia, J. Neurosci. 26
+     emergence of oscillations in multi-population neural networks,                    (2006) 3567–3583. http://www.ncbi.nlm.nih.gov/pubmed/
+     eLife 12 (2024), https://doi.org/10.7554/elife.88777.                             16571765 (Accessed 17 August 2014).
+[39] A. Mirzaei, A. Kumar, D. Leventhal, N. Mallet, A. Aertsen,                 [52] J.S. Brittain, P. Brown, Oscillations and the basal ganglia: motor
+     J. Berke, R. Schmidt, Sensorimotor processing in the basal ganglia              control and beyond, Neuroimage 85 (2014) 637–647, https://doi.
+     leads to transient beta oscillations during behavior, J. Neurosci. 37           org/10.1016/j.neuroimage.2013.05.084.
+     (46) (2017) 11220–11232, https://doi.org/10.1523/jneurosci.1289-           [53] O. Shouno, Y. Tachibana, A. Nambu, K. Doya, Computational
+     17.2017.                                                                        model of recurrent subthalamo-pallidal circuit for generation of
+[40] Bello, Casas-Cordero, Gali~   nanes, Casey, Belluscio, Rodrı́guez,              parkinsonian oscillations, Front. Neuroanat. 11 (2017), https://
+     Noaı́n, Murer, Rubinstein, Inducible ablation of dopamine D2 re-                doi.org/10.3389/fnana.2017.00021.
+     ceptors in adult mice impairs locomotion, motor skill learning and         [54] D. Plenz, S.T. Kital, A basal ganglia pacemaker formed by the sub-
+     leads to severe parkinsonism, Mol. Psychiatr. 22 (4) (2017)                     thalamic nucleus and external globus pallidus, Nature 400 (6745)
+     595–604, https://doi.org/10.1038/mp.2016.105.                                   (1999) 677–682, https://doi.org/10.1038/23281.
+[41] K. Kondabolu, E.A. Roberts, M. Bucklin, M.M. McCarthy,                   [54a] J. Baufreton, E. Kirkham, J.F. Atherton, A. Menard, P.J. Magill, J.
+     N. Kopell, X. Han, Striatal cholinergic interneurons generate                   P. Bolam, MD Bevan, Sparse but selective and potent synaptic
+     beta and gamma oscillations in the corticostriatal circuit and pro-             transmission from the globus pallidus to the subthalamic nucleus,
+     duce motor deficits, Proc. Natl. Acad. Sci. U. S. A 113 (22) (2016)             J. Neurophysiol. 102 (2009) 532–545.
+     3159–3168, https://doi.org/10.1073/pnas.1605658113.                      [54b] J. Baufreton, J.F. Atherton, D.J. Surmeier, M.D. Bevan, Enhance-
+[42] A.H. Gittis, G.B. Hang, E.S. LaDow, L.R. Shoenfeld, B.V. Atallah,               ment of excitatory synaptic integration by GABAergic inhibition
+     S. Finkbeiner, A.C. Kreitzer, Rapid target-specific remodeling of               in the subthalamic nucleus, J. Neurosci. 25 (2005) 8505–8517.
+     fast-spiking inhibitory circuits after loss of dopamine, Neuron          [54c] M.D. Bevan, P.J. Magill, D. Terman, J.P. Bolam, C.J. Wilson, Move
+     71      (5)     (2011)     858–868,      https://doi.org/10.1016/j.             to the rhythm: Oscillations in the subthalamic nucleus-external
+     neuron.2011.06.035.                                                             globus pallidus network, Trends Neurosci. 25 (2002) 525–531.
+[43] K.Y. Fan, J. Baufreton, D.J. Surmeier, C.S. Chan, M.D. Bevan, Pro-       [54d] C.S. Chan, R. Shigemoto, J.N. Mercer, D.J. Surmeier, HCN2 and
+     liferation of external globus pallidus-subthalamic nucleus synap-               HCN1 channels govern the regularity of autonomous pacemaking
+     ses following degeneration of midbrain dopamine neurons, J.                     and synaptic resetting in globus pallidus neurons, J. Neurosci. 24
+     Neurosci. 32 (40) (2012) 13718–13728, https://doi.org/10.1523/                  (2004) 9921–9932.
+     JNEUROSCI.5750-11.                                                       [54e] D.J. Surmeier, J.N. Mercer, C.S. Chan, Autonomous pacemakers in
+[44] T. Fieblinger, S.M. Graves, L.E. Sebel, C. Alcacer, J.L. Plotkin, T.            the basal ganglia: who needs excitatory synapses anyway? Curr.
+     S. Gertler, C.S. Chan, M. Heiman, P. Greengard, M.A. Cenci, D.                  Opin. Neurobiol. 15 (2005) 312–318.
+     J. Surmeier, Cell type-specific plasticity of striatal projection neu-     [55] P.J. Magill, J.P. Bolam, M.D. Bevan, Relationship of activity in the
+     rons in parkinsonism and L-DOPA-induced dyskinesia, Nat.                        subthalamic nucleus – globus pallidus network to cortical electro-
+     Commun. 5 (2014), https://doi.org/10.1038/ncomms6316.                           encephalogram, J. Neurosci. 20 (2000) 820–833.
+[45] H.-Y. Chu, J.F. Atherton, D. Wokosin, D. James Surmeier, M.                [56] A. Raz, E. Vaadia, H. Bergman, Firing patterns and correlations of
+     D. Bevan, Heterosynaptic regulation of external globus pallidus                 spontaneous discharge of pallidal neurons in the normal and the
+     inputs to the subthalamic nucleus by the motor cortex, Neuron                   tremulous 1-methyl-4-phenyl-1,2,3,6-tetrahydropyridine vervet
+     85      (2)     (2015)     364–376,      https://doi.org/10.1016/j.             model of parkinsonism, J. Neurosci. 20 (2000) 8559–8571.
+     neuron.2014.12.022.                                                      [56a] I. Bar-Gad, G. Heimer, Y. Ritov, H. Bergman, Functional correla-
+[46] A. Mathai, Y. Ma, J.F. Par�e, R.M. Villalba, T. Wichmann, Y. Smith,             tions between neighboring neurons in the primate globus pallidus
+     Reduced cortical innervation of the subthalamic nucleus in                      are weak or nonexistent, J. Neurosci. 23 (2003) 4012–4016.
+     MPTP-treated parkinsonian monkeys, Brain 138 (4) (2015)                  [56b] C.J. Wilson, Active decorrelation in the basal ganglia, Neurosci-
+     946–962, https://doi.org/10.1093/brain/awv018.                                  ence 250 (2013) 467–482.
+[47] H.-Y. Chu, E.L. McIver, R.F. Kovaleski, J.F. Atherton, M.D. Bevan,         [57] H. Jeon, H. Lee, D.H. Kwon, J. Kim, K. Tanaka-Yamamoto, J.
+     Loss of hyperdirect pathway cortico-subthalamic inputs                          S. Yook, L. Feng, H.R. Park, Y.H. Lim, Z.H. Cho, S.H. Paek,
+     following degeneration of midbrain dopamine neurons, Neuron                     J. Kim, Topographic connectivity and cellular profiling reveal
+     95 (2017) 1306–1318, e5.                                                        detailed input pathways and functionally distinct cell types in
+[48] S. Azizpour Lindi, N.P. Mallet, A. Leblois, Synaptic changes in                 the subthalamic nucleus, Cell Rep. 38 (9) (2022), https://doi.
+     pallidostriatal circuits observed in the parkinsonian model trig-               org/10.1016/j.celrep.2022.110439.
+     gers abnormal beta synchrony with accurate spatio-temporal                 [58] A.A. Prasad, A   ˚ . Wall�en-Mackenzie, Architecture of the subthala-
+     properties across the basal ganglia, J. Endocrinol. 44 (9) (2024)               mic nucleus, Nature Res. Aust. Commun. Biol. 7 (1) (2024),
+     1–19, https://doi.org/10.1523/JNEUROSCI.0419-23.2023.                           https://doi.org/10.1038/s42003-023-05691-4.
+[49] A. Kumar, S. Cardanobile, S. Rotter, A. Aertsen, The role of inhi-         [59] H. Kita, Globus pallidus external segment, Prog. Brain Res. 160
+     bition in generating and controlling Parkinson?s disease oscilla-               (2007) 111–133, https://doi.org/10.1016/S0079-6123(06)60007-1.
+     tions in the basal ganglia, Front. Syst. Neurosci. 5 (2011) (2011),        [60] S. N�obrega-Pereira, D. Gelman, G. Bartolini, R. Pla, A. Pierani,
+     https://doi.org/10.3389/fnsys.2011.00086.                                       O. Marı́n, Origin and molecular specification of globus pallidus
+[50] M.M. McCarthy, C. Moore-Kochlacs, X. Gu, E.S. Boyden, X. Han,                   neurons, J. Neurosci. 30 (8) (2010) 2824–2834, https://doi.org/
+     N. Kopell, Striatal origin of the pathologic beta oscillations in               10.1523/jneurosci.4023-09.2010.
+                                                                           References                                                                   355
+[61] N. Mallet, B.R. Micklem, P. Henny, M.T. Brown, C. Williams, J.                    intact external globus pallidus, J. Neurosci. 35 (17) (2015)
+     P. Bolam, K.C. Nakamura, P.J. Magill, Dichotomous organization                    6667–6688, https://doi.org/10.1523/JNEUROSCI.4662-14.2015.
+     of the external globus pallidus, Neuron 74 (6) (2012) 1075–1086,             [76] Z.A. Abecassis, B.L. Berceau, P.H. Win, D. Garcı́a, H.S. Xenias,
+     https://doi.org/10.1016/j.neuron.2012.04.027.                                     Q. Cui, A. Pamukcu, S. Cherian, V.M. Hern�       andez, U. Chon, B.
+[62] A. Saunders, I.A. Oldenburg, V.K. Berezovskii, C.A. Johnson, N.                   K. Lim, Y. Kim, N.J. Justice, R. Awatramani, B.M. Hooks, C.
+     D. Kingery, H.L. Elliott, T. Xie, C.R. Gerfen, B.L. Sabatini, A direct            R. Gerfen, S.M. Boca, C. Savio Chan, Npas1+-Nkx2.1+ neurons
+     GABAergic output from the basal ganglia to frontal cortex, Nature                 are an integral part of the cortico-pallido-cortical loop, J. Neurosci.
+     521 (7550) (2015) 85–89, https://doi.org/10.1038/nature14179.                     40 (4) (2020) 743–768, https://doi.org/10.1523/JNEUROSCI.1199-
+[63] V. Lilascharoen, E.H.J. Wang, N. Do, S.C. Pate, A.N. Tran, C.                     19.
+     D. Yoon, J.H. Choi, X.Y. Wang, H. Pribiag, Y.G. Park, K. Chung,              [77] K.J. Mastro, K.T. Zitelli, A.M. Willard, K.H. Leblanc, A.V. Kravitz,
+     B.K. Lim, Divergent pallidal pathways underlying distinct                         A.H. Gittis, Cell-specific pallidal intervention induces long-
+     Parkinsonian behavioral deficits, Nat. Neurosci. 24 (4) (2021)                    lasting motor recovery in dopamine-depleted mice, Nat. Neuro-
+     504–515, https://doi.org/10.1038/s41593-021-00810-y.                              sci. 20 (6) (2017) 815–823, https://doi.org/10.1038/nn.4559.
+[64] M.R. DeLong, Activity of pallidal neurons during movement, J.                [78] L. Guilhemsang, N.P. Mallet, Arkypallidal neurons in basal
+     Neurophysiol. 34 (3) (1971) 414–427, https://doi.org/10.1152/                     ganglia circuits: unveiling novel pallidostriatal loops? Curr.
+     jn.1971.34.3.414.                                                                 Opin. Neurobiol. 84 (2024) 102814 https://doi.org/10.1016/j.
+[65] L. Benhamou, M. Bronfeld, I. Bar-Gad, D. Cohen, T. Boraud,                        conb.2023.102814.
+     Globus pallidus external segment neuron classification in freely             [79] M. Ketzef, G. Silberberg, Differential synaptic input to external
+     moving rats: a comparison to primates, PLoS One 7 (9) (2012)                      globus pallidus neuronal subpopulations in vivo, Neuron 109
+     e45421, https://doi.org/10.1371/journal.pone.0045421.                             (3) (2021) 516, https://doi.org/10.1016/j.neuron.2020.11.006.
+[66] C.A. Deister, R. Dodla, D. Barraza, H. Kita, C.J. Wilson, Firing rate        [80] A.R. Sadek, P.J. Magill, J.P. Bolam, A single-cell analysis of
+     and pattern heterogeneity in the globus pallidus arise from a single              intrinsic connectivity in the rat globus pallidus, J. Neurosci. 27
+     neuronal population, J. Neurophysiol. 109 (2) (2013) 497–506,                     (2007) 6352–6362.
+     https://doi.org/10.1152/jn.00677.2012United States.                          [81] Y. Tachibana, H. Iwamuro, H. Kita, M. Takada, A. Nambu,
+[67] C. Günay, J.R. Edgerton, D. Jaeger, Channel density distributions                Subthalamo-pallidal interactions underlying parkinsonian
+     explain spiking variability in the globus pallidus: a combined                    neuronal oscillations in the primate basal ganglia, Eur. J. Neurosci.
+     physiology and computer simulation database approach, J. Neu-                     34 (9) (2011) 1470–1484, https://doi.org/10.1111/j.1460-
+     rosci. 28 (2008) 7476–7491. http://www.ncbi.nlm.nih.gov/                          9568.2011.07865.x.
+     pubmed/18650326. (Accessed 23 November 2014).                                [82] B.d.l. Crompe, A. Aristieta, A. Leblois, S. Elsherbiny, T. Boraud, N.
+[68] R.S. Turner, M.E. Anderson, Pallidal discharge related to the kine-               P. Mallet, The globus pallidus orchestrates abnormal network dy-
+     matics of reaching movements in two dimensions, J. Neurophy-                      namics in a model of Parkinsonism, Nat. Commun. 11 (1) (2020),
+     siol. 77 (3) (1997) 1051–1074, https://doi.org/10.1152/                           https://doi.org/10.1038/s41467-020-15352-3.
+     jn.1997.77.3.1051.                                                           [83] J. Mattis, K.M. Tye, E.A. Ferenczi, C. Ramakrishnan, D.J. O’Shea,
+[69] N. Mallet, R. Schmidt, D. Leventhal, F. Chen, N. Amer, T. Boraud,                 R. Prakash, L.A. Gunaydin, M. Hyun, L.E. Fenno, V. Gradinaru,
+     J.D. Berke, Arkypallidal cells send a stop signal to striatum,                    O. Yizhar, K. Deisseroth, Principles for applying optogenetic tools
+     Neuron 89 (2) (2016) 308–316, https://doi.org/10.1016/j.                          derived from direct comparative analysis of microbial opsins,
+     neuron.2015.12.017.                                                               Nat. Methods 9 (2) (2012) 159–172, https://doi.org/10.1038/
+[70] S. Katabi, A. Adler, M. Deffains, H. Bergman, Dichotomous activ-                  nmeth.1808.
+     ity and function of neurons with low- and high-frequency                     [84] A. Sharott, P.J. Magill, D. Harnack, A. Kupsch, W. Meissner,
+     discharge in the external globus pallidus of non-human primates,                  P. Brown, Dopamine depletion increases the power and coherence
+     Cell Rep. 42 (1) (2023) 111898, https://doi.org/10.1016/j.                        of β-oscillations in the cerebral cortex and subthalamic nucleus of
+     celrep.2022.111898.                                                               the awake rat, Eur. J. Neurosci. 21 (5) (2005) 1413–1422, https://
+[71] M.D. Bevan, P.A.C. Booth, S.A. Eaton, J. Paul Bolam, Selective                    doi.org/10.1111/j.1460-9568.2005.03973.x.
+     innervation of neostriatal interneurons by a subclass of neuron              [85] M. Steriade, Grouping of brain rhythms in corticothalamic sys-
+     in the globus pallidus of the rat, J. Neurosci. 18 (22) (1998)                    tems, Neuroscience 137 (4) (2006) 1087–1106, https://doi.org/
+     9438–9452, https://doi.org/10.1523/jneurosci.18-22-09438.1998.                    10.1016/j.neuroscience.2005.10.029.
+[72] A. Aristieta, M. Barresi, S.A. Lindi, G. Barri�ere, G. Courtand, B. de
+                                                                       Ï          [86] M. Deffains, L. Iskhakova, S. Katabi, Z. Israel, H. Bergman, Longer
+     la Crompe, L. Guilhemsang, S. Gauthier, F. St�ephanie, B. J�erome,                β oscillatory episodes reliably identify pathological subthalamic
+     N.P. Mallet, A disynaptic circuit in the globus pallidus controls                 activity in Parkinsonism, Mov. Disord. 33 (10) (2018) 1609–1618,
+     locomotion inhibition, Curr. Biol. 31 (4) (2021) 707, https://doi.                https://doi.org/10.1002/mds.27418.
+     org/10.1016/j.cub.2020.11.019.                                               [87] V.L. Corbit, T.C. Whalen, K.T. Zitelli, S.Y. Crilly, J.E. Rubin, A.
+[73] P.D. Dodson, J.T. Larvin, J.M. Duffell, F.N. Garas, N.M. Doig,                    H. Gittis, Pallidostriatal projections promote β oscillations in a
+     N. Kessaris, I.C. Duguid, R. Bogacz, S.J.B. Butt, P.J. Magill, Distinct           dopamine-depleted biophysical network model, J. Neurosci. 36
+     developmental origins manifest in the specialized encoding of                     (20) (2016) 5556–5571, https://doi.org/10.1523/JNEURO-
+     movement by adult neurons of the external globus pallidus,                        SCI.0339-16.2016.
+     Neuron 86 (2) (2015) 501–513, https://doi.org/10.1016/j.                     [88] S.A. Lindi, N.P. Mallet, A. Leblois, Synaptic changes in pallidos-
+     neuron.2015.03.007.                                                               triatal circuits observed in parkinsonian model triggers abnormal
+[74] K.P. Abrahao, D.M. Lovinger, Classification of GABAergic neuron                   beta synchrony with accurate spatio-temporal properties across
+     subtypes from the globus pallidus using wild-type and transgenic                  the basal ganglia, J. Neurosci. 44 (2023), https://doi.org/
+     mice, J. Physiol. 596 (17) (2018) 4219–4235, https://doi.org/                     10.1523/JNEUROSCI.0419-23.
+     10.1113/JP276079.                                                            [89] K.C. Nakamura, A. Sharott, T. Tanaka, P.J. Magill, Input zone-
+[75] A. Abdi, N. Mallet, F.Y. Mohamed, A. Sharott, P.D. Dodson, K.                     selective dysrhythmia in motor thalamus after dopamine deple-
+     C. Nakamura, S. Suri, S.V. Avery, J.T. Larvin, F.N. Garas, S.                     tion, J. Neurosci. 41 (50) (2021) 10382–10404, https://doi.org/
+     N. Garas, F. Vinciati, S. Morin, E. Bezard, J. Baufreton, P.                      10.1523/JNEUROSCI.1753-21.2021.
+     J. Magill, Prototypic and arkypallidal neurons in the dopamine-
+356                                                 17. Reevaluating the role of the STN-GPe network
+
+[90] A. Depaulis, S. Charpier, Pathophysiology of absence epilepsy: in-       [95] F. Fujiyama, J. Sohn, T. Nakano, T. Furuta, K.C. Nakamura,
+     sights from genetic models, Neurosci. Lett. 667 (2018) 53–65,                 W. Matsuda, T. Kaneko, Exclusive and common targets of neo-
+     https://doi.org/10.1016/j.neulet.2017.02.035.                                 striatofugal projections of rat striosome neurons: a single
+[91] J.T. Paz, J.-M. Deniau, S. Charpier, Rhythmic bursting in the                 neuron-tracing study using a viral vector, Eur. J. Neurosci. 33 (4)
+     cortico-subthalamo-pallidal network during spontaneous geneti-                (2011) 668–677, https://doi.org/10.1111/j.1460-9568.2010.07564.x.
+     cally determined spike and wave discharges, J. Neurosci. 25              [96] Y. Koshimizu, F. Fujiyama, K.C. Nakamura, T. Furuta, T. Kaneko,
+     (2005)     2092–2101.    http://www.ncbi.nlm.nih.gov/pubmed/                  Quantitative analysis of axon bouton distribution of subthalamic
+     15728849. (Accessed 2 December 2014).                                         nucleus neurons in the rat by single neuron visualization with a
+[92] J.M. Sorokin, T.J. Davidson, E. Frechette, A.M. Abramian,                     viral vector, J. Comp. Neurol. 521 (9) (2013) 2125–2146, https://
+     K. Deisseroth, J.R. Huguenard, J.T. Paz, Bidirectional control of             doi.org/10.1002/cne.23277.
+     generalized epilepsy networks via rapid real-time switching of           [97] D.E. Oorschot, Total number of neurons in the neostriatal, pal-
+     firing mode, Neuron 93 (1) (2017) 194–210, https://doi.org/                   lidal, subthalamic, and substantia nigral nuclei of the rat basal
+     10.1016/j.neuron.2016.11.026.                                                 ganglia: a stereological study using the cavalieri and optical disec-
+[93] S.J. Slaght, T. Paz, M. Chavez, J.M. Deniau, S. Mahon, S. Charpier,           tor methods, J. Comp. Neurol. 366 (4) (1996) 580–599, https://doi.
+     On the activity of the corticostriatal networks during spike-and-             org/10.1002/(SICI)1096-9861(19960318)366:4<580::AID-
+     wave discharges in a genetic model of absence epilepsy, J.                    CNE3>3.0.CO;2-0.
+     Neurosci. 24 (30) (2004) 6816–6825, https://doi.org/10.1523/             [98] M.A. Belluscio, M.V. Escande, E. Keifman, L.A. Riquelme, M.
+     JNEUROSCI.1449-04.2004.                                                       G. Murer, C.L. Zold, Oscillations in the basal ganglia in Parkin-
+[94] J.D. Berke, M. Okatan, J. Skurski, H.B. Eichenbaum, Oscillatory               son’s disease: role of the striatum, Basal Ganglia 3 (4) (2014)
+     entrainment of striatal neurons in freely moving rats, Neuron 43              203–212, https://doi.org/10.1016/j.baga.2013.11.003.
+     (6) (2004) 883–896, https://doi.org/10.1016/j.neuron.2004.08.035.
+

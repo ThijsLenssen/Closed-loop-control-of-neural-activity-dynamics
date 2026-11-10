@@ -1,0 +1,879 @@
+                                    npj | digital medicine                                                                                                                             Article
+                                    Published in partnership with Seoul National University Bundang Hospital
+
+
+
+
+                                                                                                                                                   https://doi.org/10.1038/s41746-024-01115-7
+
+
+                                    Generalized sleep decoding with basal
+                                    ganglia signals in multiple movement
+                                    disorders
+                                                                                                                                                                                Check for updates
+                                                   1,2                 3                     1                4                       5                 1,2              1
+                                    Zixiao Yin        , Huiling Yu , Tianshuo Yuan , Clay Smyth , Md Fahim Anjum , Guanyu Zhu , Ruoyu Ma ,
+                                    Yichen Xu1, Qi An1, Yifei Gan1, Timon Merk2, Guofan Qin1, Hutao Xie1, Ning Zhang6, Chunxue Wang6,
+                                    Yin Jiang7, Fangang Meng7, Anchao Yang1, Wolf-Julian Neumann2, Philip Starr 8, Simon Little 5 ,
+                                    Luming Li3,9 & Jianguo Zhang 1,7,10
+                  1234567890():,;
+1234567890():,;
+
+
+
+
+                                    Sleep disturbances profoundly affect the quality of life in individuals with neurological disorders.
+                                    Closed-loop deep brain stimulation (DBS) holds promise for alleviating sleep symptoms, however, this
+                                    technique necessitates automated sleep stage decoding from intracranial signals. We leveraged
+                                    overnight data from 121 patients with movement disorders (Parkinson’s disease, Essential Tremor,
+                                    Dystonia, Essential Tremor, Huntington’s disease, and Tourette’s syndrome) in whom synchronized
+                                    polysomnograms and basal ganglia local ﬁeld potentials were recorded, to develop a generalized,
+                                    multi-class, sleep speciﬁc decoder – BGOOSE. This generalized model achieved 85% average
+                                    accuracy across patients and across disease conditions, even in the presence of recordings from
+                                    different basal ganglia targets. Furthermore, we also investigated the role of electrocorticography on
+                                    decoding performances and proposed an optimal decoding map, which was shown to facilitate
+                                    channel selection for optimal model performances. BGOOSE emerges as a powerful tool for
+                                    generalized sleep decoding, offering exciting potentials for the precision stimulation delivery of DBS
+                                    and better management of sleep disturbances in movement disorders.
+
+
+                                    A considerable fraction of the world’s population is affected by sleep dis-       enhancing sleep quality further through sleep stage-speciﬁc stimulation11,12.
+                                    orders, which result in substantial welfare expenses1–3. Irregular sleep pat-     However, this advancement poses the need for automatic decoding of a
+                                    terns and related disorders are robust indicators of morbidity and mortality      patient’s sleep-wake cycle.
+                                    across all causes4,5. Speciﬁcally, movement disorders patients are a popula-           Typically, the classiﬁcation of sleep stages necessitates intricate
+                                    tion strongly affected by sleep disorders6, which profoundly impact their         laboratory-level polysomnography (PSG) monitoring. Although wear-
+                                    quality of life and potentially hasten the disease progression7. Deep brain       able devices like actigraphy13 and photoplethysmography14 have the
+                                    stimulation (DBS) is a therapy widely used across multiple movement               potential for sleep staging, their data is lower dimensional than neural
+                                    disorders, effectively ameliorating motor symptoms while also contributing        signals, resulting in limited classiﬁcation accuracies15. Actigraphy-based
+                                    to the improvement of sleep disturbances8,9. Importantly, the recent advent       classiﬁcation in populations with movement disorders will likely also be
+                                    of the adaptive closed-loop DBS10 offers the unprecedented promise of             challenging and require formal validation. Moreover, dependency on
+
+
+
+                                    1
+                                     Department of Neurosurgery, Beijing Tiantan Hospital, Capital Medical University, Beijing, China. 2Movement Disorder and Neuromodulation Unit, Department of
+                                    Neurology, Charité—Campus Mitte, Charite—Universitatsmedizin Berlin, Chariteplatz 1, 10117 Berlin, Germany. 3National Engineering Research Center of
+                                    Neuromodulation, School of Aerospace Engineering, Tsinghua University, 100084 Beijing, China. 4Department of Bioengineering, University of California, San
+                                    Francisco, UCSF Byers Hall Box 2520, 1700 Fourth St Ste 203, San Francisco, CA 94143, USA. 5Department of Neurology, University of California, San Francisco,
+                                    1651 4th Street, San Francisco, CA 94158, USA. 6Department of Neuropsychiatry, Behavioral Neurology and Sleep Center, Beijing Tiantan Hospital, Capital
+                                    Medical University, Beijing, China. 7Department of Functional Neurosurgery, Beijing Neurosurgical Institute, Capital Medical University, Beijing, China. 8Depart-
+                                    ment of Neurosurgery, University of California, San Francisco, Eighth Floor, 400 Parnassus Ave, San Francisco, CA 94143, USA. 9IDG/McGovern Institute for Brain
+                                    Research, Tsinghua University, 100084 Beijing, China. 10Beijing Key Laboratory of Neurostimulation, Beijing, China.     e-mail: zixiao_yin@ccmu.edu.cn;
+                                    Simon.Little@ucsf.edu; zjguo73@126.com
+
+
+                                    npj Digital Medicine | (2024)7:122                                                                                                                             1
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                                                                                          Article
+
+additional wearable devices will reduce utility, especially in elderly                           classiﬁcation model on two external datasets recorded at different post-
+populations.                                                                                     operative time points and using different DBS devices.
+      Prior research, including our own16–19, has attempted to decode sleep
+stages based on basal ganglia local ﬁeld potentials (LFPs) recorded from DBS                     Results
+electrodes. This approach has proven to be feasible and potentially reduces                      Patient demographics and determination of the best decoder
+the use case for additional wearable devices. However, existing research has                     We recorded 169 overnight (80,430.5 min in bed) synchronized poly-
+predominantly focused on individualized models, where training and pre-                          somnogram and basal ganglia ﬁeld potentials in 141 patients with move-
+diction are conducted using data from the same patient. This approach                            ment disorders who were treated with DBS. Sleep stage was determined both
+requires sleep labeling for each new patient. In clinical practice, the acqui-                   manually and algorithmically21 based on standard rules22 every 30 s and only
+sition of laboratory-level sleep recordings for every DBS patient to establish                   epochs with consistent judgments between human experts and algorithms
+individualized sleep staging models would not be tractable or scaleable20. In                    were qualiﬁed for further analyses (on average n epochs = 621.9 per night).
+this study, we addressed this challenge by establishing the largest to date                      After the exclusion of recordings with a low count of NREM or REM sleep
+synchronized basal ganglia LFP - PSG dataset in a cohort of 121 patients                         (< 5 min), 140 overnight recordings from 121 patients including Parkinson’s
+with movement disorders. With this dataset, we trained a sleep decoding                          disease-subthalamic nucleus (PD-STN, n = 20), PD-globus pallidus inter-
+model, termed BGOOSE (colloquially “big goose”), the Basal Ganglia                               nus (PD-GPi, n = 8), Dystonia-STN (n = 48), Dystonia-GPi (n = 23),
+Oscillation-based Model for Sleep Stage Estimation, that could decode sleep                      Huntington’s disease (HD) -GPi (n = 11), Tourette syndrome (TS)-GPi
+stages across individuals, disease entities, and even basal ganglia nucleus                      (n = 4) and Essential tremor-ventral intermediate nucleus/caudal zona
+targets. We also investigated the role of additional electrocorticography                        incerta/posterior subthalamic area (ET-vim/CZi/PSA, n = 7) were analyzed
+(ECoG) in sleep decoding and established the projection between electrode                        (Fig. 1A). Demographics, disease information, and sleep parameters of each
+localization and sleep decoding accuracy. Finally, we validated our                              disease-target group are shown in Table 1. Previous sleep decoding studies
+
+
+    A Data collection                                                                               B Model development
+                                            Sleep recordings                                              Raw data               Feature construction                                  Sleep staging model
+                                                                                                                                            > Oscillatory
+                                                                                                                                             Band power,
+
+
+
+
+                                                                                                                                                                                       e
+                                                                                                                                                                                   ak
+                                                                                                                                             Power ratio;
+
+
+
+
+                                                                                                                                                                               Aw
+                                                                                                                                            > Waveform
+
+
+
+
+                                                                                                                                                                      True Label
+                                                                                                                                             Skewness,
+
+
+
+
+                                                                                                                                                                                       EM
+                                                                                                                                             Kurtosis;
+
+
+
+
+                                                                                                                                                                                   R
+                                                                                                                                                                                   N
+                                                                                                                                            > Entropy
+                                                                                                                                             Higuchi fractal
+
+
+
+
+                                                                                                                                                                                       EM
+                                                                                                                                             dimension;
+
+
+
+
+                                                                                                                                                                                   R
+                                                                                                                                            > Connectivity                                  Awake    NREM     REM
+                                                       Overall, Nsub = 121, Nnight = 140                                                     Coherence                                          Predicted Label
+
+
+
+           PD-STN     Parkinson’s Disease – subthalamic nucleus (Nsub = 20, Nnight = 23)                          Pipeline                                        Within- and Cross-subject decoding
+                                                                                                          > SMOTE oversampling
+            PD-GPi    Parkinson’s Disease – globus pallidus internus (Nsub = 8, Nnight = 10)          > Standard Scaler (Z transform)
+           DYS-STN Dystonia – subthalamic nucleus (Nsub = 48, Nnight = 50)                                Nested cross validation
+                                                                                                         > Bayesian optimization
+            DYS-GPi   Dystonia – globus pallidus internus (Nsub = 23, Nnight = 27)                     > Inner 4-fold cross validation
+                                                                                                    > Outer 4-fold (within subject) or
+            HD-GPi    Huntington’s Disease – globus pallidus internus (Nsub = 11, Nnight = 18)       LOO (cross subject) cross validation
+           TS-GPi     Tourette Syndrome – globus pallidus internus (Nsub = 4, Nnight = 5)                    Model evaluation
+                                                                                                    > Accuracy for model performance
+           ET-Vim/    Essential Tremor – ventral intermediate nucleus/caudal zona incerta/            > SHAP for feature importance
+           cZI/PSA    posterior subthalamic area (Nsub = 7, Nnight = 7)
+
+
+    C Extension analysis                                                                            D External validation
+
+                           i. Influential factors for decoding performance
+     accuracies (%)
+
+
+
+
+                                                                                                                      Tiantan                                  Tsinghua                                UCSF
+
+
+
+                                                                                                                        114 temporarily                         12 subjects                         3 subjects with
+                                                                                                            LOO       externalized subjects                 with PD (PINS)                          PD (Medtronic)
+         ii. ECoG                            iii. Prediction
+         electrode analysis                  network mapping
+                                                                                                                                                                                                       NREM
+                                                                                                                                                                                             REM
+                                                                                                     Training
+                                                                                                                                               Full model                                      W      NREM
+                                                                                                                      Testing
+
+                                                                                                                                            External validation
+
+
+Fig. 1 | The training and prediction pipeline of the BGOOSE. BGOOSE is the                       decoding accuracies; (ii) evaluating model performance after taking ECoG signals
+acronym for the basal ganglia oscillation-based model for sleep stage estimation.                into consideration; and (iii) prediction networking mapping analysis which aims at
+A Diagram for synchronized basal ganglia and polysomnography recordings in a                     establishing the projection between channel localization and sleep decoding accu-
+cohort of 121 patients who underwent DBS surgery (adapted from Yin et al.32).                    racy (adapted from Merk et al.27). D The performance of BGOOSE is validated in two
+B Pipeline for model development. See “Methods” for more details. C The extension                external datasets where basal ganglia local ﬁeld potentials were recorded using
+analysis includes: (i) moderator analysis investigating factors that may inﬂuence                sensing-enable devices during sleep.
+
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                                                                                        2
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                                                                  Article
+
+Table 1 | Patient demographics and sleep parameters
+
+                            All-                  PD-                   PD-GPi (n = 8)       DYS-                  DYS-                 HD-                  TS-GPi (n = 4)        ETa (n = 7)
+                            subjects              STN (n = 20)                               STN (n = 48)          GPi (n = 23)         GPi (n = 11)
+                            (n = 121)
+ Age                        49.7 ± 16.9           62.1 ± 10.7           51.9 ± 21.0          47.7 ± 16.8           47.1 ± 16.2          47.1 ± 11.1          20.8 ± 2.2            56.1 ± 16.2
+ Sex (male)                 49 (40.5%)            8 (40.0%)             6 (75.0%)            18 (37.5%)            9 (39.1%)            6 (54.5%)            1 (25.0%)             1 (14.3%)
+ BMI                        22.4 ± 3.3            24.0 ± 3.4            21.4 ± 2.9           22.3 ± 3.5            22.0 ± 2.5           21.5 ± 1.5           24.9 ± 7.3            20.2 ± 2.5
+ Disease dura-              –                     9.8 ± 5.7             8.6 ± 5.6            7.1 ± 8.3             2.8 ± 1.9            6.1 ± 4.0            12.2 ± 3.9            12.0 ± 11.6
+ tion (year)
+ Disease severityb          –                     40.2 ± 12.9           43.9 ± 18.1          21.3 ± 23.1           14.7 ± 11.8          63.2 ± 12.4          71.2 ± 5.6            36.1 ± 5.9
+ Sleep structure (%)c       9.8/62.2/             11.3/62.3/            7.9/62.8/            10.9/60.2/            8.5/63.5/            8.3/68.7/            3.9/59.0/             11.2/62.6/
+                            10.1/17.8             9.6/16.8              12.9/16.4            11.3/17.6             8.3/19.7             5.9/17.1             13.2/23.9             11.0/15.2
+ Sleep latency (min)d       25.2 ± 31.2           38.2 ± 42.9           30.1 ± 37.9          26.6 ± 32.3           21.1 ± 21.6          14.5 ± 22.5          16.4 ± 11.5           9.7 ± 7.7
+ Sleep efﬁciency (%)e       72.8 ± 14.6           70.3 ± 11.4           73.0 ± 16.5          73.3 ± 15.6           75.4 ± 12.8          69.8 ± 13.2          83.6 ± 6.5            65.8 ± 21.6
+ Sleep segmenta-            12.6 ± 6.8            12.9 ± 5.5            11.2 ± 4.5           12.7 ± 7.6            10.0 ± 5.6           18.5 ± 7.8           10.2 ± 5.3            14.0 ± 6.2
+ tion (n)f
+PD Parkinson’s disease, STN subthalamic nucleus, GPi globus pallidus internus, DYS dystonia, HD Huntington’s disease, TS Tourette syndrome, ET essential tremor, BMI body mass index.
+a
+  Targets for ET included ventralis intermediate nucleus, caudal zona incerta, subthalamic nucleus, and posterior subthalamic area.
+b
+  The presented disease severity scores were the MDS-Uniﬁed Parkinson’s Disease Rating Scale section III off-medication score for Parkinson’s disease, the Burke–Fahn–Marsden Dystonia Rating Scale-
+Movement score for dystonia, the Uniﬁed Huntington’s Disease Rating Scale score for Huntington’s disease, the Yale Global Tic Severity Scale total score for Tourette syndrome, and the Essential Tremor
+Rating Assessment Scale score for essential tremor.
+c
+  Data presented represent the percentage of N1/N2/N3/REM sleep.
+d
+  Sleep latency is deﬁned as the time from lights out until the ﬁrst epoch of any stage of sleep.
+e
+  Sleep efﬁciency is deﬁned as the ratio of total sleep time to time in bed.
+f
+ Sleep segmentation is deﬁned as the times that sleep is interrupted by > 2 min of wakefulness.
+
+
+
+
+employing different classiﬁers have obtained varied accuracies16–19. We                               the same-disease, same-target, cross-subject manner, the average accuracy
+evaluated the performance of eight commonly used machine learning                                     of the generalized decoders was 83.9 ± 2.7%. For the same-disease, cross-
+classiﬁers in our PD-STN dataset. It is shown that the LightGBM classiﬁer, a                          target decoding, the average generalized decoding accuracy was 85.1 ± 2.8%.
+lightweight gradient boosting framework based on decision tree                                        For the cross-disease, same-target decoding, the average generalized
+algorithm23,24 that has been used in multiple sleep-related studies21,25, was                         decoding accuracy was 86.2 ± 0.5%. When not considering variabilities
+constantly associated with the highest accuracies as well as a sensible model                         from disease, target, and subject, the ﬁnal average accuracy of the “cross-all”
+convergent speed in both the three-class (wake/NREM/REM) and ﬁve-class                                models remained to be 85.9%. The average mislabeling rate for the cross-all
+(wake/N1/N2/N3/REM) decoding contexts (Supplementary Fig. 1). We                                      model was 8.85 ± 5.1 min per hour (Supplementary Table 2). For each stage,
+therefore based our subsequent analysis on the LightGBM classiﬁer.                                    the accuracies of the cross-all model in classifying wakefulness, NREM, and
+                                                                                                      REM sleep were 64.2%, 90.6%, and 71.8% respectively, with an overall
+Individualized sleep decoding in different movement disorders                                         balanced accuracy of 77.6% (Supplementary Fig. 2) and a weighted F1 score
+We then built individualized models to investigate whether sleep decoding                             of 0.859 (Supplementary Fig. 3). Feature importance analysis with SHAP
+with basal ganglia signals was feasible in other disease entities than PD and                         (SHapley Additive exPlanations) showed that delta/theta power ratio was
+other basal ganglia nuclei than the STN. All subcortical recording sites are                          the most contributed feature for the cross-all decoding following by theta
+shown in Fig. 2A. Results showed that ﬁeld potentials recorded from mul-                              power and permutation entropy (Supplementary Fig. 4). For the further
+tiple basal ganglia nuclei including the STN, GPi, Vim, CZi, and PSA all                              classiﬁcation of NREM 1/2/3 stages, the cross-all model obtained an average
+enabled satisfactory classiﬁcations of sleep-wake state in multiple disorders                         accuracy of 78.2%, a balanced accuracy of 74.6% and a weighted F1 score of
+including PD, DYS, HD and ET (Fig. 2B–I). The average accuracy was                                    0.806, with the identiﬁcation of NREM2 sleep showing the highest average
+94.1 ± 0.8% (range 93.7–95.7%) for the three-class classiﬁcation and                                  accuracy of 80.2% (Fig. 4).
+86.5 ± 1.1% (range 84.7–87.6%) for the ﬁve-class classiﬁcation across all
+groups.                                                                                               Additional electrocorticography helps sleep decoding
+                                                                                                      Accumulating evidence shows that electrocorticography (ECoG) adds
+Cross-subject, cross-disease, cross-target, and across-all                                            accuracy in informing state-dependent adaptive DBS26–28. Here we
+decoding                                                                                              investigated whether ECoG signals could outperform basal ganglia ones
+Though individualized models demonstrated promising performances, they                                in sleep decoding and whether a combination of both signals adds beneﬁt
+require cumbersome PSG-based stage labeling and subcortical LFP                                       to each alone. In 8 temporarily externalized subjects (6 PD, 2 DYS), 11
+recordings for model training for each new patient, which could be chal-                              overnight ECoG data were obtained together with basal ganglia and PSG
+lenging to obtain in the clinic. We explored whether sleep decoding could be                          recordings. A total of 58 ECoG channels were analyzed (shown in Fig.
+performed in a generalized manner, e.g., training a plug-and-play model                               5A). We extracted ECoG features in frequency, time, and entropy
+that could predict sleep stages in unseen patients. ET group was not analyzed                         domain following the same manner as subcortical signals. Cortical-
+here due to their high heterogeneity in nucleus implantation (e.g., vim/CZi/                          subcortical connectivity was quantiﬁed as coherence (exempliﬁed in Fig.
+PSA). Data from the remaining 114 patients were analyzed. In the main                                 5B). Results showed that cortical and subcortical features resulted in
+analysis, we focused on the three-stage classiﬁcation of wake/NREM/REM                                comparable sleep decoding accuracies, both signiﬁcantly higher than that
+while a further attempt to classify NREM substages (i.e., NREM 1/2/3) was                             obtained by connectivity features (Fig. 5C). A combination of subcortical
+performed as a side analysis. Through a rigorous leave-one-subject-out                                and cortical features signiﬁcantly enhanced decoding accuracy compared
+cross-validation approach (the number of sleep stages used for training and                           to each feature alone, especially for the cross-subject decoding (Fig. 5C),
+testing is provided in Supplementary Table 1), results (Fig. 3) showed that in                        with no further accuracy improvement after adding connectivity features
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                                                                    3
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                                           Article
+
+
+
+
+Fig. 2 | Individualized sleep decoding with basal ganglia signals for patients with   points, a box plot, and a one-sided violin plot. For the boxplot, the lower and upper
+movement disorders. A shows lead (left) and contact (right) localizations for all     borders of the box represent the 25th and 75th percentiles, respectively. The cen-
+subjects. B shows the true and predicted hypnograms from a representative patient     terline represents the median. The whiskers extend to the smallest and largest data
+(DYS-STN #11). C–I shows the lead localization and results of individualized sleep    points that are not outliers (1.5 times the interquartile range). The violin plot shows
+decoding (training and testing the model using data from the same subject) in each    the probability density of the accuracies at different values. The portrait of the patient
+movement disorders cohort. The raincloud plot shows a cloud of individual raw data    with Parkinson’s disease is adapted from Arora et al.66.
+
+
+
+(Fig. 5C). Subcortical and cortical features were equally important based             generalized model: coef = −0.00317, p = 6.39e-4, Fig. 6A, right). A higher
+on SHAP analysis (Fig. 5D).                                                           proportion of N1 sleep was also associated with lower decoding
+                                                                                      accuracies in cortical-based individualized models (coef = −0.00265,
+Moderator analysis and prediction of best decoding channels                           p = 2.90e-4). We also evaluated the effects of various re-referencing
+We next investigated what factors may inﬂuence sleep decoding                         methods on the decoding performance of DBS channels. Speciﬁcally, we
+accuracies. Linear mixed-effect models showed that patient demo-                      compared the adjacent referencing method (e.g., the 1–2 re-referenced
+graphics and disease/target information had no signiﬁcant impact on                   channel for the 1-2-3-4 contact DBS lead) and the ‘sandwich’ referencing
+decoding performances in either individualized or generalized decodings               method (e.g., the 1–3 re-referenced channel). We found that the sand-
+using basal ganglia and cortical features (Fig. 6A, left). Poorer sleep               wich montage channels showed signiﬁcantly higher average decoding
+quality as assessed by a higher count of sleep fragmentation was sig-                 accuracies than the adjacent re-referenced channels in both the gen-
+niﬁcantly associated with lower decoding accuracies in basal ganglia-                 eralized and individualized models (Supplementary Fig. 5), a ﬁnding that
+based models (individualized model: coef = −0.00189, p = 1.01e–6;                     could be relevant to the application of adaptive DBS.
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                                            4
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                                    Article
+
+
+
+
+Fig. 3 | Cross-subject sleep decoding with basal ganglia signals for patients with   groups. Decoding accuracies are shown in the middle column, with accuracy (ACC),
+movement disorders. Eleven decoding contexts are generated from different            balanced accuracy (BA), and F1 score showing below the name of the cohort. Each
+combinations of 7 movement disorder cohorts. For the ALL-CROSSED condition, all      dot represents the accuracy value obtained from the left-out subject in that group.
+subject’s data (n = 114) were used for leave-one-subject-out cross-validation        The deep-colored regions in the one-sided violin plots show the probability density
+(LOOCV) regardless of the disease and target differences. For the ALL-STN and        of the decoding accuracies obtained from the best decoding channels. The light-
+ALL-GPi conditions, data from patients who had implantations in the STN (n = 67)     colored regions show the decoding accuracies obtained from all channels. The
+and GPi (n = 47) were used for LOOCV, respectively, regardless of the disease        vertical gray line represents the mean accuracy value of the best decoding channels.
+information. For the ALL-PD and ALL-DYS conditions, data from patients who were      Decoding accuracies for each stage of wakefulness, NREM, and REM sleep from the
+diagnosed as PD (n = 28) and dystonia (n = 71) were used for LOOCV, respectively,    best decoding channels are shown in the right column. The dashed black line
+regardless of the DBS target information. For the PD-STN (n = 19), PD-GPi (n = 9),   represents the chance accuracy of 33%. The portrait of the patient with Parkinson’s
+DYS-STN (n = 48), DYS-GPi (n = 23), HD-GPi (n = 11), and TS-GPi (n = 4) condi-       disease is adapted from Arora et al.66.
+tions, data from each disease-target group were used for LOOCV in their individual
+
+
+      As previous works showed18,27, the anatomical location of the recording        unseen subjects based solely on channel localizations. Note that only adja-
+electrode was also found to have an impact on decoding performance. This             cent but not sandwich re-referenced channels were employed here as
+relationship is important since for an unseen subject we are required to             sandwich channels may have different sizes of volume recorded and signal-
+determine the best possible decoding channel without having prior                    to-noise ratios. We also attempted to construct an optimal decoding map for
+knowledge. Within the framework of prediction network mapping27, we                  ECoG channels. However, for ECoG this approach did not yield signiﬁcant
+simulated a volume of tissue recorded18 for each basal ganglia LFP channel           predictions of decoding accuracy (Supplementary Fig. 6).
+and calculated its connectivity with normative functional MRI
+connectome29. We then correlated the connectivity strength with decoding             External validations using chronically embedded sensing-
+accuracy to establish the projection between channel localization and                enabled devices
+decoding performance. This generated a whole-brain optimal decoding                  In the ﬁnal part, all patients’ data (n = 114) were utilized to train a gen-
+map (Fig. 6B, left). Increased projections to the temporal lobe were asso-           eralized sleep decoding model which we termed BGOOSE. Two external
+ciated with higher decoding performances while increased projections to the          datasets, the Tsinghua dataset, which included 12 PD patients with STN
+parietal lobe were associated with lower decoding accuracies, across all basal       LFPs recorded using the PINS sensing-enabled devices, and the UCSF
+ganglia seed targets. We validated this prediction network mapping                   dataset, which included 3 PD patients with basal ganglia LFPs (2 STN, 1
+approach by constructing a map for all patients minus one and then using             GPi) recorded using the Medtronic sensing-enabled RC + S Summit
+the constructed map to predict the left-out unseen patients, repeating until         devices were used to test the performance of BGOOSE. Both datasets were
+all patients were predicted. Results suggested that in this leave-one-subject-       obtained at least one month after electrode implantation. Patient infor-
+out manner, higher spatial similarity (i.e., Spearman rho) between the basal         mation is shown in Supplementary Table 3. The average decoding
+ganglia channel’s projection map and the optimal map constructed using               accuracies were 78.3 ± 6.1% and 79.8 ± 4.2% for the Tsinghua and UCSF
+all-minus-one data signiﬁcantly predicted higher decoding accuracies (coef           datasets, respectively, ranging between 86.7% and 66.7% for each individual
+= 0.233, P = 5.50e-8, linear mixed effect model, Fig. 6B, right), supporting         (Fig. 7A, B). For different stages, average accuracy was the highest for NREM
+the utility of the optimal map in predicting the best decoding channels in           sleep: 81.7%, and was the lowest for REM stage: 56.3%, with an overall
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                                     5
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                                  Article
+
+
+
+
+Fig. 4 | Cross-subject decoding for the classiﬁcation of NREN 1/2/3 stages with basal ganglia signals for patients with movement disorders. The same convention as in
+Fig. 3.
+
+
+mislabeling rate of 12.8 ± 3.4 min per hour. A further subdivision of NREM                Prior research on automatic sleep staging has predominantly been
+sleep into N1/N2/N3 stages demonstrated high accuracies in identifying              based on EEG data or SEEG data30,31. The demand for sleep state decoding
+N2 sleep (90.7%), while the accuracies of classifying N1 (43.9%) and N3             using basal ganglia LFP data has arisen dramatically due to the recent
+(5.6%) stages were low (Supplementary Fig. 7). Decoding performances                application of adaptive DBS which could potentially better address sleep
+across all 15 subjects in classifying wake/NREM/REM stages were sig-                disturbances through sleep stage-speciﬁc stimulation10,32. One of the earliest
+niﬁcantly predicted by the optimal decoding map (Fig. 7C). Channels                 models for automatic sleep staging using basal ganglia signals was proposed
+predicted to have good performances had signiﬁcantly higher accuracies              by Thompson et al. in19, who trained a support vector machines (SVM)-
+than all-channel average accuracies, though still lower than the theoretically      based model with STN LFPs for sleep decoding in 10 patients with PD. The
+best ones (Fig. 7D, E).                                                             model exhibited promising performance in individualized scenarios,
+                                                                                    achieving approximately 90% overall accuracy in classifying awake/NREM/
+Discussion                                                                          REM states, but fell short in cross-subject scenarios with an average accuracy
+We developed a novel sleep staging tool named BGOOSE (colloquially                  of about 50%. Subsequent studies16,17 explored the use of artiﬁcial neural
+“big goose”), designed for the automated decoding of sleep stages using             network (ANN), a type of deep learning technology, and decision tree
+local ﬁeld potentials recorded from DBS electrodes in movement dis-                 models for sleep staging in PD-STN patients, with similar performance for
+orders. The development of BGOOSE was preceded by the establishment                 individualized decoding and around 65% accuracy for cross-subject
+of the largest known database of sleep-related basal ganglia electro-               decoding. Our previous work18 trained random forest models with over
+physiological recordings, wherein precise sleep stage annotations were              500 h of pallidal LFP data recorded during sleep but still only obtained a
+applied through both manual and algorithmic methods. Subsequently,                  cross-subject decoding accuracy of 65.1%. Given that the patterns of basal
+our study demonstrated the feasibility of generalized sleep decoding,               ganglia activity across sleep stages were different from patient to patient19
+achieving an average decoding accuracy of approximately 85% in a cross-             and that diseases were likely to further exert alterations on brain activity18, it
+patient, cross-disease, and cross-basal ganglia structure scenario for the          could be challenging to build a generalized model for all movement dis-
+classiﬁcation of wake/NREM/REM stages. Moreover, we proved that the                 orders with acceptable accuracies. Here in this study, the BGOOSE model we
+inclusion of additional intracranial ECoG electrodes in the frontoparietal          presented, based on the LightGBM gradient boosting framework23, achieved
+cortex further enhanced sleep stage decoding accuracy, which might be               approximately 85% sleep staging accuracy in a generalized context and
+particularly important in patients with sleep fragmentation who showed              maintained around 80% accuracy during out-of-cohort validations. Given
+lower decoding accuracy. By mapping the relationship between electrode              that the interrater reliability of sleep stage scoring for human experts is
+contact locations and decoding accuracy, we provided an approach for                around 80%33, we considered that the accuracies generated by BGOOSE
+channel selection for optimal sleep decoding performance, using neu-                could be good enough to use even though we addressed only the three-stage
+roimaging data only. Finally, the generalizability of our approach was              rather than the ﬁve-stage problem. In the exact use case of closed-loop DBS,
+validated in two independent external validation datasets collected using           since there are currently very few, if not no, proposed reasonable acceptance
+different DBS devices. A pipeline showing how BGOOSE could be opti-                 criteria needed for effective closed-loop DBS during sleep, it is difﬁcult to
+mally used for sleep stage decoding is provided in Fig. 8.                          interpret how good such accuracies are. In our previous proof-of-principle
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                                  6
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                                         Article
+
+   A                                                          B
+                                                                              CORTICAL POWER
+
+
+
+
+                                                                  Freq (Hz)
+                                                                              CORTICAL-BASAL GANGLIA COHERENCE
+
+
+
+
+                                                                  Freq (Hz)
+                                                                              HYPNOGRAM
+
+
+
+
+                                                                  Stage
+                                                                                                                 Time (hours)
+
+   C              *                           **              D
+                      **                      *** ** ns
+                        ** ns                    *                            FEATURE IMPORTANCE
+                                                   **
+                                                                                                                                                                     DBS
+
+
+
+
+                                                                                                        ns
+                                                                                                                                                                     ECoG
+
+                                                                                                                                                                     COHY
+
+
+
+
+Fig. 5 | Additional electrocorticography (ECoG) electrode improves sleep                  contexts of within-subject decoding (left) and cross-subject decoding (right). The
+decoding. A shows the localization of all temporary ECoG electrodes in a glass brain.     gray dashed horizontal lines indicate a chance accuracy of 33%. * P < 0.05,
+B shows an example time-frequency representation of cortical power (upper),               ** P < 0.01. D shows the feature importance when conducting cross-subject
+cortical-basal ganglia coherence (middle), and the corresponding hypnogram                decoding with all features. ECoG features are as important as basal ganglia features
+(bottom) in a representative subject. C shows the decoding accuracies using DBS           (P = 0.993, Mann–Whitney U test), though both features are more important than
+channel features, ECoG channel features, cortical-basal ganglia coherence features        coherence features, as shown in the inset. ns, non-signiﬁcant.
+(COHY), DBS plus ECoG channel features, and all features together (ALL) in the
+
+
+study12, a classiﬁer model was trained to identify N3 sleep epochs using                  bursts32 can also be included in future matrices with the advent of more
+ECoG signals to inform adaptive DBS during sleep. The decoder achieved                    powerful embedded microprocessors.
+high speciﬁcity (0.94 ± 1.4e–2) and well above chance sensitivity                              An interesting ﬁnding in the moderator analysis was that higher
+(0.62 ± 4e–2) with an overall accuracy of around 85%. With this staging                   numbers of sleep fragmentation and a higher proportion of N1 sleep were
+performance, the aDBS for sleep stage targeting can already have a sig-                   associated with lower decoding accuracy. This ﬁnding is in line with what
+niﬁcant impact on sleep structures. Based on the mislabeling rate of                      Vallat et al. found in their automated sleep decoding work with EEG signals,
+9–12 min per hour with BGOOSE presented here, it could be inferred that                   where the percentage of N1 sleep and percentage of stage transitions were
+approximately 6 h of sleep can be correctly labeled in a given night of 7-h               the two top predictors of worse accuracy21. This relationship could be
+sleep. This should reasonably provide a remarkable change to the current                  plausible as the N1 stage is associated with the highest interrater variability
+constant-parameter stimulation strategy during the night.                                 even for human experts33. However, in practical terms, this might imply that
+     In the present study, 28 features were constructed for the training of the           the accuracy of automated scoring could diminish in patients with severe
+BGOOSE model, including oscillatory features, waveform features, and                      sleep disorders, a population who particularly require the most sleep-stage-
+nonlinear entropy features. These features were selected based on previous                speciﬁc intervention. Adding further sources of neural activities (e.g., ECoG)
+work in features-based automatic sleep staging algorithms using EEG or                    would help improve decoding accuracies as shown in Fig. 4.
+LFP signals16,18,19,21,34. For example, it was shown that the permutation                      Another factor that could have an impact on decoding accuracy is the
+entropy of the EEG21 and LFP spectral powers16 are among the most con-                    re-reference approach for DBS channels. Traditionally, the four-contact
+tributed features for accurate sleep staging. We found that the LFP power                 DBS lead was re-referenced adjacently, creating three bipolar channels,
+ratio between the delta and theta band was the most important feature for                 which is preferable if one wants to magnify local events that occur near the
+cross-subject sleep decoding. This could be because delta and theta oscil-                contacts39. The advent of adaptive DBS introduced a “sandwich” montage,
+lations are the deﬁning features of NREM35 and REM36,37 sleep, respectively.              which has the advantage that stimulation signals can be passively canceled
+Therefore, it is sensible to speculate that a high, low, and medium delta/theta           out through “common mode rejection”20. We found that sandwich-
+power ratio may indicate NREM, REM, and awake stages, respectively,                       referenced channels were associated with signiﬁcantly higher average
+although this is not necessarily applicable to all subjects, as in patients with          decoding accuracy than the adjacent referenced channels even when sti-
+low decoding accuracies the rank of feature importance was very different                 mulation was not turned on. We speculated that this could be because the
+from that in the whole cohort (Supplementary Fig. 8). Importantly, the                    1–3 or 2–4 referenced approach enables the generated channel to record a
+features included in the current study were chosen to be computationally                  larger area of neuronal activity, thus potentially enhancing the signal-to-
+efﬁcient for the future online implementation. Other features, which are                  noise ratio and preventing the cancellation of symmetrically recorded local
+more computationally intensive and have been demonstrated to differ-                      sources. Given that the external dataset involved channels generated using
+entiate sleep stages including phase-amplitude coupling38 and oscillatory                 both reference approaches and the decoding accuracies could still be overall
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                                          7
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                                            Article
+
+                                     A Moderator analysis on the decoding performance
+
+
+
+
+                               SS                                    **
+                           RO=114)
+                    B S-C(Nsub
+                  D             IV                                   **
+                            ND 1)
+                         S-I b=12
+
+
+
+
+                                                                                                             T-value
+                     DB (Nsu
+                               SS
+                           RO =8)
+                        -C sub
+                     oG (N
+                 E C
+                             DIV )
+                                                                                      **                                                    P = 6.4e-04
+                          -IN b=8
+                     C oG (Nsu
+                   E
+                                     Demographics   Target/disease    Sleep quality        Sleep structure
+
+
+                                     B. Prediction network mapping for DBS channels
+
+
+
+
+                                                                                                             Coefficient (z)
+                                                                                                                                            P = 5.5e-08
+
+                                        DBS-CROSS (Lateral)                DBS-CROSS (Medial)
+
+Fig. 6 | Moderator analysis and network mapping of the decoding accuracies.                 The map was generated by ﬁrst generating a volume of tissue recorded with a radius
+A Heatmap showing the inﬂuential factors of decoding accuracies in different                of 5 mm for each contact and then calculating the connectivity pattern between the
+contexts including within-subject decoding with basal ganglia data (DBS-INDIV),             seed volume and the normative functional MRI connectome. The obtained whole-
+cross-subject decoding with basal ganglia data (DBS-CROSS), within-subject                  brain connectivity strength was then voxel-wised correlated with the decoding
+decoding with ECoG data (ECoG-INDIV), and cross-subject decoding with ECoG                  accuracy, resulting in the ﬁnal optimal decoding map. Increased projection to the
+data (ECoG-CROSS). Candidate factors are elaborated on in the Methods section.              purple area indicates a higher chance to obtain good decoding results while increased
+The right side shows the regression plot which depicts the correlation between the          projection to the blue area indicates a lower chance to obtain good decoding results.
+number of sleep fragmentations and the decoding performances. Signiﬁcant asso-              The right panel shows the repeated measurement regression plot between the spatial
+ciations with p values < 0.0029 (0.05/17) were highlighted with asterisks. B shows the      similarity to the optimal map and the decoding accuracies obtained in a leave-one-
+lateral and medial view of the optimal decoding map for the basal ganglia electrodes.       subject-out manner.
+
+
+
+predicted by the optimal projection map, we believe that the montage dif-                   focuses on generalized models trained with basal ganglia signals due to
+ference would not remarkably inﬂuence the application of the optimal                        limited ECoG data, as more ECoG electrodes are implanted in patients with
+projection map in guiding the selection of better decoding channels.                        movement disorders, future iterations of BGOOSE are expected to incor-
+      We would like to highlight several key features of BGOOSE. (1) The                    porate cortical features, further improving decoding performance. (4)
+most distinctive characteristic of BGOOSE lies in its plug-and-play, gen-                   Lastly, BGOOSE’s provision of an optimal decoding map allows for the
+eralized decoding capability across various movement disorders. Unlike                      identiﬁcation of potential optimal basal ganglia decoding channels with only
+previous research that often focused on single basal ganglia LFP signals for a              lead localization information18,27. This feature becomes essential, especially
+speciﬁc movement disorder, BGOOSE encompasses ﬁve of the most com-                          when dealing with new patients where ground truth sleep labels are not
+mon movement disorders treated with DBS, including PD, DYS, HD, TS,                         available.
+and ET, as well as the two most frequently used DBS targets, STN, and                             BGOOSE presents potential applications across several contexts.
+GPi40–42. This breadth of applicability represents a signiﬁcant clinical                    Firstly, and most directly, it serves as a tool in guiding stage-speciﬁc sti-
+potential with immediate relevance. (2) BGOOSE also stands out for its use                  mulation for closed-loop DBS systems12. Current closed-loop algorithms for
+of single-channel data and exceptionally fast feature extraction and pre-                   PD were predominantly informed by wakefulness beta power to adjust
+diction speed. In our testing, BGOOSE was able to construct features and                    stimulation parameters, but beta activity has been shown to vary sig-
+perform classiﬁcation for a 30-s sleep epoch in less than 0.005 s on an Intel i5            niﬁcantly across different sleep stages18,44. Failure to identify a patient’s
+consumer laptop. Although it must be noted that hyper-threaded processors                   current sleep state and persistently using the wakeful beta activity level as a
+are not easily comparable to the single-threaded reduced instruction set                    threshold may result in either insufﬁcient or excessive stimulation during
+processor which aims to conserve size and power as would be found on an                     sleep32. With BGOOSE, beta thresholds used for informing stimulation can
+implantable pulse generator (IPG), BGOOSE’s feature extraction process                      be adjusted in pace with sleep stage transitions (e.g., adjusting the beta
+that avoids computational complex indices is still advantageous for the                     threshold to a lower level during NREM sleep so that pathological beta in PD
+future implementation of low-latency online decoder within the IPG.                         could be better suppressed through stimulation32,45). In addition, obtaining
+Moreover, the advantage of requiring only a single channel’s data is parti-                 the patient’s sleep stage enables the possibility of enhancing speciﬁc bene-
+cularly beneﬁcial in the context of aDBS, as stimulation channels typically                 ﬁcial waveforms relevant to different sleep stages, such as spindle and slow
+lack recording functionality20,43. (3) BGOOSE also explores the integration of              waves in NREM sleep46 and sawtooth waves in REM sleep47. Secondly, for
+ECoG signals, demonstrating the potential for enhanced decoding accuracy                    patients whose symptoms are not present at night (e.g., essential tremor and
+when combined with cortical inputs. The chronically implanted ECoG                          Tourette syndrome), being able to obtain sleep/awake classiﬁcations based
+electrodes have been showing increasingly promising potential in assisting                  on LFP signals through BGOOSE means that we could switch off stimula-
+state decoding for aDBS10,12,27,28. While the current version of BGOOSE                     tion automatically during sleep when stimulation is not needed. The concept
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                                             8
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                                                          Article
+
+    A                                                                                        B                     Confusion matrices for the 15 external subjects
+
+
+
+
+                                                                                             True label
+                                                                                                      Predicted label
+
+
+    C                                                                                        D                                                           E
+                                                                                                                                                                               **
+                                                                                                                                                                           *
+                                                                                                                                                                      **
+                                                                                                                                                                    **
+                                                                                                             (individual projection)
+
+                                                   (optimal map)
+
+
+
+
+                                                                                                                                       Tsinghua#10
+
+
+
+                               Coef = 0.253, P = 1.2e-05
+
+
+
+Fig. 7 | External validation for the BGOOSE. A shows the average accuracy for the                         brain projection similarity to the optimal map than the channel with lower decoding
+BGOOSE to classify sleep stages in two external cohorts with basal ganglia recordings                     accuracy (bottom inset). E shows the comparison between mean accuracy values
+during sleep. The lower and upper borders of the box represent the 25th and 75th                          obtained from optimal-map selected channels (Opt.map), channels with worst
+percentiles, respectively. The centerline represents the median. The whiskers extend                      decoding performances (Min), all channels (Avg), “sandwich” referenced channels
+to the smallest and largest data points that are not outliers (1.5 times the interquartile                (Sand), and channels with best decoding performances (Max). Same conventions as
+range). The black dashed line represents the chance accuracy of 33%. B shows the                          in Fig. 7A. P = 9.82×10−4 for the comparison of accuracy between map-based
+decoding confusion matrices for each of the 15 unseen subjects in the two cohorts.                        channels and worst decoding channels. P = 2.01×10−3 for the comparison of accu-
+C demonstrates the repeated measurement correlation between spatial similarity to                         racy between map-based channels and all channels. P = 3.02×10−2 for the compar-
+the optimal map and the decoding accuracy. The upper inset shows the medial,                              ison of accuracy between map-based channels and sandwich re-referenced channels.
+posterior, and dorsal views of the optimal decoding map. D shows the correlation                          P = 7.69×10−3 for the comparison of accuracy between map-based channels and best
+between spatial similarity and decoding accuracy in one representative patient                            decoding channels. Wilcoxon signed-rank test.
+(Ts#10). The channel with higher decoding accuracy (upper inset) has higher whole-
+
+
+
+
+Fig. 8 | Pipeline for the optimal use of BGOOSE. A pipeline summarizing the main function of BGOOSE and how can it be optimally used.
+
+
+of “deep brain stimulation holidays” in essential tremor48 has long been                                  BGOOSE can facilitate the sleep management in patients with movement
+proposed, where stimulation is temporarily stopped during the night to                                    disorders. Using the DBS device for sleep staging potentially eliminates the
+prevent tolerance to DBS. Given that the adherence of manually switching                                  need for additional wearable devices, offering valuable 24/7 longitudinal
+on & off stimulation might be difﬁcult for patients49, BGOOSE emerges as a                                data for drug adjustments and DBS programming11. Fourthly, the use of
+useful tool to realize this aim algorithmically. Thirdly, the application of                              BGOOSE has the potential to advance sleep research in movement disorder
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                                                         9
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                              Article
+
+patients as one of the current barriers of conducting sleep research lies in the   Methods
+cumbersome determination of sleep stages, typically requiring complex PSG          Patients and surgery
+monitoring at sleep laboratories50. While BGOOSE is not presented as a PSG         A total of 141 patients with movement disorders scheduled to undergo DBS
+replacement, it can be viewed as an alternative in scenarios where con-            surgery at Beijing Tiantan Hospital were enrolled in the study after
+ducting PSG monitoring is challenging due to equipment or environmental            obtaining written informed consent. This study is approved by the IRB of
+constraints, or when patient cooperation is limited. BGOOSE, based on basal        Beijing Tiantan Hospital and performed per the Declaration of Helsinki.
+ganglia signals, can provide sleep labels in these situations, thereby advan-      Inclusion criteria comprised the following: (1) well-deﬁned disease diag-
+cing sleep research in patients with movement disorders.                           nosis; (2) ability to cooperate with whole-night PSG recordings; and (3)
+      Despite its many advantages, BGOOSE has several limitations that             absence of structural lesions observed on MRI scans. Under the guidance of
+warrant future improvement. First, in cross-decoding, while it achieved            a stereotactic frame system, four-contact DBS electrodes were implanted
+an accuracy of over 90% for NREM sleep stages, the classiﬁcation                   into the predeﬁned basal ganglia regions as per standard protocols57. The
+accuracies for the wake and REM stages were approximately 60–70%.                  accuracy of electrode placement was conﬁrmed through intraoperative
+This could be because, compared to the more homogenous NREM sleep,                 electrophysiological recordings, temporary stimulation, and postoperative
+the variability among patients in wake and REM stages was larger32,51.             anatomical computed tomography (CT) scans. In six patients with PD and
+This can also be supported by the feature importance analysis shown in             two patients with dystonia, an additional eight-contact ECoG electrode was
+Supplementary Fig. 8, where patients with low accuracies in cross-subject          implanted into the right motor cortex region through the same burr hole for
+decoding had very different top-contributed features from the whole                DBS26. Following electrode implantation, patients returned to the ward for
+cohort (Supplementary Fig. 4). However, it was essential to note that our          sleep recordings, which were typically conducted within 3–7 days post-
+previous research had suggested that pathological oscillations in NREM             surgery.
+sleep were highly relevant to sleep disorders in PD, making this a critical
+sleep stage to target for higher accuracy decoding32. Additionally, as             Sleep recordings and staging
+NREM sleep constitutes over 70% of total sleep time, achieving robust              During lead externalization, patients underwent sleep recordings for 1–2
+identiﬁcation of NREM sleep remains critical for sleep decoding models.            consecutive nights following previous routines32. Signal recording was
+Second, it is worth noting that REM classiﬁcation was notably poor in the          conducted using a JE-212 ampliﬁer (Nihon Kohden, Tokyo, Japan) with a
+second external dataset (UCSF) in patients recorded chronically using a            sampling rate of 1000/2000 Hz. All drugs that could potentially inﬂuence
+fully embedded sensing-enabled DBS (Summit RC + S) pacemaker.                      brain state were stopped throughout the recording session, including anti-
+Differences in e.g., line noise frequency, or frequency-speciﬁc normal-            parkinsonism and anti-dystonia medications, and sleeping pills. Sleep PSG
+ization effects may make the challenging REM versus NREM distinction               labels were manually scored every 30 s according to the rules outlined in the
+difﬁcult to generalize across recording systems. Third, in the generalized         AASM manual version 2.6. Four sleep parameters were measured and
+scenario, we put our focus on the three-class decoding problem.                    reported in Table 1: the sleep structure, deﬁned as the percentage of N1/N2/
+Although we tried to build decoders to further classify NREM sleep into            N3/REM sleep; the sleep latency, deﬁned as the time from lights out until the
+N1/N2/N3 stages as a side analysis, the performance was not that satis-            ﬁrst epoch of any stage of sleep; the sleep efﬁciency, deﬁned as the ratio of
+factory, especially for the N3 stage (Supplementary Fig. 7). One potential         total sleep time to time in bed; and the sleep segmentation, deﬁned as the
+reason could be that the reduced proportion of N3 sleep due to sleep               times that sleep is interrupted by over 2 min of wakefulness32. In addition, to
+disturbances in a considerable portion of movement disorder patients               enhance staging efﬁciency and reduce the impact of scorer subjectivity on
+complicates training and generalization. Accumulating more deep sleep              labeling results, this process was aided by an established open-source sleep
+data from chronic recordings for model training45 or identifying N3 sleep          staging algorithm (https://github.com/raphaelvallat/yasa)21, which was
+using ECoG electrodes12 are potential solutions. Fourth, BGOOSE relies             trained on over 30,000 h of PSG data. Only sleep epochs with consistent
+on feature extraction and tree-based algorithms for sleep staging recog-           manual and algorithmic judgments were qualiﬁed for further sleep decoding
+nition, whereas deep learning algorithms have shown signiﬁcant                     analyses. On average, 621.9 sleep epochs per night were included in the
+potential in the sleep classiﬁcation ﬁeld31,52,53. Although they may require       analysis. Sleep stages were categorized into either three (awake/NREM/
+longer training and parameter tuning time, exploring state-of-the-art              REM) or ﬁve categories (awake/N1/N2/N3/REM) in later analysis. Data
+deep learning algorithms is a worthwhile endeavor. Fifth, since BGOOSE             from each stage needed to be collected for at least 5 min to be included in the
+is trained using data recorded during externalized periods, it may lack            analysis.
+resistance to electrocardiogram (ECG) artifacts. ECG artifacts are com-
+mon in perceptive data54 and have been observed in the Tsinghua and                ECoG and LFP preprocessing and feature extraction
+USCF datasets. In addition, the “micro-lesion effect” during the exter-            All signals were Butterworth notch ﬁltered to reject the 50 Hz ambient noise
+nalized period could also negatively inﬂuence the generalized ability of           and harmonics, followed by downsampling to 200 Hz. Bipolar re-
+BGOOSE as this effect could temporarily change the oscillatory pattern in          referencing was applied to all adjacent contacts for ECoG and DBS elec-
+basal ganglia (e.g., beta power in Parkinson’s disease)55,56. Including more       trodes. Besides, for DBS electrodes, a “sandwich” re-referencing (e.g., 1–3
+chronically recorded data with all types of environmental artifacts in             and 2–4 referencing for the 1-2-3-4 lead) was also applied to mimic the
+training will enhance BGOOSE’s ability to generalize. Sixth, BGOOSE is             clinical use case of adaptive DBS20. The sandwich-referenced channels were
+currently trained in the off-stimulation condition, and its performance            not analyzed in the network mapping section (see below) as they might have
+during on-stimulation states for sleep staging remains unknown, which is           different shapes of recording ﬁeld and signal-to-noise ratios from adjacent-
+a crucial consideration for continuous monitoring and stimulation45.               referenced channels. For feature extraction, we computed a total of 28 local
+Seventh, BGOOSE is trained solely for nighttime sleep, and its applic-             features, which included 18 frequency-domain features: one total absolute
+ability for accurate daytime napping sleep staging is uncertain. Lastly,           power, seven relative energy features in different frequency bands (delta
+BGOOSE serves as a tool for automatic sleep staging but the question of            1–4 Hz, theta 4–8 Hz, alpha 8–13 Hz, low beta 13–20 Hz, high beta
+how to implement adaptive stimulation following sleep staging remains a            20–30 Hz, low gamma 30–45 Hz, high gamma 55–90 Hz), and ten energy
+critical, unresolved challenge. For instance, the optimal stimulation              ratio features across frequency bands (delta, theta, alpha, beta, gamma
+approach in N1 to induce deep sleep, in N2/3 to enhance beneﬁciary                 [4 + 3 + 2 + 1]). Additionally, we computed 10 time-domain features,
+waves, and in REM sleep to potentially suppress REM sleep behavior                 consisting of seven statistical features, including standard deviation, inter-
+disorder are all areas requiring further investigation. Addressing these           quartile range, skewness, kurtosis, number of zero crossings, Hjorth
+questions holds the key to realizing the potential of sleep intervention as a      mobility, and Hjorth complexity, and three entropy features, including
+therapeutic tool for managing various disorders.                                   permutation entropy, Higuchi fractal dimension, and Petrosian fractal
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                             10
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                            Article
+
+dimension21. Furthermore, for patients with ECoG implants, in addition to         and incorporating signiﬁcant moderators identiﬁed in the moderator ana-
+the abovementioned local features, we extracted 18 basal ganglia-cortical         lysis as covariates, we generate an optimal projection map featured in the
+connectivity features, comprising coherence in seven frequency bands              AAL3 atlas with a total number of parcellations of 16665. We then calculated
+(delta, theta, alpha, low beta, high beta, low gamma, and high gamma), ten        the spatial similarity between each channel’s projection map and the opti-
+coherence ratio features across ﬁve frequency bands (delta, theta, alpha,         mal projection map (i.e., the Spearman correlation between two 166-length
+beta, gamma band [4 + 3 + 2 + 1]), and one peak coherence frequency,              one-dimensional arrays). For an unseen recording channel, the greater the
+deﬁned as the frequency at which the coherence peak occurred. Conse-              similarity between its functional connectivity pattern with the whole brain
+quently, in scenarios using single-site signals, 28 features were generated,      and the optimal map, the higher the likelihood it may obtain higher
+whereas in cases utilizing dual-site signals, 74 features were com-               decoding accuracy.
+puted (28*2 + 18).
+                                                                                  External validation
+Machine learning models                                                           We conducted external validation of our model using two separate datasets.
+We tested eight machine learning models in our study, namely, ridge               The ﬁrst dataset, referred to as the Tsinghua dataset, comprised 12 PD
+regression, SVM, k-nearest neighbors (KNN), decision tree, random forest,         patients who underwent STN-DBS surgery16. The second dataset, the UCSF
+XGBoost, LightGBM, and artiﬁcial neural network. Ridge regression, SVM,           dataset, included two PD patients who received STN-DBS and one PD
+KNN, decision tree, and random forest were implemented using machine              patient who received GPi-DBS45. All 15 patients underwent overnight
+learning algorithms available in the scikit-learn library58. XGBoost was          synchronous PSG and basal ganglia signal recording in the off-medication &
+implemented using the code provided at https://github.com/dmlc/xgboost/           off-stimulation state. Based on the MNI coordinates, no signiﬁcant targeting
+tree/master59. LightGBM was implemented using the code available at               differences were found between the validation group and the training
+https://github.com/microsoft/LightGBM/tree/master23. The artiﬁcial neural         cohort. Demographic information of the external subjects can be seen in
+network was developed based on the TensorFlow framework60. Detailed               Supplementary Table 3. More detailed demographics were reported in two
+hyperparameter tuning for each model can be found in Supplementary                original papers: the 12 PD patients in the Tsinghua dataset are the same
+Table 4. Any unspeciﬁed parameters were set to their default values.              patients named No.1 to No.12 in Table 1 in Yue Chen et al.16, and the 3 PD
+                                                                                  patients in the UCSF dataset are the same patients named as PD2, PD7, and
+Model training, evaluation, and features importance                               PD9 in Table 1 in Md Fahim Anjum et al.45. The validation process
+Model performance was evaluated using nested cross-validation, with both          encompassed two aspects: (1) validation of decoding performances of the
+outer and inner cross-validation set to 4 folds. A Bayesian Optimization          BGOOSE and (2) validation of the prediction of the optimal decoding
+hyperparameter search, comprising 50 rounds, was employed for hyper-              channel using the optimal projection map.
+parameter tuning using a balanced accuracy as the scoring function. Given
+the imbalance in the distribution of sleep stage labels, the SMOTE method         Statistical analysis
+from the imbalanced-learn library61 was utilized to oversample the minority       We aimed to conduct statistical comparisons using non-parametric tests
+class labels. For the sake of simplicity, model performance was assessed          including the Mann–Whitney U test, Wilcoxon signed-rank test, and
+using average accuracy in the main text. Results with balanced accuracy and       Spearman correlation wherever possible. We employed linear mixed-effects
+weighted F1 score were shown when indicated. The speed of model ﬁtting            models for the moderator analysis. The signiﬁcance threshold for two-sided
+was evaluated as 1/log (ﬁtting time). Feature importance was assessed and         P-values was set at 0.05.
+compared using the SHAP method, available at https://github.com/shap/
+shap/tree/master62.                                                               Reporting summary
+                                                                                  Further information on research design is available in the Nature Research
+Moderator analysis                                                                Reporting Summary linked to this article.
+In the moderator analysis, we investigated factors that may inﬂuence the
+accuracy of sleep stage decoding. The independent variables encompassed           Data availability
+four categories, namely, (1) demographic information, including sex, age,         The original data are not yet openly available, as it is being used in ongoing
+and BMI), (2) disease and target information (e.g., disease: PD/DYS/HD/TS,        projects. We welcome enquires for sharing this as part of a collaboration,
+target: STN/GPi), (3) sleep quality information, including the number of          please contact the corresponding authors.
+sleep fragmentations, sleep efﬁciency, total sleep time, and sleep latency, and
+(4) sleep structure information including the proportion of time spent in         Code availability
+each sleep stage. The effects of different referencing approaches on decoding     The code for analyzing the data and the ﬁnal version of the generalized
+performance were also investigated.                                               decoding model is made freely available at https://github.com/zixiao-yin/
+                                                                                  BGOOSE. The sleep decoding models for the three and ﬁve-stage classiﬁ-
+Localization of DBS and ECoG electrode                                            cations can be found at https://osf.io/mt72e/ (https://doi.org/10.17605/OSF.
+We reconstructed the DBS electrodes using the advanced electrode locali-          IO/MT72E).
+zation pipeline with default settings in Lead-DBS version 2.5.3 (MATLAB
+2019b)63. ECoG electrodes were reconstructed using the established method         Received: 23 December 2023; Accepted: 23 April 2024;
+with FreeSurfer64. The positions of DBS and cortical electrodes were stan-
+dardized to the MNI template (ICBM 2009b Nonlinear Asymmetric) for
+group-level analysis.                                                             References
+                                                                                  1.   da Silva, A. A. et al. Sleep duration and mortality in the elderly: A
+Network mapping for choosing the best decoding channel                                 systematic review with meta-analysis. BMJ Open 6,
+We implemented a prediction network mapping approach that was pre-                     e008119 (2016).
+viously established18,27 to predict potential optimal decoding channels. This     2.   Devore, E. E., Grodstein, F. & Schernhammer, E. S. Sleep duration in
+method generates a simulated recording ﬁeld for each recording site (radius            relation to cognitive function among older adults: A systematic review
+= 5 mm) and calculates its functional connectivity with the whole-brain                of observational studies. Neuroepidemiology 46, 57–78 (2016).
+normative connectome (Brain Genomics Superstruct Project-10029). By               3.   Tobaldini, E. et al. Short sleep duration and cardiometabolic risk:
+correlating the decoding accuracy of individual channels with the whole-               From pathophysiology to clinical evidence. Nat. Rev. Cardiol. 16,
+brain connectivity pattern projected from the corresponding recording ﬁeld,            213–224 (2019).
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                           11
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                                Article
+
+4.    Chattu, V. K. et al. The global problem of insufﬁcient sleep and its       27. Merk, T. et al. Electrocorticography is superior to subthalamic local
+      serious public health implications. Healthc. (Basel) 7, 1 (2018).              ﬁeld potentials for movement decoding in Parkinson’s disease. Elife
+5.    Garbarino, S., Lanteri, P., Durando, P., Magnavita, N. & Sannita, W. G.        11, e75126 (2022).
+      Co-morbidity, mortality, quality of life and the healthcare/welfare/       28. Gilron, R. et al. Long-term wireless streaming of neural recordings for
+      social costs of disordered sleep: A rapid review. Int. J. Environ. Res         circuit discovery and adaptive stimulation in individuals with
+      Public Health 13, 831 (2016).                                                  Parkinson’s disease. Nat. Biotechnol. https://doi.org/10.1038/
+6.    Bailey, G. A. et al. Sleep disturbance in movement disorders: insights,        s41587-021-00897-5 (2021).
+      treatments and challenges. J. Neurol. Neurosurg. Psychiatry 92,            29. Buckner, R. L., Roffman, J. L. & Smoller, J. W. Brain genomics
+      723–736 (2021).                                                                superstruct project (GSP). https://doi.org/10.7910/DVN/
+7.    Schreiner, S. J. et al. Slow-wave sleep and motor progression in               25833 (2014).
+      Parkinson disease. Ann. Neurol. 85, 765–770 (2019).                        30. Faust, O., Razaghi, H., Barika, R., Ciaccio, E. J. & Acharya, U. R. A
+8.    Hasegawa, H. et al. The subcortical belly of sleep: New possibilities in       review of automated sleep stage scoring based on physiological
+      neuromodulation of basal ganglia? Sleep. Med Rev. 52, 101317 (2020).           signals for the new millennia. Comput Methods Prog. Biomed. 176,
+9.    Yin, Z. et al. A quantitative analysis of the effect of bilateral              81–91 (2019).
+      subthalamic nucleus-deep brain stimulation on subjective and               31. Fiorillo, L. et al. Automated sleep scoring: A review of the latest
+      objective sleep parameters in Parkinson’s disease. Sleep Med.                  approaches. Sleep. Med. Rev. 48, 101204 (2019).
+      https://doi.org/10.1016/j.sleep.2020.10.021 (2020).                        32. Yin, Z. et al. Pathological pallidal beta activity in Parkinson’s disease is
+10.   Gilron, R. et al. Sleep-aware adaptive deep brain stimulation control:         sustained during sleep and associated with sleep disturbance. Nat.
+      Chronic use at home with dual independent linear discriminate                  Commun. 14, 5434 (2023).
+      detectors. Front Neurosci. 15, 732499 (2021).                              33. Lee, Y. J., Lee, J. Y., Cho, J. H. & Choi, J. H. Interrater reliability of sleep
+11.   Fleming, J. E. et al. Embedding digital chronotherapy into                     stage scoring: a meta-analysis. J. Clin. Sleep. Med. 18, 193–202 (2022).
+      bioelectronic medicines. iScience 25, 104028 (2022).                       34. Sun, H. et al. Large-scale automated sleep staging. Sleep 40,
+12.   Smyth, C. et al. Adaptive deep brain stimulation for sleep stage               zsx139 (2017).
+      targeting in Parkinson’s disease. Brain Stimul. 16, 1292–1296 (2023).      35. Hubbard, J. et al. Rapid fast-delta decay following prolonged
+13.   Boe, A. J. et al. Automating sleep stage classiﬁcation using wireless,         wakefulness marks a phase of wake-inertia in NREM sleep. Nat.
+      wearable sensors. NPJ Digit Med. 2, 131 (2019).                                Commun. 11, 3130 (2020).
+14.   Radha, M. et al. A deep transfer learning approach for wearable sleep      36. Cowdin, N., Kobayashi, I. & Mellman, T. A. Theta frequency activity
+      stage classiﬁcation with photoplethysmography. NPJ Digit Med 4,                during rapid eye movement (REM) sleep is greater in people with
+      135 (2021).                                                                    resilience versus PTSD. Exp. Brain Res 232, 1479–1485 (2014).
+15.   Fekedulegn, D. et al. Actigraphy-based assessment of sleep                 37. Hong, J., Lozano, D. E., Beier, K. T., Chung, S. & Weber, F. Prefrontal
+      parameters. Ann. Work Expo. Health 64, 350–367 (2020).                         cortical regulation of REM sleep. Nat. Neurosci. 26, 1820–1832 (2023).
+16.   Chen, Y. et al. Automatic sleep stage classiﬁcation based on               38. Amiri, M., Frauscher, B. & Gotman, J. Phase-amplitude coupling is
+      subthalamic local ﬁeld potentials. IEEE Trans. Neural Syst. Rehabil.           elevated in deep sleep and in the onset zone of focal epileptic
+      Eng. 27, 118–128 (2019).                                                       seizures. Front Hum. Neurosci. 10, 387 (2016).
+17.   Christensen, E., Abosch, A., Thompson, J. A. & Zylberberg, J. Inferring    39. Shirhatti, V., Borthakur, A. & Ray, S. Effect of reference scheme on
+      sleep stage from local ﬁeld potentials recorded in the subthalamic             power and phase of the local ﬁeld potential. Neural Comput 28,
+      nucleus of Parkinson’s patients. J. Sleep. Res 28, e12806 (2019).              882–913 (2016).
+18.   Yin, Z. et al. Pallidal activities during sleep and sleep decoding in      40. Johnson, M. D., Miocinovic, S., McIntyre, C. C. & Vitek, J. L.
+      dystonia, Huntington’s, and Parkinson’s disease. Neurobiol. Dis. 182,          Mechanisms and targets of deep brain stimulation in movement
+      106143 (2023).                                                                 disorders. Neurotherapeutics 5, 294–308 (2008).
+19.   Thompson, J. A. et al. Sleep patterns in Parkinson’s disease: Direct       41. Sui, Y. et al. Deep brain stimulation initiative: Toward innovative
+      recordings from the subthalamic nucleus. J. Neurol. Neurosurg.                 technology, new disease indications, and approaches to current and
+      Psychiatry 89, 95–104 (2018).                                                  future clinical challenges in neuromodulation therapy. Front Neurol.
+20.   Neumann, W., Gilron, R., Little, S. & Tinkhauser, G. Adaptive deep             11, 597451 (2020).
+      brain stimulation: From experimental evidence toward practical             42. Yin, Z. et al. An individual patient analysis of the efﬁcacy of using GPi-
+      implementation. Mov. Disord. mds.29415 (2023). https://doi.org/10.             DBS to treat Huntington’s disease. Brain Stimul. 13, 1722–1731 (2020).
+      1002/mds.29415.                                                            43. Little, S. & Brown, P. Debugging adaptive deep brain stimulation for
+21.   Vallat, R. & Walker, M. P. An open-source, high-performance tool for           Parkinson’s disease. Mov. Disord. mds.27996 (2020). https://doi.org/
+      automated sleep staging. Elife 10, e70092 (2021).                              10.1002/mds.27996.
+22.   Berry, R. B. et al. AASM Scoring Manual Updates for 2017 (Version          44. Zahed, H. et al. The neurophysiology of sleep in Parkinson’s disease.
+      2.4). J. Clin. Sleep. Med. 13, 665–666 (2017).                                 Mov. Disord. 36, 1526–1542 (2021).
+23.   Ke, G. et al. LightGBM: A Highly Efﬁcient Gradient Boosting Decision       45. Anjum, M. F. et al. Multi-night naturalistic cortico-basal recordings
+      Tree. in Proceedings of the 31st International Conference on Neural            reveal mechanisms of NREM slow wave suppression and
+      Information Processing Systems 3149–3157 (Curran Associates                    spontaneous awakenings in Parkinson’s disease. bioRxiv (2023)
+      Inc., 2017).                                                                   https://doi.org/10.1101/2023.06.23.546302.
+24.   Bentéjac, C., Csörgő, A. & Martínez-Muñoz, G. A comparative                46. Geva-Sagiv, M. et al. Augmenting hippocampal-prefrontal neuronal
+      analysis of gradient boosting algorithms. Artif. Intell. Rev. 54,              synchrony during sleep enhances memory consolidation in humans.
+      1937–1967 (2021).                                                              Nat. Neurosci. 26, 1100–1110 (2023).
+25.   Kim, W.-P. et al. Machine learning-based prediction of attention-          47. Frauscher, B. et al. Rapid eye movement sleep sawtooth waves are
+      deﬁcit/hyperactivity disorder and sleep problems with wearable data            associated with widespread cortical activations. J. Neurosci. 40,
+      in children. JAMA Netw. Open 6, e233502 (2023).                                8900–8912 (2020).
+26.   Yin, Z. et al. Cortical phase-amplitude coupling is key to the             48. Garcia Ruiz, P., Muñiz de Igneson, J., Lopez Ferro, O., Martin, C. &
+      occurrence and treatment of freezing of gait. Brain awac121 (2022).            Magariños Ascone, C. Deep brain stimulation holidays in essential
+      https://doi.org/10.1093/brain/awac121.                                         tremor. J. Neurol. 248, 725–726 (2001).
+
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                                12
+https://doi.org/10.1038/s41746-024-01115-7                                                                                                           Article
+
+49. Barbe, M. T. et al. Deep brain stimulation in the nucleus ventralis         Acknowledgements
+    intermedius in patients with essential tremor: habituation of tremor        We would like to present our acknowledgments to our patients for
+    suppression. J. Neurol. 258, 434–439 (2011).                                participating in this project. JGZ is supported by the National Nature
+50. Fiorillo, L. et al. U-Sleep’s resilience to AASM guidelines. NPJ Digit      Science Foundation of China (81830033) and the YangFan Project from
+    Med 6, 33 (2023).                                                           the Beijing Hosptial Management Center (ZLRK202313). ACY is
+51. Jaggard, J. B., Wang, G. X. & Mourrain, P. Non-REM and REM/                 supported by the National Nature Science Foundation of China
+    paradoxical sleep dynamics across phylogeny. Curr. Opin. Neurobiol.         (81870888).
+    71, 44–51 (2021).
+52. Supratak, A., Dong, H., Wu, C. & Guo, Y. DeepSleepNet: A model for          Author contributions
+    automatic sleep stage scoring based on raw single-channel EEG.              Conception and design: ZXY, SL, LML, JGZ; Acquisition of data: ZXY, TSY,
+    IEEE Trans. Neural Syst. Rehabil. Eng. 25, 1998–2008 (2017).                GYZ, RYM, YCX, QA, YFG, GFQ, HTX, NZ, CXW, FGM, ACY; Analysis and
+53. Perslev, M. et al. U-Sleep: resilient high-frequency sleep staging. NPJ     interpretation of data: ZXY, HLY, CS, MFA, TM, YJ, WJN, PS, SL, LML, JGZ;
+    Digit Med 4, 72 (2021).                                                     First draft of manuscript: ZXY; Revision of manuscript: ZXY, HLY, CS, TM,
+54. Neumann, W.-J. et al. The sensitivity of ECG contamination to surgical      WJN, PS, SL, LML, JGZ.
+    implantation site in brain computer interfaces. Brain Stimul. 14,
+    1301–1306 (2021).                                                           Competing interests
+55. Chen, C. C. et al. Intra-operative recordings of local ﬁeld potentials      WJN received honoraria for talks unrelated to this manuscript from
+    can help localize the subthalamic nucleus in Parkinson’s disease            Medtronic which is a manufacturer of deep brain stimulation devices. The
+    surgery. Exp. Neurol. 198, 214–221 (2006).                                  remaining authors declare no competing interests.
+56. Yin, Z. et al. Local ﬁeld potentials in Parkinson’s disease: A frequency-
+    based review. Neurobiol. Dis. 155, 105372 (2021).                           Additional information
+57. Yin, Z. et al. Balance response to levodopa predicts balance                Supplementary information The online version contains
+    improvement after bilateral subthalamic nucleus deep brain                  supplementary material available at
+    stimulation in Parkinson’s disease. NPJ Parkinsons Dis. 7, 47 (2021).       https://doi.org/10.1038/s41746-024-01115-7.
+58. Pedregosa, F. et al. Scikit-learn: Machine learning in python. J. Mach.
+    Learn. Res. 12, 2825–2830 (2011).                                           Correspondence and requests for materials should be addressed to
+59. Chen, T. & Guestrin, C. XGBoost: A scalable tree boosting system. in        Zixiao Yin, Simon Little or Jianguo Zhang.
+    Proceedings of the 22nd ACM SIGKDD International Conference on
+    Knowledge Discovery and Data Mining 785–794 (ACM, 2016). https://           Reprints and permissions information is available at
+    doi.org/10.1145/2939672.2939785.                                            http://www.nature.com/reprints
+60. Abadi, M. et al. Tensorﬂow: A system for large-scale machine learning.
+    in 12th {USENIX} Symposium on Operating Systems Design and                  Publisher’s note Springer Nature remains neutral with regard to
+    Implementation ({OSDI} 16) 265–283 (2016).                                  jurisdictional claims in published maps and institutional afﬁliations.
+61. Lemaître, G., Nogueira, F. & Aridas, C. K. Imbalanced-learn: A python
+    toolbox to tackle the curse of imbalanced datasets in machine               Open Access This article is licensed under a Creative Commons
+    learning. J. Mach. Learn. Res. 18, 1–5 (2017).                              Attribution 4.0 International License, which permits use, sharing,
+62. Lundberg, S. M. & Lee, S.-I. A uniﬁed approach to interpreting model        adaptation, distribution and reproduction in any medium or format, as long
+    predictions. in Advances in Neural Information Processing Systems           as you give appropriate credit to the original author(s) and the source,
+    (eds. Guyon, I. et al.) vol. 30 (Curran Associates, Inc., 2017).            provide a link to the Creative Commons licence, and indicate if changes
+63. Horn, A. et al. Lead-DBS v2: Towards a comprehensive pipeline for           were made. The images or other third party material in this article are
+    deep brain stimulation imaging. Neuroimage 184, 293–316 (2019).             included in the article’s Creative Commons licence, unless indicated
+64. Hamilton, L. S., Chang, D. L., Lee, M. B. & Chang, E. F. Semi-              otherwise in a credit line to the material. If material is not included in the
+    automated anatomical labeling and inter-subject warping of high-            article’s Creative Commons licence and your intended use is not permitted
+    density intracranial recording electrodes in electrocorticography.          by statutory regulation or exceeds the permitted use, you will need to
+    Front Neuroinform 11, 62 (2017).                                            obtain permission directly from the copyright holder. To view a copy of this
+65. Rolls, E. T., Huang, C.-C., Lin, C.-P., Feng, J. & Joliot, M. Automated     licence, visit http://creativecommons.org/licenses/by/4.0/.
+    anatomical labelling atlas 3. Neuroimage 206, 116189 (2020).
+66. Arora, P., Mishra, A. & Malhi, A. Machine learning Ensemble for the         © The Author(s) 2024
+    Parkinson’s disease using protein sequences. Multimed. Tools Appl
+    81, 32215–32242 (2022).
+
+
+
+
+npj Digital Medicine | (2024)7:122                                                                                                                         13
+

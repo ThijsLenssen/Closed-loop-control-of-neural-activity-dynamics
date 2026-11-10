@@ -1,0 +1,25 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries Wireless closed-loop optogenetics across the entire dorsoventral spinal cord in mice\par}
+
+\textbf{Paper:} Kathe et al. (2022 (online 2021)).\quad Mouse spinal-circuit device and intervention study.\par
+\href{https://doi.org/10.1038/s41587-021-01019-x}{DOI: \nolinkurl{10.1038/s41587-021-01019-x}}\par
+{\footnotesize Page references below use PDF page numbers, including front matter.}
+
+\question{To which general question does this paper relate?}
+Practical closed-loop measurement and control of motor circuits. Demonstrates behavioural and muscle outcomes outside the basal ganglia.
+
+\question{How does it answer the general questions?}
+\textbf{Measured and controlled.} A stretchable epidural micro-LED implant and wireless headstage combine optical access to targeted spinal pathways with physiological recordings. EMG-based triggering enables stimulation at selected movement phases; experiments assess effects on locomotion and muscle activity (PDF pp.~1--10).
+
+\textbf{Usable insight.} Phase-specific activation or silencing can produce distinct motor effects. The control objective is defined by locomotor function and circuit interrogation, not beta power. Extended Data Fig.~3 separates approximately 11.3~ms signal processing from 0.9~ms stimulus-delivery delay in a bench timing test (PDF p.~20).
+
+\textbf{Model relevance.} EMG and movement measurements are plausible observed/performance outputs for a neuromuscular model, with explicit sensing and processing dynamics. They are not direct measurements of basal-ganglia population rates. The paper provides no STN--GPe parameterization; its hardware timing and actuator gains cannot be transferred unchanged to DBS or another optogenetic preparation.
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item Montgomery et al. (2015), \emph{Wirelessly powered, fully internal optogenetics for brain, spinal and peripheral circuits in mice}: wireless actuation (ref.~6, PDF p.~11).
+\item Capogrosso et al. (2018), \emph{Configuration of electrical spinal cord stimulation through real-time processing of gait kinematics}: feedback implementation (ref.~40, PDF p.~14).
+\end{itemize}
+
+\end{document}

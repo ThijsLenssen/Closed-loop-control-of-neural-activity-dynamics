@@ -1,0 +1,25 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries Electrophysiology-Based Closed Loop Optogenetic Brain Stimulation Devices: Recent Developments and Future Prospects\par}
+
+\textbf{Paper:} Kumari and Kouzani (2023 (online 2022)).\quad Methodological review.\par
+\href{https://doi.org/10.1109/RBME.2022.3141369}{DOI: \nolinkurl{10.1109/RBME.2022.3141369}}\par
+{\footnotesize Page references below use PDF page numbers, including front matter.}
+
+\question{To which general question does this paper relate?}
+What can be recorded and optically actuated, and which hardware constraints belong in a realistic closed-loop model.
+
+\question{How does it answer the general questions?}
+\textbf{Signal chain.} Reviews neural electrodes, acquisition electronics, feature extraction, classification, control logic and light-delivery circuitry. LFPs and action potentials provide electrical feedback; opsins translate optical stimulation into cellular effects (PDF pp.~1--7).
+
+\textbf{Usable insight.} Sensor bandwidth, stimulation artifacts, processing latency, wireless power and tissue heating limit implementation. Threshold detection and PID are examples of controller approaches, not evidence that a particular controller is optimal for every circuit. A feature detector and a neural actuator should be represented as separate blocks (PDF pp.~8--15).
+
+\textbf{Model relevance.} Helps specify admissible input intensity, sampling and delay, and identify observation noise/artifacts. It supplies an architecture and comparisons of existing devices, rather than one identified delayed population model. The reviewed applications have different outcomes, such as seizure detection/interruption; the review does not justify adopting beta suppression as a generic objective.
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item Krook-Magnuson et al. (2013), \emph{On-demand optogenetic control of spontaneous seizures in temporal lobe epilepsy}: biological validation (ref.~98, PDF p.~18).
+\item Xia et al. (2017), \emph{A low power flash-FPGA based brain implant micro-system of PID control}: embedded feedback implementation (ref.~102, PDF p.~18).
+\end{itemize}
+
+\end{document}

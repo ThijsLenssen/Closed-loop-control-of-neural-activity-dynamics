@@ -1,0 +1,25 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries Dopamine depletion leads to pathological synchronization of distinct basal ganglia loops in the beta band\par}
+
+\textbf{Paper:} Ortone et al. (2023).\quad Spiking-network modelling study.\par
+\href{https://doi.org/10.1371/journal.pcbi.1010645}{DOI: \nolinkurl{10.1371/journal.pcbi.1010645}}\par
+{\footnotesize Page references below use PDF page numbers, including front matter.}
+
+\question{To which general question does this paper relate?}
+Possible network mechanisms of beta synchronization and the limitations of an isolated STN--GPe model.
+
+\question{How does it answer the general questions?}
+\textbf{Finding.} Interacting STN--GPe and striatal--GPe loops show beta-range resonances. In simulations, dopamine depletion strengthens the striatal loop and promotes synchronization between loops that are more independent at high dopamine levels (PDF pp.~1--4, Results).
+
+\textbf{Usable insight.} The source of a shared spectral peak can depend on interactions between circuits and dopamine-dependent coupling. Network interventions should therefore be evaluated across mechanisms and operating conditions. The paper establishes a computational explanation of synchronization; it does not demonstrate that minimizing beta improves patients' motor function.
+
+\textbf{Model relevance.} Six populations are included: D1/D2 medium spiny neurons, fast-spiking interneurons, two GPe populations and STN. Individual neurons have adaptation, conductance dynamics and reset events. These equations are not exactly the notebook's memoryless monotone rate model. Tables~2--3 give biophysical parameters and projection delays; they require a justified population reduction before becoming rate-model coefficients (PDF pp.~4--7).
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item De la Crompe et al. (2020), \emph{The globus pallidus orchestrates abnormal network dynamics in a model of Parkinsonism}: experimental constraint (ref.~49, PDF p.~28).
+\item Corbit et al. (2016), \emph{Pallidostriatal projections promote beta oscillations in a dopamine-depleted biophysical network model}: striatal-loop comparison (ref.~57, PDF pp.~28--29).
+\end{itemize}
+
+\end{document}

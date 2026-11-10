@@ -1,0 +1,32 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries Conditions for the Generation of Beta Oscillations in the Subthalamic Nucleus-Globus Pallidus Network\par}
+
+\textbf{Paper:} Nevado Holgado, Terry and Bogacz (2010).\quad Delayed population-rate modelling study.\par
+\href{https://doi.org/10.1523/JNEUROSCI.0817-10.2010}{DOI: \nolinkurl{10.1523/JNEUROSCI.0817-10.2010}}\par
+{\footnotesize Page references below use PDF page numbers, including front matter.}
+
+\question{To which general question does this paper relate?}
+A concrete delayed nonlinear model and conditions for oscillation generation. Relevant to the notebook's model class; its mechanistic predictions require separate behavioural validation.
+
+\question{How does it answer the general questions?}
+\textbf{Model mapping.} With rates $r_S,r_G$ and constant cortical/striatal drives,
+\[
+\begin{aligned}
+\tau_S\dot r_S&=-r_S+F_S(-w_{GS}r_G(t-T_{GS})+w_{CS}\mathrm{Ctx}),\\
+\tau_G\dot r_G&=-r_G+F_G(w_{SG}r_S(t-T_{SG})-w_{GG}r_G(t-T_{GG})-w_{XG}\mathrm{Str}).
+\end{aligned}
+\]
+Take $x=r-r^*$, $a_i=-1/\tau_i$, $b^x=0$, and signed nonlinear input rows $(0,-w_{GS})$, $(w_{SG},-w_{GG})$. Set $f_i(v)=[F_i(q_i^*+v)-F_i(q_i^*)]/\tau_i$. The reported sigmoid has $0\leq F_i'\leq1$, giving global slope and sector bounds $[0,1/\tau_i]$ after centring (derived from their Eq.~3).
+
+\textbf{Parameters.} $\tau_S=6$, $\tau_G=14$, $T_{SG}=T_{GS}=6$, $T_{GG}=4$ in ms. With $F_i(q)=M_i/[1+e^{-4q/M_i}(M_i-B_i)/B_i]$, use $(M_S,B_S,M_G,B_G)=(300,17,400,75)$ and $(\mathrm{Ctx},\mathrm{Str})=(27,2)$ in spikes/s. The weight vector $(w_{SG},w_{GS},w_{GG},w_{CS},w_{XG})$ is $(19,1.12,6.60,2.42,15.1)$ for the healthy fit and $(20,10.7,12.3,9.2,139.4)$ for the diseased fit (Tables~1, 3; PDF pp.~2--4). Their pulse experiments use a fitted additive electrode-current term in the STN equation (Eq.~5); no LFP observation map is identified.
+
+\textbf{Interpretation.} Delays, coupling and external drive determine oscillation onset within this model. Predictions about removing beta are model-level results, not proof that beta suppression alone treats symptoms (PDF pp.~5--12).
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item Plenz and Kitai (1999), \emph{A basal ganglia pacemaker formed by the subthalamic nucleus and external globus pallidus}: experimental loop hypothesis (PDF p.~13).
+\item Terman et al. (2002), \emph{Activity patterns in a model for the subthalamopallidal network of the basal ganglia}: alternative spiking mechanism (PDF p.~13).
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,19 @@
+\documentclass[border=4pt]{standalone}
+\usepackage{amsmath,xcolor}
+\definecolor{tueblue}{HTML}{0092B5}
+\begin{document}
+\fontsize{15}{22}\selectfont
+$\displaystyle
+\begin{aligned}
+C_M\partial_t V
+  &={\color{tueblue}\frac{r}{2R}\partial_{xx}V}
+    +I_{\mathrm{app}}-I_{\mathrm{ion}},\\[8pt]
+I_{\mathrm{ion}}
+  &=g_K n^4(V-V_K)\\
+  &\quad+g_{\mathrm{Na}}m^3h(V-V_{\mathrm{Na}})\\
+  &\quad+g_l(V-V_l),\\[8pt]
+\partial_t q
+  &=\frac{q_\infty(V)-q}{\tau_q(V)},\quad q\in\{n,m,h\}.
+\end{aligned}
+$
+\end{document}

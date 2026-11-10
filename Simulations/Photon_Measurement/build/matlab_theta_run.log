@@ -1,0 +1,19 @@
+Toolbox "mpt:3.2.1:all" added to the Matlab path.
+Toolbox "mptdoc:3.0.4:all" added to the Matlab path.
+Toolbox "cddmex:1.0.1:pcwin64" added to the Matlab path.
+Toolbox "fourier:1.0:pcwin64" added to the Matlab path.
+Toolbox "glpkmex:1.0:pcwin64" added to the Matlab path.
+Toolbox "hysdel:2.0.6:pcwin64" added to the Matlab path.
+Toolbox "lcp:1.0.3:pcwin64" added to the Matlab path.
+Toolbox "sedumi:1.3:pcwin64" added to the Matlab path.
+Toolbox "yalmip:R20230609:all" added to the Matlab path.
+Finite unit-area pulse
+  fine dt = 0.000125 s, CFL including decay = 0.2008
+  max PDE/convolution error = 0.0806456 photons/s (0.0410% of increment)
+  coarse/fine error ratio = 2.001
+Illustrative population firing rate
+  fine dt = 0.000125 s, CFL including decay = 0.2008
+  max PDE/convolution error = 0.0909254 photons/s (0.0143% of increment)
+  coarse/fine error ratio = 2.001
+Unit-pulse area = 1.000000000000 spikes; analytic reference check passed.
+Results saved in C:\Users\thijs\Desktop\Graduation_Project_TML\Documentation\Closed-loop control of time-delayed neural activity dynamics\Simulations\Photon_Measurement\output

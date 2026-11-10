@@ -1,0 +1,826 @@
+                                    Article                                                                                                       https://doi.org/10.1038/s41467-023-41128-6
+
+
+                                    Pathological pallidal beta activity in
+                                    Parkinson’s disease is sustained during sleep
+                                    and associated with sleep disturbance
+                                    Received: 21 March 2023                               Zixiao Yin 1, Ruoyu Ma 1, Qi An1, Yichen Xu1, Yifei Gan1, Guanyu Zhu1, Yin Jiang2,
+                                                                                          Ning Zhang3, Anchao Yang1, Fangang Meng2, Andrea A. Kühn 4,5,
+                                    Accepted: 23 August 2023
+                                                                                          Hagai Bergman 6,7,8, Wolf-Julian Neumann 4,10 & Jianguo Zhang 1,2,9,10
+
+
+                                        Check for updates                                 Parkinson’s disease (PD) is associated with excessive beta activity in the basal
+                  1234567890():,;
+1234567890():,;
+
+
+
+
+                                                                                          ganglia. Brain sensing implants aim to leverage this biomarker for demand-
+                                                                                          dependent adaptive stimulation. Sleep disturbance is among the most com-
+                                                                                          mon non-motor symptoms in PD, but its relationship with beta activity is
+                                                                                          unknown. To investigate the clinical potential of beta activity as a biomarker
+                                                                                          for sleep quality in PD, we recorded pallidal local ﬁeld potentials during
+                                                                                          polysomnography in PD patients off dopaminergic medication and compared
+                                                                                          the results to dystonia patients. PD patients exhibited sustained and elevated
+                                                                                          beta activity across wakefulness, rapid eye movement (REM), and non-REM
+                                                                                          sleep, which was correlated with sleep disturbance. Simulation of adaptive
+                                                                                          stimulation revealed that sleep-related beta activity changes remain unac-
+                                                                                          counted for by current algorithms, with potential negative outcomes in sleep
+                                                                                          quality and overall quality of life for patients.
+
+
+                                    Sleep disturbances signiﬁcantly impair the quality of life in peo-               First technological solutions to sleep-aware adaptive DBS and
+                                    ple living with Parkinson’s disease (PD)1. Insomnia and rapid eye                chronotherapeutic treatment strategies have now emerged, with
+                                    movement (REM) sleep behavior disorder (RBD) are common                          the potential to revolutionize the targeted treatment of sleep
+                                    manifestations of PD-related sleep disturbance2,3 that can be                    disturbance8. However, the ﬁrst ongoing clinical trials are pri-
+                                    correlated and sometimes even predict other non-motor symp-                      marily informed by data obtained from awake patients. Speciﬁ-
+                                    toms, such as cognitive decline4,5. Current therapies including                  cally, excessive beta activity, a hallmark of the hypodopaminergic
+                                    medication and continuous deep brain stimulation (DBS) are not                   parkinsonian state, is being used as a biomarker for adaptive
+                                    sufﬁciently adjustable to speciﬁcally target sleep disturbance in                DBS10 and was found to be reduced during sleep11–15. While mod-
+                                    PD6. This represents an unmet need in the development of indi-                   ulation of beta activity was reported during sleep cycles, the
+                                    vidualized therapeutic approaches. Adaptive DBS is a novel                       pathophysiological impact of this activity pattern on sleep quality
+                                    treatment strategy that promises unprecedented temporal and                      in human patients remains unknown. Recently, a potential rela-
+                                    spatial precision for therapeutic adjustment7. This opens new                    tionship between beta activity and sleep disturbance has ﬁrst
+                                    horizons for circadian and sleep-related therapeutic adaptation8,9.              been reported in a non-human primate model of Parkinson’s
+
+
+                                    1
+                                     Department of Neurosurgery, Beijing Tiantan Hospital, Capital Medical University, Beijing, China. 2Department of Functional Neurosurgery, Beijing Neuro-
+                                    surgical Institute, Capital Medical University, Beijing, China. 3Department of Neuropsychiatry, Behavioral Neurology and Sleep Center, Beijing Tiantan
+                                    Hospital, Capital Medical University, Beijing, China. 4Department of Neurology, Movement Disorders and Neuromodulation Unit, Charité – Universitätsmedizin
+                                    Berlin, Chariteplatz 1, 10117 Berlin, Germany. 5Exzellenzcluster – NeuroCure, Charité – Universitätsmedizin Berlin, Berlin, Germany. 6The Edmond and Lily Safra
+                                    Center for Brain Sciences, The Hebrew University, Jerusalem, Israel. 7Department of Medical Neurobiology (Physiology), Institute of Medical Research – Israel
+                                    Canada (IMRIC), Faculty of Medicine, The Hebrew University, Jerusalem, Israel. 8Department of Neurosurgery, Hadassah Medical Center, Jerusalem, Israel.
+                                    9
+                                     Beijing Key Laboratory of Neurostimulation, Beijing, China. 10These authors contributed equally: Wolf-Julian Neumann, Jianguo Zhang.
+                                       e-mail: julian.neumann@charite.de; zjguo73@126.com
+
+
+                                    Nature Communications | (2023)14:5434                                                                                                                        1
+Article                                                                                                                                                    https://doi.org/10.1038/s41467-023-41128-6
+
+
+              a
+                                                  C4                                                  SLEEP CYCLE
+                                       O2
+                                                        F4                     W
+                                 O1                                             R
+                                                  DBS        E2                N1
+                                      C3    F3
+                                                                               N2
+                                                                               N3
+                                             E1                                     0      1      2   3        4       5              6   7   8
+                                                                                                          Time [hrs]
+                                                                  Chin
+
+
+                                 EMG
+
+
+
+
+                                                                     Sleep stages
+                                                                           REM             NREM       Awake
+
+
+
+                                     Sleep recordings
+                                                                                        Resting wakefulness
+                                 (N1, N2, N3, R, WASO )
+                                                                             1-2 hrs
+
+                                            Time
+
+
+
+              b                            NREM sleep
+                                                                                                                       c                                  REM sleep
+              Channels
+
+
+
+
+                                                                                                                           Channels
+
+
+
+
+                                                  Time (s)                                                                                                 Time (s)
+              d
+
+
+
+
+              e                                                                                                        f
+                               a
+
+
+
+
+                                                                                                                                                      a
+                                                                           ta
+
+
+
+
+                                                                                                                                                                       ta
+                              et
+
+
+
+
+                                                                                                                                                    et
+                                                                         Be
+
+
+
+
+                                                                                                                                                                      Be
+                            Th
+
+
+
+
+                                                                                                                                                  Th
+
+
+
+
+disease16, urging further investigation in the human domain. With                                                            Results
+the present study, we aim to address this important knowledge                                                                Twelve subjects with Parkinson’s disease and twenty subjects with
+gap by comparing pathological beta activity across sleep cycles in                                                           dystonia undergoing DBS electrode implantation in the ventro-
+the internal pallidum from patients with Parkinson’s disease with                                                            posterior-lateral (motor) domain of the internal pallidum (GPi) were
+a control group of subjects suffering from dystonia, a different                                                             recruited for electrophysiological recordings during sleep. Standar-
+neurological disorder treated with internal pallidum DBS.                                                                    dized polysomnography was combined with invasive local ﬁeld
+
+
+Nature Communications | (2023)14:5434                                                                                                                                                              2
+Article                                                                                                             https://doi.org/10.1038/s41467-023-41128-6
+
+Fig. 1 | Recordings of pallidal local ﬁeld potentials in parallel to poly-              subject PD-8, epoch 16. Prominent rapid eye movement, low-voltage waves, and
+somnography in subjects with Parkinson’s disease and dystonia. a Schematic              muscle atonia are seen in EOG, EEG, and EMG, respectively. d shows a repre-
+representation of the sleep recording. Pallidal local ﬁeld potentials are recorded in   sentative spectrogram of a whole-night recording from subject PD-8 with the
+parallel to the polysomnography consisting of the electroencephalogram (EEG),           hypnogram on top. e shows the average power spectra across awake, NREM, and
+electrooculogram (EOG), and electromyogram (EMG). In the morning after sleep            REM sleep epochs in all patients with Parkinson’s disease. f shows the average
+recording, a 5-min recording of resting wakefulness is further obtained. b shows        power spectra across awake, NREM, and REM sleep epochs in all patients with
+10 s of characteristic N2 sleep from subject PD-8, epoch 26. Characteristic sleep       dystonia. Shaded areas represent SEM. Theta and beta frequency band ranges are
+spindles are seen in polysomnography. Note that for visualization, the amplitude of     highlighted in blue.
+the pallidal channels is ampliﬁed. c shows 10 s of characteristic REM sleep from
+
+
+
+potential (LFP) recordings from the DBS electrodes in the GPi (Fig. 1a).                REM sleep time without atonia as a proxy of RBD severity (Supple-
+After visual and algorithmic sleep staging, data from 40 nights across                  mentary Fig. 5). Finally, PD motor sign severity as assessed with the
+32 patients were analyzed (for clinical information see Table 1). A                     motor part of the Uniﬁed Parkinson’s disease rating scale (UPDRS-III)
+comparison of sleep parameters indicated that patients with PD had                      was correlated with pallidal beta activity in awake (Spearman rho =
+signiﬁcantly shorter total sleep time, longer sleep latency, less REM                    0.78, P = 0.003) but not sleep epochs (all P > 0.05). For a summary of
+sleep, and more sleep segmentations than patients with dystonia                         the clinical correlation results see Fig. 3c.
+(Table 2). Representative non-REM (NREM) and REM sleep epochs as
+well as a whole-night hypnogram and the corresponding spectrogram                       Common adaptive DBS algorithms will restrain therapeutic
+(from subject PD-8) are shown in Fig. 1b–d. Average power spectra                       delivery during sleep while pathological activity may be
+corroborate previous reports indicating reduced beta activity during                    sustained
+non-REM11–14, when compared to awake and REM stages (Fig. 1e, f).                       Given the abovementioned results indicating higher pallidal beta
+However, these studies did not compare beta activity during sleep to a                  activity in PD than in dystonia across REM and NREM epochs, but lower
+control group without Parkinson’s disease.                                              beta activity when compared to awake stages, we hypothesized that
+                                                                                        common adaptive DBS algorithms may not sufﬁciently respond to
+Pallidal beta activity in PD signiﬁcantly exceeds controls in                           pathological beta activity during sleep. This may be problematic,
+NREM and REM sleep                                                                      especially when beta activity is associated with sleep disturbance. To
+To study the pathophysiological signiﬁcance of beta activity during                     address this, we simulated a common threshold-based (i.e., 50th
+NREM and REM stages we compared pallidal beta activities to the                         percentile19) adaptive DBS algorithm calibrated on the awake data
+control group of patients with dystonia (Fig. 2). First, we reproduced                  (Fig. 4). Our results suggest that adaptive DBS would reduce ther-
+previous reports in awake patients demonstrating higher beta activity                   apeutic deliveries during NREM (stimulation-on time: 4.98%) and REM
+in PD (P = 0.001, Mann–Whitney U test) and higher theta activity in                     (stimulation-on time: 30.00%) sleep stages, which was independent of
+dystonia patients (P < 0.001, Mann–Whitney U test). Importantly,                        a potential effect of sleep duration.
+excessive beta activity was not restricted to the awake stage but sus-
+tained during NREM (P = 0.021, Mann–Whitney U test) and REM                             Discussion
+(P = 0.001, Mann–Whitney U test) sleep epochs. Substage analysis of                     Three main conclusions can be drawn from our study. First, we show
+NREM sleep indicated that beta power was higher in patients with PD in                  evidence that pallidal beta activity is elevated across NREM and REM
+N1 (P = 0.006) and N2 (P = 0.013), but not in N3 sleep (P = 0.093,                      sleep in PD when compared to recordings from patients with dystonia.
+Mann–Whitney U test) than in patients with dystonia (Supplementary                      This result could be attributed to longer burst durations and was
+Fig. 1). To control for potential confounds due to changes in the                       speciﬁc to a localized peak in proximity to the optimal stimulation
+aperiodic component of the spectra, we performed a supplementary                        target in the internal pallidum and absent in cortical EEG recordings.
+comparison of the periodic activity after spectral parameterization17,                  Second, our ﬁndings suggest that speciﬁcally elevated beta activity
+which conﬁrmed higher beta activity in PD across all stages (Supple-                    during NREM sleep, especially the N2 sleep stage, can be associated
+mentary Fig. 2). Further, beta burst analysis indicated that the exces-                 with sleep disturbance and lower sleep quality in PD but not dystonia
+sive beta activity during NREM and REM sleep in PD could be attributed                  patients. Finally, we demonstrate that common adaptive DBS algo-
+to prolonged burst durations (Supplementary Fig. 3). The signiﬁcant                     rithms calibrated on awake data will not modulate pathological beta
+differences were speciﬁc to the pallidal recordings, with activity spa-                 activity during NREM and REM sleep stages. This is particularly
+tially peaking within 1.50–2.06 mm proximity to a previously reported                   important as it may be addressed through reﬁned brain signal
+optimal stimulation target location18. No difference in beta activity was               decoding algorithms in sleep-aware adaptive DBS paradigms. Our
+present in cortical electroencephalography (Supplementary Fig. 4).                      ﬁndings could pave the way for an individualized treatment of sleep
+                                                                                        disturbance in PD.
+Excessive pallidal beta activity during NREM sleep is associated                             Our ﬁndings corroborate an impactful report linking beta activity
+with lower sleep quality                                                                with sleep disturbance in the 1-methyl-4-phenyl-1,2,3,6-tetra-
+Following a previous non-human primate study16 we hypothesized that                     hydropyridine (MPTP) non-human primate model of PD16. The study
+pathological beta activity during sleep may be associated with PD-                      demonstrated that MPTP intoxication induced elevated beta power
+related sleep disturbance. To investigate this, we correlated pallidal                  and spiking during NREM sleep in the subthalamic nucleus and
+beta power during NREM and REM episodes with sleep quality ratings                      external and internal pallidum. This was associated with delayed sleep
+(Fig. 3). Pallidal beta power during NREM sleep was robustly correlated                 onset, increased sleep fragmentation, and increased wakefulness in
+with the Pittsburgh sleep quality index (PSQI) in PD (Spearman rho =                    non-human primates when compared to the healthy state. In human
+ 0.63, P = 0.028) but not dystonia patients (Spearman rho = 0.19,                       studies, such direct comparisons to healthy states are not possible,
+P = 0.434, Fig. 3a). This correlation was more robust for high beta                     because invasive recordings are only available in patients undergoing
+(20–30 Hz) than low beta (13-20 Hz) power, and for NREM2 than                           neurosurgical interventions for brain disorders. To relate neural
+NREM1/3 stages of sleep (Fig. 3b). A signiﬁcant correlation was iden-                   activity to disease-speciﬁc aspects, two strategies have emerged: (a)
+tiﬁed between beta power during NREM sleep and the RBD-Screening                        relative differences in activity from the same anatomical structure can
+Questionnaire (RBDSQ) score, but this ﬁnding may have limited spe-                      be compared to control groups with other brain disorders20–22 and (b)
+ciﬁcity as no correlation was found when analyzing the proportion of                    within cohort correlations may indicate associations of brain activity
+
+
+Nature Communications | (2023)14:5434                                                                                                                               3
+Article                                                                                                                           https://doi.org/10.1038/s41467-023-41128-6
+
+
+Table 1 | Demographics and clinical characteristics of the included patients
+ Patient            Nights (n)            DD (y)            PSQI                RBDSQ               Motor scorea                 Medication
+ Parkinson’s disease
+ PD-1               1                     20                16                  11                  46/28                        Madopar, Amantadine, Piribedil
+ PD-2               1                     7                 15                  10                  26/11                        Madopar, Rasagiline
+ PD-3               1                     6                 9                   2                   53/23                        Madopar, Sinemet, Pramipexole
+ PD-4               1                     6                 13                  5                   33/21                        Madopar, Piribedil, Entacapone, Pramipexole
+ PD-5               1                     5                 6                   1                   29/15                        Madopar
+ PD-6               1                     8                 9                   1                   45/31                        Madopar, Piribedil
+ PD-7               2                     10                13                  7                   69/31                        Madopar, Sinemet
+ PD-8               2                     6                 6                   1                   71/32                        Sinemet, Piribedil, Entacapone
+ PD-9               2                     12                15                  2                   54/18                        Madopar, Sinemet, Amantadine
+ PD-10              1                     9                 12                  12                  67/32                        Madopar, Trihexyphenidy, Piribedil
+ PD-11              1                     7                 5                   1                   45/23                        Madopar
+ PD-12              2                     8                 17                  13                  66/37                        Madopar, Entacapone, Pramipexole
+ Median (IQR)                             7.5 (4.0)         15.0 (7.0)          3.5 (9.5)           49.5 (30.8)/25.5 (13)
+ Dystonia
+ Dyst-1             2                     2                 5                   –                   C/20                         Benzhexol, Baclofen, Clonazepam
+ Dyst-2             2                     3                 10                  –                   M/8                          Clonazepam, Tiapride hydrochloride, Mecobalamin
+ Dyst-3             1                     5                 9                   –                   M/7                          Botulin, Carbamazepine
+ Dyst-4             2                     5                 9                   –                   M/23                         Clonazepam
+ Dyst-5             1                     4                 6                   –                   M/6                          Baclofen
+ Dyst-6             1                     4                 1                   –                   C/28                         Amantadine, Benzhexol
+ Dyst-7             1                     3                 19                  –                   M/12                         Tiapride hydrochloride
+ Dyst-8             1                     5                 14                  –                   M/13                         Tiapride hydrochloride
+ Dyst-9             1                     7                 5                   –                   M/16                         Botulin
+ Dyst-10            2                     3                 3                   –                   C/32                         NA
+ Dyst-11            1                     15                11                  –                   M/18                         Botulin
+ Dyst-12            1                     15                1                   –                   M/7                          NA
+ Dyst-13            1                     4                 5                   –                   C/22                         Baclofen, Clonazepam
+ Dyst-14            1                     3                 3                   –                   M/9                          Clonazepam
+ Dyst-15            1                     5                 11                  –                   M/15                         Benzhexol, Haloperidol
+ Dyst-16            1                     6                 7                   –                   C/38                         NA
+ Dyst-17            1                     7                 6                   –                   M/13                         Botulin, Tiapride hydrochloride
+ Dyst-18            1                     3                 6                   –                   M/16                         Botulin
+ Dyst-19            1                     6                 10                  –                   C/24                         Clonazepam
+ Dyst-20            1                     2                 6                   –                   C/17                         Baclofen, Haloperidol
+ Median (IQR)                             4.5 (3.0)         6.0 (5.0)           –
+DD duration of disease, PSQI Pittsburgh sleep quality index, RBDSQ REM sleep behavior disorder-screening questionnaire, Dyst dystonia, PD Parkinson’s disease, C cervical dystonia, M Meige
+syndrome (oromandibular dystonia), IQR interquartile range, NA not applicable.
+a
+ Preoperative motor score was the Toronto Western Spasmodic Torticollis Rating for cervical dystonia, Burke–Fahn–Marsden Dystonia Rating Scale (movement) for oromandibular dystonia, and MDS-
+Uniﬁed Parkinson’s Disease Rating Scale-III off/on medication for Parkinson’s disease.
+
+
+
+patterns with clinical signs of the disease23. In the awake state, both of                       that beta power remains excessively high during NREM sleep when
+these strategies have demonstrated a clear association between beta                              comparing PD with dystonia subjects. In addition, we found evidence
+activity and PD motor signs, where basal ganglia beta activity is ele-                           that this pathophysiological pattern during the NREM phase may be
+vated when compared to patients with dystonia20,21 and robustly                                  associated with impaired sleep quality, as beta power during NREM
+associated with motor sign severity, most recently reproduced in a                               sleep showed robust correlations with the PSQI, a validated assess-
+cohort of 106 patients24. We have now extended both approaches to                                ment of sleep disturbance. This correlation was most robust in the
+the sleep state, for which previous studies11–15 have demonstrated that                          NREM2 stage of sleep, potentially because N2 sleep occupied the
+beta is inﬂuenced by sleep-stage transitions, promising potential utility                        longest duration of sleep time (over 60% in our patient cohort) and
+for sleep-stage decoding25, but the relative pathological signiﬁcance                            that physiologically important sleep oscillations such as spindles and
+remained unaddressed. Our study extends these insights by providing                              K-complexes are typically most prominent in N2 sleep26. When com-
+direct evidence that compared to dystonia subjects, pallidal beta                                paring beta power across sleep cycles in the PD cohort, we found a
+activity in PD is continuously higher across sleep stages and correlated                         relative decline in beta power from N1 sleep, where it was close to that
+with sleep disturbance.                                                                          in wakefulness, to N3 sleep, where it was more similar to that in dys-
+     As previously reported, we found a drop in beta activity during                             tonia. Whether this indicates a potential “normalization” effect of
+NREM stages, when compared to REM and wakefulness, resulting in a                                N3 sleep and whether, inversely, a suppression of basal ganglia beta
+relative overlap of power spectra across the PD and the dystonia                                 activities could result in longer deep sleep in PD requires further
+groups. However, despite the amplitude decrease, our results suggest                             investigation. When assessing the spectral speciﬁcity of our results, we
+
+
+Nature Communications | (2023)14:5434                                                                                                                                                       4
+Article                                                                                                                     https://doi.org/10.1038/s41467-023-41128-6
+
+Table 2 | Sleep parameters of the included patientsa                                              behavior disorder, optimally capturing the neural dynamics of the
+                                                                                                  basal ganglia while parasomnia is present. This could shed light on the
+                     Parkinson’s dis-               Dystonia (n = 20)       P valuesb
+                     ease (n = 12)
+                                                                                                  relevance of pathological beta activity in dream enactment, potentially
+ TTB (min)           494.0 (51.2)                   509.0 (59.0)            0.599
+                                                                                                  even in the prodromal stages of Parkinson’s disease.
+                                                                                                       Sleep quality in PD patients can be improved with DBS across
+ TST (min)           298.4 (108.2)                  368.2 (75.0)            0.012
+                                                                                                  basal ganglia targets (including subthalamic nucleus31, internal
+ WASO (min)          222.0 (143.0)                  138.4 (55.0)            0.129
+                                                                                                  pallidum32, and external pallidum33), but the therapeutic mechanism
+ SL (min)            50.1 (55.7)                    14.2 (23.7)             0.049                 remains elusive34. Our results suggest that excessive beta power in
+ RSL (min)           206.4 (181.3)                  108.5 (77.0)            0.042                 NREM sleep could be a therapeutic target to treat sleep disturbance.
+ N1pct (%)           8.5 (14.9)                     7.1 (7.5)               0.800                 Moreover, given that DBS, similar to medication can suppress beta
+ N2pct (%)           60.6 (15.4)                    65.8 (17.5)             0.302                 activity35, we may speculate that sleep improvement through both
+ N3pct (%)           14.9 (10.9)                    8.1 (10.6)              0.115                 treatments may be associated with beta reduction. Future studies
+                                                                                                  should verify whether high-frequency stimulation applied during
+ Rpct (%)            13.0 (6.0)                     16.1 (9.8)              0.037
+                                                                                                  NREM and REM sleep has the same effect on beta suppression as that
+ SE (%)              59.9 (29.6)                    74.3 (12.9)             0.064
+                                                                                                  applied during wakefulness. Furthermore, the best stimulation pattern
+ Sfrag (n)c          15.5 (8.8)                     9.5 (5.2)               0.015
+                                                                                                  required to suppress beta during sleep remains to be determined.
+ RSWA (%)d           26.1 (24.9)                    7.8 (14.8)              0.083                 Since we did not identify sleep-related behavior correlates of beta
+TTB total time in bed, TST total sleep time, WASO wake after sleep onset, SL sleep latency, RSL   activity during the REM stage here, and given evidence showing that
+REM sleep latency, N1pct percentage of the NREM stage 1 sleep, N2pct percentage of the NREM       DBS may occasionally induce de novo RBD36, it requires further
+stage 2 sleep, N3pct percentage of the NREM stage 3 sleep, Rpct percentage of the REM sleep,
+SE sleep efﬁciency, Sfrag sleep fragmentations, RSWA REM sleep without atonia.
+                                                                                                  investigation on whether stimulation should be switched on or off
+a
+ Descriptive data are presented as the median (interquartile range).                              during REM sleep.
+b
+  P Statistics are obtained using two-sided Mann–Whitney U test without applying the Bonferroni        The direct relationship of beta activity with PD motor signs has
+correction. Signiﬁcant comparisons with uncorrected P value < 0.05 are highlighted in bold.
+c
+                                                                                                  inspired a new adaptive DBS treatment paradigm, that uses beta
+  Sleep fragmentation is quantiﬁed as the times that sleep is interrupted by >2 minutes’ wake-
+fulness.                                                                                          activity as a biomarker to adapt stimulation to therapeutic demand37. A
+d
+  RSWA is quantiﬁed as the percentage of REM sleep time when EMG activities are higher than       challenging aspect of this novel therapeutic approach is the deﬁnition
+two times the 5th percentile of the chin EMG activities during NREM sleep (detailed in the        of a valid control algorithm, that translates neurophysiological
+“Methods” section).
+                                                                                                  recordings into stimulation parameter changes. Notwithstanding this,
+                                                                                                  the ﬁrst international multicenter trials are now investigating the
+noted that high beta (20–30 Hz), rather than low beta (13–20 Hz)                                  potential clinical utility of this approach. While speciﬁc algorithms can
+power, showed robust correlations with sleep disturbances. In the                                 vary, a common denominator across centers and studies is the fact that
+awake state, especially in the subthalamic nucleus, low beta activity                             one or multiple thresholds are required to calibrate the control
+was more robustly modulated by therapeutic interventions and cor-                                 algorithm38. To date, these thresholds are being determined while
+related with PD motor signs27. Yet, even in awake recordings in the                               patients are awake. In our study, we demonstrated that even though
+present cohort, high beta (rho = 0.715, P = 0.009), rather than low beta                          beta activity is signiﬁcantly reduced during NREM, it remains excessive
+(rho = 0.410, P = 0.186) power correlated most strongly with UPDRS-III.                           when compared to dystonia. This may indicate that DBS during NREM
+We speculate that a) the relative relationship of spectral frequency and                          stages may be necessary for the alleviation of sleep disturbance in PD.
+clinical phenomena may be subject-speciﬁc, and (b) a potential sys-                               Our simulation of a common algorithm, however, revealed that
+tematic difference may arise from the fact that the presented activity                            excessive NREM beta activity may remain untreated in the ongoing
+patterns were recorded from the internal pallidum, while most pre-                                adaptive DBS trials. Adopting the conventional threshold-based
+vious work described activity from the subthalamic nucleus. In sum-                               approach, adaptive DBS would have only triggered in around 5% of
+mary, our study provides evidence that pallidal beta activity may play a                          the NREM and 30% of REM sleep phases when maintaining at least 50%
+pathological role in PD both during sleep and in wakefulness.                                     of stimulation time during wakefulness. We believe it is important to
+     One of the most robust prodromal signs of alpha-synuclein neu-                               raise awareness that this new therapy has very speciﬁc sleep stage-
+ropathology including Parkinson’s disease is REM sleep behavior dis-                              dependent effects that should be closely studied in clinical trials.
+order, a parasomnia associated with dream enactment and loss of REM                               Moreover, our ﬁndings call for novel sleep-aware adaptive DBS
+sleep atonia28. In the present cohort, clear dream enactment behavior                             implementations, that can automatically dissociate REM and NREM
+was not observed in any of the included PD patients, but NREM but not                             stages and adapt thresholds and stimulation delivery accordingly. The
+REM-related beta activity was found to be associated with higher                                  feasibility of this approach was recently shown in a sensing-enabled
+scores in the RBD-Screening Questionnaire. Given that this ques-                                  impulse generator using a combination of two machine learning clas-
+tionnaire is unspeciﬁc and does not provide a continuous scaling of                               siﬁers trained on electrocorticography and LFP recordings8. While
+RBD severity, we further quantiﬁed the loss of REM sleep atonia, as an                            generally very promising, it is important to note, that pathophysiolo-
+indirect marker of RBD severity. We observed REM sleep without                                    gical phenomena may interact with such machine learning algorithms,
+atonia in a median of 26.1% of all REM sleep epochs in PD patients but                            as recently shown for beta bursts that can detriment grip-force
+found no signiﬁcant correlation between the relative proportion of                                decoding in PD39. In the future, sleep may be one of many decoding
+these epochs with beta activity measures. Thus, considering the lim-                              targets25, through which machine learning will extend the clinical uti-
+ited sensitivity and speciﬁcity of the RBD-Screening Questionnaire in                             lity of adaptive DBS adjusting to the individual challenges of our
+diagnosing REM sleep behavior disorder29, we speculate that the cor-                              patients in their everyday lives40–42. Such intelligent adaptive DBS sys-
+relation between NREM beta power and RBDSQ could rather corro-                                    tems may not only improve the nocturnal motor symptoms of PD but
+borate our abovementioned ﬁnding that beta can generally index sleep                              also address sleep and sleep-related dysfunctions in PD as a whole.
+disturbances, which is further substantiated by the high correlation                                   We would like to highlight the following limitations of our study.
+between PSQI and RBDSQ scores (rho = 0.821, P = 0.001). A recent,                                 First, even though the number of included subjects in this study is
+more speciﬁc investigation of four PD subjects proposed that pallidal                             higher than most previous studies with similar aims14,30 the sample size
+beta oscillations can be synchronized during movements in the REM                                 is still relatively small. Second, subjects suffering from poor sleep
+sleep phase30. Future studies with expanded sample size should aim for                            quality had reduced or even completely abolished REM sleep14,16, which
+a direct comparison of patient cohorts with/without REM sleep                                     further reduces the amount of data for REM sleep analyses in this
+
+
+Nature Communications | (2023)14:5434                                                                                                                                    5
+Article                                                                                            https://doi.org/10.1038/s41467-023-41128-6
+
+
+                 a                                                    b                             c
+                                                                                        **                          **
+
+
+
+
+                                     a
+
+
+
+
+                                                ta
+                                   et
+
+
+
+
+                                              Be
+                                 Th
+
+                 d                                                    e                             f
+
+                                                                                                                     *
+                                      a
+
+
+
+
+                                                ta
+                                   et
+
+
+
+
+                                              Be
+                                 Th
+
+
+
+
+                 g                                                    h                             i
+
+                                                                                       **                           **
+                                    a
+
+
+
+
+                                                ta
+                                  et
+
+
+
+
+                                              Be
+                                 Th
+
+
+
+
+                 j
+
+
+
+
+study. Recordings across multiple nights could be a potential solution    recordings have unique advantages including higher sampling rate and
+to this problem. Third, our data are recorded through externalized        better synchronization between LFP signals and PSG43, which is espe-
+leads rather than sensing-enable devices, which may in theory enable      cially important for sleep studies. A fourth limitation of the present
+longer recording periods15 and provide a more ecologically valid in-      study is the focus on excessive beta synchronization in PD. Future
+house assessment of sleep. However, current commercially available        investigations may lay more focus on increased pallidal theta power
+devices, such as the Medtronic Percept, can only capture a single value   during REM sleep in dystonia to expand our understanding of disease-
+of beta power per hemisphere every ten minutes. Thus, externalized        speciﬁc oscillatory abnormalities in the basal ganglia during sleep.
+
+
+Nature Communications | (2023)14:5434                                                                                                         6
+Article                                                                                                                   https://doi.org/10.1038/s41467-023-41128-6
+
+Fig. 2 | Comparisons of power spectra between Parkinson’s disease (PD) and               to the smallest and largest data points that are not outliers (1.5 times the inter-
+dystonia across different sleep stages and the spatial localization of beta in PD.       quartile range). j A visualization of top-beta sites in different sleep stages in Mon-
+a–c Power spectra and comparisons of theta and beta power in awake epochs                treal Neurological Institute space (wakefulness [X = −20.7, Y = −6.8, Z = −5.7], NREM
+between PD and dystonia. **P for theta power<0.001; **P for beta power=0.001;            [X = −21.5, Y = −5.7, Z = −5.1], and REM [X = −20.7, Y = −6.1, Z = −5.2] sleep) relative to
+n for PD subjects = 12; n for dystonia subjects = 20; two-sided Mann–Whitney U test.     the position of internal globus pallidus (GPi) and external globus pallidus (GPe).
+d–f Power spectra and comparisons of theta and beta power in non-rapid eye               The three top-beta sites located near, with no signiﬁcant difference in coordinates
+movement (NREM) sleep between PD and dystonia. P for theta power = 0.083;                in the X, Y, or Z axes (P = 0.463, 0.603, and 0.944 for X, Y, and Z axes, respectively,
+* P for beta power = 0.021; n for PD subjects = 12; n for dystonia subjects = 20; two-   two-sided Kruskal–Wallis test). Three sites of interest are also displayed including
+sided Mann–Whitney U test. g–i Power spectra and comparisons of theta and beta           (1) the average of all electrodes (X = −21.4, Y = −4.6, Z = −3.3), (2) the mean active
+power in REM sleep between PD and dystonia. **P for theta power = 0.004; **P for         contacts (X = −21.1, Y = −5.7, Z = −5.3), and (3) a literature-based coordinate
+beta power = 0.001; n for PD subjects = 10; n for dystonia subjects = 17; two-sided      (X = −22.6, Y = −6.7, Z = −4.9) described by Elias et al.18 to represent the optimal
+Mann–Whitney U test. Shaded areas in all spectrum plots represent SEM. For all box       pallidal site for deep brain stimulation in PD. The upper right inset shows the lead
+plots, the lower and upper borders of the box represent the 25th and 75th per-           localization of all 32 subjects. Source data are provided as a Source Data ﬁle.
+centiles, respectively. The centerline represents the median. The whiskers extend
+
+
+
+                           a                                                             b
+
+                                                                                                                         0.38
+
+                                                                                                                                              0.81
+
+                                                                                                                         0.37
+
+                                                                                                                                       0.62
+
+                                                                                                                                0.49
+
+
+
+
+                           c
+
+
+
+
+Fig. 3 | Correlations between pallidal beta power and sleep disturbance ratings          with Spearman correlation P < 0.05 are colored in orange and highlighted in bold,
+in Parkinson’s disease. a Regression plots showing the Spearman correlations             respectively. P for the two-sided Spearman correlation between NREM high-beta
+between beta power during non-rapid eye movement (NREM) sleep and the Pitts-             power and PSQI = 0.001; P for the two-sided Spearman correlation between beta
+burgh sleep quality index (PSQI) in Parkinson’s disease (red) and dystonia (gray).       power in the NREM2 stage and PSQI = 0.033. c Heat map showing the correlation
+The error bands are the 95% conﬁdence interval for the regression estimate. The          matrix between beta power in different sleep–wake stages, off-medication Uniﬁed
+null hypothesis is deﬁned as two-sided. b Bar plot showing the Spearman correla-         Parkinson’s Disease Rating Scale motor score (UPDRS-III), and the PSQI. Squares
+tion coefﬁcients between beta power during NREM sleep and the PSQI when ana-             with Spearman correlation P < 0.05 are displayed. Source data are provided as a
+lyzing the high/low beta band and the NREM 1/2/3 stage of sleep. Bars and items          Source Data ﬁle.
+
+
+
+
+Methods                                                                                  without prominent limb involvement; (ii) for PD patients, unques-
+Patients and surgery                                                                     tioned diagnosis of PD based on the UK brain bank criteria, and (iii)
+Thirty-two subjects with movement disorders (12 with PD, age 59.0                        for all patients, the capacity to cooperate with whole-night poly-
+[15.0] years, 6 males; 20 with dystonia, age 54.0 [18.0] years, 10                       somnography recordings and the absence of cerebral lesions on
+males) scheduled to receive GPi-DBS implantation at Beijing Tiantan                      magnetic resonance imaging (MRI) such as tumor and stroke. Stan-
+Hospital were included. The inclusion criteria were: (i) for primary                     dard motor assessments using Toronto Western Spasmodic Torti-
+dystonia patients, predominantly cervical or oromandibular dystonia                      collis Rating/Burke–Fahn–Marsden Dystonia Rating Scale (for
+
+
+Nature Communications | (2023)14:5434                                                                                                                                             7
+Article                                                                                                               https://doi.org/10.1038/s41467-023-41128-6
+
+
+                 a                          REM sleep                                Awake stage                             NREM sleep
+
+                     Stage label
+
+
+                 b
+                     Chin-EMG
+
+
+                 c
+                           Frequency (Hz)
+
+
+
+
+                 d
+                         Beta power (%)
+
+
+
+
+                 e
+                                                                             Adaptive DBS simulation
+                          Stimulation (V)
+
+
+
+
+                 f
+
+
+
+
+                 g
+
+
+
+
+Fig. 4 | Simulation of adaptive deep brain stimulation during sleep. a Line plots        75th beta power in wakefulness is labeled in gray dashed lines and shaded in light
+showing sleep stage deﬁnitions of a 700-s recording segment obtained from the            blue. e Shows a simulation of adaptive deep brain stimulations using the median
+subject PD-8. b Shows the corresponding chin electromyogram activities of the            beta power in wakefulness as triggering thresholds. f Shows the comparison of beta
+700-s recording segment. Note that in wakefulness the electromyogram activities          power across four quarters (i.e., 0–25%, 25–50%, 50–75%, and 75–100% of the total
+are highest; in rapid eye movement (REM) sleep the background electromyogram             length) of NREM (left, P = 0.098, two-sided Friedman test) and REM sleep length
+activities are lower than that in non-REM (NREM) sleep despite occasional twitch-        (right, P = 0.782, two-sided Friedman test). Data are presented as mean values ±
+related electromyogram bursts. c Shows the time–frequency representation of              SEM. g Shows the comparison of ON-stimulation time across four quarters of NREM
+pallidal activities of the 700-s sleep recording segment. a.u. refers to the arbitrary   (left, P = 0.258, two-sided Friedman test) and REM sleep length (right, P = 0.056,
+units. d shows the dynamic beta power change in the 700-s recording segment. The         two-sided Friedman test). Data are presented as mean values ± SEM. Source data
+median beta power in wakefulness is labeled with a red dashed line and the 25th and      are provided as a Source Data ﬁle.
+
+
+
+
+Nature Communications | (2023)14:5434                                                                                                                                    8
+Article                                                                                             https://doi.org/10.1038/s41467-023-41128-6
+
+
+dystonia), or MDS-UPDRS-III (for PD, on and off dopaminergic              Sleep parameters
+medication) were conducted before the surgery. Subjective sleep           Based on the polysomnography hypnogram, sleep parameters were
+quality was evaluated using the PSQI for all subjects and RBD was         extracted including the total time in bed, total sleep time, WASO, sleep
+assessed using the RBD-screening questionnaire for PD subjects. This      latency (time to ﬁrst sleep epoch), REM sleep latency (time to ﬁrst REM
+study conformed to the Declaration of Helsinki and was approved by        sleep epoch), the time proportion of N1, N2, N3, and REM sleep, sleep
+the local IRB of Beijing Tiantan Hospital. All subjects provided writ-    efﬁciency (total sleep time/total time in bed), sleep fragmentation, and
+ten informed consent. DBS surgery was performed as per routine            the time proportion of REM sleep without atonia (RSWA). Sleep frag-
+protocol44,45. Guided by the Leksell stereotactic system (Elekta          mentation was quantiﬁed as the number of events that sleep is inter-
+Instrument AB, Stockholm, Sweden), DBS electrodes (model 3387,            rupted by >2 min of wakefulness. RSWA was determined when the chin
+Medtronic, USA, or model L302, Pins Medical, China) were bilaterally      EMG (10–70 Hz bandpass) variance in REM sleep was higher than two
+implanted in the GPi region under local anesthesia. Intraoperative        times the 5th percentile of the chin EMG variance in NREM sleep, which
+electrophysiology recordings using microelectrode and temporary           is an established approach listed in the International RBD Study Group
+stimulation through microelectrode were conducted for trajectory          (IRBDSG) guidance48,49. For a better temporal resolution and as
+selection. Precise placement of DBS electrodes was conﬁrmed               recommended by the IRBDSG49, the above determination was made
+through postoperative anatomical computed tomography (CT)                 for each 3-s REM sleep segment.
+imaging. Before the second stage of surgery (i.e., the implantation of
+the pulse generator), DBS leads were externalized for a median of         Signal processing and channel selection
+4 days (range: 3–6 days), during which we recorded whole-night            Signal analysis was performed using MNE-Python50 and SciPy51. All sig-
+polysomnography and synchronized pallidal local ﬁeld potentials           nals were notch ﬁltered (Butterworth, bandwidth = 4 Hz, order = 3) to
+(hereafter called sleep recording).                                       reject the 50 Hz ambient noise and harmonics, and downsampled to
+                                                                          500 Hz. Power spectral density (PSD) of pallidal LFP was computed
+Sleep recordings and staging                                              between 2 and 80 Hz using the Welch periodogram with a fast Fourier
+Sleep recording was conducted during DBS lead externalization, and        transform of 512 points and 50% overlap, which resulted in a frequency
+lasted for one or two successive nights. Data from all recording          resolution of 0.97 Hz. PSD was normalized to the percentage of the
+nights from one subject were pooled together. All anti-dystonia           total power of 2–45 and 55–80 Hz. Band power of theta (4–12 Hz) and
+medications were stopped after 12 a.m. (midday) on the day of             beta (13–30 Hz) was then extracted. In addition, to exclude potential
+recording and anti-parkinsonism drugs were stopped after 6 p.m.           impacts from the aperiodic (1/f-like) component of the signal on our
+Post-hoc analysis indicated no residual effects of medication on beta     estimation of beta oscillations (the periodic component)17, we also
+estimation in PD patients (comparison of beta power between four          calculated the aperiodic-adjusted spectrum of the pallidal LFP using
+quarters [i.e., the 0–25%, 25–50%, 50–75%, and 75–100% temporal           the FOOOF ﬁtting implemented in Python (https://fooof-tools.github.
+course] of wake after sleep onset [WASO], Q = 1.32, P = 0.724, two-       io/fooof/). We chose the channel located within the GPi to represent
+sided Friedman test). Polysomnography consisting of surface elec-         pallidal activity, which was conﬁrmed through lead reconstruction (see
+troencephalogram (EEG), electrooculogram (EOG), and chin elec-            below). In cases where more than one bipolar channel was within the
+tromyogram (EMG) was implemented following standard settings              GPi region, the channel with higher beta during resting wakefulness
+recommended by the American Academy of Sleep Medicine                     was selected for analysis for both the PD and dystonia subjects. For
+(AASM)46, as shown in Fig. 1a. Surface bipolar EEG was obtained from      cortical signals, we used central EEG channels (i.e., C3 and C4) to
+frontal (F3-M2, F4-M1), central (C3-M2, C4-M1), and occipital (O1-M2,     represent cortical activities and processed the EEG signals using the
+O2-M1) areas, as per the 10–20-system. Synchronized pallidal LFPs         same pipeline as we processed pallidal LFPs.
+were recorded bipolarly from the adjacent contacts (01, 12, and 23) of
+each electrode. All signals were ampliﬁed ×195, bandpass ﬁltered at       Beta burst analysis
+0.08 and 300 Hz and recorded at a sampling rate of 1000 or 2000 Hz        We conducted the burst dynamic analysis following the criteria that
+through the JE-212 ampliﬁer (Nihon Kohden, Tokyo, Japan). Sleep           are established by Tinkhauser et al.20,52. The only difference was that
+recording generally started at 9 p.m. (lights out) and ended at 7 a.m.    since very few hemispheres (4/34) in dystonia subjects demonstrated
+the next morning (lights on). Sleep stages (wake, N1, N2, N3, or REM      clear beta peaks during NREM or REM sleep, we deﬁned each 1-Hz
+sleep) were determined in each 30-s epoch by two experienced sleep        frequency bin in the beta band range as peak frequency (18 bins, from
+specialists (N.Z. and J.M.) according to the AASM criteria version 2.6.   13 to 30 Hz) and conducted burst determination based on these indi-
+Importantly, to avoid possible bias induced by the subjectivity of        vidual 18 peak frequencies. The ﬁnal results were the average of the 18
+human scorers, all sleep data were also staged using an established       iterations. Data were ﬁrst downsampled to 200 Hz and decomposed
+open-source sleep staging algorithm (https://github.com/                  using Morlet wavelets with 10 cycles. The obtained wavelet amplitude
+raphaelvallat/yasa)47, which takes EOG, EEG, EMG, and demo-               was further z-score normalized to address scale differences. A
+graphics including age and gender as input. Only epochs with con-         threshold was deﬁned as the 75th percentile of the amplitude dis-
+sistent staging results between human and algorithm scorers were          tribution among all hemisphere’s data from all subjects. A burst was
+qualiﬁed for further analysis, accounting for 85.6% of all epochs. Note   determined when the instantaneous power crossed the threshold for
+that patients PD-2/10 and Dyst-10/11/13 had low counts of accurately      at least 0.1 s. Burst duration was categorized into six-time windows of
+diagnosed REM sleep epochs (n < 5) and were analyzed for NREM             0.15 s starting from 0.1 to >0.85 s in duration. Burst amplitude was
+sleep and awake states only. A characteristic NREM and REM sleep          deﬁned as the area under the curve between the amplitude curve and
+epoch segment is shown in Fig. 1b and c, respectively. A repre-           the threshold. Burst density was deﬁned as the number of bursts
+sentative spectrogram from subject PD-8 with the hypnogram on top         per second.
+is shown in Fig. 1d. In the main analysis, N1, N2, and N3 sleep epochs
+were pooled together to represent NREM sleep while in a supple-           Electrode reconstruction and beta power localization analysis
+mentary analysis, the three substages of NREM sleep were analyzed         We used the advanced electrode localization pipeline (in Lead-DBS
+separately. In the morning following sleep recording (1–2 h after         version 2.5.3, MATLAB 2019b) with default settings for electrode
+awakening), we also obtained 5-min artifact-free recordings when the      reconstruction and group analysis in Montreal Neurological Institute
+subject was lying in bed in resting wakefulness (hereafter called         (MNI) space53. The pre-operative MRI scan (T1 sequence) was linearly
+awake epochs).                                                            co-registered with the postoperative anatomical CT and nonlinearly
+
+
+Nature Communications | (2023)14:5434                                                                                                           9
+Article                                                                                                 https://doi.org/10.1038/s41467-023-41128-6
+
+
+warped to the MNI template (ICBM 2009bNonlinear Asymmetric)54                References
+using the advanced normalization tools (ANTs)55. Electrode trajec-           1.  Zahed, H. et al. The neurophysiology of sleep in Parkinson’s disease.
+tories were automatically detected using the PACER approach56 and                Mov. Disord. 36, 1526–1542 (2021).
+were manually reﬁned. The coordinate of a bipolar recording site was         2. Garcia-Borreguero, D., Larrosa, O. & Bravo, M. Parkinson’s disease
+deﬁned as the Euclidean midpoint between the two contacts. Sites on              and sleep. Sleep Med. Rev. 7, 115–129 (2003).
+the left side were nonlinearly ﬂipped to the right.                          3. Postuma, R. B., Gagnon, J. F., Vendette, M., Charland, K. & Mon-
+      To explore the localization of beta power in different sleep stages,       tplaisir, J. REM sleep behaviour disorder in Parkinson’s disease is
+we calculated the average coordinate of the recording sites with the             associated with speciﬁc motor features. J. Neurol. Neurosurg. Psy-
+top 10% beta power in wakefulness, NREM, and REM sleep. These sites              chiatry 79, 1117–1121 (2008).
+were visualized together with three additional points of interest. First,    4. Postuma, R. B., Gagnon, J.-F., Vendette, M., Charland, K. & Mon-
+the average location of all electrodes (regardless of beta). Second, the         tplaisir, J. Manifestations of Parkinson disease differ in association
+active DBS contacts are used in optimal programming. Third, a                    with REM sleep behavior disorder. Mov. Disord. 23,
+literature-based coordinate described by Elias et al.18 to represent the         1665–1672 (2008).
+optimal pallidal site for DBS in PD.                                         5. Vendette, M. et al. REM sleep behavior disorder predicts cognitive
+                                                                                 impairment in Parkinson disease without dementia. Neurology 69,
+Adaptive DBS simulation analysis                                                 1843–1849 (2007).
+To explore how adaptive DBS would deliver stimulation in a real              6. Loddo, G. et al. The treatment of sleep disorders in Parkinson’s
+context of nocturnal sleep, we segmented a continuous 700-s data in              disease: from research to clinical practice. Front. Neurol. 8,
+an exemplary PD subject (PD-8) that included all three stages of                 42 (2017).
+wakefulness, NREM, and REM sleep. We calculated beta power using             7. Rosin, B. et al. Closed-loop deep brain stimulation is superior in
+the aforementioned Welch periodogram method with a sliding win-                  ameliorating parkinsonism. Neuron 72, 370–84 (2011).
+dow of 5 s and a step of 0.5 s. The obtained time-resolved beta activity     8. Gilron, R. et al. Sleep-aware adaptive deep brain stimulation con-
+was smoothed using a Gaussian ﬁlter (sigma = 5) before being input to            trol: chronic use at home with dual independent linear discriminate
+the threshold-based adaptive DBS control algorithms. We simulated                detectors. Front. Neurosci. 15, 732499 (2021).
+adaptive DBS stimulation using a common threshold-based strategy.            9. Fleming, J. E. et al. Embedding digital chronotherapy into bioelec-
+The stimulation-triggering threshold was set as the 50th beta power of           tronic medicines. iScience 25, 104028 (2022).
+wakefulness. The lower and upper stimulation voltage border was 0            10. Gilron, R. et al. Long-term wireless streaming of neural recordings
+and 3 V, respectively. The ramping speed was simulated to be 0.4 V/s.            for circuit discovery and adaptive stimulation in individuals with
+At last, we calculated the stimulation-on time under the individual              Parkinson’s disease. Nat. Biotechnol. https://doi.org/10.1038/
+threshold of median beta power of wakefulness for all PD subjects.               s41587-021-00897-5 (2021).
+Stimulation-on time was compared between NREM and REM sleep and              11. Chen, Y. et al. Automatic sleep stage classiﬁcation based on sub-
+between four sleep quarters (i.e., 0–25%, 25–50%, 50–75%, and                    thalamic local ﬁeld potentials. IEEE Trans. Neural Syst. Rehabil. Eng.
+75–100% of the total length) to test potential inﬂuences of early vs. late       27, 118–128 (2019).
+stages of sleep on adaptive DBS algorithms over the course of                12. Urrestarazu, E. et al. Beta activity in the subthalamic nucleus during
+the night.                                                                       sleep in patients with Parkinson’s disease. Mov. Disord. 24,
+                                                                                 254–60 (2009).
+Statistical analysis                                                         13. Christensen, E., Abosch, A., Thompson, J. A. & Zylberberg, J.
+We performed all statistical tests using NumPy57 and SciPy51 in Python           Inferring sleep stage from local ﬁeld potentials recorded in the
+3.8. Given that most studied variables were of non-normal distribution,          subthalamic nucleus of Parkinson’s patients. J. Sleep Res. 28,
+data were presented as the median (interquartile range). Nonpara-                e12806 (2019).
+metric tests including the Mann–Whitney U test, Kruskal–Wallis test,         14. Thompson, J. A. et al. Sleep patterns in Parkinson’s disease: direct
+and Friedman test were used and indicated when used. We employed                 recordings from the subthalamic nucleus. J. Neurol. Neurosurg.
+the Spearman correlation to test potential correlative relationships             Psychiatry 89, 95–104 (2018).
+between beta power in different stages and clinical scales of interest.      15. van Rheede, J. J. et al. Diurnal modulation of subthalamic beta
+Multiple comparisons were controlled using the Bonferroni correction             oscillatory power in Parkinson’s disease patients during deep brain
+with the P value marked as PBonferroni. Two-tailed P-values < 0.05 were          stimulation. NPJ Parkinsons Dis. 8, 88 (2022).
+considered signiﬁcant.                                                       16. Mizrahi-Kliger, A. D., Kaplan, A., Israel, Z., Deffains, M. &
+                                                                                 Bergman, H. Basal ganglia beta oscillations during sleep
+Reporting summary                                                                underlie Parkinsonian insomnia. Proc. Natl Acad. Sci. USA 117,
+Further information on research design is available in the Nature                17359–17368 (2020).
+Portfolio Reporting Summary linked to this article.                          17. Donoghue, T. et al. Parameterizing neural power spectra into peri-
+                                                                                 odic and aperiodic components. Nat. Neurosci. 23, 1655–1665
+Data availability                                                                (2020).
+Due to the data protection regulations of Beijing Tiantan Hospital and       18. Elias, G. J. B. et al. Probabilistic mapping of deep brain stimulation:
+Medical Capital University, the raw sleep electrophysiological data              insights from 15 years of therapy. Ann. Neurol. 89, 426–443 (2021).
+used in this study are available from the corresponding author (J.G.Z.)      19. Little, S. et al. Adaptive deep brain stimulation in advanced Par-
+after approval of the IRB of Beijing Tiantan Hospital (E-mail:                   kinson disease. Ann. Neurol. 74, 449–57 (2013).
+ttyyirb@163.com, Tel: +86 10 5997 8555). We are happy to share our           20. Lofredi, R. et al. Pallidal beta bursts in Parkinson’s disease and
+data and provide assistance in obtaining the approval upon                       dystonia. Mov. Disord. 34, 420–424 (2019).
+request. Source data are provided with this paper.                           21. Silberstein, P. et al. Patterning of globus pallidus local ﬁeld poten-
+                                                                                 tials differs between Parkinson’s disease and dystonia. Brain 126,
+Code availability                                                                2597–608 (2003).
+All relevant codes employed in the study can be freely accessed              22. Neumann, W. J. et al. Different patterns of local ﬁeld potentials from
+without restriction at https://github.com/zixiao-yin/SleepBeta                   limbic DBS targets in patients with major depressive and obsessive
+(Zenodo https://doi.org/10.5281/zenodo.818078058).                               compulsive disorder. Mol. Psychiatry 19, 1186–92 (2014).
+
+
+Nature Communications | (2023)14:5434                                                                                                                10
+Article                                                                                                  https://doi.org/10.1038/s41467-023-41128-6
+
+
+23. Neumann, W.-J., Horn, A. & Kühn, A. A. Insights and opportunities         44. Fan, S.-Y. et al. Pallidal versus subthalamic nucleus deep brain sti-
+    for deep brain stimulation as a brain circuit intervention. Trends            mulation for levodopa-induced dyskinesia. Ann. Clin. Transl. Neurol.
+    Neurosci. 46, 472–487 (2023).                                                 7, 59–68 (2020).
+24. Lofredi, R. et al. Subthalamic beta bursts correlate with dopamine-       45. Yin, Z. et al. Balance response to levodopa predicts balance
+    dependent motor symptoms in 106 Parkinson’s patients. https://                improvement after bilateral subthalamic nucleus deep brain sti-
+    doi.org/10.1101/2022.05.06.490913 (2022).                                     mulation in Parkinson’s disease. NPJ Parkinsons Dis. 7, 47 (2021).
+25. Yin, Z. et al. Pallidal activities during sleep and sleep decoding in     46. Berry, R. B. et al. AASM scoring manual updates for 2017 (version
+    dystonia, Huntington’s, and Parkinson’s disease. Neurobiol. Dis. 182,         2.4). J. Clin. Sleep Med. 13, 665–666 (2017).
+    106143 (2023).                                                            47. Vallat, R. & Walker, M. P. An open-source, high-performance tool for
+26. Mizrahi-Kliger, A. D., Kaplan, A., Israel, Z. & Bergman, H. Entrainment       automated sleep staging. Elife 10, e70092 (2021).
+    to sleep spindles reﬂects dissociable patterns of connectivity            48. Burns, J. W. et al. EMG variance during polysomnography as an
+    between cortex and basal ganglia. Cell Rep. 40, 111367 (2022).                assessment for REM sleep behavior disorder. Sleep 30,
+27. Neumann, W. J. et al. Subthalamic synchronized oscillatory activity           1771–1778 (2007).
+    correlates with motor impairment in patients with Parkinson’s dis-        49. Cesari, M. et al. Video-polysomnography procedures for diagnosis
+    ease. Mov. Disord. 31, 1748–1751 (2016).                                      of rapid eye movement sleep behavior disorder (RBD) and the
+28. Boeve, B. F. et al. Pathophysiology of REM sleep behaviour disorder           identiﬁcation of its prodromal stages: guidelines from the Interna-
+    and relevance to neurodegenerative disease. Brain 130,                        tional RBD Study Group. Sleep 45, zsab257 (2022).
+    2770–2788 (2007).                                                         50. Gramfort, A. MEG and EEG data analysis with MNE-Python. Front.
+29. Halsband, C., Zapf, A., Sixel-Döring, F., Trenkwalder, C. & Mollen-           Neurosci. 7, 267 (2013).
+    hauer, B. The REM sleep behavior disorder screening questionnaire         51. Virtanen, P. et al. SciPy 1.0: fundamental algorithms for scientiﬁc
+    is not valid in De Novo Parkinson’s disease. Mov. Disord. Clin. Pract.        computing in Python. Nat. Methods 17, 261–272 (2020).
+    5, 171–176 (2018).                                                        52. Tinkhauser, G. et al. Beta burst dynamics in Parkinson’s disease OFF
+30. Verma, A. K. et al. Basal ganglia engagement during REM sleep                 and ON dopaminergic medication. Brain 140, 2968–2981 (2017).
+    movements in Parkinson’s disease. NPJ Parkinsons Dis. 8, 116 (2022).      53. Horn, A. et al. Lead-DBS v2: towards a comprehensive pipeline
+31. Odekerken, V. J. et al. Subthalamic nucleus versus globus pallidus            for deep brain stimulation imaging. Neuroimage 184,
+    bilateral deep brain stimulation for advanced Parkinson’s disease             293–316 (2019).
+    (NSTAPS study): a randomised controlled trial. Lancet Neurol. 12,         54. Fonov, V., Evans, A., McKinstry, R., Almli, C. & Collins, D. Unbiased
+    37–44 (2013).                                                                 nonlinear average age-appropriate brain templates from birth to
+32. Dafsari, H. S. et al. Beneﬁcial nonmotor effects of subthalamic and           adulthood. NeuroImage 47, S102 (2009).
+    pallidal neurostimulation in Parkinson’s disease. Brain Stimul. 13,       55. Avants, B. B., Epstein, C. L., Grossman, M. & Gee, J. C. Symmetric
+    1697–1705 (2020).                                                             diffeomorphic image registration with cross-correlation: evaluating
+33. Castillo, P. R. et al. Globus pallidus externus deep brain stimulation        automated labeling of elderly and neurodegenerative brain. Med.
+    treats insomnia in a patient with Parkinson disease. Mayo Clin. Proc.         Image Anal. 12, 26–41 (2008).
+    95, 419–422 (2020).                                                       56. Husch, A., Van Petersen, M., Gemmar, P., Goncalves, J. & Hertel, F.
+34. Yin, Z. et al. A quantitative analysis of the effect of bilateral sub-        PaCER—a fully automated method for electrode trajectory and
+    thalamic nucleus-deep brain stimulation on subjective and objec-              contact reconstruction in deep brain stimulation. Neuroimage Clin.
+    tive sleep parameters in Parkinson’s disease. Sleep Med. https://doi.         17, 80–89 (2018).
+    org/10.1016/j.sleep.2020.10.021 (2020).                                   57. Harris, C. R. et al. Array programming with NumPy. Nature 585,
+35. Feldmann, L. K. et al. Toward therapeutic electrophysiology: beta-            357–362 (2020).
+    band suppression as a biomarker in chronic local ﬁeld potential           58. Yin, Z. et al. Beta during Sleep in PD Code/Data: v1.0725.2023
+    recordings. NPJ Parkinsons Dis. 8, 44 (2022).                                 https://doi.org/10.6084/M9.FIGSHARE.23740410 (2023).
+36. Kim, Y. E. et al. Rapid eye movement sleep behavior disorder after
+    bilateral subthalamic stimulation in Parkinson’s disease. J. Clin.        Acknowledgements
+    Neurosci. 22, 315–319 (2015).                                             J.G.Z. is supported by the National Nature Science Foundation of China
+37. Little, S. & Brown, P. Debugging adaptive deep brain stimulation for      (81830033, 61761166004). W.-J.N. receives funding from the European
+    Parkinson’s disease. Mov. Disord. mds.27996 (2020) https://doi.           Union (ERC, ReinforceBG, project 101077060), Deutsche For-
+    org/10.1002/mds.27996.                                                    schungsgemeinschaft (DFG, German Research Foundation)—Project-ID
+38. Neumann, W., Gilron, R., Little, S. & Tinkhauser, G. Adaptive deep        424778381—TRR 295 ReTune and the Bundesministerium für Bildung
+    brain stimulation: from experimental evidence toward practical            und Forschung (BMBF, project FKZ01GQ1802). A.C.Y. receives funding
+    implementation. Mov. Disord. mds.29415 (2023) https://doi.org/10.         from the National Nature Science Foundation of China (81870888).
+    1002/mds.29415.                                                           G.Y.Z. receives funding from the National Nature Science Foundation of
+39. Merk, T. et al. Electrocorticography is superior to subthalamic local     China (82201634). N.Z. receives funding from the National Key Research
+    ﬁeld potentials for movement decoding in Parkinson’s disease. Elife       and Development Program of China (2020YFC2005300). A.A.K.
+    11, e75126 (2022).                                                        received funding from the Lundbeck Foundation project grant “Adaptive
+40. Merk, T. et al. Machine learning based brain signal decoding for          and precise targeting of cortex-basal ganglia circuits in Parkinson’s
+    intelligent adaptive deep brain stimulation. Exp. Neurol. 351,            Disease” (Grant No. R336-2020-1035). A.A.K. and H.B. receive funding
+    113993 (2022).                                                            from the Deutsche Forschungsgemeinschaft (DFG, German Research
+41. Neumann, W. J. et al. Toward electrophysiology-based intelligent          Foundation)—Project-ID 424778381—TRR 295 ReTune.
+    adaptive deep brain stimulation for movement disorders. Neu-
+    rotherapeutics 16, 105–118 (2019).                                        Author contributions
+42. Neumann, W.-J. & Rodriguez-Oroz, M. C. Machine learning will              Z.X.Y., W.-J.N., and Z.J.G. designed the research; Z.X.Y., R.Y.M., Q.A.,
+    extend the clinical utility of adaptive deep brain stimulation. Mov.      Y.C.X., Y.F.G., G.Y.Z., Y.J., N.Z., Y.A.C., and M.F.G. acquired the data;
+    Disord. 36, 796–799 (2021).                                               Z.X.Y., W.-J.N., and Z.J.G. made the analysis and interpretation of data;
+43. Yin, Z. et al. Local ﬁeld potentials in Parkinson’s disease: a            Z.X.Y. made the ﬁrst draft of manuscript; Z.X.Y., W.-J.N., A.A.K., H.B., and
+    frequency-based review. Neurobiol. Dis. 155, 105372 (2021).               Z.J.G. performed the revision of manuscript.
+
+
+Nature Communications | (2023)14:5434                                                                                                                  11
+Article                                                                                              https://doi.org/10.1038/s41467-023-41128-6
+
+
+Competing interests                                                        Reprints and permissions information is available at
+W.-J.N. received honoraria for talks unrelated to this manuscript from     http://www.nature.com/reprints
+Medtronic which is a manufacturer of deep brain stimulation devices.
+A.A.K. is on the advisory board of Boston Scientiﬁc and Medtronic and      Publisher’s note Springer Nature remains neutral with regard to jur-
+has received honoraria unrelated to this manuscript from Boston Sci-       isdictional claims in published maps and institutional afﬁliations.
+entiﬁc, Medtronic, Stadapharm, and Teva, companies manufacturing
+deep brain stimulation or pharmaceutical therapies. H.B. is a consultant   Open Access This article is licensed under a Creative Commons
+of Alpha Omega and has received travel honoraria from Boston Scien-        Attribution 4.0 International License, which permits use, sharing,
+tiﬁc and Medtronic unrelated to this manuscript. The remaining authors     adaptation, distribution and reproduction in any medium or format, as
+declare no competing interests.                                            long as you give appropriate credit to the original author(s) and the
+                                                                           source, provide a link to the Creative Commons license, and indicate if
+Additional information                                                     changes were made. The images or other third party material in this
+Supplementary information The online version contains                      article are included in the article’s Creative Commons license, unless
+supplementary material available at                                        indicated otherwise in a credit line to the material. If material is not
+https://doi.org/10.1038/s41467-023-41128-6.                                included in the article’s Creative Commons license and your intended
+                                                                           use is not permitted by statutory regulation or exceeds the permitted
+Correspondence and requests for materials should be addressed to           use, you will need to obtain permission directly from the copyright
+Wolf-Julian Neumann or Jianguo Zhang.                                      holder. To view a copy of this license, visit http://creativecommons.org/
+                                                                           licenses/by/4.0/.
+Peer review information Nature Communications thanks Elena Urres-
+tarazu, Birgit Högl and Ambra Stefani for their contribution to the peer   © The Author(s) 2023
+review of this work. A peer review ﬁle is available.
+
+
+
+
+Nature Communications | (2023)14:5434                                                                                                             12
+

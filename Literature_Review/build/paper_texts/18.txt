@@ -1,0 +1,1790 @@
+    Articles
+    https://doi.org/10.1038/s41587-021-01019-x
+
+
+
+
+Wireless closed-loop optogenetics across the
+entire dorsoventral spinal cord in mice
+Claudia Kathe 1,2,11, Frédéric Michoud 3,11, Philipp Schönle4,11, Andreas Rowald1,2, Noé Brun4,
+Jimmy Ravier1,2, Ivan Furfaro3, Valentina Paggi 3, Kyungjin Kim3, Sadaf Soloukey 5,6,
+Leonie Asboth1,2, Thomas H. Hutson 1,2, Ileana Jelescu 7, Antoine Philippides8, Noaf Alwahab3,
+Jérôme Gandar1,2, Daniel Huber8, Chris I. De Zeeuw5,9, Quentin Barraud1,2, Qiuting Huang4,
+Stéphanie P. Lacour 3,12 ✉ and Grégoire Courtine 1,2,10,12 ✉
+
+Optoelectronic systems can exert precise control over targeted neurons and pathways throughout the brain in untethered
+animals, but similar technologies for the spinal cord are not well established. In the present study, we describe a system for
+ultrafast, wireless, closed-loop manipulation of targeted neurons and pathways across the entire dorsoventral spinal cord in
+untethered mice. We developed a soft stretchable carrier, integrating microscale light-emitting diodes (micro-LEDs), that con-
+forms to the dura mater of the spinal cord. A coating of silicone–phosphor matrix over the micro-LEDs provides mechanical
+protection and light conversion for compatibility with a large library of opsins. A lightweight, head-mounted, wireless platform
+powers the micro-LEDs and performs low-latency, on-chip processing of sensed physiological signals to control photostimula-
+tion in a closed loop. We use the device to reveal the role of various neuronal subtypes, sensory pathways and supraspinal
+projections in the control of locomotion in healthy and spinal-cord injured mice.
+
+
+
+
+O
+         ptogenetics has opened up unprecedented possibilities                 structures and movement-related mechanical stress. Physiologically,
+         for controlling targeted cells and pathways of the nervous            high irradiance leads to local heating of tissue due to light absorp-
+         system with high spatiotemporal precision1–3. The ability             tion, which may alter neuronal responses20. Moreover, avoidance of
+to dissect and manipulate the mechanisms underlying brain func-                tissue damage while ensuring efficient photostimulation requires
+tions in health and disease has triggered the development of myriad            embedding light-emitting sources within protective substrates that
+systems to deliver photostimulation to peripheral nerves and the               must conform to the topology, compliance and dynamics of spinal
+nerves in the brain4–12.                                                       tissues. The poor accessibility and limited anchoring options of the
+   The spinal cord is essential for the control of movement and                vertebral column and spinal cord add a layer of complexity to the
+many basic physiological functions. Unraveling the role of neurons             resolution of all these features6,13,14. Indeed, spinal cord implants are
+and pathways embedded in the spinal cord is therefore a major                  prone to mechanical failure and poor biointegration9.
+endeavor in basic and clinical neuroscience. Compared with the                     In the present study, we engineered a wireless optoelectronic sys-
+brain, the spinal cord combines a series of unique challenges that             tem that possesses all the desired features for safe and long-term
+require new light-delivery technologies6,9–11,13–17. During natural            photostimulation of any targeted neurons and pathways in unteth-
+behaviors, the spinal cord undergoes extensive displacements that              ered and unrestricted mice. Moreover, we endowed the electron-
+are incompatible with penetrating optic fibers18. Consequently,                ics with data acquisition and on-chip data-processing capabilities
+the light must be delivered from sources positioned over the sur-              that enabled ultrafast closed-loop control of photostimulation using
+face of the dura mater19. As the light rapidly scatters when pen-              real-time processing of physiological signals.
+etrating spinal tissues, targeting deep intraspinal neurons with
+epidural light-emitting sources requires irradiances that are sub-             Results
+stantially higher than those required for photostimulation in the              Topological and mechanical requirements for spinal implants.
+vicinity of targeted neurons or pathways. Such high-intensity illu-            We first collected the topological and mechanical requirements
+mination poses both technological and physiological challenges.                to ensure the long-lasting and safe integration of an optoelec-
+Technologically, substantial irradiances require stable current flows          tronic implant over the entire extent of the mouse lumbar spinal
+delivered to the optoelectronic device despite miniaturized metallic           cord. We acquired high-resolution magnetic resonance imaging
+
+1
+ Center for Neuroprosthetics and Brain Mind Institute, School of Life Sciences, Swiss Federal Institute of Technology (EPFL), Geneva, Switzerland. 2Defitech
+Center for Interventional Neurotherapies (NeuroRestore), University Hospital Lausanne (CHUV), University of Lausanne and EPFL, Lausanne, Switzerland.
+3
+ Bertarelli Foundation Chair in Neuroprosthetic Technology, Laboratory for Soft Bioelectronic Interfaces, Institute of Microenginnering, Institute of
+Bioengineering, Centre for Neuroprosthetics, EPFL, Geneva, Switzerland. 4Integrated Systems Laboratory, Department of Information Technology and
+Electrical Engineering, Swiss Institute of Technology Zurich, Zurich, Switzerland. 5Department of Neuroscience, Erasmus MC, Rotterdam, The Netherlands.
+6
+  Department of Neurosurgery, Erasmus MC, Rotterdam, The Netherlands. 7Centre d’Imagerie Biomedicale, EPFL, Lausanne, Switzerland. 8Department
+of Fundamental Neuroscience, University of Geneva, Geneva, Switzerland. 9Netherlands Institute of Neuroscience, Royal Dutch Academy of Arts and
+Sciences, Amsterdam, The Netherlands. 10Department of Neurosurgery, CHUV, Lausanne, Switzerland. 11These authors contributed equally: Claudia Kathe,
+Frédéric Michoud, Philipp Schönle. 12These authors jointly supervised this work: Stéphanie P. Lacour, Grégoire Courtine. ✉e-mail: stephanie.lacour@epfl.ch;
+gregoire.courtine@epfl.ch
+
+198                                                            Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                Articles
+(MRI) and computed tomography (CT) datasets to generate a                      broad range of amplitudes (1–60 mA), frequencies (0.1–100 Hz),
+three-dimensional (3D) anatomical model of the mouse spinal cord               pulse widths (1–50 ms) and pulse repetitions (1–10,000) with fine
+and vertebral column (Extended Data Fig. 1 and Supplementary                   resolution (1 mA, 0.1 Hz, 1 ms, 1 pulse repetition). Bluetooth com-
+Video 1). We performed high-speed X-ray imaging (196 Hz) of                    munication enables fast, bidirectional and programmable control
+freely behaving mice to capture the posture during standing, groom-            of each LED channel over distances exceeding 5 m in standard
+ing and walking. We morphed the anatomical model on to these                   laboratory settings (Extended Data Fig. 3, step 3). The platform is
+postures to quantify lumbar spine curvatures underlying ecological             operated via a handheld tablet that displays a real-time preview of
+behaviors of mice (minimum bending radius of the spine = 5.13 cm;              the acquired physiological signals, the timing of the photostimula-
+Extended Data Fig. 1 and Supplementary Video 1). These analyses                tion and feedback on the accurate delivery of the configured cur-
+outlined the suitable length (18 mm), width (2.5 mm) and thickness             rent. The rechargeable battery of the detachable platform lasts for
+(<100 µm) of the implant to cover the rostrocaudal and mediolat-               up to 11 h, including when data are streamed to the tablet in real
+eral extents of the lumbar spinal cord, while providing quantified             time via Bluetooth, whereas photostimulation is controlled in the
+metrics on the required stretchability and conformability.                     closed loop. In between experiments, the platform is plugged on to
+                                                                               a USB-powered station for recharging.
+Design of the soft optoelectronic implant. We aimed to design an
+optoelectronic implant that is resilient to the demands of chronic             Chronic biointegration of the soft optoelectronic implant.
+implantation in the epidural space of mice, yet conformable to                 We next evaluated whether the mechanical properties of the
+the curvilinear morphology of the soft spinal cord (Fig. 1a). To               micro-LED array met the static and dynamic requirements for
+resolve this challenge, we combined thin-film microtechnology,                 long-term implantation in adult mice. The tailored dimensions of
+elasticity engineering, micro-LEDs and dura-like silicone (Fig. 1b             the implant (width: 2.5 mm; length: 1.8 cm; height: 100 µm) allowed
+and Supplementary Video 1). We selected blue and green (wave-                  smooth surgical insertion between the vertebrae and spinal cord
+length, λ = 470 nm, λ = 535 nm) LEDs in a bare die format of small             (width: 4 mm; height: 0.12 mm) using a small laminotomy, that is,
+dimensions (270 × 220 × 50 µm3), which we interfaced with elastic              with minimal opening of the intervertebral/interlaminar space and
+serpentine titanium/gold/titanium (Ti/Au/Ti), interconnected and               without permanent attachment to the vertebrae (Extended Data
+embedded in a poly(imide) film (Extended Data Fig. 2a). Each                   Fig. 4 and Supplementary Video 1). CT reconstructions and MRI
+micro-LED was then coated with a silicone–phosphor composite8,                 illustrated the conformability of the implant over the curved surface
+before encapsulation of the entire array within a silicone mem-                of the lumbar spinal cord (Fig. 2a,b). Quantification of foreign body
+brane that matched the mechanical compliance of the natural dura               responses based on the levels of glial fibrillary acidic protein and
+mater18. This soft optoelectronic implant accommodates elonga-                 ionized calcium-binding adaptor molecule 1 (Iba1)18 confirmed the
+tions (15% strain) that exceeded the physiological range of lumbar             seamless biointegration of the micro-LED array within the spine for
+spinal cord displacements9. Reliable electrical properties for at least        up to 6 weeks (Extended Data Fig. 4).
+30 d in accelerated aging conditions suggested that the optoelec-                  We then conducted a battery of tests to ask whether the spinal
+tronics would survive several weeks in vivo (Fig. 1d,e and Extended            implant altered the natural behavior of the mice. We quantified loco-
+Data Fig. 2, step 5).                                                          motor performances using longitudinal recordings of whole-body
+                                                                               kinematics during running and skilled locomotion. Quantification
+Electronics for recording and photostimulation. When conceiv-                  of these high-precision recordings using sensitive multifactorial sta-
+ing the electronics to power the micro-LEDs and collect physiologi-            tistical analyses22 revealed no measurable changes in gait patterns
+cal signals, we intended to develop a wearable solution enabling the           and balance performance (n = 6; Fig. 2c and Extended Data Fig. 5).
+use of the same electronics in multiple mice and experiments.                  Moreover, the micro-LED array had no impact on exploratory
+   We thus developed an ultraminiaturized, battery-powered, wear-              behaviors measured in an open field (Extended Data Fig. 5).
+able, wireless recording and stimulation platform (1.1 g, 0.5 cm3)
+that can be easily plugged on to a head-mounted connector inter-               Long-term photostimulation in ecological environments. This
+faced with the micro-LED array. The platform was designed based                optoelectronic system enabled real-time photostimulation of the
+on a customized integrated circuit system-on-chip for biomedi-                 spinal cord in ecological environments without the limitations of
+cal telemetry applications, termed VivoSoC3 (ref. 21) (Fig. 1f and             tethered electronics or spatial constraints of wireless radiofrequency
+Extended Data Fig. 3). The platform enables precise pulsed current             powering. The mice executed classic behavioral paradigms, such as
+control of two LED channels and recording from four pairs of elec-             narrow beam walking, swimming in a large tank of water and climb-
+trodes. VivoSoC3 features a quad-core microcontroller unit (MCU)               ing up a rope (Fig. 2d and Supplementary Video 1) while receiving
+for low-latency, on-chip signal processing, which enables automated            remotely controlled photostimulation with millisecond precision
+delivery of photostimulation based on acquired signals from physi-             (latency <15 ms). The optoelectronic system remained functional
+ological sensors. A 256-MB flash chip stores the acquired raw data             over the entire duration of the experiments (6 weeks). Failure analy-
+and stimulation log values for offline analyses. The current deliv-            ses revealed that decline of photostimulation efficacy after longer
+ered to each micro-LED can be configured independently over a                  experiments was not the result of issues with the micro-LED array,
+
+
+
+Fig. 1 | Wireless optoelectronic system for closed-loop photostimulation of the lumbar spinal cord. a, Schematic overview of the optoelectronic
+system, including a zoom on the insertion of the micro-LED array over the epidural surface of the spinal cord. b, Photographs of the micro-LED array,
+including a zoom on the micro-LEDs and exploded diagram of the array. c, Optoelectronic characterization under incremental bias (λ = 470 nm).
+d, Stretchability. The optoelectronic implant was cycled at 15% strain, which corresponds to the range of motion of the lumbar spinal cord, for 100,000
+cycles while continuously emitting light (n = 3, mean ± s.e.m.). e, Accelerated aging. The optoelectronic implant was immersed in 67 °C saline to accelerate
+degradation. The devices start failing around 40 d (n = 4, mean ± s.e.m.). f, Photographs of the electronics embedded in the wireless, head-mounted
+platform that records physiological signals and powers the optoelectronics. g, In-air antenna radiation characteristics, measured in an anechoic chamber
+with a battery-operated, software-modified version of the headstage wireless device (emitting a carrier) and a linearly polarized (pol.) receive antenna.
+Drawn lines represent measurements at center frequency (2,440 MHz), whereas the shaded areas cover the full BLE bandwidth based on additional
+measurements at 2,400 MHz, 2,420 MHz and 2,480 MHz.
+
+Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology                                                            199
+Articles                                                                                                                                                                                                                    NAturE BIOtEchnOLOgy
+
+but of the oxidation of the subcutaneous copper wires connected to                                                                                      behaviors (Extended Data Fig. 1). Over time, this continuous stress
+the headstage in the neck region. Indeed, X-ray imaging showed that                                                                                     led to damage of the thin insulation layer (100-µm thick Teflon) and
+this region undergoes extensive stress constraints during natural                                                                                       thus erosion of cooper wires (Extended Data Fig. 4).
+
+                       a
+                                                      Wireless
+                                                     headstage
+
+                                                                                                                                                                    Two micro-LEDs,                                                     T12
+                                                                                                                                                                     rostral lumbar
+                                                                                                                                                                       segments
+                                           Subcutaneous                                                                                                                                                                  T13
+                                               wires
+
+                                                                                                                                                                                                                  L1
+
+
+
+                                                                                                                                                                                                 L2                Two micro-LEDs,
+                                                             Epidural                                                                                                                                               caudal lumbar
+                                                             micro-LED array                                                                                                                                          segments
+
+
+
+
+                                                                                                                                                                                     L3
+
+
+                       b
+
+
+
+
+                                                                                                               5 mm
+                                                                                                                                                                                                                              3 mm
+
+                                                                                                                                                                                                                                 PDMS
+                                                                       Micro-LEDs                                                                                                Silicone–phosphor (optional)
+                                                                                                                                                                                                                                 PDMS
+
+
+                                                                                                                                                                   Ti/Au/Ti                                                   Poly(imide)
+
+                                                                                                                                                                                                                               3 mm
+                       c                                                                                                           d                                                        e
+                                                                                                                                           3.2 ε = 15%                                              10            67 °C saline
+                                                                                                      Total irradiance (mW mm )
+
+
+
+
+                                                      2 LEDs                                                                                                                                                      i = 5 mA
+                                                                                              150                                              i = 5 mA
+                                                      4 LEDs                                                                                                         l0 (1+ ε)
+                                     3.5
+                                                                                                                                                                                            Voltage (V)
+                                                                                                                                   Voltage (V)
+                       Voltage (V)
+
+
+
+
+                                                                                              100
+                                     3.0
+                                                                                              50
+                                                                            i
+                                     2.5                         v
+                                                                                                                             –2
+
+
+
+
+                                                                                              0                                            2.8                                                            2
+                                             0               10                         20                                                                                                                    0        20           40        60         80
+                                                                                                                                                        1
+                                                                                                                                                       10
+
+                                                                                                                                                   1, 0
+                                                                                                                                                  10 0
+                                                                                                                                                 10 00
+
+                                                                                                                                                         0
+                                                                                                                                                      10
+                                                                                                                                                     00
+
+
+                                                                                                                                                      00
+                                                                                                                                                    ,0
+                                                                                                                                                   0,
+
+
+
+
+                                                         Current (mA)                                                                                                                                                          Time (d)
+                                                                                                                                                        Cycles (no.)
+
+                       f                                                                           DC/DC
+                                                     Bluetooth Low-
+                                                     Energy SoC
+                                                                                                                                                                                                                                         Flash
+                                                     nRF52832
+                                                                                                                                                    16-pin                                                                              memory
+                                                                                                                                                  connector
+                                             32.768-kHz
+                                             crystal                                                                                                                                                                            VivoSoC:
+                                                                                                                                  Linear
+                                                                                                                                                                                                                             · Signal acq
+                                                                                                                                  voltage
+                                                                                                                                                                                                                             · LED driver
+                                                                                                                                  regulator
+                                                                                                                                                                                                                        · Four-core MCU
+                                             Microstrip
+                                             antenna                                                                                                               DC/DC
+                                                                     Battery 12–35 mA h
+                                                                                                                                                                                                                                  1 cm
+                       g                                   90°                                                                                    90°                                                                  90°                     φ = 90°
+                                                                                    θ = 90°                                                                           φ = 90°
+                                                                                    θ = 0°                                                                            φ = 0°                                                                   φ = 0°
+                                                                                       φ                                                                                θ                                                                        θ
+                                                                                                                                                                                                                              –30 dBi
+                                                                  –30 dBi
+
+
+
+
+                                                                                                                                                                      –20 dBi
+
+
+
+
+                                                                                                                                                                                                                                              –20 dBi
+                                                                                                                                                         –30 dBi
+                                                                                    –20 dBi
+
+
+
+
+                                                                                                                                                                                     180°
+                              180°
+
+
+
+
+                                                                                                    180°
+
+
+
+
+                                                                                                                                                                                                                                                        0°
+                                                                                              0°
+
+
+
+
+                                                                                                                                                                                0°
+
+
+
+
+                                         θ
+                                     z
+                                              y
+                                                           –90°                 x–y plane                                                        –90°              x–z plane                                           –90°             y–z plane
+
+                                                     φ Orientation of the receive antenna                                                                             Co-pol.                                 2.44 GHz
+                                                        E-plane                                                                                                       Cross-pol.                              2.40–2.48 GHz
+                                                 x
+
+
+200                                                                                                          Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                                                         Articles
+Computational model of light penetration. The gray and white                         tissues exhibit region-specific, light-penetration properties, sug-
+matter of the spinal cord present with dramatically different con-                   gesting that the position of the LEDs may play an important role
+tents of light-diffracting, lipid-rich myelin. Consequently, spinal                  in the efficiency of photostimulation, especially to reach deeply
+
+                    a           3D CT scan
+                                                b                                           Chronically implanted                                                Spinal
+                               reconstruction             No implant MRI                      micro-LED array                                                  circularity
+                                                                                                                                                        8
+
+
+
+
+                                                                                                                           Circularity of spinal cord
+                                                Spinal level: L4                     Spinal level: L4
+                    1 mm                                                                                                                                           ns
+
+                     L3
+
+
+
+
+                     L2
+                                                                                                                                                        0
+
+
+                                                                                                                                                        No implant
+                     L1                                                      1 mm                               1 mm
+                                                                                                                                                        6 weeks
+
+                    c
+                        Horizontal ladder
+                                                                                                                                              20
+                                                                                                                                                                   ns
+
+
+
+
+                                                                                                                       Percentage of mistakes
+                          10 cm
+                                                                                                                                                        0
+
+                    d
+
+                        Rope                                               Pool
+
+
+
+
+                                                                                                                                                            5 cm
+                                                                   10 cm
+
+
+
+
+                        Balance beam
+
+
+
+
+                                                                             30 cm
+
+
+
+
+                          10 cm
+
+
+Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology                                                                                       201
+Articles                                                                                                       NAturE BIOtEchnOLOgy
+
+Fig. 2 | Long-term biointegration and photostimulation in ecological environments. a, The 3D rendering of the vertebrae T13–L3 and micro-LED array
+reconstructed from high-resolution CT scans. b, MRI of a spinal cord without and with an implanted micro-LED array. The bar graph reports the mean
+circularity of the spinal cord (n = 4–6 mice, two-sided, unpaired Student’s t-test, P = 0.67, mean ± s.e.m.). c, Chronophotography of a mouse walking
+freely and with precise paw placement along a horizontal ladder, despite the implanted micro-LED array and wearable platform. The bar plot reports
+quantification of the percentage of foot falls (n = 6–8 mice, two-sided, unpaired Student’s t-test, P = 0.57, mean ± s.e.m.). d, Chronophotography of mice
+performing classic behavioral paradigms in ecological environments while receiving continuous photostimulation of the lumbar spinal cord. The paradigms
+include climbing up a rope, swimming in a large tank of water and narrow beam walking.
+
+
+located regions. We addressed this possibility with computer                   (Fig. 3d). These weaker responses were not due to a less efficient
+simulations.                                                                   photostimulation as such, because the same photostimulation
+   We complemented our anatomical model with finite element                    elici­ted a powerful hip flexion triggered by large muscle responses
+models of light penetration within the spinal cord (Fig. 3a,b).                in the iliopsoas muscle, the motoneurons of which are embedded in
+Simulations predicted that positioning the micro-LEDs above the                the illuminated rostral lumbar segments (Extended Data Fig. 6). We
+dorsal horns would result in the most efficient photostimulation               reproduced these observations for the medial gastrocnemius muscle
+of afferent fibers and spinal interneurons (Fig. 3a). Compared with            (Extended Data Fig. 6).
+a die positioned over the midline of the spinal cord, this location
+minimized the impact of light-diffracting, lipid-rich myelin on                Photostimulation over the entire spectrum of light. The rapidly
+photon penetration.                                                            evolving library of experimental opsins offers a broad repertoire of
+                                                                               tools to target cellular mechanisms23,24. These opsins are activated
+Spatially selective targeted photostimulation. We sought to illus-             by specific wavelengths spanning the entire spectrum of light. To be
+trate the relevance of these simulations to steer the configuration            able to target any opsin with our micro-LED array, we integrated a
+of micro-LED arrays that maximize the spatial selectivity of the               silicone–phosphor composite coating over the micro-LED, which
+photostimulation. Specifically, we asked whether the rostrocaudal              down-converted the emitted blue light toward the desired wave-
+location of the micro-LEDs was important to target specific                    lengths without compromising the overall biointegration of the
+motor pools.                                                                   micro-LED array (Fig. 1b and Extended Data Fig. 2b).
+    We visualized the anatomical location of tibialis anterior moto-               We asked whether our micro-LED array could activate the red-
+neurons using intramuscular pseudo-rabies injections (Fig. 3b).                shifted (590-nm) ChrimsonR opsins25 from interneurons located
+Integration of this information into the computational model pre-              in the intermediate lamina. We expressed these opsins in vGlut2ON
+dicted that micro-LEDs positioned over the dorsal horns of caudal              neurons using targeted injections of AAV-syn-flex-ChrimsonR-
+lumbar segments would maximize the photostimulation of neu-                    tdTomato in the spinal cord of vGlut2-cre mice (Extended Data
+ral pathways, leading to the activation of motoneurons innervat-               Fig. 7). Activation of red-shifted LED channels positioned over
+ing tibialis anterior (Fig. 3b–d). We validated these predictions in           the rostral or caudal lumbar segments elicited robust muscle
+mice expressing channelrhodopsin (ChR2) in excitatory neurons,                 responses that produced extensive movements of the hip or ankle,
+including proprioceptive neurons that project directly on to moto-             respectively (Extended Data Fig. 7 and Supplementary Video 2).
+neurons (Extended Data Fig. 6). We fabricated a micro-LED array                This spatial specificity mirrored the anatomical location of
+with two channels positioned over the dorsal horns of rostral and              motoneurons innervating hip flexor muscles versus ankle flexor
+caudal lumbar segments. Photostimulation delivered from the LED                muscles (Fig. 3b).
+channel targeting caudal lumbar segments elicited a robust muscle                  Simulations predicted that red-shifted light could penetrate the
+response in tibialis anterior, which provoked a vigorous dorsiflex-            entire depth of the spinal cord, whereas blue light extinguished
+ion of the foot (Fig. 3d, Extended Data Fig. 6 and Supplementary               rapidly when entering these tissues (Fig. 3e). Therefore, we asked
+Video 2). The amplitude of muscle responses increased linearly                 whether red-shifted light could be allowed to target poorly acces-
+with the intensity of photostimulation (Fig. 3d). In comparison,               sible motoneurons, which are nested in the deepest lamina of the
+photostimulation delivered over the rostral lumbar segments                    ventral spinal cord. To test this prediction, we used intersectional
+elicited responses of smaller amplitude, as expected based on                  genetics to express red-shifted or blue-activated opsins in sparse
+the distant location of the motor neurons innervating this muscle              populations of motoneurons (Fig. 3f). Although the limited number
+
+
+Fig. 3 | Targeted photostimulation across the entire spinal cord. a, Simulations showing the penetration of blue light depending on the location of the
+micro-LED along the mediolateral direction. b, Simulations predicting the optimal rostrocaudal location of the micro-LED to target activation to tibialis
+anterior and iliopsoas motoneurons, the location of which was identified with intramuscular rabies injections. c, Experimental setup to measure leg
+kinematics and muscle responses after targeted photostimulation of the lumbar spinal cord in Thy1-ChR2 mice. d, Reconstructed leg movements and
+muscle responses after one-pulse photostimulation delivered over the rostral versus the caudal lumbar spinal cord. The bar plot reports the range of
+motion induced by the photostimulation (n = 10 mice, two-sided, unpaired Student’s t-test, ***P = 0.0021, mean ± s.e.m.). The plot reports the area under
+the curve of rectified muscle responses after photostimulation (n = 5 mice; ANOVA, ***P < 0.0001, mean ± s.e.m.). TA, tibialis anterior. e, Simulations
+reporting the attenuation of blue- (470 nm) versus red-shifted (620 nm) photostimulation through spinal tissues. f, Photographs showing the expression
+of the immediate early gene fos in motoneurons expression ChR2 or Chrimson after blue- (470 nm) versus red-shifted (620 nm) photostimulation.
+Bar plots report the relative expression of fos mRNA after blue- (470 nm) versus red-shifted (620 nm) photostimulation (n = 14/17 motoneurons for
+470-nm/620-nm stimulation; n = 3 mice per group; two-sided, unpaired Student’s t-test, ***P < 0.0001, mean ± s.e.m.). AU, arbitrary units. g, Mice
+expressing ChR2 (470 nm) and Jaws (600 nm) in vGluT2ON neurons stepping on a treadmill while receiving pulses of blue- (470 nm, 2 LEDs) versus
+red-shifted (620 nm, 2 LEDs) photostimulation. Reconstructions of leg movements include foot trajectories and concomitant activity of tibialis anterior;
+shaded and empty boxes correspond to stance and swing phases, respectively. Bar graph reporting the step height for each condition (n > 30 steps
+per condition, n = 2 mice for 2 LEDs at 470 nm, n = 6 mice for 4 LEDs at 470 nm, n = 2 mice for 2 LEDs at 620 nm and n = 8 mice for 4 LEDs at 620 nm;
+one-way ANOVA, ***P < 0.0001, mean ± s.e.m.). Shaded bars represent mice that expressed a single opsin over the entire lumbar spinal cord and were
+activated with four LEDs.
+
+202                                                            Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                                                                                                                     Articles
+of targeted motoneurons was insufficient to elicit muscle contrac-                                                                                     30 min of photostimulation with red-shifted light (Fig. 3f). In con-
+tions, the robust expression of the immediate early gene Fos in                                                                                        trast, blue light failed to recruit motoneurons, thus confirming the
+motoneurons revealed the sustained activation of these cells after                                                                                     predictions of the computational model (Fig. 3e).
+
+
+a                                                                                                                                                             b                                           Micro-LEDs
+                   Micro-LED                                           Micro-LEDs
+                                                                                                                                 150
+
+
+
+
+                                                                                                                                     Irradiance (mW mm–2)
+                                                                                                                                                                                    50
+                                                                                                                                                                                    100                                              50
+                                50                                                                                                                                                   150                                             100
+                                 100                                                                  50                                                                                                                             150
+                                   150                                                                100
+                                                                                                       150
+                                                                                                                                                                                   L1                                         L5
+                                                                                                                                                               1 mm
+                                                                                                                                 1                                                                                                                                              1 mW mm–2
+                               Cerebrospinal fluid
+    Epidural fat                                                                                      mW mm–2                                                  Motoneuron pools:   Iliopsoas                     Tibialis anterior                                              boundaries
+                               1 mm
+
+c                                                                                      d                                                                                                                                                                          Amplitude
+                                                                                                                                                                                                                                                                  ankle joint
+
+                                                        Thy1::ChR2                                    L2                                                                                                                             80                                  ***
+
+
+
+
+                                                                                                                                                                                        0 .2 V
+                                                                                       Rostral site
+
+
+
+                                      Hanging on
+
+
+
+
+                                                                                                                                                                                                                                Degrees
+                                      a body-weight
+                                      support system                                                                                                                                    10 ms
+
+
+    Kinematic
+                                                                                                                                                                                                   (TA) muscle
+    tracking for                                                                                                                                                                                                                             0
+                                                                                                      L5                                                                                            response
+    joint angle                                                                                                                                                                                                                                                Rostral     Caudal
+    analysis
+                                                                                         Single-pulse stimulation, 15 mA, 5 ms
+                                                                                                                                                                                                                                                                  Muscle response
+                                                                                                                                                                                                                                      1
+                                                                                                      L2
+                                                                     Flexor
+                                                                     (tibialis
+
+
+
+
+                                                                                                                                                                                                                               Normalized
+                                                                     anterior)
+                                                                                       Caudal site
+
+
+
+
+                                                                                                                                                                                    0 .2 V
+
+
+
+
+                                                                                                                                                                                                                                                                                      ***
+                                                                                                                                                                                        10 ms
+
+
+
+                                                                                                                                                                                                                                      0
+                                                                                                      L5                                                                                                                                                             5    10 15      20
+                                                                                                                                                                                                                                                                         (mA)
+
+e        Modelling: red vs blue                         f   Motoneuron activation
+                                                                                                                                                                                                                                                              Fos expression
+                                                            30 min light stimulation                                                                                                                                                          2.5
+             Micro-LEDs                                                                                                                                                                                                                                                    ***
+                                                                                      50
+                                                                                                             ChR2 470 nm
+
+
+
+
+                                                                                       100
+                          50                                                             150
+                           100
+                            150
+                                                                                                                                                                                                                                       Pixel intensity (AU)
+
+
+
+
+                                                               Motoneurons
+                                                                                                                                                               ChR2                fos                                Merge
+             Micro-LEDs
+                                                        1 mm
+                                                                                                             Chrimson 620 nm
+
+
+
+
+                                                                                 FISH fos
+
+                               50
+
+                               100
+                                                                                                                               20 µm                                                                                                                          0
+                          150                                                                                                                               Chrimson               fos                                Merge
+                                                                                                                                                                                                                                                                   nm
+
+
+                                                                                                                                                                                                                                                                           nm
+                                                                                                                                                                                                                                                                  0
+
+
+                                                                                                                                                                                                                                                                          0
+                                                                                                                                                                                                                                                              47
+
+
+                                                                                                                                                                                                                                                                         62
+
+
+
+
+                          mW mm–2
+
+g                                                            Step height
+                          Control
+                         (no light)                                                                                              Activation increases step height                                          Silencing decreases step height
+                                              1.8              ***                                                                        470 nm LED on, 5 ms, 10 mA                                              620 nm LED on, 4 s, 10 mA
+
+
+                         Activation
+                          (470 nm)                                                     Average
+                                                                                                                                                                                        1 cm
+
+
+
+
+                       2 LED/4 LED                                                    step height
+                                          Height (cm)
+
+
+
+
+                                                                                        stim. off                                                                                           1 cm
+                                                                                              Left flexor
+                                                                                               muscle
+                                                                                                50 µV
+
+
+
+
+                                                                                                                                                                                                 50 µV
+
+
+
+
+                         Silencing
+                          (620 nm)
+                       2 LED/4 LED
+
+
+                                              0.5                                                               0.5 s                                                                                    0.5 s
+ vGluT2 Cre
+
+
+Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology                                                                                                                                                                                          203
+Articles                                                                                                            NAturE BIOtEchnOLOgy
+
+   This technology opened the possibility of achieving two-color                  mouse was walking freely along a straight corridor without any con-
+optogenetic activation and inhibition of targeted cell populations,               straint (Fig. 5d). The parameters for closed-loop photostimulation
+which we tested in mice coexpressing ChR2 (470 nm) and Jaws26                     were configured on the tablet, but the control algorithm ran on the
+(600 nm) in vGlut2ON neurons (Fig. 3g and Extended Data Fig. 7).                  wearable platform. On-chip operations enabled closed-loop photo-
+We prepared a micro-LED array with two spectrally distinct light                  stimulation with latencies as low as 15 ms (Extended Data Fig. 3).
+emission channels at two spatially distinct rostrocaudal positions. In            The control algorithm automatically delivered a brief single pulse
+the same mouse, blue-light activation of vGlut2ON neurons elicited                of photostimulation (10 ms) each time a new burst of EMG activ-
+strong muscle responses, whereas inhibition of vGlut2ON neurons                   ity was detected in the tibialis anterior muscle (Fig. 5c). Ultrafast
+with red-shifted light reduced the vigor of locomotor movements                   EMG-triggered photostimulation induced a systematic and repro-
+(n = 3 mice; Fig. 3g).                                                            ducible reduction of step length without impeding the continuous
+                                                                                  progression of the mice (Fig. 5d and Supplementary Video 4).
+Guideline for efficient and safe spinal cord photostimulation.
+The reliable activation of opsins such as Jaws that drive hyperpolar-             Contribution of specific neurons and pathways to movement.
+ization in neurons requires the delivery of sustained photostimula-               We finally deployed a series of in vivo experiments to demonstrate
+tion. Duty cycles with extended stimulation ON times can lead to                  the unprecedented versatility of our wireless optoelectronic system
+tissue heating, which alters neuronal responses20. We assessed these              in interrogating key components of the locomotor circuitry in
+thermal constraints comprehensively.                                              ecological environments or after neurological injury.
+    We performed simulations to predict the diffusion of heat in                      We asked whether the optoelectronic system could modulate
+the spinal cord depending on the irradiance and duty cycle of                     descending pathways, even if the axons were confined to poorly
+photostimulation (Fig. 4a). Second, we measured the temperature                   accessible regions of the white matter. We used intersectional genet-
+directly within the posterior gray column of the spinal cord across               ics to express Jaws along the entire extent of axons originating from
+the functional range of current intensities (Fig. 4b, Extended                    neurons of the reticular formation that establish synapses within the
+Data Fig. 8 and Supplementary Video 3). These simulations and                     lumbar gray matter (Extended Data Fig. 9). These axons extend in
+measurements identified time windows and temporal delays                          the poorly accessible lateral and ventral columns of the white matter,
+between experiments to avoid alterations of neuronal responses                    and terminate into ventral regions of the spinal cord. The reticular
+and tissue damage.                                                                formation contributes to the production of locomotion and regula-
+    To confirm these findings, we continuously illuminated the                    tion of posture22,29. Sudden silencing of reticulospinal fibers during
+spinal cord of opsin-free mice with light of increasing intensity                 unconstrained locomotion arrested leg movements. This interrup-
+while the animals were stepping on a treadmill. To avoid inter-                   tion lasted as long as the photostimulation was turned on (Fig. 6b,c
+ference from volitional modifications of leg movements, we con-                   and Supplementary Video 5). This result was unexpected, because
+ducted these experiments in mice with complete spinal cord injury.                such deficits were not detected when we silenced reticulospinal
+We activated lumbar locomotor centers below the injury with a                     neurons using chemogenetics, which is a comparatively slow-acting
+seroto­nergic pharmacotherapy that enabled automated stepping                     method22. Therefore, we sought to replicate these observations
+without any contribution by the brain27. Clear locomotor deficits                 when silencing the corticospinal tract (Fig. 6d and Extended Data
+emerged during photostimulation. The extent of these deficits                     Fig. 9). Previous studies showed that chemogenetic silencing22 or
+augmented with increasing time and radiant intensity (Fig. 4c and                 ablation30 of this pathway does not affect basic walking29. We found
+Supplementary Video 3).                                                           that the silencing of corticospinal tract fibers in the lumbar spinal
+    These results establish a guideline for light-delivery parameters             cord during basic walking induced moderate paw dragging and
+that enable reliable interrogation of spinal circuits in mice.                    trunk instability (Fig. 6e, Extended Data Fig. 9 and Supplementary
+                                                                                  Video 5). These deficits resonate with the expected role of the cor-
+Ultrafast closed-loop control of photostimulation. We next                        ticospinal tract during walking in humans31. Together, these results
+sought to illustrate the capabilities of our optoelectronic system                emphasized the importance of fast perturbation dynamics for inter-
+for closed-loop photostimulation. We implemented a paradigm                       rogating neural circuits.
+typically used in behavioral experiments and neuroprosthetic appli-                   We next aimed to demonstrate the ability of our optoelectronic
+cations, wherein the onset of a burst of muscle activity instantly                system to manipulate deeply located interneurons in ecological
+triggers photostimulation28. We conducted this experiment in                      conditions. We expressed ChrimsonR or Jaws into Vsx2-expressing
+Thy1-ChR2 mice, which were implanted with a micro-LED array                       interneurons (Extended Data Fig. 10), which are involved in left–
+targeting lumbar segments (Supplementary Video 4).                                right alternation and locomotor vigor32. The sudden activation or
+    We interfaced four pairs of thin wires and one reference (ground)             inhibition of Vsx2-expressing interneurons during unconstrained
+wire with the wearable platform to acquire differential recordings of             swimming disrupted interlimb coordination (Fig. 6f–h and
+electromyographic (EMG) activity from chronically implanted leg                   Supplementary Video 5).
+muscles. EMG signals were sampled at 8 kS s−1 (per channel) with                      Sensory feedback pathways are essential components of the
+an analog bandwidth of 3.2 kHz (Fig. 5a,b). The signals were then                 circuits that produce locomotion, in particular after injury33. To
+conditioned on-chip to remove mains interference, apply a band-                   illustrate the ability of the optoelectronic system to modulate these
+pass filter (100–1,000 Hz) and down-sample to 2 kS s−1. The pro-                  pathways, we expressed Jaws in proprioceptive neurons located in
+cessed signals were displayed in real time on the tablet while the                the dorsal root ganglia of mice with complete spinal cord injury
+
+
+Fig. 4 | Guideline for effective yet safe spinal cord photostimulation. a, Simulation of heat diffusion in spinal cord tissue with photostimulation protocols
+eliciting activation of ChR2 (25% duty cycle) or Jaws (95% duty cycle). b, In vivo measurement of heat using a temperature probe inserted in the dorsal
+horn during photostimulation, with the settings necessary to target ChR2 (top: 25% duty cycle, wavelength 470 nm, two LEDs) or Jaws (bottom: 95%
+duty cycle, wavelength 620 nm, two LEDs). The plots (and zoom-in windows) report the changes in temperature over time for three levels of intensity.
+c, Wild-type mice with complete spinal cord injury stepping on a treadmill after the reactivation of the lumbar spinal cord with serotonergic agonists. The
+spinal cord is illuminated for 10 s, at various intensities. Kinematic recordings are converted into a series of gait feature quantifications that are submitted
+to a principal component analysis. Locomotor performance is evaluated as the score on principal components 1 and 2. The plot reports the changes in
+locomotor performance over time for each tested photostimulation intensity (n = 3 mice).
+
+204                                                               Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                                                                                                                          Articles
+(Extended Data Fig. 10). All the paralyzed mice exhibited robust                                                                an unexpected augmentation in the vigor of locomotor move-
+locomotion in response to the serotonergic pharmacotherapy.                                                                     ments, which led to an increase in step height associated with an
+Sudden silencing of proprioceptive feedback circuits mediated                                                                   extended duration of bursts in ankle flexor muscles (Fig. 6k and
+
+                            a                                                                     Micro-LEDs                                                                                                     >40
+
+
+
+
+                                (required for neuronal
+                                   Duty cycle 25%
+
+                                      activation)
+
+
+
+
+                                                                                                                                                                                                                 Predicted temperature (°C)
+                                                                             6 mA                                        12 mA                                                           18 mA
+                                neuronal inhibition)
+                                 Duty cycle 100%
+                                   (required for
+
+
+
+
+                                                                                                                                                                                                                 37
+
+
+                                                            1 mm
+
+                            b                                                                                                                                                  Duty cycle 25%
+                                                                                            Continuous temperature                                                    (required for neuronal activation)
+                                                                                                  measurement                                 8                                          3
+
+                                                                         35
+
+
+                                                                                                                                Temperature increase (°C)
+                                                                                                  Light ON
+                                                                     Temperature (°C)
+
+
+
+
+                                                                                                                                                                     ∆T > 1 °C                      ∆T > 1 °C
+                                                             L1
+
+
+
+
+                                                                                                       95% DC
+                                                                                                     100 mW mm–2
+                                                                         30
+                                                                                                                                              0                                            0
+                                                                                        0       10               30                                                 10       20     30                   5      10
+                                                                                                     Time (s)
+                                                                                                                                                                         Time (s)                   Time (s)
+
+
+                                                                                                                                                                                 Duty cycle 95%
+                                                                                                                                                                         (required for neuronal inhibition)
+                                                                                                        Temperature
+                                                                                                        probe                                          8                                  5
+                                                                                                                                       Temperature increase (°C)
+
+
+
+
+                                                                                                                                                                     ∆T > 1 °C                     ∆T > 1 °C
+
+
+
+
+                                                                                               Micro-LED array
+
+
+
+                                                             L4
+
+                                                                                                                mA                                     0                                   0
+                                                                                                                                                                    10      20      30                 5        10
+                                                                                                          6     12       18
+                                                                                               470 nm                                                                    Time (s)                   Time (s)
+                                                                                               620 nm
+
+
+                            c
+                                                                                                                                                                   2 s.d.                Alteration of gait
+                                                         Wild-type mouse
+                                                                                                                 mA      Time                                      1 s.d.
+                                                    complete thoracic transection
+                                                                                                                         10 s
+                                                                                                                 18
+                                                                                                                         0s
+
+                                                                                                                 16
+
+
+                                                                                              5-HT agonists
+                                                                                                                 14
+                                                                                                + vertical
+                                                                                                 support
+
+                                                                                                                 12
+
+
+
+                                                                                                                 10
+                                                         620-nm LED on for 10 s
+
+                                                                                                                     8
+
+                                                                                                                 No stim
+
+                                                                                                                 20                                                      0                                      –35
+                                                                                                                                                Score on principal components 1 and 2
+
+
+Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology                                                                                                                                                        205
+Articles                                                                                                                                                   NAturE BIOtEchnOLOgy
+
+Supplementary Video 5). These behavioral responses were tran-                    This counterintuitive response could not be predicted from previ-
+sient, because the increase in step height only lasted for six to ten            ous genetic ablation experiments of proprioceptive afferents that
+steps before the mice collapsed.                                                 reported sustained gait deficits after the loss of proprioception33,37.
+                                                                                 Although the mechanisms underlying these transient responses
+Discussion                                                                       require further investigation, our results stress the importance of
+We resolved the challenges underlying the conception of a chronic                fast perturbation dynamics to interrogate the function of spinal
+optoelectronic system that enables the safe, long-term, closed-loop              circuits involved in the production of motor behaviors.
+photostimulation of any targeted neurons or pathways throughout
+the mouse spinal cord, under untethered, unrestricted and ecologi-
+cal conditions. We also established a guideline for spinal cord opto-
+genetics in mouse models to conform epidural implants to spinal                  a                                                                                                            3. Send stimulation program
+                                                                                                                                       2. Adapt the                                           to the platfrom
+cord statics and dynamics, optimize LED positioning and avoid                                                                          trigger to the ‘live’
+                                                                                                                                       muscle response
+tissue heating that alters neuronal responses.                                                                  1. Setup stimulation
+                                                                                                                                                                                                  Thy1::ChR2
+
+    When designing this system, we aimed to include all the desired                                             pattern & trigger                                                                         4. Automated closed-loop
+                                                                                                                                                                                                         delivery of photostimulation
+features of spinal cord optogenetics. We conceived a system wherein                                                                                                                                                 based on muscle
+                                                                                                                                                                                                                              activity
+a conformable array accommodates tailored configurations of                       Trigger
+micro-LEDs with customizable emission spectra, allowing con-                      setup
+
+current multicolor illuminations of targeted neuronal populations                                                                                                          Subcutaneous
+                                                                                                                                                                           EMG wire
+distributed across various locations of the spinal cord, including                                                   Control tablet
+deep regions. This versatility befits the functional interrogation of            EMG
+any targeted neurons within the dorsal root ganglia or spinal cord,              preview
+                                                                                 4 channels
+as well as any white matter-embedded axons from any targeted                                                                                             Tibialis
+                                                                                                                                                         anterior
+neuronal pathways.                                                               Trigger
+                                                                                 preview
+                                                                                                                                                         implanted
+                                                                                                                                                         with a pair of wires
+    With few exceptions, functional interrogation of spinal pathways                                                                                     to record muscle
+                                                                                                                                                         EMG activity
+has been limited to permanent ablations or slow-acting manipula-
+tions, such as chemogenetics34 (minutes to hours) or conditional cell                                                                               Ban-pass-filtered EMG                                  Fs = 2,000 Hz
+ablations35 (weeks or longer). Our system allowed us to perform a
+                                                                                      100 µV
+
+
+
+
+series of experiments that revealed the incompatibility of these tim-
+escales with the study of dynamic circuit interactions, which emerge
+within millisecond windows. For example, we previously showed
+that chemogenetic silencing of excitatory reticulospinal or cortico-
+spinal tract neurons had no detectable impact on locomotor control                                                                               Closed-loop control software
+in intact mice22. Instead, we found that the sudden silencing of these           c                    4×
+descending pathways within lumbar segments led to clear gait defi-                                          50/60 Hz              1 kHz             100 Hz                                        Envelope
+cits, which depended on the specifically targeted pathway. The sud-                   EMG
+                                                                                                                                                                                    yi(n)
+                                                                                                                                                                                                                                       Tablet
+                                                                                                                                                                                                                                       preview
+den silencing prevents redundant systems from compensating for                            x [k]
+                                                                                                      –1
+                                                                                                                                                                             4
+                                                                                                                                                                                 2 kS s–1
+                                                                                                                                                                                                                             8         4 × 250 kS s–1
+                                                                                     8 kS s
+the missing inputs, which probably occurs during slow-acting inter-                                                                                                                                                                        Flash
+ventions36. It is also possible that the silencing within the spinal cord            2×                                                                                                                                                    4 × 2 kS s–1
+
+leads to incongruent commands, especially from cortical neurons                                                                                Else                 Idle             z(n) > Vh           Trigger                       Trigger
+                                                                                                                                                                                                                                       LED
+that multiplex executive commands through various descending                            y0(k)
+                                                                                                                           7
+                                                                                                                                                                                                         th = Th
+                                                                                                                                                                                                                                       pulse
+pathways, in addition to direct inputs to the spinal cord. In the same                  y 1(k)
+                                                                                        y 2(k)
+                                                                                                                           Σ(yj(k))2
+                                                                                                                           k=0
+                                                                                                                                                 z(n)   tl = 0 or          th = 0           th = 0
+
+
+vein, we observed an unexpected increase in the amplitude of loco-                      y3(k)                                                                      dt low
+                                                                                                                                                                                      z(n) > Vl
+                                                                                                                                                                                                         dt high              Else
+                                                                                                                                             Else
+motor movements when silencing proprioceptive feedback circuits.                                                Ch-sel
+                                                                                                                                                         th = th-1, tl = tl-1 z(n) < Vl              th = th-1, tl = Tl
+
+                                                                                                                                                                    Set trigger
+                                                                                                      Trigger
+                                                                                                                                         dt high
+Fig. 5 | Ultrafast closed-loop control of photostimulation to alter                                   State:        idle
+                                                                                                                                         dt low                                       state
+
+movement. a, Wireless closed-loop optoelectronic system, including                                    End of hold off (th/tl = 0)
+
+recordings of EMG signals from pair of wires chronically implanted into                                                                                                                                th = 1,500 ms
+
+                                                                                                                                                                                                       tl = 400 ms
+selected muscles and photostimulation. A tablet displays the signals
+and photostimulation events in real time, and allows configuration of the
+                                                                                      2.5 × 10–9 V2
+
+
+
+
+algorithms for closed-loop operations. b, Conditioned (bandpass filter,                                                                                                                                                      Threshold2
+
+mains interference suppression, down-sampling) recording of tibialis                                                                                                                                                     Low threshold2
+anterior activity. c, Signal conditioning and flow chart of the closed-loop                                1s
+algorithm to determine the timing of photostimulation: the sum of the                                                                                                                                                    Step length
+                                                                                 d
+square values of eight consecutive samples (2 kS s−1) is taken as a                                                                                                                                                 4                ***
+short-term signal power measure z[n]. A stimulation is triggered for
+z[n] > Vh, then a timer set to th ensures that there is no further stimulation
+event for th ms—except, if the signal power z[n] falls for longer than
+tl under Vl. Signal power measures z[n] and algorithm state for given                                                            Step length
+                                                                                                                                                                                                           Length (cm)
+
+
+
+
+threshold and hold-off times. d, Thy1-ChR2 mouse walking freely while                Foot trajectories
+                                                                                     Control/stim.: off                                                                 Stim.: on
+a single-pulse (10 ms) of blue light (470 nm, two LEDs) is delivered over
+lumbar segments each time a burst of EMG activity is detected in the
+tibialis anterior muscle. Successive foot trajectory (toe marker) during
+                                                                                                                                                               0.5 cm
+
+
+
+
+walking without and with photostimulation (Stim.). Bar graph reporting
+the step length for both conditions (n = 4 mice, two-sided, paired Student’s                                                                                                                                        0
+                                                                                                                                                                                                                           Control Stim.
+t-test, ***P < 0.0207, mean ± s.e.m.).                                                                                                              1 cm
+                                                                                                                                                                                                                          stim.: off on
+
+
+
+206                                                              Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                                                                                                                                                                                                     Articles
+        a                                                                            b                                                 Silencing reticulospinal tract projections                                d                                         Silencing corticospinal tract projections
+                                                                                                                                      620-nm LED on, 4 s, 10 mA                                                                                           620-nm LED on 4 s, 10 mA
+            Corticospinal                                           PVON
+                tract                                             dorsal root
+                                                                   neurons
+            Reticulospinal
+                 tract
+
+                                                     V2a
+
+
+
+
+                                                                                     1 cm
+                                                     interneurons
+            Supraspinal
+            pathways                             Spinal networks                                1 cm                                                      Complete paralysis                                                                                         Paw dragging
+
+
+                                                                                                    0.5 s                                                                                                            0.5 s
+
+                                                                                      c                                               Paw dragging                                           Step height         e                                        Paw dragging                                                                  Balance
+
+                                                                                                                        100               ***                                        0.8       ***                                               80
+                                                                                                                                                                                                                                                                                                                                            ***
+                                                                                                                                                                                                                                                            ***                                               15
+
+
+
+
+                                                                                                                                                                                                                     Duration of the swing (%)
+                                                                                                                                                            Normalised height (AU)
+                                                                                                     Duration of swing (%)
+
+
+
+
+                                                                                                                                                                                                                                                                                                Variability of trunk
+                                                                                                                                                                                                                                                                                                    oscillation
+                                             Proprioceptive feedback
+                                                                                                                             0                                                        0                                                           0                                                                0
+
+
+        f                                                                             g                                                                 Silencing V2a interneurons                                                                                                     Activating V2a interneurons
+             Spinal injections            Implantation of            Tissue                                                                      620-nm LED on, 4 s, 10 mA                                                                                                       590-nm LED on, 5 ms, 25 Hz, 10 mA
+                of viruses               micro-LED array            analysis                                                                                    Loss of rigor                                                                                                             Loss of coordination
+              Vsx2-Cre mice                                                                                                                                  and coordination
+
+                       0w                       4w                    6w
+                                                                                              Right leg
+
+
+
+
+                                                        Testing
+
+
+                                                                                                                                                                                                                                                                                  Missing stroke
+
+                                                                  Water
+                                                                                              Left leg
+
+
+
+
+        h        LED off                 LED on                 LED on
+                 Control                Inhibition             Activation
+               Out of phase            Out of phase           Out of phase
+                                                                                                             0
+                                                                                     Leg oscillations
+
+
+
+
+                                                                                                –50
+                                                                                           (°)
+
+
+
+
+                 In phase                In phase                 In phase
+                                                                                                                             0.5 s               Stim. on                                                                                         0.5 s                          Stim. on
+
+        i       Sciatic nerve            Implantation of                         j                                                                                                     Silencing proprioceptive neurons
+                                                                                                                                                                                                                                                               k                      Step length                                            Step height
+                                                                                                                                                                                                                                                                             1.6                                              2.0
+                 injections             micro-LED array              Tissue                                                                                                                                                                                                                 *                                                     *
+                                                                                                                                                                                                                                                              Distance (norm.)
+
+
+
+                  of virus                and complete              analysis                                                                                                          620-nm LED on, 4 s, 10 mA
+
+
+
+
+                                                                                                                                                                                                                                                                                                                       Height (norm.)
+                PV Cre mice             spinal cord injury                                                                                                                                    Increased step height
+
+                       0                       4w                     7w
+
+                                                      Training and                                                                                                                                                                                                           1.0
+                                                         testing                                                                                                                                                                                                                                                              1.0
+                                                                                     1 cm
+
+
+
+
+                                                                                                                                                                                                                                                                                  Analysis of tibialis anterior muscle activity
+                                                                                                 1 cm                                                                                                                                                                               Burst duration              Burst amplitude
+                                                                                Flexor (mV)                                                                                                                                                                                800           ***              2.5        **
+             Body-
+                                                                                                                                                                                                                                                                                                                           Amplitude (mV)
+
+
+
+
+             weight
+                                                                                                                                                                                                                                                              Duration (ms)
+                                                                                                               0.5
+
+
+
+
+             support
+
+                                                                                Left stance
+                                                                                Right stance
+                           Paralyzed                     5-HT agonists                                                           1s                                                                                                                                               0                                                     0
+
+
+
+Fig. 6 | Contribution of specific neurons and pathways to movement. a, Schematic showing the anatomical location of neurons and neural pathways that
+we targeted using intersectional genetics. b, Reconstructed sequence of leg kinematics during walking while a red-shifted light (four LEDs) is delivered
+over the spinal cord to silence reticulospinal tract projections. The occurrence of stance phases and paw dragging events is displayed for both legs below
+leg kinematics. c, Bar plots reporting gait parameters most affected by the silencing of reticulospinal fibers (n = 3 mice; two-sided, unpaired Student’s
+t-test, ***P < 0.0001, mean ± s.e.m.). AU, arbitrary units. d, Reconstructed sequence of leg kinematics during walking while delivering a red-shifted light
+(four LEDs) over the spinal cord to silence corticospinal tract projections. The occurrence of stance phases and paw-dragging events is displayed for both
+legs below leg kinematics. e, Bar plots reporting gait parameters most affected by the silencing of corticospinal tract fibers (n = 3 mice; two-sided, unpaired
+Student’s t-test, ***P < 0.0001, mean ± s.e.m.). f, Timeline of experiments for targeted expression of Jaws (inhibition) or Chrimson (activation) in V2a
+interneurons (w indicates weeks). The photograph shows kinematic recordings during swimming along a water corridor. g, Reconstructed sequence of left
+and right leg kinematics during swimming are shown together with the oscillations of both legs. Gray shared areas indicate the occurrence of a stroke. V2a
+interneurons were silenced or activated with sudden photostimulation over the lumbar spinal cord (620 nm/590 nm, four LEDs). h, Polar plot reporting
+the coordination between left and right strokes during swimming under the different experimental conditions (n = 3 mice). i, Timeline of experiments for
+targeted expression of Jaw in PVON neurons of the dorsal root ganglia in mice. j, Reconstructed sequence of leg kinematics during stepping together with
+EMG activity of the tibialis anterior muscle while suddenly delivering a red-shifted light (four LEDs) delivered over the spinal cord to silence proprioceptive
+neurons. k, Bar plots reporting the step length, step height and features of tibialis anterior EMG activity (n = 3 mice; two-sided unpaired Student’s t-test,
+*P < 0.05, **P < 0.01, ***P < 0.001, mean ± s.e.m.).
+
+Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology                                                                                                                                                                                                                                                               207
+Articles                                                                                                                      NAturE BIOtEchnOLOgy
+
+   Clinical trials have started assessing the safe use of opsins for                    17. Wang, Y. et al. Flexible and fully implantable upconversion device for wireless
+treating neurological deficits in patients38. As the spinal cord is a                       optogenetic stimulation of the spinal cord in behaving animals. Nanoscale 12,
+                                                                                            2406–2414 (2020).
+primary target of optogenetic-based therapies, clinical optogenetics                    18. Minev, I. R. et al. Electronic dura mater for long-term multimodal neural
+will trigger a surge of interest in medical devices capable of illumi-                      interfaces. Science 347, 159–163 (2015).
+nating the spinal cord2. In this respect, our wireless optoelectronic                   19. Mondello, S. E. et al. Optogenetic surface stimulation of the rat cervical
+system obeys the key principles underlying the ecological design of                         spinal cord. J. Neurophysiol. 120, 795–811 (2018).
+                                                                                        20. Owen, S. F., Liu, M. H. & Kreitzer, A. C. Thermal constraints on in vivo
+medical devices39, thus opening a pathway to develop systems for
+                                                                                            optogenetic manipulations. Nat. Neurosci. 22, 1061–1065 (2019).
+the human spinal cord.                                                                  21. Schönle, P. et al. A multi-sensor and parallel processing SoC for miniaturized
+                                                                                            medical instrumentation. IEEE J. Solid-State Circuits 53, 2076–2087 (2018).
+Online content                                                                          22. Asboth, L. et al. Cortico-reticulo-spinal circuit reorganization enables
+Any methods, additional references, Nature Research report-                                 functional recovery after severe spinal cord contusion. Nat. Neurosci. 21,
+                                                                                            576–588 (2018).
+ing summaries, source data, extended data, supplementary infor-                         23. Deisseroth, K. Optogenetics: 10 years of microbial opsins in neuroscience.
+mation, acknowledgements, peer review information; details of                               Nat. Neurosci 18, 1213–1225 (2015).
+author contributions and competing interests; and statements of                         24. Zhang, F. et al. The microbial opsin family of optogenetic tools. Cell 147,
+data and code availability are available at https://doi.org/10.1038/                        1446–1457 (2011).
+s41587-021-01019-x.                                                                     25. Klapoetke, N. C. et al. Independent optical excitation of distinct neural
+                                                                                            populations. Nat. Methods 11, 338–346 (2014).
+                                                                                        26. Chuong, A. S. et al. Noninvasive optical inhibition with a red-shifted
+Received: 19 October 2020; Accepted: 14 July 2021;                                          microbial rhodopsin. Nat. Neurosci. 17, 1123–1129 (2014).
+Published online: 27 September 2021                                                     27. Courtine, G. et al. Transformation of nonfunctional spinal circuits into
+                                                                                            functional states after the loss of brain input. Nat. Neurosci. 12, 1333–1342
+References                                                                                  (2009).
+1. Deisseroth, K. Optogenetics. Nat. Methods 8, 26–29 (2011).                           28. Wenger, N. et al. Spatiotemporal neuromodulation therapies engaging muscle
+2. Won, S. M., Song, E., Reeder, J. T. & Rogers, J. A. Emerging modalities and              synergies improve motor control after spinal cord injury. Nat. Med. 22,
+    implantable technologies for neuromodulation. Cell 181, 1–21 (2020).                    5–7 (2016).
+3. Roy, A. et al. Optogenetic spatial and temporal control of cortical circuits on      29. Kiehn, O. & Dougherty, K. Locomotion: circuits and physiology. in
+    a columnar scale. J. Neurophysiol. 115, 1043–1062 (2016).                               Neuroscience in the 21st Century: From Basic to Clinical 1209–1236 (Springer
+4. Jeong, J. W. et al. Wireless optofluidic systems for programmable in vivo                New York, 2013). https://doi.org/10.1007/978-1-4614-1997-6_42
+    pharmacology and optogenetics. Cell 162, 662–674 (2015).                            30. Bieler, L. et al. Motor deficits following dorsal corticospinal tract transection in
+5. Kim, T. II et al. Injectable, cellular-scale optoelectronics with applications for       rats: voluntary versus skilled locomotion readouts. Heliyon 4, e00540 (2018).
+    wireless optogenetics. Science 340, 211–216 (2013).                                 31. Barthélemy, D., Grey, M. J., Nielsen, J. B. & Bouyer, L. Involvement of the
+6. Montgomery, K. L. et al. Wirelessly powered, fully internal optogenetics for             corticospinal tract in the control of human gait. Progr. Brain Res. 192,
+    brain, spinal and peripheral circuits in mice. Nat. Methods 12, 3–5 (2015).             181–197 (2011).
+7. Qazi, R. et al. Wireless optofluidic brain probes for chronic neuropharmacology      32. Crone, S. A., Zhong, G., Harris-Warrick, R. & Sharma, K. In mice lacking
+    and photostimulation. Nat. Biomed. Eng. 3, 655–669 (2019).                              V2a interneurons, gait depends on speed of locomotion. J. Neurosci. 29,
+8. Shin, G. et al. Flexible near-field wireless optoelectronics as aubdermal implants       7098–7109 (2009).
+    for broad applications in optogenetics. Neuron 93, 509–521.e3 (2017).               33. Takeoka, A., Vollenweider, I., Courtine, G. & Arber, S. Muscle spindle
+9. Montgomery, K. L., Iyer, S. M., Christensen, A. J., Deisseroth, K. & Delp, S. L.         feedback directs locomotor recovery and circuit reorganization after spinal
+    Beyond the brain: optogenetic control in the spinal cord and peripheral                 cord injury. Cell 159, 1626–1639 (2014).
+    nervous system. Sci. Transl. Med. 8, 337rv5–337rv5 (2016).                          34. Roth, B. L. DREADDs for neuroscientists. Neuron 89, 683–694 (2016).
+10. Gutruf, P. & Rogers, J. A. Implantable, wireless device platforms for               35. Ruedl, C. & Jung, S. DTR-mediated conditional cell ablation—progress and
+    neuroscience research. Curr. Opin. Neurobiol. 50, 42–49 (2018).                         challenges. Eur. J. Immunol. 48, 1114–1119 (2018).
+11. Xue, Y. et al. A wireless closed-loop system for optogenetic peripheral             36. Yizhar, O., Fenno, L. E., Davidson, T. J., Mogri, M. & Deisseroth, K.
+    neuromodulation. Nature 565, 361–365 (2018).                                            Optogenetics in neural systems. Neuron 71, 9–34 (2011).
+12. Michoud, F. et al. Epineural optogenetic activation of nociceptors initiates        37. Takeoka, A. & Arber, S. Functional local proprioceptive feedback circuits
+    and amplifies inflammation. Nat. Biotechnol. 39, 179–185 (2020).                        initiate and maintain locomotor recovery after spinal cord injury. Cell Rep.
+13. Caggiano, V., Sur, M. & Bizzi, E. Rostro-caudal inhibition of hindlimb                  27, 71–85.e3 (2019).
+    movements in the spinal cord of mice. PloS ONE 9, 100865 (2014).                    38. Yun, S. H. & Kwok, S. J. J. Light in diagnosis, therapy and surgery.
+14. Lu, C. et al. Flexible and stretchable nanowire-coated fibers for optoelectronic        Nat. Biomed. Eng. 1, 0008 (2017).
+    probing of spinal cord circuits. Sci. Adv. 3, e1600955 (2017).                      39. Courtine, G. & Bloch, J. Defining ecological strategies in neuroprosthetics.
+15. Park, S. II et al. Soft, stretchable, fully implantable miniaturized                    Neuron 86, 29–33 (2015).
+    optoelectronic systems for wireless optogenetics. Nat. Biotechnol. 33,
+                                                                                        Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in
+    1280–1286 (2015).
+                                                                                        published maps and institutional affiliations.
+16. Samineni, V. K. et al. Fully implantable, battery-free wireless optoelectronic
+    devices for spinal optogenetics. Pain 158, 2108–2116 (2017).                        © The Author(s), under exclusive licence to Springer Nature America, Inc. 2021
+
+
+
+
+208                                                                    Nature Biotechnology | VOL 40 | February 2022 | 198–208 | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                                Articles
+Methods                                                                               Animal models. Experiments were conducted on adult male or female C57BL/6
+Micro-LED array fabrication. The fabrication of the micro-LED array is                mice (body weight 18–35 g, age 8–25 weeks). Thy1-ChR2 (Jackson Laboratory,
+illustrated in Extended Data Fig. 2a. The fabrication started with the spin-coating   catalog no. 12350), vGluT2 Cre (Jackson Laboratory, catalog no. 016963),
+of a 2.4-µm-thick layer of poly(imide) (HD Microsystems GmbH, catalog                 Parvalbumin Cre (Jackson Laboratory, catalog no. 017320) and Vsx2 Cre
+no. PI2610) on a 4-inch silicon wafer coated with Ti/Al layers (5/100 nm).            (MMMRRC 36672, also called Chx10 Cre) transgenic mouse strains were used
+After curing of the poly(imide) (2 h at 300 °C in an N2 oven), a Ti/Au/Ti film        and maintained on a mixed genetic background (C57BL/6). Housing, surgery,
+(5/250/5 nm) was sputtered after O2 plasma surface activation (Alliance Concept,      behavioral experiments and euthanasia were performed in compliance with the
+catalog no. AC450). Photolithography (MicroChemicals, catalog no. AZ1512)             Swiss Veterinary Law guidelines. Animal care, including bladder voiding, was
+and successive wet and reactive-ion etchings (RIEs) patterned the metallization       performed twice daily at the time of the experiment. All procedures were approved
+layer. The latter were encapsulated with a second layer of poly(imide) (2-µm          by the Veterinary Office of the Canton of Geneva.
+thick). The poly(imide)–metal–poly(imide) stack was next patterned with
+photolithography (MicroChemicals, catalog no. AZ9260) and RIE. Then, a SiO2           Viruses and virus production. Viruses used in the present study were either
+layer (15 nm) was sputtered on the patterned poly(imide) structures, followed         acquired commercially or produced locally. The following plasmids were used and
+by the spin-coating of a 20-µm-thick layer of poly(dimethylsiloxane) (PDMS)           detailed sequence information is available as detailed or on request: AAV-Dj-hSyn
+(Sylgard 184, Dow Corning). A third photolithography (MicroChemicals, catalog         Flex mGfp 2A Synaptophysin mRuby (Stanford Vector Core Facility, reference
+no. AZ40XT) and RIE etching of the PDMS revealed the device shape and                 AAV DJ GVVC-AAV-100, titer 1.15 × 1014 GC ml−1), AAV pmSyn1-EBFP-Cre
+defined the micro-LED integration sites. Small bumps of solder paste (~50-µm          (Addgene Plasmid, catalog no. 51507), AAV-Syn-FLEX-ChrimsonR-tdT (Addgene,
+diameter, Chipquik, catalog no. SMDLTLFP10T5) were manually deposited                 catalog no. 62723), AAV-CAG-FLEX-Jaws-KGC-GFP-ER2 (Addgene, catalog
+on the contact pads. Next, micro-LEDs (Cree Inc., catalog no. TR2227) were            no. 84445) and AAV-EF1a-double floxed-hChR2(H134R)-mCherry (Addgene,
+positioned on to these pads using pick-and-place equipment (JFP Microtechnic).        catalog no. 20297). All flexed adeno-associated virus (AAV) vectors used in the
+The wafer was then placed on a hotplate at 165 °C to electrically and mechanically    present study showed transgene expression only on Cre-mediated recombination.
+bond the micro-LEDs. For hermeticity, a 12 wt% solution of poly(isobutylene)          Pseudo-rabies tracing was completed using Bartha strain PRV152 (expressing
+(PIB, Oppanol, BASF) in cyclohexane (Sigma-Aldrich) was drop casted at the            green fluorescent protein (GFP): 4.9 × 109 plaque-forming units ml−1, Princeton
+die surface via pneumatic printing. To target activation of red-shifted opsins, a     University). The injection volumes, coordinates and experimental purpose are
+PDMS–phosphor composite (50 wt%, PhosphorTech, catalog no. OR02 or R620)              described below.
+was printed over PIB-covered blue micro-LEDs. A final encapsulating layer of
+PDMS (60-µm-thick) was printed at the surface of the substrate, placing the           Surgical procedures. General surgical procedures have been described previously
+interconnect’s metallization layer in the mechanical neutral plane. The circuit       in detail22. Surgery was performed under aseptic conditions and under 1–2%
+pads were soldered to copper wires (Cooner wires, catalog no. CZ 1103), then          isoflurane in a flow of oxygen, as general anesthesia, of 0.5–1.0 l min−1. After
+sealed with silicone (Down Corning, catalog no. 734). Finally, the micro-LED          the surgery, the mice were allowed to wake up in an incubator. Analgesia,
+array was released from the wafer by anodic dissolution of the Al layer (2-V bias     buprenorphine (Essex Chemie AG, 0.01–0.05 mg kg−1 subcutaneously) or carprofen
+in a NaCl-saturated H2O solution).                                                    (Rimadyl, 5 mg kg−1) was given twice daily for 2–3 d after surgery.
+
+Wireless recording and stimulation platform. We used two versions of the              Implantation of the micro-LED array. The interlaminar spaces between
+platform. The first version, which did not include recording capabilities, has been   vertebrae T12–T13 and L2–L3 were dissected to expose the exit and entry points,
+described in detail previously12. The second version was a substantially improved     respectively, for the implant. A 6/0 Ethilon suture (Ethicon EMEA, catalog no.
+system that included our customized system-on-chip (SoC)21. It incorporated           MPE697H) was passed through the epidural space from T12–T13 to L2–L3, then
+the LED driver of the previously used front-end chip, but extended far beyond         through the silicone loop of the implant and back through the epidural space.
+in functionality. It featured 9 channels for low-voltage (ExG) signal acquisition,    The implant was slid over the spinal cord by gently pulling both ends of the
+4 current acquisition channels, 32 LED-driving channels, 1 complex impedance          suture rostrally. The connector of the implant was fixed by suturing paraspinal
+measurement channel, 6 electrical neural stimulation channels and a 4 + 1-core        muscles across the connector. The percutaneous connector (16-pin connector,
+MCU. In the wireless unit, the limited pin count of the small head-mounted            Omnetics Connector Corporation, catalog no. A79112-001) and wires were routed
+connector (16-pin connector, Omnetics, catalog no. A79113-001) constrained            subcutaneously to the head. Three screws (PN: AMS120/5B-25, Antrin miniature
+us to interface only four differential ExGs, one differential current-sensing and     specialties) were inserted into the skull, surrounding the percutaneous connector.
+two LED-driving channels. The antenna design was revised and is discussed in          Fresh dental cement was then poured around the screws and connector, and held
+more detail below. The device further features a 256-MB flash storage device          in place until cured. The wireless recording and stimulation platform could easily
+(GigaDevice, catalog no. GD5F4GQ4RCYIG) for long-term recording of raw                be attached to and detached from this connector during behavioral experiments.
+signals and experimental protocols, and a BLE SoC (Nordic Semiconductor,
+catalog no. nRF5283) for wireless connection to an Android tablet PC running a        Spinal injections. For lumbar cord injections, the interlaminar spaces between
+dedicated app.                                                                        T13–L1 and L1–L2 were dissected. Injections were performed using a pulled-glass
+    The customized integrated circuit (IC) SoC was fabricated in 130-nm 1P8M          pipette driven with the nanoliter pump (Nanoliter 2010 injector, World Precision
+CMOS technology with MIM capacitor and SAB resistor options. The 20.8-mm2             Instruments) fixed to a stereotaxic frame. Two injections were made on either side
+chip-die was wire-bonded into a 7 × 7-mm2 169-pin ball-grid-array package,            of the spinal cord per interlaminar space; 50 nl, at a rate of 100 nl s−1, was injected at
+and was thus compatible with standard electronics assembly and soldering work         0.6 mm and 0.3 mm below the dorsal surface of the spinal cord.
+flows. The printed circuit board (PCB) was manufactured in a standard industrial
+technology: 6 copper layers in FR4 with 1.0-mm overall thickness and >75-µm           Brain injections. An incision was made across the skull. For targeting
+features/clearances/drill. Components were placed manually and soldered in a          corticospinal neurons in layer V of the motor cortex, Bregma was identified and a
+reflow oven (5 min, 230 °C maximum), one side at a time. The system was powered       craniotomy 1–2 mm medial and −0.5 mm to 2 mm rostrocaudally was performed
+by a 12- to 35-mA h Li-Ion battery (Guangzhou Markyn Battery Co., Ltd, catalog        with a handheld drill. Then 100-nl injections at 3 nl s−1 were made bilaterally at
+no. GMB031009/GMB501113). This battery enabled 3.5–11 h of operations in              the mediolateral 1.2 mm and 1.7 mm, rostrocaudally at 0 mm, −0.5 mm, −1 mm
+closed-loop mode, assuming an average delivery of two current pulses per second       and −1.5 mm, and dorsoventrally at a depth of 0.5 mm from the brain surface.
+with a duration of 5 ms and an intensity of 15 mA. The headstage can be detached      For targeting descending neurons in the reticulospinal formation, Bregma was
+from the mouse and recharged in between experiments. For longevity, the bonds         identified and a craniotomy 5–6 mm dorsal and 0–2 mm lateral to Bregma was
+across the PCB, connector and battery were reinforced with epoxy, and the whole       performed. Injections, 100 nl, at 3 nl s−1, were made bilaterally at the mediolateral
+device encapsulated in silicone (Dow Corning, catalog no. 730).                       0.3 mm, rostrocaudally at −5.8 mm and −6.2 mm, and dorsoventrally at a depth of
+                                                                                      5.6 mm from the brain surface.
+Design and fabrication of the antenna. We designed a physically small antenna,
+which can be produced in a simple standard industrial PCB technology and              Muscle and sciatic nerve injections. An incision was made in the skin above the
+thus directly integrated into a PCB design. The 3D-microstrip antenna design is       belly of the muscle of interest; 3.5 µl of virus was injected in total per muscle using
+illustrated in Extended Data Fig. 3. We started with a λ/4 antenna folded into a      a 10-µl Hamilton injection syringe. For sciatic nerve injections, an incision was
+square, which was realized with 0.4-mm microstrip traces on the top and bottom        made above biceps femoris. The muscles overlying the sciatic nerve were blunt
+layers and 0.2-mm/0.4-mm through-vias. A row of vias in a defined distance            dissected until the nerve was exposed. Then, 2 µl of virus was injected into the
+(0.2 mm) from the antenna trace acted as the ground plane in the third dimension.     nerve with a 10-µl Hamilton syringe.
+It shielded the antenna from PCB design-specific influences and detuned it
+reproducibly, enabling an electrically smaller antenna. Antenna impedance             Intersectional virus-targeting strategies. For targeting transgene expression
+was matched with a π network to the radiofrequency IC, the exact values for           to motor neurons, an rAAV pmSyn1-EBFP-Cre was injected into the sciatic
+which were found in a series of return loss (S11) measurements and completed          nerve and an AAV5 Syn-FLEX-ChrimsonR-tdT or AAV5 EF1a-double
+with antenna gain measurements in the anechoic chamber. Antenna radiation             floxed-hChR2(H134R)-mCherry into the lumbar spinal cord. For targeting vGlut2
+characteristic measurements are reported in Fig. 1g.                                  interneurons in the spinal cord, an AAV5 CAG-FLEX-Jaws-KGC-GFP-ER2 and/or
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                                                                                       NAturE BIOtEchnOLOgy
+AAV5 Syn-FLEX-ChrimsonR-tdT was injected into the lumbar spinal cord. For                  (50 mg ml−1). Mice were transcardially perfused with phosphate-buffered saline
+targeting the reticulospinal or corticospinal tract, an AAV5 pmSyn1-EBFP-Cre               (PBS) followed by 4% paraformaldehyde in PBS. Tissue was removed and
+was injected into the reticular formation or layer V motor cortex, combined with           post-fixed for 24 h in 4% paraformaldehyde before being transferred to PBS or
+a rAAV CAG-FLEX-Jaws-KGC-GFP-ER2. For targeting V2a interneurons, an                       cryoprotected in 30% sucrose in PBS.
+AAV5 CAG-FLEX-Jaws-KGC-GFP-ER2 or AAV5 Syn-FLEX-ChrimsonR-tdT was
+injected into the lumbar spinal cord.                                                      Computed tomography. Once perfused, the mouse was placed in a 50-ml Falcon
+                                                                                           tube. The mouse was then scanned in a micro-CT Quantum GX (Perkin Elmer)
+EMG implantation. An incision over the muscle of interest (tibialis anterior,              with a field of view (FOV) of 25 mm at 90 kV and 80 mA over 360° (angle 0.45°)
+gastrocnemius) was made and, if needed, the muscle was exposed by blunt                    using the high-resolution 14-min protocol. The projections obtained were then
+dissection of overlying tissue. Bipolar intramuscular electrodes were inserted into        reconstructed at a voxel size of 50 µm or 20 µm using the Quantum GX software.
+the muscle parallel to the muscle fiber orientation. To confirm optimal placing, the       Segmentation was performed with Analyze 12.0 (AnalyzeDirect, Inc.).
+wires were electrically stimulated, resulting in a muscle. Electrodes were fixed in
+place by suturing either side of the electrode that exited the muscle40. A grounding       Magnetic resonance imaging. The mice were placed in a Falcon tube which was
+wire was implanted subcutaneously. Wires were connected to a percutaneous                  filled with Galden (Fluorochem) to match the tissue magnetic susceptibility and
+connector (Omnetics Connector Corporation) cemented to the skull.                          improve magnetic field homogeneity around the cord. Mouse cords were scanned
+                                                                                           on a 9.4-T MR system (Varian Medical Systems) equipped with 400 mT m−1
+In vivo temperature measurement. The skin was incised over the thoracic                    gradients, using a 3.5-mm diameter birdcage coil for radiofrequency transmission
+and lumbar spinal cord. A laminectomy at the vertebral level T13 and L1 was                and reception. High-resolution axial anatomical images were acquired using a fast
+performed. A suture was passed from the L2–L3 intralaminar space to the exposed            spin-echo sequence (in-plane resolution: 47 × 47 μm2; FOV: 12 × 12 mm2; matrix
+spinal cord. The suture was passed through the loop of the spinal micro-LED                size: 192 × 192 zero-filled to 256 × 256; slice thickness: 0.5 mm, 20 slices; echo
+array and passed back under the lamina to L2–L3. The implant was placed over               time:repetition time (TE:TR) = 13:5,000 ms; echo train length: 4; TEeff = 13 ms, 24
+the spinal cord with the distal end under L2. The temperature probe (MT-4                  averages; scan time = 1 h 36 min).
+thermocouple microprobe, Physitemp Instruments Inc.) was inserted and fixed
+at L1. The spinal cord was photostimulated at 6, 12 and 18 mA at increasing duty           Computational simulations. An anatomically accurate, 3D finite element model
+cycles (5–100%; intervals of 5%) for 30 s at a time. We continuously recorded the          of the mouse spinal cord was generated. First, sagittal sections of the gray and
+temperature in the spinal cord.                                                            white matter were extracted from an atlas of the spinal cord42. Second, these
+                                                                                           sections were placed and scaled manually to fit the collected MRI data. In turn, the
+Algorithm for closed-loop application. The four EMG signals xi[k] were acquired            cerebrospinal fluid and epidural fat were first segmented from the same datasets,
+with 3.2 kHz of analog bandwidth at 8 kS s−1. They were then conditioned (mains            and then sections were extracted and smoothed. All sections were lofted together
+interference and bandpass filtering) and down-sampled to 2 kS s−1, yi[n], on-chip          to generate 3D volumes (Sim4Life by ZMT). The LEDs were approximated as
+by MCU software. The yi[n] signals were stored to the on-device flash memory and           three-layer rectangular structures consisting of PIB, PDMS and SiC (Cree Inc.,
+were further processed for both the tablet preview (a low sampling rate envelope)          catalog no. TR2227). The entire geometry was encapsulated in a cylindrical
+and the closed-loop stimulation triggering: the sum of the square values of eight          volume to approximate the surrounding tissues as saline. All volumes were
+consecutive samples was taken as a short-term signal power measure z[m]. The user          imported into COMSOL and discretized into a tetrahedral mesh with extremely
+can set (via the tablet–user interface) various parameters: a higher Vh and lower Vl       fine element size (COMSOL Multiphysics v.5.3: www.comsol.com; COMSOL
+threshold value and high th and low tl dead times. A stimulation was triggered for         AB). Physics-based simulations of the bioheat transfer and light penetration were
+z[m] > Vh, then a timer set to th ensures that there is no further stimulation event for   applied. For the former, the bioheat transfer equations were utilized, for which
+th seconds—except, if the signal power z[m] fell for longer than tl under Vl. Separate     thermal conductivity, density and heat capacity values were exported from an atlas
+trigger conditions can be set for the two LED-driving channels.                            of such values in Sim4Life (https://itis.swiss/virtual-population/tissue-properties/
+                                                                                           database/thermal-conductivity). Dirichlet boundary conditions were applied
+Spinal cord injury model. A laminectomy was made at midthoracic level T7–T8.               at the outermost surface of the saline volume. A heat source was applied at the
+The spinal cord was completely transected with microscissors. To confirm the               appropriate layer for each simulation. The light penetration was calculated using
+completeness of the transection, the cut was re-traced with a 32-G needle. Muscles         Helmholtz equations. Scattering and absorption coefficients were taken from
+were sutured over the exposed spinal cord and the skin was sutured.                        various previous publications43–45. Optical parameters of the model are reported
+                                                                                           in Supplementary Table 2. Dirichlet boundary conditions were implemented for
+Training. A week after transection injury, mice were trained daily on a locomotor          the optode contacts and the outermost surface of the saline volume. A parametric
+task. Then 5 min before training, the mice received subcutaneous injections                sweep was applied for the power density of the irradiance with values of 50, 100
+of quipazine (5-hydroxytryptamine-2A/C (5-HT)2A/C, 0.2–0.3 mg kg−1) and                    and 150 mW mm−2.
+intraperitoneal injections of the 5-HT agonist, 8-OH-DPAT (5-HT1A/7, 0.05–
+0.2 mg kg−1). The dose was adjusted based on locomotor performance. Training was           X-ray videography. To collect high-speed X-ray video data, animals were
+conducted bipedally on a treadmill (9 cm s−1, Robomedica) with adjustable robotic          positioned in a 15 × 5 × 5.5 cm3 Plexiglas box oriented perpendicular to the beam
+support of body weight for 20 min daily.                                                   of a customized X-ray video system (Philips BV 25, 64 kV, 2 mA). The transparent
+                                                                                           box allowed continuous observation of the mouse with an infrared video camera
+Behavioral assessments. The wireless recording and stimulation platform were               to trigger the X-ray acquisition at the right moment. The rays were detected by
+gently attached to the mouse’s head connector before the behavioral experiments.           a flat panel detector (196 Hz, Dexela 1207) and acquired with a frame grabber
+Stimulation paradigms for photostimulation required for neuronal activation                (Matrox Solios eCL-B). Fifteen trials of 10-s length were acquired per animal.
+consisted of 5-ms pulses at 50 Hz (25% duty cycle) and photostimulation required           Communication with the detector device, video acquisition and correction of
+for neuronal inhibition consisted of 20-ms pulses at 50 Hz (100% duty cycle).              image distortions were carried out using customized software (MATLAB,
+All other procedures have been described in detail previously22. Limb motor                The MathWorks).
+movements were evaluated while running on a treadmill, on a horizontal ladder
+or during swimming across a straight pool of water. Bilateral leg kinematics were          Optical measurements. The optoelectronic devices were laminated on a large
+captured either with the Simi Reality Motion Systems (combining up to four                 photodiode (Thorlabs, catalog no. S170C) and covered with a customized reflective
+cameras) for markerless tracking with DeepLabCut41 or with the Vicon Motion                piece. The captured light power was measured using an optical power meter
+Systems (combining twelve infrared cameras) for tracking with reflective markers           (Thorlabs, catalog no. PM100D). For measurements involving micro-LEDs covered
+on the crest, hip, knee, ankle joints and distal toes. The limbs were modeled as an        with phosphor–PDMS composite, the converted light (λ = 590 or 620 nm) and
+interconnected chain of segments and gait parameters were calculated from these.           the transmitted blue light (λ = 470 nm) powers were quantified individually using
+EMG signals (2 kHz) were amplified (×1,000), filtered (×100–1,000 bandwidth,               optical filters with cut-off λ = 500 nm (Thorlabs, catalog nos. FES0500, FEL0500).
+A-M Systems Differential AC Amplifier Model 1700) and digitalized with either
+the Vicon System or the Powerlab system (AdInstruments). The traces were                   Accelerated aging. To assess the long-term functionality of the micro-LED array
+analyzed offline with LabChart.                                                            and the safety of its encapsulation over time, accelerated aging experiments were
+                                                                                           conducted. The optoelectronic devices were immersed in PBS with a pH of 7.4 (1×,
+Analysis of kinematic data. A total of 78 gait parameters were computed for each           Gibco), and its test tube was sealed with parafilm. Then, the devices were stored in
+gait cycle of each limb. All parameters are reported in Supplementary Table 1.             an incubator at 67 °C, resulting in a sixfold acceleration compared with the mouse
+To evaluate differences between time points post-implantation or experimental              body temperature (37 °C). Measurements were carried out at room temperature
+conditions, as well as to identify the most relevant parameters explaining these           using a constant current source (Keithley 2400 SourceMeter, i = 5 mA).
+differences, we implemented a multistep principal component analysis.
+                                                                                           Optoelectronic characterization under stretch. To evaluate the stable
+Perfusions. Mice were perfused at the end of the experiments. Mice were deeply             functionality of the micro-LED array under mechanical strain, cycling experiments
+anesthetized by an intraperitoneal injection of 0.2 ml sodium pentobarbital                were performed. The devices were mounted on a customized uniaxial stretcher
+
+
+                                                                                                             Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                                    Articles
+and stretched to 1.15 of their initial length for 100,000 cycles (1 stretching            Data availability
+cycle to maximal strain per second). The voltage was monitored continuously               Source data are provided with this paper.
+while applying i = 5 mA (Keithley 2400 SourceMeter). The stretcher and the
+measurement equipment were controlled and synchronized using customized
+software based on LabVIEW 2015 (National Instruments).                                    References
+                                                                                          40. Capogrosso, M. et al. Configuration of electrical spinal cord stimulation
+Immunohistochemistry. Perfused postmortem tissue was cryoprotected in 30%                     through real-time processing of gait kinematics. Nat. Protoc. 13, 2031–2061
+sucrose in PBS for 48 h before being embedded in cryomatrix (Tissue Tek O.C.T,                (2018).
+Sakura Finetek Europe B.V.) and freezing. Then, 30-µm-thick transverse sections           41. Mathis, A. et al. DeepLabCut: markerless pose estimation of: user-defined
+of the spinal cord were cut on a cryostat (Leica), immediately mounted on glass               body parts with deep learning. Nat. Neurosci. 21, 1281–1289 (2018).
+slides and dried. Sections were blocked with 10% bovine serum albumin in PBS              42. Watson, C., Paxinos, G., Kayalioglu, G. & Heise, C. Atlas of the mouse spinal
+for 60 min. Then sections were incubated with the following primary antibodies                cord, in The Spinal Cord (Academic Press, 2009).
+diluted in blocking solution at room temperature overnight: rabbit anti-glial             43. Yaroslavsky, A. N. et al. Optical properties of selected native and coagulated
+fibrillary acidic protein (1:1,000, Dako, catalog no. Z0334), anti-Iba1 (1:1,000,             human brain tissues in vitro in the visible and near infrared spectral range.
+FUJIFILM Wako, catalog no. 019-19741). Slides were washed four times with PBS                 Phys. Med. Biol. 47, 2059 (2002).
+before the secondary antibodies (Alexa Fluor Conjugated, Invitrogen) were applied         44. Mignon, C., Tobin, D. J., Zeitouny, M. & Uzunbajakava, N. E. Shedding light
+for 90 min in blocking solution (Alexa). Slides were washed four times with PBS               on the variability of optical skin properties: finding a path towards more
+and cover slipped with Mowiol. Immunofluorescence was imaged digitally using                  accurate prediction of light propagation in human cutaneous compartments.
+a slide scanner (Olympus VS-120 Slide scanner) or confocal microscope (Zeiss,                 Biomed. Opt. Express. 9, 852–872 (2018).
+catalog no. LSM880 + Airy fast module with ZEN 2 Black software (Zeiss)). Images          45. Bashkatov, A. N. et al. In-vitro study of control of human dura mater optical
+were digitally processed using ImageJ NIH software or Imaris (Bitplane, v.9.0.0).             properties by acting of osmotical liquids. In Controlling Tissue Optical
+                                                                                              Properties: Applications in Clinical Study (SPIE, 2000).
+FISH. Motor neurons were examined for co-localization of fos messenger RNA                46. Renier, N. et al. IDISCO: a simple, rapid method to immunolabel large tissue
+using the RNA-labeling kit from Molecular Instruments. Sections on slides were                samples for volume imaging. Cell 159, 896–910 (2014).
+covered with 5× SSCT (20× saline–sodium citrate (SSC) buffer, Invitrogen;                 47. Voigt, F. F. et al. The mesoSPIM initiative: open-source light-sheet
+10% Tween 20, Applichem) for 10 min, and then prehybridized in 30% probe                      microscopes for imaging cleared tissue. Nat. Methods 16, 1105–1108 (2019).
+hybridization buffer (Molecular Instruments) for 30 min at 37 °C. Sections were
+hybridized overnight at a 2-µM probe concentration (for fos or parvalbumin) in            Acknowledgements
+30% probe hybridization buffer at 37 °C. After hybridization, slides were washed          We thank B. Schneider for providing viral vectors, and L. Batti and S. Pagès from
+in a solution of 30% probe wash buffer (Molecular Instruments) and 5× SSCT                the ALICe platform for light-sheet imaging. Financial support was provided by
+four times for 15 min. Sections were then incubated in an amplification buffer            a Consolidator Grant from the European Research Council (ERC-2015-CoG
+(Molecular Instruments) for 30 min at room temperature. In the meantime,                  HOW2WALKAGAIN 682999), the Swiss National Science Foundation (subsidies
+fluorophore-labeled HCR hairpins (Molecular Instruments) were snap-cooled                 310030_130850, CRSII5_183519, BSCGI0 1578000) and the European Union’s Horizon
+(heating at 95 °C for 90 s) and cooled down to room temperature. Amplification            2020 Framework Programme for Research and Innovation under the Specific Grant
+was performed overnight at room temperature at a concentration of 120 nM per              agreement no. 785907 (Human Brain Project SGA2) and the Bertarelli Foundation. C.K.
+hairpin in the amplification buffer. After amplification, samples were washed in 5×       is supported by a Marie Skłodowska-Curie postdoctoral fellowship and HFSP long-term
+SSCT for at least twice for 30 min to remove unbound hairpins. Last, sections were        fellowship (LT001278/2017-L). S.S. and C.I.D.Z. are supported by grants from BIG
+air dried and cover slipped using Mowiol (Calbiochem).                                    (Erasmus MC), Medical-NeuroDelta and INTENSE (LSH-NWO).
+
+Clearing by iDisco+. The mouse spinal cord and brains were processed with
+the iDisco+ for 3D imaging46. The detailed protocol and recommended antibody              Author contributions
+concentrations can be found on the following website: http://www.idsico.info.             C.K., F.M., P.S., G.C. and S.P.L. contributed equally to this work. F.M. developed and
+                                                                                          collaborated with V.P. and K.K. for the production of spinal implants. C.K., F.M., I.F.,
+Three-dimensional imaging of cleared samples. Imaging was performed using a               S.S. and T.H.H. carried out the experiments and analysis. P.S., N.B. and Q.H. developed
+customized MesoSPIM light-sheet microscope47. Images were acquired with a ×2              the head-mounted wireless stimulation device. I.J. performed MRI. A.P. carried out the
+objective when using the MesoSPIM. At ×2 magnification on the MesoSPIM, the               high-speed X-ray videography. A.R. and J.G. analyzed the imaging data. A.R. and N.A.
+pixel resolution was 3.26 × 3.26 × 3.00 µm3 in x, y and z directions. Image acquisition   conducted computational simulations. J.R. generated the figures and conceived the
+generated 16-bit TIFF files, and stitching of files was performed using arivis            illustrations with contributions from C.K., F.M. and P.S. S.P.L. and G.C. conceived and
+Vision4D (Arivis AG). Imaris (Bitplane, v.9.0.0) and arivis Vision4D (Arivis AG)          supervised the study. G.C. and S.P.L. secured funding. G.C. wrote the paper with S.P.L.,
+were used to generate 3D reconstructions and optical sections of the raw images.          C.K., F.M. and P.S., and all the authors contributed to its editing.
+
+Statistics and reproducibility. All data are reported as mean ± s.e.m. unless stated      Competing interests
+otherwise. Behavioral assays were replicated several times (three to ten times            The authors declare competing interests: G.C. and S.P.L. are founders and shareholders of
+depending on the experiments) and averaged per animal. Statistics were then               Onward medical, a company with partial relationship to the present work.
+performed over the mean of the animals. Statistical analysis was performed in
+GraphPad Prism using two-sided, paired or unpaired Student’s t-tests, one-way
+analysis of variance (ANOVA) for neuromorphological evaluations with more
+than two groups, and one- or two-way, repeated-measure ANOVA for functional               Additional information
+assessments, when data were distributed normally. Post-hoc Tukey’s or Bonferroni’s        Extended data Extended data are available for this paper at https://doi.org/10.1038/
+test was applied when appropriate. The significance level was set as P < 0.05. The        s41587-021-01019-x.
+nonparametric Mann–Whitney U-test or Wilcoxon’s signed-rank test was used                 Supplementary information The online version contains supplementary material
+when comparisons involved fewer than five mice. Fluorescent labeling of structures        available at https://doi.org/10.1038/s41587-021-01019-x.
+targeted by viral vector injections were confirmed in every experimental animal. If
+                                                                                          Correspondence and requests for materials should be addressed to
+labeling was absent, the mice were excluded from the study. If labeling was present,
+                                                                                          Stéphanie P. Lacour or Grégoire Courtine.
+it was similar across the mice.
+                                                                                          Peer review information Nature Biotechnology thanks C. J. Heckman and the other,
+Reporting Summary. Further information on research design is available in the             anonymous, reviewer(s) for their contribution to the peer review of this work.
+Nature Research Reporting Summary linked to this article.                                 Reprints and permissions information is available at www.nature.com/reprints.
+
+
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                          NAturE BIOtEchnOLOgy
+
+
+
+
+Extended Data Fig. 1 | See next page for caption.
+
+
+
+
+                                                    Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                             Articles
+Extended Data Fig. 1 | Three-dimensional anatomical model of the mouse. Step 1: The entire mouse was imaged in a computed tomography (CT)
+scanner. The resulting reconstruction of the entire skeleton of the mouse is shown. Step 2: We acquired high-speed X-ray videographies of a freely
+behaving mouse, which allowed to capture the extent of the changes in postures of the mouse during activities of daily living. Step 3: The reconstructed
+mouse skeleton is morphed onto selected X-ray images to quantify the bending radius of the lumbar spinal cord. Step 4: We adapted an antenna to
+enable magnetic resonance imaging of the lumbar spinal cord, including the visualisation of the posterior roots. We measured the epidural space in these
+images. Step 5: We transformed these imaging datasets into finite element models of the mouse lumbar spinal cord, including the vertebra, spinal cord
+and spinal roots. This computer model provides estimates of the suitable dimensions for an implant in the epidural space of the lumbar spinal cord of
+mice shown in red.
+
+
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                          NAturE BIOtEchnOLOgy
+
+
+
+
+Extended Data Fig. 2 | See next page for caption.
+
+
+
+
+                                                    Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                 Articles
+Extended Data Fig. 2 | Fabrication process of the micro-LED array. a, Main steps of the microfabrication of the micro-LED array: Step 1: Schematic
+illustration of the micro-LED array microfabrication process. A Ti/Au/Ti film is sputtered on a polyimide substrate and subsequently patterned by
+photolithography and wet etching. Next, the device interconnects are covered by a 2nd layer of polyimide, and the whole polyimide stack is patterned by
+photolithography and reactive ion etching (RIE). The preparation is covered with a thin layer of PDMS. The silicone superstrate is patterned to the device
+layout by photolitography and RIE, exposing the micro-LED integration sites. Then, micro-LEDs are precisely interfaced with the device interconnects.
+Finally, the micro-LED array is encapsulated with PDMS and released from the silicon carrier. Step 2: Photograph of the 4-inch wafer following the micro-
+LED array microfabrication process. Step 3: Colorized scanning electron micrograph (45° tilted view) of the micro-LED array surface, highlitghling the fine
+patterning of the PDMS superstrate and integration of the bare dies. Schematic cross-section of the device, showing three interconnects encapsulated
+in PDMS, top left inset. Step 4: Photograph of the optoelectronic device laminated on a fingertip. The array hosts 2 independent micro-LED channels,
+connected via serpentine interconnects that accommodate physiological motion. Step 5: Stress-strain curves for bulk PI, a fully functional implant and bulk
+PDMS measured under a displacement rate of 100μm/s. In the panel referring to the fully functional implant, the y-axis on the right (blue) also reports
+the relative resistance measured at the current input of 1 mA. The grey box highlights the strain range under in vivo conditions. b, Downconversion of light
+to desired wavelength. Step 1: Schematic illustration of the downconversion process using a phosphor-silicone matrix. Blue photons are converted to the
+desired wavelength (1), transmitted through the matrix (2) or back-scattered (3). Step 2: Photographs of the optoelectronic devices with the introduction
+of the phosphor-silicone matrix. The phosphor peak emission wavelengths are indicated below the corresponding photographs. Step 3: Optical
+characterization following downconversion of blue light. Emission spectra of the micro-LED arrays depending on their respective phosphor-silicone matrix
+implementation. Note the leakage of blue light at 𝜆 = 470 nm (left). Total optical power produced by one micro-LED channel covered with phosphor-
+silicone matrices with emission peaks at 𝜆 = 590 nm or 𝜆 = 620 nm. The respective optical power of the leaked blue light is depicted at 𝜆 = 470 nm. For
+reference, the optical power of bare blue LEDs is plotted. Step 4: Characterisation of different wavelength implants in Thy1-ChR2 and vGlut 2 ChrimsonR
+mice. Only 470 nm wavelength light results in muscle responses in Thy1-ChR2 mice. Only 590 nm and 650 nm wavelengths result in muscle responses in
+vGlut 2 ChrimsonR mice.
+
+
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                          NAturE BIOtEchnOLOgy
+
+
+
+
+Extended Data Fig. 3 | See next page for caption.
+
+
+
+
+                                                    Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                 Articles
+Extended Data Fig. 3 | Ultraminiaturized, battery powered, head-mounted, wireless recording and stimulation platform. Step 1: System overview: the
+implants (9 stainless steel wires for ground and 4 differential EMG recording channels, micro-LEDs connected by 3 copper wires) are connected by a 16
+pin Omnetics connector to the PCB assembly of the wireless headstage platform. Step 2: Illustration of the antenna design as integrated on the PCB of the
+head-stage. Step 3: Head-stage wireless link reliability assessment in a typical laboratory/office environment based on received signal strength indication
+(RSSI) measurements versus line-of-sight distance. A sufficient link is maintained for over 10 m of distance. Step 4: Verification of the LED pulsed current
+driver performance: LED current can be controlled in 1 mA steps and is monitored on-chip for each issued pulse to verify micro-LED-implant condition and
+ensure experiment validity. Step 5: Tablet user interface for pulse(-train) stimulation and configuration ranges for all parameters. Step 6: Measurement
+of closed-loop performance: a EMG signal, simulated as a short sine-wave burst, the triggering of the software algorithm (SW trig), and the issued LED
+current pulse (I LED) have been acquired by an oscilloscope to measure the delay between the beginning of EMG activity and the closed-loop response.
+A delay of 11.3 ms is caused by the signal processing, which includes characteristics preventing spiking caused by noise (low-pass). A delay of 0.9 ms is
+caused by the construction of signal to drive the LED activation. Step 7: Tablet user interface for closed-loop experiments, consisting of an experiment
+parameter configuration interface and a live preview of all four acquired EMG traces.
+
+
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                          NAturE BIOtEchnOLOgy
+
+
+
+
+Extended Data Fig. 4 | See next page for caption.
+
+
+
+
+                                                    Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                               Articles
+Extended Data Fig. 4 | Long-term biointegration of the micro-LED array. Step 1: Stepwise surgical insertion of the micro-LED array into the epidural
+space. Micro-LED array overlaying a spinal cord surrogate, bottom right inset. Step 2: Post-mortem evaluation of foreign body responses within the dorsal
+horn of spinal segments located below the micro-LED array. Coronal spinal cord sections of mice implanted for 1, 4 or 6 weeks were stained against Iba1
+and GFAP proteins, and compared with the spinal cord of non-implanted mice. Histogram plots report the fluorescent staining intensity quantified within
+the dorsal horns. The photograph shows the staining from a window within the dorsal horn, as shown in the scheme (n = 6 healthy mice, n=4 for each
+timepoint post-implantation one-way ANOVA, Iba1 p = 0.64, GFAP p = 0.36, mean±s.e.m.). Step 3: Schematic illustrating the post-mortem evaluation
+of spinal cord circularity. The bar graph reports the mean circularity (n=6 mice, one-way ANOVA, p = 0.95, mean±s.e.m.). Step 4: Photographs show
+examples of subcutaneous wires taken in mice that were implanted for 4 weeks.
+
+
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                          NAturE BIOtEchnOLOgy
+
+
+
+
+Extended Data Fig. 5 | See next page for caption.
+
+
+
+
+                                                    Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                              Articles
+Extended Data Fig. 5 | The micro-LED array does not alter motor functions and behaviors. a, Kinematic analysis of locomotor function reveals there are
+no gait deficits after micro-LED implantation. Step 1: The absence of influences on locomotor performance was evaluated using longitudinal recordings
+of whole-body kinematics during walking along a corridor. Markers are attached to the skin overlaying anatomical landmarks to record whole-body
+kinematics with the optoelectronic Vicon system. Step 2: Sequence of leg movements during walking reconstructed from the 3D coordinates of the
+markers. Step 3: The kinematics is morphed onto the anatomical model of the mouse and an envelope is added over the bony structure to obtain a realistic
+reconstruction of leg movements during walking. The resulting chronophotography-like sequences of locomotor movements illustrate the absence of
+differences between gait patterns recorded before and after the implantation. Step 4: A total of 78 parameters were calculated from kinematic recordings
+(Supplementary Table 1). Step 5: A principal component (PC) analysis was applied to the calculated parameters, and represented in the new space
+created by PC1 and PC2. Each dot represents the mean and SEM values of many mice (n > 5 mice) with averaged data from many gait cycles (n > 10 pre
+mouse). The bar plot reports the mean values of scores on PC1, which captures the more pronounced differences between gait cycles recorded at different
+time-points (n=6-9 mice/timepoint, one-way ANOVA, p= 0.16, mean±s.e.m.). Step 6: Color-coded representation of factor loadings with the highest
+level of correlation of PC1. Step 7: Functional clusters of highly correlated parameters were extracted from PC1 loadings representing gait parameters
+that describe differences between groups the most. Bar plots reporting mean values of calculated gait parameters with high correlations with PC1. This
+highly-sensitive statistical analysis failed to detect measurable changes in gait patterns following the implantation of the micro-LED array (n=6-9 mice,
+one-way ANOVAs, Stride length p= 0.42; Step height p=0.46; Amplitude of ankle elevation p=0.13; Amplitude of Ankle Speed p=0.13, mean±s.e.m.).
+b, Implantation of the mico-LED had no effect on exploratory behaviours or fine locomotor function. Step 1: The potential impact of the micro-LED array
+on exploratory behaviours was measured in the open field paradigm. Body trajectories measured during 20 min of home cage monitoring are shown before
+and after implantation of micro-LED array. The bar plot reports the quantification of distance covered during 20 min period of observation (n = 6, two-
+sided unpaired t-test, p = 0.58, mean±s.e.m.). Step 2: Mice were tested on the accelerating rotarod paradigm. The bar plot reports quantification of the
+time to fall off (n = 12 mice per timepoint, n=6 mice at week 4, one-way ANOVA, p = 0.44, mean±s.e.m.). Step 3: Mice walked along a horizontal ladder
+with unevenly spaced rungs. The bar plot reports quantification of the percentage of foot falls (n = 8 mice, one-way ANOVA, p = 0.08, mean±s.e.m.).
+Step 4: Mice climbed up a 1-meter long vertical rope. The bar plot reports quantification of the time to complete the climb (n = 5 mice, one-way ANOVA,
+p = 0.60, mean±s.e.m.).
+
+
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                                                                         NAturE BIOtEchnOLOgy
+
+
+
+
+Extended Data Fig. 6 | Spatially targeted photostimulation elicits robust muscle responses. Step 1: Timeline detailing key experiments. Step 2:
+Post-moterm verification of ChR2 expression. Photographs show the robust expession of ChR2 in the spinal cord and dorsal root ganglia of Thy1-ChR2
+mice. ChR2 is expressed in proprioceptive neurons of the dorsal root ganglia, as illustrated with the overlap between ChR2-eYFP with parvalbumin mRNA
+(HCR). Step 3: Experimental set up to evaluate muscle responses and leg kinematics when delivering single pulses of photostimulation while the mouse
+is suspended in the air in a robotic body weight support system. Leg movements are reconstructed following one pulse of photostimulation delivered
+over the rostral versus caudal lumbar spinal cord. Step 4: Associated muscle responses in the iliopsoas and gastrocnemius medialis muscles are shown
+following one pulse of photostimulation delivered over the rostral versus caudal lumbar spinal cord. Step 5: The bar plot reports the mean range of motion
+at the knee and hip following photostimulation over the rostral and caudal lumbar spinal cord (n = 10 mice, two-sided unpaired t-test, p= 0.2445 and
+p = 0.3153 respectively, mean±s.e.m.). Note that the iliopsoas muscle is activated by photostimulation of rostral lumbar segments, as expected
+based on the anatomical position of the motoneurons innervating this muscle within these spinal segments and pre-motor interneurons, as well as by
+photostimulation of caudal lumbar segments through the activation of primary afferent fibres embedded in the rostral posterior roots that travel along
+the spinal cord, in the vicinity of the caudal LED channel. The different location at which photostimulation depolarizes afferent fibers is reflected in the
+increase in the latency of muscle responses with photostimulation over caudal versus rostral lumbar segments and the clear singluar wave. Step 6: The
+plots report the area under the curve (AUC) of rectified muscle responses of the illiopsoas and grastrocnemius following photostimulation of the rostral
+versus caudal lumbar spinal cord with increasing intensity (n = 5 mice, one-way ANOVA, ***, p < 0.0001, mean±s.e.m.).
+
+
+
+
+                                                                                                 Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                        Articles
+
+
+
+
+Extended Data Fig 7 | See next page for caption.
+
+
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                                                                       NAturE BIOtEchnOLOgy
+Extended Data Fig 7 | Conversion of emitted light to target any opsin. a, Targeted photostimulation of vGlut2ON neurons in the spinal cord results in
+distinct hip versus ankle movements. Step 1: Timeline detailing key experiments. Step 2: Schematic illustration of the experimental procedures to target
+vGlut2ON spinal neurons with Chrimson expression. Step 3: Leg movements are reconstructed following one pulse of photostimulation delivered over
+the rostral versus caudal lumbar spinal cord. 620 nm photostimulation in vGlut2 mice, injected with an AAV flex ChrimsonR around motor pools of
+the iliopsoas and tibialis anterior, results in more specific muscle activation patterns. Rostral photostimulation maximises the hip flexor amplitude and
+caudal photostimulation maximises the foot flexor amplitude. Step 4: The bar plot reports the mean range of motion at the hip, knee and ankle following
+photostimulation over the rostral and caudal lumbar spinal cord (n = 10 mice, two-sided unpaired t-test, p = 0.0015; 0.0265; 0.0180 respectively,
+mean±s.e.m.). Step 5: Post-moterm verification of Chrimson expression. Photographs show the robust expession of Chrimson in the spinal cord in vGlut2
+Cre mice around the injection sites, which was assessed with iDISCO. b, Two-colour optogentic activation and inhitition of vGlutON neurons in the spinal
+cord. Step 1: Timeline detailing key experiments. Step 2: Schematic illustration of the experimental procedures to target vGlut2ON spinal neurons with
+ChR2 and Jaws expression and the micro-LED array implanted over the injection sites. Step 3: A series of 78 gait parameters (see Supplementary Table 1)
+calculated from the kinematic recordings are submitted to a PC analysis. Each recorded gait pattern, depicted by each dot, are shown in the new denoised
+space defined by PC1 and PC2. Step 4: Factors loadings of individual parameters on PC1 (correlation between PC1 and each variable). ar. Step 5: Functional
+clusters of highly correlated parameters were extracted from PC1 loadings representing gait parameters that describe differences between groups the
+most. Parameteres relating to step height explained a large variance of the gait cycles, therefore indicating it best describes differences between groups.
+Step 6: Post-moterm verification of ChR2 and Jaws expression. Photographs show the robust expession of ChR2 and Jaws in the spinal cord in vGlut2 Cre
+mice at spinal level L3 (targeted with ChR2) and spinal level S1 (targeted with Jaws). Note: Fibers of vGlutON neurons project across many levels of the
+spinal cord and were therefore detected at both levels.
+
+
+
+
+                                                                                                Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                        Articles
+
+
+
+
+Extended Data Fig 8 | See next page for caption.
+
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                                                                         NAturE BIOtEchnOLOgy
+Extended Data Fig 8 | Heat diffusion in the mouse spinal cord and its consequence for motor control. a, Simulating heat diffusion in the spinal cord
+tissue. Step 1: Maximum temperature calculated with the Bioheat Transfer model in response to photostimulation protocols eliciting activation of
+ChR2 (25% duty cycle) or Jaws (95% duty cycle). Each plot has an adjusted scale allowing to view the maximum temperatures. Step 2: Temperature
+measurements of the LEDs in air with an infrared camera confirming maximum temperatures predicted by the model. b, Heat diffusion measure in vivo
+with a temperature probe. Step 1: Experimental setup. Step 2: Relationship between incremental duty cycles (every 5%) and the increase in temperature
+measured after 10 s and 30 s for two wavelenghts delivered over incremental photostimulation intensity (every 50 mW/mm2). Step 3: In vivo measure­
+ments of heat decay using a temperature probe inserted in the dorsal horn after 30 s of photostimulation with the settings necessary to target ChR2
+(25% duty cycle, wavelength 470 nm, 2 LEDs, left) or Jaws (95% duty cycle, wavelength 620 nm, 2 LEDs, right). The plots report the changes in
+temperature over time for three levels of intensity. c, Heat affecting locomotion in wildtype mice. Step 1: Timeline detailing key experiments. Step 2:
+Experimental setup to record leg kinematics during stepping on a treadmill while photostimulation of increasing intensity is delivered over the spinal cord
+of a mice with a complete SCI. A serotonergic pharmacotherapy is adminstered prior to the experiment to reactivate the lumbar spinal cord below the
+injury. Step 3: A series of 78 gait parameters (see Supplementary Table 1) calculated from the kinematic recordings are submitted to a PC analysis.
+Each recorded gait pattern, depicted by each dot, are shown in the new denoised space defined by PC1 and PC2.
+
+
+
+
+                                                                                                 Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                        Articles
+
+
+
+
+Extended Data Fig 9 | See next page for caption.
+
+
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+Articles                                                                                                        NAturE BIOtEchnOLOgy
+Extended Data Fig 9 | Intersectional genetics to target specific pathways and probe their function. a, Optogenetic silencing of the corticospinal tract in
+the lumbar spinal cord. Step 1: Timeline detailing key experiments. Step 2: Schematic illustration of the experimental procedures to target corticospinal
+tract neurons with synaptic projections to the lumbar spinal cord with Jaws. Step 3: Mice are walking freely when the photostimulation is suddenly
+turned on. Step 4: A series of 78 gait parameters (see Supplementary Table 1) calculated from the kinematic recordings are submitted to a PC analysis.
+Each dot represents the mean and SEM values of many gait cycles (n > 10 per mouse) are shown in the new denoised space defined by PC1 and PC2.
+Step 5: Factors loadings of individual parameters on PC1 (correlation between PC1 and each variable). Step 6: Functional clusters of highly correlated
+parameters were extracted from PC1 loadings representing gait parameters that describe differences between groups the most. Parameteres relating to
+paw dragging and balance explained a large variance of the gait cycles, therefore indicating it best describes differences between groups. Step 7: Post-
+mortem verification of Jaws expression. Photographs show the robust expession of Jaws in the lumbar spinal cord, as well as in neurons located in the
+injected region of the primary motor cortex. b, Optogenetic siliencing of the reticulospinal tract in the lumbar spinal cord. Step 1: Timeline detailing key
+experiments. Step 2: Schematic illustration of the experimental procedures to target reticulospinal tract neurons with synaptic projections to the lumbar
+spinal cord with Jaws. Step 3: Mice are walking freely when the photostimulation is suddenly turned on. Step 4: A series of 78 gait parameters (see
+Supplementary Table 1) calculated from the kinematic recordings are submitted to a PC analysis. Each dot represents the mean and SEM values of many
+gait cycles (n > 10 pre mouse) are shown in the new denoised space defined by PC1 and PC2. Step 5: Factors loadings of individual parameters on PC1
+(correlation between PC1 and each variable). Step 6: Functional clusters of highly correlated parameters were extracted from PC1 loadings representing
+gait parameters that describe differences between groups the most. Parameteres relating to paw dragging and step height explained a large variance of the
+gait cycles, therefore indicating it best describes differences between groups. Step 7: Post-moterm verification of Jaws expression. Photographs show the
+robust expession of Jaws in the lumbar spinal cord, as well as in neurons located in the ventral gigantocellular nucleus.
+
+
+
+
+                                                                                                Nature Biotechnology | www.nature.com/naturebiotechnology
+NAturE BIOtEchnOLOgy                                                                                                                   Articles
+
+
+
+
+Extended Data Fig 10 | Intersectional genetics to target specific neurons in the spinal cord and dorsal root ganglia. a, Manipulation of V2a interneurons
+during swimming. Step 1: Timeline detailing key experiments. Step 2: Schematic illustration of the experimental procedures to express ChrimsonR in V2a
+interneurons with targeted injection of virus in the lumbar spinal cord of Vsx2 Cre mice. Step 3: Post-mortem verification of Jaws or Chrimson expression.
+3D images, including coronal sections showing the robust expession of Jaws or ChrimsonR in the lumbar spinal cord. b, Silencing PVON neurons in afferent
+fibers. Step 1: Timeline detailing key experiments. Step 2: Schematic illustration of the experimental procedures to express Jaws in PVON located in the
+dorsal root ganglia using targeted injection of virus in the sciatic nerve. Step 3: Experimental setup to record leg kinematics during stepping on a treadmill
+in mice with complete SCI. A serotonergic pharmacotherapy is adminstered prior to the experiment to reactivate the lumbar spinal cord below the injury.
+Step 4: A series of 78 gait parameters (see Supplementary Table 1) calculated from the kinematic recordings are submitted to a PC analysis. Each dot
+represents the mean and SEM values of many gait cycles (n > 10 pre mouse) are shown in the new denoised space defined by PC1 and PC2. Step 5:
+Factors loadings of individual parameters on PC1 (corelation between PC1 and each variable). Step 6: Functional clusters of highly correlated parameters
+were extracted from PC1 loadings representing gait parameters that describe differences between groups the most. Parameteres relating to step length
+and height explained a large variance of the gait cycles, therefore indicating it best describes differences between groups. Step 7: Post-mortem verification
+of Jaws expression. Photographs show the robust expession of Jaws in PVON located in the dorsal root ganglia and sciatic nerve.
+
+
+Nature Biotechnology | www.nature.com/naturebiotechnology
+nature research                                                                                      Corresponding author(s):
+
+                                                                                                     Last updated by author(s):
+                                                                                                                                          Gregoire Courtine
+                                                                                                                                          ----------------
+                                                                                                                                             Jun 30, 2021
+                                                                                                                                            _ _ _ _ _ _ _
+
+
+
+Reporting Summary
+Nature Research wishes to improve the reproducibility of the work that we publish. This form provides structure for consistency and transparency
+in reporting. For further information on Nature Research policies, see our Editorial Policies and the Editorial Policy Checklist.
+
+
+
+
+Statistics
+For all statistical analyses, confirm that the following items are present in the figure legend, table legend, main text, or Methods section.
+
+n/a Confirmed
+
+D � The exact sample size (n) for each experimental group/condition, given as a discrete number and unit of measurement
+D � A statement on whether measurements were taken from distinct samples or whether the same sample was measured repeatedly
+□     !'vi The statistical test(s) used AND whether they are one- or two-sided
+      � Only common tests should be described solely by name; describe mare camp/ex techniques in the Methods section.
+
+D � A description of all covariates tested
+D � A description of any assumptions or corrections, such as tests of normality and adjustment for multiple comparisons
+      full description of the statistical parameters including central tendency (e.g. means) or other basic estimates (e.g. regression coefficient)
+D � AAND  variation (e.g. standard deviation) or associated estimates of uncertainty (e.g. confidence intervals)
+
+□     !'vi For null hypothesis testing, the test statistic (e.g. F, t, r) with confidence intervals, effect sizes, degrees of freedom and P value noted
+      � Give P values as exact values whenever suitable.
+
+� D For Bayesian analysis, information on the choice of priors and Markov chain Monte Carlo settings
+� D For hierarchical and complex designs, identification of the appropriate level for tests and full reporting of outcomes
+� D Estimates of effect sizes (e.g. Cohen's d, Pearson's r), indicating how they were calculated
+                                                Our web collection on statistics for biologists contains articles on many of the points above.
+
+
+
+Software and code
+Policy information about availability of computer code
+  Data collection        Data were collected using Labchart v8 (ADlnstruments), Labview (2018 version 18.0), Zen2 Black (Zeiss), lmaris (9.1.2, 64Bit, Bitplane).
+
+  Data analysis          All softwares and software versions used to analyze data are described in the Method section at the relevant paragraph. Following is a list of
+                         softwares used: lmaris (Bitplane, v.9.0.0), lmageJ NIH, Labchart, MATLAB, itk SNAP, AnalyzeDirect, Inc., USA, Sim4Life by ZMT, COMSOL
+                         Multiphysics ® v. 5.3., Matrox Solios eCL-B, Arivis AG, Munich, Germany, Neurolucida MBF Bioscience. Illustrations were generated using
+                         Autodesk 2020.2, Maya 2020.2, Adobe Illustrator CC 2015. R (version 3.6.0), PRISM version 8.3 (GraphPad).
+                                                                                                                                                                        _.J
+For manuscripts utilizing custom algorithms or software that are central to the research but not yet described in published literature, software must be made available to editors and
+reviewers. We strongly encourage code deposition in a community repository (e.g. GitHub). See the Nature Research guidelines for submitting code & software for further information.
+
+
+
+Data
+Policy information about availability of data
+ All manuscripts must include a data availability statement. This statement should provide the following information, where applicable:
+    - Accession codes, unique identifiers, or web links for publicly available datasets
+    - A list of figures that have associated raw data
+    - A description of any restrictions on data availability
+
+Data that support the findings will be made available upon reasonable request to the corresponding author.
+                                                                                                                                                                                         )
+

@@ -1,0 +1,172 @@
+{
+  "assembled_at_utc": "2026-11-06T16:12:46.201232+00:00",
+  "output": "Neural Control Engineering - merged.pdf",
+  "coverage": "All 13 chapters and all supplied front/back matter; errata appended.",
+  "originals_preserved": true,
+  "sources": [
+    {
+      "file": "individual_pdfs/Series Foreword.pdf",
+      "bookmark": "Series Foreword",
+      "pages": 2,
+      "merged_first_page": 1,
+      "merged_last_page": 2,
+      "sha256": "34663e02d93056e4ffc957e902312dc293acee7295258aa5c4b86b849c95bc23",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224773/9780262312080_fb.pdf"
+    },
+    {
+      "file": "individual_pdfs/Preface.pdf",
+      "bookmark": "Preface",
+      "pages": 4,
+      "merged_first_page": 3,
+      "merged_last_page": 6,
+      "sha256": "023e1b0e27c3b613a8c045254cf99fe49f3204b7262e00fdddde8f38864987ec",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224774/9780262312080_fc.pdf"
+    },
+    {
+      "file": "individual_pdfs/01 - Introduction.pdf",
+      "bookmark": "1. Introduction",
+      "pages": 24,
+      "merged_first_page": 7,
+      "merged_last_page": 30,
+      "sha256": "f5ea65823982b3219f1f9475b532c4c662322a83c16fb0d992ae780fe25a54ae",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224775/9780262312080_caa.pdf"
+    },
+    {
+      "file": "individual_pdfs/02 - Kalman Filtering.pdf",
+      "bookmark": "2. Kalman Filtering",
+      "pages": 16,
+      "merged_first_page": 31,
+      "merged_last_page": 46,
+      "sha256": "3058c2f9d1ae055904819b87e8b0f79661d76d5c13c71797982e088d47e632bb",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224776/9780262312080_cac.pdf"
+    },
+    {
+      "file": "individual_pdfs/03 - The Hodgkin-Huxley Equations.pdf",
+      "bookmark": "3. The Hodgkin-Huxley Equations",
+      "pages": 38,
+      "merged_first_page": 47,
+      "merged_last_page": 84,
+      "sha256": "7ac1e553d9c738ad0131f7edb3f344585fef738734ab306a01bdc127b5934fb7",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224777/9780262312080_cae.pdf"
+    },
+    {
+      "file": "individual_pdfs/04 - Simplified Neuronal Models.pdf",
+      "bookmark": "4. Simplified Neuronal Models",
+      "pages": 18,
+      "merged_first_page": 85,
+      "merged_last_page": 102,
+      "sha256": "f343ef7ba8af81c636bf9f014f6911fe64c66c9e2773ce5826d222339cc1b5ff",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224778/9780262312080_cag.pdf"
+    },
+    {
+      "file": "individual_pdfs/05 - Bridging from Kalman to Neuron.pdf",
+      "bookmark": "5. Bridging from Kalman to Neuron",
+      "pages": 18,
+      "merged_first_page": 103,
+      "merged_last_page": 120,
+      "sha256": "673fb4a4b5d8afefe625a41e5c2d6c3cc8509b20bf8bf7c297d0f9afed5e0bb3",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224779/9780262312080_cai.pdf"
+    },
+    {
+      "file": "individual_pdfs/06 - Spatiotemporal Cortical Dynamics.pdf",
+      "bookmark": "6. Spatiotemporal Cortical Dynamics",
+      "pages": 38,
+      "merged_first_page": 121,
+      "merged_last_page": 158,
+      "sha256": "604ce8b43ab8f83ecdaa5ceec35a6f618d225ee03a833d612bf4b929e015d33e",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224780/9780262312080_cak.pdf"
+    },
+    {
+      "file": "individual_pdfs/07 - Empirical Models.pdf",
+      "bookmark": "7. Empirical Models",
+      "pages": 30,
+      "merged_first_page": 159,
+      "merged_last_page": 188,
+      "sha256": "02296105e1e6c44ad00a4c95f5c31132b36d65bd9376904e0bf5f230153a52d8",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224781/9780262312080_cam.pdf"
+    },
+    {
+      "file": "individual_pdfs/08 - Model Inadequacy.pdf",
+      "bookmark": "8. Model Inadequacy",
+      "pages": 32,
+      "merged_first_page": 189,
+      "merged_last_page": 220,
+      "sha256": "2182e3a175231f3c58243a9d6c2f9c5fa343173b0a10bfe67c7f9e89ac39cfc4",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224782/9780262312080_cao.pdf"
+    },
+    {
+      "file": "individual_pdfs/09 - Brain-Machine Interfaces.pdf",
+      "bookmark": "9. Brain-Machine Interfaces",
+      "pages": 22,
+      "merged_first_page": 221,
+      "merged_last_page": 242,
+      "sha256": "f3c747426935fa4675c5ce9299025ea50841cf34c516978ed61d6b6039e1cf4c",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224783/9780262312080_caq.pdf"
+    },
+    {
+      "file": "individual_pdfs/10 - Parkinsons Disease.pdf",
+      "bookmark": "10. Parkinsons Disease",
+      "pages": 36,
+      "merged_first_page": 243,
+      "merged_last_page": 278,
+      "sha256": "d546f43b475c276e36fa80e9a41e1bc8a7359edc50a816c01a582180587dce10",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224784/9780262312080_car.pdf"
+    },
+    {
+      "file": "individual_pdfs/11 - Control Systems with Electrical Fields.pdf",
+      "bookmark": "11. Control Systems with Electrical Fields",
+      "pages": 28,
+      "merged_first_page": 279,
+      "merged_last_page": 306,
+      "sha256": "652c98193a6967bb5ed19655c07a390e7abd6101ce1ee2487cd194746e509eac",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224785/9780262312080_cas.pdf"
+    },
+    {
+      "file": "individual_pdfs/12 - Assimilating Seizures.pdf",
+      "bookmark": "12. Assimilating Seizures",
+      "pages": 26,
+      "merged_first_page": 307,
+      "merged_last_page": 332,
+      "sha256": "16da08ce1f3a7057d94e0b4d345d6ff305069214636b782f52e77e36daa3ef79",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224786/9780262312080_cat.pdf"
+    },
+    {
+      "file": "individual_pdfs/13 - Assimilating Minds.pdf",
+      "bookmark": "13. Assimilating Minds",
+      "pages": 10,
+      "merged_first_page": 333,
+      "merged_last_page": 342,
+      "sha256": "10d3edac423bf2722b6631f7cffd7c921ae6cdcc8ef6cec78718f25e693fae39",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224787/9780262312080_cau.pdf"
+    },
+    {
+      "file": "individual_pdfs/Bibliography.pdf",
+      "bookmark": "Bibliography",
+      "pages": 20,
+      "merged_first_page": 343,
+      "merged_last_page": 362,
+      "sha256": "560f8dbe6f4c1dbd9eb526b71fb100294408737b012e91ea90ea675c4d19c71f",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224788/9780262312080_cav.pdf"
+    },
+    {
+      "file": "individual_pdfs/Index.pdf",
+      "bookmark": "Index",
+      "pages": 30,
+      "merged_first_page": 363,
+      "merged_last_page": 392,
+      "sha256": "d1ac93990a8bc6f17005d12b8b2e89dbf56ebd39dbfe7363e960781723b5457d",
+      "publisher_url_from_watermark": "https://direct.mit.edu/books/book/chapter-pdf/224789/9780262312080_caw.pdf"
+    },
+    {
+      "file": "individual_pdfs/99 - Errata.pdf",
+      "bookmark": "Errata (publisher supplement)",
+      "pages": 9,
+      "merged_first_page": 393,
+      "merged_last_page": 401,
+      "sha256": "ba69d10b92bd715621e542a021c50a33e94b70e48dd9c6f2d57ad0a5d73ea397",
+      "publisher_url_from_watermark": null
+    }
+  ],
+  "merged_pages": 401,
+  "merged_sha256": "c6738905cbe8fb14ca5e23e44788adf238e6808c14d7bb4f7a9437dfc97dc8aa"
+}

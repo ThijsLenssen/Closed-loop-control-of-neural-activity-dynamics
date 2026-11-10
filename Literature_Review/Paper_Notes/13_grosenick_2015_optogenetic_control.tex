@@ -1,0 +1,25 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries Closed-Loop and Activity-Guided Optogenetic Control\par}
+
+\textbf{Paper:} Grosenick, Marshel and Deisseroth (2015).\quad Review of feedback, sensing and optical actuation.\par
+\href{https://doi.org/10.1016/j.neuron.2015.03.034}{DOI: \nolinkurl{10.1016/j.neuron.2015.03.034}}\par
+{\footnotesize Page references below use PDF page numbers, including front matter.}
+
+\question{To which general question does this paper relate?}
+What can be measured and controlled optogenetically, and how to formulate an experiment-specific control objective and model.
+
+\question{How does it answer the general questions?}
+\textbf{Framework.} Distinguishes feedback based on ongoing measurements from stimulation patterns chosen using earlier observations. Reviews electrical recordings, optical indicators and cell/projection-targeted light actuation, alongside on/off, PID, adaptive and predictive control approaches (PDF pp.~1--12).
+
+\textbf{Usable insight.} The desired neural or behavioural trajectory determines sensor bandwidth, actuator choice and the meaning of successful control. Calcium signals do not necessarily resolve individual spike timing; opsin kinetics, saturation, targeting, heating and nonstationarity constrain achievable responses. Optogenetic actuation does not itself provide a neural measurement.
+
+\textbf{Model relevance.} Supports system identification and explicit sensor/opsin dynamics before feedback design. A memoryless input map or time-invariant delayed rate model is a chosen approximation, not a property guaranteed by the technology. Examples include seizure interruption and manipulation of oscillations, but no universal beta-suppression objective or PIE Zames--Falb optimization is provided (PDF pp.~10--12, 24--26).
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item Paz et al. (2013), \emph{Closed-loop optogenetic control of thalamus as a tool for interrupting seizures after cortical injury} (references, PDF p.~32).
+\item Krook-Magnuson et al. (2014), \emph{Cerebellar directed optogenetic intervention inhibits spontaneous hippocampal seizures in a mouse model of temporal lobe epilepsy} (PDF p.~30).
+\end{itemize}
+
+\end{document}

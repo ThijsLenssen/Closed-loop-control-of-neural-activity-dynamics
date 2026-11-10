@@ -1,0 +1,215 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xcolor,microtype}
+\definecolor{assumption}{RGB}{155,65,0}
+\newcommand{\extra}[1]{\textcolor{assumption}{#1}}
+\newcommand{\op}[1]{\mathcal{#1}}
+\newtheorem{lemma}{Lemma}
+\renewcommand{\thelemma}{4.\arabic{lemma}}
+\setcounter{lemma}{13}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\allowdisplaybreaks
+% Adapted from Scherer and Weiland, Linear Matrix Inequalities in Control,
+% November 2016 compilation, Lemmas 4.14--4.15, pp. 111--113.
+\begin{document}
+
+\begin{lemma}[Projection Lemma]
+Let $\op P=\op P^*$ be a bounded PI operator partitioned into three
+rows/columns and consider the operator inequality
+\begin{equation}\tag{4.4.5}\label{eq:445}
+ \begin{pmatrix}
+ \op P_{11}&\op P_{12}+\op X^*&\op P_{13}\\
+ \op P_{21}+\op X&\op P_{22}&\op P_{23}\\
+ \op P_{31}&\op P_{32}&\op P_{33}
+ \end{pmatrix}\prec0
+\end{equation}
+in the unstructured PI operator $\op X$. Here and below, a self-adjoint
+operator $\op R$ is \emph{coercive} if $\op R\succeq\varepsilon I$
+for some $\varepsilon>0$, and $\op L\prec0$ means that $-\op L$
+is coercive. We use the PI algebra, which is closed under inversion
+of coercive operators.
+There exists a solution $\op X$ of \eqref{eq:445} if and only if
+\begin{equation}\tag{4.4.6}\label{eq:446}
+ \begin{pmatrix}\op P_{11}&\op P_{13}\\
+                 \op P_{31}&\op P_{33}\end{pmatrix}\prec0
+ \quad\text{and}\quad
+ \begin{pmatrix}\op P_{22}&\op P_{23}\\
+                 \op P_{32}&\op P_{33}\end{pmatrix}\prec0.
+\end{equation}
+If \eqref{eq:446} hold, one particular solution is given by
+\begin{equation}\tag{4.4.7}\label{eq:447}
+ \op X=\op P_{32}^*\op P_{33}^{-1}\op P_{31}-\op P_{21}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+(Only if) If \eqref{eq:445} has a solution then \eqref{eq:446} follow
+by canceling the first or second block row/column.
+
+(If) Suppose that \eqref{eq:446} holds. Then $-\op P_{33}$ is coercive,
+so $\op P_{33}^{-1}$ is a bounded PI operator. The Schur
+complement makes \eqref{eq:445} equivalent to
+\[
+ \begin{pmatrix}\op P_{11}&\op P_{12}+\op X^*\\
+                 \op P_{21}+\op X&\op P_{22}\end{pmatrix}
+ -
+ \begin{pmatrix}\op P_{13}\\\op P_{23}\end{pmatrix}
+ \op P_{33}^{-1}
+ \begin{pmatrix}\op P_{31}&\op P_{32}\end{pmatrix}\prec0.
+\]
+Due to \eqref{eq:446}, the negatives of the diagonal blocks are coercive.
+The operator $\op X$ defined in \eqref{eq:447} renders the
+off-diagonal block zero, so it is a PI solution.
+\end{proof}
+
+\begin{lemma}[Projection Lemma]
+For bounded PI operators $\op A:\op H\to\op Y_A$,
+$\op B:\op H\to\op Y_B$ and $\op P=\op P^*:\op H\to\op H$, consider
+\begin{equation}\tag{4.4.8}\label{eq:448}
+ \op A^*\op X\op B+\op B^*\op X^*\op A+\op P\prec0
+\end{equation}
+in the unstructured PI operator $\op X:\op Y_B\to\op Y_A$.
+For the converse below, assume
+\extra{that the block spaces used in the proof admit PI coordinates,
+that the coordinate map $\op S$ is PI, and that
+$\op S^*\op S$, $\op A_c^*\op A_c$ and $\op B_c^*\op B_c$
+are coercive}.
+The admissible PI class is closed under sums, products and adjoints;
+zero-dimensional blocks are omitted.
+
+Then \eqref{eq:448} has a solution if and only if
+\begin{equation}\tag{4.4.9}\label{eq:449}
+ \extra{\exists\,\delta>0:}\quad
+ \op Ax=0\text{ or }\op Bx=0
+ \ \Longrightarrow\
+ \langle x,\op Px\rangle\le-\delta\|x\|^2.
+\end{equation}
+If $\op A_\perp$ and $\op B_\perp$ are isometric parameterizations
+of $\ker\op A$ and $\ker\op B$, respectively,
+\eqref{eq:449} is equivalent to
+\begin{equation}\tag{4.4.10}\label{eq:4410}
+ \op A_\perp^*\op P\op A_\perp\prec0
+ \quad\text{and}\quad
+ \op B_\perp^*\op P\op B_\perp\prec0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The proof of \emph{only if} is immediate. If $\op Ax=0$ or $\op Bx=0$,
+the cross terms vanish, so \eqref{eq:448} implies \eqref{eq:449}.
+This direction needs no additional coordinate or coercivity assumptions.
+
+For proving \emph{if}, define
+\[
+ \begin{gathered}
+ \op H_3=\ker\op A\cap\ker\op B,\qquad
+ \op H_1=\ker\op A\ominus\op H_3,\\
+ \op H_2=\ker\op B\ominus\op H_3,\qquad
+ \op H_4=(\ker\op A+\ker\op B)^\perp.
+ \end{gathered}
+\]
+Let $\op S:\bigoplus_{j=1}^4\op H_j\to\op H$ be
+$\op S(x_1,x_2,x_3,x_4)=x_1+x_2+x_3+x_4$.
+\extra{Coercivity of $\op S^*\op S$ makes $\op S$ bounded below
+with closed range. Its range is dense by construction, so $\op S$
+is boundedly invertible.}
+Instead of \eqref{eq:448}, consider the equivalent inequality
+\begin{equation}\tag{4.4.11}\label{eq:4411}
+ (\op A\op S)^*\op X(\op B\op S)
+ +(\op B\op S)^*\op X^*(\op A\op S)
+ +\op S^*\op P\op S\prec0.
+\end{equation}
+
+Now $\op A\op S$ and $\op B\op S$ have the structure
+$(0\ \op A_2\ 0\ \op A_4)$ and
+$(\op B_1\ 0\ 0\ \op B_4)$.
+The operators $\op A_c=(\op A_2\ \op A_4)$ and
+$\op B_c=(\op B_1\ \op B_4)$ are injective.
+\extra{Coercivity of $\op A_c^*\op A_c$ and $\op B_c^*\op B_c$}
+gives the bounded PI left inverses
+\[
+ \op A_c^\dagger=(\op A_c^*\op A_c)^{-1}\op A_c^*,\qquad
+ \op B_c^\dagger=(\op B_c^*\op B_c)^{-1}\op B_c^*.
+\]
+Thus the equation
+\[
+ (\op A\op S)^*\op X(\op B\op S)
+ =
+ \begin{pmatrix}0\\\op A_2^*\\0\\\op A_4^*\end{pmatrix}
+ \op X\begin{pmatrix}\op B_1&0&0&\op B_4\end{pmatrix}
+ =
+ \begin{pmatrix}
+ 0&0&0&0\\
+ \op Z_{21}&0&0&\op Z_{24}\\
+ 0&0&0&0\\
+ \op Z_{41}&0&0&\op Z_{44}
+ \end{pmatrix}
+\]
+has a PI solution for arbitrary bounded PI blocks
+$\op Z_{21},\op Z_{24},\op Z_{41},\op Z_{44}$: take
+\[
+ \op X=(\op A_c^\dagger)^*
+ \begin{pmatrix}\op Z_{21}&\op Z_{24}\\
+                 \op Z_{41}&\op Z_{44}\end{pmatrix}
+ \op B_c^\dagger.
+\]
+With $\op Q:=\op S^*\op P\op S$ partitioned accordingly,
+\eqref{eq:4411} hence reads as
+\begin{equation}\tag{4.4.12}\label{eq:4412}
+\begin{pmatrix}
+ \op Q_{11}&\op Q_{12}+\op Z_{21}^*&\op Q_{13}&\op Q_{14}+\op Z_{41}^*\\
+ \op Q_{21}+\op Z_{21}&\op Q_{22}&\op Q_{23}&\op Q_{24}+\op Z_{24}\\
+ \op Q_{31}&\op Q_{32}&\op Q_{33}&\op Q_{34}\\
+ \op Q_{41}+\op Z_{41}&\op Q_{42}+\op Z_{24}^*&\op Q_{43}
+   &\op Q_{44}+\op Z_{44}+\op Z_{44}^*
+\end{pmatrix}\prec0.
+\end{equation}
+Since
+\[
+ \ker(\op A\op S)
+ =\operatorname{im}\begin{pmatrix}I&0\\0&0\\0&I\\0&0\end{pmatrix},
+ \qquad
+ \ker(\op B\op S)
+ =\operatorname{im}\begin{pmatrix}0&0\\I&0\\0&I\\0&0\end{pmatrix},
+\]
+the hypothesis \eqref{eq:449} amounts to
+\[
+ \begin{pmatrix}\op Q_{11}&\op Q_{13}\\
+                 \op Q_{31}&\op Q_{33}\end{pmatrix}\prec0,
+ \qquad
+ \begin{pmatrix}\op Q_{22}&\op Q_{23}\\
+                 \op Q_{32}&\op Q_{33}\end{pmatrix}\prec0.
+\]
+By Lemma~4.14, since $-\op Q_{33}$ is coercive and therefore
+$\op Q_{33}^{-1}$ is PI, choose
+\[
+ \op Z_{21}=\op Q_{23}\op Q_{33}^{-1}\op Q_{31}-\op Q_{21}
+\]
+to make the negative of the leading $3\times3$ block in
+\eqref{eq:4412} coercive. If $\op H_3=\{0\}$, take
+$\op Z_{21}=-\op Q_{21}$ instead.
+
+The blocks $\op Z_{41}$ and $\op Z_{24}$ can be arbitrary bounded
+PI operators. After fixing them, write \eqref{eq:4412} as
+\[
+ \begin{pmatrix}
+ \op R&\op F\\
+ \op F^*&\op Q_{44}+\op Z_{44}+\op Z_{44}^*
+ \end{pmatrix}\prec0,\qquad \op R\prec0.
+\]
+Choose $\op Z_{44}=-\alpha I$ with
+\[
+ 2\alpha>\|\op Q_{44}\|+\|\op F\|^2\|\op R^{-1}\|.
+\]
+The negative of the Schur complement is coercive. This is the operator
+counterpart of the original proof's application of Lemma~4.13.
+Coercivity of $-\op R$ ensures that $\op R^{-1}$ is bounded and PI.
+Pulling back through the boundedly invertible $\op S$
+proves \eqref{eq:448}.
+\end{proof}
+
+\end{document}

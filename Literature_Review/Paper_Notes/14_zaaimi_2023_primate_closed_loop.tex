@@ -1,0 +1,31 @@
+\input{notes_preamble.tex}
+\begin{document}
+{\Large\bfseries Closed-loop optogenetic control of the dynamics of neural activity in non-human primates\par}
+
+\textbf{Paper:} Zaaimi et al. (2023 (online 2022)).\quad Mouse slices, anaesthetized primates and modelling.\par
+\href{https://doi.org/10.1038/s41551-022-00945-8}{DOI: \nolinkurl{10.1038/s41551-022-00945-8}}\par
+{\footnotesize Page references below use PDF page numbers, including front matter.}
+
+\question{To which general question does this paper relate?}
+Direct evidence for feedback control of neural oscillations and seizure-like activity. Also supplies a concrete rate-model structure compatible with the notebook.
+
+\question{How does it answer the general questions?}
+\textbf{Measured and controlled.} LFP-dependent, phase-shifted optical stimulation enhanced or attenuated oscillations and modulated chemically induced seizure-like bursts. The same excitatory actuator could have opposite network effects depending on feedback phase (PDF pp.~2--11).
+
+\textbf{Objective.} The experiments target oscillatory dynamics and seizure-burst duration, not Parkinsonian beta or demonstrated clinical recovery. Phase and measurement filtering matter; reducing stimulation intensity alone does not describe the intervention.
+
+\textbf{Model mapping.} Their two-population model is
+\[
+\dot E={-E+\sigma(aE-bI+S+P)\over\tau_e}+\eta_e,
+\quad
+\dot I={-I+\sigma(cE-dI+Q)\over\tau_i}+\eta_i.
+\]
+After equilibrium centring, take $x=(E,I)$, linear decay $(-1/\tau_e,-1/\tau_i)$, signed input rows $(a,-b)$ and $(c,-d)$, and $u=S$ inside the excitatory sigmoid. Intrinsic delays are zero. The logistic has slope at most $1/4$, so scaled nonlinearities have bounds $1/(4\tau_i)$. LFP filtering and the feedback FIR filter require additional dynamics; numerical parameters are in the separately referenced Supplementary Table~2 (PDF pp.~14--15).
+
+\question{What papers does it cite that could provide more information?}
+\begin{itemize}
+\item Nicholson et al. (2018), \emph{Analogue closed-loop optogenetic modulation of hippocampal pyramidal cells dissociates gamma frequency and amplitude} (ref.~8, PDF p.~15).
+\item Wang et al. (2014), \emph{Dynamic mechanisms of neocortical focal seizure onset}: model background (ref.~15, PDF p.~15).
+\end{itemize}
+
+\end{document}
