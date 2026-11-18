@@ -1,0 +1,98 @@
+{
+  "scope": "SynNoiseTS and xtra_ts on twelve independent passive cells; no extracellular solver",
+  "tested_thread_counts": [
+    1,
+    2,
+    4
+  ],
+  "comparisons": {
+    "2": {
+      "currents": {
+        "bitwise_identical": true,
+        "max_abs_error": 0.0
+      },
+      "voltage": {
+        "bitwise_identical": true,
+        "max_abs_error": 0.0
+      },
+      "stimulus": {
+        "bitwise_identical": true,
+        "max_abs_error": 0.0
+      }
+    },
+    "4": {
+      "currents": {
+        "bitwise_identical": true,
+        "max_abs_error": 0.0
+      },
+      "voltage": {
+        "bitwise_identical": true,
+        "max_abs_error": 0.0
+      },
+      "stimulus": {
+        "bitwise_identical": true,
+        "max_abs_error": 0.0
+      }
+    }
+  },
+  "statistics": {
+    "threads": 1,
+    "cells": 12,
+    "duration_ms": 100,
+    "dt_ms": 0.01,
+    "mean_noise_na": 0.001066105343274921,
+    "noise_variance_na2": 0.20002070456057527,
+    "expected_variance_na2": 0.2,
+    "max_pairwise_noise_correlation": 0.022988256767856576,
+    "wall_s": 0.01924020002479665,
+    "cpu_s": 0.015625,
+    "full_extracellular_guard": true,
+    "cache_efficient": 0
+  },
+  "full_network_multithreading_supported": false,
+  "reason": "NEURON extracellular solver restriction; thread-safe mechanisms alone do not remove it.",
+  "per_thread_runs": {
+    "1": {
+      "threads": 1,
+      "cells": 12,
+      "duration_ms": 100,
+      "dt_ms": 0.01,
+      "mean_noise_na": 0.001066105343274921,
+      "noise_variance_na2": 0.20002070456057527,
+      "expected_variance_na2": 0.2,
+      "max_pairwise_noise_correlation": 0.022988256767856576,
+      "wall_s": 0.01924020002479665,
+      "cpu_s": 0.015625,
+      "full_extracellular_guard": true,
+      "cache_efficient": 0
+    },
+    "2": {
+      "threads": 2,
+      "cells": 12,
+      "duration_ms": 100,
+      "dt_ms": 0.01,
+      "mean_noise_na": 0.001066105343274921,
+      "noise_variance_na2": 0.20002070456057527,
+      "expected_variance_na2": 0.2,
+      "max_pairwise_noise_correlation": 0.022988256767856576,
+      "wall_s": 0.016869199986103922,
+      "cpu_s": 0.03125,
+      "full_extracellular_guard": true,
+      "cache_efficient": 0
+    },
+    "4": {
+      "threads": 4,
+      "cells": 12,
+      "duration_ms": 100,
+      "dt_ms": 0.01,
+      "mean_noise_na": 0.001066105343274921,
+      "noise_variance_na2": 0.20002070456057527,
+      "expected_variance_na2": 0.2,
+      "max_pairwise_noise_correlation": 0.022988256767856576,
+      "wall_s": 0.0168441999994684,
+      "cpu_s": 0.015625,
+      "full_extracellular_guard": true,
+      "cache_efficient": 0
+    }
+  }
+}

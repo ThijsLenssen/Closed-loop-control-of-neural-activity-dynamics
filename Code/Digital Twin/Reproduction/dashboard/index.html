@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DBS Simulation Lab</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%231c7567'/%3E%3Cpath d='M5 22h8l4-12 6 21 4-9h8' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="/"><span class="brand-icon" aria-hidden="true">∿</span><span>NEURAL CONTROL <b>/ SIMULATION LAB</b></span></a>
+<div class="connection"><i id="connection-dot"></i><span id="connection-text">Connecting</span><span class="local-badge">LOCAL</span></div>
+</header>
+<main>
+<div class="page-heading">
+<div><div class="eyebrow">EXPERIMENT 01 <span>•</span> FLEMING ET AL. · 2020</div><h1>DBS off <span class="versus">vs.</span> PI control</h1><p class="subtitle">One paired simulation of pathological beta activity in the cortico-basal ganglia network.</p></div>
+<div class="heading-status"><span id="state-pill" class="pill">Connecting</span><span class="tiny" id="updated-label">Reading the local runner</span></div>
+</div>
+<div class="notice" id="error-banner" role="alert" hidden></div>
+<div class="notice success" id="toast" role="status" hidden></div>
+<div class="workspace">
+<section class="main-column">
+<div class="card campaign">
+<div class="card-heading"><div><div class="eyebrow">SIMULATION PROGRESS</div><h2 id="campaign-heading">Connecting to the runner</h2></div><div class="progress-number" id="overall-percent">—<small>%</small></div></div>
+<div class="overall-track"><div id="overall-bar"></div></div>
+<div class="time-row"><span>Wall time <strong id="elapsed">—</strong></span><span>Estimated remaining <strong id="eta">—</strong></span></div>
+<div id="stages" class="stages"></div>
+<div class="work-note"><span class="small-dot"></span><span id="work-note">Reading saved progress. No simulation is started by opening this page.</span></div>
+</div>
+<div class="card signals">
+<div class="card-heading"><div><div class="eyebrow">CLOSED-LOOP RESPONSE</div><h2>Beta activity &amp; stimulation</h2></div><span class="pill neutral" id="signal-status">Awaiting samples</span></div>
+<div class="legend"><span><i class="legend-line baseline"></i>DBS off</span><span><i class="legend-line pi"></i>PI control</span><span><i class="legend-line target"></i>Target <b id="target-legend">0.10414 µV</b></span></div>
+<div class="plot-block"><div class="axis-title">BETA ARV <span>µV · 21–29 Hz</span><b id="beta-latest"></b></div><div class="plot-wrap"><canvas id="beta-chart" role="img" aria-label="Measured beta ARV against time from controller start"></canvas><div class="empty-chart" id="beta-empty"><div class="empty-symbol" aria-hidden="true">∿</div><strong>Waiting for the first controller sample</strong><span>Beta measurements appear after warmup and 2 s of signal history.</span></div></div></div>
+<div class="plot-block amplitude-block"><div class="axis-title">STIMULATION AMPLITUDE <span>mA · 130 Hz</span><b id="amplitude-latest"></b></div><div class="plot-wrap short"><canvas id="amplitude-chart" role="img" aria-label="DBS amplitude against time from controller start"></canvas><div class="empty-chart compact" id="amplitude-empty"><span>Stimulation traces will appear here.</span></div></div></div>
+<p class="plot-footnote"><span>Time from controller start (s)</span><span>Real simulation output · updates every 3 s</span></p>
+</div>
+<div class="card results-card">
+<div class="card-heading"><div><div class="eyebrow">PAIRED COMPARISON</div><h2>Results &amp; exports</h2></div><button class="text-button" id="analyse-button">Refresh analysis <span aria-hidden="true">↗</span></button></div>
+<div class="result-metrics" id="result-metrics"><div><label>Beta suppression</label><strong id="metric-beta">—</strong><small>Mean of paired sample ratios</small></div><div><label>Error reduction</label><strong id="metric-error">—</strong><small>Positive error above target</small></div><div><label>PI stimulation power</label><strong id="metric-power">—</strong><small>Linear waveform integration</small></div></div>
+<p class="results-note" id="results-note">Comparison metrics and the LFP plot appear when both trials finish.</p>
+<img id="comparison-image" alt="Completed LFP, beta activity, and stimulation comparison" hidden>
+<div class="downloads" id="downloads"><a href="/results/index.html" target="_blank" rel="noopener">Open simulation report ↗</a></div>
+</div>
+</section>
+<aside class="side-column">
+<div class="card run-card"><div class="eyebrow">RUN CONTROLS</div><h2>Selected comparison</h2><p class="muted">DBS off and PI amplitude control, using the same initial state and seed.</p>
+<button class="button primary" id="start-button" disabled><span aria-hidden="true">▶</span> <span id="start-label">Start / resume comparison</span></button>
+<button class="button stop" id="stop-button" disabled><span aria-hidden="true">■</span> Stop comparison</button>
+<p class="control-note" id="resume-note">Completed stages are retained. An unfinished stage restarts from its beginning.</p>
+<div class="divider"></div><div class="eyebrow">PROTOCOL</div>
+<dl class="protocol"><div><dt>Network</dt><dd>600 neurons</dd></div><div><dt>Warmup</dt><dd>6 s</dd></div><div><dt>History + evaluation</dt><dd>2 + 30 s / trial</dd></div><div><dt>PI gains</dt><dd>Kp 0.23 · Ti 0.2 s</dd></div><div><dt>Amplitude limits</dt><dd>0–3 mA</dd></div><div><dt>Pulse</dt><dd>130 Hz · 60 µs</dd></div><div><dt>Controller period</dt><dd>20 ms</dd></div><div><dt>Target beta ARV</dt><dd id="target-value">0.10414 µV</dd></div><div><dt>Seed / burst pattern</dt><dd id="seed-value">3695 / 1</dd></div><div><dt>Integration</dt><dd id="solver-value">dt 0.01 ms · order 0</dd></div></dl>
+</div>
+<div class="card resources"><div class="eyebrow">LOCAL COMPUTE</div><h2>Process activity</h2><div class="resource-value"><strong id="cpu-value">—</strong><span>of one CPU core</span></div><div class="resource-track"><i id="cpu-bar"></i></div><p class="tiny" id="machine-cpu">Waiting for CPU samples</p><div class="resource-row"><span>Memory</span><strong id="memory-value">—</strong></div><div class="resource-row"><span>Solver processes</span><strong id="process-count">—</strong></div><p class="compute-note">Each solver uses one thread. DBS-off and PI trials run as separate processes after warmup.</p></div>
+<div class="context-note"><span class="context-icon">i</span><p>One seed and one burst pattern. This is a comparison of control conditions in a PD-oriented circuit.</p></div>
+</aside>
+</div>
+<section class="card log-card"><div class="log-heading"><div><div class="eyebrow">RUNNER OUTPUT</div><h2>Simulation log</h2></div><div class="log-select"><label for="log-stage">Process</label><select id="log-stage"><option value="warmup">Warmup</option><option value="baseline">DBS off</option><option value="pi">PI control</option><option value="supervisor">Supervisor</option><option value="analysis">Analysis</option></select><button class="text-button" id="copy-log">Copy log</button></div></div><pre id="log-output" tabindex="0">Connecting to local output…</pre><div class="log-footer"><span id="log-path">results/warmup/run.log</span><span>Last 180 lines · auto-updating</span></div></section>
+<footer><span>DBS Simulation Lab <span class="footer-dot">·</span> Local reproduction tools</span><span>Closing this page leaves the simulation running.</span></footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,13 @@
+runtime/
+results/
+tests/work/
+__pycache__/
+model/__pycache__/
+model/*.dll
+model/*.bin
+tests/__pycache__/
+tests/threadsafe/__pycache__/
+tests/threadsafe/*.dll
+tests/threadsafe/*.npz
+tests/threadsafe/thread_check_*.json
+tests/threadsafe/run_*.log

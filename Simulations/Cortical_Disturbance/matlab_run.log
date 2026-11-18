@@ -1,0 +1,29 @@
+Toolbox "mpt:3.2.1:all" added to the Matlab path.
+Toolbox "mptdoc:3.0.4:all" added to the Matlab path.
+Constant cortex: final equilibrium [20.442516 21.836618], rates [2.830976 35.070518] spikes/s
+  RMS difference [STN GPe] = [20.4213 39.2336]; equilibrium residual 1.42e-14
+Ramping cortex: final equilibrium [28.827220 32.111233], rates [105.904249 54.300165] spikes/s
+  RMS difference [STN GPe] = [36.6066 74.042]; equilibrium residual 7.37e-10
+Slow cortex: final equilibrium [20.442516 21.836618], rates [4.936696 45.654377] spikes/s
+  RMS difference [STN GPe] = [21.605 41.2488]; equilibrium residual 4.41e-10
+Beta cortex: final equilibrium [20.442516 21.836618], rates [1.323686 26.055798] spikes/s
+  RMS difference [STN GPe] = [23.8498 49.5217]; equilibrium residual 4.29e-10
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for better performance. <a
+href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.] 
+Constant cortex: final equilibrium [20.442516 21.836618], rates [2.830888 35.070002] spikes/s
+  RMS difference [STN GPe] = [20.4213 39.2336]; equilibrium residual 1.42e-14
+Ramping cortex: final equilibrium [28.827220 32.111233], rates [105.906050 54.303962] spikes/s
+  RMS difference [STN GPe] = [36.6066 74.042]; equilibrium residual 7.37e-10
+Slow cortex: final equilibrium [20.442516 21.836618], rates [4.936519 45.653673] spikes/s
+  RMS difference [STN GPe] = [21.605 41.2488]; equilibrium residual 4.41e-10
+Beta cortex: final equilibrium [20.442516 21.836618], rates [1.323686 26.055794] spikes/s
+  RMS difference [STN GPe] = [23.8498 49.5218]; equilibrium residual 4.29e-10
+Maximum default/refined rate differences [STN GPe], spikes/s:
+    0.0016    0.0037
+    0.0030    0.0038
+    0.0023    0.0045
+    0.0082    0.0296
+
+{Error using assert
+Assertion failed.
+} 

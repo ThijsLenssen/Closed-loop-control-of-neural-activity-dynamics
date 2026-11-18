@@ -1,0 +1,241 @@
+\documentclass[final,5p,twocolumn]{elsarticle}
+
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{assump}{Assumption}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\blkdiag}{blkdiag}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\trace}{tr}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\T}{\mathsf{T}}
+\newcommand{\Nnorm}[1]{\nu_+\!\left(#1\right)}
+\newcommand{\normNT}[1]{\left\lVert #1\right\rVert_{\nu_+,T}}
+\newcommand{\normTwoT}[1]{\left\lVert #1\right\rVert_{2,T}}
+
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,keepspaces=true}
+
+\begin{document}
+\begin{frontmatter}
+\title{Dual-First Linear Dynamic Hard Incremental IQCs for Paired Sigmoids}
+\begin{abstract}
+This note constructs a square linear dynamic filter on the dual side and verifies admissibility of its recovered primal factor for paired sigmoid increments. A unit-triangular construction satisfies the bounded causal inverse conditions for the factors and their lower-right blocks without requiring an inverse of the auxiliary transfer matrix. The primal finite-horizon hardness proof uses a polyhedral norm. The construction applies jointly to subthalamic nucleus (STN) and external globus pallidus (GPe) channels and can be repeated for an observer pair. An earlier rectangular primal-first family is retained for comparison. Certification of a particular controller still requires the complementary plant inequality and the remaining well-posedness and performance assumptions.
+\end{abstract}
+\begin{keyword}
+Integral quadratic constraints \sep Hard IQCs \sep Incremental stability \sep Sigmoid nonlinearities \sep Lur'e systems \sep Deep brain stimulation
+\end{keyword}
+\end{frontmatter}
+
+\section{Introduction}
+The purpose of this note is to construct a \emph{sufficient} family of hard incremental IQCs for two sigmoid channels. The current construction defines the square filter on the dual side and applies the plant-side route R.2 of Lenssen et al.~\cite{dualPIE}. Its recovered primal factor is then checked directly on sigmoid increments. The inverse conditions apply to the square factors and their lower-right blocks, rather than to the auxiliary matrix $H$. Section~\ref{sec:dualfirst} gives this dual-first construction. The subsequent sections retain the earlier rectangular primal-first family as a comparison; the two filters and their weights must not be mixed.
+
+The construction is motivated by the polyhedral-norm example in Section III.C of Qin and Karimi, \emph{On the Incremental Stability of Recurrent Neural Networks}, a November 2026 preprint \cite{qinKarimi2026}. That paper addresses discrete-time systems and infinite-horizon IQCs. The continuous-time finite-horizon derivation below is separate and establishes hardness for the present construction.
+
+\input{Notes/sigmoid_iiqc/alternative_multiplier.tex}
+
+\section{Primal-first comparison family}\label{sec:family}
+Let $F(q)=[F_S(q_S),F_G(q_G)]^{\T}$ apply the two PNAS sigmoids componentwise. Assume their derivatives belong to $[0,1]$, irrespective of their differing maximum and baseline rates. For arbitrary input trajectories $q,\tilde q$, define
+\begin{equation}\label{eq:vw}
+ v=q-\tilde q,\qquad w=F(q)-F(\tilde q).
+\end{equation}
+Pointwise,
+\begin{align}\label{eq:slope}
+ w(t)&=D(t)v(t),\quad D(t)=\diag(d_1(t),d_2(t)),\notag\\
+ &0\le d_i(t)\le1.
+\end{align}
+No derivative or rate bound on $D$ is assumed.
+
+Choose $0<\rho<1$, $a>0$, $0<\beta<1$, and integer $n\ge1$; the MATLAB option \texttt{directRatio} defaults to $\beta=0.5$. Define
+\begin{align}
+ R&=\begin{bmatrix}1&1\\-1&0\end{bmatrix},\label{eq:R}\\
+ h(s)&=\left(\frac{\beta s+a}{s+a}\right)^n,\label{eq:h}\\
+ H(s)&=\rho h(s)R,\qquad \eta=\frac{(1-\rho)^2}{8}.\label{eq:H}
+\end{align}
+Set $r=\Psi(s)[v^{\T},w^{\T}]^{\T}$, with
+\begin{equation}\label{eq:psi}
+\Psi(s)=\begin{bmatrix}I&-H(s)\\ I&0\\0&I\end{bmatrix},\qquad
+M=\diag(I,-\eta I,-\eta I).
+\end{equation}
+The claimed hard incremental IQC is
+\begin{equation}\label{eq:iqc}
+\boxed{\int_0^T r(t)^{\T}Mr(t)\,\mathrm dt\ge0\quad\forall T\ge0.}
+\end{equation}
+The filter state is initialized at zero. Both channels share the same scalar transfer function $h$. The negative entry in $R$ is permitted by the norm identity proved in Section~\ref{sec:proof}, rather than by entrywise positivity of $H$. Each scalar factor in $h$ is a convex combination of the identity and a unit-DC-gain low-pass filter; hence $h$ has a nonnegative proper impulse response, nonnegative direct term, and total gain one.
+
+\subsection{Optional stable inverse of the auxiliary filter}
+This restriction belongs to the earlier primal-first comparison implementation. It is not required for the square dual-first factors in Section~\ref{sec:dualfirst}.
+The strictly proper choice $(a/(s+a))^n$ would have an improper inverse. The biproper factor in \eqref{eq:h} instead gives
+\begin{align}
+ H^{-1}(s)&=\frac{1}{\rho}\left(\frac{s+a}{\beta s+a}\right)^nR^{-1},\label{eq:Hinv}\\
+ R^{-1}&=\begin{bmatrix}0&-1\\1&1\end{bmatrix}.
+\end{align}
+The poles and zeros of $H$ are $-a$ and $-a/\beta$, respectively; those of $H^{-1}$ are interchanged. Both transfer matrices are proper, causal, rational, and stable, and $H(\infty)=\rho\beta^nR$ is nonsingular. The MATLAB generator returns separate cascade realizations \texttt{iqc.H} and \texttt{iqc.Hinv}, with triangular state matrices and these pole locations. Multiple pairs use blockwise copies with their respective $\rho$ values.
+
+A stable inverse need not have gain at most one. Its scalar high-frequency gain is $\beta^{-n}$, equal to $1024$ for $\beta=0.5$ and $n=10$, and the complete inverse also includes $\rho^{-1}R^{-1}$. This finite amplification matters numerically.
+
+\subsection{Conic multiplier library}
+For a library of fixed choices $(\rho,a,n,\beta)_j$, define the frequency-domain multiplier
+\begin{equation}\label{eq:conic}
+ \Pi_\theta(\mathrm i\omega)=\sum_j\theta_j\Psi_j(\mathrm i\omega)^*M_j\Psi_j(\mathrm i\omega),\quad\theta_j\ge0.
+\end{equation}
+Here ${}^*$ denotes conjugate transpose. A hard factorization follows by stacking the $\Psi_j$ and taking $M_\theta=\blkdiag(\theta_1M_1,\ldots)$. The nonnegative $\theta_j$ are linear SDP variables; $\rho$, $a$, $n$, and $\beta$ are outer-loop library choices. Static incremental sector IQCs can also be appended with nonnegative weights.
+
+For four sigmoid channels, use two pairs, with $H=\blkdiag(H_1,H_2)$ and corresponding pairwise $\eta$ weights. The channel order is plant STN/GPe followed by observer STN/GPe.
+
+\section{Proof for the primal-first comparison}\label{sec:proof}
+Define the polyhedral norm on $\R^2$
+\begin{equation}\label{eq:poly}
+ \Nnorm{x}=\max\{|x_1|,|x_2|,|x_1+x_2|\}.
+\end{equation}
+For every $x$ and diagonal $0\le D\le I$,
+\begin{align}
+ \Nnorm{Rx}&=\Nnorm{x},\label{eq:isometry}\\
+ \Nnorm{Dx}&\le\Nnorm{x},\label{eq:diagonal}\\
+ \frac{\lVert x\rVert_2}{\sqrt2}&\le\Nnorm{x}\le\sqrt2\lVert x\rVert_2.\label{eq:equiv}
+\end{align}
+The first two coordinates of $Dx$ contract. For the third, maximizing $|d_1x_1+d_2x_2|$ on $[0,1]^2$ reduces, by convexity, to its four vertices and yields $0$, $|x_1|$, $|x_2|$, or $|x_1+x_2|$. Therefore $\Nnorm{w(t)}\le\Nnorm{v(t)}$.
+
+For a finite horizon, let
+\begin{equation}
+ \normNT{x}=\left(\int_0^T\Nnorm{x(t)}^2\,\mathrm dt\right)^{1/2}.
+\end{equation}
+Each scalar stage is
+\begin{equation}\label{eq:stage}
+ \frac{\beta s+a}{s+a}=\beta+(1-\beta)\frac{a}{s+a}.
+\end{equation}
+The low-pass component has the nonnegative impulse response $ae^{-at}$ of unit integral. Expanding the cascade,
+\begin{equation}\label{eq:binomial}
+ h(s)=\sum_{j=0}^n\binom nj\beta^{n-j}(1-\beta)^j\left(\frac{a}{s+a}\right)^j.
+\end{equation}
+Every coefficient is nonnegative and their sum is one. Each summand, including the identity at $j=0$, has finite-horizon induced $\nu_+$-norm gain at most one. For $j\ge1$ this follows from Young's convolution inequality and the nonnegative unit-integral Erlang kernel, after zero-extending the input beyond $T$. Consequently,
+\begin{equation}\label{eq:gain}
+ \normNT{Hw}\le\rho\normNT{w}\le\rho\normNT{v},
+\end{equation}
+using \eqref{eq:isometry} and the norm triangle inequality.
+
+Write $r_0=v-Hw$. The reverse triangle inequality gives, for every $T\ge0$,
+\begin{equation}\label{eq:reverse}
+ (1-\rho)\normNT{v}\le\normNT{r_0}.
+\end{equation}
+From \eqref{eq:equiv},
+\begin{equation}\label{eq:euclidean}
+ \normTwoT{v}\le\frac{2}{1-\rho}\normTwoT{r_0}.
+\end{equation}
+Also $\normTwoT{w}\le\normTwoT{v}$ by \eqref{eq:slope}. Thus
+\begin{equation}\label{eq:mainbound}
+ \normTwoT{r_0}^2\ge\frac{(1-\rho)^2}{8}\left(\normTwoT{v}^2+\normTwoT{w}^2\right),
+\end{equation}
+which is precisely \eqref{eq:iqc} for the factorization \eqref{eq:psi}. The argument applies to arbitrary input pairs on every finite horizon; neither trajectory need be an equilibrium, and the proof does not assume that the observer receives the cortical disturbance.
+
+The sigmoid formula justifies the slope restriction in \eqref{eq:slope}. The same certificate applies to any componentwise slope-$[0,1]$ functions. Its additional power comes from a coupled dynamic certificate and nonquadratic norm reasoning, not an assumed temporal property of a scalar sigmoid.
+
+\section{Improvement over diagonal static sector tests}\label{sec:comparison}
+Consider the delay-free continuous-time Lur'e interconnection
+\begin{equation}\label{eq:lure}
+ v=G(s)w+e,\quad w=F(v),\quad G(s)=H(s),
+\end{equation}
+with $\rho=0.95$, $a=1$, $n=10$, and $\beta=0.5$. When zero-preserving operators are needed, center $F$ at $F(0)$ and absorb the constant offset into $e$; incremental differences are unchanged.
+
+On the linear graph $v=Hw$, the first filter output $v-Hw$ vanishes. The dynamic complementary supply is therefore
+\begin{equation}\label{eq:complement}
+ -\eta\left(\normTwoT{v}^2+\normTwoT{w}^2\right),\quad\eta=0.0003125.
+\end{equation}
+Because $G$ has direct feedthrough, its algebraic loop requires a well-posedness check. The instantaneous mapping $v\mapsto e+H(\infty)F(v)$ has contraction factor $\rho\beta^n<1$ in $\nu_+$. It therefore has a unique instantaneous solution for every exogenous input and strictly proper filter state. Together with finite-dimensional Lipschitz dynamics, this yields a well-posed causal interconnection. Theorem 2 of Su and Khong \cite{suKhong} can then be applied. The resulting statement concerns incremental input--output stability; arbitrary-initial-state exponential convergence requires additional internal-state analysis.
+
+In contrast, consider every positive diagonal static sector multiplier
+\begin{equation}\label{eq:sector}
+ M_{\mathrm{sector}}=\begin{bmatrix}0&\Lambda\\\Lambda&-2\Lambda\end{bmatrix},\quad
+ \Lambda=\diag(\lambda_1,\lambda_2)\succ0.
+\end{equation}
+Its complementary frequency-domain condition requires
+\begin{equation}\label{eq:sectorcondition}
+ G(\mathrm i\omega)^*\Lambda+\Lambda G(\mathrm i\omega)-2\Lambda\prec0.
+\end{equation}
+Write $h=h_r+\mathrm i h_i$ and $\ell=\lambda_1/\lambda_2$. The determinant of the negative of the left side of \eqref{eq:sectorcondition}, divided by $4\lambda_1\lambda_2$, is
+\begin{align}\label{eq:det}
+ &1-\rho h_r-\frac{\rho^2}{4}\Big[h_r^2(\ell+\ell^{-1}-2)\notag\\
+ &\hspace{6em}+h_i^2(\ell+\ell^{-1}+2)\Big]\notag\\
+ &\qquad\le1-\rho h_r-\rho^2h_i^2,
+\end{align}
+using $\ell+\ell^{-1}\ge2$. At $\omega=a/8$ with
+\begin{equation}
+ h=\left(\frac{\beta\mathrm i\omega+a}{\mathrm i\omega+a}\right)^n,
+\end{equation}
+the bound in \eqref{eq:det} is approximately $-0.0007426377104$. Therefore the required determinant cannot be positive for any positive diagonal $\Lambda$. This excludes this entire diagonal static sector family, whereas the dynamic hard IQC certifies the illustrative interconnection analytically.
+
+This example is not the PNAS network. It shows that the proposed family can outperform the diagonal static sector test, but does not certify any unspecified fixed controller or dominate all static full-block multipliers.
+
+\section{Primal-first MATLAB comparison}\label{sec:matlab}
+The MATLAB implementation can be invoked as follows:
+\begin{lstlisting}[language=Matlab]
+addpath('Notes/sigmoid_iiqc')
+iqc = sigmoid_dynamic_iiqc(0.95,100,10);
+iqc4 = sigmoid_dynamic_iiqc([0.9 0.95],100,10);
+iqc = sigmoid_dynamic_iiqc(0.95,100,10,0.5);
+inverse = iqc.Hinv;
+report = verify_sigmoid_dynamic_iiqc;
+\end{lstlisting}
+The structures contain numeric $A,B,C,D,M$ for the IQC filter, the auxiliary $H$, its stable inverse $H^{-1}$, and $\eta$. Filter inputs are $[v^{\T},w^{\T}]^{\T}$. The first output block has direct term $[I,-H.D]$, which must be kept when assembling the state-space realization.
+
+For the augmented fixed plant--observer linear block,
+\begin{equation}\label{eq:plant}
+ \dot X=A_{\mathrm{cl}}X+B_{\mathrm{cl}}w,\qquad v=C_{\mathrm{cl}}X,
+\end{equation}
+the composition has state $[X^{\T},x_\psi^{\T}]^{\T}$ and matrices
+\begin{align}
+ \bar A&=\begin{bmatrix}A_{\mathrm{cl}}&0\\B_{\psi v}C_{\mathrm{cl}}&A_\psi\end{bmatrix},\notag\\
+ \bar B&=\begin{bmatrix}B_{\mathrm{cl}}\\B_{\psi w}\end{bmatrix},\quad
+ \bar C=\begin{bmatrix}D_{\psi v}C_{\mathrm{cl}}&C_\psi\end{bmatrix},\notag\\
+ \bar D&=D_{\psi w}.\label{eq:augmented}
+\end{align}
+A sufficient complementary hard inequality is the existence of $P\succeq0$ and $\varepsilon>0$ satisfying
+\begin{equation}\label{eq:lmi}
+\boxed{\begin{aligned}
+ &\begin{bmatrix}\bar A^{\T}P+P\bar A&P\bar B\\\bar B^{\T}P&0\end{bmatrix}\\
+ &\quad+\begin{bmatrix}\bar C&\bar D\end{bmatrix}^{\T}M
+          \begin{bmatrix}\bar C&\bar D\end{bmatrix}
+ +\varepsilon E^{\T}E\prec0,
+\end{aligned}}
+\end{equation}
+where the linear map from $[X^{\T},x_\psi^{\T},w^{\T}]^{\T}$ to $[v^{\T},w^{\T}]^{\T}$ is
+\begin{equation}\label{eq:E}
+ E=\begin{bmatrix}C_{\mathrm{cl}}&0&0\\0&0&I\end{bmatrix}.
+\end{equation}
+The filter initial states are zero. Nonnegative conic combinations can be investigated by stacking realizations. Here $P$ is the storage matrix for the linear block and its filters, not the polyhedral norm employed to prove the nonlinear IQC. Filter poles, orders, $\rho$, and \texttt{directRatio} may be varied outside the SDP. Infeasibility for one library or controller is not evidence of instability.
+
+The reference-free observer/controller realization is unchanged: the IQC filters are part of the certificate, not of the controller's measurements.
+
+\section{Numerical checks for the comparison family}\label{sec:checks}
+The script \texttt{verify\_sigmoid\_dynamic\_iiqc.m} computes finite-prefix supply integrals for piecewise-constant PNAS sigmoid input pairs using exact matrix exponentials. It tests the polyhedral-norm identities, the state-space multiplier realization, and the diagonal static obstruction. It also checks the stability and analytic pole locations of $H$ and $H^{-1}$, both inverse products on a frequency grid, and feedthrough invertibility. The reported output is saved in \texttt{verification\_results.mat}. These checks are implementation tests and illustrations; finite-horizon hardness follows from the proof.
+
+The source note reports that all eight two-/four-channel cases passed, with $1001$ finite-prefix checks per case, including the zero prefix, as did the realization, norm, pole, and inverse checks. For $a=10$ and $\beta=0.5$, the poles of $H$ and $H^{-1}$ are $-10$ and $-20$, respectively. Both inverse products agreed with the identity to within $8.2\times10^{-13}$ over the frequency grid, including mixed $\rho$ values in the four-channel example. The diagonal static obstruction was $-0.0007426377103535$, and the analytic complementary strictness was $0.0003125$. The held-input supply integrals were evaluated by matrix exponentials up to floating-point error. The source note refers to \texttt{verification\_run.log} and \texttt{verification\_results.mat}; those numerical files are not reproduced here. No feasibility claim is made for an unspecified plant--observer--controller.
+
+\section{Conclusion}
+A square unit-triangular dual filter yields a sufficient family whose recovered primal factor satisfies a hard incremental IQC for paired sigmoids. The factor inverse requirements and primal input-coordinate condition hold without an inverse of the auxiliary $H$. The rectangular primal-first construction remains a comparison family. Application to a particular DBS plant--observer--controller requires the strict dual plant inequality and the remaining assumptions of the chosen duality route.
+
+\begin{thebibliography}{3}
+\bibitem{qinKarimi2026}
+Qin and Karimi (2026). \emph{On the Incremental Stability of Recurrent Neural Networks}. November 2026 preprint. \url{https://infoscience.epfl.ch/entities/publication/36724941-6c26-4580-ab14-077c05600c87}.
+\bibitem{suKhong}
+L. Su and S. Z. Khong. \emph{An Input-Output Approach to Incremental Feedback Stability}. IEEE Transactions on Automatic Control, 71(2), 1334--1341, 2026. DOI: 10.1109/TAC.2025.3608259.
+\bibitem{dualPIE}
+T. Lenssen, A. Talitckii, M. M. Peet, and A. Das. \emph{Dual Integral Quadratic Constraint Representations for Robust Control of Partial Integral Equations}. Supplied manuscript, Sections VI.B and VII, Definition 7 and Theorem 3.
+\end{thebibliography}
+\end{document}

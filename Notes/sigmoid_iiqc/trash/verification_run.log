@@ -1,0 +1,14 @@
+Toolbox "mpt:3.2.1:all" added to the Matlab path.
+Toolbox "mptdoc:3.0.4:all" added to the Matlab path.
+2 channels: H/Hinv pole bounds -10 / -20, inverse error 6.06e-13
+2 channels, independent inputs: min prefix 0, final 3282457.82
+2 channels, small increments and moving common input: min prefix 0, final 127.716643
+2 channels, constant increments and switching common input: min prefix 0, final 11782.7493
+2 channels, correlated inputs: min prefix 0, final 634589.68
+4 channels: H/Hinv pole bounds -10 / -20, inverse error 8.12e-13
+4 channels, independent inputs: min prefix 0, final 6734123.14
+4 channels, small increments and moving common input: min prefix 0, final 254.11109
+4 channels, constant increments and switching common input: min prefix 0, final 22717.6633
+4 channels, correlated inputs: min prefix 0, final 1267783.51
+Static sector obstruction -0.00074263771; dynamic strictness 0.0003125
+VERIFICATION_PASSED

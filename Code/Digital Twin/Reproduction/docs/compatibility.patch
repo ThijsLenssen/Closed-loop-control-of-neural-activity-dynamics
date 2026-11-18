@@ -1,0 +1,756 @@
+--- PyNN-0.9.3/pyNN/common/control.py
++++ runtime/pyNN/common/control.py
+@@ -59,7 +59,7 @@
+ 
+ 
+ def build_run(simulator):
+-    def run_until(time_point, callbacks=None):
++    def run_until(time_point, run_from_steady_state=False, callbacks=None):
+         """
+         Advance the simulation until `time_point` (in ms).
+         
+@@ -90,10 +90,10 @@
+                 callback_events.extend((callback(simulator.state.t), callback)
+                         for callback in active_callbacks)
+         else:
+-            simulator.state.run_until(time_point)
++            simulator.state.run_until(time_point, run_from_steady_state)
+         return simulator.state.t
+ 
+-    def run(simtime, callbacks=None):
++    def run(simtime, run_from_steady_state=False, callbacks=None):
+         """
+         Advance the simulation by `simtime` ms.
+         
+@@ -108,9 +108,47 @@
+         followed by ``run(y)``. If you wish to reset the simulation state to
+         the initial conditions (time ``t = 0``), use the ``reset()`` function.
+         """
+-        return run_until(simulator.state.t + simtime, callbacks)
+-    return run, run_until
++        return run_until(simulator.state.t + simtime, run_from_steady_state, callbacks)
++        
++    def run_to_steady_state(time_point):
++        """
++        Advance the simulation until `time_point` (in ms).
++        
++        `callbacks` is an optional list of callables, each of which should
++        accept the current time as an argument, and return the next time it
++        wishes to be called.
+ 
++        ``run_until()`` and ``run()`` may be combined freely. See the
++        documentation of the ``run()`` function for further information.
++        """
++        now = simulator.state.t
++        if time_point - now < -simulator.state.dt / 2.0:  # allow for floating point error
++            raise ValueError("Time %g is in the past (current time %g)" % (time_point, now))
++        
++        simulator.state.run_to_steady_state(time_point)
++        
++        return simulator.state.t
++        
++    def run_from_steady_state(time_point):
++        """
++        Advance the simulation until `time_point` (in ms).
++        
++        `callbacks` is an optional list of callables, each of which should
++        accept the current time as an argument, and return the next time it
++        wishes to be called.
++
++        ``run_until()`` and ``run()`` may be combined freely. See the
++        documentation of the ``run()`` function for further information.
++        """
++        now = simulator.state.t
++        if time_point - now < -simulator.state.dt / 2.0:  # allow for floating point error
++            raise ValueError("Time %g is in the past (current time %g)" % (time_point, now))
++        
++        simulator.state.run_from_steady_state(time_point)
++        
++        return simulator.state.t
++        
++    return run, run_until, run_to_steady_state, run_from_steady_state
+ 
+ def build_reset(simulator):
+     def reset(annotations={}):
+--- PyNN-0.9.3/pyNN/neuron/simulator.py
++++ runtime/pyNN/neuron/simulator.py
+@@ -62,6 +62,12 @@
+         return
+     # in case NEURON is assuming a different architecture to Python,
+     # we try multiple possibilities
++    if os.name == 'nt':
++        lib_path = os.path.join(path, 'nrnmech.dll')
++        if os.path.exists(lib_path):
++            h.nrn_load_dll(lib_path)
++            nrn_dll_loaded.append(path)
++            return
+     arch_list = [platform.machine(), 'i686', 'x86_64', 'powerpc', 'umac']
+     for arch in arch_list:
+         lib_path = os.path.join(path, arch, '.libs', 'libnrnmech.so')
+@@ -201,6 +207,10 @@
+         else:
+             nc = h.NetCon(source, None, sec=section)
+         self.parallel_context.cell(gid, nc)                     # } with the gid (using a temporary NetCon)
++        # Check if gid is along the main axon of collateral neuron
++        if gid>2e6:
++            self.parallel_context.threshold(gid, -10)
++        
+         self.gid_sources.append(source)  # gid_clear (in _State.reset()) will cause a
+                                         # segmentation fault if any of the sources
+                                         # registered using pc.cell() no longer exist, so
+@@ -252,14 +262,66 @@
+             for iclamp in source._devices:
+                 source._update_iclamp(iclamp, tstop)
+ 
+-    def run(self, simtime):
++    def run(self, simtime, run_from_steady_state=False):
+         """Advance the simulation for a certain time."""
+-        self.run_until(self.tstop + simtime)
+-
+-    def run_until(self, tstop):
++        self.run_until(self.tstop + simtime, run_from_steady_state)
++
++    def run_until(self, tstop, run_from_steady_state=False):
+         self._update_current_sources(tstop)
+         self._pre_run()
++        self.parallel_context.set_maxstep(self.default_maxstep)
+         self.tstop = tstop
++        
++        # check if we need to load the steady state for our simulation
++        if run_from_steady_state:
++            h.stdinit()
++        
++            ns = h.SaveState()
++            sf = h.File('steady_state.bin')
++            ns.fread(sf)
++            #print("Time before restore = %g ms" % h.t)
++            ns.restore(0)
++            #print("Time after restore = %g ms" % h.t)
++            h.cvode_active(0)
++        
++        #logger.info("Running the simulation until %g ms" % tstop)
++        if self.tstop > self.t:
++            self.parallel_context.psolve(self.tstop)
++        
++    def run_to_steady_state(self, tstop):
++        self._update_current_sources(tstop)
++        self._pre_run()
++        self.parallel_context.set_maxstep(self.default_maxstep)
++        self.tstop = tstop
++        
++        #logger.info("Running the simulation until steady state: %g ms" % tstop)
++        if self.tstop > self.t:
++            self.parallel_context.psolve(self.tstop)
++        # Make object to save the model state
++        svstate = h.SaveState()
++        
++        # Save the model state and write it to file
++        svstate.save()
++        f = h.File("steady_state.bin")
++        svstate.fwrite(f)
++        #print("Steady State written to file!")
++        
++    def run_from_steady_state(self, tstop):
++        self._update_current_sources(tstop)
++        self._pre_run()
++        self.parallel_context.set_maxstep(self.default_maxstep)
++        self.tstop = tstop
++        
++        h.stdinit()
++        
++        ns = h.SaveState()
++        sf = h.File('steady_state.bin')
++        ns.fread(sf)
++        #print("Time before restore = %g ms" % h.t)
++        ns.restore(0)
++        
++        h.cvode_active(0)
++        #print("Time after restore = %g ms" % h.t)
+         #logger.info("Running the simulation until %g ms" % tstop)
+         if self.tstop > self.t:
+             self.parallel_context.psolve(self.tstop)
+@@ -322,7 +384,19 @@
+         """
+         gid = int(self)
+         self._cell = cell_model(**cell_parameters)          # create the cell object
+-        state.register_gid(gid, self._cell.source, section=self._cell.source_section)
++        
++        # Check if _cell.source is a dictionary
++        if isinstance(self._cell.source, dict):
++            for k, v in self._cell.source.items():
++                if k=='soma':
++                    state.register_gid(gid+1e6, self._cell.source['soma'], section=self._cell.source_section['soma'])
++                elif k=='middle_axon_node':
++                    state.register_gid(gid+2e6, self._cell.source['middle_axon_node'], section=self._cell.source_section['middle_axon_node'])
++                elif k=='collateral':
++                    state.register_gid(gid, self._cell.source['collateral'], section=self._cell.source_section['collateral'])
++        else:
++            state.register_gid(gid, self._cell.source, section=self._cell.source_section)
++        
+         if hasattr(self._cell, "get_threshold"):            # this is not adequate, since the threshold may be changed after cell creation
+             state.parallel_context.threshold(int(self), self._cell.get_threshold())  # the problem is that self._cell does not know its own gid
+ 
+@@ -351,7 +425,13 @@
+         #logger.debug("Creating connection from %d to %d, weight %g" % (pre, post, parameters['weight']))
+         self.presynaptic_index = pre
+         self.postsynaptic_index = post
+-        self.presynaptic_cell = projection.pre[pre]
++        if projection.source=='soma':
++            self.presynaptic_cell = projection.pre[pre] + 1e6
++        elif projection.source=='middle_axon_node':
++            self.presynaptic_cell = projection.pre[pre] + 2e6
++        else:
++            self.presynaptic_cell = projection.pre[pre]
++        
+         self.postsynaptic_cell = projection.post[post]
+         if "." in projection.receptor_type:
+             section, target = projection.receptor_type.split(".")
+--- PyNN-0.9.3/pyNN/neuron/__init__.py
++++ runtime/pyNN/neuron/__init__.py
+@@ -98,7 +98,7 @@
+     simulator.state.write_on_end = []
+     #simulator.state.finalize()
+ 
+-run, run_until = common.build_run(simulator)
++run, run_until, run_to_steady_state, run_from_steady_state = common.build_run(simulator)
+ run_for = run
+ 
+ reset = common.build_reset(simulator)
+--- PyNN-0.9.3/pyNN/neuron/standardmodels/electrodes.py
++++ runtime/pyNN/neuron/standardmodels/electrodes.py
+@@ -135,7 +135,11 @@
+                     raise TypeError("Can't inject current into a spike source.")
+                 if not (id in self._h_iclamps):
+                     self.cell_list += [id]
+-                    self._h_iclamps[id] = h.IClamp(0.5, sec=id._cell.source_section)
++                    # Check if there is more than one source on the cell - only insert current into soma
++                    if isinstance(id._cell.source_section, dict):
++                        self._h_iclamps[id] = h.IClamp(0.5, sec=id._cell.source_section['soma'])
++                    else:
++                        self._h_iclamps[id] = h.IClamp(0.5, sec=id._cell.source_section)
+                     self._devices.append(self._h_iclamps[id])
+ 
+     def record(self):
+--- PyNN-0.9.3/pyNN/neuron/cells.py
++++ runtime/pyNN/neuron/cells.py
+@@ -517,6 +517,9 @@
+ 
+ class RandomSpikeSource(hclass(h.NetStimFD)):
+ 
++    def __new__(cls, *args, **kwargs):
++        return super().__new__(cls)
++
+     parameter_names = ('start', '_interval', 'duration')
+ 
+     def __init__(self, start=0, _interval=1e12, duration=0):
+@@ -545,6 +548,9 @@
+ 
+ class RandomPoissonRefractorySpikeSource(hclass(h.PoissonStimRefractory)):
+ 
++    def __new__(cls, *args, **kwargs):
++        return super().__new__(cls)
++
+     parameter_names = ('rate', 'tau_refrac', 'start', 'duration')
+ 
+     def __init__(self, rate=1, tau_refrac=0.0, start=0, duration=0):
+@@ -560,6 +566,9 @@
+ 
+ 
+ class RandomGammaSpikeSource(hclass(h.GammaStim)):
++
++    def __new__(cls, *args, **kwargs):
++        return super().__new__(cls)
+ 
+     parameter_names = ('alpha', 'beta', 'start', 'duration')
+ 
+@@ -577,6 +586,9 @@
+ 
+ 
+ class VectorSpikeSource(hclass(h.VecStim)):
++
++    def __new__(cls, *args, **kwargs):
++        return super().__new__(cls)
+ 
+     parameter_names = ('spike_times',)
+
+--- model/python/run_CBG_Model_to_SS.py.original
++++ model/python/run_CBG_Model_to_SS.py
+@@ -12,8 +12,18 @@
+ @author: John Fleming, john.fleming@ucdconnect.ie
+ """
+ 
++from pathlib import Path
++import os
++import sys
++
++_MODEL_ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++os.chdir(_MODEL_ROOT)
++
+ import neuron
+ h = neuron.h
++if not hasattr(h, "is_xtra"):
++    h.nrn_load_dll(str(_MODEL_ROOT / "nrnmech.dll"))
+ 
+ from pyNN.neuron import setup, run, reset, run_until, run_to_steady_state, run_from_steady_state, end, simulator, Population, SpikeSourcePoisson, SpikeSourceArray, Projection, OneToOneConnector, AllToAllConnector, FromFileConnector, FixedNumberPreConnector, StaticSynapse, NativeCellType, SpikeSourcePoisson, SpikeSourceArray, NoisyCurrentSource, StepCurrentSource
+ from pyNN.random import RandomDistribution, NumpyRNG
+@@ -28,8 +38,6 @@
+ import numpy as np
+ import math
+ from scipy import signal
+-import os
+-import sys
+ 
+ # Import global variables for GPe DBS
+ import Global_Variables as GV
+@@ -153,7 +161,7 @@
+ 	STN_space = space.RandomStructure(boundary=space.Sphere(2000))				# Sphere with radius 2000um
+ 	
+ 	# Generate poisson distributed spike time striatal input
+-	striatal_spike_times =  np.load('Striatal_Spike_Times.npy')					# Load spike times from file
++	striatal_spike_times =  np.load('data/Striatal_Spike_Times.npy', allow_pickle=True, encoding='latin1')					# Load spike times from file
+ 	
+ 	# Generate the cortico-basal ganglia neuron populations
+ 	Cortical_Pop = Population(Pop_size, Cortical_Neuron_Type(soma_bias_current_amp=0.245), structure=STN_space, label='Cortical Neurons') # Better than above (ibias=0.2575)
+@@ -165,8 +173,8 @@
+ 	Thalamic_Pop = Population(Pop_size, Thalamic_Neuron_Type(), initial_values={'v': v_init}, label='Thalamic Neurons')
+ 	
+ 	# Load Cortical Bias currents for beta burst modulation - turn bursts off when running model to steady state
+-	burst_times_script = "burst_times_1.txt"
+-	burst_level_script = "burst_level_1.txt"
++	burst_times_script = "data/bursts/burst_times_1.txt"
++	burst_level_script = "data/bursts/burst_level_1.txt"
+ 	modulation_times = np.loadtxt(burst_times_script, delimiter=',')
+ 	modulation_signal = np.loadtxt(burst_level_script, delimiter=',')
+ 	modulation_signal = 0.00*modulation_signal 								# Scale the modulation signal - turn off
+@@ -189,7 +197,7 @@
+ 		Striatal_Pop[i].spike_times=striatal_spike_times[i][0]
+ 		
+ 	# Load cortical positions - Comment/Remove to generate new positions
+-	Cortical_Neuron_xy_Positions = np.loadtxt('cortical_xy_pos.txt', delimiter=',')
++	Cortical_Neuron_xy_Positions = np.loadtxt('data/geometry/cortical_xy_pos.txt', delimiter=',')
+ 	Cortical_Neuron_x_Positions = Cortical_Neuron_xy_Positions[0,:]
+ 	Cortical_Neuron_y_Positions = Cortical_Neuron_xy_Positions[1,:]
+ 	
+@@ -199,7 +207,7 @@
+ 		Cortical_cell.position[1] = Cortical_Neuron_y_Positions[cell_id]
+ 	
+ 	# Load STN positions - Comment/Remove to generate new positions
+-	STN_Neuron_xy_Positions = np.loadtxt('STN_xy_pos.txt', delimiter=',')
++	STN_Neuron_xy_Positions = np.loadtxt('data/geometry/STN_xy_pos.txt', delimiter=',')
+ 	STN_Neuron_x_Positions = STN_Neuron_xy_Positions[0,:]
+ 	STN_Neuron_y_Positions = STN_Neuron_xy_Positions[1,:]
+ 	
+@@ -218,14 +226,14 @@
+ 		while(((np.abs(Cortical_cell.position[0])>3000) or ((np.abs(Cortical_cell.position[1])>3000))) or ((np.abs(Cortical_cell.position[0])<700) and Cortical_cell.position[1]>-1500)):
+ 			Cortical_cell.position = STN_space.generate_positions(1).flatten()
+ 	
+-	#np.savetxt('cortical_xy_pos.txt', Cortical_Pop.positions, delimiter=',')	# Save the generated cortical xy positions to a textfile
++	#np.savetxt('data/geometry/cortical_xy_pos.txt', Cortical_Pop.positions, delimiter=',')	# Save the generated cortical xy positions to a textfile
+ 	
+ 	for STN_cell in STN_Pop:
+ 		#while(((np.abs(STN_cell.position[0])>2000) or ((np.abs(STN_cell.position[1])>2000))) or ((np.abs(STN_cell.position[0])<500) and (STN_cell.position[1]>-1500 and STN_cell.position[1]<2000))):
+ 		while(((np.abs(STN_cell.position[0])>2000) or ((np.abs(STN_cell.position[1])>2000))) or ((np.abs(STN_cell.position[0])<635) and STN_cell.position[1]>-1500)):
+ 			STN_cell.position = STN_space.generate_positions(1).flatten()
+ 	
+-	#np.savetxt('STN_xy_pos.txt', STN_Pop.positions, delimiter=',')	# Save the generated STN xy positions to a textfile
++	#np.savetxt('data/geometry/STN_xy_pos.txt', STN_Pop.positions, delimiter=',')	# Save the generated STN xy positions to a textfile
+ 	"""
+ 	
+ 	# Assign Positions for recording and stimulating electrode point sources
+@@ -239,7 +247,7 @@
+ 	
+ 	# Calculate Cortical Collateral distances from the stimulating electrode - uses xyz coordinates for distance calculation - these distances need to be in um for xtra
+ 	Cortical_Collateral_stimulating_electrode_distances = collateral_distances_to_electrode(stimulating_electrode_position, Cortical_Pop, L=500, nseg=11)
+-	#np.savetxt('cortical_collateral_electrode_distances.txt', Cortical_Collateral_stimulating_electrode_distances, delimiter=',')	# Save the generated cortical collateral stimulation electrode distances to a textfile
++	#np.savetxt('data/geometry/cortical_collateral_electrode_distances.txt', Cortical_Collateral_stimulating_electrode_distances, delimiter=',')	# Save the generated cortical collateral stimulation electrode distances to a textfile
+ 	
+ 	# Synaptic Connections
+ 	# Add variability to Cortical connections - cortical interneuron connection weights are random from uniform distribution
+@@ -280,34 +288,34 @@
+ 	"""
+ 	
+ 	# Load network topology from file
+-	prj_CorticalAxon_Interneuron = Projection(Cortical_Pop, Interneuron_Pop,  FromFileConnector("CorticalAxonInterneuron_Connections.txt"), syn_CorticalAxon_Interneuron, source='middle_axon_node', receptor_type='AMPA')
+-	prj_Interneuron_CorticalSoma = Projection(Interneuron_Pop, Cortical_Pop,  FromFileConnector("InterneuronCortical_Connections.txt"), syn_Interneuron_CorticalSoma, receptor_type='GABAa')
+-	prj_CorticalSTN = Projection(Cortical_Pop, STN_Pop, FromFileConnector("CorticalSTN_Connections.txt"), syn_CorticalCollateralSTN, source='collateral(0.5)', receptor_type='AMPA')
+-	prj_STNGPe = Projection(STN_Pop, GPe_Pop, FromFileConnector("STNGPe_Connections.txt"), syn_STNGPe, source='soma(0.5)', receptor_type='AMPA')
+-	prj_GPeGPe = Projection(GPe_Pop, GPe_Pop, FromFileConnector("GPeGPe_Connections.txt"), syn_GPeGPe, source='soma(0.5)', receptor_type='GABAa')
+-	prj_GPeSTN = Projection(GPe_Pop, STN_Pop, FromFileConnector("GPeSTN_Connections.txt"), syn_GPeSTN, source='soma(0.5)', receptor_type='GABAa')	
+-	prj_StriatalGPe = Projection(Striatal_Pop, GPe_Pop, FromFileConnector("StriatalGPe_Connections.txt"), syn_StriatalGPe, source='soma(0.5)', receptor_type='GABAa')	
+-	prj_STNGPi = Projection(STN_Pop, GPi_Pop, FromFileConnector("STNGPi_Connections.txt"), syn_STNGPi, source='soma(0.5)', receptor_type='AMPA')
+-	prj_GPeGPi = Projection(GPe_Pop, GPi_Pop, FromFileConnector("GPeGPi_Connections.txt"), syn_GPeGPi, source='soma(0.5)', receptor_type='GABAa')
+-	prj_GPiThalamic = Projection(GPi_Pop, Thalamic_Pop, FromFileConnector("GPiThalamic_Connections.txt"), syn_GPiThalamic, source='soma(0.5)', receptor_type='GABAa')
+-	prj_ThalamicCortical = Projection(Thalamic_Pop, Cortical_Pop, FromFileConnector("ThalamicCorticalSoma_Connections.txt"), syn_ThalamicCortical, source='soma(0.5)', receptor_type='AMPA')
+-	prj_CorticalThalamic = Projection(Cortical_Pop, Thalamic_Pop, FromFileConnector("CorticalSomaThalamic_Connections.txt"), syn_CorticalThalamic, source='soma(0.5)', receptor_type='AMPA')
++	prj_CorticalAxon_Interneuron = Projection(Cortical_Pop, Interneuron_Pop,  FromFileConnector("data/connectivity/CorticalAxonInterneuron_Connections.txt"), syn_CorticalAxon_Interneuron, source='middle_axon_node', receptor_type='AMPA')
++	prj_Interneuron_CorticalSoma = Projection(Interneuron_Pop, Cortical_Pop,  FromFileConnector("data/connectivity/InterneuronCortical_Connections.txt"), syn_Interneuron_CorticalSoma, receptor_type='GABAa')
++	prj_CorticalSTN = Projection(Cortical_Pop, STN_Pop, FromFileConnector("data/connectivity/CorticalSTN_Connections.txt"), syn_CorticalCollateralSTN, source='collateral(0.5)', receptor_type='AMPA')
++	prj_STNGPe = Projection(STN_Pop, GPe_Pop, FromFileConnector("data/connectivity/STNGPe_Connections.txt"), syn_STNGPe, source='soma(0.5)', receptor_type='AMPA')
++	prj_GPeGPe = Projection(GPe_Pop, GPe_Pop, FromFileConnector("data/connectivity/GPeGPe_Connections.txt"), syn_GPeGPe, source='soma(0.5)', receptor_type='GABAa')
++	prj_GPeSTN = Projection(GPe_Pop, STN_Pop, FromFileConnector("data/connectivity/GPeSTN_Connections.txt"), syn_GPeSTN, source='soma(0.5)', receptor_type='GABAa')	
++	prj_StriatalGPe = Projection(Striatal_Pop, GPe_Pop, FromFileConnector("data/connectivity/StriatalGPe_Connections.txt"), syn_StriatalGPe, source='soma(0.5)', receptor_type='GABAa')	
++	prj_STNGPi = Projection(STN_Pop, GPi_Pop, FromFileConnector("data/connectivity/STNGPi_Connections.txt"), syn_STNGPi, source='soma(0.5)', receptor_type='AMPA')
++	prj_GPeGPi = Projection(GPe_Pop, GPi_Pop, FromFileConnector("data/connectivity/GPeGPi_Connections.txt"), syn_GPeGPi, source='soma(0.5)', receptor_type='GABAa')
++	prj_GPiThalamic = Projection(GPi_Pop, Thalamic_Pop, FromFileConnector("data/connectivity/GPiThalamic_Connections.txt"), syn_GPiThalamic, source='soma(0.5)', receptor_type='GABAa')
++	prj_ThalamicCortical = Projection(Thalamic_Pop, Cortical_Pop, FromFileConnector("data/connectivity/ThalamicCorticalSoma_Connections.txt"), syn_ThalamicCortical, source='soma(0.5)', receptor_type='AMPA')
++	prj_CorticalThalamic = Projection(Cortical_Pop, Thalamic_Pop, FromFileConnector("data/connectivity/CorticalSomaThalamic_Connections.txt"), syn_CorticalThalamic, source='soma(0.5)', receptor_type='AMPA')
+ 
+ 	"""
+ 	# Save the network topology so it can be reloaded 
+ 	#prj_CorticalSpikeSourceCorticalSoma.saveConnections(file="CorticalSpikeSourceCorticalSoma_Connections.txt")
+-	prj_CorticalAxon_Interneuron.saveConnections(file="CorticalAxonInterneuron_Connections.txt")
+-	prj_Interneuron_CorticalSoma.saveConnections(file="InterneuronCortical_Connections.txt")
+-	prj_CorticalSTN.saveConnections(file="CorticalSTN_Connections.txt")
+-	prj_STNGPe.saveConnections(file="STNGPe_Connections.txt")
+-	prj_GPeGPe.saveConnections(file="GPeGPe_Connections.txt")
+-	prj_GPeSTN.saveConnections(file="GPeSTN_Connections.txt")
+-	prj_StriatalGPe.saveConnections(file="StriatalGPe_Connections.txt")
+-	prj_STNGPi.saveConnections(file="STNGPi_Connections.txt")
+-	prj_GPeGPi.saveConnections(file="GPeGPi_Connections.txt")
+-	prj_GPiThalamic.saveConnections(file="GPiThalamic_Connections.txt")
+-	prj_ThalamicCortical.saveConnections(file="ThalamicCorticalSoma_Connections.txt")
+-	prj_CorticalThalamic.saveConnections(file="CorticalSomaThalamic_Connections.txt")
++	prj_CorticalAxon_Interneuron.saveConnections(file="data/connectivity/CorticalAxonInterneuron_Connections.txt")
++	prj_Interneuron_CorticalSoma.saveConnections(file="data/connectivity/InterneuronCortical_Connections.txt")
++	prj_CorticalSTN.saveConnections(file="data/connectivity/CorticalSTN_Connections.txt")
++	prj_STNGPe.saveConnections(file="data/connectivity/STNGPe_Connections.txt")
++	prj_GPeGPe.saveConnections(file="data/connectivity/GPeGPe_Connections.txt")
++	prj_GPeSTN.saveConnections(file="data/connectivity/GPeSTN_Connections.txt")
++	prj_StriatalGPe.saveConnections(file="data/connectivity/StriatalGPe_Connections.txt")
++	prj_STNGPi.saveConnections(file="data/connectivity/STNGPi_Connections.txt")
++	prj_GPeGPi.saveConnections(file="data/connectivity/GPeGPi_Connections.txt")
++	prj_GPiThalamic.saveConnections(file="data/connectivity/GPiThalamic_Connections.txt")
++	prj_ThalamicCortical.saveConnections(file="data/connectivity/ThalamicCorticalSoma_Connections.txt")
++	prj_CorticalThalamic.saveConnections(file="data/connectivity/CorticalSomaThalamic_Connections.txt")
+ 	"""
+ 	
+ 	# Define state variables to record from each population
+
+--- model/python/run_CBG_Model_Amplitude_Modulation_Controller.py.original
++++ model/python/run_CBG_Model_Amplitude_Modulation_Controller.py
+@@ -13,8 +13,18 @@
+ @author: John Fleming, john.fleming@ucdconnect.ie
+ """
+ 
++from pathlib import Path
++import os
++import sys
++
++_MODEL_ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++os.chdir(_MODEL_ROOT)
++
+ import neuron
+ h = neuron.h
++if not hasattr(h, "is_xtra"):
++    h.nrn_load_dll(str(_MODEL_ROOT / "nrnmech.dll"))
+ 
+ from pyNN.neuron import setup, run, reset, run_until, run_to_steady_state, run_from_steady_state, end, simulator, Population, SpikeSourcePoisson, SpikeSourceArray, Projection, OneToOneConnector, AllToAllConnector, FromFileConnector, FixedNumberPreConnector, StaticSynapse, NativeCellType, SpikeSourcePoisson, SpikeSourceArray, NoisyCurrentSource, StepCurrentSource
+ from pyNN.random import RandomDistribution, NumpyRNG
+@@ -29,8 +39,6 @@
+ import numpy as np
+ import math
+ from scipy import signal
+-import os
+-import sys
+ 
+ # Import global variables for GPe DBS
+ import Global_Variables as GV
+@@ -157,8 +165,8 @@
+ 	#striatal_spike_times = generate_poisson_spike_times(Pop_size, steady_state_duration, simulation_runtime, 20, 1.0, 3695)
+ 	
+ 	# Save/load Striatal Spike times
+-	#np.save('Striatal_Spike_Times.npy', striatal_spike_times)		# Save spike times so they can be reloaded 
+-	striatal_spike_times =  np.load('Striatal_Spike_Times.npy')		# Load spike times from file
++	#np.save('data/Striatal_Spike_Times.npy', striatal_spike_times)		# Save spike times so they can be reloaded 
++	striatal_spike_times =  np.load('data/Striatal_Spike_Times.npy', allow_pickle=True, encoding='latin1')		# Load spike times from file
+ 	for i in range(0,Pop_size):
+ 		spike_times = striatal_spike_times[i][0].value
+ 		spike_times = spike_times[spike_times>steady_state_duration]
+@@ -178,8 +186,8 @@
+ 		Striatal_Pop[i].spike_times=striatal_spike_times[i][0]
+ 	
+ 	# Load Cortical bias currents for beta burst modulation
+-	burst_times_script = "burst_times_1.txt"
+-	burst_level_script = "burst_level_1.txt"
++	burst_times_script = "data/bursts/burst_times_1.txt"
++	burst_level_script = "data/bursts/burst_level_1.txt"
+ 	modulation_times = np.loadtxt(burst_times_script, delimiter=',')
+ 	modulation_signal = np.loadtxt(burst_level_script, delimiter=',')
+ 	modulation_signal = 0.02*modulation_signal 								# Scale the modulation signal
+@@ -198,7 +206,7 @@
+ 		Interneuron.inject(Interneuron_Membrane_Noise)
+ 	
+ 	# Load cortical positions - Comment/Remove to generate new positions
+-	Cortical_Neuron_xy_Positions = np.loadtxt('cortical_xy_pos.txt', delimiter=',')
++	Cortical_Neuron_xy_Positions = np.loadtxt('data/geometry/cortical_xy_pos.txt', delimiter=',')
+ 	Cortical_Neuron_x_Positions = Cortical_Neuron_xy_Positions[0,:]
+ 	Cortical_Neuron_y_Positions = Cortical_Neuron_xy_Positions[1,:]
+ 	
+@@ -208,7 +216,7 @@
+ 		Cortical_cell.position[1] = Cortical_Neuron_y_Positions[cell_id]
+ 	
+ 	# Load STN positions - Comment/Remove to generate new positions
+-	STN_Neuron_xy_Positions = np.loadtxt('STN_xy_pos.txt', delimiter=',')
++	STN_Neuron_xy_Positions = np.loadtxt('data/geometry/STN_xy_pos.txt', delimiter=',')
+ 	STN_Neuron_x_Positions = STN_Neuron_xy_Positions[0,:]
+ 	STN_Neuron_y_Positions = STN_Neuron_xy_Positions[1,:]
+ 	
+@@ -226,13 +234,13 @@
+ 		while(((np.abs(Cortical_cell.position[0])>2000) or ((np.abs(Cortical_cell.position[1])>2000))) or ((np.abs(Cortical_cell.position[0])<500) and (Cortical_cell.position[1]>-1500 and Cortical_cell.position[1]<2000))):
+ 			Cortical_cell.position = STN_space.generate_positions(1).flatten()
+ 	
+-	#np.savetxt('cortical_xy_pos.txt', Cortical_Axon_Pop.positions, delimiter=',')	# Save the generated cortical xy positions to a textfile
++	#np.savetxt('data/geometry/cortical_xy_pos.txt', Cortical_Axon_Pop.positions, delimiter=',')	# Save the generated cortical xy positions to a textfile
+ 	
+ 	for STN_cell in STN_Pop:
+ 		while(((np.abs(STN_cell.position[0])>2000) or ((np.abs(STN_cell.position[1])>2000))) or ((np.abs(STN_cell.position[0])<500) and (STN_cell.position[1]>-1500 and STN_cell.position[1]<2000))):
+ 			STN_cell.position = STN_space.generate_positions(1).flatten()
+ 	
+-	#np.savetxt('STN_xy_pos.txt', STN_Pop.positions, delimiter=',')	# Save the generated STN xy positions to a textfile
++	#np.savetxt('data/geometry/STN_xy_pos.txt', STN_Pop.positions, delimiter=',')	# Save the generated STN xy positions to a textfile
+ 	"""
+ 	
+ 	# Assign Positions for recording and stimulating electrode point sources
+@@ -246,7 +254,7 @@
+ 	
+ 	# Calculate Cortical Collateral distances from the stimulating electrode - uses xyz coordinates for distance calculation - these distances need to be in um for xtra mechanism
+ 	Cortical_Collateral_stimulating_electrode_distances = collateral_distances_to_electrode(stimulating_electrode_position, Cortical_Pop, L=500, nseg=11)
+-	#np.savetxt('cortical_collateral_electrode_distances.txt', Cortical_Collateral_stimulating_electrode_distances, delimiter=',')	# Save the generated cortical collateral stimulation electrode distances to a textfile
++	#np.savetxt('data/geometry/cortical_collateral_electrode_distances.txt', Cortical_Collateral_stimulating_electrode_distances, delimiter=',')	# Save the generated cortical collateral stimulation electrode distances to a textfile
+ 	
+ 	# Synaptic Connections
+ 	# Add variability to Cortical connections - cortical interneuron connection weights are random from uniform distribution
+@@ -287,34 +295,34 @@
+ 	"""
+ 	
+ 	# Load network topology from file
+-	prj_CorticalAxon_Interneuron = Projection(Cortical_Pop, Interneuron_Pop,  FromFileConnector("CorticalAxonInterneuron_Connections.txt"), syn_CorticalAxon_Interneuron, source='middle_axon_node', receptor_type='AMPA')
+-	prj_Interneuron_CorticalSoma = Projection(Interneuron_Pop, Cortical_Pop,  FromFileConnector("InterneuronCortical_Connections.txt"), syn_Interneuron_CorticalSoma, receptor_type='GABAa')
+-	prj_CorticalSTN = Projection(Cortical_Pop, STN_Pop, FromFileConnector("CorticalSTN_Connections.txt"), syn_CorticalCollateralSTN, source='collateral(0.5)', receptor_type='AMPA')
+-	prj_STNGPe = Projection(STN_Pop, GPe_Pop, FromFileConnector("STNGPe_Connections.txt"), syn_STNGPe, source='soma(0.5)', receptor_type='AMPA')
+-	prj_GPeGPe = Projection(GPe_Pop, GPe_Pop, FromFileConnector("GPeGPe_Connections.txt"), syn_GPeGPe, source='soma(0.5)', receptor_type='GABAa')
+-	prj_GPeSTN = Projection(GPe_Pop, STN_Pop, FromFileConnector("GPeSTN_Connections.txt"), syn_GPeSTN, source='soma(0.5)', receptor_type='GABAa')	
+-	prj_StriatalGPe = Projection(Striatal_Pop, GPe_Pop, FromFileConnector("StriatalGPe_Connections.txt"), syn_StriatalGPe, source='soma(0.5)', receptor_type='GABAa')	
+-	prj_STNGPi = Projection(STN_Pop, GPi_Pop, FromFileConnector("STNGPi_Connections.txt"), syn_STNGPi, source='soma(0.5)', receptor_type='AMPA')
+-	prj_GPeGPi = Projection(GPe_Pop, GPi_Pop, FromFileConnector("GPeGPi_Connections.txt"), syn_GPeGPi, source='soma(0.5)', receptor_type='GABAa')
+-	prj_GPiThalamic = Projection(GPi_Pop, Thalamic_Pop, FromFileConnector("GPiThalamic_Connections.txt"), syn_GPiThalamic, source='soma(0.5)', receptor_type='GABAa')
+-	prj_ThalamicCortical = Projection(Thalamic_Pop, Cortical_Pop, FromFileConnector("ThalamicCorticalSoma_Connections.txt"), syn_ThalamicCortical, source='soma(0.5)', receptor_type='AMPA')
+-	prj_CorticalThalamic = Projection(Cortical_Pop, Thalamic_Pop, FromFileConnector("CorticalSomaThalamic_Connections.txt"), syn_CorticalThalamic, source='soma(0.5)', receptor_type='AMPA')
++	prj_CorticalAxon_Interneuron = Projection(Cortical_Pop, Interneuron_Pop,  FromFileConnector("data/connectivity/CorticalAxonInterneuron_Connections.txt"), syn_CorticalAxon_Interneuron, source='middle_axon_node', receptor_type='AMPA')
++	prj_Interneuron_CorticalSoma = Projection(Interneuron_Pop, Cortical_Pop,  FromFileConnector("data/connectivity/InterneuronCortical_Connections.txt"), syn_Interneuron_CorticalSoma, receptor_type='GABAa')
++	prj_CorticalSTN = Projection(Cortical_Pop, STN_Pop, FromFileConnector("data/connectivity/CorticalSTN_Connections.txt"), syn_CorticalCollateralSTN, source='collateral(0.5)', receptor_type='AMPA')
++	prj_STNGPe = Projection(STN_Pop, GPe_Pop, FromFileConnector("data/connectivity/STNGPe_Connections.txt"), syn_STNGPe, source='soma(0.5)', receptor_type='AMPA')
++	prj_GPeGPe = Projection(GPe_Pop, GPe_Pop, FromFileConnector("data/connectivity/GPeGPe_Connections.txt"), syn_GPeGPe, source='soma(0.5)', receptor_type='GABAa')
++	prj_GPeSTN = Projection(GPe_Pop, STN_Pop, FromFileConnector("data/connectivity/GPeSTN_Connections.txt"), syn_GPeSTN, source='soma(0.5)', receptor_type='GABAa')	
++	prj_StriatalGPe = Projection(Striatal_Pop, GPe_Pop, FromFileConnector("data/connectivity/StriatalGPe_Connections.txt"), syn_StriatalGPe, source='soma(0.5)', receptor_type='GABAa')	
++	prj_STNGPi = Projection(STN_Pop, GPi_Pop, FromFileConnector("data/connectivity/STNGPi_Connections.txt"), syn_STNGPi, source='soma(0.5)', receptor_type='AMPA')
++	prj_GPeGPi = Projection(GPe_Pop, GPi_Pop, FromFileConnector("data/connectivity/GPeGPi_Connections.txt"), syn_GPeGPi, source='soma(0.5)', receptor_type='GABAa')
++	prj_GPiThalamic = Projection(GPi_Pop, Thalamic_Pop, FromFileConnector("data/connectivity/GPiThalamic_Connections.txt"), syn_GPiThalamic, source='soma(0.5)', receptor_type='GABAa')
++	prj_ThalamicCortical = Projection(Thalamic_Pop, Cortical_Pop, FromFileConnector("data/connectivity/ThalamicCorticalSoma_Connections.txt"), syn_ThalamicCortical, source='soma(0.5)', receptor_type='AMPA')
++	prj_CorticalThalamic = Projection(Cortical_Pop, Thalamic_Pop, FromFileConnector("data/connectivity/CorticalSomaThalamic_Connections.txt"), syn_CorticalThalamic, source='soma(0.5)', receptor_type='AMPA')
+ 	
+ 	"""
+ 	# Save the network topology so it can be reloaded 
+ 	#prj_CorticalSpikeSourceCorticalSoma.saveConnections(file="CorticalSpikeSourceCorticalSoma_Connections.txt")
+-	prj_CorticalAxon_Interneuron.saveConnections(file="CorticalAxonInterneuron_Connections.txt")
+-	prj_Interneuron_CorticalSoma.saveConnections(file="InterneuronCortical_Connections.txt")
+-	prj_CorticalSTN.saveConnections(file="CorticalSTN_Connections.txt")
+-	prj_STNGPe.saveConnections(file="STNGPe_Connections.txt")
+-	prj_GPeGPe.saveConnections(file="GPeGPe_Connections.txt")
+-	prj_GPeSTN.saveConnections(file="GPeSTN_Connections.txt")
+-	prj_StriatalGPe.saveConnections(file="StriatalGPe_Connections.txt")
+-	prj_STNGPi.saveConnections(file="STNGPi_Connections.txt")
+-	prj_GPeGPi.saveConnections(file="GPeGPi_Connections.txt")
+-	prj_GPiThalamic.saveConnections(file="GPiThalamic_Connections.txt")
+-	prj_ThalamicCortical.saveConnections(file="ThalamicCorticalSoma_Connections.txt")
+-	prj_CorticalThalamic.saveConnections(file="CorticalSomaThalamic_Connections.txt")
++	prj_CorticalAxon_Interneuron.saveConnections(file="data/connectivity/CorticalAxonInterneuron_Connections.txt")
++	prj_Interneuron_CorticalSoma.saveConnections(file="data/connectivity/InterneuronCortical_Connections.txt")
++	prj_CorticalSTN.saveConnections(file="data/connectivity/CorticalSTN_Connections.txt")
++	prj_STNGPe.saveConnections(file="data/connectivity/STNGPe_Connections.txt")
++	prj_GPeGPe.saveConnections(file="data/connectivity/GPeGPe_Connections.txt")
++	prj_GPeSTN.saveConnections(file="data/connectivity/GPeSTN_Connections.txt")
++	prj_StriatalGPe.saveConnections(file="data/connectivity/StriatalGPe_Connections.txt")
++	prj_STNGPi.saveConnections(file="data/connectivity/STNGPi_Connections.txt")
++	prj_GPeGPi.saveConnections(file="data/connectivity/GPeGPi_Connections.txt")
++	prj_GPiThalamic.saveConnections(file="data/connectivity/GPiThalamic_Connections.txt")
++	prj_ThalamicCortical.saveConnections(file="data/connectivity/ThalamicCorticalSoma_Connections.txt")
++	prj_CorticalThalamic.saveConnections(file="data/connectivity/CorticalSomaThalamic_Connections.txt")
+ 	"""
+ 	
+ 	# Define state variables to record from each population
+@@ -397,7 +405,7 @@
+ 	# GPe DBS current stimulations - precalculated for % of collaterals entrained for varying DBS amplitude
+ 	interp_DBS_amplitudes = np.array([0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2, 2.25, 2.50, 3, 4, 5])
+ 	interp_collaterals_entrained = np.array([0, 0, 0, 1, 4, 8, 19, 30, 43, 59, 82, 100, 100, 100])
+-	GPe_stimulation_order = np.loadtxt('GPe_Stimulation_Order.txt', delimiter=',')
++	GPe_stimulation_order = np.loadtxt('data/GPe_Stimulation_Order.txt', delimiter=',')
+ 	GPe_stimulation_order = [int(index) for index in GPe_stimulation_order]
+ 	
+ 	# Make new GPe DBS vector for each GPe neuron - each GPe neuron needs a pointer to it's own DBS signal
+
+--- model/python/run_CBG_Model_Frequency_Modulation_Controller.py.original
++++ model/python/run_CBG_Model_Frequency_Modulation_Controller.py
+@@ -13,8 +13,18 @@
+ @author: John Fleming, john.fleming@ucdconnect.ie
+ """
+ 
++from pathlib import Path
++import os
++import sys
++
++_MODEL_ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++os.chdir(_MODEL_ROOT)
++
+ import neuron
+ h = neuron.h
++if not hasattr(h, "is_xtra"):
++    h.nrn_load_dll(str(_MODEL_ROOT / "nrnmech.dll"))
+ 
+ from pyNN.neuron import setup, run, reset, run_until, run_to_steady_state, run_from_steady_state, end, simulator, Population, SpikeSourcePoisson, SpikeSourceArray, Projection, OneToOneConnector, AllToAllConnector, FromFileConnector, FixedNumberPreConnector, StaticSynapse, NativeCellType, SpikeSourcePoisson, SpikeSourceArray, NoisyCurrentSource, StepCurrentSource
+ from pyNN.random import RandomDistribution, NumpyRNG
+@@ -29,8 +39,6 @@
+ import numpy as np
+ import math
+ from scipy import signal
+-import os
+-import sys
+ 
+ # Import global variables for GPe DBS
+ import Global_Variables as GV
+@@ -175,8 +183,8 @@
+ 	#striatal_spike_times = generate_poisson_spike_times(Pop_size, steady_state_duration, simulation_runtime, 20, 1.0, 3695)
+ 	
+ 	# Save/load Striatal Spike times
+-	#np.save('Striatal_Spike_Times.npy', striatal_spike_times)		# Save spike times so they can be reloaded 
+-	striatal_spike_times =  np.load('Striatal_Spike_Times.npy')		# Load spike times from file
++	#np.save('data/Striatal_Spike_Times.npy', striatal_spike_times)		# Save spike times so they can be reloaded 
++	striatal_spike_times =  np.load('data/Striatal_Spike_Times.npy', allow_pickle=True, encoding='latin1')		# Load spike times from file
+ 	for i in range(0,Pop_size):
+ 		spike_times = striatal_spike_times[i][0].value
+ 		spike_times = spike_times[spike_times>steady_state_duration]
+@@ -196,8 +204,8 @@
+ 		Striatal_Pop[i].spike_times=striatal_spike_times[i][0]
+ 	
+ 	# Load Cortical Bias currents for beta burst modulation
+-	burst_times_script = "burst_times_1.txt"
+-	burst_level_script = "burst_level_1.txt"
++	burst_times_script = "data/bursts/burst_times_1.txt"
++	burst_level_script = "data/bursts/burst_level_1.txt"
+ 	modulation_times = np.loadtxt(burst_times_script, delimiter=',')
+ 	modulation_signal = np.loadtxt(burst_level_script, delimiter=',')
+ 	modulation_signal = 0.02*modulation_signal 								# Scale the modulation signal
+@@ -216,7 +224,7 @@
+ 		Interneuron.inject(Interneuron_Membrane_Noise)
+ 	
+ 	# Load cortical positions - Comment/Remove to generate new positions
+-	Cortical_Neuron_xy_Positions = np.loadtxt('cortical_xy_pos.txt', delimiter=',')
++	Cortical_Neuron_xy_Positions = np.loadtxt('data/geometry/cortical_xy_pos.txt', delimiter=',')
+ 	Cortical_Neuron_x_Positions = Cortical_Neuron_xy_Positions[0,:]
+ 	Cortical_Neuron_y_Positions = Cortical_Neuron_xy_Positions[1,:]
+ 	
+@@ -226,7 +234,7 @@
+ 		Cortical_cell.position[1] = Cortical_Neuron_y_Positions[cell_id]
+ 	
+ 	# Load STN positions - Comment/Remove to generate new positions
+-	STN_Neuron_xy_Positions = np.loadtxt('STN_xy_pos.txt', delimiter=',')
++	STN_Neuron_xy_Positions = np.loadtxt('data/geometry/STN_xy_pos.txt', delimiter=',')
+ 	STN_Neuron_x_Positions = STN_Neuron_xy_Positions[0,:]
+ 	STN_Neuron_y_Positions = STN_Neuron_xy_Positions[1,:]
+ 	
+@@ -244,13 +252,13 @@
+ 		while(((np.abs(Cortical_cell.position[0])>2000) or ((np.abs(Cortical_cell.position[1])>2000))) or ((np.abs(Cortical_cell.position[0])<500) and (Cortical_cell.position[1]>-1500 and Cortical_cell.position[1]<2000))):
+ 			Cortical_cell.position = STN_space.generate_positions(1).flatten()
+ 	
+-	#np.savetxt('cortical_xy_pos.txt', Cortical_Axon_Pop.positions, delimiter=',')	# Save the generated cortical xy positions to a textfile
++	#np.savetxt('data/geometry/cortical_xy_pos.txt', Cortical_Axon_Pop.positions, delimiter=',')	# Save the generated cortical xy positions to a textfile
+ 	
+ 	for STN_cell in STN_Pop:
+ 		while(((np.abs(STN_cell.position[0])>2000) or ((np.abs(STN_cell.position[1])>2000))) or ((np.abs(STN_cell.position[0])<500) and (STN_cell.position[1]>-1500 and STN_cell.position[1]<2000))):
+ 			STN_cell.position = STN_space.generate_positions(1).flatten()
+ 	
+-	#np.savetxt('STN_xy_pos.txt', STN_Pop.positions, delimiter=',')	# Save the generated STN xy positions to a textfile
++	#np.savetxt('data/geometry/STN_xy_pos.txt', STN_Pop.positions, delimiter=',')	# Save the generated STN xy positions to a textfile
+ 	"""
+ 	
+ 	# Assign Positions for recording and stimulating electrode point sources
+@@ -264,7 +272,7 @@
+ 	
+ 	# Calculate Cortical Collateral distances from the stimulating electrode - uses xyz coordinates for distance calculation - these distances need to be in um for xtra
+ 	Cortical_Collateral_stimulating_electrode_distances = collateral_distances_to_electrode(stimulating_electrode_position, Cortical_Pop, L=500, nseg=11)
+-	#np.savetxt('cortical_collateral_electrode_distances.txt', Cortical_Collateral_stimulating_electrode_distances, delimiter=',')	# Save the generated cortical collateral stimulation electrode distances to a textfile
++	#np.savetxt('data/geometry/cortical_collateral_electrode_distances.txt', Cortical_Collateral_stimulating_electrode_distances, delimiter=',')	# Save the generated cortical collateral stimulation electrode distances to a textfile
+ 	
+ 	# Synaptic Connections
+ 	# Add variability to Cortical connections - cortical interneuron connection weights are random from uniform distribution
+@@ -305,34 +313,34 @@
+ 	"""
+ 	
+ 	# Load network topology from file
+-	prj_CorticalAxon_Interneuron = Projection(Cortical_Pop, Interneuron_Pop,  FromFileConnector("CorticalAxonInterneuron_Connections.txt"), syn_CorticalAxon_Interneuron, source='middle_axon_node', receptor_type='AMPA')
+-	prj_Interneuron_CorticalSoma = Projection(Interneuron_Pop, Cortical_Pop,  FromFileConnector("InterneuronCortical_Connections.txt"), syn_Interneuron_CorticalSoma, receptor_type='GABAa')
+-	prj_CorticalSTN = Projection(Cortical_Pop, STN_Pop, FromFileConnector("CorticalSTN_Connections.txt"), syn_CorticalCollateralSTN, source='collateral(0.5)', receptor_type='AMPA')
+-	prj_STNGPe = Projection(STN_Pop, GPe_Pop, FromFileConnector("STNGPe_Connections.txt"), syn_STNGPe, source='soma(0.5)', receptor_type='AMPA')
+-	prj_GPeGPe = Projection(GPe_Pop, GPe_Pop, FromFileConnector("GPeGPe_Connections.txt"), syn_GPeGPe, source='soma(0.5)', receptor_type='GABAa')
+-	prj_GPeSTN = Projection(GPe_Pop, STN_Pop, FromFileConnector("GPeSTN_Connections.txt"), syn_GPeSTN, source='soma(0.5)', receptor_type='GABAa')	
+-	prj_StriatalGPe = Projection(Striatal_Pop, GPe_Pop, FromFileConnector("StriatalGPe_Connections.txt"), syn_StriatalGPe, source='soma(0.5)', receptor_type='GABAa')	
+-	prj_STNGPi = Projection(STN_Pop, GPi_Pop, FromFileConnector("STNGPi_Connections.txt"), syn_STNGPi, source='soma(0.5)', receptor_type='AMPA')
+-	prj_GPeGPi = Projection(GPe_Pop, GPi_Pop, FromFileConnector("GPeGPi_Connections.txt"), syn_GPeGPi, source='soma(0.5)', receptor_type='GABAa')
+-	prj_GPiThalamic = Projection(GPi_Pop, Thalamic_Pop, FromFileConnector("GPiThalamic_Connections.txt"), syn_GPiThalamic, source='soma(0.5)', receptor_type='GABAa')
+-	prj_ThalamicCortical = Projection(Thalamic_Pop, Cortical_Pop, FromFileConnector("ThalamicCorticalSoma_Connections.txt"), syn_ThalamicCortical, source='soma(0.5)', receptor_type='AMPA')
+-	prj_CorticalThalamic = Projection(Cortical_Pop, Thalamic_Pop, FromFileConnector("CorticalSomaThalamic_Connections.txt"), syn_CorticalThalamic, source='soma(0.5)', receptor_type='AMPA')
++	prj_CorticalAxon_Interneuron = Projection(Cortical_Pop, Interneuron_Pop,  FromFileConnector("data/connectivity/CorticalAxonInterneuron_Connections.txt"), syn_CorticalAxon_Interneuron, source='middle_axon_node', receptor_type='AMPA')
++	prj_Interneuron_CorticalSoma = Projection(Interneuron_Pop, Cortical_Pop,  FromFileConnector("data/connectivity/InterneuronCortical_Connections.txt"), syn_Interneuron_CorticalSoma, receptor_type='GABAa')
++	prj_CorticalSTN = Projection(Cortical_Pop, STN_Pop, FromFileConnector("data/connectivity/CorticalSTN_Connections.txt"), syn_CorticalCollateralSTN, source='collateral(0.5)', receptor_type='AMPA')
++	prj_STNGPe = Projection(STN_Pop, GPe_Pop, FromFileConnector("data/connectivity/STNGPe_Connections.txt"), syn_STNGPe, source='soma(0.5)', receptor_type='AMPA')
++	prj_GPeGPe = Projection(GPe_Pop, GPe_Pop, FromFileConnector("data/connectivity/GPeGPe_Connections.txt"), syn_GPeGPe, source='soma(0.5)', receptor_type='GABAa')
++	prj_GPeSTN = Projection(GPe_Pop, STN_Pop, FromFileConnector("data/connectivity/GPeSTN_Connections.txt"), syn_GPeSTN, source='soma(0.5)', receptor_type='GABAa')	
++	prj_StriatalGPe = Projection(Striatal_Pop, GPe_Pop, FromFileConnector("data/connectivity/StriatalGPe_Connections.txt"), syn_StriatalGPe, source='soma(0.5)', receptor_type='GABAa')	
++	prj_STNGPi = Projection(STN_Pop, GPi_Pop, FromFileConnector("data/connectivity/STNGPi_Connections.txt"), syn_STNGPi, source='soma(0.5)', receptor_type='AMPA')
++	prj_GPeGPi = Projection(GPe_Pop, GPi_Pop, FromFileConnector("data/connectivity/GPeGPi_Connections.txt"), syn_GPeGPi, source='soma(0.5)', receptor_type='GABAa')
++	prj_GPiThalamic = Projection(GPi_Pop, Thalamic_Pop, FromFileConnector("data/connectivity/GPiThalamic_Connections.txt"), syn_GPiThalamic, source='soma(0.5)', receptor_type='GABAa')
++	prj_ThalamicCortical = Projection(Thalamic_Pop, Cortical_Pop, FromFileConnector("data/connectivity/ThalamicCorticalSoma_Connections.txt"), syn_ThalamicCortical, source='soma(0.5)', receptor_type='AMPA')
++	prj_CorticalThalamic = Projection(Cortical_Pop, Thalamic_Pop, FromFileConnector("data/connectivity/CorticalSomaThalamic_Connections.txt"), syn_CorticalThalamic, source='soma(0.5)', receptor_type='AMPA')
+ 	
+ 	"""
+ 	# Save the network topology so it can be reloaded 
+ 	#prj_CorticalSpikeSourceCorticalSoma.saveConnections(file="CorticalSpikeSourceCorticalSoma_Connections.txt")
+-	prj_CorticalAxon_Interneuron.saveConnections(file="CorticalAxonInterneuron_Connections.txt")
+-	prj_Interneuron_CorticalSoma.saveConnections(file="InterneuronCortical_Connections.txt")
+-	prj_CorticalSTN.saveConnections(file="CorticalSTN_Connections.txt")
+-	prj_STNGPe.saveConnections(file="STNGPe_Connections.txt")
+-	prj_GPeGPe.saveConnections(file="GPeGPe_Connections.txt")
+-	prj_GPeSTN.saveConnections(file="GPeSTN_Connections.txt")
+-	prj_StriatalGPe.saveConnections(file="StriatalGPe_Connections.txt")
+-	prj_STNGPi.saveConnections(file="STNGPi_Connections.txt")
+-	prj_GPeGPi.saveConnections(file="GPeGPi_Connections.txt")
+-	prj_GPiThalamic.saveConnections(file="GPiThalamic_Connections.txt")
+-	prj_ThalamicCortical.saveConnections(file="ThalamicCorticalSoma_Connections.txt")
+-	prj_CorticalThalamic.saveConnections(file="CorticalSomaThalamic_Connections.txt")
++	prj_CorticalAxon_Interneuron.saveConnections(file="data/connectivity/CorticalAxonInterneuron_Connections.txt")
++	prj_Interneuron_CorticalSoma.saveConnections(file="data/connectivity/InterneuronCortical_Connections.txt")
++	prj_CorticalSTN.saveConnections(file="data/connectivity/CorticalSTN_Connections.txt")
++	prj_STNGPe.saveConnections(file="data/connectivity/STNGPe_Connections.txt")
++	prj_GPeGPe.saveConnections(file="data/connectivity/GPeGPe_Connections.txt")
++	prj_GPeSTN.saveConnections(file="data/connectivity/GPeSTN_Connections.txt")
++	prj_StriatalGPe.saveConnections(file="data/connectivity/StriatalGPe_Connections.txt")
++	prj_STNGPi.saveConnections(file="data/connectivity/STNGPi_Connections.txt")
++	prj_GPeGPi.saveConnections(file="data/connectivity/GPeGPi_Connections.txt")
++	prj_GPiThalamic.saveConnections(file="data/connectivity/GPiThalamic_Connections.txt")
++	prj_ThalamicCortical.saveConnections(file="data/connectivity/ThalamicCorticalSoma_Connections.txt")
++	prj_CorticalThalamic.saveConnections(file="data/connectivity/CorticalSomaThalamic_Connections.txt")
+ 	"""
+ 	
+ 	# Define state variables to record from each population
+@@ -413,7 +421,7 @@
+ 	# GPe DBS current stimulations - precalculated for % of collaterals entrained for varying DBS amplitude
+ 	interp_DBS_amplitudes = np.array([0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2, 2.25, 2.50, 3, 4, 5])
+ 	interp_collaterals_entrained = np.array([0, 0, 0, 1, 4, 8, 19, 30, 43, 59, 82, 100, 100, 100])
+-	GPe_stimulation_order = np.loadtxt('GPe_Stimulation_Order.txt', delimiter=',')
++	GPe_stimulation_order = np.loadtxt('data/GPe_Stimulation_Order.txt', delimiter=',')
+ 	GPe_stimulation_order = [int(index) for index in GPe_stimulation_order]
+ 	
+ 	# Make new GPe DBS vector for each GPe neuron - each GPe neuron needs a pointer to it's own DBS signal

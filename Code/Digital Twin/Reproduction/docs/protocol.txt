@@ -1,0 +1,53 @@
+SELECTED REPRODUCTION
+
+Fleming, Dunn and Lowery (2020), doi:10.3389/fnins.2020.00166
+Original model: https://github.com/ModelDBRepository/262046
+One DBS-off versus PI-amplitude pair; no parameter sweeps or other controllers.
+
+600 conductance-based cells, dt=0.01 ms, recordings every 0.5 ms.
+6 s common warmup, 2 s biomarker history, 30 s evaluated control.
+21-29 Hz fourth-order Chebyshev biomarker filter, 20 ms controller calls.
+PI: Kp=0.23, Ti=0.2 s, target=1.0414e-4 mV, 0-3 mA, 130 Hz, 60 us.
+Seed 3695 and supplied burst pattern 1.
+
+The run retains the authors' code default secondorder=0. The paper describes
+Crank-Nicolson; --secondorder 2 selects that alternate numerical protocol.
+Keep different protocol settings in separate experiment copies.
+
+Each full-network solver uses one thread, with cache reordering disabled.
+The opt-in component variants in tests/threadsafe/ are independently tested;
+they do not remove the full extracellular solver's threading restriction.
+The DBS-off and PI trials run as two independent processes after warmup.
+
+GPe waveform storage is shared, using duration gates at pulse onset.
+Source equations, network size, compartments, timestep, and PI gains are retained.
+run_case.py saves executed source, protocol, timestamps, signals, and metrics.
+The fixed authors' target is retained and the baseline percentile is reported.
+Power includes sampled-square and exact linear-play waveform conventions.
+The 24.375 uW open-loop reference is analytical; it is not a third trial.
+Paper Eq.14 appears to compute remaining beta instead of suppression;
+both literal and suppression-based efficiency interpretations are exported.
+
+This is one PD-oriented circuit with short healthy-labelled and prolonged
+pathological-labelled bursts, not an independently validated healthy-person model.
+Original MATLAB analysis scripts, published raw results and ten-trial seeds
+were not supplied. This single pair does not reproduce all paper figures.
+
+manifest.json records the protocol, snapshot hashes, and original script hashes.
+environment.json and requirements.txt describe the bundled runtime.
+compatibility.patch records the PyNN, legacy NumPy loading, and model-folder path changes.
+../tests/results/checks.json retains the completed software validation summary.
+../tests/results/performance.json retains the solver performance measurements.
+
+MODULAR IMPLEMENTATION
+start_simulation.py selects model, acquisition, biomarker, controller, and actuator.
+The separation follows the recording/filtering/control/stimulation blocks in
+Figure 1C. The neural backend retains the supplied cell and network definitions.
+Current concrete devices are simulated bipolar LFP acquisition and monopolar DBS.
+Optogenetics is an extension point, with no opsin/light model supplied by this paper.
+
+For legacy numerical compatibility, the warmup retains its explicit native-noise
+seed. Trial SynNoise is not reseeded by default, matching the previous trial
+source; seed=3695 still controls its NumPy initialization. CBGModel.trial_noise_seed
+can explicitly select another native-noise realization for a separate experiment.
+Run one CBG model per process. The comparison launches its cases independently.
