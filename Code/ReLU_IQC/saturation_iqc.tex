@@ -1,0 +1,94 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\input{../../shortcuts}
+\allowdisplaybreaks
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\title{(Incremental) Quadratic Constraints for Saturations}
+\author{}
+\begin{document}
+\maketitle
+In this document we will examine \cite{noori2024completesetquadraticconstraints}
+to find suitable Quadratic Constraints (QCs) and incremental QCs parameterizations
+for saturations and sigmoids. The goal is eventually to connect it to \cite{lenssen2026dual} to perform 
+state based controller and observer synthesis to help create a Deep Brain/Optogenetics Stimulation 
+in patients suffering from Parkinsons Disease (PD). The controller consisting of a state-feedback
+and Luenberger observer will then be tested on the digital twin developped in \cite{fleming2020}.
+
+\subsection{State-feedback synthesis under input saturation verifying incremental stability}
+Examine the following system
+\begin{align}\label{eqn:satsys}
+    T\dot{x} &= Ax + B\mathrm{sat}_{[\ell,h]}(u)\\
+    u &= Kx,
+\end{align}
+where
+\begin{equation*}
+    \mathrm{sat}_{[\ell,h]}(v) := \left\{\begin{aligned}
+        h \quad &\text{if} \quad v > h\\
+        v \quad &\text{if} \quad \ell \leq v \leq h\\
+        \ell \quad &\text{if} \quad v < \ell.
+    \end{aligned}\right.
+\end{equation*}
+Also define the ReLU function
+\begin{equation*}
+    \Phi(v) := \left\{\begin{aligned}
+        v \quad &\text{if} \quad v\geq 0\\
+        0 \quad &\text{if} \quad v < 0.
+    \end{aligned}\right.
+\end{equation*}
+Indeed the saturation function can be described as a combination of ReLU functions
+\begin{equation*}
+    \mathrm{sat}_{[\ell, h]}(v) = \ell + \Phi(v-\ell) - \Phi(v-h).
+\end{equation*}
+We can then describe \eqref{eqn:satsys} as
+\begin{align*}
+    T\dot{x} &= Ax + B\ell + B\bmat{1&-1}w \\
+    w &= \Phi(z), \\
+    z &= \bmat{Kx-\ell\\Kx-h}.
+\end{align*}
+Use the definition of incremental QCs
+\begin{equation}
+    \ip{\bmat{z_1-z_2\\ w_1-w_2}}{M\bmat{z_1-{z}_2\\w_1-{w}_2}}\geq 0
+\end{equation}
+Then introduce $x_{\delta}(t) = x_1(t) - {x}_2(t)$, ${w}_{\delta}(t) = w_1(t) - {w}_2(t)$, $z_\delta(t) = z_1(t) - {z}_2(t)$ and ${u}_{\delta}(t) = u_1(t)-{u}_2(t)$.
+We gather
+\begin{align}\label{eqn:lfrsatsys}
+    T\dot{x}_\delta &= Ax_\delta + B\bmat{1&-1}{w}_\delta\\
+    {w}_{\delta} &= \Phi(z_1)-\Phi(z_2),\\
+    {z}_\delta &=\bmat{Kx_\delta\\Kx_\delta}
+\end{align}
+\subsection{Sigmoid with output asymptotes \(\ell<h\)}
+Let \(b=(h+\ell)/2\) be the output midpoint, \(a=(h-\ell)/2\) the
+half-range, \(c\) the input midpoint, and \(k>0\) the slope there.
+Define \(r=k(q-c)/a\). The increasing sigmoid and its matched saturation are
+\[
+ F(q)=b+a\tanh r,\qquad S(q)=\mathrm{sat}_{[\ell,h]}(b+k(q-c)).
+\]
+Both pass through \((c,b)\) with slope \(k\). For \(c=b\) and \(k=1\),
+\(S(q)=\mathrm{sat}_{[\ell,h]}(q)\) as defined above.
+Since \(S(q)-b=a\,\mathrm{sat}_{[-1,1]}(r)\), we obtain
+\[
+ F(q)=b+\theta(q)(S(q)-b),\qquad
+ \theta(q)=\frac{\tanh r}{\mathrm{sat}_{[-1,1]}(r)}
+ \quad(r\ne0),\qquad \theta(c)=1 .
+\]
+The sharp ordinary gain bounds remain \(\tanh(1)\le\theta(q)\le1\).
+For two inputs the incremental gain is instead the secant slope of \(F\).
+Since \(F'(q)=k/\cosh^2(r)\), its sharp closed global interval is
+\([0,k]\). If both inputs satisfy \(|q-c|\le L\) with \(L>0\), the
+sharp closed interval is \([k/\cosh^2(kL/a),k]\).
+\bibliographystyle{plain}
+\bibliography{../../references}
+\end{document}

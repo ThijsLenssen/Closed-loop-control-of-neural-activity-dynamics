@@ -1,0 +1,1124 @@
+                                                                      A Complete Set of Quadratic Constraints for
+                                                                         Repeated ReLU and Generalizations
+                                                                         Sahel Vahedi Noori, Bin Hu, Geir Dullerud, and Peter Seiler
+
+
+                                            Abstract— This paper derives a complete set of quadratic                 QCs can be combined with Lyapunov/dissipativity theory
+                                         constraints (QCs) for the repeated ReLU. The complete set                [24]–[27] to derive stability and performance conditions for
+                                         of QCs is described by a collection of matrix copositivity               RNNs. Related work along these lines for discrete-time
+                                         conditions. We also show that only two functions satisfy all
+                                         QCs in our complete set: the repeated ReLU and flipped ReLU.             RNNs is given in [19], [22], [23], [28]–[31]. In addition,
+arXiv:2407.06888v2 [cs.LG] 22 Aug 2024
+
+
+
+
+                                         Thus our complete set of QCs bounds the repeated ReLU as                 incremental QCs have been used to compute Lipschitz
+                                         tight as possible up to the sign invariance inherent in quadratic        bounds on NNs [5]. There is a rapidly growing literature
+                                         forms. We derive a similar complete set of incremental QCs for           on the application of incremental QCs including extensions
+                                         repeated ReLU, which can potentially lead to less conservative           for ℓ∞ perturbations [6], deep equilibrium models [7], and
+                                         Lipschitz bounds for ReLU networks than the standard LipSDP
+                                         approach. The basic constructions are also used to derive the            the use for designing Lipschitz networks [8]–[11]. There
+                                         complete sets of QCs for other piecewise linear activation               is also recent work on scalability to ImageNet [12] as
+                                         functions such as leaky ReLU, MaxMin, and HouseHolder.                   well as extensions to convolutional structures [13], [14] and
+                                         Finally, we illustrate the use of the complete set of QCs to assess      activation functions such as MaxMin and GroupSort [15].
+                                         stability and performance for recurrent neural networks with
+                                         ReLU activation functions. We rely on a standard copositivity               The following summarizes the key contributions of our
+                                         relaxation to formulate the stability/performance condition as           paper to this existing literature:
+                                         a semidefinite program. Simple examples are provided to
+                                                                                                                    1) We provide the complete class of QCs satisfied by
+                                         illustrate that the complete sets of QCs and incremental QCs
+                                         can yield less conservative bounds than existing sets.                        the repeated ReLU (Mc in Theorem 1). This complete
+                                                                                                                       set of QCs is described by a collection of 2nv matrix
+                                                                I. I NTRODUCTION                                       copositivity conditions where nv is the dimension of the
+                                                                                                                       repeated ReLU. Importantly, we also show that only
+                                            This paper considers the use of quadratic constraints (QCs)
+                                                                                                                       two functions satisfy all QCs in our complete set: the
+                                         to characterize a nonlinear function. QCs are inequalities
+                                                                                                                       repeated ReLU and flipped ReLU (Theorem 2). Thus
+                                         expressed as quadratic forms on the input/output graph of
+                                                                                                                       our complete set of QCs bounds the repeated ReLU as
+                                         the function. These constraints are useful as they can be
+                                                                                                                       tight as possible up to the sign invariance inherent in
+                                         easily incorporated into stability and performance conditions
+                                                                                                                       quadratic forms.
+                                         for dynamical systems. This is a special case of the more
+                                                                                                                    2) We derive the complete set of incremental QCs for
+                                         general integral quadratic constraint (IQC) framework [1]–
+                                                                                                                       repeated ReLU (Mcinc in Theorem 3). We further
+                                         [4]. Moreover, a related class of incremental QCs can be used
+                                                                                                                       demonstrate the utility of this result by using it to
+                                         to compute Lipschitz bounds on static functions [5]–[15].
+                                                                                                                       derive a new subclass of incremental QCs for repeated
+                                            This paper focuses on the specific nonlinearity known as
+                                                                                                                       ReLU (M2inc in Lemma 4).
+                                         the Rectified Linear Unit (ReLU), and its characterization
+                                                                                                                    3) We show in Section IV how to adapt the results to
+                                         in terms of QCs and incremental QCs. This special case is
+                                                                                                                       derive the complete class of QCs for other impor-
+                                         motivated by the popular use of the ReLU as the activation
+                                                                                                                       tant piecewise linear activation functions including the
+                                         function in neural networks (NNs) and recurrent neural
+                                                                                                                       leaky ReLU, MaxMin, and Householder activations.
+                                         networks (RNNs) [16]–[18]. The scalar ReLU φ : R → R
+                                                                                                                    4) Finally, Section V applies the complete set of QCs
+                                         and the more general (repeated) ReLU Φ : Rnv → Rnv are
+                                                                                                                       for analysis of RNNs with ReLU activation functions.
+                                         defined formally in Section II-B. The scalar ReLU satisfies
+                                                                                                                       A stability and performance condition is derived us-
+                                         a number of useful properties including positivity (φ (v) ≥ 0),
+                                                                                                                       ing standard Lyapunov/dissipativity arguments. There
+                                         positive complement (φ (v) ≥ v), complementarity (φ (v)(v −
+                                                                                                                       are computational issues associated with the use of
+                                         φ (v)) = 0), and slope restrictions. These properties have been
+                                                                                                                       the complete set due to the copositivity conditions.
+                                         previously leveraged to derive several useful QCs for the
+                                                                                                                       Thus we rely on an existing copositivity relaxation
+                                         repeated ReLU Φ [19]–[23].
+                                                                                                                       to formulate our stability/performance condition as a
+                                            S. Vahedi Noori and P. Seiler are with the Department of Electri-          semidefinite program (SDP).
+                                         cal Engineering & Computer Science, at the University of Michigan
+                                         (sahelvn@umich.edu; and pseiler@umich.edu). B. Hu is                        Two simple examples illustrating the approach are given in
+                                         with the Department of Electrical and Computer Engineering at the Uni-   Section VI. The first example demonstrates that the complete
+                                         versity of Illinois at Urbana-Champaign (binhu7@illinois.edu).           class of QCs Mc can provide less conservative bounds
+                                         G. Dullerud is with the the Department of Mechanical Science
+                                         and Engineering at the University of Illinois at Urbana-Champaign        on the induced ℓ2 gain of an RNN. The second example
+                                         (dullerud@illinois.edu)                                                  demonstrates that the the complete class of incremental QCs
+Mcinc can provide less conservative Lipschitz bounds on                                          w = φ (v)
+a simple NN. Both examples are academic in nature but
+                                                                                                     6
+demonstrate that improved bounds are possible beyond the
+typical sets of QCs and incremental QCs used in the literature
+for repeated ReLU.                                                                                             v
+                                                                                                               -
+                       II. BACKGROUND
+A. Notation
+                                                                                    Fig. 1: Graph of scalar ReLU φ .
+   This section introduces basic notation regarding vectors,
+matrices, and signals. Let Rn and Rn×m denote the sets of
+real n×1 vectors and n×m matrices, respectively. Moreover,             We denote by QC(M) the set of all functions which satisfy
+Rn≥0 and Rn×m≥0 denote vectors and matrices of the given               the QC defined by M ∈ S2nv . Furthermore, given a subset
+dimensions with non-negative entries. Thus Rn≥0 corresponds            of matrices M ⊂ S2nv we define QC(M ) := ∩M∈M QC(M);
+to the non-negative orthant. We let ei ∈ Rnv denote the ith            namely, F ∈ QC(M ) means F satisfies every QC defined by
+standard basis vector; every entry of ei is zero except entry          the elements of M .
+i is equal to 1.
+   Next, define the following sets of matrices:                           QCs are, in general, conservative bounds on the graph of
+   • Sn is the set of real symmetric, n × n matrices.                  a function in the sense that both QC(M) and QC(M ) will
+   • Dn is the set of n × n, real diagonal matrices.                   typically contain more than one function. However, these
+   • COPn is the set of n × n, real, symmetric co-positive             bounds are useful as they can be easily incorporated into
+      matrices. Specifically, if M = M ⊤ ∈ COPn then x⊤ Mx ≥           stability and performance conditions for dynamical systems.
+      0 for all x ∈ Rn≥0 .                                             Section V will provide one such application of QCs for
+   • DH n is the set of n × n, real, doubly hyperdominant              stability and performance analysis.
+      matrices. Such matrices have non-positive off-diagonal              QCs for ReLU can be derived using simple properties of
+      elements while both the row sums and column sums are             the scalar ReLU. Specifically, the scalar ReLU satisfies the
+      non-negative.                                                    following useful properties that have been used previously
+   • N is the set of non-negative integers.                            in the literature [19]–[23]:
+For M ∈ Sn , we use M ⪰ 0 and M ≻ 0 to denote that it is                 1) Positivity: The scalar ReLU is non-negative for all
+positive semidefinite or positive definite, respectively.                   inputs: φ (v) ≥ 0 ∀v ∈ R.
+   Finally, let v : N → Rn and w : N → Rn be real,                       2) Positive Complement: The scalar ReLU satisfies
+vector-valued sequences. Define the inner product ⟨v, w⟩ :=                 φ (v) ≥ v ∀v ∈ R.
+           ⊤                  n
+∑∞k=0 v(k) w(k). The set ℓ2 is an inner product space with               3) Complementarity: The graph of the scalar ReLU is
+sequences p v that satisfy ⟨v, v⟩ < ∞. The corresponding norm               identically on the line of slope 0 (when v ≤ 0) or the
+is ∥v∥2 := ⟨v, v⟩.                                                          line of slope 1 (when v ≥ 0). Thus, φ (v) (v − φ (v)) = 0
+                                                                            ∀v ∈ R.
+B. QCs for ReLU                                                          4) Positive Homogeneity: The scalar ReLU is homoge-
+  The scalar Rectified Linear Unit (ReLU) is a function φ :                 neous for all non-negative constants: φ (β v) = β φ (v)
+R → R≥0 defined by:                                                         ∀v ∈ R and ∀β ∈ R≥0 .
+                         
+                            0 if v < 0                                 We can express equivalent properties for ReLU, e.g. the
+                 φ (v) =                .               (1)            positivity and positive complement properties are Φ(v) ≥ 0
+                            v if v ≥ 0
+                                                                       and Φ(v) ≥ v for all v ∈ Rnv , respectively. The next lemma
+The graph of the scalar ReLU is shown in Figure 1. The                 gives two QCs for the ReLU based on these properties. Both
+repeated ReLU is the function Φ : Rnv → Rn≥0           v
+                                                          defined by   QCs are known in the literature and the second one, defined
+Φ(v) = (φ (v1 ), φ (v2 ), . . . , φ (vnv )). In the remainder of the   by M2 below, is a restatement of Theorem 2 in [23].
+paper we will use ”ReLU” to refer to the repeated ReLU
+and the term ”scalar ReLU” when we want to emphasize the                 Lemma 1: Define the following subsets of S2nv :
+case with a single input and output.                                                                    
+                                                                                   0     Q1
+  This paper mainly focuses on QCs satisfied by the ReLU.                 M1 :=                : Q1 ∈ D nv
+                                                                                                             ,                    (3)
+The notion of a QC is formally defined next.                                      Q1 −2Q1
+                                                                                (      ⊤                            )
+                                                                                   −I I         −I I
+  Definition 1: A function F : Rnv → Rnv satisfies the                    M2 :=            Q2           : Q2 ∈ COP  2nv
+                                                                                                                          .       (4)
+                                                                                   0 I           0 I
+Quadratic Constraint (QC) defined by M ∈ S2nv if the fol-
+lowing inequality holds for all v ∈ Rnv :
+                                                                       The ReLU Φ : Rnv → Rn≥0  v
+                                                                                                   satisfies the QCs defined by any
+                        ⊤ 
+                                                                       matrices in M1 and M2 , i.e. Φ ∈ QC(M1 ) and Φ ∈ QC(M2 ).
+                                   
+                     v            v
+                           M          ≥ 0.            (2)
+                   F(v)         F(v)                                       Proof: Take any M1 ∈ M1 and then observe that for all
+v ∈ Rnv we algebraically have                                                     A set of incremental QCs for ReLU can be derived from
+         ⊤                nv                                               the [0, 1] slope restriction of scalar ReLU. Specifically, the
+        v           v                                                          slope restriction (5) implies that for any v̄, v̂ ∈ R we have:
+             M1          = 2 ∑ (Q1 )ii φ (vi )(φ (vi ) − vi ).
+      Φ(v)        Φ(v)       i=1
+                                                                                           (φ (v̄) − φ (v̂)) · [(v̄ − v̂) − (φ (v̄) − φ (v̂))] ≥ 0.        (8)
+By complementarity of scalar ReLU the right-hand side is
+zero and thus Φ satisfies the QC defined by any M1 ∈ M1 .                      It is well known that, based on this property, the ReLU
+  Next, choose any M2 ∈ M2 and verify that for any v ∈ Rnv                     satisfies the incremental QCs defined by any matrices in the
+we have                                                                        following set [5], [13], [14]:
+                                                                                                                              
+          ⊤                        ⊤                                                             0    T1
+                                                                                        M1 :=
+                                                                                       inc                          nv
+       v            v        Φ(v) − v       Φ(v) − v                                                            : T1 ∈ D , T1 ⪰ 0 .     (9)
+             M2          =              Q2            .                                             T1 −2T1
+      Φ(v)       Φ(v)          Φ(v)          Φ(v)
+The hright-hand                                                                To see this, take any M1 ∈ M1inc . Then for any v̄, v̂ ∈ Rnv ,
+              i side is non-negative because Q2 is copositive
+       Φ(v)−v                                                                                  ⊤ 
+and Φ(v) is elementwise non-negative by the positivity
+                                                                                                                  
+                                                                                     v̄ − v̂              v̄ − v̂
+                                                                                                  M1
+and positive complement properties of φ . Thus Φ satisfies                       Φ(v̄) − Φ(v̂)        Φ(v̄) − Φ(v̄)
+the QC defined by any M2 ∈ M2 .                                                       nv
+                                                                                = 2 ∑ (T1 )ii · (φ (v̄)i − φ (v̄)i ) · [(v̄i − v̂i ) − (φ (v̄)i − φ (v̂)i )] .
+   ReLU also satisfies QCs defined for the more general class                        i=1
+of slope restricted nonlinearities. Specifically, scalar ReLU                     Each term of the sum is nonnegative due to T1 ⪰ 0 and the
+is slope restricted to [0, 1], i.e.:                                           [0, 1] slope restriction of scalar ReLU in (8). Thus Φ satisfies
+               φ (v2 ) − φ (v1 )                                               all incremental QCs defined by M1inc , i.e. Φ ∈ QCinc (M1inc ).
+         0≤                      ≤ 1, ∀v1 , v2 ∈ R, v1 ̸= v2 .          (5)    The incremental QCs defined by M1inc are standard and have
+                   v2 − v1
+                                                                               been widely used in LipSDP and related work [5]–[15].
+The next lemma defines a set of QCs for ReLU based on
+this slope-restriction. These are a special case of Zames-Falb                                 III. C OMPLETE S ETS OF QC S AND
+multipliers [32]. The lemma follows from existing results for                                    I NCREMENTAL QC S FOR R E LU
+slope restricted nonlinearities (Section 3.5 of [33] and [34]1 ).              A. Complete Set of QCs for ReLU
+   Lemma 2: Define the following subset of S2nv :                                 Section II-B introduced three classes of QCs for ReLU.
+                                                                               There are other QCs for ReLU in the literature, e.g. polytopic
+                                Q⊤
+                                                            
+                      0                                                        QCs [22], [23]. This raises the following question: What
+         M3 :=                    3     : Q3 ∈ DH nv .                  (6)
+                      Q3     −(Q3 + Q⊤
+                                     3)                                        is the largest set M ⊂ S2nv such that Φ ∈ QC(M )? This
+The ReLU Φ : Rnv → Rn≥0  v
+                           satisfies the QCs defined by any                    question is addressed by our main results in this subsection.
+matrix in M3 , i.e. Φ ∈ QC(M3 ).                                               Formally  the largest set of QCs satisfied by Φ is given by
+                                                                                 M ∈ S2nv | Φ ∈ QC(M) . This set contains, by definition, all
+                                                                               
+
+   Section III-A gives an independent proof that ReLU sat-                     matrices M such that ReLU satisfies the corresponding QC.
+isfies all QCs defined by M3 .                                                 Theorem 1 below provides an explicit description for this set
+                                                                               based on certain copositivity conditions.
+C. Incremental QCs for ReLU                                                       To provide this explicit description, first let Dn±1 ⊂ Dn
+   Incremental QCs, formally defined below, are a related                      denote the set of n×n diagonal matrices where each diagonal
+class of quadratic constraints. Incremental QCs can be used                    entry is ±1. There are 2nv matrices in this set. Next, let
+to compute Lipschitz bounds on Neural Networks (NNs), e.g.                     matrices M ∈ S2nv and D ∈ Dn±1   v
+                                                                                                                  be given. Let MD ∈ Snv
+as in LipSDP [5] and related work [6]–[15].                                    denote the following matrix:
+                                                                                                             ⊤            
+   Definition 2: A function F : Rnv → Rnv satisfies the                                                  D              D
+                                                                                            MD := 1              M 1           .         (10)
+incremental QC defined by M ∈ S2nv if the following inequal-                                         2 (I + D)      2 (I + D)
+ity holds for all v̄, v̂ ∈ Rnv :                                               Given this notation, define the following set of matrices:
+                           ⊤                 
+                 v̄ − v̂               v̄ − v̂                                     Mc := M ∈ S2nv : MD ∈ COPnv ∀D ∈ Dn±1
+                                                                                                                              v
+                                 M                ≥ 0.   (7)                                                                     .      (11)
+             F(v̄) − F(v̂)         F(v̄) − F(v̂)
+                                                                               The matrix dimension 2nv is omitted from the notation Mc
+We denote by QCinc (M) the set of all functions which satisfy                  but should be clear from context. Each matrix in Mc satisfies
+the incremental QC defined by M ∈ S2nv . Furthermore, given                    a collection of 2nv copositivity conditions; one condition for
+a subset of matrices M ⊂ S2nv we define QCinc (M ) :=                          each D ∈ Dn±1v
+                                                                                              . The next theorem states that Mc defines the
+∩M∈M QCinc (M); namely, F ∈ QCinc (M ) means F satisfies                       complete set of QCs for the ReLU.
+every incremental QC defined by the elements of M .
+                                                                                 Theorem 1: The ReLU Φ satisfies a QC defined by M ∈
+  1 The results in these references are stated for monotone nonlinearities.    S2nv if and only if M ∈ Mc . Equivalently,
+A similar fact holds for nonlinearities with slope restricted to [0, 1] by a
+                                                                                             Mc = M ∈ S2nv | Φ ∈ QC(M) .
+                                                                                                   
+transformation of the input-output data.                                                                                         (12)
+      Proof: (⇐) Suppose M ∈ Mc . Take any v ∈ Rnv and                     related question: Are there other functions, besides ReLU,
+let w = Φ(v). Define a diagonal matrix D̄ ∈ Dn±1
+                                               v
+                                                 and vector                that satisfy all QCs defined by matrices in Mc ? The answer
+      nv    2
+v̄ ∈ R≥0 by :                                                              to this question is yes. To show this, in terms of Φ define the
+                                                                           new function Φflip : Rnv → Rnv by Φflip (v) := −Φ(−v). Now,
+                 D̄kk := sign(vk ) and v̄k := |vk |.               (13)    notice the pair (v, w) lies on the graph of Φ if and only if
+Thus v = D̄v̄ and w = 21 (I + D̄)v̄. The equality for w follows            (−v, −w) lies on the graph of Φflip . Therefore we call Φflip
+because 12 (1 + D̄kk )v̄k is equal to 0 when vk < 0 and is equal           the flipped ReLU. Next note that quadratic forms are even
+to vk when vk ≥ 0.                                                         functions:
+                                                                                           ⊤    ⊤  
+   Let MD̄ denote the scaled matrix defined as in (10) but                                  v        v     −v          −v
+with D̄ ∈ D±1nv
+                . Thus MD̄ is copositive since M ∈ Mc by                                        M       =          M        .         (16)
+                                                                                            w       w      −w          −w
+assumption. Combining these facts gives:
+                                                                           With this observation we can conclude the following.
+                   ⊤  
+                    v          v
+                          M       = v̄⊤ MD̄ v̄ ≥ 0.         (14)            Proposition 1: Given a subset M ⊂ S2nv . Then Φ ∈
+                   w          w
+                                                                           QC(M ) if and only if Φflip ∈ QC(M ).
+Since v was arbitrary the above holds for all v ∈ Rnv and
+w = Φ(v); namely, the ReLU Φ satisfies the QC defined by                   In words, this says there is a fundamental limit on how finely
+M ∈ Mc as required.                                                        QCs can specify the ReLU: the flipped ReLU must always
+                                                                           also be included. The next theorem states that ReLU and
+(⇒) This direction is by contrapositive. Assume M ∈      / Mc .            flipped ReLU are, in fact, the only functions that satisfy all
+Then MD in (10) is not copositive for some D ∈ Dn±1    v
+                                                         . Thus            QCs defined by Mc . Namely, the set of QCs defined by Mc
+                   nv
+there exists v̄ ∈ R≥0  such that v̄⊤ MD v̄ < 0. Define v := Dv̄            is as tight as possible for ReLU up to the sign-invariance
+          1                                                                inherent in quadratic forms.
+and w := 2 (I + D)v̄. If Dkk = −1 then vk ≤ 0 and wk = 0. If
+Dkk = +1 then vk ≥ 0 and wk = vk . Hence w = Φ(v) and
+                                                                              Theorem 2: A function F : Rnv → Rnv satisfies all QCs
+                                                                           defined by Mc if and only if F is either Φ or Φflip . Namely:
+                   ⊤  
+                   v       v
+                        M     = v̄⊤ MD v̄ < 0.              (15)           the set QC(Mc ) = {Φ, Φflip }.
+                   w       w
+                                                                                Proof:
+Thus ReLU does not satisfy the QC defined by M.                            (⇐) Assume F ∈ {Φ, Φflip }. If F = Φ then Theorem 1
+                                                                           implies that F satisfies all QCs defined by Mc . The same
+   Mc defines the complete set of QCs satisfied by ReLU by                 is true when F = Φflip because quadratic forms are even
+Theorem 1. Section II-B discussed several existing QCs for                 functions.
+ReLU. The next lemma and corollary provide an independent                  (⇒) Suppose    F i∈ QC(Mc ). By Lemma 3, Mc contains any
+proof for these existing QCs relying on the characterization
+                                                                                   h
+                                                                                     0 Q1
+                                                                           M1 := Q1 −2Q1 with Q1 diagonal. Select Q1 to have all
+in Theorem 1.
+                                                                           zero entries except for entry (i, i). Then all v ∈ Rnv , w = F(v)
+  Lemma 3: The sets M1 , M2 , and M3 are subsets of Mc .                   satisfy
+    Proof: The proof is given in Appendix A.                                           ⊤  
+                                                                                        v        v
+                                                                                             M1      = 2(Q1 )ii wi (vi − wi ) ≥ 0.      (17)
+  Corollary 1: The ReLU Φ : Rnv → Rn≥0v
+                                          satisfies the QCs                             w        w
+defined by any matrices in M1 , M2 , M3 .
+                                                                           (Q1 )ii can be chosen to be positive or negative. Thus (17)
+     Proof: This follows from Theorem 1 and Lemma 3.
+                                                                           implies that wi = 0 or wi = vi . In other words, the allowable
+   The complete set Mc contains, by Theorem 1, all other                   values of Fi (v) only depend on vi and thus we write Fi (vi ) ∈
+classes of QCs for ReLU. As discussed later in Section V-                  {0, vi } for all vi ∈ R.
+C, numerical implementations may favor, for computational                    Lemma 3 also implies that Mc contains any M2 ∈ M2 .
+reasons, the use of subsets of QCs for ReLU over the                       Define M2 ∈ M2 by
+complete set Mc . The complete set Mc can be explored to                               I ⊤  −I I               h
+                                                                                                                     0        0
+                                                                                                                                      i
+                                                                             M2 := −I   0 I    Q 2 0 I with  Q 2 =   0 ei e j +e j ei , i ̸= j.
+                                                                                                                           ⊤        ⊤
+help derive new subsets of QCs that may have computational
+advantages. In this sense, the complete set Mc provides a                                                                                    (18)
+unifying view for ReLU QCs.                                                Then all v ∈ Rnv , w = F(v) satisfy
+B. Functions Characterized by Complete Set of QCs                                           ⊤  
+                                                                                              v       v
+                                                                                                 M2      = 2wi w j ≥ 0.                     (19)
+  Note that given any subsets P, N ⊂ S2nv we have                                             w       w
+QC(P ∪ N ) = QC(P) ∩ QC(N ). Thus the by making M
+                                                                           This condition is violated if Fi (vi ) and Fj (v j ) have opposite
+as large as possible we are making the set of functions
+                                                                           sign for some vi , v j ∈ R. This implies: (i) Fi is globally
+QC(M ) as small as possible. Theorem 1 then leads to a
+                                                                           nonnegative for all i = 1, . . . nv , or (ii) Fi is globally non-
+ 2 Here we use the convention that sign(·) : R → {−1, +1} with sign(x) =   positive for all i = 1, . . . nv . The remainder of the proof shows
++1 if x ≥ 0 and sign(x) = −1 if x < 0.                                     that case (i) implies F = Φ while case (ii) implies F = Φflip .
+  First consider case (i), and note that in order to show F =       D. New Incremental QCs for ReLU
+                               h ⊤Fi (vi )⊤≥ ivi for all i and v.
+Φ it is sufficient to demonstrate                                      Section II-C introduced a well-known set of ReLU incre-
+Define M2 ∈ M2 with Q2 = ei e j +e j ei 0 for some i ̸= j.          mental QCs, denoted M1inc , based on [0, 1] slope constraint
+                                     0     0
+Then all v ∈ Rnv , w = F(v) satisfy                                 for scalar ReLU. We initially conjectured that M1inc might
+           ⊤                                                    contain all possible incremental QCs for ReLU, i.e M1inc =
+            v         v
+                 M2      = 2(wi − vi )(w j − v j ) ≥ 0.      (20)   Mcinc . However, we found examples where the use of M1inc
+            w         w
+                                                                    yields more conservative bounds than Mcinc (See Section VI-
+Now set v j = −1 and then by the non-negativity of Fj we            B). Such examples imply that M1inc is a strict subset of Mcinc .
+have w j − v j > 0. Then (20) implies wi ≥ vi , namely Fi (vi ) ≥      The purpose of this subsection is to derive a new set of
+vi as required.                                                     ReLU incremental QCs that we found while studying these
+   Case (ii) leads to F = Φflip following a similar argument.       examples. This new set is interesting on its own. Moreover,
+                                                                    this illustrates that Mcinc can be explored to help derive
+                                                                    new sets of QCs that may have computational advantages.
+C. Complete Set of Incremental QCs for ReLU                         Our new set of incremental QCs is based on the following
+   Next, we build on our results in Section III-A to define         property for scalar ReLU.
+the largest class of incremental QCs for ReLU. Let matrices
+                                                                      Proposition 2: Any v̄i , v̂i ∈ R (i = 1, 2) with w̄i = φ (v̄i )
+M ∈ S2nv and D1 , D2 ∈ Dn±1   v
+                                 be given. Let MD1 ,D2 ∈ S2nv
+                                                                    and ŵi = φ (v̂i ) satisfy:
+denote the following matrix:
+             h D
+                  1      −D2
+                                i⊤ h D
+                                           1     −D2
+                                                       i              [(v̄1 − v̂1 ) − (v̄2 − v̂2 )]2 + 2(w̄1 − ŵ1 ) · (w̄2 − ŵ2 ) ≥ 0. (25)
+  MD1 D2 := 1 (I+D
+                   1
+                        1
+                     ) − (I+D )
+                             2
+                                  M   1 (I+D ) − (I+D ) . (21)
+                                            1
+                                                1
+                                                      2
+              2         2              2         2
+                                                                          Proof: To simplify notation, let dvi := v̄i − v̂i and dwi :=
+Given this notation, define the following set of matrices:          w̄i − ŵi . With this notation, we need to show:
+ Mcinc := M ∈ S2nv : MD1 D2 ∈ COP2nv ∀D1 , D2 ∈ Dn±1
+                                                      v
+                                                           .                         [dv1 − dv2 ]2 + 2dw1 · dw2 ≥ 0.                    (26)
+                                                         (22)
+Note that Mcinc involves a collection 22nv = 4nv copositivity       The [0, 1] slope constraint implies that if dvi ≥ 0 then dwi ∈
+conditions; one condition for each pair D1 , D2 ∈ Dn±1
+                                                     v
+                                                       . The        [0, dvi ]. Similarly, if dvi ≤ 0 then dwi ∈ [dvi , 0].
+next theorem states that Mc defines the complete class of
+                           inc                                         If dv1 dv2 ≥ 0 then dw1 dw2 ≥ 0 and thus (26) holds. On
+incremental QCs for ReLU.                                           the other hand, if dv1 dv2 ≤ 0 then dw1 dw2 ≥ dv1 dv2 . This
+                                                                    case implies (dv1 − dv2 )2 + 2dw1 dw2 ≥ dv21 + dv22 ≥ 0.
+  Theorem 3: The ReLU Φ satisfies an incremental QC
+defined by M ∈ S2nv if and only if M ∈ Mcinc . Equivalently,           Having established this new property, we now state the
+                                                                    following lemma about doubly hyperdominant matrices.
+           Mcinc = M ∈ S2nv | Φ ∈ QCinc (M) .
+                   
+                                                       (23)
+                                                                       Lemma 4: Let T2 = T2⊤ ∈ DH nv be given with ∑nk=1          v
+                                                                                                                                    Tik = 0
+     Proof:                                                                                                          nv
+                                                                    for i = 1, . . . , nv . Then there exists {λi j }i, j=1 ∈ R≥0 such that
+   The definition of an incremental QC involves a quadratic
+form (7) that can be equivalently written as:                                               nv
+                                      ⊤                                          T2 = ∑ λi, j (ei − e j )(ei − e j )⊤ .             (27)
+                  ⊤                v̄              v̄                                  i, j=1
+           v̄ − v̂        v̄ − v̂     v̂  ⊤         v̂ 
+                                                                         Proof: The rows T2 of sum to zero and hence the
+                     M              =
+                                     w̄ R MR w̄
+                                                     
+          w̄ − ŵ        w̄ − ŵ                                    columns also sum to zero by symmetry. Hence, T2 is a
+                                      ŵ              ŵ            symmetric, doubly hyperdominant matrix with zero excess.
+                                           
+                         I −I 0 0                                   Theorem 3.7 in [33] gives a decomposition similar to (27)
+         where R :=                           ∈ R2nv ×4nv .
+                        0 0 I −I                                    for nonsymmetric, doubly hyperdominant matrices with zero
+Thus M defines an incremental constraint for a ReLU of              excess. The argument in [33] can be adapted as follows for
+dimension nv if and only if R⊤ MR defines a normal (non-            the symmetric case. The proof is given Appendix B.
+incremental) QC for a ReLU of dimension 2nv . By Theo-
+                                                                      Next we state a new set of incremental QCs for ReLU
+rem 1, this is equivalent to the following condition:
+                                                                    using the decomposition in Lemma 4 and the property for
+              ⊤
+                                                                    scalar ReLU in Proposition 2.
+                                  
+          D        ⊤            D                     2nv
+     1           (R  MR)   1          ∈ COP2nv ∀D ∈ D±1   .
+       (I + D)               (I + D)
+     2                     2                                          Theorem 4: The ReLU Φ : Rnv → Rn≥0  v
+                                                                                                            satisfies the incre-
+                                                        (24)
+                     h       i                                      mental QC defined by any matrix in the following set:
+Block partition D = D01 D02 . Then (24) simplifies, by direct               
+                                                                              T2      0
+                                                                                          
+                                                                    M2 :=
+                                                                      inc
+                                                                                            : T2 = T2⊤ ∈ DH nv ,            (28)
+multiplication, to MD1 D2 ∈ COP2nv for all D1 , D2 ∈ Dn±1
+                                                        v
+                                                          . In                 0 S2 − T2
+summary, M defines an incremental QC for ReLU if and                                                      nv
+                                                                                                                              )
+only if M ∈ Mcinc .                                                        S2 ∈ Dnv , (S2 )ii = (T2 )ii , ∑ Tik = 0 for i = 1, . . . , nv .
+                                                                                                         k=1
+     Proof: Take any M2 ∈ M2inc . The upper left block T2 is                    Next, rearranging (31) we get
+a symmetric, doubly hyperdominant matrix with zero excess.
+By Lemma 4, there exists {λi j }ni,vj=1 ∈ R≥0 such that                                          F(A2 v̂) = A−1
+                                                                                                             1 (G(v̂) − A0 v̂) .                      (34)
+                              nv                                                Substitute this expression into (33) to obtain
+                  T2 = ∑ λi, j (ei − e j )(ei − e j )⊤ .                (29)                    ⊤               
+                         i, j=1                                                               v̂                v̂
+                                                                                                    R⊤A MR A         ≥ 0 ∀v̂ ∈ Rnv .                  (35)
+This further implies that S2 = ∑ni,vj=1 λi j (ei e⊤              ⊤                          G(v̂)             G(v̂)
+                                                        i + e j e j ) and
+                  nv              ⊤            ⊤
+hence S2 − T2 = ∑i, j=1 λi j (ei e j + e j ei ). Therefore M2 can               Hence G satisfies the QC defined by M̂ as required.
+be decomposed as:
+                nv                                                            (b) First, note that if A1 and A2 are nonsingular then RA is
+                          (ei −e j )(ei −e j )⊤      0
+          M2 = ∑ λi j                                        .        (30)      nonsingular with the following inverse:
+                                    0           e e⊤ +e e⊤
+                                                  i j    j i
+                     i, j=1                                                                                  −1        
+                                                                                                              A2      0
+Then for any v̄, v̂ ∈ Rnv and w̄ = Φ(v̄), ŵ = Φ(v̂),                                                R−1 =                .             (36)
+                                                                                                      A      A0 A−1
+                                                                                                                 2   A1
+          ⊤           
+   v̄ − v̂       v̄ − v̂                                                        It follows from (a) that if F satisfies the QC defined by M =
+             M2
+  w̄ − ŵ       w̄ − ŵ                                                         R−⊤      −1                                        ⊤
+                                                                                  A M̂RA then G satisfies the QC defined by RA MRA = M̂.
+      nv     h                                                             i    Thus it remains to show the “only if” direction. Assume G
+ = ∑ λi j ((v̄i − v̂i ) − (v̄ j − v̂ j ))2 + 2(w̄i − ŵi ) · (w̄ j − ŵ j ) .
+                                                                                satisfies the QC defined by M̂. Since A2 is nonsingular, this
+    i, j=1
+                                                                                implies:
+Each term of this sum is nonnegative by property (25) of the                                −1 ⊤  −1 
+scalar ReLU and λi j ≥ 0. Thus Φ satisfies all incremental                                    A2 v            A2 v
+                                                                                                       M̂               ≥ 0 ∀v ∈ Rnv .    (37)
+QCs defined by M2inc .                                                                      G(A−1
+                                                                                                2 v)        G(A −1
+                                                                                                                2  v)
+  ReLU satisfies the incremental QCs defined by M1inc and                       Substitute for G(A−1
+                                                                                                   2 v) using the definition of G in (31).
+M2inc . Numerical implementations may favor these subsets                       Then the QC (37) simplifies to:
+over the complete set Mcinc for computational reasons.                                        ⊤                
+                                                                                            v                   v
+                    IV. R ELATED E XTENSIONS                                                      R−⊤
+                                                                                                    A M̂R−1
+                                                                                                         A          ≥ 0 ∀v ∈ Rnv .    (38)
+                                                                                           F(v)              F(v)
+   The key results in the previous sections can be generalized
+in various ways. This section presents two specific extensions                  Hence F satisfies the QC defined by M = R−⊤   −1
+                                                                                                                         A M̂RA .
+leading to the complete set of QCs for other nonlinear
+functions appearing in the literature.                                             We can use affine transformations to give the complete set
+                                                                                of QCs for another class of functions. Define gαβ : R → R
+A. Affine Transformations                                                       for α ̸= β as follows:
+  First we consider the effect of affine transformations on                                               
+                                                                                                             αv if v < 0
+QCs. The next result is stated for general functions and is                                     gαβ (v) =                   .           (39)
+                                                                                                             β v if v ≥ 0
+not specific to ReLU.
+                                                                                gαβ corresponds to the scalar ReLU φ when α = 0 and
+   Lemma 5: Let a function F : Rnv → Rnw and matrices A0 ∈                      β = 1. It corresponds to leaky ReLU [35] when 0 < α < 1
+R w ×nv , A1 ∈ Rnw ×nw , and A2 ∈ Rnv ×nw be given. Define a
+  n
+                                                                                and β = 1. In general, gαβ is a piecewise linear function with
+new function G : Rnv → Rnw by:                                                  a slope change at v = 0. The corresponding repeated func-
+                       G(v̂) = A0 v̂ + A1 F(A2 v̂).                     (31)    tion Gαβ : Rnv → Rnv is defined elementwise by Gαβ (v) =
+                                                                                (gαβ (v1 ), . . . , gαβ (vnv )).
+  (a) Given M ∈ Snv +nw . If A1 is nonsingular and F satisfies                     Corollary 2 below states that the complete set of QCs for
+      the QC defined by M then G satisfies the QC defined                       Gαβ is defined by the following set of matrices:
+      by M̂ := R⊤
+                A MRA ∈ S
+                            nv +nw with
+                                                                                     n
+                                 A2       0                                      Mαβ := M̂ ∈ S2nv :                                                    (40)
+                    RA :=                 −1 .           (32)
+                              −A−11 A0 A1                                            h            i⊤         h                   i                     
+                                                                                              D                        D
+                                                                                        αD+ β −α        M̂       αD+ β −α            ∈ COPnv ∀D ∈ Dn±1
+                                                                                                                                                     v
+                                                                                                                                                         .
+  (b) Given M̂ ∈ Snv +nw . If A1 and A2 are nonsingular then G                                2 (I+D)                  2 (I+D)
+
+      satisfies the QC defined by M̂ if and only if F satisfies
+      the QC defined by M := R−⊤          −1
+                                   A M̂RA .                                        Corollary 2: The function Gαβ : Rnv → Rnv with α ̸= β
+     Proof:                                                                     satisfies the QC defined by M̂ if and only if M̂ ∈ Mαβ .
+(a) F satisfies the QC defined by M and hence,                                        Proof: Gαβ can be written in terms of the ReLU as
+                    ⊤                                                       follows:
+               A2 v̂        A2 v̂
+                       M            ≥ 0 ∀v̂ ∈ Rnv .                     (33)
+             F(A2 v̂)     F(A2 v̂)                                                              Gαβ (v) = αv + (β − α)Φ(v).                           (41)
+This corresponds to an affine transformation as in (31) with        technique as used to define Mc for ReLU. First, define the
+A0 = αI, A1 = (β − α)I, and A2 = I. Both A1 and A2 are              following set of matrices:
+nonsingular and thus we have:
+                                                                    Mh := M̂ ∈ S2nv :
+                                                                            
+                                                                                                                      (46)
+           I        0                   I      0
+                          and R−1                                                          i⊤ h                            
+ RA =       α      1               =                   . (42)                 h
+                                                                                     I               I
+                                                                                                          i
+        − β −α I β −α I         A      αI (β − α)I                              I+(d−1)hh⊤   M̂ I+(d−1)hh⊤ ⪰ 0 for d = ±1. .
+  It follows from Lemma 5(b) that G satisfies the QC defined
+by M̂ if and only if ReLU Φ satisfies the QC defined by               Note that each matrix in Mh satisfies only two positive
+M = R−⊤       −1
+        A M̂RA . Moreover, Theorem 1 states that Φ satisfies
+                                                                    semidefiniteness conditions; no copositivity conditions arise
+a QC defined by M if and only if M ∈ Mc . Combining these           in this case. The next theorem states that Mh defines the
+equivalences, G satisfies the QC defined by M̂ if and only if       complete set of QCs for the Householder activation Gh .
+             ⊤
+                                                                       Theorem 5: Let h ∈ Rnv be given with ∥h∥2 = 1 and
+                                    
+         D       −⊤     −1        D
+    1           RA M̂RA 1               ∈ COPnv ∀D ∈ Dn±1
+                                                        v
+                                                          .         suppose M̂ ∈ S2nv . The Householder activation Gh ∈ QC(M̂)
+    2 (I + D)                2 (I + D)
+                                                         (43)       if and only if M̂ ∈ Mh .
+                                                                         Proof:
+This simplifies to M̂ ∈ Mαβ .                                       (⇐) Suppose M̂ ∈ Mh . Take any v ∈ Rnv and let w = Gh (v).
+                                                                    Define d =sign(h⊤ v) so that w = (I + (d − 1)hh⊤ )v. This
+B. Application to Householder and Max/Min Activations               gives:
+   Several gradient norm preserving activation functions have        ⊤                       ⊤                 
+appeared in the literature for the design of Lipschitz neural        v     v              I                   I
+                                                                        M̂   = v⊤                   M̂                  v.
+networks [36], [37]. One example is the Householder acti-            w     w       I + (d − 1)hh⊤      I + (d − 1)hh⊤
+vation function [38]. Given a vector h ∈ Rnv with ∥h∥2 = 1,
+the Householder activation Gh : Rnv → Rnv is defined by:            The expression above is nonnegative since M̂ ∈ Mh . Since v
+                                                                    was arbitrary the above holds for all v ∈ Rnv and w = Gh (v).
+                                       if h⊤ v ≥ 0
+                     
+                        v                                           Hence the Householder activation Gh satisfies the QC defined
+            Gh (v) =                               .        (44)
+                        (I − 2hh⊤ )v if h⊤ v < 0                    by M ∈ Mh as required.
+                                                   h            i
+                                                     max(v ,v )
+As one example, if h = √12 [ 1 −1 ]⊤ then Gh (v) = min(v 1,v 2) .   (⇒) This direction is by contrapositive. Assume M̂ ∈/ Mh .
+                                                          1 2
+This special case of the Householder activation is called           There exists d = +1 or −1 and a vector v ∈ Rnv such that:
+the MaxMin activation [36], [37]. A more general ”group-                                  ⊤                 
+wise” Householder and MaxMin activation functions are                              I                   I
+                                                                        v⊤                   M̂                  v < 0.   (47)
+used in [36]–[38] but we will focus on the (single group)                   I + (d − 1)hh⊤      I + (d − 1)hh⊤
+Householder in (44) for simplicity.
+                                                                    Equation 47 holds if we use either +v or −v. Select the sign
+   The Householder activation function can be expressed with
+                                                                    of v so that d =sign(h⊤ v).3 As a consequence,
+an affine transformation on ReLU. Let 1nv ∈ Rnv be the vector
+of all ones and N ∈ Rnv ×nv be any matrix with N1nv = 0. Then                                
+                                                                                                 v            if h⊤ v ≥ 0
+                                                                                       ⊤
+Gh can be written as:                                                    (I + (d − 1)hh )v =                              .
+                                
+                                                                                                         ⊤
+                                                                                                 (I − 2hh )v if h⊤ v < 0
+                     2 ⊤                           
+      Gh (x) = v +      h1nv + N Φ −(h⊤ v) · 1nv .          (45)    Hence this term is equal to Gh (v) and Equation 47 can be
+                     nv
+                                                                    written as:
+Equation 45 corresponds to an affine transformation as in
+                                                                                            ⊤ 
+(31) with A0 = I, A1 = n2v h1⊤  nv + N, and A2 = −1nv h .
+                                                           ⊤                                           
+                                                                                        v            v
+This transformation is not unique due to the choice of N.                                     M̂          < 0.           (48)
+                                                                                      Gh (v)     Gh (v)
+A similar affine transformation appeared in [13] for the
+MaxMin activation.                                                  Thus the Householder activation does not satisfy the QC
+   It is possible to choose N such that A1 is nonsingular.          defined by M̂.
+By Lemma 5(a), if ReLU Φ satisfies a QC defined by M
+                                                                       Theorem 5 states that Mh defines the complete set of QCs
+then the Householder activation Gh satisfies the QC defined
+                                                                    satisfied by the Householder activation. This also gives the
+by M̂ := R⊤A MRA with RA defined in (32). Thus we can use           complete set of QCs for the MaxMin activation as a special
+the complete set of QCs for ReLU to define QCs for Gh .
+                                                                    case when h = √12 [ 1 −1 ]⊤ . We conjecture that a similar
+However, A2 is singular in this affine transformation. Hence
+                                                                    method can be used to construct the complete set of QCs for
+Lemma 5(b) does not apply, i.e. we cannot equivalently map
+                                                                    the more general ”groupwise” versions of the Householder
+between QCs for Φ and Gh . Therefore, the complete set of
+                                                                    and MaxMin activations in [13], [36]–[38].
+QCs for Gh are not necessarily constructed from the complete
+set for Φ.                                                             3 If h⊤ v = 0 then the term (d − 1)hh⊤ v in (47) is zero. Hence (47) holds
+   We can provide a direct construction for the complete set        for both d = +1 and d = −1. In this case we can assume d = +1 without
+of QCs of the Householder activation Gh . This uses a similar       loss of generality.
+       V. S TABILITY A NALYSIS W ITH R E LU QC S                  k ∈ N. In other words, FU (G, Φ) is internally stable if x = 0
+   This section illustrates the use of the complete set of ReLU   is a globally asymptotically stable equilibrium point with no
+QCs for stability analysis. The stability analysis conditions     external input. A well-posed interconnection FU (G, Φ) has
+are standard but the section describes numerical issues spe-      finite induced-ℓ2 gain if there exists γ < ∞ such that the
+                                                                                                     n
+cific to this complete set. This combines our new results         output e generated by any d ∈ ℓ2d with x(0) = 0 satisfies
+with a number of ideas from the literature and thus provides      ∥e∥2 ≤ γ ∥d∥2 . We denote the infimum of all such γ by
+tutorial value.                                                   ∥FU (G, Φ)∥2→2 .
+                                                                  B. Stability and Performance Condition
+A. Dynamic Systems With ReLU Activation Functions
+                                                                    We next state a stability and performance condition for
+   Consider the interconnection shown in Figure 2 with a
+                                                                  FU (G, Φ) using the complete set of ReLU QCs defined in
+ReLU Φ wrapped in feedback around the top channels of
+                                                                  Section III-A.
+a nominal system G. This interconnection is denoted as
+FU (G, Φ). The nominal part G is a discrete-time, linear time-       Theorem 6: Consider the system FU (G, Φ) with the LTI
+invariant (LTI) system described by the following state-space     system G defined in (49) and Φ : Rnv → Rn≥0     v
+                                                                                                                     a ReLU.
+model:                                                            Assume FU (G, Φ) is well-posed. Also assume there exists
+            x(k + 1) = A x(k) + B1 w(k) + B2 d(k)                 a 2nv × 2nv matrix M ∈ Mc , scalar γ > 0, and P ∈ Snx with
+                                                                  P ⪰ 0 such that LMI(P, M, γ 2 ) ≺ 0 where:
+            v(k) = C1 x(k) + D11 w(k) + D12 d(k)          (49)                          ⊤
+                                                                                         A PA − P A⊤ PB1       A⊤ PB2
+                                                                                                                         
+            e(k) = C2 x(k) + D21 w(k) + D22 d(k),
+                                                                    LMI(P, M, γ 2 ) :=  B⊤ 1 PA     B⊤
+                                                                                                      1 PB1    B⊤1 PB2
+                                                                                                                         
+where x ∈ Rnx is the state. The inputs are w ∈ Rnw and                                      ⊤
+                                                                                           B2 PA      ⊤       ⊤        2
+                                                                                                     B2 PB1 B2 PB2 − γ I
+d ∈ Rnd while v ∈ Rnv and e ∈ Rne are outputs. The                          ⊤   ⊤ ⊤  ⊤                ⊤      ⊤
+interconnection FU (G, Φ) is known as a linear fractional                    C2       C2         C1 0        C1 0
+transformation (LFT) in the robust control literature [39].              + D⊤ 21
+                                                                                   D⊤  + D⊤ I  M D⊤ I  . (51)
+                                                                                        21        11          11
+The interconnection has its roots in the Lurye decomposition
+                                                                               ⊤
+                                                                             D22 D⊤     22       D⊤
+                                                                                                  12 0       D⊤
+                                                                                                              12 0
+used in the absolute stability problem [27]. Recurrent Neural     Then FU (G, Φ) is internally stable and ∥FU (G, Φ)∥2→2 < γ.
+Networks (RNNs) with ReLU activation functions can be                   Proof: This theorem is a standard dissipation re-
+decomposed into this form.                                        sult [24]–[27], [42]. A proof, similar to the one given in
+                                             Φ                    [31], is given for completeness.
+                            φ
+                                                                     The LMI is strictly feasible by assumption and hence
+                        -       ..
+                                     .                            it remains feasible under small perturbations: LMI(P +
+                 v
+                                         φ
+                                                 w                εI, M, γ 2 ) + εI ≺ 0 for some sufficiently small ε > 0. The
+                                                                  system FU (G, Φ) is well-posed by assumption. Hence it has
+                                             
+                                                                  a unique causal solution (x, w, v, e) (all in ℓ2 ) for any given
+                 e              G                d                                                        n
+                                                                initial condition x(0) and input d ∈ ℓ2d .
+                                                                     Define a storage function by V (x) := x⊤ (P+εI)x. Left and
+                                                                  right multiply the perturbed LMI by [x(k)⊤ , w(k)⊤ , d(k)⊤ ]
+Fig. 2: Interconnection FU (G, Φ) of a nominal discrete-time
+                                                                  and its transpose. The result, applying the dynamics (49),
+LTI system G and ReLU Φ.
+                                                                  gives the following condition:
+
+   This feedback interconnection involves an implicit equa-            V (x(k + 1)) −V (x(k)) − γ 2 d(k)⊤ d(k) + e(k)⊤ e(k)
+tion if D11 ̸= 0. Specifically, the second equation in (49)                     ⊤            x(k) ⊤  x(k) 
+                                                                            v(k)      v(k)
+combined with w(k) = Φ(v(k)) yields:                                   +           M         + ε w(k)       w(k) ≤ 0.
+                                                                           w(k)       w(k)         d(k)     d(k)
+          v(k) = C1 x(k) + D11 Φ(v(k)) + D12 d(k).        (50)    M ∈ Mc defines a valid QC for ReLU by Theorem 1. Hence
+                                                                  the term involving M is non-negative. Thus the dissipation
+This equation is well-posed if there exists a unique solution
+                                                                  inequality simplifies to:
+v(k) for all values of x(k) and d(k). Well-posedness of this
+equation implies that the dynamic system FU (G, Φ) is well-                   V (x(k + 1)) −V (x(k)) + e(k)⊤ e(k)
+posed in the following sense: for all initial conditions x(0) ∈                                                               (52)
+                       n                                                       ≤ (γ 2 − ε)d(k)⊤ d(k) − εx(k)⊤ x(k).
+Rnx and inputs d ∈ ℓ2d there exists unique solutions x, v,
+w and e in ℓ2 to the system FU (G, Φ). There are simple           Internal stability and the ℓ2 gain bound for FU (G, Φ) follow
+sufficient conditions for well-posedness of (50), e.g. Lemma      from this inequality. Specifically, if d(k) = 0 for all k then
+1 in [19] (which relies on results in [40], [41]). Thus, we’ll    (52) implies the following Lyapunov inequality:
+assume well-posed for simplicity in the remainder of the
+                                                                             V (x(k + 1)) −V (x(k)) ≤ −εx(k)⊤ x(k).
+paper.
+   A well-posed interconnection FU (G, Φ) is internally stable    Hence V is a Lyapunov function and the system is globally
+if x(k) → 0 from any initial condition x(0) with d(k) = 0 for     asymptotically stable (Theorem 27 in Section 5.9 of [43]).
+                                          n
+  Next, assume x(0) = 0 and d ∈ ℓ2d . Summing (52) from              where S is positive semidefinite and N is elementwise non-
+k = 0 to k = T − 1 and using V (x(0)) = 0 yields:                    negative. We need to show that M2,D as defined in (10)
+                   T −1            T −1                              satisfies the relaxed copositive condition for all D ∈ Dn±1
+                                                                                                                               v
+                                                                                                                                 .
+     V (x(T )) + ∑ e(k)⊤ e(k) ≤ ∑ (γ 2 − ε)d(k)⊤ d(k).               Note that M2,D simplifies to:
+                   k=0              k=0                                                   1        ⊤  1         
+Note that V (x(T )) ≥ 0 because P is positive semidefinite.                                  (I − D)        (I − D)
+                                                                                  M2,D = 21           Q2 21          .
+Moreover, the right side is upper bounded by (γ 2 − ε)∥d∥22                                2 (I + D)      2 (I + D)
+for all T ∈ N. This implies that e ∈ ℓ2 and ∥e∥2 < γ∥d∥2 .
+                                                                     The matrices I+ := 12 (I + D) and I− := 12 (I − D) are diagonal
+C. Numerical Implementation Using SDP Relaxation of Mc               with either 0 or 1 along the diagonals. Substitute Q2 = S +
+                                                                     N to show that M2,D is the sum of a positive semidefinite
+   This section focuses on the numerical issues associated           and elementwise nonnegative matrix. Thus M2,D satisfies the
+with the complete set Mc . This complete set is convex but           relaxed copositivity conditions for any D ∈ Dn±1  v
+                                                                                                                          and hence
+checking copositivity is co-NP complete [44]. Hence we
+                                                                     M2 ∈ Mc .
+                                                                             ˆ
+rely on a standard copositivity relaxation to formulate our
+stability/performance condition as an SDP.                             We can use the copositivity relaxation to reformulate (53)
+                                                       nv
+   Let {D1 , . . . , D2nv } denote the 2nv entries of D±1 . Define   as a semidefinite program (SDP) [47]:
+the following convex optimization based on Theorem 6:
+                                                                                     min                   γ2
+        min            γ2                                               P=P⊤ , M=M ⊤ , γ 2 ,N1 ,...,N2nv
+  P=P⊤ , M=M ⊤ , γ 2                                                                                2
+                                                                        P ⪰ 0, LMI(P, M, γ ) ≺ 0,
+  P ⪰ 0, LMI(P, M, γ 2 ) ≺ 0,                                 (53)                    ⊤                                             (54)
+               ⊤                                                             Di                Di
+                                                                                                           − Ni ⪰ 0, i = 1, . . . 2nv
+                              
+        Di              Di                                                1              M  1
+    1            M 1             ∈ COPnv , i = 1, . . . 2nv .             2 (I +  D i )     2 (I +  D i )
+    2 (I + Di )     2 (I + Di )
+                                                                        Ni = Ni⊤ ∈ Rn≥0
+                                                                                      v
+                                                                                        , i = 1, . . . 2nv .
+If the optimization is feasible then FU (G, Φ) is stable.
+Moreover, the optimization returns the tightest (smallest)           This SDP has 2nv positive semidefiniteness constraints aris-
+upper bound on the ℓ2 gain (using a quadratic storage and the        ing from our relaxation of the copositivity constraints in
+complete set of ReLU QCs). The set of copositive matrices            Mc . This is in addition to the elementwise nonnegativity
+is a closed, convex cone (Proposition 1.24 in [45]). It follows      constraints on Ni for i = 1, . . . , 2nv . This limits the use of Mc
+that Mc is a convex cone and (53) is a convex optimization.          to problems where nv is relatively small. Larger values of nv
+   However, simply testing if a matrix is copositive is an           will require the use of QCs that are subsets of Mc .
+co-NP complete problem [44]. Thus it is common to use
+relaxations for copositivity conditions. One simple sufficient       D. Numerical Implementation With Subsets of Mc
+condition is: if S = S⊤ is positive semidefinite and N = N ⊤ is        One useful subset of Mc consists of all combinations the
+elementwise nonnegative then S + N is copositive (Remark             existing QCs described in Section II-B. These correspond to
+1.10 in [45]). This relaxation is exact for nv ≤ 4 [46] but          QCs defined by matrices in the following set:
+not for nv ≥ 5 (Example 1.30 in [45]). We summarize this
+relaxation in the following comment:                                     M123 := {M1 + M2 + M3 : Mi ∈ Mi , i = 1, 2, 3} .               (55)
+  Copositive Relaxation: Let F(X) denote a function map-             The set Mc is a convex cone (as noted above) and Mi ⊂ Mc
+ping some variable X to a matrix F(X) ∈ Sm . We replace the          (i = 1, 2, 3) by Lemma 3. It follows that M123 ⊂ Mc .
+matrix constraint F(X) ∈ COP by the standard relaxation                 Recall that Theorem 2 states that only ReLU and flipped
+F(X) − N ⪰ 0 where N = N ⊤ ∈ Rm×m≥0 .                                ReLU satisfy all constraints in the complete set Mc . It is
+   Lemma 3 stated that Mc contains the existing sets of              interesting that the proof only uses the QCs defined by
+QCs for ReLU (M1 , M2 , and M3 ). The next lemma notes               matrices in M1 and M2 . The proof does not require the use
+that these set containments still hold when the copositivity         of Zames-Falb QCs defined by M3 . Define another subset
+relaxation is used.                                                  Mc but without the Zames-Falb QCs in M3 :
+
+  Lemma 6: Let Mˆ2 and Mˆc denote the subsets of M2 and                           M12 := {M1 + M2 : Mi ∈ Mi , i = 1, 2} .               (56)
+Mc with the copositivity condition replaced by its relaxation.
+  The sets M1 , Mˆ2 , and M3 are subsets of Mˆc .                    The next result states that the Zames-Falb QCs defined by
+    Proof: The proof of Lemma 3 in Appendix A actually               M3 do not increase the class of QCs when combined with
+shows that M1 and M3 are subsets of Mˆc .                            M1 and M2 .
+  Moreover, the proof that M2 ⊂ Mc in Appendix A can be                Theorem 7: The sets M12 in (56) and M123 in (55) are
+modified as follows to show that Mˆ2 ⊂ Mˆc . Consider any            equal, i.e. M12 = M123 .
+M2 ∈ Mˆ2 so that
+                   ⊤                                                 Proof:
+              −I I          −I I                                     (⊆) Consider any M = M1 + M2 ∈ M12 . Then M = M1 +
+      M2 :=            Q2            with Q2 = S + N,
+              0 I           0 I                                      M2 + M3 ∈ M123 . with M3 := 0 ∈ M3 .
+(⊇) Consider any M = M1 + M2 + M3 ∈ M12 . There exists                            This system is a modification of Example 2 in [48] using the
+Q1 ∈ Dnv , Q2 ∈ COP2nv and Q3 ∈ DH nv such that                                   lifting described in [31]. The ReLU Φ has dimension nv = 4
+            I ⊤  −I I  h 0         (Q1 +Q3 )⊤
+                                                   i                              and α is a gain variation included on the (v, w) channels
+    M = −I  0 I  Q 2 0 I  +  (Q +Q ) −(2Q +Q +Q⊤ )
+                                                     .                            associated with Φ. If α = 0 then dynamics from d to e
+                                             1       3        1    3   3
+                                                                                  are governed by the ”nominal” LTI system G0 described by
+Decompose Q3 = D − P where D ∈ Dnv with Dii = (Q3 )ii .
+                                                                                  (A, B2 ,C2 , D22 ). The induced ℓ2 gain in this case is equal to
+All elements of P = D − Q3 are nonnegative because Q3 is
+                                                                                  the H∞ norm: ∥G0 ∥∞ = 39.8.
+doubly hyperdominant.    Next define Q̂i1 := Q1 + D ∈ Dnv and
+             h
+                 ⊤
+                   i            h
+                                     ⊤                                               We can use Theorem 6 to compute an upper bound on
+Q̂2 := Q2 + P0 P0 . The term P0 P0 is copositive as it is                         the induced ℓ2 gain of FU (G, Φ) when α ≥ 0. We compute
+symmetric and elementwise nonnegative (Remark 1.10 of                             bounds using the sets of QCs described by Mc and M12 and
+[45]). Hence Q̂2 is copositive. Finally, define M̂1 ∈ M1 and                      the corresponding SDPs (54) and (57), respectively. Figure 3
+M̂2 ∈ M2 corresponding to Q̂1 and Q̂2 , respectively. It can                      shows the two bounds for 20 linearly spaced values of α
+be verified directly that M = M̂1 + M̂2 ∈ M12 .                                   from 0 to 0.6. Both curves agree with the nominal gain
+ The stability/performance condition in Theorem 6 with                            ∥G0 ∥∞ = 39.8 at α = 0. The complete set Mc provides a
+M12 leads to the following SDP:                                                   less conservative bound than the QCs defined by M12 . It took
+                                                                                  17.5sec and 22.1 sec to compute all 20 points on the curves
+                   min γ 2                                                        for M12 and Mc , respectively. Thus the computational costs
+       P=P⊤ , M=M ⊤ , Q1 ,Q2 ,N2 ,γ 2
+                                2
+                                                                                  are similar for this example although the computation with
+       P ⪰ 0, LMI(P, M, γ ) ≺ 0,                                                  Mc to grow more rapidly with nv . The curve with M123 was
+             I ⊤  −I I  h 0 Q1 i                                       (57)
+       M = −I     Q2 0 I + Q1 −2Q1                                                also computed but is not shown since it is indistinguishable
+              0 I
+                                                                                  from the curve for M12 . This is expected since Theorem 7
+                                             v ×2nv
+       Q1 ∈ Dnv , Q2 − N2 ⪰ 0, N2 = N2⊤ ∈ R2n
+                                           ≥0       .                             states M12 = M123 .
+Here we have used the relaxation described above for the
+constraint Q2 ∈ COP2nv . Adding the Zames-Falb QCs defined
+by M3 will not reduce the conservatism in this SDP.4 The
+SDP (57) will be more computationally efficient, but also
+more conservative, than the SDP (54) formulated using Mc .
+In fact, we provide a numerical example in Section VI-A
+where the use of Mc provides improved results compared to
+the use of M12 . This numerical example indicates that M12
+is a strict subset of the complete set Mc . Thus Mc should
+be used when possible as it is the largest possible class of
+QCs for ReLU.
+                             VI. E XAMPLES
+   This section provides two examples to illustrate the com-
+plete sets of QCs and incremental QCs for ReLU.
+                                                                                  Fig. 3: Bound on induced ℓ2 gain for system FU (G, Φ)
+A. ℓ2 Bounds With QCs                                                             vs. α using QCs defined by Mc and M12 . We expect the
+   We consider the interconnection FU (G, Φ) shown in Fig-                        interconnection to eventually become unstable as α increases
+ure 2 with a ReLU Φ wrapped in feedback around the top                            which is consistent with both curves. The complete set Mc
+channels of a nominal system G. The nominal part G is a                           provides a less conservative (smaller) bound on the gain.
+discrete-time, LTI system (49) with the following data:
+                                                                                     The parameter α appears in (B1 , D11 ) and thus it scales the
+        "                         #
+             4.1819 −4.1122 4.1810 −3.4344
+             9.5280 −9.1573 8.4496 −6.2574
+  A :=       8.6800 −7.3880 6.0327 −4.0370       ,                                effect of the ReLU as it feeds back into G. We expect that the
+             2.8000 −1.7500 1.2060 −0.7209                                        interconnection may become unstable as α increases which
+                                                         "1#
+                                                                                  is consistent with both curves shown in Figure 3. In fact,
+                 9.528 8.68 5.60 2.00 
+                 17.36 11.20 4.00       0                 1
+ B1 := α ×       11.20 4.00 0           0   , B2 :=       1    ,                  the SDP (57) with M12 becomes infeasible for α ≥ 0.699.
+                 2.00    0     0        0                 1
+         "                                           #    1                       The corresponding curve (blue solid) in Figure 3 becomes
+        −0.5000 0.4875 −0.2250 −0.0250
+                                                                                  unbounded if we extend the horizontal axis to 0.699 and we
+ C1 := −0.4250    0.6500 −0.6155 0.3604
+         0.1100 0.1282 −0.3323 0.3064 , C2 := [ 1 1 1 1 1 ] ,
+         0.5645 −0.5248 0.2859 −0.0793
+                                                                                  cannot prove stability for larger values of α. The SDP (57)
+             0       0   0 0                                                    with the complete set Mc remains feasible up to α ≈ 1.1016
+               −1     0   0 0                                                     and becomes infeasible for larger values of α. Thus with
+D11 := α × −0.85 −1 0 0 , D12 := 0, D21 := 0, D22 := 0.
+              0.22 −0.85 −1 0                                                     the complete set: (i) we are able to prove stability over a
+  4 One minor point is that Theorem 7 states that M = M
+                                                                                  larger range of α, and (ii) provide smaller (less) conservative
+                                                       12    123 where M2
+has a copositivity condition. The same set equality holds if we define M2         bounds on the ℓ2 gain for values of α for which the system
+using the relaxation for the copositivity condition as in SDP (57).               is stable.
+B. Lipschitz Bounds With Incremental QCs                                          bound is improved to L = 1.1817 when we use the complete
+    This section provides a simple example to bound the                           set of incremental constraints Mcinc . The times to compute
+Lipschitz constant of a simple Neural Network (NN). We use                        the bounds with M1inc , M1inc + M2inc , and Mcinc was 0.3sec,
+the LipSDP condition [5] but combined with our complete                           0.3 sec, and 3.6sec, respectively.
+set of incremental QCs for ReLU. Consider an ℓ-layer NN                              A lower bound on the Lipschitz constant was obtained
+ f : Rn0 → Rnℓ+1 defined by weights W k ∈ Rnk+1 ×nk and biases                    by randomly sampling N = 107 pairs of NN inputs (x, x̂)
+bk ∈ Rnk+1 . The NN maps x ∈ Rn0 to y = f (x) ∈ Rnℓ+1 by:                         from a zero-mean, unit variance Gaussian distribution and
+                                                                                  computing the corresponding NN outputs (y, ŷ). The largest
+                x0 = x                                                                               ∥y−ŷ∥2
+                                                                                  value of the ratio ∥x−x̂∥2 over all the samples (assuming x ̸= x̂)
+               k+1
+           x         = Φk (W k xk + bk ) for k = 0, . . . , ℓ − 1          (58)   is a lower bound on the Lipschitz constant. This sampled
+                          ℓ ℓ
+                 y =W x +b .      ℓ                                               lower bound is 1.1817. This matches the upper bound with
+                                                                                  Mcinc up to the reported digits.
+Here we consider the case where kth activation function Φk                           This is an academic example illustrating that it is possible
+is a ReLU of dimension nk+1 . L is a Lipschitz bound (in                          to improve upon the Lipschitz bounds obtained only using
+the 2-norm) for the NN i ∥ f (x) − f (x̂)∥2 ≤ L∥x − x̂∥2 for all                  M1inc . Importantly, the complete set Mcinc provides a uni-
+x, x̂ ∈ Rn0 .                                                                     fying view that may aid in the search of additional useful
+    We can stack the activation functions into a single ReLU                      subsets of incremental QCs. More realistic NNs would have
+Φ : Rm → Rm with total dimension m := ∑ℓk=1 nk . The NN                           activation functions where the total dimension m can be very
+can be expressed compactly as                                                     large, requiring future study on possible combinations of our
+                                                                                  proposed method and existing SDP scaling techniques [12].
+                                Bx = Φ(Ax + b)                             (59)
+                                 y = Cx + b ,ℓ
+                                                                           (60)                           VII. C ONCLUSIONS
+                                                                                     This paper derived a complete set of quadratic constraints
+where5
+      0          0                                                            (QCs) for the ReLU. The complete set of QCs is described
+       x            b                                                             by a collection of 2nv matrix copositivity conditions where nv
+      ..         ..                                                           is the dimension of the ReLU. The relationship between our
+x :=  .  , b :=  .  ,
+      xℓ           bℓ−1                                                           complete set and existing QCs has been carefully discussed.
+                                                                                  We also derived a similar complete set of incremental
+A := blkdiag(W 0 , . . . ,W ℓ−1 ) 0m×nℓ , B := 0m×n0
+                                                                      
+                                                                       Im ,       QCs for ReLU. We illustrate the use of the complete set
+C := 0nℓ+1 ×(n0 +m−nℓ ) W ℓ , D = In0 0n0 ×m
+                                             
+                                                                                  of QCs to assess stability and performance for recurrent
+                                                                                  neural networks with ReLU activation functions. We will
+  It follows from Theorem 2 in [5] that L is a Lipschitz                          study, as future work, the conservatism (if any) and the
+bound for f if there exists an incremental QC, defined by                         scalability of using the complete set of ReLU QCs for
+M, for Φ such that the following LMI holds:                                       stability/performance analysis.
+                    ⊤  
+                    A       A
+  LMILip (M, L) :=       M     +C⊤C − L2 D⊤ D ⪯ 0 (61)                                               VIII. ACKNOWLEDGMENTS
+                    B       B
+                                                                                     The authors acknowledge AFOSR Grant #FA9550-23-1-
+We can find the smallest Lipschitz bound by searching                             0732 for funding of this work. The authors also acknowledge
+over convex classes of incremental QCs. An SDP can be                             Carsten Scherer for asking the question about the complete
+formulated to minimize L2 subject to LMILip (M, L) ⪯ 0 with                       set of ReLU quadratic constraints.
+M1inc or the relaxed version of the complete set Mcinc using
+similar steps to those given in Section V-C.                                                                   R EFERENCES
+   We used the SDP condition to compute Lipschitz bounds
+                                                                                   [1] A. Megretski and A. Rantzer, “System analysis via integral quadratic
+for a small two-layer NN with the following weights                                    constraints,” IEEE Transactions on Automatic Control, vol. 42, no. 6,
+                                                                                     pp. 819–830, 1997.
+           0      −0.575 0.420 0.050                                               [2] J. Veenman, C. Scherer, and H. Köroğlu, “Robust stability and per-
+         W =                                ,           (62)
+                  −0.730 0.200 −1.020                                                  formance analysis based on integral quadratic constraints,” European
+                                                                                     Journal of Control, vol. 31, pp. 1–32, 2016.
+                                          −0.700
+         W 1 = 1.120 −0.630 , W 2 =                                                [3] C. Scherer, “Dissipativity and integral quadratic constraints: Tailored
+                               
+                                                   .    (63)
+                                          −1.300                                       computational robustness tests for complex interconnections,” IEEE
+                                                                                       Control Systems Magazine, vol. 42, no. 3, pp. 115–139, 2022.
+The biases are not specified since they do not enter into the                      [4] P. Seiler, “Stability analysis with dissipation inequalities and inte-
+LMI condition.                                                                         gral quadratic constraints,” IEEE Transactions on Automatic Control,
+                                                                                       vol. 60, no. 6, pp. 1704–1709, 2015.
+  We obtain a Lipschitz bound L = 1.2528 when searching                            [5] M. Fazlyab, A. Robey, H. Hassani, M. Morari, and G. Pappas,
+over M1inc . We also obtain L = 1.2528 when searching over                             “Efficient and accurate estimation of Lipschitz constants for deep
+both M1inc and our new set M2inc . Thus M2inc does not                                 neural networks,” Advances in neural information processing systems,
+                                                                                       vol. 32, 2019.
+improve the bound on this specific example. However, the                           [6] Z. Wang, G. Prakriya, and S. Jha, “A quantitative geometric approach
+                                                                                       to neural-network smoothness,” Advances in Neural Information Pro-
+  5 blkdiag(· · · ) denotes the block diagonal augmentation of matrices.               cessing Systems, vol. 35, pp. 34 201–34 215, 2022.
+ [7] M. Revay, R. Wang, and I. R. Manchester, “Lipschitz bounded                    constraints for systems with neural network controllers,” IEEE Trans-
+     equilibrium networks,” arXiv preprint arXiv:2010.01732, 2020.                  actions on Automatic Control, vol. 67, no. 4, pp. 1980–1987, 2021.
+ [8] A. Araujo, A. Havens, B. Delattre, A. Allauzen, and B. Hu, “A unified     [31] S. Vahedi Noori, B. Hu, G. Dullerud, and P. Seiler, “Stability and per-
+     algebraic perspective on Lipschitz neural networks,” arXiv preprint            formance analysis of discrete-time ReLU recurrent neural networks,”
+     arXiv:2303.03169, 2023.                                                        arXiv preprint arXiv:2405.05236, 2024.
+ [9] R. Wang and I. Manchester, “Direct parameterization of Lipschitz-         [32] J. Carrasco, M. C. Turner, and W. P. Heath, “Zames-Falb multipliers
+     bounded deep networks,” in International Conference on Machine                 for absolute stability: From O’Shea’s contribution to convex searches,”
+     Learning. PMLR, 2023, pp. 36 093–36 110.                                       European Journal of Control, vol. 28, pp. 1–19, 2016.
+[10] A. Havens, A. Araujo, S. Garg, F. Khorrami, and B. Hu, “Exploiting        [33] J. C. Willems, The analysis of feedback systems, ser. Research mono-
+     connections between Lipschitz structures for certifiably robust deep           graphs. Cambridge, Mass.: M.I.T. Press, 1971, no. 62.
+     equilibrium models,” Advances in Neural Information Processing            [34] V. Kulkarni and M. Safonov, “All multipliers for repeated monotone
+     Systems, vol. 36, 2024.                                                        nonlinearities,” IEEE Transactions on Automatic Control, vol. 47,
+[11] M. Fazlyab, T. Entesari, A. Roy, and R. Chellappa, “Certified ro-              no. 7, pp. 1209–1212, 2002.
+     bustness via dynamic margin maximization and improved Lipschitz           [35] A. L. Maas, A. Y. Hannun, A. Y. Ng et al., “Rectifier nonlinearities
+     regularization,” Advances in Neural Information Processing Systems,            improve neural network acoustic models,” in International Conference
+     vol. 36, 2024.                                                                 on Machine Learning, 2013, pp. 6–14.
+[12] Z. Wang, B. Hu, A. J. Havens, A. Araujo, Y. Zheng, Y. Chen, and           [36] U. Tanielian and G. Biau, “Approximating lipschitz continuous func-
+     S. Jha, “On the scalability and memory efficiency of semidefinite              tions with GroupSort neural networks,” in International Conference
+     programs for Lipschitz constant estimation of neural networks,” in             on Artificial Intelligence and Statistics. PMLR, 2021, pp. 442–450.
+     The Twelfth International Conference on Learning Representations,         [37] C. Anil, J. Lucas, and R. Grosse, “Sorting out lipschitz function
+     2024.                                                                          approximation,” in International Conference on Machine Learning,
+[13] P. Pauli, A. Havens, A. Araujo, S. Garg, F. Khorrami, F. Allgöwer,            2019, pp. 291–301.
+     and B. Hu, “Novel quadratic constraints for extending LipSDP beyond       [38] S. Singla and S. Feizi, “Improved deterministic ℓ2 robustness on
+     slope-restricted activations,” arXiv preprint arXiv:2401.14033, 2024.          CIFAR-10 and CIFAR-100,” in International Conference on Learning
+                                                                                    Representations (ICLR), 2022.
+[14] P. Pauli, D. Gramlich, and F. Allgöwer, “Lipschitz constant estimation
+                                                                               [39] K. Zhou, J. C. Doyle, and K. Glover, Robust and Optimal Control.
+     for 1D convolutional neural networks,” in Learning for Dynamics and
+                                                                                    Prentice-Hall, 1996.
+     Control Conference. PMLR, 2023, pp. 1321–1332.
+                                                                               [40] G. Valmorbida, R. Drummond, and S. R. Duncan, “Regional analysis
+[15] ——, “Lipschitz constant estimation for general neural network archi-           of slope-restricted Lurie systems,” IEEE Transactions on Automatic
+     tectures using control tools,” arXiv preprint arXiv:2405.01125, 2024.          Control, vol. 64, no. 3, pp. 1201–1208, 2018.
+[16] V. Nair and G. E. Hinton, “Rectified linear units improve restricted      [41] L. Zaccarian and A. R. Teel, “A common framework for anti-windup,
+     boltzmann machines,” in Proceedings of the 27th international con-             bumpless transfer and reliable designs,” Automatica, vol. 38, no. 10,
+     ference on machine learning (ICML-10), 2010, pp. 807–814.                      pp. 1735–1744, 2002.
+[17] A. Krizhevsky, I. Sutskever, and G. E. Hinton, “Imagenet classifica-      [42] B. Hu, M. J. Lacerda, and P. Seiler, “Robustness analysis of uncer-
+     tion with deep convolutional neural networks,” Advances in neural              tain discrete-time systems with dissipation inequalities and integral
+     information processing systems, vol. 25, 2012.                                 quadratic constraints,” International Journal of Robust and Nonlinear
+[18] J. Chung, C. Gulcehre, K. Cho, and Y. Bengio, “Empirical evaluation            Control, vol. 27, no. 11, pp. 1940–1962, 2017.
+     of gated recurrent neural networks on sequence modeling,” arXiv           [43] M. Vidyasagar, Nonlinear systems analysis. SIAM, 2002.
+     preprint arXiv:1412.3555, 2014.                                           [44] K. G. Murty and S. N. Kabadi, “Some NP-complete problems in
+[19] C. R. Richardson, M. C. Turner, and S. R. Gunn, “Strengthened circle           quadratic and nonlinear programming,” Mathematical Programming,
+     and Popov criteria for the stability analysis of feedback systems with         vol. 39, pp. 117–129, 1987.
+     ReLU neural networks,” IEEE Control Systems Letters, 2023.                [45] A. Berman and N. Shaked-Monderer, Completely positive matrices.
+[20] R. Drummond, M. C. Turner, and S. R. Duncan, “Reduced-order neu-               World Scientific, 2003.
+     ral network synthesis with robustness guarantees,” IEEE Transactions      [46] P. H. Diananda, “On non-negative forms in real variables some
+     on Neural Networks and Learning Systems, vol. 35, no. 1, pp. 1182–             or all of which are non-negative,” in Mathematical Proceedings of
+     1191, 2024.                                                                    the Cambridge Philosophical Society, vol. 58, no. 1. Cambridge
+[21] M. Fazlyab, M. Morari, and G. J. Pappas, “Safety verification and              University Press, 1962, pp. 17–25.
+     robustness analysis of neural networks via quadratic constraints and      [47] S. Boyd and L. Vandenberghe, Convex optimization.           Cambridge
+     semidefinite programming,” IEEE Transactions on Automatic Control,             university press, 2004.
+     vol. 67, no. 1, pp. 1–15, 2020.                                           [48] J. Carrasco, W. P. Heath, J. Zhang, N. S. Ahmad, and S. Wang,
+[22] Y. Ebihara, H. Waki, V. Magron, N. H. A. Mai, D. Peaucelle, and                “Convex searches for discrete-time Zames–Falb multipliers,” IEEE
+     S. Tarbouriech, “ℓ2 induced norm analysis of discrete-time LTI systems         Transactions on Automatic Control, vol. 65, no. 11, pp. 4538–4553,
+     for nonnegative input signals and its application to stability analysis        2019.
+     of recurrent neural networks,” European Journal of Control, vol. 62,      [49] M. Katz, “On the extreme points of a certain convex polytope,” Journal
+     pp. 99–104, 2021.                                                              of Combinatorial Theory, vol. 8, no. 4, pp. 417–423, 1970.
+[23] ——, “Stability analysis of recurrent neural networks by IQC with          [50] A. B. Cruse, “A note on symmetric doubly-stochastic matrices,”
+     copositive mutipliers,” in IEEE Conference on Decision and Control,            Discrete Mathematics, vol. 13, no. 2, pp. 109–119, 1975.
+     2021, pp. 5098–5103.
+[24] J. Willems, “Dissipative dynamical systems part I: General theory,”                                      A PPENDIX
+     Archive for Rational Mech. and Analysis, vol. 45, no. 5, pp. 321–351,
+     1972.                                                                     A. Proof of Lemma 3
+[25] ——, “Dissipative dynamical systems part II: Linear systems with
+     quadratic supply rates,” Archive for Rational Mech. and Analysis,            Lemma 3: The sets M1 , M2 , and M3 are subsets of Mc .
+     vol. 45, no. 5, pp. 352–393, 1972.                                              Proof: We need to show that any Mi ∈ Mi (i = 1, 2, 3)
+[26] A. Schaft, L2 -gain and passivity in nonlinear control. Springer-Verlag                                                           nv
+     New York, Inc., 1999.                                                                                                      h D ∈ D±1
+                                                                               satisfies the condition: Mi,D is copositive for all     i .
+[27] H. Khalil, Nonlinear Systems. Pearson, 2001.                                First, consider any M1 ∈ M1 so that M1 := Q01 −2Q
+                                                                                                                                Q1
+                                                                                                                                   1
+                                                                                                                                     for
+[28] J. Soykens, J. Vandewalle, and B. De Moor, “Lur’e systems with                                     n
+     multilayer perceptron and recurrent neural networks: absolute stability
+                                                                               some Q1 ∈ Dnv . If D ∈ D±1 v
+                                                                                                              then
+     and dissipativity,” IEEE Transactions on Automatic Control, vol. 44,                         ⊤              
+     no. 4, pp. 770–774, 1999.                                                                D                D
+                                                                               M1,D := 1             M1 1
+                                                                                          2 (I + D)        2 (I + D)
+[29] W. G. Y. Tan and Z. Wu, “Robust machine learning modeling
+     for predictive control using Lipschitz-constrained neural networks,”
+     Computers & Chemical Engineering, vol. 180, p. 108466, 2024.                       1              1              1
+                                                                                    = DQ1 (I + D) + (I + D)Q1 D − (I + D)Q1 (I + D).
+[30] H. Yin, P. Seiler, and M. Arcak, “Stability analysis using quadratic               2              2              2
+All the matrices in this expression are diagonal so this                  and Pk are permutation matrices [49], [50]. Thus T2 can be
+simplifies to M1,D = 12 Q1 (D2 − I). Finally, D2 = I so that              decomposed as T2 = ∑k βk (2I − Pk − Pk⊤ ) with βk = rα2 k ≥ 0.
+M1,D = 0. Thus M1,D is (trivially) copositive for any D ∈ Dn±1
+                                                             v
+                                                                             Next, each permutation can be expressed as Pk =
+                                                                            nv
+and hence M1 ∈ Mc .                                                       ∑i=1   ei e⊤πk (i) where πk is a permutation function that maps
+  Next, consider any M2 ∈ M2 so that                                      {1, . . . , nv } one-to-one onto {1, . . . , nv }. Thus each term 2I −
+                  ⊤                                                   Pk − Pk⊤ can be further decomposed as:
+              −I I          −I I
+     M2 :=             Q2            with Q2 ∈ COP2nv .                                               nv
+               0 I           0 I
+                                                                                   2I − Pk − Pk⊤ = ∑ 2ei e⊤       ⊤                 ⊤
+                                                                                                          i − ei eπk (i) − eπk (i) ei
+Again, define M2,D ∈ Rnv ×nv for some D ∈ Dn±1v
+                                                 . Then M2,D                                         i=1
+                                                                                                      nv
+simplifies to:                                                                                    = ∑ (ei − eπk (i) )(ei − eπk (i) )⊤ .
+                   1        ⊤  1                                                                 i=1
+                    2 (I − D)       2 (I − D)
+             M2,D = 1            Q2 1           .                         Substitute this into T2 = ∑k βk (2I − Pk − Pk⊤ ) to get a decom-
+                    2 (I + D)       2 (I + D)
+                                                                          position of the form shown in (66).
+The matrices I+ := 21 (I + D) and I− := 21 (I − D) are diagonal
+with either 0 or 1 along the diagonals. Therefore,
+                  ⊤  
+                  I v̄        I v̄
+     v̄ M2,D v̄ = −
+       ⊤
+                          Q2 − ≥ 0 ∀v̄ ∈ Rn≥0       v
+                                                      .    (64)
+                  I+ v̄       I+ v̄
+The product is nonnegative because Q2 is copositive and both
+I− v̄, I+ v̄ are in the nonnegative orthant Rn≥0
+                                               v
+                                                 when v̄ ∈ Rn≥0
+                                                              v
+                                                                .
+                                         nv
+Thus M2,D is copositive for any D ∈ D±1 and hence M2 ∈ Mc .
+h 0Finally,      consider
+                  i        any M3 ∈ M3 so that M3 :=
+            Q3
+ Q⊤             ⊤   for some  Q3 ∈ DH nv . Again, define M3,D ∈
+    3 −(Q3 +Q3 )
+  n   ×n                   nv
+R   v   v  for some D ∈ D±1 . Then M3,D simplifies to:
+           1                     1
+   M3,D = − (I − D)Q⊤ 3 (I + D) − (I + D)Q3 (I − D)
+           4                     4                                (65)
+        = −I− Q⊤
+               3 I+ − I+ Q3 I− .
+
+where I+ := 21 (I + D) and I− := 21 (I − D) as above. These
+diagonal matrices are complementary in thesense thatthey
+sum to the identity. We can assume I+ = 0I 00 and I− = 00 0I
+by properly permuting the rows and columns. Partition Q3
+conformably with I+ and I− so that the product in (65) is:
+                                                      
+        (Q3 )11 (Q3 )12                   0     −(Q3 )12
+ Q3 =                     ⇒ M3,D =                          .
+        (Q3 )21 (Q3 )22                −(Q3 )⊤
+                                             12     0
+Every entry of the block (Q3 )12 is non-positive because
+Q3 is doubly hyperdominant. Hence every entry of M3,D is
+                             v ×nv
+non-negative, i.e. M3,D ∈ Rn≥0     . Symmetric matrices that
+are elementwise nonnegative are copositive (Remark 1.10 of
+[45]). Thus M3,D is copositive for any D ∈ Dn±1v
+                                                 and hence
+M3 ∈ Mc .
+
+B. Proof of Lemma 4
+   Lemma 4: Let T2 = T2⊤ ∈ DH nv be given with ∑nk=1          v
+                                                                Tik = 0
+                                                 nv
+for i = 1, . . . , nv . Then there exists {λi j }i, j=1 ∈ R≥0 such that
+                        nv
+                T2 = ∑ λi, j (ei − e j )(ei − e j )⊤ .            (66)
+                       i, j=1
+
+     Proof: First, let r := maxi j (T2 )i j . Define R := 1r (rI −T2 )
+so that T2 = r(I − R). R is symmetric, has all non-negative
+entries, and its rows/columns sum to 1, i.e. R is a sym-
+metric doubly stochastic matrix. Every such matrix can be
+decomposed as R = ∑k α2k (Pk + Pk⊤ ) with αk ≥ 0, ∑k αk = 1,
+

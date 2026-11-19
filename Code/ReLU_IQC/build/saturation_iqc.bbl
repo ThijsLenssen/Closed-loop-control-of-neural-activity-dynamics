@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{fleming2020}
+John~E. Fleming, Eleanor Dunn, and Madeleine~M. Lowery.
+\newblock Simulation of closed-loop deep brain stimulation control schemes for suppression of pathological beta oscillations in parkinson’s disease.
+\newblock {\em Frontiers in Neuroscience}, Volume 14 - 2020, 2020.
+
+\bibitem{lenssen2026dual}
+Thijs Lenssen, Aleksandr Talitckii, Matthew Peet, and Amritam Das.
+\newblock {Dual Integral Quadratic Constraints Representation for Robust Control of Partial Integral Equations}.
+\newblock Manuscript in preparation for submission to \emph{IEEE Transactions on Automatic Control (TAC)}, 2026.
+
+\bibitem{noori2024completesetquadraticconstraints}
+Sahel~Vahedi Noori, Bin Hu, Geir Dullerud, and Peter Seiler.
+\newblock A complete set of quadratic constraints for repeated relu and generalizations, 2024.
+
+\end{thebibliography}

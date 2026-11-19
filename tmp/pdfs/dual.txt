@@ -1,0 +1,1818 @@
+IEEE TRANSACTIONS ON AUTOMATIC CONTROL                                                                                                    1
+
+
+
+
+         Dual Integral Quadratic Constraint
+     Representations for Robust Control of Partial
+                 Integral Equations
+                 Thijs M. Lenssen , Aleksandr Talitckii , Matthew M. Peet , and Amritam Das
+
+
+
+
+   Abstract— Partial Differential Equations (PDEs) model                   Triggiani [7] developed continuous and approximation theories
+spatially distributed systems whose control must account                   for optimal control of abstract parabolic systems. Develop-
+for uncertainty and nonlinearities. Partial Integral Equa-                 ments in robust stabilization and H∞ control [8], [9] are com-
+tions (PIEs) provide an operator representation supporting
+convex nominal H∞ state-feedback synthesis. We extend                      plemented by backstepping and Lyapunov-based designs [10],
+this approach to robust control using Integral Quadratic                   [11], and semidefinite methods for PDE stability analysis [12].
+Constraints (IQCs). Synthesis introduces bilinear couplings                A complementary computational route uses established robust-
+between the controller, storage, and multiplier operators.                 control tools for Ordinary Differential Equations (ODEs),
+Combining induced L2 -gain duality with hard J-spectral                    including frequency-domain methods, Riccati equations, and
+factorization, we establish a dual IQC representation. For
+an admissible factorization, this yields a convex Linear                   Linear Matrix Inequalities (LMIs) [13]–[17]. These tools apply
+PI Inequality (LPI) that permits recovery of a controller,                 to PDEs through spatial discretization, modal truncation, or
+in closed form whenever the storage operator is coercive                   lumped-parameter approximation. Although convergence and
+and separable, with guaranteed closed-loop robustness.                     performance guarantees are available under suitable condi-
+For multiplier classes admitting a hard J-spectral factoriza-              tions [18], neglected modes can affect the closed loop through
+tion, including a spatially weighted sector class on infinite-
+dimensional channels, constructed here, the method ac-                     spillover [19]. This motivates computational methods that
+commodates infinite-dimensional uncertainty channels and                   retain the distributed dynamics when constructing control
+dynamic filters.                                                           certificates.
+  Index Terms— Integral quadratic constraints, linear PI in-
+                                                                              To retain distributed dynamics while exploiting such com-
+equalities, partial integral equations, PDEs, robust control.              putational tools, the Partial Integral Equation (PIE) representa-
+                                                                           tion [20], [21] generalizes ODE state-space models to coupled
+                                                                           finite-dimensional and distributed states. For supported PDE
+                                                                           classes, it exactly incorporates the dynamics and boundary
+                        I. I NTRODUCTION
+                                                                           conditions into bounded Partial Integral (PI) operators. Their
+   Partial Differential Equations (PDEs) provide fundamental               algebra is closed under addition, composition, and adjoints,
+models of physical phenomena evolving in space and time.                   enabling extensions of matrix-based ODE methods. Linear
+Seminal examples include Fourier’s theory of heat conduc-                  PI Inequalities (LPIs) generalize LMIs, and PIETOOLS [22],
+tion [1], d’Alembert’s wave equation for vibrating strings [2],            [23] converts parameterized LPI conditions into semidefinite
+and Stokes’ equations for viscous fluid motion [3]. These                  programs while retaining the PIE plant representation. An
+models form a basis for understanding thermal, mechanical,                 industrial application is the PIE based observer design for
+and fluid processes across science and engineering. Controlling            the digital twin of an inkjet printer’s thermo-fluidic fixation
+these processes requires stability and performance guarantees              process developed and validated by Toolhally et al. [24].
+that account for uncertain parameters, changing operating                  Recently, Shivakumar et al. [25] established PIE duality and
+conditions, and nonlinear effects. Establishing these guarantees           convex LPI conditions for nominal H∞ -optimal state-feedback
+is challenging because both the dynamics and the uncertain or              synthesis. Braghini et al. [26] established duality between the
+nonlinear interactions may be distributed over space.                      impulse-to-energy and energy-to-peak proxies for the H2 norm
+   A systematic treatment of these distributed dynamics begins             and derived corresponding primal–dual operator inequalities
+with infinite-dimensional systems theory, which provides foun-             for PIEs. These developments motivate extending PIE duality
+dations for studying PDE solutions, input–output maps, and                 to uncertainty and nonlinearities described by structural infor-
+well-posed feedback interconnections [4]–[6]. Lasiecka and                 mation beyond unstructured small-gain conditions.
+                                                                              This approach builds on Lur’e and Postnikov’s absolute-
+   T. Lenssen and A. Das are with the Department of Electrical Engineer-
+ing, Eindhoven University of Technology, Eindhoven, The Netherlands        stability problem [27], Popov’s frequency-domain crite-
+(e-mail: t.m.lenssen@tue.nl; am.das@tue.nl).                               rion [28], the circle criterion, and Zames’s input–output sta-
+   A. Talitckii and M. M. Peet are with the School for Engineering of      bility theory [29]. Zames–Falb multipliers [30] exploit mono-
+Matter, Transport and Energy, Arizona State University, Tempe, AZ, USA
+(e-mail: atalitck@asu.edu; mpeet@asu.edu).                                 tonicity and slope restrictions. Megretski and Rantzer [31]
+   Amritam Das is the corresponding author (e-mail: am.das@tue.nl).        established the modern Integral Quadratic Constraint (IQC)
+2                                                                                           IEEE TRANSACTIONS ON AUTOMATIC CONTROL
+
+
+
+framework, unifying such descriptions for analysis of linear routes. The uncertainty-side route R.1. uses a hard IQC for the
+systems interconnected with uncertain or nonlinear compo- dual LTI uncertainty family. The plant-side route R.2. applies
+nents. Within the PIE framework, hard IQCs provide robust duality to the plant and IQC filters, allowing nonlinear and
+stability and performance tests for coupled ODE–PDE systems, time-varying uncertainties under the stated hard-factorization
+including infinite-dimensional uncertainty channels [32]–[34]. and invertibility conditions. The construction supports infinite-
+Subsequent results connect PIE IQCs to structured singular- dimensional channels and memoryless or dynamic filters. As
+value bounds and robust observer with known uncertainty an application, we derive a convex LPI condition for robust
+synthesis [35]. We develop a dual IQC representation for state-feedback synthesis with explicit controller recovery. The
+these analysis certificates and apply it to convex state-feedback resulting controller guarantees stability and the prescribed
+synthesis.                                                        quadratic performance for all uncertainties satisfying the IQC.
+    We express these certificates in the language of Willems’s       Sections II,III introduce the preliminaries, problem defi-
+dissipation theory [36]. For finite-dimensional linear systems, nition and standing assumptions. Section IV establishes ro-
+the famous Kalman–Yakubovich–Popov (KYP) lemma [37] bust stability and performance through the IQC framework.
+connects frequency-domain inequalities to quadratic dissipa- Section V examines the primal analysis condition, and Sec-
+tion inequalities expressed as LMIs. Hard factorizations con- tions VI–VII develop duality and convex controller synthesis.
+nect IQCs to dissipativity by expressing them as integral Section VIII presents numerical examples. Section IX con-
+inequalities valid over every finite time horizon. This allows cludes the paper, proofs are collected in the appendix.
+IQC analysis to be formulated through dissipation inequalities.
+Goh [38] linked IQC to generalized sectors, dissipativity and                      II. N OTATION & P RELIMINARIES
+J-spectral factorization. For rational IQC multipliers, exis-
+tence conditions for J-spectral factors are given by the canoni- A. Notation
+cal factorization theorem of Bart, Gohberg, and Kaashoek [39]        Ln2 [a, b] denotes the set of Rn -valued, Lebesgue square-
+and by Meinsma’s characterization using equalizing vec- integrable equivalence classes of functions on the spatial
+tors [40]. Seiler [41] used the latter to establish existence domain [a, b] ⊂ R. The space RLn         2 [a,[︃b] denotes
+                                                                                                                 ]︃       the Cartesian
+for strict positive–negative multipliers and showed that these                 n1      n2                     n1
+                                                                  product R × L2 [a, b], where n =                 , with inner product
+factorizations yield hard IQCs and dissipation inequalities with                                              n2
+nonnegative storage. Related developments include doubly-                     ⟨︃[︃ ]︃ [︃ ]︃⟩︃
+                                                                                  x1      y
+hard factorizations and terminal-cost IQCs [42], [43]. These                           , 1         := x′1 y1 + ⟨x2 , y2 ⟩L2 .
+factorization results provide one way to construct hard IQCs.                     x 2     y 2 RL2
+Our duality argument uses hard IQCs and the required causal When clear from context, we occasionally omit the subscript
+invertibility properties directly, allowing suitable J-spectral and simply write ⟨·, ·⟩ := ⟨·, ·⟩ . Since the only spatial
+                                                                                                       RL
+factorizations without requiring this particular form. For fixed domain considered here is [a, b], we 2typically omit the domain
+filters and controllers, these certificates yield convex analysis and write Ln or RLn . We omit dimensions when clear from
+                                                                                 2         2
+conditions.                                                       context. For suitably differentiable spatial states, ẋ := ∂t x.
+    Designing the state-feedback gain introduces a synthesis We denote the induced norm for bounded linear operators on
+obstacle already visible for ODEs. For a fixed IQC filter, RL2 by
+consider the augmented dynamics                                                                         ∥Px∥RL2
+                                                                                       ∥P∥ := sup                     .
+      ẋ = Ax + Bw + Bu u,          v = Cx + Dw + Dzu u,                                      0̸=x∈RL2 ∥x∥RL2
+                                                                                                      n
+
+
+
+where v enters the IQC. Under state feedback u = Kx, a              Our notational convention is to write spatial states and profiles
+sufficient dissipation condition is                                 in bold (e.g., x ∈ RL2 ). For an operator A, the adjoint A∗ is
+                                                                    defined by
+         [︃(︁             )︁ (︁            )︁⊤       ]︃
+              P (A + Bu K) + P (A + Bu K)        PB
+                                                                             ⟨x, Ay⟩RL2 = ⟨A∗ x, y⟩RL2 ,       ∀ x, y ∈ RL2 .
+                           B⊤P                    ϵI
+                (C + Dzu K)⊤
+              [︃             ]︃
+                                 [︁            ]︁                   Define the signal space
+          +                     V C + Dzu K D ⪯ 0,
+                    D⊤
+                                                                          Ln                            n
+                                                                           [a,b] := {u : [0, ∞) → RL2 [a, b] |
+where P = P ⊤ ⪰ 0 is the storage matrix, V = V ⊤ is                                                  ∫︂ ∞
+the multiplier weight, and ϵ > 0. For fixed K, this is an                              ∥u∥2L[a,b] :=      ∥u(t)∥2RL2 dt < ∞},
+                                                                                                    0
+LMI. Optimizing K couples it to both P and V through                                                  ∫︁ ∞
+P Bu K and V Dzu K. The standard ODE invertible congru- with inner product ⟨u, v⟩L[a,b] := 0 ⟨u(t), v(t)⟩RL2 dt. For
+ence transformation removes the first coupling but generally any y : [0, ∞) → RLn        2 [a, b], define the truncation operator
+leaves the second. Existing methods use additional structure or (pT y)(t) := y(t) for 0 ≤ t ≤ T and (pT y)(t) := 0 for
+iterative design [44]. Dual IQCs also permit convex estimator t > T , and the time-reversal operator (rT y)(t) := y(T −t) for
+and feedforward synthesis [45], [46], there by an elimination 0 ≤ t ≤ T and (rT y)(t) := 0 for t > T . The corresponding
+argument.                                                       extended signal space is therefore,
+   Our main result combines induced L2 -gain duality with
+PIE duality to construct dual IQC representations through two              Ln                            n
+                                                                             e,[a,b] := {v | pT v ∈ L[a,b] ∀T > 0}.
+LENSSEN et al.: DUAL INTEGRAL QUADRATIC CONSTRAINT REPRESENTATIONS FOR ROBUST CONTROL OF PARTIAL INTEGRAL EQUATIONS                                           3
+
+
+
+Moreover, for τ ≥ 0 define the shift operator (sτ u)(t) := G is input–output stable if there exists γ ≥ 0 such that every
+u(t − τ ). An operator G : Ln                       m
+                                    e,[a,b] → Le,[a,b] is called                trajectory z = Gw with x0 = 0 satisfies
+   • Causal, if pT G = pT GpT for all T > 0.
+                                                                                    ∥pT z∥L[a,b] ≤ γ∥pT w∥L[a,b] , ∀ T ≥ 0, ∀ w ∈ Ln                 e,[a,b] .
+                                                                                                                                                       w
+   • Anticausal, if rT GrT is causal for every T > 0.
+   • Memoryless, if G is simultaneously causal and anticausal. This is equivalent to boundedness of the zero-state input–
+   • Time-Invariant, if sτ G = Gsτ for all τ ≥ 0.                               output operator; we use the term input–output stable for this
+   • Bounded on L[a,b] , if ∥G∥ ≤ C for some C ≥ 0.                             property of LTI systems. Given an LTI system G, we say that
+   • Bounded on Le,[a,b] , if ∥pT G∥ ≤ C for some C ≥ 0 and                     the homogeneous part of G is exponentially stable with decay
+      all T > 0.                                                                rate α > 0 if there exists some M > 0 such that for any
+   For a bounded linear operator K : RLn              2 →    RL  m
+                                                                 2 , define the x 0 ∈ RL2 , if T x(0) = T x0 and T ẋ(t) = Ax(t), then
+multiplication operator MK : Ln          e,[a,b]  →    L m
+                                                         e,[a,b] by
+                                                                                               ∥T x(t)∥RL2 ≤ M ∥x0 ∥RL2 e−αt ∀ t ≥ 0.
+                           (MK u)(t) := Ku(t).
+                                                                                To describe feedback interconnections, we use the following
+                                                                                notation. For compatible causal G and H, the Redheffer
+B. Linear Time-Invariant (LTI) Systems and Dual                                 star products denote the well-posed feedback interconnection
+Representations                                                                 obtained by eliminating internal signals, such that
+   We describe LTI state-space systems on the Hilbert spaces                             [︃ ]︃        [︃ ]︃
+                                                                                                                   G ⋆ H : u2 ↦→ y2 u1 = Hy1
+                                                                                           y1           u1
+RLn 2 [a, b], following     [25,  Remark    2].  Given     G{T   , A, B, C, D}                   = G          ,                         ,               .
+                                                                                           y2           u2         H ⋆ G : u1 ↦→ y1 u2 = Hy2
+defined by fixed bounded linear time-independent operators
+of compatible dimensions, from a class closed under adjoints, provided the respective interconnections are well-posed. We
+and signals w(t) ∈ RLn                                             nx
+                              2 [a, b], we say x(t) ∈ RL2 [a, b] and
+                                w
+                                                                                say that the interconnection G ⋆ H is well–posed if
+              nz
+z(t) ∈ RL2 [a, b] satisfy the state-space equations with initial                    • Existence and Uniqueness, For any u2 ∈ Le,[a,b] , there
+condition x0 if                                                                         exist unique y2 ∈ Le,[a,b] , y1 ∈ Le,[a,b] and u1 ∈ Le,[a,b]
+                                                                                        such    that y2 , u2 , y1 , u1 satisfy the interconnection.
+                    [︃            ]︃ [︃           ]︃ [︃       ]︃
+                      ∂t (T x)(t)        A B x(t)
+                                    =                                                   Causality,    If y1 , u1 and ŷ1 , û1 satisfy the interconnection
+                          z(t)           C D w(t)                                   •
+                                                                                        for inputs u2 and û2 with pT u2 = pT û2 , then pT (y1 −
+for all t ≥ 0 and T x(0) = T x0 . Additionally, for signals                             ŷ1 ) = 0 and pT (u1 − û1 ) = 0, for all T ≥ 0.
+w(t) ∈ RLn     2 [a, b] of compatible dimensions, we say x(t) ∈
+                 z
+                                                                                For these LTI systems, the following dual identities hold
+RLn                               nw                                          ′
+    2 [a, b] and z(t) ∈ RL2 [a, b] satisfy the dual system, G , whenever the corresponding realizations and interconnections
+      x
+
+
+with initial condition x0 if
+                                                                                are well-posed:
+                   [︃ ∗       ]︃ [︃ ∗          ∗
+                                                 ]︃ [︃      ]︃
+                      T ẋ(t)        A       C         x(t)
+                                 =                             ,                           (G1 G2 )′ = G′2 G′1 ,           (G1 + G2 )′ = G′1 + G′2 ,
+                       z(t)          B ∗ D∗ w(t)
+                                                                                              (G′ )ij = (Gji )′ ,           (G ⋆ H)′ = G′ ⋆ H ′ ,
+for all t ≥ 0 and T ∗ x(0) = T ∗ x0 . When we refer to an
+LTI system, we refer to systems with the properties above. A and (G−1 )′ = (G′ )−1 whenever the inverse admits a well-
+notational convention is to underline anything related to the posed causal realization.
+dual system. For state evolution, we restrict to realizations with
+T injective and D := ran(T ) dense in the state Hilbert space
+                                                                                C. Partial Integral Equations (PIEs)
+H. Following [47, Def. 5], the homogeneous system is well-
+                           −1                                                       Partial Integral operators, also known as PI operators, are
+posed if A := AT               : D → H generates a C0 -semigroup.
+Under these assumptions, the primal homogeneous system is integral operators defined jointly on a vector space and Hilbert
+well-posed if and only if its dual is well-posed. Indeed, if A space [20], [21].
+generates a C0 -semigroup, choose a sufficiently large real λ                       Definition 1: We say an operator P : RLn                      2 [a, b] →
+                                                                                      m                                          m×n
+in its resolvent set. Then K := λT − A = (λI − A)T is a RL                         [︃ 2  [a, b]      belongs       ]︃  to      Π 4    ,       denoted         by
+bounded bijection on H, hence has a bounded inverse. The Π P                                         Q1
+                                                                                                                     , if there exist a matrix P and
+dual generator, on ran(T ∗ ), satisfies                                                Q2 {R0 , R1 , R2 }
+                                                                                bounded measurable matrix-valued functions Q1 , Q2 , R0 , R1 ,
+                   A := A∗ (T ∗ )−1 = K ∗ A∗ (K ∗ )−1 .                         and R2 (of compatible dimension) such that,
+
+Thus A is boundedly similar to A∗ , which generates the
+                                                                                                                                 ⎡                         ⎤
+                                                                                  [︄(︄ [︃                   ]︃ )︄[︃ ]︃ ]︄                 ∫︁b
+                                                                                              P      Q1            x               P x+ Q1 (s)x(s)ds⎦
+strongly continuous adjoint semigroup on H [48, Sec. I.1.13].                           Π                                 (s) := ⎣                             ,
+                                                                                              Q2 {R}               x                      a
+The converse follows by exchanging primal and dual. We                                                                               Q2 (s)x+Rx(s)
+therefore assume well-posedness of the primal system, dual                                                        ∫︂s                     ∫︂b
+state well-posedness follows. The input–output realizations                      (Rx)(s)=R0 (s)x(s)+ R1 (s, θ)x(θ)dθ+ R2 (s, θ)x(θ)dθ.
+of both systems are assumed well-posed, and feedback well-
+                                                                                                                  a                        s
+posedness is imposed separately below. For these systems, we
+consider input–output and exponential stability. An LTI system where R ∈ Π3 .
+4                                                                                                       IEEE TRANSACTIONS ON AUTOMATIC CONTROL
+
+
+
+The vector space of PI operators, given compatible dimensions,                The next section provides us with the tool we use to assess
+is closed under composition, addition, adjoint and concatena-                 robust stability and performance.
+tion – implying that Π4 is a ∗-algebra [21]. An LTI state-
+space system G{T , A, B, C, D} is a PIE when its realization                            IV. I NFINITE D IMENSIONAL IQC T HEORY
+operators belong to Π4 .                                                         This section introduces the IQC objects used to study
+   Definition 2: (LPIs) For given PI operators {Ei,j , Fi,j , Gi }            stability and performance of interconnected systems in a
+and a convex linear functional ℓ(·), a linear PI inequality is a              Hilbert space. The construction builds on the classical IQC
+convex optimization of the following form                                     framework [31] and its extension to hard IQCs for infinite-
+           min
+                      (︁
+                     ℓ {Pij , Q1ij , Q2ij , R0ij , R1ij , R2ij }
+                                                                 )︁           dimensional channels [33]. We establish the generalized sys-
+     {Pij ,Q1ij ,Q2ij ,                                                       tem interconnection, formalize stability and performance, and
+    R0ij ,R1ij ,R2ij }K
+                      j=1                                                     define the uncertainty and performance IQCs, as described in
+            K            [︃                   ]︃                              [35]. These definitions provide the foundation for the theory
+           ∑︂
+                  ∗           Pij     Q1ij
+    s.t.         Eij Π                             Fij + Gi ⪰ 0.              developed in sections V, VI, and VII.
+                              Q2ij   {Rij }
+           j=1
+
+An LPI is solved by reducing it to an LMI, for which standard                 A. Description of uncertain systems in a Hilbert-space
+semidefinite programming applies.                                                We consider operators that map external inputs to external
+                                                                              outputs through a feedback interconnection between linear
+D. PIETOOLS                                                                   (infinite dimensional) operators P and ∆. This interconnection
+   PIETOOLS is a MATLAB toolbox developed by Shivaku- structure is formally defined as follows                                                 nw∆
+mar, Das, and Peet [22] for declaring, manipulating, and                         Definition 3 (Generalized Plant): Suppose P∆ : Le,[a,b]               →
+                                                                                nz∆                 nwp            nz∆             nw∆             nzp
+solving LPIs. Its operator syntax, PDE-to-PIE conversion, and Le,[a,b] , P∆p : Le,[a,b] → Le,[a,b] , Pp∆ : Le,[a,b] → Le,[a,b] ,
+optimization workflows are documented by Shivakumar et al. and Pp : Lnwp → Lnzp , are bounded operators and ∆ :
+                                                                                            e,[a,b]        e,[a,b]
+in the user manual [23]. See also the PIETOOLS homepage.                        nz∆          nw∆
+                                                                              Le,[a,b] → Le,[a,b]   , define
+                                                                                 [︃ ]︃        [︃ ]︃ [︃                   ]︃ [︃ ]︃
+                      III. P ROBLEM D EFINITION                                    z∆           w∆            P∆ P∆p w∆
+                                                                                        =P              =                         , w∆ = ∆z∆ .
+   A recent state-space framework based on Partial Integral                        zp           wp           Pp∆ Pp           wp
+Equations (PIEs) provides a formulation of stabilization and                                                                                          (1)
+                                                                                                     nwp                           nzp
+H∞ -optimal state-feedback controller synthesis for PDEs [25].                for  input  w p  ∈   L e,[a,b]  and  output  z p ∈ L e,[a,b] , there  exist
+                                                                                                             nz∆                 nw∆
+This framework addresses the nominal setting, corresponding internal signals z∆ ∈ Le,[a,b] and w∆ ∈ Le,[a,b] satisfying the
+to ∆ = 0. Building on this result, we develop a framework for interconnected system zp = (P ⋆ ∆)wp .
+optimal state-feedback control of uncertain or nonlinear PIEs The interconnection structure described above captures the
+subject to a prescribed quadratic performance requirement. Let feedback interaction between the nominal system P and the
+G denote the open-loop PIE plant to which the controller is uncertainty ∆, where wp and zp represent external inputs and
+connected. For a state-feedback controller K, the closed-loop performance outputs, respectively, while w∆ and z∆ form
+interconnection K ⋆ G ⋆ ∆ has the realization                                 the internal feedback loop through the uncertainty. Before
+               [︃
+                 T ẋ(t)
+                          ]︃ [︃
+                                   A + Bu K B x(t)
+                                                    ]︃ [︃     ]︃              analyzing stability and performance, we must first ensure
+                              =                                               the well-posedness of the interconnection, such that solutions
+                   z(t)           C + Dzu K D w(t)
+                                                                              exist, are unique, and depend causally on inputs. This is the
+                                 w∆ = ∆z∆                                     requirement recorded in (A.1). Having established the class of
+                  [︃        ]︃                [︃         ]︃
+                    z (t)                       w∆ (t)                        uncertain systems and their well-posedness, we now develop
+where z(t) = ∆                , and w(t) =                 . Our objective is a framework to guarantee robust stability and performance for
+                     zp (t)                      wp (t)
+to construct a state-feedback controller K such that K ⋆ G ⋆ the class of systems defined in Definition 3.
+∆ is robustly stable and satisfies the prescribed performance
+requirement for every ∆ ∈ ∆. Throughout the paper, we make B. Robust stability and performance
+the following standing assumptions                                               Veenman, Scherer, and Köroğlu [49] describe both un-
+(A.1) K ⋆ G ⋆ ∆ is well-posed for every ∆ ∈ ∆.                                certainty and performance specifications through quadratic
+(A.2) Robust stability and performance are analyzed with constraints on interconnection signals. For PIE systems, this
+       x(0) = 0.                                                              formulation also supports structured robustness and perfor-
+(A.3) The controller has access to the PIE state x. For a mance analysis [33], [35]. We now define what it means for the
+       dynamically-filtered controller, z∆ , w∆ , zp , and wp are, system to remain stable despite uncertainties. Robust stability
+       if filtered, also available.                                           requires that the system is well-posed for all admissible
+(A.4) Exogenous inputs and uncertainty do not act directly on uncertainties and that the input-output map remains bounded.
+       the boundary [25, Sec. III-B]. Boundary channels satisfy This involves removal of the performance channels in (1), and
+       ŵ = ẇ, where w is available for state reconstruction. introducing auxiliary signals z0 and w0 .
+       For boundary control,      ∫︁ t u̇ is generated by the controller         Definition 4: The interconnection
+       and u(t) = u(0) + 0 u̇(τ ) dτ is the actual input to the
+       plant.                                                                              z∆ = P∆ w∆ + z0 , w∆ = ∆z∆ + w0 ,                          (2)
+LENSSEN et al.: DUAL INTEGRAL QUADRATIC CONSTRAINT REPRESENTATIONS FOR ROBUST CONTROL OF PARTIAL INTEGRAL EQUATIONS                                             5
+
+
+
+with z0 , w0 ∈ Le,[a,b] , is said to be robustly stable if                       and gives a certificate for simultaneous robust stability and
+  1) The uncertain system                             for all ∆ ∈ ∆.             performance. For brevity, we write the hard IQC as
+                          [︃ ]︃ is [︃well-posed
+                                            ]︃
+                            z0           z∆                                         ⟨︃       [︃
+                                                                                                Pw
+                                                                                                    ]︃             [︃
+                                                                                                                     Pw
+                                                                                                                          ]︃⟩︃
+  2) The map from                  to          is bounded on Le,[a,b] for              pT Ψ            , pT MV Ψ                       ≤ −ϵ∥pT w∥2L[a,b] .
+                            w0           w∆                                                     w                     w
+      all ∆ ∈ ∆.                                                                                                               L [a,b]
+
+Within the IQC framework, the uncertainty operator ∆ is We combine the uncertainty and performance IQC descriptions
+described by a quadratic constraint defined by an appropriate by their channel-wise direct sum, denoted by ⊕:
+multiplier. A stability certificate combines this constraint with                                                   (︃[︃                ]︃                )︃
+                                                                                                                         Ψ11 Ψ12
+a complementary condition on the plant. We use the finite-                          (Ψ∆ , V∆ ) ⊕ (Ψp , Vp ) :=                             , V{Q, S, R} ,
+                                                                                                                         Ψ21 Ψ22
+horizon, or hard, IQC formulation [33], [41], leading to the
+following definition.                                                            where Ψij := diag((Ψ∆ )ij , (Ψp )ij ) for i, j ∈ {1, 2}, and
+                                                            nz∆            nw∆
+   Definition 5: An uncertainty operator ∆ : Le,[a,b]                → Le,[a,b]  (Q, S, R) := (diag(Q∆ , Qp ), diag(S        [︃ ]︃∆ , Sp ), diag(R [︃ ∆ , R
+                                                                                                                                                          ]︃ p )).
+is said to satisfy the hard IQC (Ψ∆ , V∆ ) defined by the                                                                      z∆                    w∆
+                                                                  nz∆ +nw∆       The associated signals are z =                        and w =              . In
+causal, input–output stable dynamic filter Ψ∆ : Le,[a,b]                     →                                                 zp                     wp
+  nz̃∆ +nw̃∆                                           ∗                         the remainder of the paper we denote (Ψ, V) = (Ψ∆ , V∆ ) ⊕
+Le,[a,b]       and linear bounded V∆ = V∆                  if the inequality
+                                                                                 (Ψp , Vp ).
+holds for all z∆ ∈ Le,[a,b] and all T ≥ 0,
+                                                                                    Theorem 1 (Robust Stability and Performance): Let P , ∆
+                                                                                 be given, and there exists (Ψ, V). If,
+        ⟨︃         [︃      ]︃                   [︃     ]︃⟩︃
+                       z∆                          z∆
+           pT Ψ∆              , pT MV∆ Ψ∆                           ≥ 0.
+                      ∆z∆                         ∆z∆ L                             • The interconnection P ⋆ ∆ is well–posed for all ∆ ∈ ∆.
+                                                              [a,b]
+                                                                                    • (Ψp , Vp ) satisfies (4).
+Moreover, let V∆ {Q∆ , S∆ , R∆ } be parameterized as,                               • Any uncertainty ∆ ∈ ∆ satisfy the hard IQC defined by
+                                                                                      (Ψ∆ , V∆ ).
+                                     [︃            ]︃
+                                       Q∆ S∆
+                            V∆ =         ∗                                          • There exists ϵ > 0 such that,
+                                        S∆     R∆
+                                                                                        ⟨︃       [︃      ]︃            [︃     ]︃⟩︃
+Beyond stability, we are interested in ensuring that the system                                    Pw                    Pw
+                                                                                           pT Ψ             , pT MV Ψ                       ≤ −ϵ∥pT w∥2L[a,b]
+meets certain performance specifications in the presence of                                         w                     w        L[a,b]
+uncertainty. Robust performance extends the notion of robust                                                                                                  (5)
+                                                                                                    nw∆               nwp
+stability by additionally requiring that a performance metric for all w∆ ∈ Le,[a,b] , wp ∈ Le,[a,b] and T ≥ 0. Then the inter-
+is satisfied. The associated input–output maps are evaluated connection P ⋆ ∆ is robustly stable and robust performance is
+from the zero initial condition in (A.2).                                        achieved with respect to (Ψp , Vp ).
+   Definition 6: Robust performance is achieved if the inter-
+connection P ⋆ ∆ is robustly stable and there exists ϵ > 0 Proof. See A.                                                                                       ■
+such that, for performance IQC (Ψp , Vp ) defined by the causal, Theorem 1 establishes a framework for deriving Linear PI
+                                            nzp +nwp             nz̃p +nw̃p
+input–output stable filter Ψp : Le,[a,b]                 → Le,[a,b]         and Inequalities (LPIs), which are used in assessing the robust
+                            ∗
+Vp {Qp , Sp , Rp } = Vp , such that                                              performance of a system. We next specialize this certificate
+              ⟨︃        [︃ ]︃                  [︃ ]︃⟩︃                           to the controlled primal realization and expose bilinearities in
+                          v                      v
+                 pT Ψp         , pT MVp Ψp                    ≥0             (4) the LPI that distinguish convex analysis from convex controller
+                          0                      0 L                             synthesis.
+                                                        [a,b]
+
+                 pnz
+for any v ∈ Le,[a,b] we have
+                                                                                          V. C ONTROLLER A NALYSIS (P RIMAL S YSTEM )
+     ⟨︃       [︃     ]︃                [︃     ]︃ ⟩︃
+                P ⋆∆                     P ⋆∆                                       The IQC certificate of Section IV becomes a controller
+        pT Ψp           wp , pT MVp Ψp          wp
+                  I                        I        L                             analysis condition once the state-feedback law is fixed. We
+                                                                    [a,b]
+
+                           ≤ −ϵ∥pT wp ∥2L[a,b] .                                  examine the primal control scheme shown in Figure 2, which
+                                                                                  corresponds to the primal component block in Figure 1.
+                  nw
+                   p
+for all wp ∈ Le,[a,b]  and T ≥ 0.                                                 Starting from this interconnection, we derive its filtered closed-
+In this framework, the multipliers MV∆ and MVp serve                              loop realization and identify the operator products that prevent
+distinct but complementary roles. The hard uncertainty IQC                        a direct convex synthesis formulation.
+(Ψ∆ , MV∆ ) characterizes the behavior of uncertainties, non-
+linearities, and other perturbations captured by the operator ∆,                                                                            z̃
+                                                                                                                                 Ψ
+ensuring that the IQC is satisfied for the class of admissible                                                                              w̃
+                                                                                                                ∆
+disturbances. In contrast, the performance IQC (Ψp , MVp )
+                                                                                                     z                     w
+encodes performance requirements for the nominal system,
+such as L2 -gain, passivity conditions, or frequency weighted                                                   G                 yΨ
+input-output properties. Together, these multipliers enable si-                                     u                      yG
+multaneous verification of robust stability against perturbations                                              K
+and achievement of specified performance objectives. This
+section applies the IQC framework to the primal system                            Fig. 2. Primal controller interconnection.
+6                                                                                                IEEE TRANSACTIONS ON AUTOMATIC CONTROL
+
+
+
+                          ⎧⎡            ⎤ ⎡                  ⎤⎡         ⎤
+                          ⎨ TG ẋG (t)        AG BG Bu           xG (t)            {︃
+                                                                                            [︁
+                                                                                                           [︃
+                                                                                                         ]︁ xG (t)
+                                                                                                                     ]︃
+                    G :=    ⎣  z(t)     ⎦ = CG DG Dzu
+                                             ⎣               ⎦  ⎣ w(t) K := u(t) = KG KΘ
+                                                                        ⎦
+                                                                                                              xΘ (t)
+                              yG (t)            I     0    0      u(t)
+                          ⎩
+                                       ⎧⎡            ⎤ ⎡        ⎤
+                                       ⎨ T ẋΘ (t)         A B [︃         ]︃               [︃      ]︃
+                                                                   x (t)                      z(t)
+                                Θ := ⎣ ṽ(t) ⎦ = ⎣ C D⎦ Θ                      with v(t) =            ,
+                                                                    v(t)                     w(t)
+                                             yΘ (t)        I 0
+                                       ⎩
+                             ⎧⎡             ⎤ ⎡                                                                ⎤
+                                TG ẋG (t)            AG + Bu KG              Bu KΘ                 BG            ⎡        ⎤
+                                                                                                                    xG (t)
+                [︃     ]︃    ⎪
+                             ⎪
+                  K ⋆G           T ẋ   (t)         B (C  + D   K  )     A   + B  D   K        B  D     +  B
+                             ⎨⎢
+                                      Θ     ⎥ ⎢ 1 G           zu G               1 zu Θ          1 G         2 ⎥⎣
+                                            ⎥    ⎢                                                             ⎥
+              Θ           := ⎢ ⎣ z̃(t) ⎦ = ⎣D11 (CG + Dzu KG ) C1 + D11 Dzu KΘ D11 DG + D12 ⎦ xΘ (t)                                    (3)
+                                                                                                                           ⎦
+                    I
+                                                                                                                      w(t)
+                             ⎪
+                             ⎪
+                                   w̃(t)           D21 (CG + Dzu KG ) C2 + D21 Dzu KΘ D21 DG + D22
+                             ⎩
+
+
+           [︃ components,
+Fig. 1. Primal   ]︃       G denotes the nominal part of the plant, K denotes the state feedback controller, Θ denotes the J-spectral factor of
+             K⋆P
+the IQC. Θ          denotes the primal interconnection.
+               I
+
+
+
+To distinguish analysis from synthesis, fix the IQC filter Ψ and        [43], [50], and the dual system representations developed for
+write an augmented realization before closing the controller as         LPV estimation and feedforward synthesis [45], [46]. This
+             [︃        ]︃ [︃
+                                          ⎡
+                                        ]︃ x(t)
+                                                 ⎤                      section develops the corresponding dual-filter construction
+               T ẋ(t)      A B Bu ⎣                                    for this operator class using induced L2 -gain duality. The
+                         =                  w(t)⎦ .           (6)
+                ṽ(t)        C D Dzu                                    uncertainty-side route uses LTI realizations of both the plant
+                                            u(t)
+                                                                        and uncertainty. The plant-side route instead applies duality to
+Under the signal-availability condition in (A.3), let[︃ u(t) =
+                                                             ]︃         the plant and IQC filters, allowing nonlinear and time-varying
+                    [︁        ]︁                       K ⋆G             uncertainties that satisfy the required hard IQCs.
+Kx(t), where K = KG KΘ , the filtered graph Ψ
+                                                          I
+has the PIE realization
+                                                                        A. Dual Uncertainty
+                {T , A + Bu K, B, C + Dzu K, D}.                     The following theorem establishes uncertainty-side duality.
+A sufficient condition for robust stability and performance,         Theorem 2 (Uncertainty Side Duality): Let P∆ and ∆ be
+                                                 ∗
+[33], is the existence of a PI operator P = P ⪰ 0 and ϵ > 0        LTI  systems, with realization operators indexed by P∆ and
+                                                                                                           ′         ′
+satisfying                                                         ∆, respectively.  Assume P∆ ⋆ ∆ and P∆     ⋆∆  [︃ are]︃well-posed
+                                                                                                                     x
+        [︃ ∗
+          T P(A + Bu K) + (A + Bu K)∗ PT T ∗ PB
+                                                            ]︃     and (I − DP∆ D∆ )−1 is bounded. Set x := P∆ and T :=
+                                                                                                                      x∆
+                        B ∗ PT                        ϵI           diag(TP∆ , T∆ ). Then the following statements are equivalent.
+                                                               (7)
+              (C + Dzu K)∗
+            [︃             ]︃
+                                [︁                 ]︁               1) limt→∞ T x(t) ⇀ 0 for any x that satisfies P∆ ⋆ ∆ with
+          +                   V    (C + D   K)  D     ⪯  0.
+                   D∗                    zu
+                                                                        initial condition x(0) ∈ RLn x
+                                                                                                   2 .
+                                                                                   ∗                                      ′
+                                                                    2) limt→∞ T x(t) ⇀ 0 for any x that satisfies P∆        ⋆∆′ with
+For analysis, K is fixed and (7) is affine in the certificate                                      nx
+                                                                        initial condition x(0) ∈ RL2 .
+operators P and V. For synthesis, these operators and K must
+be determined simultaneously. This introduces bilinearities Proof. Suppose the primal and dual feedback interconnections
+between P and K, and between K and V. For a non-descriptor are well-posed. Stacking the plant and uncertainty equations
+ODE, the storage and controller coupling can be removed gives the augmented operators
+with Q = P −1 and Z = KQ. The operator T prevents the                                                         [︃
+                                                                                                                 0 BP∆
+                                                                                                                            ]︃
+same cancellation for a general PIE. The multiplier bilinearity          A0 := diag(AP∆ , A∆ ), B0 :=                          ,
+                                                                                                                B∆       0
+must likewise be resolved by additional structure. Thus the                                                  [︃             ]︃
+primal formulation provides a convex test for a fixed controller,                                                0 DP∆
+                                                                          C0 := diag(CP∆ , C∆ ), D0 :=                         .
+but not a convex synthesis condition. The following sections                                                   D  ∆      0
+construct a dual equivalent of the filtered interconnection from Closing the loop w∆ = ∆z∆ gives
+which K can be synthesized convexly.
+                                                                                  T ẋ = A0 + B0 (I − D0 )−1 C0 x.
+                                                                                         (︁                        )︁
+
+    VI. D UAL R EPRESENTATIONS IN THE T RUNCATED                        The inverse is bounded by the assumed feedthrough inverse.
+                     L[a,b] - NORM                                      Taking adjoints yields
+    We consider an LTI plant P and its dual P ′ . The nominal
+                                                                                                                         )︁∗
+                                                                                                  A0 + B0 (I − D0 )−1 C0
+                                                                                               (︁
+                                                                                    ∗      ∗
+PIE duality results of Shivakumar et al. [25] provide the start-                (T ) = T
+                                                                                                   = A∗0 + C0∗ (I − D0∗ )−1 B0∗ .
+ing point for convex state-feedback synthesis. For dynamically
+                                                                                                               ′
+filtered IQCs, two further ingredients are relevant, hard factor-       This is exactly the state operator of P∆ ⋆∆′ . Thus, [25, Thm. 6
+izations connecting IQC theory to dissipativity theory [41],            and Remark 2] establishes equivalence of weak convergence
+LENSSEN et al.: DUAL INTEGRAL QUADRATIC CONSTRAINT REPRESENTATIONS FOR ROBUST CONTROL OF PARTIAL INTEGRAL EQUATIONS                  7
+
+
+
+for the primal and dual augmented states, where weak conver-       Lemma 1 (Hardness under memoryless congruence): Let
+gence means ⟨T x(t), y⟩ → 0 for every y in the product state (Ψ, V) be a hard IQC, and suppose that its self-adjoint multi-
+space.                                                        ■ plier admits the factorization
+                                                                                                   [︃      ]︃
+                                                                                                     X   0
+Exponential stability is likewise equivalent by [25, Cor. 8].                 V = U ∗N U ,     N =            ,
+A memoryless uncertainty can be represented without an                                                0 −Y
+uncertainty state, then ∆′ = ∆∗ , recovering the static case.   where U , X = X ∗ , and Y = Y ∗ are fixed bounded linear
+                                                                spatial operators. Define Θ := MU Ψ. Then
+B. Plant Side IQC Duality                                                               Θ∗ MN Θ = Ψ∗ MV Ψ,
+   For a general uncertainty ∆, this construction is less trivial. and (Θ, N ) is also a hard IQC relative to ∆.
+It is therefore more convenient to develop duality through
+the plant side IQC description, such that the plant, filters and Proof. Fix any ∆ ∈ ∆. The induced multiplication operator
+multiplier weights are linear operators, rather than through ∆ MU is memoryless and therefore commutes with pT . This
+side IQC description. The inertia argument of [45] assumes gives
+linear uncertainty and is similar to what Theorem 2 established.             ⟨︃      [︃ ]︃                [︃ ]︃⟩︃
+Venkataraman and Seiler [46] accommodate nonlinear uncer-                               z                    z
+                                                                                pT Θ        , pT MN Θ
+tainties through dual IQCs and J-spectral factorizations of                            ∆z                   ∆z      L
+                                                                                                                  [︃ [a,b]]︃⟩︃
+strict Positive–Negative (PN) IQCs. We use a similar strategy
+                                                                                 ⟨︃     [︃ ]︃
+                                                                                           z                         z
+in this section. We first reformulate the IQC condition as                   = pT Ψ             , pT MU ∗ N U Ψ
+                                                                                          ∆z                        ∆z L
+                                                                                                                               [a,b]
+a weighted strict small-gain requirement on an associated                        ⟨︃     [︃ ]︃                [︃ ]︃⟩︃
+system G0 with respect to the truncated L[a,b] norm, then                                  z                    z
+                                                                             = pT Ψ             , pT MV Ψ                      ≥ 0,
+apply Theorem 3, and finally reconstruct the dual system.                                 ∆z                   ∆z L
+                                                                                                                        [a,b]
+
+In their framework, this relationship is established through
+                                                                   This completes the proof.                                         ■
+congruence transformations of the analysis LMIs [46, Sec. 2-
+3]. Our approach relies on the induced truncated L[a,b] -gain In particular, if X and Y are coercive and Θ and Θ22 also sat-
+duality result. Let us define the hard factorization used in our isfy the causal bounded-invertibility conditions in Definition 7,
+second duality argument.                                           then (Θ = MU Ψ, N ) is a hard factorization in the sense of
+   Definition 7 (Dual Hard Factorization): Given an IQC that definition.
+(Ψ, V) and a set ∆ of causal bounded uncertainties, let Θ             Remark 1 (Hard factorization requirement): For finite-
+be an input–output stable LTI filter. Let N := diag(X , −Y), dimensional channels, the hard-factorization requirement cov-
+where X and Y are fixed bounded linear spatial operators ers a broad class of multipliers [41], [43], [50]. In particular,
+satisfying X = X ∗ ⪰ ϵI and Y = Y ∗ ⪰ ϵI for some ϵ > 0. strict PN multipliers, even when introduced through soft
+We call (Θ, MN ) a hard factorization of (Ψ, V) relative to ∆ frequency-domain IQCs, admit a hard J-spectral factoriza-
+if                                                                 tion [41, Thm. 4]. Strict PN is also preserved by the primal–
+        ∗              ∗                                           dual transformation [46]. For infinite-dimensional channels,
+   • Θ MN Θ = Ψ MV Ψ,
+   • Θ and Θ22 have bounded causal inverses,                       however, hardness of a proposed J-spectral factorization must
+   • for every ∆ ∈ ∆, every z ∈ Le,[a,b] and every T ≥ 0,          be established explicitly. Callegari et al. [34] propose IQC lift-
+              ⟨︃      [︃ ]︃             [︃ ]︃⟩︃                    ing, which could extend finite-dimensional rational J-spectral
+                         z                 z                       factorizations to multipliers acting on infinite-dimensional
+                 pT Θ        , pT MN Θ                     ≥ 0.
+                        ∆z                ∆z L                     channels.
+                                                     [a,b]
+                                                                      Lemma 2 (Weighted dual L2 -gain): Let P be an LTI system
+Following [46], define the associated dual filter by               and P ′ its dual. Let X = X ∗ ⪰ ϵI and Y = Y ∗ ⪰ ϵI be fixed
+                                            )︁−1                   bounded linear spatial operators, with ϵ > 0 and ρ ≥ 0. Then
+                    D(Θ) := M∗JˆΘ′ MJˆ
+                                (︁
+                                                   ,               the following statements are equivalent.
+where Θ′ is the LTI dual of Θ and                                    1) For every w ∈ Ln                            nz
+                                                                                            e,[a,b] , z = P w ∈ Le,[a,b] with x(0) = 0
+                                                                                              w
+
+
+                                    [︃         ]︃                       satisfies, for all T > 0,
+                     ˆ     ˆ           0 I
+                    J = Jnz ,nw :=                .                          ⟨pT z, pT MX z⟩L[a,b] ≤ ρ ⟨pT w, pT MY w⟩L[a,b] .
+                                      −I 0
+
+For spatial operators, this reduces to D(K) = (Jˆ∗ K∗ J)   ˆ −1 .     2) For every w ∈ Ln                  ′     nw
+                                                                                            e,[a,b] , z = P w ∈ Le,[a,b] with x(0) = 0
+                                                                                              z
+
+
+The dual identities give the following properties for compatible         satisfies, for all T > 0,
+filters and well-posed causal inverses:
+                                                                           ⟨pT z, pT MY −1 z⟩L[a,b] ≤ ρ ⟨pT w, pT MX −1 w⟩L[a,b] .
+  1) Multiplicativity, D(Θ1 Θ2 ) = D(Θ1 )D(Θ2 ) for invert-
+     ible Θ1 , Θ2 with the same channel partition.                  Proof. See B.                                                    ■
+  2) Involutivity, D(D(Θ)) = Θ.
+                                                                    For X = Y = I, this is the unweighted dual L2 -gain result
+  3) Scaling, D(cΘ) = c−1 D(Θ) for a nonzero scalar c.
+                                                                    in [25] and corresponds to the J-spectral factorization results
+8                                                                                                            IEEE TRANSACTIONS ON AUTOMATIC CONTROL
+
+
+
+
+                                  z̃                                                                                     z̃
+                         Θ                                                                                                    D(Θ)
+                                  w̃                                                                                    w̃
+            ∆                                                                                                                              ∆
+    z                w                                                                                                               w             z
+                                  Theorem 3                                 Lemma 2                            Theorem 3
+            P                                  w̃      G0          z̃                 w̃        G′0     z̃                                 P   ′
+
+
+
+                                                                                      ′     2                   2
+           I ≤ −ϵ∥pT w∥2                ∥pT G0 w̃∥2MX ≤ ρ∥pT w̃∥2MY ∥pT G0 w̃∥M −1 ≤ ρ∥pT w̃∥M −1                             I ≤ −ϵ∥pT w∥2
+                                                                                                Y                   X
+
+                                                                            ∃ρ < 1
+
+Fig. 3. Equivalence chain for primal and dual dynamic filtering.
+
+
+
+when combined with Theorem 3. For further brevity, define                                  (ii) A hard IQC (Ψ∆ , V ∆ ) satisfied on the graph
+the primal quadratic form                                                                       [z ∆ ; ∆′ z ∆ ] of every ∆′ ∈ ∆.
+              ⟨︃     [︃
+                       Pw
+                          ]︃           [︃
+                                         Pw
+                                            ]︃⟩︃                                          (iii) Bounded causal inverses of Θp and Θp,22 . For
+        I := pT Θ            , pT MN Θ            .                                             every ∆ ∈ ∆, the input-coordinate map Γp :=
+                        w                 w     L       [a,b]                                   Θp,21 (P ⋆ ∆) + Θp,22 has a well-posed causal
+The corresponding dual form is evaluated on the graph of P ′                                    inverse realization, and its feedthrough operator is
+using the dual filter D(Θ) operator,                                                            boundedly invertible.
+       ⟨︃          [︃ ′ ]︃                   [︃ ′ ]︃⟩︃                                    (iv) Nonnegativity of the dual performance require-
+                     P w                       P w
+ I := pT D(Θ)              , pT M−D(N ) D(Θ)             .                                      ment:
+                      w                         w     L                                              ⟨︃         [︃ ]︃              [︃ ]︃⟩︃
+                                                                    [a,b]
+                                                                                                                  v                  v
+The following theorem is our main result and establishes the                                            p T Ψp        , pT MV p Ψp         ≥0    (8)
+                                                                                                                  0                  0 L
+                                                                                                                                         [a,b]
+system relations in Figure 3
+  Theorem 3 (Primal–dual IQC equivalence): Let P and Θ be                    for every v ∈ Le,[a,b] and T ≥ 0.
+LTI systems, with (Θ, MN ) a hard factorization (Definition 7),       For example, a constant repeated real uncertainty ∆ = δI
+and assume Θ21 P + Θ22 has a bounded causal inverse. Define           satisfies ∆′ = ∆, so the same uncertainty IQC can be
+                                                                      used for both families. Polytopic LTI uncertainties are
+          z̃ = G0 w̃ = (Θ11 P + Θ12 )(Θ21 P + Θ22 )−1 w̃              also covered when a hard IQC for the dual family is
+For zero initial conditions, the following statements are equiv-      available.
+alent.                                                           R.2. Plant-side  IQC duality. For the uncertainty channel, factor
+                                                                                ∗
+  1) There exists some ρ                 <      1 such that           V ∆  =  U∆ ∆ U∆ , set Θ∆ = MU∆ Ψ∆ , and use
+                                                                                  N
+      ⟨pT z̃, pT MX z̃⟩L[a,b] ≤ ρ ⟨pT w̃, pT MY w̃⟩L[a,b] for                    Θ∆ = D(Θ∆ ),         N ∆ = −D(N∆ ).
+      every w̃ and T ≥ 0.
+  2) There exists some ϵ > 0 such that I ≤ −ϵ∥pT w∥2L[a,b]            Here duality is applied to P and the filters, no dual
+      for every w and T ≥ 0.                                          realization of ∆ is required. Require:
+  3) There exists some ϵ > 0 such that I ≤ −ϵ∥pT w∥L[a,b]   2            (i) IQC factorizations and feedthrough. For each i ∈
+      for every w and T ≥ 0.                                                 {∆, p}, Θi is input–output stable and LTI, and the
+                                                                             weight Ni = diag(Xi , −Yi ) has fixed bounded
+Proof. See C.                                                 ■              self-adjoint coercive spatial operators Xi and Yi .
+The proof of Theorem 3 is operator-theoretic. It uses invert-                The operators Θi and Θi,22 have bounded causal
+ibility conditions of [51, Thm. 2], boundedness, causality,                  inverses. Every causal bounded ∆ ∈ ∆ satisfies
+adjoints and the dual identities. As stated before this result               (Θ∆ , N∆ ) on [z∆ ; ∆z∆ ] for every finite horizon.
+captures uncertainties that do not need to satisfy the statement             With Θ := Θ∆ ⊕ Θp , the feedthrough of Γ :=
+of Theorem 2. This gives two routes for constructing the dual                Θ21 P + Θ22 is boundedly invertible.
+representation (Ψ, V) of (Ψ, V), which we develop in the                (ii) Well-posedness and input coordinates. The intercon-
+remainder of the paper: For the LTI performance constraint                   nection P ⋆ ∆ is well-posed for every ∆ ∈ ∆. The
+Ψp , take a fixed bounded linear spatial operator U p and write              input-coordinate map Γ has a well-posed causal
+V p = U ∗p N p U p and Θp = MU p Ψp , with                                   inverse realization.
+                                                                       (iii) Performance positivity. Satisfaction of (4).
+                Θp = D(Θp ),       Np = −D(N p ).
+                                                                      This route also permits nonlinear and time-varying un-
+R.1. Uncertainty-side duality. Form the dual interconnection          certainties, such as sector-bounded memoryless nonlin-
+      P ′ ⋆∆′ and describe the dual family ∆ := {∆′ : ∆ ∈ ∆}          earities and repeated real time-varying uncertainties, pro-
+      directly by a hard IQC. Require:                                vided their IQCs meet these factorization and invertibility
+         (i) Every ∆ ∈ ∆ is input–output stable and LTI. P ⋆∆         conditions.
+              and P ′ ⋆ ∆′ are well-posed, and (I − DP∆ D∆ )−1 In both routes, boundedness of the dynamic input-coordinate
+              is bounded.                                        inverse is derived from the strict plant–side IQC certificate,
+LENSSEN et al.: DUAL INTEGRAL QUADRATIC CONSTRAINT REPRESENTATIONS FOR ROBUST CONTROL OF PARTIAL INTEGRAL EQUATIONS                 9
+
+
+
+rather than assumed. The feedthrough inverse and well-posed          • There exists ϵ > 0 such that
+causal realization permit the input normalization before this                     ⟨︃          [︃ ′ ]︃           [︃ ′ ]︃⟩︃
+bound is established. For R.1., the bound is obtained on                                        P w               P w
+                                                                                       pT Ψ           , pT MV Ψ
+the closed-loop performance channel after robust stability.                                      w                 w     L       (10)
+                                                                                                                         [a,b]
+
+For R.2., it follows from the combined dual inequality. The                                      ≤ −ϵ∥pT w∥2L[a,b] ,
+LPI certificates in the next section imply these strict inequal-
+ities. For either route, we combine the dual uncertainty and       for all w ∈ Le,[a,b] and T ≥ 0, then the interconnection P ⋆ ∆
+performance IQCs using the channel-wise direct sum                 is robustly stable and robust performance is achieved with
+                                                                   respect to (Θp , Np ) for every ∆ ∈ ∆.
+              (Ψ, V) := (Ψ∆ , V ∆ ) ⊕ (Ψp , V p ).
+We use this notation                                               Proof. See D.                                                   ■
+                 [︃ ]︃throughout[︃ the]︃remainder of the paper,
+                   z              w∆
+with signals z = ∆ and w =              . Under the assumptions
+                   zp             wp                               B. Dual Analysis LPI
+of the chosen route, strict satisfaction of the corresponding
+plant-side IQC inequality certifies robust stability and perfor-      We now express the strict dual IQC condition as an LPI for
+mance. For PIE plant and filter realizations, the next section     PIE realizations. Both routes use the same certificate with their
+provides sufficient LPI conditions for this inequality.            respective dual IQC pairs. The component blocks in (9) show
+                                                                   the factored plant–filter realization. Write the filtered dual PIE
+    VII. A PPLICATIONS OF D UAL R EPRESENTATIONS                   as                             {︄
+                                                                                                     T ẋ = Ax + Bw,
+                                                                                     [︃ ′ ]︃
+   We specialize the duality results to PIE plant and filter                           P
+                                                                                  Ψ          w :=                                 (11)
+realizations to derive LPI conditions for analysis and controller                      I               v = Cx + Dw.
+synthesis. Corollaries 1 and 2 give dual LPI certificates for
+                                                                  Using a nonnegative quadratic storage gives the dissipation
+routes R.1. and R.2., respectively. The dual formulation also
+                                                                  LPI
+supports convex controller synthesis, shown by Corollaries 3           [︃ ∗
+                                                                         T PA + (∗) T ∗ PB
+                                                                                                ]︃ [︃ ∗ ]︃
+and 4. Both controller constructions below use the same                                              C      [︁       ]︁
+                                                                                                  +        V C D ⪯ 0.       (12)
+synthesis LPI, obtained by applying (12) to the corresponding               B ∗ PT          ϵI       D∗
+closed-loop PIE. The choice of dual uncertainty filter changes
+only the realization of the controller recovered from this The following corollaries use this inequality to certify robust
+LPI. Related applications of IQC duality include the robust- stability and performance under the two duality routes.
+estimation and feedforward result of Scherer and Köse [45],         Corollary 1 (Uncertainty-side dual LPI): Let P , ∆, and
+[52], and convex LPV synthesis of estimators and feedfor-         (Ψ, V) satisfy R.1.. If
+wards [46].                                                          • The filtered dual graph admits the PIE realization (11),
+                                                                        with V = V ∗ ∈ Π4 .
+                                                                                                                ∗
+                 z̃                                                  • The LPI (12) holds for some P = P ⪰ 0 in Π4 and
+                           D(Θ)                                         ϵ > 0.
+                w̃
+                                         ∆
+                                 w               z                then P ⋆ ∆ is robustly stable and achieves robust performance
+                                                                  with  respect to (Θp , Np ).
+                          uΘ             G′
+                                uG               y                Proof. Define the nonnegative storage V (t)                 :=
+                                         K′                       ⟨T x(t), PT x(t)⟩. Integrating (12) from 0 to T along (11),
+                                                                  with zero initial conditions (V (x(0)) = 0), gives
+Fig. 5. Dual controller interconnection.                                    ⟨︃     [︃ ′ ]︃           [︃ ′ ]︃⟩︃
+                                                                                     P w               P w
+                                                                   V (T ) + pT Ψ           , pT MV Ψ           ≤ −ϵ∥pT w∥2L[a,b] .
+                                                                                      w                 w      L[a,b]
+A. Interpretation of the Dual System
+   Figure 5 is the dual representation of the primal closed loop Since V (T ) ≥ 0, this implies (10). Theorem 4 gives the
+in Figure 2. Duality maps w ↦→ z to w ↦→ z, turns the state- conclusion.                                                       ■
+feedback controller K into the dual feedback operator K ′ ,
+which feeds y into the dual plant and filter, and replaces Θ by      Corollary 2 (Plant-side dual LPI): Let P , ∆, and (Ψ, V)
+its dual D(Θ). For R.2., the block ∆ is only a formal dual of     satisfy R.2.. If
+the uncertainty and need not be realized. Both representations       • The filtered dual graph admits the PIE realization (11),
+use the zero initial condition in (A.2). If Θ is dynamic,               with V = V ∗ ∈ Π4 .
+controller recovery also uses (A.3). The uncertainty-side con-                                                  ∗
+                                                                     • The LPI (12) holds for some P = P ⪰ 0 in Π4 and
+struction gives the following dual counterpart of Theorem 1.            ϵ > 0.
+   Theorem 4 (Dual Robust Stability and Performance): Let then P ⋆ ∆ is robustly stable and achieves robust performance
+P , ∆ be given, and let (Ψ, V) be the combined dual IQC pair. with respect to (Ψ , V ).
+                                                                                      p   p
+If
+   • The conditions of R.1. are satisfied.                        Proof. See E.                                                ■
+10                                                                                             IEEE TRANSACTIONS ON AUTOMATIC CONTROL
+
+
+
+                               ⎧⎡ ∗           ⎤ ⎡ ∗          ∗
+                                                                  ⎤⎡         ⎤
+                               ⎨ TG ẋG (t)           AG CG     I     xG (t)           {︃[︃        ]︃ [︃ ∗ ]︃
+                         ′                               ∗   ∗                    ′        uG (t)        KG
+                       G :=      ⎣    z(t)    ⎦ = BG DG 0
+                                                    ⎣             ⎦ ⎣  w(t) K :=
+                                                                             ⎦                        =    ∗ y(t)
+                                                                                            u  (t)       KΘ
+                                      y(t)                   ∗
+                                                       Bu∗ Dzu  0     uG (t)                 Θ
+                               ⎩
+             ⎧                               ⎡         ⎤                                                 ⎡       ⎤
+                                           ]︃ xΘ (t)                ∗ ˆ
+                                                                                                       ]︃ xΘ (t)
+             ⎨[︃ ∗                                                            ˆ         ∗ ˆ
+                           ]︃ [︃                           [︃ ∗                ∗ ∗
+                                                                                                                              [︃    ]︃
+                T ẋΘ (t)       A B I ⎣                      A − C JD(D)J B , C JD(D) I ⎣                        ⎦ with v(t) = z(t) ,
+     D(Θ) :=                 =                  v(t) ⎦ =                                                   v(t)
+             ⎩    ṽ(t)          C D 0
+                                               uΘ (t)           −D(D)Jˆ∗ B ∗             D(D)         0 u (t)                   w(t)
+                                                                                                            Θ
+                                        ⎧⎡ ∗             ⎤ ⎡ ∗          ∗ ∗                 ∗        ∗ ∗
+                                                                                                              ⎤
+                                             TG ẋG (t)        AG + KG    Bu    0         CG  + KG    Dzu        ⎡      ⎤
+                                                                                                         ∗ ∗ ⎥ xG (t)
+                                        ⎪
+                        (K ⋆ G)′
+                      [︃          ]︃    ⎨⎢ ∗
+                                        ⎪                         ∗       ∗ ∗             ∗
+                                             T  ẋ Θ (t) ⎥  ⎢ B
+                                                         ⎥ ⎢ 1 GB   +  K   B
+                                                                          Θ u   A   B  D
+                                                                                      1 G    +  B  2 + K   D
+                                                                                                         Θ zu ⎥ ⎣x (t)⎦
+               D(Θ)                  := ⎢ ⎣ z̃(t) ⎦ = ⎣                 ∗                        ∗            ⎦ Θ                 (9)
+                             I                                   D11 BG         C1       D11 DG      + D12
+                                                                                                                   w(t)
+                                        ⎪
+                                                                        ∗                        ∗
+                                        ⎪
+                                               w̃(t)             D21 BG         C2       D21 DG + D22
+                                        ⎩
+
+
+Fig. 4. [︃ Dual components, realized using primal operators. G′ denotes the              ′
+                                                                          ]︃ dual of G, K denotes the dual of K, D(Θ) denotes the dual of Θ.
+          (K ⋆ G)′
+                   ]︃                                             [︃
+                                                                    0⋆G
+D(Θ)                  denotes the dual interconnection. Here D(Θ)           denotes the dual interconnection with K = 0.
+              I                                                       I
+
+
+
+C. State Feedback LPI                                                     Corollary 4 (Plant-side state feedback): Let P = K ⋆G, ∆,
+   The analysis LPI also provides a synthesis condition when           and (Ψ, V) satisfy R.2.. If
+applied to the controlled plant P = K ⋆ G. Setting K = 0 in               • The filtered open-loop dual graph admits the PIE realiza-
+
+the component blocks of (9) gives the open-loop filtered PIE                tion (13), with V = V ∗ ∈ Π4 .
+                                                                                                                                    ∗
+                                {︄                                        • The LPI (14) holds for some coercive P = P ,
+                 0 ⋆ G′           T ξ̇ = A0 ξ + B 0 w,
+              [︃        ]︃
+                                                                                 −1
+                                                                            P, P , Z ∈ Π4 , and ϵ > 0.
+            Ψ              w :=                          (13)
+                    I               v = Cξ + Dw.                       then the recovered gain K := Z ∗ P −1 defines a state-feedback
+                                                                       controller K for which K⋆G⋆∆ is robustly stable and achieves
+Use a realization in which closing the state-feedback loop
+                                                                       robust performance with respect to (Θp , Np ).
+gives
+                                                                       Proof. See F.                                                     ■
+      Acl = A0 + K∗ Bu∗ 0 , B cl = B 0 + K∗ Dzu   ∗
+                     [︁     ]︁
+                                                    ,
+                                                                The next subsections recover the controller using the re-
+with T , C, and D unchanged. The substitution Z = PK∗ construction method in [25, Sec. VII], which analytically
+removes the bilinear storage–controller composition and gives computes K = Z ∗ P −1 when P is coercive and separable.
+the synthesis LPI
+   [︃ ∗
+     T PA0 + T ∗ Z Bu∗ 0 + (∗) T ∗ PB 0 + T ∗ ZDzu       ∗
+                       [︁       ]︁                         ]︃
+                                                                D. Memoryless Θ controller realization
+                    (∗)                         ϵI                 When Θ is memoryless, no multiplier state is required in
+                        [︃ ∗ ]︃
+                          C        [︁ ]︁                        the controller. For a state-feedback operator KG , set u(t) =
+                     + ∗ V C D ⪯ 0.                             KG xG (t). The resulting closed-loop PIE K ⋆ G is
+                          D
+                                                           (14)       [︃               ]︃ [︃                     ]︃ [︃      ]︃
+                                                                        ∂t (TG xG )(t)        AG + Bu KG BG xG (t)
+For a fixed dual filter Ψ, this LPI is affine in P, Z, and                               =                                     .
+                                                                             z(t)             CG + Dzu KG DG           w(t)
+V, allowing joint optimization of the feedback variable and
+certificate operators.                                          The controller is memoryless in time and acts directly on the
+   Corollary 3 (Uncertainty-side state feedback): Let P = K ⋆ measured or estimated PIE state.
+G, ∆, and (Ψ, V) satisfy R.1.. If
+   • The filtered open-loop dual graph admits the PIE realiza- E. Dynamic Θ controller realization
+      tion (13), with V = V ∗ ∈ Π4 .                               Dynamic-IQC feedback constructions with additional con-
+                                                              ∗
+   • The LPI (14) holds for some coercive P = P ,               troller memory have also been studied for uncertain systems
+      P, P −1 , Z ∈ Π4 , and ϵ > 0.                             with state delay [44]. Under (A.3), for each dynamically
+then the recovered gain K := Z ∗ P −1 defines a state-feedback filtered uncertainty channel, so that z∆ , w∆ , and wp are
+controller K for which K⋆G⋆∆ is robustly stable and achieves available for filter-state reconstruction. Unknown uncertainty
+robust performance with respect to (Θp , Np ).                  channels may be included simultaneously, provided they sat-
+                                                                isfy a memoryless hard IQC. Define the augmented state
+Proof. Since PK∗ = Z,                                                                             [︃        ]︃
+                                                                                                     xG (t)
+                ∗            ∗        ∗
+             T PAcl = T PA0 + T Z Bu 0 ,
+                                          [︁ ∗   ]︁                                      x(t)  :=              .
+                                                                                                     xΘ (t)
+             T ∗ PB cl = T ∗ PB 0 + T ∗ ZDzu∗
+                                              .                 The recovered dynamic (nonlinear) controller is
+Thus (14) is the dual analysis LPI (12) for P = K ⋆ G.                       {︄
+                                                                               T ẋΘ (t) = AxΘ (t) + B z z(t) + B w w(t),
+Corollary 1 gives the conclusion.                             ■      K :=                  [︁          ]︁                        (15)
+                                                                                   u(t) = KG KΘ x(t).
+LENSSEN et al.: DUAL INTEGRAL QUADRATIC CONSTRAINT REPRESENTATIONS FOR ROBUST CONTROL OF PARTIAL INTEGRAL EQUATIONS                       11
+
+
+
+The numerical examples in the next section apply these mem-                             VIII. N UMERICAL E XAMPLES
+oryless and dynamic controller constructions and compare the              The first example uses uncertainty-side duality R.1. for
+resulting primal and dual certificates.                                 repeated real uncertainty; the second uses plant-side IQC
+                                                                        duality R.2. for sector-bounded nonlinearities. Implementation
+F. Dual IQC Types
+                                                                        details are available at https://github.com/ThijsLe
+   We group the uncertainty IQCs by their duality construction.         nssen/PIETOOLS/tree/robust-control.
+In each case, the remaining plant and performance assumptions
+of the indicated route must also hold.                            A. Spatial loop shifting
+   1) Uncertainty-side IQCs for R.1.: The next two lemmas
+                                                                     Define the spatial            integration operator J ∈ Π3 by
+describe the dual LTI uncertainty family directly (R.1(ii)).                             ∫︁ s
+                                                                  (J f )(t,  s)   :=          f (t, θ) dθ. For v̇ = vss + δ 2 v, with
+   Lemma 3 (Dual Real Parametric IQC): Let ∆ := {∆∗ :                                      0
+                                                                  v(t, 0) = 0 and |δ| ≤ α, spatially differentiating two repeated
+∆ ∈ ∆} with ∆ := {δ : |δ| ≤ α} where δ ∈ R. Then
+                                                                  uncertainty channels gives
+any ∆∗ ∈ ∆ satisfies the hard IQC (Ψ∆ , V ∆ ) defined     by any
+                                                                              v̇(t, s) = vss (t, s) + J w∆,2 (t, s),
+                                                    [︃         ]︃
+                                                      ψ∆ 0
+causal, linear, input–output stable filter Ψ∆ =
+                                                        0 ψ∆             z∆,1 (t, s) = vs (t, s),           z∆,2 (t, s) = w∆,1 (t, s),
+of compatible dimensions and V ∆ {α2 Q∆ , αS ∆ , −Q∆ } ∈ Π4              w∆,i (t, s) = δz∆,i (t, s),           i ∈ {1, 2}.
+where Q∆ = Q∗∆ ⪰ 0, S ∆ = −S ∗∆ .
+                                                                  Closing the loop recovers J w∆,2 = δ 2 J vs = δ 2 v. The
+Proof. The proof is identical to the proof in [33, Lem 10] ■ feedthrough z
+                                                                                      ∆,2 = w∆,1 remains unfiltered, since filtering
+   Lemma 4 (Dual    Polytopic   IQC):  Let ∆   := {∆∗
+                                                       : ∆ ∈ ∆}   it would instead produce δ 2 J v. This realization improved
+                                                                  feasibility in our computations. The benefit is empirical and
+              ∑︁                   ∑︁
+with ∆ := { i µi ∆i : µi ≥ 0,         i µi = 1} where ∆i ∈ Π4 .
+Then any ∆∗ ∈ ∆ satisfies the hard IQC (Ψ∆ = I, V ∆ ) depends on the plant and uncertainty.
+defined by V ∆ {Q∆ , S ∆ , R∆ } ∈ Π4 where Q∆ = Q∗∆ , R∆ =
+R∗∆ ⪯ 0 and                                                       B. Primal–dual analysis with repeated real uncertainty
+                        ∗          ∗             ∗                   We compare the primal LPI (7) with the uncertainty-side
+ F (∆i ) := Q∆ + ∆i S ∆ + S ∆ ∆i + ∆i R∆ ∆i ⪰ 0 for all i.
+                                                                  dual LPI (12) of Corollary 1.
+                                                             (16)
+                                                                     1) Plant and uncertainty: We lift the ODE benchmark and
+Proof. See G.                                                  ■ temporal filter of [49, Sec. 8.1] to coupled heat equations
+   2) Plant-side IQCs for R.2.: The next two lemmas verify
+                                                                  on s ∈ [0, 1], with spatial PI multiplier weights as in [33,
+                                                                                                                                    π2
+the uncertainty-channel conditions of R.2.(i) from dual IQC Lem. 10]. The changes are diffusion, the reaction shift 2 I, the
+parameterizations.                                                input weight s, and a factor 2 in the uncertainty contribution
+   Lemma 5 (Dual Real Parametric Time-Varying IQC): Let to zp . Set
+α > 0 and ∆ = δ(t)I, where δ(t) ∈ R and supt≥0 |δ(t)| ≤ α.                                      π2
+                                                                          [︃             ]︃                      [︃      ]︃            [︃ ]︃
+                                                                             −2 −3                                  1 0                  1
+Choose PI operators Q∆ = Q∗∆ ⪰ ϵI and S ∆ = −S ∗∆ , with            A=                      +       I,    B∆ =              ,     Bp =       ,
+                                                                              1        1         2                  0  0                 0
+ϵ > 0, and parameterize the dual IQC by                                   [︃
+                                                                             1 0
+                                                                                    ]︃                           [︃
+                                                                                                                    1 −2
+                                                                                                                            ]︃         [︃
+                                                                                                                                         0
+                                                                                                                                          ]︃
+                                                                  C∆ =                 ,                  D∆ =                 , D∆p =       ,
+            Ψ∆ = I,        V ∆ {α2 Q∆ , αS ∆ , −Q∆ }.                        0 0                                    1 −1                 1
+                                                                          [︁       ]︁                            [︁     ]︁
+Then R.2.(i) is satisfied for the uncertainty channel.             Cp = 1 0 ,                           Dp∆ = 0 1 .
+Proof. See H.                                                  ■ Consider
+  Lemma 6 (Dual sector-bound IQC): Let (∆z∆ )(t, s) =                     v̇(t, s) = vss (t, s) + Av(t, s) + B∆ J w∆ (t, s) + sBp wp (t),
+ϕ(z∆ (t, s)) for all s ∈ [a, b] and t > 0 where                         z∆ (t, s) = C∆ vs (t, s) + D∆ w∆ (t, s) + D∆p wp (t),
+                                                                                    ∫︂ 1
+   (βz∆ (t, s) − ϕ(z∆ (t, s)))(ϕ(z∆ (t, s)) − αz∆ (t, s)) ≥ 0,
+                                                                          zp (t) =       (Cp v(t, s) + 2Dp∆ J w∆ (t, s)) ds,
+for all z∆ (t, s) ∈ R and α < β. Choose the spatial point-wise                        0
+
+multiplication PI operator S ∆ ∈ Π3 with                                  v(t, 0) = 0,    vs (t, 1) = 0,
+(S ∆ x)(t, s) = S 0 (s)x(t, s), 0 < m ≤ S 0 (s) ≤ M < ∞.                w∆ (t, s) = δz∆ (t, s),    |δ| ≤ α,
+                                                      (17)
+Parameterize the dual IQC by Ψ∆ = I and                                 PIETOOLS [23] gives a PIE whose uncertainty-channel
+               [︃       ]︃∗ [︃      ]︃ [︃        ]︃
+                   β −1        0 S∆       β −1                          feedthrough is pointwise multiplication by D∆ . Thus
+       V∆ =                                         . (18)
+                  −α 1        S∆ 0       −α 1
+                                                                                                [︃             ]︃
+                                                                                                  1−δ      2δ
+                                                                          det(I2 − δD∆ ) = det                    = 1 + δ 2 > 0. (19)
+Let P∆ be a compatible LTI plant whose feedthrough D∆ from                                         −δ     1+δ
+w∆ to z∆ satisfies                                                      Hence the primal and dual feedback feedthroughs are bound-
+                    max{|α|, |β|} ∥D∆ ∥ ≤ 1.                            edly invertible. Eliminating w∆ gives a bounded perturbation
+                                                                        of the mixed-boundary heat generator, with reaction matrix
+Then R.2.(i) is satisfied for the uncertainty channel.
+                                                                        A + B∆ δ(I2 − δD∆ )−1 C∆ . The primal realization and its
+Proof. See I.                                                     ■     adjoint are therefore well-posed.
+12                                                                                                              IEEE TRANSACTIONS ON AUTOMATIC CONTROL
+
+
+               8=0                     8=1                         8=0                       8=1                                           8=0                  8=1
+
+                                                                                                                                     0:96 j 0    0:96 j 0
+     0:71 j 18:17                                        0:71 j 18:17
+
+
+
+                                                                                                                                     0:89 j 0    0:89 j 0
+
+
+
+
+                                                                                                           , j . ! . 2 [!0:5; 0:5]
+                                                                                                                                     0:80 j 0    0:80 j 0
+
+
+
+
+                                                     , j .?
+, j .?
+
+
+
+
+                                                                                                                                     0:71 j 0    0:71 j 0
+
+
+                     0:96 j 3:01                                         0:96 j 2:99
+                                                                                                                                     0:46 j 0    0:46 j 0
+
+      0:46 j 1:83    0:89 j 1:89                          0:46 j 1:83    0:89 j 1:89
+
+                     0:80 j 1:49                                         0:80 j 1:49                                                 0:27 j 0    0:27 j 0
+                     0:71 j 1:32                                         0:71 j 1:32
+      0:27 j 1:21                                         0:27 j 1:21
+                     0:46 j 1:09                                         0:46 j 1:09
+                     0:27 j 0:94                                         0:27 j 0:94                                                 0:03 j 0    0:03 j 0
+      0:03 j 0:80    0:03 j 0:77                          0:03 j 0:80    0:03 j 0:77
+                               000
+                                00
+                                 0
+                               !1
+                                :1
+                               :01
+
+                                 1
+
+
+
+
+                                                                                   000
+                                                                                    00
+                                                                                     0
+                                                                                   !1
+                                                                                    :1
+
+                                                                                !0 1
+                                                                                     1
+
+
+
+
+                                                                                                                                                        000
+                                                                                                                                                         00
+                                                                                                                                                          0
+                                                                                                                                                        !1
+                                                                                                                                                         :1
+                                                                                                                                                        :01
+
+                                                                                                                                                          1
+                              !1
+
+
+
+
+                              :00
+
+
+
+
+                                                                                  !1
+
+
+
+
+                                                                                   :0
+                                                                                  :00
+
+
+
+
+                                                                                                                                                       !1
+
+
+
+
+                                                                                                                                                       :00
+                              !0
+
+
+
+
+                                                                                  !0
+
+
+
+
+                                                                                                                                                       !0
+                             !1
+
+
+
+
+                                                                                 !1
+
+
+
+
+                                                                                                                                                      !1
+                             !0
+
+
+
+
+                                                                                 !0
+
+
+
+
+                                                                                                                                                      !0
+                            !1
+
+
+
+
+                                                                                !1
+
+
+
+
+                                                                                                                                                     !1
+                            !0
+
+
+
+
+                                                                                                                                                     !0
+                                   pole location ;                                      pole location ;                                                     pole location ;
+
+Fig. 6. Reproduction of the sweep in [49, Fig. 7] for the coupled heat equations: primal analysis (left), dual analysis (center), and the difference
+γ − γ between the primal and dual bounds (right). The figure highlights two main observations. First, even when using a lifted finite-dimensional
+filter for the dynamic IQC, the choice ν = 1 yields substantially smaller values of γ than the static case ν = 0. Second, the dual analysis produces
+lower values of γ than the primal analysis. For this example and this parameterization the dual bound is the smaller one; the claim is not general,
+and Table III reports the opposite ordering for the reaction–diffusion plant, γ = 0.5146 against γ = 0.7432. This difference is possible because Θ
+need not be D(Θ), so the primal and dual analyses need not yield identical bounds under the same lifted finite-dimensional filter parameterization,
+which may be better suited to the dual system.
+
+
+
+   2) Direct dual IQC under R.1.: Since the constant real scalar                uncertainty filter is
+δ is repeated over both channels and all spatial locations,                                                          [︃                            ]︃
+                                                                                                                       ψ                         0
+∆′ = ∆ = δI. Both analyses use the repeated-real multiplier                                               Ψ∆ = Ψ∆ :=                                  .                   (20)
+                                                                                                                        0                        ψ
+family of Lemma 3, with spatial PI weights in Π3 optimized
+independently for the primal and dual certificates. We use the                  The gain from wp to zp is tested with Vp {1, 0, −γ 2 } and
+stable basis [49, Eq. (12a)]                                                    V p {1, 0, −γ 2 }, respectively.
+              [︃                             ]︃′                                       3) Verification of R.1.:
+                       1               1
+   ψν (iω) =     1           · · ·               ,    ρ < 0,           (i) Stable uncertainty and well-posedness. ∆ = δI is
+                    iω − ρ         (iω − ρ)ν                               stable LTI with ∥∆∥ ≤ α; (19) and the heat-generator
+For ν ≥ 1, define the finite-dimensional realization                       argument above establish well-posedness of both inter-
+      ⎡                   ⎤                                                connections.
+         ρ 0 ··· 0                         ⎡ ⎤
+                                              1                       (ii) Dual hard IQC. Since ∆′ = ∆, Lemma 3 and the shared
+                  ..    .⎥                                                 filter (20) give the required hard IQC.
+                     . .. ⎥                ⎢0⎥
+      ⎢
+      ⎢1 ρ
+Aν = ⎢⎢                   ⎥ ∈ Rν×ν , Bν = ⎢   .
+                                                ⎥
+                                                  ∈  R ν×1
+                                                           ,        (iii)  Performance      inverses. Choose Θp = Θp = I, so
+      ⎣0 . . . . . . 0⎦                    ⎣ .. ⎦
+                          ⎥                ⎢    ⎥
+                                                                           Θp,22 = Γp = I. Their inverses and feedthroughs are
+         0 ···     1 ρ                        0                            bounded and causal.
+                                                                     (iv)                   positivity. The dual performance form
+      [︃     ]︃                            [︃      ]︃
+        0                                       1                          Performance
+Cν = 1×ν ∈ R(1+ν)×ν ,                Dν =             ∈ R(1+ν)×1 .                    ∥p      2
+          Iν                                 0ν×1                          in  (8) is    T v∥ L[a,b] ≥ 0.
+                                                                       4) Analysis results: The computation times in Table I moti-
+Since there are two uncertainty channels, define the PI opera-
+                                                                   vate restricting the full pole sweep to ν = 1, with ν = 0 as
+tors pointwise by
+                                                                   the static baseline; Figure 6 compares the bounds.
+     (T q)(s) = q(s),
+     (Aq)(s) = (Aν ⊗ I2 )q(s),            (Bq)(s) = (Bν ⊗ I2 )q(s),             C. Boundary control with sector-bounded uncertainty
+     (Cq)(s) = (Cν ⊗ I2 )q(s),            (Dq)(s) = (Dν ⊗ I2 )q(s).                We apply R.2. to boundary control of nonlinear reaction–
+                                                                                diffusion and damped wave equations, using Corollaries 4
+These operators realize the lifted temporal filter                              and 2, and (7) for synthesis, dual analysis, and primal analysis,
+ψ{T , A, B, C, D}. For ν = 0, take ψ = I. The shared                            respectively.
+LENSSEN et al.: DUAL INTEGRAL QUADRATIC CONSTRAINT REPRESENTATIONS FOR ROBUST CONTROL OF PARTIAL INTEGRAL EQUATIONS                      13
+
+
+
+                            TABLE I                                                              TABLE II
+  O NE - SHOT SOLVER COMPUTATION TIME AT α = 0.5 AND ρ = −1.             C ONTROLLER COEFFICIENTS FOR THE REACTION – DIFFUSION AND
+                                                                        WAVE FEEDBACK LAWS , ROUNDED TO TWO DECIMAL PLACES . [sn ]Q
+                  Filter order ν   Primal (sec)   Dual (sec)                      DENOTES THE COEFFICIENT OF sn IN Q(s).
+
+                        0              0.74         0.70
+                        1             15.61         9.98                                 Reaction–diffusion            Wave
+                        2             82.34         56.82                      n                n
+                                                                                              [s ]Q1            n
+                                                                                                              [s ]Q2,1       [sn ]Q2,2
+                        3            327.82        194.86
+                                                                               0               1.74            −8.06          −0.04
+                                                                               1             −453.64            1.58          11.37
+                                                                               2              120.33          −27.33           50.18
+  1) Plant and uncertainty: For s ∈ [0, 1] and i ∈ {1, 2},                     3             −767.56           −7.38         −104.87
+consider                                                                       4             1543.37           50.41           13.91
+                                                                               5             −2646.43         −88.60         −151.93
+v̇1 (t, s) = v1,ss (t, s) + 5 sin(v1 (t, s)) + swp (t),                        6             2810.30           97.81         −218.07
+v̈2 (t, s) = v2,ss (t, s) − 2v̇2 (t, s) + 3 sin(v2 (t, s)) + swp (t),          7             −983.50          −115.17         129.53
+                                                                               8             −1505.86          117.26         −8.59
+ vi (t, 0) = 0,      vi,s (t, 1) = xi (t),                                     9             1921.83          −54.48         −11.42
+                                     ⎡
+                                           xi (t)
+                                                        ⎤                      10            −652.91            7.28          −0.77
+                          zp,i (t) = ⎣ 1                                                  k1 = −331.62           k2 = −37.71
+                                       ∫︂
+   ẋi (t) = ui (t),                                    ⎦.                     Gain
+                                           vi (t, s) ds
+                                              0
+For related finite-horizon sine–Gordon control, see [53].                                          TABLE III
+                                                                        S YNTHESIS AND ANALYSIS GAIN BOUNDS , AND SIMULATED OPEN - AND
+PIETOOLS converts both plants to PIEs [23], with boundary
+                                                                               CLOSED - LOOP RATIOS ∥zp ∥L2 [0,35] /∥wp ∥L2 [0,35] .
+state xi and control ui = ẋi as in (A.4). For synthesis, set
+z∆,i = vi,s and w∆,i = cos(J z∆,i )z∆,i . Then J z∆,i = vi                    Quantity                  Reaction–diffusion      Wave
+and J w∆,i = sin(vi ), so the nonlinear term is exactly
+                                                                              Synthesized γs                   1.268               -
+λi J w∆,i , with λ1 = 5, λ2 = 3. Also, swp = J wp . The                       Primal Analysis γ               0.5146               -
+cosine bound gives the [−1, 1] sector condition and                           Dual Analysis γ                 0.7432             1.373
+                                                                              Open-loop L2 ratio              0.4871            0.3152
+         ∥pT w∆,i ∥L[a,b] ≤ ∥pT z∆,i ∥L[a,b] ,           T ≥ 0.               Closed-loop L2 ratio            0.4605            0.2624
+   2) Verification of R.2.: The three requirements of R.2. are
+checked as follows.
+                                                                         controllers. Figures 7 and 8 show the state responses and con-
+   (i) IQC factorizations and feedthrough. Lemma 6 applies
+                                                                         trol effort; Table III compares certified bounds and simulated
+        with α = −1, β = 1, since z∆,i = vi,s depends only on
+                                                                         gain ratios. The simulated open- and closed-loop ratios remain
+        the PIE state, so D∆ = 0. For the performance channel,
+                                                 −2                      close since xi (t) = 0 in the open-loop case. Simulating for
+        choose Θp = I and Np = diag(γi I2 , −1), γi > 0.
+                                                                         longer time period would cause a larger deviation.
+        The feedthrough of Γ is then block upper triangular with
+        boundedly invertible diagonal blocks Θ∆,22 and I.
+  (ii) Well-posedness and input coordinates. Assume P ⋆ ∆,                                       IX. C ONCLUSION
+        with P = K ⋆ G, is well-posed throughout the sector                 This paper established primal–dual IQC equivalence for PIE
+        family and Γ has a well-posed causal inverse realization. systems through J-spectral factorization and the induced L2 -
+ (iii) Performance positivity. Vp = γi2 Np = diag(I2 , −γi2 ) gain duality result. The dual-filter construction gives equiv-
+        gives ∥pT v∥2 ≥ 0 in (4).                                        alent strict primal and dual IQC inequalities and a dual
+   3) Synthesis and validation: We solve the synthesis LPI robust-performance certificate. It supports infinite-dimensional
+of Corollary 4 with V p {1, 0, −γi2 I2 } and ∥Ki ∥ ≤ 104 . The channels for which a hard J-spectral factorization is available,
+                                                        [︁           ]︁T one of which is constructed here for the sector class, and
+recovered feedback laws act on the PIE states x1 v1,ss
+     [︁                ]︁T                                               memoryless or dynamic filters.
+and x2 v̇2 v2,ss :                                                          As an application, the dual robust-performance certificate
+                                  ∫︂ 1                                   yields a convex LPI condition for robust state-feedback synthe-
+           u1 (t) = k1 x1 (t) +        Q1 (s)v1,ss (t, s) ds,            sis. The resulting closed-loop interconnection is robustly stable
+                                     0                                   and achieves the prescribed robust performance. This extends
+                       ∫︂ 1                        [︃            ]︃
+                            [︁                   ]︁ v̇2 (t, s)           nominal PIE state-feedback synthesis beyond unstructured
+ u2 (t) = k2 x2 (t) +          Q2,1 (s) Q2,2 (s)                    ds.  small-gain conditions. The numerical examples illustrate the
+                         0                           v2,ss (t, s)
+                                                                         primal and dual analysis conditions and the state-feedback
+   Simulations use the equivalent original sine interconnection synthesis condition. They also show that computation time in-
+z∆,i = vi , w∆,i = sin(vi ). The dual synthesis LPI certifies creases sharply with filter order, motivating efficient multiplier
+a boundary controller for the reaction–diffusion plant. For the selection.
+wave equation, the solver reported an infeasible synthesis LPI,             The dual IQC representation also paves the way for ro-
+but the returned candidate controller was validated using the bust estimator and feedforward synthesis, as in the finite-
+plant-side dual analysis LPI of Corollary 2. Table II lists both dimensional setting [45], [46]. Developing an elimination
+14                                                                                                             IEEE TRANSACTIONS ON AUTOMATIC CONTROL
+
+
+
+
+Fig. 7. Open- and closed-loop state responses for the nonlinear reaction–diffusion equation (left pair) and the damped wave equation (right pair).
+Disturbed by wp (t) = 8 cos(t)1[π,4π] (t), we find that the closed-loop response drives the system towards equilibrium.
+
+
+
+                                                                                         ory-for-partial-differential-equations/3D51EEA85884F240F6FC5EEA0
+                                                                                         24B8460
+                                                                                     [8] R. F. Curtain and K. Glover, “Robust stabilization of infinite
+                                                                                         dimensional systems by finite dimensional controllers,” Systems &
+                                                                                         Control Letters, vol. 7, no. 1, pp. 41–47, 1986. [Online]. Available:
+                                                                                         https://www.sciencedirect.com/science/article/pii/0167691186901003
+                                                                                     [9] B. van Keulen, H∞ -Control for Distributed Parameter Systems:
+                                                                                         A State-Space Approach, ser. Systems & Control: Foundations
+                                                                                         & Applications. Boston: Birkhäuser, 1993. [Online]. Available:
+                                                                                         https://link.springer.com/book/10.1007/978-1-4612-0347-6
+                                                                                    [10] M. Krstić and A. Smyshlyaev, Boundary Control of PDEs: A Course on
+                                                                                         Backstepping Designs, ser. Advances in Design and Control. Society
+                                                                                         for Industrial and Applied Mathematics, 2008, vol. 16. [Online].
+                                                                                         Available: https://epubs.siam.org/doi/book/10.1137/1.9780898718607
+                                                                                    [11] E. Fridman and A. Blighovsky, “Robust sampled-data control of a
+Fig. 8. Disturbance and control effort for the reaction–diffusion equation               class of semilinear parabolic systems,” Automatica, vol. 48, no. 5, pp.
+(left) and damped wave equation (right).                                                 826–836, 2012. [Online]. Available: https://cris.tau.ac.il/en/publications
+                                                                                         /robust-sampled-data-control-of-a-class-of-semilinear-parabolic-sy/
+                                                                                    [12] G. Valmorbida, M. Ahmadi, and A. Papachristodoulou, “Stability
+                                                                                         analysis for a class of partial differential equations via semidefinite
+lemma for PIE systems would allow this approach to be                                    programming,” IEEE Transactions on Automatic Control, vol. 61, no. 6,
+                                                                                         pp. 1649–1654, 2016. [Online]. Available: https://ora.ox.ac.uk/objects/u
+investigated for infinite-dimensional systems. Further work                              uid%3A3418aab4-0c9c-4fc6-a366-777efe63945e
+also includes hard J-spectral factorizations for multipliers                        [13] B. A. Francis, Ed., A Course in H∞ Control Theory, 1st ed., ser. Lecture
+acting on infinite-dimensional channels.                                                 Notes in Control and Information Sciences. Springer Berlin, Heidelberg,
+                                                                                         1987, vol. 88.
+                                                                                    [14] J. C. Doyle, K. Glover, P. P. Khargonekar, and B. A. Francis,
+                                                                                         “State-space solutions to standard H2 and H∞ control problems,”
+                                                                                         IEEE Transactions on Automatic Control, vol. 34, no. 8, pp. 831–847,
+ [1] J. Fourier, Théorie analytique de la chaleur. Paris: Firmin Didot, père           1989. [Online]. Available: https://www.doyle.caltech.edu/images/doyle
+     et fils, 1822. [Online]. Available: https://www.e-rara.ch/zut/doi/10.3931           /2/20/TAC1989.pdf
+     /e-rara-19706                                                                  [15] S. Boyd, L. El Ghaoui, E. Feron, and V. Balakrishnan, Linear Matrix
+ [2] J. l. R. d’Alembert, “Recherches sur la courbe que forme une corde                  Inequalities in System and Control Theory, ser. Studies in Applied
+     tenduë mise en vibration,” Histoire de l’Académie royale des sciences             Mathematics. Society for Industrial and Applied Mathematics, 1994,
+     et belles-lettres de Berlin, vol. 3, pp. 214–219, 1747, volume for 1747,            vol. 15. [Online]. Available: https://stanford.edu/∼boyd/lmibook/
+     published in 1749. [Online]. Available: https://webusers.imj-prg.fr/∼d         [16] K. Zhou, J. C. Doyle, and K. Glover, Robust and Optimal Control. New
+     avid.aubin/cours/Textes/Dalembert-HAB-1747-cordes-vibrantes.pdf                     Jersey: Prentice Hall, 1996.
+ [3] G. G. Stokes, “On the theories of the internal friction of fluids in motion,   [17] A. Packard and J. Doyle, “The complex structured singular value,”
+     and of the equilibrium and motion of elastic solids,” in Mathematical               Automatica, vol. 29, no. 1, pp. 71–109, 1993.
+     and Physical Papers. Cambridge: Cambridge University Press, 1880,              [18] K. A. Morris, “H∞ -output feedback of infinite-dimensional systems
+     vol. 1, pp. 75–129, reprint of the memoir read on 14 April 1845.                    via approximation,” Systems & Control Letters, vol. 44, no. 3, pp.
+ [4] R. F. Curtain and A. J. Pritchard, Eds., Infinite Dimensional Linear                211–217, 2001. [Online]. Available: https://www.math.uwaterloo.ca/∼k
+     Systems Theory, ser. Lecture Notes in Control and Information Sciences.             morris/Preprints/Morrisoutputfeedback.pdf
+     Berlin, Heidelberg: Springer-Verlag, 1978, vol. 8. [Online]. Available:        [19] M. J. Balas, “Modal control of certain flexible dynamic systems,” SIAM
+     https://link.springer.com/book/10.1007/BFb0006761                                   Journal on Control and Optimization, vol. 16, no. 3, pp. 450–462,
+ [5] R. F. Curtain and H. Zwart, An Introduction to Infinite-Dimensional                 1978. [Online]. Available: https://epubs.siam.org/doi/10.1137/0316030
+     Linear Systems Theory, ser. Texts in Applied Mathematics. New                  [20] M. M. Peet, “A partial integral equation (PIE) representation
+     York: Springer-Verlag, 1995, vol. 21. [Online]. Available: https:                   of coupled linear PDEs and scalable stability analysis using
+     //link.springer.com/book/10.1007/978-1-4612-4224-6                                  LMIs,” Automatica, vol. 125, p. 109473, 2021. [Online]. Available:
+ [6] O. Staffans, Well-Posed Linear Systems, ser. Encyclopedia of                        https://par.nsf.gov/servlets/purl/10285388
+     Mathematics and its Applications. Cambridge University Press, 2005,            [21] S. Shivakumar, A. Das, S. Weiland, and M. Peet, “Extension of the Par-
+     vol. 103. [Online]. Available: https://doi.org/10.1017/CBO97805115431               tial Integral Equation Representation to GPDE Input–Output Systems,”
+     97                                                                                  IEEE Transactions on Automatic Control, vol. 70, no. 5, pp. 3240–3255,
+ [7] I. Lasiecka and R. Triggiani, Control Theory for Partial Differential               2025.
+     Equations: Continuous and Approximation Theories. Cambridge:                   [22] S. Shivakumar, A. Das, and M. Peet, “PIETOOLS: A Matlab Toolbox for
+     Cambridge University Press, 2000, vol. 1, abstract Parabolic Systems.               Manipulation and Optimization of Partial Integral Operators,” in 2020
+     [Online]. Available: https://www.cambridge.org/core/books/control-the               American Control Conference (ACC), 2020, pp. 2667–2672.
+LENSSEN et al.: DUAL INTEGRAL QUADRATIC CONSTRAINT REPRESENTATIONS FOR ROBUST CONTROL OF PARTIAL INTEGRAL EQUATIONS                                           15
+
+
+
+[23] S. Shivakumar, D. Jagt, D. Braghini, A. Das, Y. Peet, and                    [46] R. Venkataraman and P. Seiler, “Convex LPV synthesis of estimators
+     M. Peet, “PIETOOLS 2025: User manual,” 2026, version 2, revised                   and feedforwards using duality and integral quadratic constraints,”
+     15 March 2026; first submitted in 2025. [Online]. Available:                      International Journal of Robust and Nonlinear Control, vol. 28, no. 3,
+     https://arxiv.org/abs/2501.17854v2                                                pp. 953–975, 2018. [Online]. Available: https://onlinelibrary.wiley.com/
+[24] S. Toolhally, J. Roelofs, S. Weiland, and A. Das, “A digital twin of              doi/abs/10.1002/rnc.3913
+     evaporative thermo-fluidic process in the fixation unit of dod inkjet        [47] D. S. Jagt and M. M. Peet, “Verifying well-posedness of linear
+     printers,” Mechatronics, vol. 118, p. 103558, 2026. [Online]. Available:          PDEs using convex optimization,” 2026, version 2. [Online]. Available:
+     https://www.sciencedirect.com/science/article/pii/S0957415826001066               https://arxiv.org/abs/2604.00573v2
+[25] S. Shivakumar, A. Das, and M. Peet, “Dual representations and H∞ -           [48] K.-J. Engel and R. Nagel, A Short Course on Operator Semigroups,
+     optimal control of partial differential equations,” IEEE Transactions             ser. Universitext. Springer, 2006. [Online]. Available: https://www.ma
+     on Automatic Control, vol. 71, no. 8, pp. 4956–4971, 2026. [Online].              th.uni-tuebingen.de/de/forschung/agfa/members/a short course on ope
+     Available: https://arxiv.org/abs/2208.13104v4                                     rator semigroups-1.pdf
+[26] D. Braghini, T. Thomas, S. Shivakumar, J. M. Velni, and M. M.                [49] J. Veenman, C. Scherer, and H. Köroğlu, “Robust stability and per-
+     Peet, “Dual representations and proxy characterization of H2 norm                 formance analysis based on integral quadratic constraints,” European
+     for partial integral equations,” 2026, arXiv:2610.21355v1. [Online].              Journal of Control, vol. 31, pp. 1–32, 2016.
+     Available: https://arxiv.org/abs/2610.21355v1                                [50] C. W. Scherer, “Dissipativity and integral quadratic constraints: Tailored
+[27] A. I. Lur’e and V. N. Postnikov, “On the theory of stability of                   computational robustness tests for complex interconnections,” IEEE
+     controlled systems,” Prikladnaya Matematika i Mekhanika, vol. 8,                  Control Systems Magazine, vol. 42, no. 3, pp. 115–139, 2022.
+     no. 3, pp. 246–248, 1944, in Russian. [Online]. Available: https:            [51] M. M. Peet, “A convex solution of the h∞ -optimal controller
+     //pmm.ipmnet.ru/ru/Issues/1944/8-3/246                                            synthesis problem for multi-delay systems,” 2018. [Online]. Available:
+[28] V. M. Popov, “On absolute stability of non-linear automatic control               https://arxiv.org/abs/1806.08071
+     systems,” Avtomatika i Telemekhanika, vol. 22, no. 8, pp. 961–979, 1961,     [52] C. Scherer and I. Köse, “Robustness with dynamic integral quadratic
+     in Russian. [Online]. Available: https://www.mathnet.ru/eng/at12357               constraints: an exact state-space characterization of nominal stability
+[29] G. Zames, “On the input–output stability of time-varying nonlinear                with applications to robust estimation,” Automatica, vol. 44, no. 7, pp.
+     feedback systems—Part II: conditions involving circles in the frequency           1666–1675, 2008.
+     plane and sector nonlinearities,” IEEE Transactions on Automatic Con-        [53] M. Petcu and R. Temam, “Control for the Sine-Gordon Equation,”
+     trol, vol. 11, no. 3, pp. 465–476, 1966.                                          ESAIM: Control, Optimisation and Calculus of Variations, vol. 10, no. 4,
+[30] G. Zames and P. Falb, “Stability conditions for systems with monotone             pp. 553–573, 2004.
+     and slope-restricted nonlinearities,” SIAM Journal on Control, vol. 6,
+     no. 1, pp. 89–108, 1968.
+[31] A. Megretski and A. Rantzer, “System analysis via integral quadratic
+     constraints,” IEEE Transactions on Automatic Control, vol. 42, no. 6,
+     pp. 819–830, 1997.
+[32] A. Das, S. Shivakumar, M. Peet, and S. Weiland, “Robust Analysis of                                   Thijs M. Lenssen received M.S. degree in sys-
+     Uncertain ODE-PDE Systems Using PI Multipliers, PIEs and LPIs,” in                                    tems and control from Eindhoven University of
+     2020 59th IEEE Conference on Decision and Control (CDC), 2020, pp.                                    Technology, Netherlands, in 2026.
+     634–639.                                                                                                and all authors may include biographies. Bi-
+[33] A. Talitckii, M. Peet, and P. Seiler, “Integral Quadratic Constraints with                            ographies are often not included in conference-
+     Infinite-Dimensional Channels,” in 2023 American Control Conference                                   related papers. This author is an IEEE Fellow.
+     (ACC), 2023, pp. 1576–1583.                                                                           The first paragraph may contain a place and/or
+[34] S. Callegari, D. Peaucelle, and F. Gouaisbaut, “Descriptor model                                      date of birth (list place, then date). Next, the
+     approach for coupled PDEs-ODEs subject to IQCs,” Sep. 2026, working                                   author’s educational background is listed. The
+     paper or preprint. [Online]. Available: https://hal.science/hal-05743895                              degrees should be listed with type of degree
+[35] T. Lenssen, A. Talitckii, M. Peet, and A. Das, “A µ-Analysis and                                      in what field, which institution, city, state, and
+     Synthesis Framework for Partial Integral Equations using IQCs,” in 2026      country, and year the degree was earned. The author’s major field of
+     European Control Conference (ECC), 2026, pp. 715–722.                        study should be lower-cased.
+[36] J. C. Willems, “Dissipative dynamical systems—Part I: General theory,”          The second paragraph uses the pronoun of the person (he or she) and
+     Archive for Rational Mechanics and Analysis, vol. 45, no. 5, pp. 321–        not the author’s last name. It lists military and work experience, including
+     351, 1972. [Online]. Available: https://doi.org/10.1007/BF00276493           summer and fellowship jobs. Job titles are capitalized. The current job
+[37] A. Rantzer, “On the Kalman–Yakubovich–Popov lemma,” Systems &                must have a location; previous positions may be listed without one.
+     Control Letters, vol. 28, no. 1, pp. 7–10, 1996.                             Information concerning previous publications may be included. Try not
+[38] K.-C. Goh, “Structure and factorization of quadratic constraints for ro-     to list more than three books or published articles. The format for listing
+     bustness analysis,” in Proceedings of 35th IEEE Conference on Decision       publishers of a book within the biography is: title of book (publisher name,
+     and Control, vol. 4, 1996, pp. 4649–4654 vol.4.                              year) similar to a reference. Current and previous research interests end
+[39] H. Bart, I. Gohberg, and M. A. Kaashoek, Minimal Factorization of            the paragraph.
+     Matrix and Operator Functions, 1st ed., ser. Operator Theory: Advances          The third paragraph begins with the author’s title and last name (e.g.,
+     and Applications. Birkhäuser Basel, 1979, vol. 1.                           Dr. Smith, Prof. Jones, Mr. Kajor, Ms. Hunter). List any memberships in
+[40] G. Meinsma, “J-spectral factorization and equalizing vectors,” Systems       professional societies other than the IEEE. Finally, list any awards and
+     & Control Letters, vol. 25, no. 4, pp. 243–249, 1995. [Online]. Available:   work for IEEE committees and publications. If a photograph is provided,
+     https://www.sciencedirect.com/science/article/pii/0167691194000779           it should be of good quality, and professional-looking.
+[41] P. Seiler, “Stability analysis with dissipation inequalities and integral
+     quadratic constraints,” IEEE Transactions on Automatic Control, vol. 60,
+     no. 6, pp. 1704–1709, 2015.
+[42] J. Carrasco and P. Seiler, “Conditions for the equivalence between
+     IQC and graph separation stability results,” International Journal
+     of Control, 2018, published online in 2018. [Online]. Available:
+     https://arxiv.org/abs/1704.04816                                                                      Aleksandr Talitckii received the B.S. degree in
+[43] C. W. Scherer and J. Veenman, “Stability analysis by dynamic                                          high energy physics from the Moscow Institute
+     dissipation inequalities: On merging frequency-domain techniques with                                 of Physics and Technology, Dolgoprudny, Rus-
+     time-domain conditions,” Systems & Control Letters, vol. 121, pp.                                     sia, and the M.S. degree in information science
+     7–15, 2018. [Online]. Available: https://arxiv.org/abs/1803.05804                                     and technology from the Skolkovo Institute of
+[44] C. Yuan and F. Wu, “Dynamic iqc-based control of uncertain lft sys-                                   Science and Technology (Skoltech), Moscow,
+     tems with time-varying state delay,” IEEE Transactions on Cybernetics,                                Russia, in 2020. He is currently pursuing the
+     vol. 46, no. 12, pp. 3320–3329, 2016.                                                                 Ph.D. degree in aerospace engineering at Ari-
+[45] I. Köse and C. Scherer, “Robust L2 -gain feedforward control of uncer-                               zona State University, Tempe, AZ, USA.
+     tain systems using dynamic IQCs,” International Journal of Robust and
+     Nonlinear Control, vol. 19, no. 11, pp. 1224–1247, 2009.
+16                                                                               IEEE TRANSACTIONS ON AUTOMATIC CONTROL
+
+
+
+     Matthew M. Peet received M.S. and Ph.D. de-                                        A PPENDIX
+     grees in aeronautics and astronautics from Stan-                                  P ROOFS
+     ford University (2000-2006). He was a postdoc
+     at INRIA (2006-2008) and Asst. Professor at the      A. Proof of Theorem 1 [49, Veenman et. al.]
+     Illinois Institute of Technology (2008-2012). Cur-
+     rently, he is Associate Professor of Aerospace       Proof. Fix any ∆ ∈ ∆ and suppose that (5) holds. This
+     Engineering at Arizona State University.             implies,
+                                                               ⟨︃        [︃ ]︃                  [︃ ]︃        ⟩︃
+                                                                           P∆                     P∆
+                                                                  p T Ψ∆         w∆ , pT MV∆ Ψ∆          w∆
+                                                                            I                      I            L[a,b]
+                                                                   ⟨︃      [︃     ]︃               [︃     ]︃     ⟩︃
+                                                                             P                       P
+                                                               + pT Ψp p∆ w∆ , pT MVp Ψp p∆ w∆
+                                                                               0                       0            L[a,b]
+
+                                                               ≤ −ϵ∥pT w∆ ∥2L[a,b] .
+                                                          By (4) we can then infer,
+                                                          ⟨︃      [︃      ]︃        [︃     ]︃⟩︃
+                                                                    P w                P w
+                                                             pT Ψ∆ ∆ ∆ , pT MV∆ Ψ∆ ∆ ∆                           ≤ −ϵ∥pT w∆ ∥2L[a,b] .
+                                                                     w∆                 w∆     L         [a,b]
+
+
+                                                          Then, using Theorem 6 in [33], we find that robust stability is
+                                                          guaranteed. By well-posedness, the corresponding closed-loop
+                                                          signals satisfy
+                                                                        [︃ ]︃    [︃ ]︃
+                                                                          z∆       w∆
+                                                                              =P       ,      w∆ = ∆z∆ .
+                                                                          zp       wp
+                                                          Since (5) holds for every plant input, it applies to these closed-
+                                                          loop signals and gives, for every T ≥ 0,
+                                                                    ⟨︃        [︃ ]︃                 [︃ ]︃⟩︃
+                                                                                z∆                     z
+                                                                       pT Ψ∆         , pT MV∆ Ψ∆ ∆
+                                                                                w∆                    w∆ L
+                                                                        ⟨︃      [︃ ]︃                [︃ ]︃⟩︃ [a,b]
+                                                                                  zp                    z
+                                                                     + pT Ψp           , pT MVp Ψp p
+                                                                                  wp                   wp L
+                                                                                                            )︁ [a,b]
+                                                                     ≤ −ϵ ∥pT w∆ ∥2L[a,b] + ∥pT wp ∥2L[a,b] .
+                                                                           (︁
+
+                                                          Because w∆ = ∆z∆ and ∆ satisfies the hard IQC in Defini-
+                                                          tion 5, the uncertainty term in this inequality is nonnegative.
+                                                          Dropping this term and using ∥pT w∆ ∥2L[a,b] ≥ 0 yields
+                                                            ⟨︃       [︃ ]︃            [︃ ]︃⟩︃
+                                                                       zp               z
+                                                               pT Ψp       , pT MVp Ψp p           ≤ −ϵ∥pT wp ∥2L[a,b] .
+                                                                       wp               wp L
+                                                                                                 [a,b]
+
+
+                                                          Since zp = (P ⋆ ∆)wp and ∆, wp , and T were arbitrary, this
+                                                          is the required performance inequality. Together with robust
+                                                          stability established above, Definition 6 implies that robust
+                                                          performance is achieved.                                   ■
+
+                                                          B. Proof of Lemma 2
+                                                          Proof. Case 1. (If ρ = 0), statement 1 gives, for every w and
+                                                          T > 0,
+                                                                      0 ≤ ⟨pT P w, pT MX P w⟩L[a,b] ≤ 0.
+
+                                                          Coercivity of X implies P = 0, hence P ′ = 0 and statement 2.
+     Amritam Das placeholder                              Conversely, statement 2 and coercivity of Y −1 imply P ′ = 0,
+                                                          hence P = 0 and statement 1. The forward implication uses
+                                                          only coercivity of X , the reverse uses coercivity of Y −1 ,
+                                                          which follows from the assumed coercivity of Y [51, Thm. 2].
+                                                             Case 2. (Now suppose ρ > 0.) For 1) =⇒ 2), assume that
+                                                          for every w ∈ Ln e,[a,b] , with z = P w,
+                                                                             w
+
+
+
+                                                           ⟨pT z, pT MX z⟩L[a,b] ≤ ρ ⟨pT w, pT MY w⟩L[a,b]          ∀T > 0.
+LENSSEN et al.: DUAL INTEGRAL QUADRATIC CONSTRAINT REPRESENTATIONS FOR ROBUST CONTROL OF PARTIAL INTEGRAL EQUATIONS                     17
+
+
+
+We show that for every w ∈ Ln                   ′
+                            e,[a,b] , with z = P w,
+                              z
+                                                                    Therefore,
+
+⟨pT z, pT MY −1 z⟩L[a,b] ≤ ρ ⟨pT w, pT MX −1 w⟩L[a,b]    ∀T > 0.                 I ≤ −(1 − ρ) ⟨pT Γw, pT MY Γw⟩L[a,b]
+                                                                                      (1 − ρ)
+By [25, Thm. 9 and Rem. 2], applied to the well-posed state-                       ≤−         ∥pT Γw∥2L[a,b]
+                                                                                      ∥Y −1 ∥
+space realization defined by the specified operators, the duality                        (1 − ρ)
+identity                                                                           ≤ − −1           ∥pT w∥2L[a,b] ,
+                                                                                      ∥Y ∥∥Γ−1 ∥2
+             ⟨pT z, rT w⟩L[a,b] = ⟨pT w, rT z⟩L[a,b]        (21)
+                                                                     where the last inequality follows from ∥pT w∥L[a,b] =
+holds. For fixed T > 0, choose w := ρ M  −1
+                                               Y −1rT z. Then        ∥pT Γ−1 pT Γw∥L[a,b] ≤ ∥Γ−1 ∥∥pT Γw∥L[a,b] . Thus, ϵ =
+                                                                          (1−ρ)
+1                                                                     ∥Y −1 ∥∥Γ−1 ∥2 > 0.
+  ⟨pT z, pT MY −1 z⟩L[a,b] = ⟨pT z, rT w⟩L[a,b] = ⟨pT w, rT z⟩L[a,b] . 2) =⇒ 1) Assume that there exists an ϵ > 0 such
+ρ
+                                                                     that I ≤ −ϵ∥pT w∥2L[a,b] for every w, and every T ≥
+              ∗
+Since X = X ≻ 0, we have                                             0. We need to establish there exists a ρ < 1 such that
+                                                                     ⟨pT G0 w̃, pT MX G0 w̃⟩L[a,b] ≤ ρ ⟨pT w̃, pT MY w̃⟩L[a,b] for all
+    0 ≤ ⟨pT w − MX rT z, MX −1 (pT w − MX rT z)⟩L[a,b]
+                                                                     w̃ ∈ L[a,b] and T ≥ 0. For arbitrary w̃, choose w = Γ−1 w̃.
+      = ⟨pT w, MX −1 pT w⟩L[a,b] − 2 ⟨pT w, rT z⟩L[a,b]              Then
+      + ⟨rT z, MX rT z⟩L[a,b] .                                          ⟨pT G0 w̃, pT MX G0 w̃⟩L[a,b] − ⟨pT w̃, pT MY w̃⟩L[a,b]
+Using (21), the choice of w, and ∥pT y∥L[a,b] = ∥rT y∥L[a,b] ,                              ≤ −ϵ∥pT Γ−1 w̃∥2L[a,b] .
+we obtain
+                                                                    Since Γ is bounded and                  causal,    ∥pT w̃∥L[a,b]    ≤
+    2                                                               ∥Γ∥∥pT Γ−1 w̃∥L[a,b] . Therefore,
+      ⟨pT z, pT MY −1 z⟩L[a,b] = 2 ⟨pT z, rT w⟩L[a,b]
+    ρ
+      ≤ ⟨pT w, pT MX −1 w⟩L[a,b] + ⟨rT z, MX rT z⟩L[a,b]                                ⟨pT G0 w̃, pT MX G0 w̃⟩L[a,b]
+                                                                                 (︃                 )︃
+       = ⟨pT w, pT MX −1 w⟩L[a,b] + ⟨pT z, pT MX z⟩L[a,b] .                                  ϵ
+                                                                             ≤        1−               ⟨pT w̃, pT MY w̃⟩L[a,b] .
+                                                                                         ∥Γ∥2 ∥Y∥
+Substituting this bound into the preceding inequality gives
+                                                                    Choose ρ < 1 such that 1 − ϵ/(∥Γ∥2 ∥Y∥) ≤ ρ < 1, then
+                 2                                                  statement 1 holds for every w̃ and T ≥ 0.
+                   ⟨pT z, pT MY −1 z⟩L[a,b]
+                 ρ                                                     1) ⇐⇒ 3) We show that there exists a causally boundedly
+                                1                                   invertible Γ such that
+    ≤ ⟨pT w, pT MX −1 w⟩L[a,b] + ⟨pT z, pT MY −1 z⟩L[a,b]
+                                ρ                                                          [︃ ′ ]︃    [︃ ′ ]︃
+                                                                                             P          G0
+                                                                                     D(Θ)          w=         Γw.
+which proves statement 2 for this T . Since T and w were                                     I          I
+arbitrary, it holds on every finite horizon.
+   For 2) =⇒ 1), apply the same argument with the primal            then we can apply the previous arguments to show 1) ⇐⇒ 3).
+and dual systems interchanged, replacing (z, w, X , Y) by           Define
+(z, w, Y −1 , X −1 ), and vice versa. This proves the equivalence                    S := Θ11 − Θ12 Θ−1 22 Θ21 .
+for ρ > 0, and completes the proof for all ρ ≥ 0.              ■
+                                                                    Since Θ and Θ22 are boundedly invertible, so is S by Schur
+                                                                    complement. Block inversion of D(Θ) gives
+C. Proof of Theorem 3                                                  D(Θ)21 = (S ′ )−1 Θ′21 (Θ′22 )−1 ,         D(Θ)22 = (S ′ )−1 .
+Proof. 1) =⇒ 2) Assume there exists a ρ < 1 such
+that ⟨pT G0 w̃, pT MX G0 w̃⟩L[a,b] ≤ ρ ⟨pT w̃, pT MY w̃⟩L[a,b]      Therefore, define
+for all w̃ ∈ L[a,b] and T ≥ 0. We need to show that I ≤                                                                 )︁′
+                                                                       Γ := D(Θ)21 P ′ + D(Θ)22 = (S ′ )−1 I + P Θ−1
+                                                                                                          (︁
+                                                                                                                  22 Θ21 .
+−ϵ∥pT w∥2L[a,b] for some ϵ > 0. First since Γ := Θ21 P + Θ22
+                                                                Now Γ = Θ22 (I + Θ−1
+                                    [︃ ]︃      [︃ ]︃
+                                      P          G0                                     22 Θ21 P ). Thus, invertibility of Γ and
+is causally boundedly invertible, Θ       w =        Γw, and    the push-through rule imply that I + P Θ−1
+                                      I          I                                                           22 Θ21 , and hence Γ,
+hence                                                           is causally boundedly invertible. Normalizing the upper block
+                                                                gives
+I = ⟨pT G0 Γw, pT MX G0 Γw⟩L[a,b] −⟨pT Γw, pT MY Γw⟩L[a,b] .           [︃ ′ ]︃     [︃ ]︃
+                                                                         P           G0
+                                                                D(Θ)           w=        Γw, G0 := (Θ′22 )−1 (P ′ Γ−1 + Θ′12 ).
+By statement 1 and causality of G0 , the first inequality below          I           I
+holds. Self adjoint, coercivity, boundedness, and invertibility
+                                                                Using
+of Y then gives
+                                                                                  Γ−′ = S(I + P Θ−1   22 Θ21 )
+                                                                                                              −1
+                                                                                                                 ,
+                                      1            2
+      ⟨pT Γw, pT MY Γw⟩L[a,b] ≥            ∥pT Γw∥L[a,b] .
+                                   ∥Y −1 ∥                                     (I + P Θ−1
+                                                                                        22 Θ21 )
+                                                                                                 −1
+                                                                                                    P Θ−1
+                                                                                                        22 = P Γ
+                                                                                                                   −1
+                                                                                                                      ,
+18                                                                                           IEEE TRANSACTIONS ON AUTOMATIC CONTROL
+
+
+
+where the second identity is the push-through rule, yields             E. Proof of Corollary 2
+       G0 = (Θ′22 )−1 (P ′ Γ−1 + Θ′12 )                                Proof. Suppose P , ∆, and (Ψ, V) satisfy the conditions
+                                   −1 ′                                of R.2. and (12) is satisfied. We need to show that P ⋆
+          = Γ−′ P Θ−1
+            (︁                          )︁
+                      22 + Θ12 Θ22                                     ∆ is robustly stable and achieves robust performance w.r.t.
+                                                     −1 ′
+          = S(I + P Θ−1           −1
+                                       P Θ−1
+            [︁                                          ]︁
+                          22 Θ21 )         22 + Θ12 Θ22                (Θp , Np ). Given Θ{T , A, B, C, D} and D(Θ){T , A, B, C, D}
+                                   ]︁′                                                                                   −1
+          = SP Γ−1 + Θ12 Θ−1
+            [︁                                                         set Λ := D21 DP + D22 , S := D11 − D12 D22           D21 , and
+                                22                                                  ∗
+                                 )︁ −1 ]︁′                             Λ := D21 DG + D22 . Similar to the proof in C we find,
+          = SP + Θ12 Θ−1
+            [︁(︁
+                             22 Γ Γ         .                                                                        ]︁∗
+                                                                                     Λ−1 = S(I + DP D22  −1
+                                                                                                            D21 )−1
+                                                                                           [︁
+We now show that the first part reduces to                                                                       ]︁∗              (22)
+                                                                                         = S(I − DP Λ−1 D21 ) ∈ Π4 .
+                                                                                           [︁
+          SP + Θ12 Θ−1                  −1
+                    22 Γ = Θ11 P − Θ12 Θ22 Θ21 P
+                                 + Θ12 Θ−1
+                                        22 Θ21 P + Θ12
+                                                                       By assumption Λ, Λ−1 , S, Λ, Λ−1 ∈ Π4 . Define
+                                                                                ⎡                 ⎤       ⎡                      ⎤
+                              = Θ11 P + Θ12 .                                       I     0 0                  I      0        0
+Consequently,                                                              E := ⎣ 0       I 0 ⎦ , E := ⎣ 0            I        0⎦
+                                                                                                                 ∗
+                                     ]︁′                                          D21 CG C2 Λ              D21 BG     C2       Λ
+               G0 = (Θ11 P + Θ12 )Γ−1 = G′0 ,
+                   [︁
+                                                                       with E, E −1 , E, E −1 ∈ Π4 . These are coordinate transforma-
+and hence
+                                                                       tions of the states and input and induce Γ, Γ−1 , Γ, and Γ−1 as
+                         [︃ ′ ]︃    [︃ ′ ]︃
+                           P          G0
+                    D(Θ)         w=         Γw.                        causal PIE systems. Boundedness is established later. Factor
+                           I          I
+                                                                       the multiplier V obtained from the dual LPI as V = U ∗ N U,
+By Lemma 2, applied to the well-posed state-space realization
+                                                                       and set Θ = MU Ψ. Lemma 1 gives the dual supply identity
+of G0 defined by operators of the specified class and its dual,
+                                                                                       ⟨︃      [︃ ]︃            [︃ ]︃⟩︃
+ ⟨pT G0 w̃, pT MX G0 w̃⟩L[a,b] ≤ ρ ⟨pT w̃, pT MY w̃⟩L[a,b]                                       z                z
+                                                                                          pT Ψ       , pT MV Ψ
+                                                                                                 w                w L
+      ⇐⇒                                                                                 ⟨︃      [︃ ]︃             [︃ ]︃⟩︃[a,b]
+ ⟨pT G′0 w̃, pT MY −1 G′0 w̃⟩L[a,b] ≤ ρ ⟨pT w̃, pT MX −1 w̃⟩L[a,b] .                               z                 z
+                                                                                      = pT Θ            , pT MN Θ               .
+                                                                                                   w                 w L
+                                                                                                          [a,b]
+Since Γ is causally boundedly invertible, the same arguments
+used for 1) =⇒    2) and 2) =⇒ 1),)︁ with (Y, X , G0 , Γ, w, I) Define the nonnegative storage V (t) := ⟨T x(t), PT x(t)⟩.
+replaced by X −1 , Y −1 , G′0 , Γ, w, I , establish 1) ⇐⇒ 3). Integrating (12) over (11) with zero initial conditions
+             (︁
+
+                                                             ■ (V (x(0)) = 0) yields
+
+D. Proof of Theorem 4                                                                  V (T ) + I ≤ −ϵ∥pT w∥2L[a,b] .
+Proof. Fix any ∆ ∈ ∆ and suppose that (10) holds. The                  In the normalized coordinates,
+assumed well-posedness and bounded static feedback inverse
+permit the augmented plant–uncertainty realizations used in                        I = ⟨pT G′0 Γw, pT MY −1 G′0 Γw⟩L[a,b]
+Theorem 2. The dual interconnection is P ′ ⋆ ∆′ . Write Θp =                            − ⟨pT Γw, pT MX −1 Γw⟩L[a,b] .
+D(Θp ) and N p = −D(Np ). By following the steps of the
+Proof A, using Theorem 3 and using the conditions of R.2.,             Hence the storage inequality also gives
+we find,
+          ⟨︃       [︃ ]︃             [︃ ]︃⟩︃                                       ϵ∥pT w∥2L[a,b] ≤ ∥X −1 ∥ ∥pT Γw∥2L[a,b] ,
+                     zp                z
+             pT Θp       , pT MN p Θp p                                Applying this inequality to the well-posed causal inverse gives,
+                     wp                wp L
+                                                      [a,b]
+                                                                       for every w̃ and T ≥ 0,
+                        ≤ −ϵ∥pT wp ∥2L[a,b] .
+                                                                                ∥pT Γ−1 w̃∥L[a,b] ≤ ∥X −1 ∥/ϵ ∥pT w̃∥L[a,b] .
+                                                                                                    √︁
+Since (P ⋆ ∆)′ = P ′ ⋆ ∆′ , this is the strict performance
+inequality on the dual closed-loop graph. Define Γp :=                 Thus Γ−1 is input–output stable. Together with bounded invert-
+Θp,21 (P ⋆ ∆)′ + Θp,22 . Then Γp wp is the second filtered             ibility of Θ and Θ22 yields bounded invertibility of Γ. Since
+performance signal. Using N p = diag(Yp−1 , −Xp−1 ) and                V (T ) ≥ 0, we also find I ≤ −ϵ∥pT w∥2L[a,b] . Theorem 3 then
+dropping the nonnegative Yp−1 -weighted term gives                     gives the strict primal IQC inequality for (Θ, MN ). Given that
+            ϵ∥pT wp ∥2L[a,b] ≤ ∥Xp−1 ∥ ∥pT Γp wp ∥2L[a,b] .            ∆ satisfies the Hard IQC defined by (Θ∆ , MN∆ ). Theorem 1
+                                                                       guarantees robust stability and performance with respect to
+Substituting wp = Γ−1
+                   p w̃ p , using the well-posed causal inverse        (Θp , MVp ).                                                 ■
+in R.1., yields               √︂
+                      ∥Γ−1
+                        p ∥≤        ∥Xp−1 ∥/ϵ.                         F. Proof of Corollary 4
+Thus Theorem 3 together with robust stability establishes              Proof. Since PK∗ = Z,
+robust performance with respect to (Θp , Np ) for every ∆ ∈
+                                                                                   T ∗ PAK = T ∗ PA0 + T ∗ Z Bu∗ 0 ,
+                                                                                                              [︁     ]︁
+∆.
+                                                          ■                        T ∗ PB K = T ∗ PB 0 + T ∗ ZDzu∗
+                                                                                                                   .
+LENSSEN et al.: DUAL INTEGRAL QUADRATIC CONSTRAINT REPRESENTATIONS FOR ROBUST CONTROL OF PARTIAL INTEGRAL EQUATIONS                 19
+
+
+
+Thus (14) is the dual analysis LPI (12) for P = K ⋆ G. Using        I. Proof of Lemma 6                          [︃       ]︃
+                                                                                                                 β −1
+                                                                    Proof. Define d := β − α, E :=                          , X =
+          ⎡                                           ⎤
+                     I                    0         0                                                           −α 1
+    E := ⎣           0                    I         0⎦ ,            Y := I and                −2 −1
+            D21 (CG + Dzu KG ) C2 + D21 Dzu KΘ Λ                                 [︃ S∆ := ]︃d S ∆ . Set N∆ := diag(X , −Y),
+                                                                                   −S∆ −I
+          ⎡                 ⎤                                       U∆ := √12                E, and Θ∆ := MU∆ . Its memoryless
+               I       0 0                                                         −S∆ I
+    E := ⎣ 0           I 0⎦ ,                                       dual [︃filter is Θ]︃∆ := D(Θ∆ ) = MU ∆ , where U ∆ =
+                  ∗                                                                −1
+            D21 BG C 2 Λ                                            √1
+                                                                           I S∆
+                                                                                    −1 E. These give the dual factorization
+                                                                      2d I      −S∆
+the proof is identical to the proof in E with the same definition
+for Λ and Λ.                                                   ■                   V ∆ = U ∗∆ diag(Y −1 , −X −1 )U ∆ .
+                                                                    The weights X and Y are self-adjoint and coercive. Uniform
+G. Proof of Lemma 4                                                 positivity of S∆ gives√bounded causal PI inverses of Θ∆ and
+                                                                    Θ∆,22 = (I + S∆ )/ 2. Set F := (I + S∆ )−1 (βS∆ + αI).
+Proof. Suppose Q∆ , S ∆ , R∆ ∈ Π4 with Q∆ = Q∗∆ , R∆ =              The uniform positive bounds on S∆ and α < β imply
+R∗∆ ⪯ 0 and F (∆i ) ⪰ 0 for all i. We need to show that for         ∥F∥ < max{|α|, |β|}, since its multiplication coefficient is
+                             nw∆
+any ∆∗ ∈ ∆ and any z ∆ ∈ Le,[a,b]  ,                                a strict convex combination of α and β. The √ feedthrough of
+            ⟨︃[︃        ]︃ [︃               ]︃ [︃       ]︃⟩︃        Θ∆,21 P∆ + Θ∆,22 is (I + S∆ )(I − FD∆ )/ 2, so the un-
+                z ∆ (t)      Q         S∆       z ∆ (t)
+                          , ∗∆                                      certainty input-coordinate feedthrough has a bounded inverse
+               ∆z ∆ (t)       S∆       R∆       ∆z ∆ (t)            by invertibility of Θ∆,22 and the Neumann series. Expanding
+            = ⟨z ∆ (t), F (∆)z ∆ (t)⟩ ≥ 0                           V∆ = U∆  ∗
+                                                                               N∆ U∆ gives
+                                                                                         [︃                      ]︃
+is satisfied. We have                                                                       −2αβS∆ (α + β)S∆
+                                                                                   V∆ =                             .
+ ∑︂                       ∑︂                                                               (α + β)S∆     −2S∆
+     µi F (∆i ) − F (∆) =    µi (∆i − ∆)Q∆ (∆i − ∆)∗ ≤ 0.
+                                                                    Hence, for w∆ = ∆z∆ satisfying the sector bound, with
+ i                           i
+                                                                    S0 (s) := d−2 S 0 (s)−1 ,
+Thus                                                                  ⟨︃[︃        ]︃      [︃        ]︃⟩︃
+                             ∑︂                                            z∆ (t)            z∆ (t)
+                   F (∆) ⪰           µi F (∆i ) ⪰ 0,                (                , V∆               )(s)
+                                                                          w∆ (t)            w∆ (t)
+                                 i                                         ∫︂ b
+which completes the proof.                                     ■     =2         S0 (s)(βz∆ (t, s) − w∆ (t, s))(w∆ (t, s) − αz∆ (t, s)) ds ≥ 0.
+                                                                          a
+                                                                    Integrating in time proves hardness and verifies R.2.(i) for the
+H. Proof of Lemma 5                                                 uncertainty channel.                                          ■
+Proof. Define X −1 = Q∆ + S ∆ Q−1   S ∗∆ and Y −1 = ]︃α2 Q∆ .
+                                 ∆ [︃
+                                     I α−1 S ∗∆ Q−1
+Set N∆ := diag(X , −Y), U∆ :=                      ∆ , and
+                                      0        I
+Θ∆ := MU∆ . Its memoryless           ]︃ is Θ∆ := D(Θ∆ ) =
+                            dual filter
+                      I α−1 Q−1
+                    [︃
+                                 S∆
+MU ∆ , where U ∆ =            ∆        . These give the dual
+                       0     I
+factorization
+
+               V ∆ = U ∗∆ diag(Y −1 , −X −1 )U ∆ .
+
+The weights X and Y are self-adjoint and coercive. The
+triangular form of U∆ gives bounded causal inverses of Θ∆
+and Θ∆,22 = I. Also, Θ∆,21 P∆ + Θ∆,22 = I for every
+compatible plant, so its feedthrough is invertible. Using the
+definition of X and S ∗∆ = −S ∆ , expansion gives
+
+                                        −α−1 Q−1
+                       [︃                                ]︃
+           ∗                  X                     S ∆X
+   V∆ = U∆ N∆ U∆ = −1 −1                         ∆          .
+                         α Q∆ S ∆ X         −α−2 X
+
+Hence, for ∆ = δ(t)I with |δ(t)| ≤ α,
+        [︃ ]︃∗
+                                      δ(t)2
+⟨︃                [︃ ]︃ ⟩︃ ⟨︃     (︃        )︃     ⟩︃
+          I         I
+   z∆ ,        V∆      z  = z∆ , 1 − 2         X z∆ ≥ 0.
+          ∆         ∆ ∆                α
+Integrating in time proves hardness and verifies R.2.(i) for the
+uncertainty channel.                                          ■
+
